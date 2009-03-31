@@ -2,12 +2,21 @@
 
 = Introduction =
 
-Welcome to the Intrasell wiki pages.
+Welcome to the Intrasell classic wiki pages.
+
+
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Hauptseite
+<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3.jpg">
+
+Artikelverwaltung
+<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_Artikel.jpg">
+
+Kundenverwaltung
+<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_Kunden.jpg">
+
+Trading Board
+<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_TradingBoard.jpg">
