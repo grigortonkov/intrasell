@@ -2,11 +2,12 @@
 #labels Featured
 
 = Introduction =
-
-Add your content here.
+This page contains screenshots from the Intrasell programm. 
 
 
 = Details =
+
+<img src=""/>
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
