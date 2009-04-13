@@ -1,13 +1,17 @@
-#summary One-sentence summary of this page.
+#labels Phase-Design
+= IN WORK = 
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Features
+1.	Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten
+2.	Artikel, Artikelgruppen, Preislisten
+3.	Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) 
+4.	Import- & Exportfunktion, ELBA Schnittstelle
+5.	Etiketten, Adresskleber, Bankbelegausdruck
+6.	Statistiken & Berichte
+Technische Features
+Datenbank - Access 2000, leicht anpassbar, Microsoft Office Look & Feel
+Run Demoversion
+Wichtig: die Demoversion erlaubt das Anlegen von maximal 10 Rechnungen.
+Installation : 
+1.	Für Testbetrieb entzippen Sie die MDB Datei.
+2.	Starten Sie IntraSell_2.02 Datei (Doppelklick)
