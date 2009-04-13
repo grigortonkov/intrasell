@@ -8,8 +8,12 @@
 === Software === 
 
   * Client: 
+   - MSWindows (XP, Vista, 2000) 
+   - MSAccess 2003 Runtime (kostenlos von MS) 
+   - MSWord (optional falls Vorlagengenerierung benötigt wird) 
   * Server: 
-   Datenbank - MySQL, MYSQL, Oracle od. Access 2003
+    - Linux bzw Windows Betriebssystem 
+    - Datenbank - MySQL, MYSQL, Oracle od. Access 2003
 
 == Installation ==
 === Server === 
