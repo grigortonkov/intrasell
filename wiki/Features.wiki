@@ -1,6 +1,7 @@
+#labels Featured
 #Featuresliste IntraSell 3
 
-= Introduction =
+= Einführung =
 
 Die folgende Auflistung liefert eine Darstellung der Basisaufgaben die mit IntraSell abgedeckt sind. 
 
