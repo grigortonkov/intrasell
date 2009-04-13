@@ -1,0 +1,21 @@
+#labels Featured
+#IntraSell AddIns
+
+= Einfürung =
+
+Hier finden Sie bereits implementierte AddIns für IntraSell.
+
+ 
+== Add Ins ==  
+  * IntraSell_AddIn_Sparkasse_PayPal.mdb<br/>
+  * IntraSell_AddIn_GLS.mdb<br/>
+  * IntraSell_AddIn_EUROFIBU.mdb<br/>
+  * IntraSell_AddIn_BMD.mdb<br/>
+  * IntraSell_AddIn_PriceCompare.mdb<br/>
+  * IntraSell_AddIn_Nachname.mdb<br/>
+  * IntraSell_AddIn_Migration.mdb<br/>
+  * IntraSell_AddIn_Listen.mdb<br/> 
+  * IntraSell_AddIn_KeywordsManager.mdb<br/>
+  * IntraSell_AddIn_Ingram.mdb<br/>
+  * IntraSell_AddIn_ImportManager.mdb<br/>
+  * IntraSell_AddIn_Barverkauf.mdb<br/>
