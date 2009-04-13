@@ -7,28 +7,33 @@ Die folgende Auflistung liefert eine Darstellung der Basisaufgaben die mit Intra
 
 == IntraSell 3 Featuresliste ==
 
-* Lieferscheine, Aufträge, Rechnungen und Gutschriften  JA  JA 
-* Lagerhaltung mit Erfassung von Bestands-, Mindest- und Bestellmengen JA JA 
-* Flexible Artikel- und Warengruppenverwaltung JA JA 
-* Set Artikel JA n/a 
-* Stücklistenerfassung n/a JA 
-* Vor- und Nachbemerkungen (Bezug, Werbung usw.) JA JA 
-* Generieren von Kundenlisten JA JA 
-* Druck von Preis- und Artikellisten JA JA 
-* Ausgeben von „Hitlisten“ möglich, z.B. verkaufsstärkste Artikel Nein JA 
-* Mengenstaffelpreise Nein JA 
-* Rechnungsausgangsbuch Nein JA 
-* 3-stufiges Mahnwesen Nein JA 
-* Lagerbestandserfassung JA JA 
-* Automatisches Generieren von Bestellvorschlägen Nein JA 
-* Verschiedene Versandarten und Mehrwertsteuersätze JA JA 
-* Kundensperrfunktion Nein JA 
-* Datenimport mit Zuordnungstabelle JA JA 
-* Datenexport zur Finanzbuchhaltung (ASCII, DATEV, Lexware buchhalter) JA JA 
-* Anbindung an Lexware eBusiness (Domainname, Webshop) Nein JA 
-* Schnittstelle zu Microsoft Outlook Nein JA 
-* Mandantenfähig Nein JA 
-* Euro-fähig JA JA 
-* ODBC Schnittstelle JA n/a 
-* Microsoft Look and Feel JA n/a 
-* Ettiketendruck 
+  * Lieferscheine, Aufträge, Rechnungen und Gutschriften
+  * Lagerhaltung mit Erfassung von Bestands-, Mindest- und Bestellmengen
+  * Flexible Artikel- und Warengruppenverwaltung
+  * Set Artikel
+  * Stücklistenerfassung
+  * Vor- und Nachbemerkungen (Bezug, Werbung usw.)
+  * Generieren von Kundenlisten
+  * Druck von Preis- und Artikellisten
+  * Ausgeben von „Hitlisten“ möglich, z.B. verkaufsstärkste Artikel
+  * Mengenstaffelpreise
+  * Rechnungsausgangsbuch
+  * 3-stufiges Mahnwesen
+  * Lagerbestandserfassung
+  * Automatisches Generieren von Bestellvorschlägen
+  * Verschiedene Versandarten und Mehrwertsteuersätze
+  * Kundensperrfunktion
+  * Datenimport mit Zuordnungstabelle
+  * Datenexport zur Finanzbuchhaltung (ASCII, DATEV, Lexware buchhalter)
+  * Anbindung an Lexware eBusiness (Domainname, Webshop)
+  * Schnittstelle zu Microsoft Outlook
+  * Mandantenfähig
+  * Euro-fähig
+  * ODBC Schnittstelle
+  * Microsoft Look and Feel
+  * Ettiketendruck 
+
+== Sicherheit & Verfügbarkeit ==
+  * Replikation der Datenbank 
+  * Offline Updates möglich
+  * Verschlüsselte Daten in Notebook Installationen
