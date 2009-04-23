@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Neue Seite 2</title>
+<script language="JavaScript">
+<!--
+function calcHeight()
+{
+  //find the height of the internal page
+  var the_height=
+    document.getElementById('the_iframe').contentWindow.
+      document.body.scrollHeight;
+
+  //change the height of the iframe
+  document.getElementById('the_iframe').height=
+      the_height;
+}
+//-->
+</script>
+
+</head>
+
+<body>
+
+and in the body create the iframe tag: 
+<iframe width="700" id="the_iframe" onLoad="calcHeight();" 
+	src="testing_page.shtml" 
+	scrolling="NO" 
+	frameborder="1" 
+	height="1">
+ An iframe capable browser is required to view this web site.
+</iframe>
+
+
+ <input type="button" value="RESIZE FRAME" onclick="document.getElementById('the_iframe').height=100;" ID="Button1" NAME="Button1">
+
+</body>
+
+</html>
