@@ -21,6 +21,12 @@ End Sub
  
  Public Function openRecordset(ByVal sql As String, Optional something As Variant = 0, Optional par2 As Variant = 0) As Recordset
  
+  If InStr(ConnStringODBC, "MySQL") Then
+    sql = Replace(sql, "[", "`")
+    sql = Replace(sql, "]", "`")
+    sql = Replace(sql, "Date()", "CURRENT_TIMESTAMP")
+  End If
+  
     If InStr(sql, "INSERT") > 0 Or InStr(sql, "UPDATE") > 0 Or InStr(sql, "DELETE") > 0 Then
           'DoCmd.SetWarnings False
           CurrentDB.Execute sql
