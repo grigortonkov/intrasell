@@ -12,8 +12,9 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 Private preise As IntraSellPreise
-Private kundengruppe As IntraSellKundengruppe
+Private kundengruppe As IntraSellKunden
 Private vars As IntraSellVars
+ 
 
 'konstanten
 Const BEZEICHNUNG_LAENGE = 70
@@ -31,19 +32,20 @@ Public Sub init(ByVal connString)
     Set CurrentDB = functionsDB.CurrentDB
     Set vars = New IntraSellVars
     Set preise = New IntraSellPreise
-    Set kundengruppe = New IntraSellKundengruppe
+    Set kunden = New IntraSellKunden
     automatisch_speichern = False
     dokument_in_word_oeffnen = True
     vars.init (connString)
+    preise.init (connString)
     
 End Sub
 
 '=======================================================
 '=======================================================
-Function getRecSource(Vorgangtyp, Vorgang_Nummer)
+Function getRecSource(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
 
- Dim vonForm, vonForm_Artikel
- vonForm = preise.getVorgangTableForType(Vorgangtyp)
+ Dim VonForm, vonForm_Artikel
+ VonForm = preise.getVorgangTableForType(Vorgangtyp)
  vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
  
  getRecSource = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname as Namen , ofAdressen.Firma, ofAdressen.Adresse, " & _
@@ -52,8 +54,8 @@ Function getRecSource(Vorgangtyp, Vorgang_Nummer)
             " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
             " ofAdressen.Anrede , ofAdressen.Anrede + "" "" & ofAdressen.Titel as AnredeTitel, getLand(ofAdressen.Idnr) as land, getUID(ofAdressen.idnr) as uid, Tel, Email, " & VonForm & ".KundNr2" & _
             " FROM ((ofAdressen RIGHT JOIN " & VonForm & " ON ofAdressen.IDNR = " & VonForm & ".KundNr) " & _
-            " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & VonForm_Artikel & "] " & _
-            " ON " & VonForm & ".Nummer = [" & VonForm_Artikel & "].RechNr " & _
+            " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
+            " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
             " Where nummer=" & Vorgang_Nummer & "  " & _
             " GROUP BY '" & Vorgangtyp & "' , ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, " & _
             " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
@@ -64,46 +66,49 @@ End Function
 
 '=======================================================
 ' liefet den recordsource wenn eine weitere adresse verwendet wird
+'
+' SelectedId - vom User ausgewählte ID in einem Dialog
 '=======================================================
-Function getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer)
+Function getRecSource_Weitere(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, Optional ByVal SelectedId As String = "")
 
- Dim VonForm, VonForm_Artikel
- VonForm = getVorgangTableForType(Vorgangtyp)
- VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
+ Dim VonForm, vonForm_Artikel
+ VonForm = preise.getVorgangTableForType(Vorgangtyp)
+ vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
  
- getRecSource_Weitere = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, [ofAdressen-Weitere].Idnr, [ofAdressen-Weitere].Name & "" "" &   [OfAdressen-WEitere].Vorname as Namen, [ofAdressen-Weitere].Firma, [ofAdressen-Weitere].Adresse, " & _
+ getRecSource_Weitere = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, [ofAdressen-Weitere].Idnr, [ofAdressen-Weitere].Name & "" "" &   [OfAdressen-Weitere].Vorname as Namen, [ofAdressen-Weitere].Firma, [ofAdressen-Weitere].Adresse, " & _
             " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort] AS plzort, " & _
             " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, " & VonForm & ".Notiz, " & _
             " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
-            " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email" & _
+            " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email, " & VonForm & ".KundNr2 " & _
             " FROM (([ofAdressen-Weitere] RIGHT JOIN " & VonForm & " ON [ofAdressen-Weitere].IDNR = " & VonForm & ".KundNr)" & _
-            " LEFT JOIN grPLZ ON [ofAdressen-Weitere].PLZ = grPLZ.IdNr) INNER JOIN [" & VonForm_Artikel & "] " & _
-            " ON " & VonForm & ".Nummer = [" & VonForm_Artikel & "].RechNr " & _
+            " LEFT JOIN grPLZ ON [ofAdressen-Weitere].PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
+            " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
             " Where nummer=" & Vorgang_Nummer & "  " & _
             " AND [ofAdressen-Weitere].Typ like '" & Vorgangtyp & "'" & _
+            " AND [ofAdressen-Weitere].Id = " & SelectedId & " " & _
             " GROUP BY '" & Vorgangtyp & "' , [ofAdressen-Weitere].Idnr, [ofAdressen-Weitere].Name & "" "" & [ofAdressen-weitere].vorname,  [ofAdressen-Weitere].Firma, [ofAdressen-Weitere].Adresse, " & _
             " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
             " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz,Woher, Wohin," & _
-            " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr), getUID(" & VonForm & ".KundNr), Tel, Email;"
+            " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr), getUID(" & VonForm & ".KundNr), Tel, Email, " & VonForm & ".KundNr2;"
     Debug.Print getRecSource_Weitere
     'getLand(" & vonForm & ".KundNr), getUID(" & vonForm & ".KundNr),
 End Function
 
-Public Function getLand(ByVal Idnr) As String
-getLand = vars.TABLEVALUE("grLand", "IDNR", Var.TABLEVALUE("ofAdressen", "Idnr", Idnr, "LAND"), "Name") & ""
+Public Function getLand(ByVal IdNr) As String
+  getLand = vars.TABLEVALUE("grLand", "IDNR", Var.TABLEVALUE("ofAdressen", "Idnr", IdNr, "LAND"), "Name") & ""
 End Function
 
-Public Function getUID(ByVal Idnr) As String
-getUID = vars.TABLEVALUE("ofAdressen", "Idnr", Idnr, "UID") & ""
+Public Function getUID(ByVal IdNr) As String
+  getUID = vars.TABLEVALUE("ofAdressen", "Idnr", IdNr, "UID") & ""
 End Function
 
 '=======================================================
 ' prueft ob eine weitere adresse vorhanden ist
 '=======================================================
-Function checkIfWeitereVorhanden(ByVal Idnr, ByVal Vorgangtyp) As Boolean
-checkIfWeitereVorhanden = False
+Function checkIfWeitereVorhanden(ByVal IdNr, ByVal Vorgangtyp) As Boolean
+  checkIfWeitereVorhanden = False
     Dim rs, sql
-    sql = "select * from [ofAdressen-Weitere] where idnr=" & Idnr & " AND typ like '" & Vorgangtyp & "'"
+    sql = "select * from [ofAdressen-Weitere] where idnr=" & IdNr & " AND typ like '" & Vorgangtyp & "'"
     Set rs = openRecordset(sql, dbOpenDynaset, dbSeeChanges)
     If Not rs.EOF Then
             checkIfWeitereVorhanden = True
@@ -114,8 +119,8 @@ End Function
 '=======================================================
 ' oeffnet den ausdruck mit access formular
 '=======================================================
-Public Sub OpenAusdruck(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal formatNummer As String)
-Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, formatNummer)
+Public Sub OpenAusdruck(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
+Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, FormatNummer)
 End Sub
 
 
@@ -125,14 +130,14 @@ End Sub
 ' oeffnet den ausdruck mit access formular
 'formatNummer = SILENT - kommen keine Fragen
 '=======================================================
-Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal formatNummer As String)
+Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
  Dim recSource ' recordSource für den Ausdruck
  Dim Filter, reply, i
  Dim Vorgang_Name
- Dim vonForm, vonForm_Artikel
+ Dim VonForm, vonForm_Artikel
   
   
- vonForm = preise.getVorgangTableForType(Vorgangtyp)
+ VonForm = preise.getVorgangTableForType(Vorgangtyp)
  vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
  Vorgang_Name = preise.getDruckForType(Vorgangtyp)
  
@@ -140,8 +145,8 @@ Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Numme
  reply = vbYes
  
  If FormatNummer <> "SILENT" Then
-    If varValue("AnzahlAusdruecke") <> "1" Then
-        reply = MsgBox("Wollen Sie " & varValue("AnzahlAusdruecke") & " Kopien ausdrucken?", vbYesNo)
+    If vars.varValue("AnzahlAusdruecke") <> "1" Then
+        reply = MsgBox("Wollen Sie " & vars.varValue("AnzahlAusdruecke") & " Kopien ausdrucken?", vbYesNo)
      Else
         reply = vbYes
      End If
@@ -197,8 +202,8 @@ Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Numme
         
         'DoCmd.Save acReport, "buchRechnung"
        
-        If formatNummer <> "SILENT" Then
-                For i = 1 To vars.VarValue("AnzahlAusdruecke")
+        If FormatNummer <> "SILENT" Then
+                For i = 1 To vars.varValue("AnzahlAusdruecke")
                             'preview
                              DoCmd.OpenReport "buchRechnung", acPreview, , Filter
                              'für Drucken
@@ -219,27 +224,28 @@ End Sub
 '=================================================================
 ' oeffnet den ausdruck mit word formular
 '=================================================================
-Public Sub OpenAusdruck_inWord(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal formatNummer As String)
-   Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, formatNummer, "Vorlage_Rechnung.doc")
+Public Sub OpenAusdruck_inWord(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
+   Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, FormatNummer, "Vorlage_Rechnung.doc")
 End Sub
-Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal formatNummer As String, ByVal Dateiname As String)
-   Dim app 'As Application
-   Dim vorlageFilename
+
+Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String, ByVal Dateiname As String)
+   Dim App 'As Application
+   Dim VorlageFilename
    Dim rs As Recordset
-   Dim vonForm, vonForm_Artikel
+   Dim VonForm, vonForm_Artikel
    Dim sql
    Dim rsArt
    
-   vonForm = preise.getVorgangTableForType(Vorgangtyp)
+   VonForm = preise.getVorgangTableForType(Vorgangtyp)
    vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
    
    
-   vorlageFilename = vars.dbFolder() & Dateiname
+   VorlageFilename = vars.dbFolder() & Dateiname
    
-   Set app = CreateObject("Word.Application")
-   app.Visible = True
+   Set App = CreateObject("Word.Application")
+   App.Visible = True
    
-    app.Documents.Open FileName:=vorlageFilename, ConfirmConversions:=False, ReadOnly:=False, AddToRecentFiles:=False, Format:=0
+    App.Documents.Open FileName:=VorlageFilename, ConfirmConversions:=False, ReadOnly:=False, AddToRecentFiles:=False, Format:=0
 
 
     Set rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer), dbOpenDynaset)
@@ -251,7 +257,7 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
     If rs.EOF Then
         MsgBox "Die Daten sind nicht vorhanden!", vbCritical
         On Error Resume Next
-        app.Quit
+        App.Quit
         Exit Sub
     End If
     
@@ -262,28 +268,28 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
         End If
     
     
-    Call replaceInWordOnce(app, "[Idnr]", rs("Idnr") & "")
-    Call replaceInWordOnce(app, "[Kundennummer]", rs("Idnr") & "")
+    Call replaceInWordOnce(App, "[Idnr]", rs("Idnr") & "")
+    Call replaceInWordOnce(App, "[Kundennummer]", rs("Idnr") & "")
      
-    Call replaceInWordOnce(app, "[firma]", rs("firma") & "")
-    Call replaceInWordOnce(app, "[name]", rs("namen") & "")
-    Call replaceInWordOnce(app, "[strasse]", rs("adresse") & "")
-    Call replaceInWordOnce(app, "[plz ort]", rs("plzort") & "")
+    Call replaceInWordOnce(App, "[firma]", rs("firma") & "")
+    Call replaceInWordOnce(App, "[name]", rs("namen") & "")
+    Call replaceInWordOnce(App, "[strasse]", rs("adresse") & "")
+    Call replaceInWordOnce(App, "[plz ort]", rs("plzort") & "")
 
-    Call replaceInWordOnce(app, "[Titel]", Vorgangtyp & "-" & Vorgang_Nummer)
-    Call replaceInWordOnce(app, "[Datum]", rs("Datum") & "")
-    Call replaceInWordOnce(app, "[Betreuer]", "")
-    Call replaceInWordOnce(app, "[Email]", rs("Email") & "")
+    Call replaceInWordOnce(App, "[Titel]", Vorgangtyp & "-" & Vorgang_Nummer)
+    Call replaceInWordOnce(App, "[Datum]", rs("Datum") & "")
+    Call replaceInWordOnce(App, "[Betreuer]", "")
+    Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
     
-    Call replaceInWordOnce(app, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
-    Call replaceInWordOnce(app, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
-    Call replaceInWordOnce(app, "[Transportmethode]", rs("TransportMethode") & "")
+    Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
+    Call replaceInWordOnce(App, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
+    Call replaceInWordOnce(App, "[Transportmethode]", rs("TransportMethode") & "")
     
  
     
-    Call replaceInWordOnce(app, "[Netto]", FormatNumber(rs("summeATS"), 2))
-    Call replaceInWordOnce(app, "[MWST]", FormatNumber(rs("summeATSBrutto") - rs("summeATS"), 2))
-    Call replaceInWordOnce(app, "[Total]", FormatNumber(rs("summeATSBrutto"), 2))
+    Call replaceInWordOnce(App, "[Netto]", FormatNumber(rs("summeATS"), 2))
+    Call replaceInWordOnce(App, "[MWST]", FormatNumber(rs("summeATSBrutto") - rs("summeATS"), 2))
+    Call replaceInWordOnce(App, "[Total]", FormatNumber(rs("summeATSBrutto"), 2))
     
     
     'PART II - Positionen
@@ -295,10 +301,10 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
    
   
   'copy the artikel line times as needed
-    app.Selection.MoveUp Unit:=7, Count:=3
-    app.Selection.Find.ClearFormatting
-    app.Selection.Find.replacement.ClearFormatting
-    With app.Selection.Find
+    App.Selection.MoveUp Unit:=7, Count:=3
+    App.Selection.Find.ClearFormatting
+    App.Selection.Find.replacement.ClearFormatting
+    With App.Selection.Find
         .Text = "[Stk]"
         .replacement.Text = "1"
         .Forward = True
@@ -312,13 +318,13 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
     End With
     
     
-    Dim foundstk: foundstk = app.Selection.Find.Execute
-    app.Selection.EndKey Unit:=5, Extend:=1
-    app.Selection.Copy
+    Dim foundstk: foundstk = App.Selection.Find.Execute
+    App.Selection.EndKey Unit:=5, Extend:=1
+    App.Selection.Copy
     Dim i
             If foundstk Then
                 For i = 1 To positionen
-                   app.Selection.Paste
+                   App.Selection.Paste
                 Next i
             End If
   'replace artnr, preis etc.
@@ -327,11 +333,11 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
     Debug.Print sql
     Set rsArt = openRecordset(sql, dbOpenDynaset, dbSeeChanges)
    While Not rsArt.EOF
-      Call replaceInWordOnce(app, "[Stk]", rsArt("Stk"))
-      Call replaceInWordOnce(app, "[ArtNR]", rsArt("ArtNR"))
-      Call replaceInWordOnce(app, "[Bezeichnung]", rsArt("Bezeichnung") & "")
-      Call replaceInWordOnce(app, "[Beschreibung]", rsArt("Beschreibung") & "")
-      Call replaceInWordOnce(app, "[Preis]", FormatNumber(rsArt("PreisATS"), 2))
+      Call replaceInWordOnce(App, "[Stk]", rsArt("Stk"))
+      Call replaceInWordOnce(App, "[ArtNR]", rsArt("ArtNR"))
+      Call replaceInWordOnce(App, "[Bezeichnung]", rsArt("Bezeichnung") & "")
+      Call replaceInWordOnce(App, "[Beschreibung]", rsArt("Beschreibung") & "")
+      Call replaceInWordOnce(App, "[Preis]", FormatNumber(rsArt("PreisATS"), 2))
       rsArt.MoveNext
    Wend
   
@@ -341,7 +347,7 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
   Dim rsEig As Recordset
   Set rsEig = openRecordset(sql, dbOpenDynaset, dbSeeChanges)
   While Not rsEig.EOF
-    Call replaceInWordOnce(app, "[" & rsEig("Name") & "]", rsEig("Value") & "")
+    Call replaceInWordOnce(App, "[" & rsEig("Name") & "]", rsEig("Value") & "")
     rsEig.MoveNext
   Wend
   
@@ -350,7 +356,7 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
     Dim saveAsFilename: saveAsFilename = vars.dbFolder() & Vorgangtyp & "_" & Vorgang_Nummer & ".doc"
     If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
       
-            app.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:= _
+            App.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:= _
                 0, LockComments:=False, Password:="", AddToRecentFiles:= _
                 True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
                 False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
@@ -358,18 +364,18 @@ Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, ByVal Vorgan
     End If
     
     On Error Resume Next ' vielleicht ist word bereits geschlossen
-    app.Quit
+    App.Quit
    
 End Sub
 
 '=================================================================
 '=================================================================
-Private Sub replaceInWordOnce(app, ByVal what As String, ByVal withValue As String)
+Private Sub replaceInWordOnce(App, ByVal what As String, ByVal withValue As String)
 On Error GoTo 1:
-    app.Selection.MoveUp Unit:=7, Count:=4
-    app.Selection.Find.ClearFormatting
-    app.Selection.Find.replacement.ClearFormatting
-    With app.Selection.Find
+    App.Selection.MoveUp Unit:=7, Count:=4
+    App.Selection.Find.ClearFormatting
+    App.Selection.Find.replacement.ClearFormatting
+    With App.Selection.Find
         .Text = what
         .replacement.Text = withValue
         .Forward = True
@@ -383,7 +389,7 @@ On Error GoTo 1:
     End With
  
     
-    app.Selection.Find.Execute Replace:=1 'wdReplaceAll
+    App.Selection.Find.Execute Replace:=1 'wdReplaceAll
 Exit Sub
 1:
 Debug.Print "Cannot replace " & what
@@ -393,61 +399,61 @@ End Sub
 '=================================================================
 'erstellt eine WORD Datei mit den gegebenen Informationen
 '=================================================================
-Public Sub OpenKorrespondenz_inWord(ByVal Idnr As String, ByVal Subjekt, ByVal BriefText, ByVal Datum, ByVal printAndClose)
-   Dim app 'As Application
-   Dim vorlageFilename
+Public Sub OpenKorrespondenz_inWord(ByVal IdNr As String, ByVal Subjekt, ByVal BriefText, ByVal Datum, ByVal printAndClose)
+   Dim App 'As Application
+   Dim VorlageFilename
    Dim rs As Recordset
-   Dim vonForm, vonForm_Artikel
+   Dim VonForm, vonForm_Artikel
    Dim sql
    Dim rsArt
    
    
-   vorlageFilename = vars.dbFolder() & "Vorlage_Brief.doc"
+   VorlageFilename = vars.dbFolder() & "Vorlage_Brief.doc"
    
-   Set app = CreateObject("Word.Application")
+   Set App = CreateObject("Word.Application")
   
-    app.Visible = False
-    app.Documents.Open FileName:=vorlageFilename, ConfirmConversions:=False, ReadOnly:=False, AddToRecentFiles:=False, Format:=0
-    Set rs = CurrentDB.openRecordset("select * from qry_Adressfelder where idnr=" & Idnr, dbOpenDynaset, dbSeeChanges)
+    App.Visible = False
+    App.Documents.Open FileName:=VorlageFilename, ConfirmConversions:=False, ReadOnly:=False, AddToRecentFiles:=False, Format:=0
+    Set rs = CurrentDB.openRecordset("select * from qry_Adressfelder where idnr=" & IdNr, dbOpenDynaset, dbSeeChanges)
     
     If rs.EOF Then
         MsgBox "Die Daten sind nicht vorhanden!", vbCritical
         On Error Resume Next
-        app.Quit
+        App.Quit
         Exit Sub
     End If
     
     
    
-    Call replaceInWordOnce(app, "[IDNR]", rs("idnr") & "")
-    Call replaceInWordOnce(app, "[Kundennummer]", rs("idnr") & "")
+    Call replaceInWordOnce(App, "[IDNR]", rs("idnr") & "")
+    Call replaceInWordOnce(App, "[Kundennummer]", rs("idnr") & "")
     
-    Call replaceInWordOnce(app, "[firma]", rs("firma") & "")
-    Call replaceInWordOnce(app, "[name]", rs("name") & "")
-    Call replaceInWordOnce(app, "[strasse]", rs("adresse") & "")
-    Call replaceInWordOnce(app, "[plz ort]", rs("plz") & " " & rs("ort") & "")
-    Call replaceInWordOnce(app, "[plz]", rs("plz") & "")
-    Call replaceInWordOnce(app, "[ort]", rs("ort") & "")
-    Call replaceInWordOnce(app, "[Email]", rs("Email") & "")
+    Call replaceInWordOnce(App, "[firma]", rs("firma") & "")
+    Call replaceInWordOnce(App, "[name]", rs("name") & "")
+    Call replaceInWordOnce(App, "[strasse]", rs("adresse") & "")
+    Call replaceInWordOnce(App, "[plz ort]", rs("plz") & " " & rs("ort") & "")
+    Call replaceInWordOnce(App, "[plz]", rs("plz") & "")
+    Call replaceInWordOnce(App, "[ort]", rs("ort") & "")
+    Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
 
-    Call replaceInWordOnce(app, "[Titel]", "" & Subjekt)
-    Call replaceInWordOnce(app, "[Datum]", Datum & "")
-    Call replaceInWordOnce(app, "[Text]", "")
-    app.Selection.TypeText BriefText & ""
+    Call replaceInWordOnce(App, "[Titel]", "" & Subjekt)
+    Call replaceInWordOnce(App, "[Datum]", Datum & "")
+    Call replaceInWordOnce(App, "[Text]", "")
+    App.Selection.TypeText BriefText & ""
   
-   app.Visible = True
-    Dim saveAsFilename: saveAsFilename = vars.dbFolder() & "Korrespondenz_" & Idnr & "_" & Year(Date) & Month(Date) & Day(Date) & ".doc"
+   App.Visible = True
+    Dim saveAsFilename: saveAsFilename = vars.dbFolder() & "Korrespondenz_" & IdNr & "_" & Year(Date) & Month(Date) & Day(Date) & ".doc"
     If Not printAndClose Then
         If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
-                app.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:= _
+                App.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:= _
                     0, LockComments:=False, Password:="", AddToRecentFiles:= _
                     True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
                     False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
                     SaveAsAOCELetter:=False
         End If
     Else ' print and do not close word
-                app.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:=0
-                app.ActiveDocument.PrintOut
+                App.ActiveDocument.SaveAs FileName:=saveAsFilename, FileFormat:=0
+                App.ActiveDocument.PrintOut
                
                'the word instance will not be closed
               Exit Sub
@@ -479,7 +485,7 @@ makeArtikelNummer = ArtNr1
 
 End Function
 
-Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal formatNummer As String)
+Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
     Dim Subject
     Dim Email: Email = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
    
@@ -506,10 +512,10 @@ Public Function getKundenEmail(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer 
    Dim rsEmail
    Dim sql
 
-   sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
+   sql = "select Email from ofAdressen where idnr in (select KundNr from " & preise.getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
    
    If Vorgangtyp = VORGANG_TYP_LAU Then
-      sql = "select Email from lieferantenAdressen where idnr in (select LieferantNr from " & getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
+      sql = "select Email from lieferantenAdressen where idnr in (select LieferantNr from " & preise.getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
    End If
    
    Set rsEmail = CurrentDB.openRecordset(sql)
@@ -531,9 +537,9 @@ Public Sub OpenAusdruck_inWord_RTF(ByVal Vorgangtyp As String, ByVal Vorgang_Num
 End Sub
 
 'Hilfe Funktion
-Function readFileContent(ByVal Dateiname As String, ByVal Positionen As Integer) As String
+Function readFileContent(ByVal Dateiname As String, ByVal positionen As Integer) As String
        'read RTF content
-    Dim VorlageFilename As String: VorlageFilename = dbFolder() & Dateiname
+    Dim VorlageFilename As String: VorlageFilename = vars.dbFolder() & Dateiname
     Dim fileText As String, fileContent As String, fileLine As String
     Dim i As Integer
     Open VorlageFilename For Input As #1
@@ -548,7 +554,7 @@ Function readFileContent(ByVal Dateiname As String, ByVal Positionen As Integer)
               
               'add lines für jede Position
               If InStr(fileLine, "[ArtNR]") > 0 Or InStr(fileLine, "[EAN]") > 0 Then 'je das ist eine Position zeile
-                For i = 1 To (Positionen - 1)
+                For i = 1 To (positionen - 1)
                     fileContent = fileContent & Chr(13) & Chr(10) & _
                                   fileLine
                 Next
@@ -575,15 +581,15 @@ Public Function OpenAusdruck_InWord_Filename_RTF( _
    Dim App 'As Application
    
    Dim rs As Recordset
-   Dim vonForm, vonForm_Artikel
+   Dim VonForm, vonForm_Artikel
    Dim sql
    Dim rsArt
    
-   vonForm = preise.getVorgangTableForType(Vorgangtyp)
+   VonForm = preise.getVorgangTableForType(Vorgangtyp)
    vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
    
    
-   vorlageFilename = vars.dbFolder() & Dateiname
+   VorlageFilename = vars.dbFolder() & Dateiname
    Set rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer), dbOpenDynaset, dbSeeChanges)
     
 
@@ -609,7 +615,7 @@ Public Function OpenAusdruck_InWord_Filename_RTF( _
     
     'read RTF content
     Dim fileText, fileContent, fileLine
-    Open vorlageFilename For Input As #1
+    Open VorlageFilename For Input As #1
     While Not EOF(1)
             Input #1, fileLine
               If fileContent = "" Then
@@ -706,7 +712,7 @@ Public Function OpenAusdruck_InWord_Filename_RTF( _
        If Not Silent Then 'OPEN FILE IN WORD
             Set App = CreateObject("Word.Application")
             App.Visible = True
-            App.Documents.Open filename:=saveAsFilename, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False ', Format:=0
+            App.Documents.Open FileName:=saveAsFilename, ConfirmConversions:=False, ReadOnly:=False, AddToRecentFiles:=False ', Format:=0
        End If
        
         'if send Email
@@ -716,6 +722,7 @@ Public Function OpenAusdruck_InWord_Filename_RTF( _
         'acFormatTXT
         'acFormatXLS
         'DoCmd.SendObject acSendNoObject, , acFormatHTML, Email, , , Subject, "test", True, "c:\temp\temp\AR_200300004.htm"  'saveAsFilename
+   End If
    
 End Function
 

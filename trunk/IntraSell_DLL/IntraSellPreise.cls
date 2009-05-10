@@ -14,7 +14,10 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Public CurrentDB As Connection
+
 Private vars As IntraSellVars
+Private kunden As IntraSellKunden
+
 Const VORGANG_TYP_LAU = "LAU"
 
 Public Sub init(ByVal connString)
@@ -25,6 +28,9 @@ Public Sub init(ByVal connString)
     
     Set vars = New IntraSellVars
     vars.init (connString)
+    
+    Set kunden = New IntraSellKunden
+    kunden.init (connString)
     
 End Sub
 
@@ -43,8 +49,8 @@ End Sub
 ' returns the special preis if defined
 ' when not defined returns 0
 '*****************************************************************
- Public Function getPreis(ByVal Idnr As String, ByVal ArtNr As String, ByVal Stk As Variant)
- If IsNull(Idnr) Then Idnr = -1
+ Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk) As Double
+ If IsNull(IdNr) Then IdNr = -1
  If IsNull(ArtNr) Then getPreis = 0: Exit Function
  Dim ArtKatNr
     getPreis = 0
@@ -56,7 +62,7 @@ End Sub
      
      ArtKatNr = rs("ArtKAtNR")
      
-     If Idnr = -1 Then ' user ist egal
+     If IdNr = -1 Then ' user ist egal
         sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
               "     (pl.ArtKatNr is null or pl.ArtKatNr =-1 or pl.ArtKatNr =" & ArtKatNr & ")" & _
               " and (pl.ArtNr is null  or ArtNr =-1  or  artnr = " & ArtNr & ")" & _
@@ -64,10 +70,10 @@ End Sub
               " ORDER BY pl.Idnr desc, pl.ArtNr desc, pl.ArtKatNr desc, pl.preislistename desc, pl.StkAb desc"
      Else
         sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
-              " (pl.preislistename='' or pl.preislistename is null or pl.preislistename in (select preisliste from [ofAdressen-settings] where IdNR = " & Idnr & "))" & _
+              " (pl.preislistename='' or pl.preislistename is null or pl.preislistename in (select preisliste from [ofAdressen-settings] where IdNR = " & IdNr & "))" & _
               " and (pl.ArtKatNr is null or pl.ArtKatNr =-1 or pl.ArtKatNr =" & ArtKatNr & ")" & _
               " and (pl.ArtNr is null  or ArtNr =-1  or  artnr = " & ArtNr & ")" & _
-              " and (pl.Idnr is null or pl.idnr = -1 or pl.idnr=" & Idnr & ")" & _
+              " and (pl.Idnr is null or pl.idnr = -1 or pl.idnr=" & IdNr & ")" & _
               " and (pl.StkAb<=" & Stk & ")" & _
               " ORDER BY pl.Idnr desc, pl.ArtNr desc, pl.ArtKatNr desc, pl.preislistename desc, pl.StkAb desc"
      End If
@@ -112,11 +118,11 @@ End Sub
 ' returns the special preis if defined
 ' when not defined returns 0
 '*****************************************************************
- Private Function getSpecialPreis(ByVal Idnr, ByVal ArtNr)
+ Private Function getSpecialPreis(ByVal IdNr, ByVal ArtNr) As Double
      getSpecialPreis = 0
      Dim sql, rs
      sql = "select vkpreis from [grArtikel-VKPreisPerSelection] where preislistename in " & _
-     " (select preisliste from [ofAdressen-settings] where IdNR = " & Idnr & ") and artnr = " & ArtNr
+     " (select preisliste from [ofAdressen-settings] where IdNR = " & IdNr & ") and artnr = " & ArtNr
      Set rs = openRecordset(sql, dbOpenDynaset)
      If Not rs.EOF Then
          'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
@@ -129,7 +135,7 @@ End Sub
 '*****************************************************************
 ' returns the  min or max and VK or EK PReis from LieferantenArtikelPreis
 '*****************************************************************
- Public Function getLieferantPreis(ByVal ArtNr, ByVal boolMinPreis, ByVal boolVKPreis)
+ Public Function getLieferantPreis(ByVal ArtNr, ByVal boolMinPreis, ByVal boolVKPreis) As Double
     getLieferantPreis = 0
      Dim sql, rs
      
@@ -156,7 +162,7 @@ End Sub
 'gibt den VKpreis eines Artikels zurück, egal von besteller
 'falls aufschlag auf EKpreis nach Kategorie existiert dann wird es aufgeschlagen
 '*****************************************************************
-Private Function getBasisVKPreis(ByVal ArtNr)
+Private Function getBasisVKPreis(ByVal ArtNr) As Double
      Dim sql, rs, ArtKatNr
     
      sql = "select ArtNR, ArtKatNR, PreisATS from grArtikel where artnr=" & ArtNr
@@ -186,7 +192,7 @@ End Function
 
 '*****************************************************************
 '*****************************************************************
-Private Function getEKPreis(ByVal ArtNr)
+Public Function getEKPreis(ByVal ArtNr) As Double
      Dim sql, rs
 
      sql = "select EKPreis from [grArtikel] where artnr=" & ArtNr
@@ -212,7 +218,7 @@ End Function
 '*****************************************************************
 'liefert Bestpreis aus der lieferanten Preise Tabelle
 '*****************************************************************
-Function makeEKPreisVonLieferant(ByVal ArtNr)
+Function makeEKPreisVonLieferant(ByVal ArtNr) As Double
      makeEKPreisVonLieferant = 0
      If ArtNr & "" = "" Then Exit Function
      Dim sql, rs
@@ -235,7 +241,7 @@ End Function
 '*****************************************************************
 'returns the name of the best lieferant
 '*****************************************************************
-Public Function getBestLieferant(ByVal ArtNr)
+Public Function getBestLieferant(ByVal ArtNr) As String
      Dim sql, rs
      sql = "select artikelnr, LieferantNr, EKPreis from [lieferantenArtikel-Preise] " & _
            " where artikelnr=" & ArtNr & " ORDER BY prioritaet, EKPreis"
@@ -255,7 +261,7 @@ End Function
 '*****************************************************************
 'returns the lagerinfo of the best lieferant
 '*****************************************************************
-Public Function getLieferantLagerInfo(ByVal ArtNr)
+Public Function getLieferantLagerInfo(ByVal ArtNr) As String
 
      If IsNull(ArtNr) Then
         getLieferantLagerInfo = ""
@@ -286,7 +292,7 @@ End Function
 
 '*****************************************************************
 '*****************************************************************
-Private Function getAufschlagEKpreisKategorie(ArtKatNr)
+Private Function getAufschlagEKpreisKategorie(ArtKatNr) As Double
      Dim sql, rs
      sql = " select ArtKatNR, Aufschlag, ArtKatNrParent from [grArtikel-Kategorien] where " & _
            " ArtKatNr =" & ArtKatNr & _
@@ -313,7 +319,7 @@ End Function
 '*****************************************************************
 ' makeBruttoPreis for any preis without artnr
 '*****************************************************************
-Function makeBruttoPreis(ByVal Preis, ByVal MwstGroup, ByVal Land)
+Function makeBruttoPreis(ByVal Preis, ByVal MwstGroup, ByVal Land) As Double
 ' Dim Land: Land = Session("LAND")
  If Land = "" Then Land = "AT"
  makeBruttoPreis = Preis * (1 + getVAT(Land, MwstGroup) / 100)
@@ -340,13 +346,13 @@ End Function
 ' makeNettoPreis
 ' need only the artNr AND Stk /for staffelung/
 '*****************************************************************
-Function makeNettoPreis(ArtNr, Stk, Idnr)
+Function makeNettoPreis(ArtNr, Stk, IdNr) As Double
 Dim sql, rs, preisManyPieces
 Set rs = openRecordset("select * from grArtikel where ArtNr=" & ArtNr, dbOpenDynaset)
 If rs.EOF Then
     makeNettoPreis = 0
 Else
-   Dim preis1stk:  preis1stk = getPreis(Idnr, ArtNr, Stk) 'rs("PreisATS")
+   Dim preis1stk:  preis1stk = getPreis(IdNr, ArtNr, Stk) 'rs("PreisATS")
    sql = "select * from [grArtikel-Staffelpreise] Where ArtNr = " & ArtNr & " AND stkAb <" & Stk
    Dim rsRabatt: Set rsRabatt = openRecordset(sql, dbOpenDynaset)
    Dim prozent: prozent = 0
@@ -364,7 +370,7 @@ End Function
 ' getVAT
 ' MWSTGROUP -0, 1, or 2
 '*****************************************************************
-Function getVAT(Land, MwstGroup)
+Function getVAT(Land, MwstGroup) As String
  If Land = "" Then Land = "AT"
  Land = UCase(Land)
  Dim sql, rs
@@ -384,9 +390,9 @@ End Function
 '*****************************************************************
 ' getVAT
 '*****************************************************************
-Function getClientLand(Idnr)
+Function getClientLand(IdNr) As String
   Dim plzLAND, clientPLZ
-   plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", Idnr, "LAND")
+   plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", IdNr, "LAND")
  'response.write "PLZLand =" & PLZLand
    If plzLAND = 43 Then getClientLand = "AT"
    If plzLAND = 49 Then getClientLand = "DE"
@@ -399,7 +405,7 @@ End Function
 ' For example Converts one Auftrag to Rechnung
 ' returns the nummer of the created new OrderType or 0 of failed
 '*****************************************************************
-Public Function convertFromTo(FromOrder, ToOrder, fromNummer, NewKundNr)
+Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr) As String
         Dim sql
         Dim rs
         Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
@@ -410,28 +416,28 @@ Public Function convertFromTo(FromOrder, ToOrder, fromNummer, NewKundNr)
         tableNameTo = getVorgangTableForType(ToOrder)
         tableNameToProducts = getVorgangArtikelTableForType(ToOrder)
         
-        Dim Idnr
+        Dim IdNr
         sql = "select * from " & tableNameFrom & " where nummer =" & fromNummer
         Set rs = openRecordset(sql, "")
         If rs.EOF Then
             convertFromTo = 0
             Exit Function
          Else
-           Idnr = rs("Kundnr")
+           IdNr = rs("Kundnr")
         End If
         rs.Close
         
         Dim nextRechnungNummer
-        nextRechnungNummer = getNewVorgangNummer(ToOrder, Idnr)
+        nextRechnungNummer = getNewVorgangNummer(ToOrder, IdNr)
      
         If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         Else
-            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         End If
@@ -475,7 +481,7 @@ End Function
 
 '=======================================================
 '=======================================================
-Public Function getVorgangTableForType(ByVal Typ)
+Public Function getVorgangTableForType(ByVal Typ) As String
 Select Case Typ
     Case "AN"
         getVorgangTableForType = "buchAngebot"
@@ -500,7 +506,7 @@ End Function
 
 '*****************************************************************
 '*****************************************************************
-Public Function getVorgangArtikelTableForType(ByVal Typ)
+Public Function getVorgangArtikelTableForType(ByVal Typ) As String
 Select Case Typ
     Case "AN"
         getVorgangArtikelTableForType = "buchAngebot-Artikel"
@@ -526,7 +532,7 @@ End Function
 '*****************************************************************
 'liefert den namen für den Ausdruck zurück
 '*****************************************************************
-Public Function getVarNameForType(ByVal Typ)
+Public Function getVarNameForType(ByVal Typ) As String
 Select Case Typ
     Case "AN"
         getVarNameForType = "letzteAngebotNummer"
@@ -552,7 +558,7 @@ End Function
 '=======================================================
 'liefert den namen für den Ausdruck zurück
 '=======================================================
-Public Function getDruckForType(ByVal Typ)
+Public Function getDruckForType(ByVal Typ) As String
 Select Case Typ
     Case "AN"
         getDruckForType = "Angebot"
@@ -579,15 +585,15 @@ End Function
 '=======================================================
 'get the next free vorgangnummer
 'first looks if the kundenGruppe needs special number curcle and then get the new one from the free
-'=======================================================
-Public Function getNewVorgangNummer(ByVal Typ, ByVal Idnr)
+'======================================================================================
+Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr) As String
     Dim von, bis, sql
     Dim rs
     von = 0
     bis = 9999999
 
   'if kundengruppe defined
-  Set rs = openRecordset("select VorgangNrKreisvon, VorgangNrKreisbis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & Idnr & ")", "")
+  Set rs = openRecordset("select VorgangNrKreisvon, VorgangNrKreisbis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
   If Not rs.EOF Then 'kundengruppe is definiert
                   von = rs("VorgangNrKreisvon")
                   bis = rs("VorgangNrKreisbis")
@@ -608,24 +614,42 @@ Public Function getNewVorgangNummer(ByVal Typ, ByVal Idnr)
                 Dim letzteNummer
                 Dim vname: vname = getVarNameForType(Typ)
                 
-                letzteNummer = vars.VarValue(vname)
+                letzteNummer = vars.varValue(vname)
                 'Die Nummer erhöhen
-                Call vars.SetVarValue(vname, letzteNummer + 1)
+                Call vars.SETVARVALUE(vname, letzteNummer + 1)
                 
                 'prüfen ob die Nummer besetzt ist
                 Set rs = openRecordset("select * from " & getVorgangTableForType(Typ) & " where nummer =" & (letzteNummer + 1), dbOpenDynaset)
                 If rs.EOF Then
                     getNewVorgangNummer = letzteNummer + 1
                 Else 'wieder erhöhen
-                    getNewVorgangNummer = getNewVorgangNummer(Typ, Idnr)
+                    getNewVorgangNummer = getNewVorgangNummer(Typ, IdNr)
                 End If
                 
     End If
 
 End Function
 
+'======================================================================================
+'======================================================================================
+Public Function getMWSTArtikel(ByVal ArtNr As String) As String
+            getMWSTArtikel = vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr)
+End Function
 
+'======================================================================================
+'======================================================================================
+Public Function calculateBruttoPreis(ByVal VKPreis As Double, ByVal ArtNr As String, ByVal IdNr As String) As Double
+    If kunden.needsMWST(IdNr) Then
+        calculateBruttoPreis = VKPreis * (1 + getMWSTArtikel(ArtNr) / 100)
+     Else
+        calculateBruttoPreis = VKPreis
+     End If
+End Function
 
-
-
+'======================================================================================
+'Wrapper for the Function from Kunden Module
+'======================================================================================
+Public Function needsMWST(ByVal IdNr) As Boolean
+     needsMWST = kunden.needsMWST(IdNr)
+End Function
 
