@@ -593,7 +593,7 @@ Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr) As String
     bis = 9999999
 
   'if kundengruppe defined
-  Set rs = openRecordset("select VorgangNrKreisvon, VorgangNrKreisbis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
+  Set rs = openRecordset("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
   If Not rs.EOF Then 'kundengruppe is definiert
                   von = rs("VorgangNrKreisvon")
                   bis = rs("VorgangNrKreisbis")
@@ -601,7 +601,7 @@ Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr) As String
                 Set rs = openRecordset("select * from " & getVorgangTableForType(Typ) & _
                  "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc", dbOpenDynaset)
                 'rs.Sort = "nummer"
-                Set rs = rs.openRecordset()
+                'Set rs = rs.openRecordset()
                     If rs.EOF Then
                        getNewVorgangNummer = von
                     Else
