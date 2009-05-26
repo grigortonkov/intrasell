@@ -1,0 +1,20 @@
+#summary One-sentence summary of this page.= Beschreibt wie eine Replikation mit MySQL einzurichten ist =
+
+
+GRANT REPLICATION SLAVE, REPLICATION CLIENT
+    ON *.*
+    TO 'replication'@'*'
+    IDENTIFIED BY 'pwd';
+
+CHANGE MASTER TO
+  MASTER_HOST='80.120.22.111',
+  MASTER_USER='replication',
+  MASTER_PASSWORD='pwd',
+  MASTER_PORT=3306,
+  MASTER_LOG_FILE='master2-bin.00016',
+  MASTER_LOG_POS=7968,
+  MASTER_CONNECT_RETRY=10;
+
+
+
+= Details =Add your content here.  Format your content with:  * Text in *bold* or _italic_  * Headings, paragraphs, and lists  * Automatic links to other wiki pages
