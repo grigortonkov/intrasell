@@ -1,5 +1,5 @@
 #labels Featured
-#Featuresliste IntraSell 3
+Featuresliste IntraSell 3
 
 = Einführung =
 
@@ -37,6 +37,6 @@ Die folgende Auflistung liefert eine Darstellung der Basisaufgaben die mit Intra
   * XML Export
 
 == Sicherheit & Verfügbarkeit ==
-  * Replikation der Datenbank 
+  * Replikation der Datenbank
   * Offline Updates möglich
-  * Verschlüsselte Daten in Notebook Installationen
+  * Verschlüsselte Daten bei Notebook Installationen - Mobile Computing
