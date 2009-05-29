@@ -1,10 +1,13 @@
-#summary One-sentence summary of this page.= Beschreibt wie eine Replikation mit MySQL einzurichten ist =
+#summary Beschreibt Replikation mit MySQL
 
+
+Befehle:
 
 GRANT REPLICATION SLAVE, REPLICATION CLIENT
     ON *.*
     TO 'replication'@'*'
     IDENTIFIED BY 'pwd';
+
 
 CHANGE MASTER TO
   MASTER_HOST='80.120.22.111',
@@ -17,4 +20,13 @@ CHANGE MASTER TO
 
 
 
-= Details =Add your content here.  Format your content with:  * Text in *bold* or _italic_  * Headings, paragraphs, and lists  * Automatic links to other wiki pages
+
+
+
+-----------------------------------------------------------------
+rem Windows Batch File für automatisches Starten der Replikation (VPN) 
+rem Runs SQL Commands from File at certain time! Every 10 minutes;
+c:\mysql\bin\mysql intrasell_daten_2 -uroot < commands.sql
+pause
+-----------------------------------------------------------------
+ 
