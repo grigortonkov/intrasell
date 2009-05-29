@@ -1,5 +1,5 @@
 #labels Featured
-#Hier finden Sie einige Screenshots des IntraSell Programms. 
+Hier finden Sie einige Screenshots des IntraSell Programms. 
 
 = Introduction =
 
