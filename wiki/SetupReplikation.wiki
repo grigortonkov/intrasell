@@ -1,5 +1,6 @@
 #summary Beschreibt Replikation mit MySQL
 
+=Einrichtung Replikation=
 
 Befehle:
 
@@ -32,7 +33,7 @@ CHANGE MASTER TO
 
 
 
-
+=Weitere Einrichtung Replikation wenn der User VPN (Einwählen) benutzt=
 -----------------------------------------------------------------
 rem Windows Batch File für automatisches Starten der Replikation (VPN) 
 
@@ -43,3 +44,11 @@ c:\mysql\bin\mysql intrasell_daten_2 -uroot < commands.sql
 pause
 -----------------------------------------------------------------
  
+Datei: commands.sql
+-----------------------------------------------------------------
+
+
+stop slave;
+
+start slave;
+-----------------------------------------------------------------
