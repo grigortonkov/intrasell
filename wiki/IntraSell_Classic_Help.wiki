@@ -17,7 +17,9 @@
 
 == Installation ==
 === Server === 
-  * TODO  
+  * MySQL 5.1 von der Seite www.mysql.org runterladen und in c:\mysql installieren
+  * DB Script für die Intrasell_daten_2 Datenbank einspielen
+  * 
 === Client ===  
   * Entzippen Sie die ZIP Datei in einem belibiegen Ordner.
   * Starten Sie die setup.bat Datei für die automatische Einrichtung der Komponenten 
