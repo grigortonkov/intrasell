@@ -177,8 +177,8 @@ Public Function private_getTranslationDok(ByVal TableName As String, _
                          
      
     Dim sql As String
-    sql = "select  Translation from translations where TableName='" & TableName & _
-     "' and FieldName ='" & FieldName & "' and Key='" & Key & "' and Language_Code='" & language_Code & "'"
+    sql = "select Translation from translations t where t.TableName='" & TableName & _
+     "' and t.FieldName ='" & FieldName & "' and t.Key='" & Key & "' and t.Language_Code='" & language_Code & "'"
     Dim rs
     Set rs = openRecordset(sql, "")
     

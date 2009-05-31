@@ -391,6 +391,9 @@ End Function
 ' getVAT
 '*****************************************************************
 Function getClientLand(IdNr) As String
+  getClientLand = vars.firstRow("select iso2 from ofAdressen a, grland l where  a.land = l.idnr and a.idnr=" & IdNr)
+  Exit Function
+  '
   Dim plzLAND, clientPLZ
    plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", IdNr, "LAND")
  'response.write "PLZLand =" & PLZLand
