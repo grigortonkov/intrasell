@@ -2,13 +2,13 @@
 <%'@ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
 <%OPTION explicit%>
 <%'ON ERROR RESUME NEXT%>
-<!--#include file="../intrasoft/connOpen.asp"-->
-<!--#include file="../intrasoft/functions.asp"-->
-<!--#include file="../intrasoft/functionsGUI.asp"-->
-<!--#include file="../intrasoft/functionsFAQ.asp"-->
-<!--#include file="../intrasoft/functionsCache.asp"-->
-<!--#include file="../intrasoft/functionsDictionary.asp"-->
-<!--#include file="../intrasoft/functionsLogs.asp"-->
+<!--#include virtual ="/intrasoft/connOpen.asp"-->
+<!--#include virtual="/intrasoft/functions.asp"-->
+<!--#include virtual="/intrasoft/functionsGUI.asp"-->
+<!--#include virtual="/intrasoft/functionsFAQ.asp"-->
+<!--#include virtual="/intrasoft/functionsCache.asp"-->
+<!--#include virtual="/intrasoft/functionsDictionary.asp"-->
+<!--#include virtual="/intrasoft/functionsLogs.asp"-->
 <!--#include file="functionsSessions.asp"-->
 <!--#include file="functionsCategories.asp"-->
 <!--#include file="functionsProducts.asp"-->
@@ -32,7 +32,7 @@
 <!--#include file="functionsUserPoints.asp"-->
 <!--#include file="functionsGutschein.asp"-->
 <!--#include file="priceCompare/functionsInterface.asp"-->
-<!--#include file="../admin/module_ref/functionsReferers.asp"-->
+<!--#include virtual="/admin/module_ref/functionsReferers.asp"-->
 <!--#include file="functionsLieferanten.asp"-->
 <!--#include file="functionsProductsImages.asp"-->
 <!--#include file="functionsProductsCompare.asp"-->
