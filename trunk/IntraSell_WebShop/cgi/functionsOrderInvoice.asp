@@ -201,8 +201,9 @@ rsW.close
 sql ="select NichtBestellbar from grArtikel where artnr=" & ArtNr 
 set rsW = objConnectionExecute(SQL)
 if not rsW.EOF then 
-    if not rsW("NichtBestellbar")=0 then 'add even the product is not active 
-        message =  getTranslation("Wir bieten derzeit Produkt mit dieser Nummer nicht!") & " Nr=[" & ArtNR & "]!"
+    Response.Write rsW("NichtBestellbar")
+    if not (cint(rsW("NichtBestellbar"))=0) then 'add even the product is not active 
+        message =  getTranslation("Artikel ist derzeit nicht bestellbar! Wir bitten um Ihr Verständnis! ") & " Nr=[" & ArtNR & "]!"
         Response.Write message
         Response.Write "<br>"
         rsW.close 
@@ -230,8 +231,8 @@ end if
 rsW.close 
 'end check 
 
-'check if Preis >0 then do not show 
-Dim preisATS: PreisATS = getPreis(wkSID, ArtNr, q)
+'check if Preis > 0 then do not show 
+Dim preisATS: PreisATS = getPreis(getLOGIN(), ArtNr, q)
 if cdbl(preisATS) <=0 then 
 	message =  getTranslation("Wir bieten derzeit Produkt mit dieser Nummer nicht!") &  " Nr=[" & ArtNR & "]"
 	Response.Write message
@@ -355,6 +356,16 @@ Dim Land : Land = getClientDestinationLand(kdnr) ' getClientLand(KDNR)
 'Create auftrag (Order)
 Dim AuftragNr, Notiz, sql  
 AuftragNr = NextId("buchAuftrag","Nummer")
+
+' Issue 59:  eigene Kundengruppe und Vorgangnummernkreis für online Bestellungen  
+
+dim onlineKundNr:onlineKundNr = FIRSTVALUE("select Idnr from [ofadressen-settings] where Kundengruppe = 'Online'")
+if isnumeric(onlineKundNr) then 
+	AuftragNr = IntraSellPreise.getNewVorgangNummer("AU", onlineKundNr)
+else
+    Response.Write "Warnung: Bitte eine Kundengruppe namens ""Online"" mit einem eigenen Nummernkreis definieren!"
+end if 
+
 Notiz = "Internet Bestellung"
 if notizOrder = "" then notizOrder = notiz
 sql = "INSERT INTO buchAuftrag (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum)  " & _ 
@@ -619,7 +630,7 @@ set rsArt = nothing
 	dim kundNr2 
 	
 	sqlLI  = "Select ID from [ofAdressen-Weitere] where typ= '" & addressType &  "' and IDNR=" & kdnr
-	Response.Write sqlLI 
+	'Response.Write sqlLI 
 	set rsLI = objConnectionExecute(sqlLI) 
 	if not rsLI.EOF then 
 	    kundNr2 = rsLI("ID")

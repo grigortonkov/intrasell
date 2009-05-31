@@ -7,7 +7,7 @@
 Const TECHINFOCONSTANT = "TechInfo:"
 Const SPECIALCHOICECONSTANT = "SpecialChoice:"
 Const DAYS_TO_LOOK_BACK_CLICKS = 3
-Const DEFAULT_PRODUCT_SEARCH_WHERE = "ProduktAktiv<>0 and ArtNr>=1000 and preisATS<>0"
+Const DEFAULT_PRODUCT_SEARCH_WHERE = "ProduktAktiv<>0 and ArtNr>=0 and preisATS<>0"
 
 Const PRODUCT_IMAGE_BIG_MAX_SIZE = 600 
 Const PRODUCT_IMAGE_MIDDLE_MAX_SIZE = 125  

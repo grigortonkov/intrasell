@@ -123,5 +123,9 @@ Public Function getClientLand(ByVal IdNr)
   getClientLand = IntraSellPreise().getClientLand(IdNr)
 end function 	
 
+Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr)
+  getNewVorgangNummer = IntraSellPreise().getNewVorgangNummer(Typ, IdNr)
+End Function
+
 
 %>
