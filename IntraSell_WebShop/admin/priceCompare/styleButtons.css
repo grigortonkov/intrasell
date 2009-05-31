@@ -1,0 +1,148 @@
+<!-- StyleTag Anfang -->
+
+<head>
+<STYLE>
+UNKNOWN
+{
+    SCROLLBAR-FACE-COLOR: #e4f5ff;
+    SCROLLBAR-HIGHLIGHT-COLOR: #e4f5ff;
+    SCROLLBAR-SHADOW-COLOR: #e4f5ff;
+    SCROLLBAR-3DLIGHT-COLOR: #0099ff;
+    SCROLLBAR-ARROW-COLOR: #0099ff;
+    SCROLLBAR-TRACK-COLOR: #e4f5ff;
+    SCROLLBAR-DARKSHADOW-COLOR: black;
+    SCROLLBAR-BASE-COLOR: #0099ff
+}
+SELECT
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt
+}
+INPUT
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt
+}
+TEXTAREA
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt
+}
+.ColorInbox
+{
+    BORDER-BOTTOM: gray 1px solid;
+    BORDER-LEFT: gray 1px solid;
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: gray 1px solid;
+    HEIGHT: 20px
+}
+.MenuStyle
+{
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 12px
+}
+.MenuStyle:hover
+{
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10pt;
+    TEXT-DECORATION: none
+}
+.MenuStyleBold
+{
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.MenuStyleBold:hover
+{
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+TD
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt
+}
+BODY
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt
+}
+.inputbox
+{
+    BORDER-BOTTOM: gray 1px solid;
+    BORDER-LEFT: gray 1px solid;
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: gray 1px solid
+}
+.ColorInbox2
+{
+    BORDER-BOTTOM-WIDTH: 1px;
+    BORDER-LEFT-WIDTH: 1px;
+    BORDER-RIGHT-WIDTH: 1px;
+    BORDER-TOP-WIDTH: 1px
+}
+A
+{
+    COLOR: #384f96;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    TEXT-DECORATION: none
+}
+A:hover
+{
+    COLOR: #384f96;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    TEXT-DECORATION: underline
+}
+.Xinput
+{
+    BACKGROUND-COLOR: #cccccc;
+    BORDER-BOTTOM: white thin solid;
+    BORDER-LEFT: white thin solid;
+    BORDER-RIGHT: white thin solid;
+    BORDER-TOP: white thin solid;
+    FONT-FAMILY: Verdana
+}
+.nav
+{
+    COLOR: #384f96;
+    FONT-SIZE: 10pt
+}
+.nav:hover
+{
+    COLOR: #384f96;
+    FONT-SIZE: 10pt
+}
+.menu
+{
+    COLOR: white;
+    FONT-WEIGHT: bold
+}
+.fussnote
+{
+    COLOR: #cccccc;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.fussnote:hover
+{
+    COLOR: gray;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.datum
+{
+    FONT-SIZE: 10pt
+}
+</STYLE>
+<!-- StyleTag Ende -->
+
+
+</head>
+
