@@ -4,13 +4,14 @@
 
 == Voraussetzungen == 
 === Hardware === 
-  * 
+  * Server: 10 GB Festplattenspeicher; 500 Mb RAM; 1 Ghz Prozessor; 32 Bit od. 64 Bit System; 
+  * Client: 100 Mb Festplattenspeicher; 265 RAM; 1 Ghz Prozessor;
 === Software === 
 
   * Client: 
-   - MSWindows (XP, Vista, 2000) 
-   - MSAccess 2003 Runtime (kostenlos von MS) 
-   - MSWord (optional falls Vorlagengenerierung benötigt wird) 
+   - MS Windows (XP, Vista, 2000) 
+   - MS Access 2003 Runtime (kostenlos von MS) 
+   - MS Word (optional falls Vorlagengenerierung benötigt wird) 
   * Server: 
     - Linux bzw Windows Betriebssystem 
     - Datenbank - MySQL, MYSQL, Oracle od. Access 2003
