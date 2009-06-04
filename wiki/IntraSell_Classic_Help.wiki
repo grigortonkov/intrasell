@@ -24,6 +24,14 @@
   * Entzippen Sie die ZIP Datei in einem belibiegen Ordner.
   * Starten Sie die setup.bat Datei für die automatische Einrichtung der Komponenten 
   * Starten Sie IntraSell.exe Datei (Doppelklick)
+  * Warnung 64Bit System: Eventuell den MySQL Odbc 5.1 Treiber mit der DLL von einem 32 Bit ODBC Treiber ersetzen. 
+
+=== Shop ===  
+
+  * IntraSell_webshop in einem Folder entpacken. (wwwroot)
+  * IIS Starten und eine neue Anwendung einfügen - am Besten als Root. 
+  * Warnung 64Bit System:
+   in IIS 7 in Applikation pool , erweiterte Einstellungen muss 32 Support aktiviert werden.
 
 == Funkionen == 
   * Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten
