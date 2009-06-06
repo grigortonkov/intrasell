@@ -1,5 +1,5 @@
-<!--#include file="../../intrasoft/menu.asp"-->
-<!--#include File ="../upload/upload.inc"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
+<!--#include virtual="/admin/upload/upload.inc"-->
 <SCRIPT LANGUAGE="JavaScript">
 function Validator(){
 	var myform = document.forms("UploadLogo");

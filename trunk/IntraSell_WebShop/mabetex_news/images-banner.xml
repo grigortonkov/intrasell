@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- 
+set transition number from 1 to 9
+set transition number to 0 for random effect
+ -->
+<RSS PAUSE="4000">
+	<IMAGE TRANSITION="3">flashimages/01.jpg</IMAGE>
+	<IMAGE TRANSITION="2">flashimages/02.jpg</IMAGE>
+	<IMAGE TRANSITION="5">flashimages/03.jpg</IMAGE>
+	<IMAGE TRANSITION="2">flashimages/04.jpg</IMAGE>
+	<IMAGE TRANSITION="5">flashimages/05.jpg</IMAGE>
+	<IMAGE TRANSITION="2">flashimages/06.jpg</IMAGE>
+</RSS>

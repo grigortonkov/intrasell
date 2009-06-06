@@ -92,6 +92,9 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 set xrs = Server.CreateObject("ADODB.Recordset")
 xrs.Open strsql, xConn
@@ -127,6 +130,9 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 xrs.Open strsql, xConn
 

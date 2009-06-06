@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <h1>Setup Wizzard</h1>
 <p>Sieben Schritte zum Erfolg</p>
 <p>Führen Sie diese sieben Schritte durch, um Ihren Shop vorzubereiten:</p>

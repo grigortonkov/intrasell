@@ -258,8 +258,8 @@ function createEmptyOrder(OrderType)
 	AuftragNr = NextId(tableNameOrders ,"Nummer")
 	Notiz = "new"
 
-	sql = "INSERT INTO " & tableNameOrders  & " (Nummer, KundNr)  " & _ 
-	  	   "Values(" & AuftragNr & "," & KDNR  & ")"
+	sql = "INSERT INTO " & tableNameOrders  & " (Nummer, KundNr, Datum)  " & _ 
+	  	   "Values(" & AuftragNr & "," & KDNR  & ", CURRENT_TIMESTAMP)"
 	objConnectionExecute(sql)	  	   
    createEmptyOrder = AuftragNr 
 end function 

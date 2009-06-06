@@ -17,7 +17,7 @@ Dim orderNR
 	
 
 dim MCHAR: MCHAR="*"
-if session("dbType") = "SQL" then MCHAR = "%"
+if session("dbType") = "SQL" or session("dbType") = "MySQL" then MCHAR = "%"
 	
 	SQL = " SELECT " & tableOrders &".Datum, Status,  "& tableOrdersProducts &".* " & _
 		  " FROM grArtikel, " & tableOrdersProducts & ", " & tableOrders  & _

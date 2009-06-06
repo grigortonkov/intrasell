@@ -22,13 +22,13 @@ else
 end if
 if merch <> "" then
 	sql = " SELECT IDNR FROM lieferantenAdressen WHERE Firma LIKE '" & merch & "'"
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	liefID = rs("IDNR")
 end if	
 
 sql = "SELECT  lieferantenAdressen.Firma FROM lieferantenAdressen " & _
       " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-set rs = objConnection.Execute(sql)
+set rs = ObjConnectionExecute(sql)
 %>
 <form action="merchantsOpenPricesList.asp" method=post id=form1 name=form1>
 <input type="hidden" name="merch" value="<%=merch%>">
@@ -43,30 +43,30 @@ wend%>
 if IDtoDelete <> "" then
 	if IDtoDelete = "all" then  'delete all
 		SQL = "DELETE FROM priceComparePricesToImport WHERE LieferantNr = " & liefID	
-		ObjConnection.execute(SQL) 
+		ObjConnectionExecute(SQL) 
 	else ' delete only one 
 		SQL = "DELETE FROM priceComparePricesToImport WHERE ID = " & IDtoDelete
-		ObjConnection.execute(SQL) 
+		ObjConnectionExecute(SQL) 
 	end if	
 end if	
 if IDtoImport <> "" then
 	if IDtoImport = "all" then  'import all
 		SQL = "SELECT * FROM priceComparePricesToImport WHERE LieferantNr = " & liefID
-		set rsImp = ObjConnection.execute(SQL) 
+		set rsImp = ObjConnectionExecute(SQL) 
 		while not rsImp.EOF
 			csValues = Split( rsImp("Line" ), ";" )
 			sql = "INSERT INTO [lieferantenArtikel-Preise] (PreisId, LieferantNr, ArtikelNr, EKPreis, PreisDatum ) " & _
 				  " Values(" & NextId("[lieferantenArtikel-Preise]","PreisId") & ", " & liefID & _
 				  "," & NextId("grArtikel","ArtNr") & "," & csValues(1) & ",'" & rsImp("FromDate") & "' )"	
-			ObjConnection.execute(sql) 
+			ObjConnectionExecute(sql) 
 			rsImp.MoveNext
 		wend
 			
 		SQL = "DELETE FROM priceComparePricesToImport WHERE LieferantNr = " & liefID	
-		ObjConnection.execute(SQL) 
+		ObjConnectionExecute(SQL) 
 	else ' import only one 
 		SQL = "SELECT * FROM priceComparePricesToImport WHERE LieferantNr = " & liefID & " and ID = " & IDtoImport
-		set rsImp = ObjConnection.execute(SQL) 
+		set rsImp = ObjConnectionExecute(SQL) 
 		strSplit = CStr(rsImp("Line"))
 		Response.Write " LINE : " & strSplit
 		csValues = Split( strSplit , ";" )
@@ -75,16 +75,16 @@ if IDtoImport <> "" then
 		      " Values(" & NextId("[lieferantenArtikel-Preise]","PreisId") & ", " & liefID & _
 		      "," & NextId("grArtikel","ArtNr") & "," & csValues(1) & ",'" & GermanSQLDate( rsImp("FromDate")) & "' )"	
 		Response.Write " <br> SQL : " & sql
-		ObjConnection.execute(sql) 
+		ObjConnectionExecute(sql) 
 		sql = "DELETE FROM priceComparePricesToImport WHERE ID = " & IDtoDelete
-		ObjConnection.execute(SQL) 
+		ObjConnectionExecute(SQL) 
 		
 	end if	
 end if	
 if merch <> "" then
 	SQL = "SELECT * FROM priceComparePricesToImport WHERE LieferantNr = " & liefID	
 	Response.Write sql
-	set rsImp = ObjConnection.execute(SQL) 
+	set rsImp = ObjConnectionExecute(SQL) 
 	if rsImp.BOF and rsImp.EOF then ' nothing to import
 		Response.Write "<h2>There is nothing to import for merchant:&nbsp;" & merch & "</h2>"
 	else %>

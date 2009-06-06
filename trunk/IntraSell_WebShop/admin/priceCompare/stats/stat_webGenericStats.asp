@@ -33,7 +33,7 @@ if stat = "Banners" or stat = "BannersDetail" or _
 	   <OPTION value="all">all</OPTION>
 		<%sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	           " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-		set rs = ObjConnection.Execute(sql)
+		set rs = ObjConnectionExecute(sql)
 		While not rs.EOF
 			Response.Write "<OPTION value=""" & rs("IDNR") & """>" & rs("Firma") & "</OPTION>"
 			rs.MoveNext

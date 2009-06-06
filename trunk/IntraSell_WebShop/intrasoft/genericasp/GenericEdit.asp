@@ -1,4 +1,4 @@
-<!--#include file="../menu.asp"-->  
+<!--#include virtual="/intrasoft/menu.asp"-->  
 <!--#include file="GenericLanguage.asp" -->
 <% 
 ' Generic Database - Edit Record
@@ -106,6 +106,9 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 set xrs = Server.CreateObject("ADODB.Recordset")
 xrs.Open strsql, xConn
@@ -276,6 +279,9 @@ Select Case Action
 			case "SQL" 
 				strsql = Replace(strsql,"[","")
 				strsql = Replace(strsql,"]","")
+			Case "MYSQL" 
+				strsql = Replace(strsql,"[","`")
+				strsql = Replace(strsql,"]","`")
 		end select
 		set xrs = Server.CreateObject("ADODB.Recordset")
 		xrs.Open strsql, xConn
@@ -311,6 +317,9 @@ Select Case Action
 			case "SQL" 
 				strsql = Replace(strsql,"[","")
 				strsql = Replace(strsql,"]","")
+			Case "MYSQL" 
+				strsql = Replace(strsql,"[","`")
+				strsql = Replace(strsql,"]","`")
 		end select
 		set xrs = Server.CreateObject("ADODB.Recordset")
 		xrs.Open strsql, xConn, 1, 2

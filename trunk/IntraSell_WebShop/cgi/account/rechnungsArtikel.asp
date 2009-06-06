@@ -12,7 +12,7 @@ else 'logged in
 	tableOrdersProductsArtikel= "[" & getNameForTableProducts(orderTypeArtikel) & "]"
 
 	dim MC: MC="*"
-	if session("dbType") = "SQL" then MC = "%"
+	if session("dbType") = "SQL" or session("dbType") = "MySQL" then MC = "%"
 
 	Dim rsRechArtikel
 		SQL = " SELECT " & tableOrdersArtikel &".Datum, Status,  "& tableOrdersProductsArtikel &".* " & _

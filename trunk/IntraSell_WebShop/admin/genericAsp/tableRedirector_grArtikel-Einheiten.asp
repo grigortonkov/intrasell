@@ -1,4 +1,4 @@
-<!--#include file="../login.asp"-->   
+<!--#include virtual="/admin/login.asp"-->   
 <%
 ' Query
 Session("dbKeyFieldToInsert") = "Einheit"

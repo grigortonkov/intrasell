@@ -698,8 +698,15 @@ end function
  'replace the '../images tag with the fill images link 
 function fixRelativeImageLinks(byVal template)   
      Const IMAGES_RELATIVE_LINK = "../images"
+     Const PRODUCTIMAGES_RELATIVE_LINK = "../productImages"
+     
      Dim images_full_link: images_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/images"
-     fixRelativeImageLinks = replace(template,IMAGES_RELATIVE_LINK,images_full_link)
+     dim full
+     full =  replace(template,IMAGES_RELATIVE_LINK,images_full_link)
+     full =  replace(full,PRODUCTIMAGES_RELATIVE_LINK,images_full_link)
+     
+     
+     fixRelativeImageLinks = full
 end function 
 
 

@@ -46,27 +46,27 @@ for each pair in split(TechInfo,",")
 	
 	if kwName<>"" and keywordValue<> "" then 'both must be defined 
 		sql = "select * from priceCompareKeyWords where ArtKatNR= " & ArtKatNR & " AND [Name] Like '" & kwName & "'" 
-		set rs = ObjConnection.execute(sql) 
+		set rs = ObjConnectionExecute(sql) 
 
 		
 		if rs.EOF then 'create keyword
 		     keywordid =nextId("priceCompareKeyWords","keywordid")
 		     sql = "insert into priceCompareKeyWords  (keywordid, ArtKatNR, [Name]) Values ("& keywordid &"," & ArtKatNR & ", '" & kwName & "')"
 		     'Response.Write sql
-		     ObjConnection.execute(sql)    
+		     ObjConnectionExecute(sql)    
 		else 
 			keywordid = rs("keywordid")
 		end if 
 
 		sql = " select * from priceCompareKeyWordsToProducts where keywordid= " & keywordid & " AND ArtNr Like " & ArtNr & _
 		      " AND [Value] Like '"& keywordValue & "'" 
-		set rs = ObjConnection.execute(sql) 
+		set rs = ObjConnectionExecute(sql) 
 		
 		if rs.EOF then 'create keyword
 		     sql = "insert into priceCompareKeyWordsToProducts  (id, keywordid, ArtNr, [Value]) " & _ 
 		     " Values ("& nextId("priceCompareKeyWordsToProducts","id")  &","& keywordid &"," & ArtNR & ", '" & keywordValue & "')"
 		     'Response.Write sql
-		     ObjConnection.execute(sql)    
+		     ObjConnectionExecute(sql)    
 		end if 
 	
 	end if ' kw Name and  value are defined 	
@@ -87,14 +87,14 @@ sql  = " UPDATE [grArtikel] SET " & _
   	   " WHERE ArtNR = " & artNR 
   	
   	'Response.Write "<BR>sql=" & sql
-  	ObjConnection.execute(sql)
+  	ObjConnectionExecute(sql)
   	
 sql = " UPDATE [grArtikel] SET " & _ 
 	   " grArtikel.PreisEuro = grArtikel.PreisATS " & _ 
 	   " WHERE ArtNR = " & artNR
   	  
    'Response.Write "<BR>sql=" & sql
-   ObjConnection.execute(sql)
+   ObjConnectionExecute(sql)
    
 end function 
 
@@ -131,7 +131,7 @@ function importPreiseLine(preisLine)
   picture= fields(15)  
 
   Dim sql: sql =  "select * from grArtikel where artNr=" & nr
-  Dim rs: set rs = ObjConnection.execute(sql)
+  Dim rs: set rs = ObjConnectionExecute(sql)
   Dim IsNEW: IsNEW = rs.EOF 
   rs.close 
  
@@ -164,7 +164,7 @@ function importPreiseLine(preisLine)
 
   'on error resume next
  'response.write "<br>sql=" & sql
- ObjConnection.execute(sql)
+ ObjConnectionExecute(sql)
  call UpdatePreises (Nr)
  
  response.flush
@@ -193,14 +193,14 @@ function getIntraSellManufacturerNr(byVal foreignManufacturerName)
   
   sql = "SELECT IdNR from [lieferantenAdressen] WHERE [Firma] like '" & foreignManufacturerName & "'"
   'Response.Write sql
-  set rs = ObjConnection.Execute(sql)  
+  set rs = ObjConnectionExecute(sql)  
   if rs.eof then
     Dim nIDNR : nIDNR = NextId("lieferantenAdressen","IdNR") 
 	'getIntraSellArtKAtNRForItallCategory = -1
 	sql = "INSERT INTO LieferantenAdressen (IDNR,[Name],Firma, PLZ) Values (" & _ 
 	       nIDNR & ",'" & foreignManufacturerName & "','" & foreignManufacturerName & "',1)"
 	'Response.Write "<br>" & sql
-	ObjConnection.Execute(sql) 
+	ObjConnectionExecute(sql) 
 	getIntraSellManufacturerNr = nIDNR 'try again 
   else
     getIntraSellManufacturerNr = rs("IdNr")
@@ -229,13 +229,13 @@ function getIntraSellArtKAtNRForForeignCategory(LieferantNr, foreignArtKatNr, fo
   end if 
   
   'Response.Write sql
-  set rs = ObjConnection.Execute(sql)  
+  set rs = ObjConnectionExecute(sql)  
   if rs.eof then 
   
    'try to find by name in our cats 
     if foreignArtKatName<> "" then 
         sql = "select * from [grArtikel-Kategorien] where Name Like '" & foreignArtKatName & "'"
-        set rs = ObjConnection.Execute(sql)  
+        set rs = ObjConnectionExecute(sql)  
         if not rs.EOF then 
             getIntraSellArtKAtNRForForeignCategory = rs("ArtKatNr")
             rs.close
@@ -246,7 +246,7 @@ function getIntraSellArtKAtNRForForeignCategory(LieferantNr, foreignArtKatNr, fo
 		sql = " Insert into priceCompareImpExCategoryMapping (LieferantNr, ArtKatNr, ForeignArtKatNr, ForeignArtKatName) " & _ 
 		    " Values (" & LieferantNr & ",-1," & foreignArtKatNr & ",'" & foreignArtKatName & "')" 
 		'Response.Write sql  
-		ObjConnection.Execute(sql)    
+		ObjConnectionExecute(sql)    
 		
     end if 
     
@@ -403,7 +403,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
       										" Values (" & newArtNR & ",'" & name & "','" & avail & "','" & description & "'," & weight & ", '" & units & "'," & _
 										     category & ", " & manufacturer & ",'" & manufacturernr & "'," & price & "," & price & "," & price & "," & taxclass & ", '" & Picture & "')"
 									'Response.Write sql
-									objConnection.Execute(sql)	
+									ObjConnectionExecute(sql)	
 									if  handleErrors() then rtErrorDescription = sql:exit function 	
 									counterNewProducts = counterNewProducts	+ 1
 									InternalArtNr = newArtNR
@@ -438,7 +438,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
 								 	sql = "UPDATE grArtikel set bezeichnung1 = '" & avail & _
 								 		  "', preisATS = " & price & ", preisEuro = " & price & _
 								 		  " WHERE ArtNr = " & InternalArtNr
-								 	ObjConnection.execute(sql)
+								 	ObjConnectionExecute(sql)
 								 	if  handleErrors() then rtErrorDescription =sql: exit function 	
 								 	currentPreisATS = price 'not to execute the next statement 
 								 end if
@@ -457,7 +457,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
 					      " WHERE LieferantNr = " & lieferantNr & _ 
 					      " and ArtikelNr = " & InternalArtNr
 					'Response.Write sql      
-					set rsImp = ObjConnection.execute(sql) 
+					set rsImp = ObjConnectionExecute(sql) 
 					Dim ExitFlag: ExitFlag = false
 					
 					'Response.Write "Trace9"
@@ -477,7 +477,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
 									'" EKPreis, VKPreis, PreisDatum ) from [LieferantenArtikel-Preise] where PriesId = " & rsImp("PreisId")
 									
 							'Response.Write sql_new		
-							ObjConnection.execute(sql_new)
+							ObjConnectionExecute(sql_new)
 					'Response.Write "TracePP"
 							if  handleErrors() then rtErrorDescription =sql_new: exit function 
 							
@@ -489,7 +489,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
 									" WHERE PreisId = " & rsImp("PreisId")
 							
 							'Response.Write sql
-							ObjConnection.execute(sql) 
+							ObjConnectionExecute(sql) 
 							if  handleErrors() then rtErrorDescription =sql: exit function 
 							
 							counterUdatedPrices = counterUdatedPrices + 1 
@@ -502,7 +502,7 @@ function importPriceLine(internalArtNr, nr, name, description, manufacturer, tax
 							  " Values(" &  merch & "," & InternalArtNr & ",'" & nr & "'," & _
 							  price & "," & price & ",'" & name & "','" &  avail & "'," & minorder & ")"							
 						 'Response.Write (sql)
-						 ObjConnection.execute(SQL)
+						 ObjConnectionExecute(SQL)
 						 if  handleErrors() then rtErrorDescription =sql: exit function  
 					end if ' not exit flag
 				'end if	' product doesnt exist 
@@ -534,7 +534,7 @@ function findArtikelToUpdate(byRef rsArt, byVal internalArtNr,  byVal nr, byVal 
 			 if isnumeric(internalArtNr) then
 			 if internalArtNr>0 then
 			    sql = "select * from grArtikel where ArtNR = " & internalArtNr
-			    Set rsArt = objConnection.Execute(sql) 
+			    Set rsArt = ObjConnectionExecute(sql) 
 			    if rs.eof then 
 			        Response.Write "<font color=""red""> no Artikle with ArtNr=" & internalArtNr & " exists!</font>"
 			        Response.End
@@ -556,7 +556,7 @@ function findArtikelToUpdate(byRef rsArt, byVal internalArtNr,  byVal nr, byVal 
 			'Response.Write "Trace2"
 
 			'Response.Write sql
-			 Set rsArt = objConnection.Execute(sql)	
+			 Set rsArt = ObjConnectionExecute(sql)	
 			 if  handleErrors() then rtErrorDescription = sql:exit function 
 
 			 if not rsArt.EOF then 
@@ -568,7 +568,7 @@ function findArtikelToUpdate(byRef rsArt, byVal internalArtNr,  byVal nr, byVal 
 			            " OR ('"& name &"'<>'' and Bezeichnung LIKE '" & name & "' AND Bezeichnung is not null AND RTRIM(LTRIM( Bezeichnung))<> ''))"
 			      'Response.Write sql
 			      'Response.Write "<br>"
-			      Set rsArt = objConnection.Execute(sql)	
+			      Set rsArt = ObjConnectionExecute(sql)	
 			      'Response.Write "Trace3"
      
 			     if LieferantNr=5 or LieferantNr=6 or LieferantNr=7234 then 'only for these two manufacturer 
@@ -583,11 +583,11 @@ function findArtikelToUpdate(byRef rsArt, byVal internalArtNr,  byVal nr, byVal 
 								sql = "Select * FROM [lieferantenArtikel-Preise] WHERE " &  _ 
 								      " EKPreis>" & preis & "*0.5 and EKPreis<" & preis & "*2 and  " & _ 
 								      " Bezeichnung LIKE '" & fullTextNAme  & "'"
-							    Set rsArt = objConnection.Execute(sql)	
+							    Set rsArt = ObjConnectionExecute(sql)	
 							     'Response.write "last poss " 
 							    if not rsArt.EOF then 'artikel found 
 							        sql = "Select * FROM grArtikel WHERE ArtNr=" & rsArt("ArtikelNr")
-							        Set rsArt = objConnection.Execute(sql)	
+							        Set rsArt = ObjConnectionExecute(sql)	
 							    end if 
 							end if
 					 end if 
@@ -612,7 +612,7 @@ dim sql, rs
 					   " GROUP BY ArtNR, ArtikelNr, PreisATS" & _ 
 					   " HAVING MIN([lieferantenArtikel-Preise].EKPreis) <> [grArtikel].PreisATS " & _ 
 					   " OR (COUNT([lieferantenArtikel-Preise].EKPreis) = 1 AND MIN([lieferantenArtikel-Preise].EKPreis) <> [grArtikel].PreisATS)"
-                      set rs= objConnection.execute(sql)
+                      set rs= ObjConnectionExecute(sql)
               while not rs.EOF      
 				'UPDATE min PRICE  
 				'bezeichnung1 = '" & rs("lagerInfo") & "'," & _
@@ -623,7 +623,7 @@ dim sql, rs
 					 	  " preisATS = " & price  & ", preisEuro = " & price  & _
 					 	  " WHERE ArtNr = " & rs("ArtikelNr") 
 					 'Response.Write sql	  
-					 ObjConnection.execute(sql)
+					 ObjConnectionExecute(sql)
 					 Response.Write "U " : Response.Flush
 				rs.moveNext 	 
 			 wend 		 

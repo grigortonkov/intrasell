@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <%	
 	dim OrderType : OrderType = request("OrderType")	
 	dim OrderNummer : OrderNummer = request("OrderNummer")	

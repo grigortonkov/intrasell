@@ -1,0 +1,11 @@
+To run this add-in, you must register it using regsvr32.exe.
+
+The VB6 runtime files must be on your machine; if they are not, you can
+get them from:
+
+
+    http://support.microsoft.com/download/support/mslfiles/Vb6sys.exe
+
+Michael Kaplan
+Trigeminal Software, Inc.
+http://www.trigeminal.com

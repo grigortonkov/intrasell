@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <p align="center">
 <%
 Dim orderNummer, OrderTypeFrom, OrderTypeTo
@@ -33,8 +33,11 @@ butArr(5,2) = "convertFromTo.asp?fromNummer=" & orderNummer & "&From=" & OrderTy
 response.end
 end if
 'ELSE 
+
+'KundenNummer 
+Dim KundNr: KundNr  = FIRSTVALUE("select Kundnr from [" & getVorgangTableForType(OrderTypeFrom) & "] where Nummer=" & orderNummer)
 Dim newNumber
-newNumber= convertFromTo (OrderTypeFrom , OrderTypeTo  , orderNummer)
+newNumber = convertFromTo (OrderTypeFrom, OrderTypeTo, orderNummer, KundNr)
 'Set as closed
 objConnectionExecute( "Update " & getNameForTable(OrderTypeFrom) & " Set anElba=-1 WHERE Nummer=" & orderNummer)
 %>

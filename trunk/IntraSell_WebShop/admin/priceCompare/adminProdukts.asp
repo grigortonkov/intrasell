@@ -69,25 +69,25 @@ if Request("SetButton") <> "" then
 	ArtNr = Request("fArtNr")
 	ArtKatNr = Request("fKatNr")
 	sql = "SELECT * From priceCompareKeyWords WHERE ArtKatNr = " & ArtKatNr
-	set rsKat = ObjConnection.execute(sql)	  
+	set rsKat = ObjConnectionExecute(sql)	  
 	while not rsKat.EOF 
 		sql = "SELECT ArtNr, Bezeichnung From grArtikel WHERE ArtNr = " & ArtNr
-		set rsArt = ObjConnection.execute(sql)	  
+		set rsArt = ObjConnectionExecute(sql)	  
 		sql = "SELECT * From priceCompareKeyWordsToProducts WHERE KeyWordId = " & rsKat("KeyWordId") & _
 		      " and ArtNr = " & ArtNr
-		set rsArt = ObjConnection.execute(sql)	
+		set rsArt = ObjConnectionExecute(sql)	
 		value = Request(rsKat("Name"))
 		if rsArt.BOF and rsArt.EOF then 
 			if value <> "" then ' insert new value
 				sql = "INSERT INTO priceCompareKeyWordsToProducts (id, ArtNr,KeyWordId,[value])" & _
 					  " Values(" & nextId("priceCompareKeyWordsToProducts","id") & ", " & ArtNr & "," & rsKat("KeyWordId") & ",'" & value & "')"
 				'& NextId("priceCompareKeyWordsToProducts","Id") & ","
-				ObjConnection.execute(sql)	  
+				ObjConnectionExecute(sql)	  
 			end if
 		else ' update	
 			sql = "UPDATE priceCompareKeyWordsToProducts Set [Value]='" & value & _ 
 			"' WHERE Id = " & rsArt("Id")  
-			ObjConnection.execute(sql)	  
+			ObjConnectionExecute(sql)	  
 		end if
 		rsKat.MoveNext
 	wend
@@ -100,9 +100,9 @@ end if
 Response.Write "<form name=""Products"" action=""adminProdukts.asp" & qString & """ method=""POST"">"
 if ArtNr <> "" and ArtKatNr <> "" then 
 	sql = "SELECT * From priceCompareKeyWords WHERE ArtKatNr = " & ArtKatNr
-	set rsKat = ObjConnection.execute(sql)	  
+	set rsKat = ObjConnectionExecute(sql)	  
 	sql = "SELECT ArtNr, Bezeichnung From grArtikel WHERE ArtNr = " & ArtNr
-	set rsArt = ObjConnection.execute(sql)	  
+	set rsArt = ObjConnectionExecute(sql)	  
 	ArtName = rsArt("Bezeichnung")
 	Response.Write "<input type=""hidden"" name=""fArtNr"" value=""" & ArtNr & """>"
 	Response.Write "<input type=""hidden"" name=""fKatNr"" value=""" & ArtKatNr & """>"
@@ -113,7 +113,7 @@ if ArtNr <> "" and ArtKatNr <> "" then
 	while not rsKat.EOF 
 		Response.Write "<tr><td align=""right"">" & rsKat("Name") & ":</td>"
 		sql = "SELECT * From priceCompareKeyWordsToProducts WHERE KeyWordId = " & rsKat("KeyWordId") & " and ArtNr = " & ArtNr
-		set rsArt = ObjConnection.execute(sql)
+		set rsArt = ObjConnectionExecute(sql)
 		if rsArt.BOF and rsArt.EOF then
 			value = ""
 		else	
@@ -137,7 +137,7 @@ else
 	if ( sortby <> "" ) then	
 		sql = sql & " ORDER BY [" & sortby & "]" & desc
 	end if	
-	set rsArt = ObjConnection.execute(sql)	  
+	set rsArt = ObjConnectionExecute(sql)	  
 	count = 0 
 	if rsArt.BOF and rsArt.EOF then ' no produkts
 		Response.Write "<br><h3><b>No produkts to display ! </b><h3><br>"
@@ -175,7 +175,7 @@ else
 			Response.Write "<td align='center'><a href='adminCategoriesKeywords.asp" & qString & "&KatNr=" & rsArt("ArtKatNr") & "'>Edit Category Keywords</a></td>"	
 			Response.Write "<td align='center'>"
 			sql = "SELECT KeyWordId From priceCompareKeyWords WHERE ArtKatNr = " & rsArt("ArtKatNr")
-			set rsKat = ObjConnection.execute(sql)	  
+			set rsKat = ObjConnectionExecute(sql)	  
 			if rsKat.BOF and rsKat.EOF then ' no keywords
 				Response.Write "No keywords availible!"
 			else

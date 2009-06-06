@@ -18,7 +18,7 @@ call drawWindowPart1("Admin Lieferanten imported prices","","state",butArr)
 if merch = "" then		
 	sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR = priceCompareHaendler.lieferantNr "
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	Response.Write "<b> Select a merchant from the list : <b><br> "
 	While not rs.EOF
 '		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminImportedPrices.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"

@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <!--#include File ="upload.inc"-->
 <SCRIPT LANGUAGE="JavaScript">
 function Validator(){
@@ -28,7 +28,7 @@ if getData("UploadButton") <> "" then
 			If saveAs("fName","../../Company/images/"& myfilename ) = true then
 				response.write ("<br><font color='green'>Upload of Logo file '" & myfilename & "' as file '" & myfilename &  "' was successfull.</font>")
 				'set proper name in office vars 
-				ObjConnection.execute("UPDATE ofVars SET Wert= '" & myfilename & "' Where Name = 'COMPANY_LOGO_IMAGE'" )
+				ObjConnectionExecute("UPDATE ofVars SET Wert= '" & myfilename & "' Where Name = 'COMPANY_LOGO_IMAGE'" )
 			else
  				response.write("<br><font color='red'>An Error occured with Upload of logo file '" & myfilename & "' !</font>")
 			end if

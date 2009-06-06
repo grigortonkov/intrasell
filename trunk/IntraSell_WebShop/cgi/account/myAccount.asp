@@ -122,5 +122,5 @@ if getLOGIN() <> "" then 'the user gets in his private area
 <!--REFERER MODULE END-->    
 <%end if %>
 
-<!--#include file="../calls/requestOrderInfo.asp"-->
+<!--#include virtual="/cgi/calls/requestOrderInfo.asp"-->
 <%end if %>

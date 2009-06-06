@@ -95,7 +95,7 @@ call drawWindowPart1("Admin Merchants Profile","","state",butArr)
 if merch = "" then		
 	sql = "SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	Response.Write "<b> Select a merchant from the list : <b><br> "
 	While not rs.EOF
 		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsProfile.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
@@ -104,7 +104,7 @@ if merch = "" then
 else ' merch <> "" %>
 	<form action="adminMerchantsProfile.asp?merch=<%=merch%>" method="POST" name="ProfileForm" >
 	<%sql = "SELECT  Firma FROM lieferantenAdressen WHERE IDNR = " & merch 
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	merchname = rs("Firma")
 	
 	if request("UpdateButton") <> "" then
@@ -112,7 +112,7 @@ else ' merch <> "" %>
 		sql = sql & ", Firma = '" & request("Firma") & "', Adresse = '" & request("Adresse") & "'"
 		sqlString = "SELECT IDNR FROM grPLZ WHERE PLZ = " & request("PLZ") & _
 					" and Ort LIKE '" & request("Ort") & "'"	
-		set rs = objConnection.Execute(sqlString)	
+		set rs = ObjConnectionExecute(sqlString)	
 		sql = sql & ", PLZ = " & rs("IDNR") & ", Land = " & request("Land")
 		sql = sql & ", Email = '" & request("Email") & "', Web = '" & request("Web") & "'"
 		if request("Branche") <> "" then
@@ -143,7 +143,7 @@ else ' merch <> "" %>
 			sql = sql & ", Mobil = '" & request("Mobil") & "'"
 		end if	
 		sql = sql & " WHERE IDNR = " & merch
-		objConnection.Execute(sql)
+		ObjConnectionExecute(sql)
 	end if
 	if request("CreateFilialeButton") <> "" then
 		sql = "INSERT INTO [lieferantenAdressen] ( IDNR, Name, Firma, Adresse, Plz, Land, Email, Web "
@@ -187,23 +187,23 @@ else ' merch <> "" %>
 		end if	
 		sqlString = "SELECT IDNR FROM grPLZ WHERE PLZ = " & request("fPLZ") & _
 					" and Ort LIKE '" & request("fOrt") & "'"	
-		set rs = objConnection.Execute(sqlString)			
+		set rs = ObjConnectionExecute(sqlString)			
 			
 		count = NextId("lieferantenAdressen","IDNR")
 		sql = sql & sql1 & ") Values ( " &  count & ",'" & request("fname") 
 		sql = sql & "','" & request("fFirma") & "','" & request("fAdresse") & "'"
 		sql = sql  & "," & rs("IDNR") & "," & request("fLand") & ",'" & request("fEmail")
 		sql = sql & "','" & request("fWeb") & "'" & sql2 & ")" 
-		objConnection.Execute(sql)
+		ObjConnectionExecute(sql)
 		sql = "INSERT INTO priceCompareHaendlerFilialen ( LieferantNr, FilialeNr )" & _
 			  " Values ( "  & merch & "," & count & ")"
 		'& NextId("priceCompareHaendlerFilialen","ID") & ","
-		objConnection.Execute(sql)
+		ObjConnectionExecute(sql)
 	end if
 	
 	sql = "SELECT lieferantenAdressen.*, grPLZ.Ort, grPLZ.PLZ as nPLZ FROM lieferantenAdressen, grPLZ " & _
 			" WHERE lieferantenAdressen.IDNR = " & merch & " and lieferantenAdressen.PLZ = grPLZ.IDNR"
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	if request("CreateButton") <> "" then ' empty form for new filialen	%>
 		<input type='hidden' name="CreateButton" >
 		<h1><center>Create new Filiale for <%=merchname%></h1></center>
@@ -218,7 +218,7 @@ else ' merch <> "" %>
 			<%land = request("fLand")
 			if land = "" then 
 				sql = "SELECT IDNR FROM grLand ORDER BY Name"
-				set rsFil = objConnection.Execute(sql)	
+				set rsFil = ObjConnectionExecute(sql)	
 				land = rsFil("IDNR")
 			end if
 			call WriteComboOptions ("grLand", "Name", "IdNr", CInt(land) )%>
@@ -233,17 +233,17 @@ else ' merch <> "" %>
 			<%ort = request("fOrt")
 			if ort = "" then
 				sql = "SELECT Ort FROM grPLZ WHERE Land = " & land & " ORDER BY Ort"
-				set rsFil = objConnection.Execute(sql)	
+				set rsFil = ObjConnectionExecute(sql)	
 				if not rsFil.BOF or not rsFil.EOF then
 					ort = rsFil("Ort")
 				end if
 			else
 				sql = "SELECT Land FROM grPLZ WHERE Ort LIKE '" & ort & "'"
-				set rsFil = objConnection.Execute(sql)	
+				set rsFil = ObjConnectionExecute(sql)	
 				if ( not rsFil.BOF or not rsFil.EOF ) then
 					if CInt(rsFil("Land")) <> CInt(land) then
 						sql = "SELECT Ort FROM grPLZ WHERE Land = " & land
-						set rsFil = objConnection.Execute(sql)	
+						set rsFil = ObjConnectionExecute(sql)	
 						if ( not rsFil.BOF or not rsFil.EOF ) then
 							ort = rsFil("Ort")
 						else 
@@ -287,7 +287,7 @@ else ' merch <> "" %>
 			sql = "SELECT lieferantenAdressen.IDNR, lieferantenAdressen.name, " & _ 
 				  "lieferantenAdressen.firma, lieferantenAdressen.adresse, grLand.Name as country, " & _
 				  "grPLZ.plz, grPLZ.Ort FROM lieferantenAdressen, grLand, grPLZ WHERE lieferantenAdressen.land= grLand.IdNr and lieferantenAdressen.PLZ = grPLZ.IdNr"
-			set rsFil = objConnection.Execute(sql)
+			set rsFil = ObjConnectionExecute(sql)
 			Response.Write "<h1><center>Choose a Filiale for " & merchname & "</h1></center>"
 			Response.Write "<table width='80%' align=center cellspacing=0 cellpadding=1 border=1><tr>"
 			while not rsFil.EOF 
@@ -304,12 +304,12 @@ else ' merch <> "" %>
 				sql = "INSERT INTO priceCompareHaendlerFilialen ( LieferantNr, FilialeNr )" & _
 					  " Values ( " & merch & "," & count & ")"
 				'& NextId("priceCompareHaendlerFilialen","ID") & "," 
-				objConnection.Execute(sql)				
+				ObjConnectionExecute(sql)				
 			end if
 			count = Request.QueryString("delete")
 			if count <> "" then
 				sql = "DELETE FROM priceCompareHaendlerFilialen WHERE ID = " & count
-				objConnection.Execute(sql)				
+				ObjConnectionExecute(sql)				
 			end if		
 			%>
 			<h1><center>Profile Information for <%=merchname%></h1></center>
@@ -342,11 +342,11 @@ else ' merch <> "" %>
 					ort = rs("Ort")
 				end if
 				sql = "SELECT Land FROM grPLZ WHERE Ort LIKE '" & ort & "'"
-				set rsFil = objConnection.Execute(sql)	
+				set rsFil = ObjConnectionExecute(sql)	
 				if ( not rsFil.BOF or not rsFil.EOF ) then
 					if CInt(rsFil("Land")) <> CInt(land) then
 						sql = "SELECT Ort FROM grPLZ WHERE Land = " & land
-						set rsFil = objConnection.Execute(sql)	
+						set rsFil = ObjConnectionExecute(sql)	
 						if ( not rsFil.BOF or not rsFil.EOF ) then
 							ort = rsFil("Ort")
 						else 
@@ -390,7 +390,7 @@ else ' merch <> "" %>
 					  " WHERE priceCompareHaendlerFilialen.LieferantNr = " & merch & _
 					  " and priceCompareHaendlerFilialen.FilialeNr = lieferantenAdressen.IDNR and " & _
 					  " lieferantenAdressen.land = grLand.IdNr and lieferantenAdressen.PLZ = grPLZ.IdNr"
-			set rsFil = objConnection.Execute(sql)
+			set rsFil = ObjConnectionExecute(sql)
 			if rsFil.EOF and rsFil.BOF then ' no filials
 				Response.Write "<tr><td bgcolor=""#6699FF"" width='10%'><b>Filialen:</b></td><td colspan='6' align='center'>Doesn't have filialen yet !</td></tr>"
 			else	
@@ -422,7 +422,7 @@ else ' merch <> "" %>
 			Response.Write "<td align='center' width='40%'><input type=""submit"" value=""Create New"" id=""Submit3"" name=""CreateButton""></td><td width='20%'>&nbsp;</td></tr>"
 			Response.Write "</table>"	
 			sql = "SELECT Web FROM lieferantenAdressen WHERE IDNR = " & merch
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 			Response.Write "<p align='center'>Store URL: <a href=""" & rs("Web") & """>" & rs("Web") & "</a></p></form>"
 		end if
 		rsFil.close
@@ -437,7 +437,7 @@ Sub WriteComboOptions( table, itemsField, valuesField, value )
 	Dim sql
 	Dim rsB 
 	sql = "SELECT * FROM " & table & " ORDER BY " & itemsField
-	set rsB = objConnection.Execute(sql)
+	set rsB = ObjConnectionExecute(sql)
 	if valuesField <> "" then
 		while not rsB.EOF 
 			Response.Write "<option value=" & rsB( valuesField )

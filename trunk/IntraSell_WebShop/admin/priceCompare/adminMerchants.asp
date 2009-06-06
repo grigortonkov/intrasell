@@ -69,15 +69,15 @@ if merch <> "" and edit="stars" then  ' edit=stars
 	if merch <> "all" then
 		stars = request("textStars"&merch)	
 		sql = "UPDATE priceCompareHaendler set Stars = " & stars & " WHERE LieferantNr = " & merch
-		objConnection.Execute(sql)
+		ObjConnectionExecute(sql)
 	else ' merch = all
 		sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 		      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-		set rs = objConnection.Execute(sql)
+		set rs = ObjConnectionExecute(sql)
 		While not rs.EOF
 			stars = request( "textStars"& rs("IDNR") )	
 			sql = "UPDATE priceCompareHaendler set Stars = " & stars & " WHERE LieferantNr = " & rs("IDNR")
-			objConnection.Execute(sql)
+			ObjConnectionExecute(sql)
 			rs.MoveNext
 		wend
 	end if
@@ -88,7 +88,7 @@ if merch = "" then
 	if edit <> "stars" then
 		sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 		      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-		set rs = objConnection.Execute(sql)
+		set rs = ObjConnectionExecute(sql)
 		Response.Write "<b> Select a merchant from the list : <b><br> "
 		While not rs.EOF
 			Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchants.asp" & qString & "&merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
@@ -97,7 +97,7 @@ if merch = "" then
 	else ' edit = stars
 		sql = " SELECT  lieferantenAdressen.*, priceCompareHaendler.Stars FROM lieferantenAdressen " & _
 			  " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-		set rs = objConnection.Execute(sql)
+		set rs = ObjConnectionExecute(sql)
 		Response.Write "<form action=""adminMerchants.asp?edit=stars"" method=""POST"" id='Starsform' name='Starsform'>" 
 		Response.Write "<input type='hidden' name='merch'>"
 		Response.Write "<center><table border='1' width='70%'>"
@@ -122,7 +122,7 @@ else ' merch <> ""
 	if edit <> "stars" then
 		Response.Write "<p align=""right""><a href=""adminMerchants.asp" & qString & """><b> [ BACK TO MERCHANT'S LIST ] </b></a></p>"
 		sql = " SELECT  Firma FROM lieferantenAdressen WHERE IDNR = " & merch 
-		set rs = objConnection.Execute(sql)
+		set rs = ObjConnectionExecute(sql)
 		merchname = rs("Firma")
 	
 		Select case edit
@@ -176,7 +176,7 @@ else ' merch <> ""
 							sql = sql & ", Web = '" & request("Web") & "'"
 						end if	
 						sql = sql & " WHERE IDNR = " & merch
-						objConnection.Execute(sql)
+						ObjConnectionExecute(sql)
 					else ' No name
 						Response.Write " Name field can not be empty !<br> "
 					end if		
@@ -249,16 +249,16 @@ else ' merch <> ""
 						count = NextId("lieferantenAdressen","IDNR")
 						sql = sql & sql1 & ") Values ( " &  count
 						sql = sql & ",'" & request("name") & "'" & sql2 & ")" 
-						objConnection.Execute(sql)
+						ObjConnectionExecute(sql)
 						sql = "INSERT INTO priceCompareHaendlerFilialen ( ID, LieferantNr, FilialeNr )" & _
 							  " Values ( " & NextId("priceCompareHaendlerFilialen","ID") & "," & merch & "," & count & ")"
-						objConnection.Execute(sql)
+						ObjConnectionExecute(sql)
 					else ' No name
 						Response.Write " Name field can not be empty !<br> "
 					end if		
 				end if
 				sql = "SELECT * FROM lieferantenAdressen WHERE IDNR = " & merch 
-				set rs = objConnection.Execute(sql)
+				set rs = ObjConnectionExecute(sql)
 				Response.Write "<form action=""adminMerchants.asp?edit=Profile&merch=" & merch & """ method=POST id='form1' name='form1'>"
 				if request("CreateButton") <> "" then ' empty form for new filialen					
 				%>				
@@ -273,7 +273,7 @@ else ' merch <> ""
 						<td align="right">Land:</td><td><select name="Land" style="width:130">
 					<%
 					sql = "SELECT * FROM grLand"
-					set rsB = objConnection.Execute(sql)
+					set rsB = ObjConnectionExecute(sql)
 					while not rsB.EOF 
 						Response.Write "<option value=" & rsB("IdNr") & ">" & rsB("Name") & "</option>"
 						rsB.MoveNext
@@ -282,7 +282,7 @@ else ' merch <> ""
 						<td align="right">Branche:</td><td><select name="Branche"  style="width:130">
 					<%
 					sql = "SELECT * FROM grBranchen"
-					set rsB = objConnection.Execute(sql)
+					set rsB = ObjConnectionExecute(sql)
 					while not rsB.EOF 
 						Response.Write "<option value=" & rsB("BrNr") & ">" & rsB("Bezeichnung") & "</option>"
 						rsB.MoveNext
@@ -295,7 +295,7 @@ else ' merch <> ""
 						<td align="right">Anrede:</td><td><select name="Anrede" style="width:130">
 					<%
 					sql = "SELECT * FROM grAnrede"
-					set rsB = objConnection.Execute(sql)
+					set rsB = ObjConnectionExecute(sql)
 					while not rsB.EOF 
 						Response.Write "<option>" & rsB("Anrede") & "</option>"
 						rsB.MoveNext
@@ -329,7 +329,7 @@ else ' merch <> ""
 				<%else
 				if request("ChooseButton") <> "" then ' empty form for new filialen					
 					sql = "SELECT IDNR, name, firma, adresse FROM lieferantenAdressen "
-					set rsB = objConnection.Execute(sql)
+					set rsB = ObjConnectionExecute(sql)
 					Response.Write "<h1><center>Choose a Filiale for " & merchname & "</h1></center>"
 					Response.Write "<table width='80%' align=center cellspacing=0 cellpadding=1 border=1><tr>"
 					Response.Write "<th>Name</th><th>Adresse</th>"
@@ -346,12 +346,12 @@ else ' merch <> ""
 					if count <> "" then
 						sql = "INSERT INTO priceCompareHaendlerFilialen ( ID, LieferantNr, FilialeNr )" & _
 							  " Values ( " & NextId("priceCompareHaendlerFilialen","ID") & "," & merch & "," & count & ")"
-						objConnection.Execute(sql)				
+						ObjConnectionExecute(sql)				
 					end if
 					count = Request.QueryString("delete")
 					if count <> "" then
 						sql = "DELETE FROM priceCompareHaendlerFilialen WHERE ID = " & count
-						objConnection.Execute(sql)				
+						ObjConnectionExecute(sql)				
 					end if		
 					
 					%>
@@ -368,7 +368,7 @@ else ' merch <> ""
 					<td align="right">Land:</td><td><select name="Land" style="width:130">
 				<%
 				sql = "SELECT * FROM grLand"
-				set rsB = objConnection.Execute(sql)
+				set rsB = ObjConnectionExecute(sql)
 				while not rsB.EOF 
 					Response.Write "<option value=" & rsB("IdNr") 
 					if rsB("IdNr")=rs("Land") then
@@ -384,7 +384,7 @@ else ' merch <> ""
 					<td align="right">Branche:</td><td><select name="Branche"  style="width:130">
 				<%
 				sql = "SELECT * FROM grBranchen"
-				set rsB = objConnection.Execute(sql)
+				set rsB = ObjConnectionExecute(sql)
 				while not rsB.EOF 
 					Response.Write "<option value=" & rsB("BrNr") 
 					if rsB("BrNr")=rs("branche") then
@@ -404,7 +404,7 @@ else ' merch <> ""
 					<td align="right">Anrede:</td><td><select name="Anrede"  style="width:130" value="<%=rs("Anrede")%>">
 				<%
 				sql = "SELECT * FROM grAnrede"
-				set rsB = objConnection.Execute(sql)
+				set rsB = ObjConnectionExecute(sql)
 				while not rsB.EOF 
 					Response.Write "<option " 
 					if rsB("Anrede")=rs("Anrede") then
@@ -445,7 +445,7 @@ else ' merch <> ""
 					  " FROM priceCompareHaendlerFilialen, lieferantenAdressen" & _ 
 					  " WHERE priceCompareHaendlerFilialen.LieferantNr = " & merch & _
 					  " and priceCompareHaendlerFilialen.FilialeNr = lieferantenAdressen.IDNR"
-				set rsFil = objConnection.Execute(sql)
+				set rsFil = ObjConnectionExecute(sql)
 				if rsFil.EOF and rsFil.BOF then ' no filials
 					Response.Write "<tr><td><b>Filialen:</b></td><td colspan='2' align='center'>Doesn't have filialen yet !</td></tr>"
 				else	
@@ -483,61 +483,61 @@ else ' merch <> ""
 		<%Case "Payments"
 			if request("UpdateButton") <> "" then 
 				sql = " SELECT delivery,PaymentMode FROM priceCompareHaendler WHERE LieferantNr=" & merch
-				set rs = objConnection.Execute(sql)
+				set rs = ObjConnectionExecute(sql)
 				if rs("delivery") = true and request("delivery") = "No" then
 					sql = "UPDATE priceCompareHaendler set delivery=false WHERE LieferantNr=" & merch
-					objConnection.Execute(sql)
+					ObjConnectionExecute(sql)
 				end if	
 				if rs("delivery") = false and request("delivery") = "Yes" then
 					sql = "UPDATE priceCompareHaendler set delivery=true WHERE LieferantNr=" & merch
-					objConnection.Execute(sql)
+					ObjConnectionExecute(sql)
 				end if	
 				if rs("PaymentMode") <> request("PaymentMode") then
 					sql = "UPDATE priceCompareHaendler set PaymentMode='" & request("PaymentMode") & "' WHERE LieferantNr=" & merch
-					objConnection.Execute(sql)
+					ObjConnectionExecute(sql)
 				end if	
 				sql = " SELECT  * FROM grZahlungsbedingung "
-				set rs = objConnection.Execute(sql)
+				set rs = ObjConnectionExecute(sql)
 
 				while not rs.EOF 
 					sql = " SELECT * FROM [priceCompareHaendler_Zahlungsbedingungen] WHERE Bedingung= " & rs("Nr") & " and IDNR= " & merch
-					set rsZ = objConnection.Execute(sql)
+					set rsZ = ObjConnectionExecute(sql)
 					if Request( rs("Methode") ) = "Yes"  then
 						if rsZ.BOF and rsZ.EOF then ' insert record
 							sql = "INSERT INTO [priceCompareHaendler_Zahlungsbedingungen] ( ID,IDNR,Bedingung ) " & _
 								  " Values( " & NextId("[priceCompareHaendler_Zahlungsbedingungen]","ID") & _
 								  "," & merch & "," & rs("Nr") & ")"
-							objConnection.Execute(sql)
+							ObjConnectionExecute(sql)
 						end if 'else Doesn't need update
 					else
 						if rsZ.BOF and rsZ.EOF then ' delete record
 							'Doesn't need update
 						else
 							sql = "DELETE FROM [priceCompareHaendler_Zahlungsbedingungen] WHERE Bedingung= " & rs("Nr") & " and IDNR= " & merch
-							objConnection.Execute(sql)
+							ObjConnectionExecute(sql)
 						end if		
 					end if
 					rs.MoveNext
 				wend 
 				
 				sql = " SELECT * FROM grZahlungsmethode "
-				set rs = objConnection.Execute(sql)
+				set rs = ObjConnectionExecute(sql)
 				while not rs.EOF 
 					sql = " SELECT * FROM [priceCompareHaendler_Zahlungsmethoden] WHERE methode='" & rs("methode") & "' and IDNR= " & merch
-					set rsZ = objConnection.Execute(sql)
+					set rsZ = ObjConnectionExecute(sql)
 					if Request( rs("Methode") ) = "Yes"  then
 						if rsZ.BOF and rsZ.EOF then ' insert record
 							sql = "INSERT INTO [priceCompareHaendler_Zahlungsmethoden] ( ID,IDNR,Methode ) " & _
 								  " Values( " & NextId("[priceCompareHaendler_Zahlungsmethoden]","ID") & _
 								  "," & merch & ",'" & rs("Methode") & "')"
-							objConnection.Execute(sql)
+							ObjConnectionExecute(sql)
 							end if 'else Doesn't need update
 					else
 						if rsZ.BOF and rsZ.EOF then ' delete record
 							'Doesn't need update
 						else
 							sql = "DELETE FROM [priceCompareHaendler_Zahlungsmethoden] WHERE Methode Like '" & rs("Methode") & "' and IDNR= " & merch
-							objConnection.Execute(sql)
+							ObjConnectionExecute(sql)
 						end if		
 					end if
 					rs.MoveNext
@@ -551,7 +551,7 @@ else ' merch <> ""
 			<tr><td colspan=2 align=middle bgcolor=#a0a0a0><IMG src="../images/dot.gif" width="1" height="1"></td></tr>
 			<% 
 			sql = " SELECT delivery FROM priceCompareHaendler WHERE LieferantNr=" & merch
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 			%>
 			<tr><td align=right><b>Delivery [Active Store]</b></td>
 			<td align=center>
@@ -560,10 +560,10 @@ else ' merch <> ""
 			</td></tr>
 			<%Response.Write "<tr><td colspan=2 align=middle bgcolor=#d0d0d0><b> Zahlungsmethoden </b></td></tr>"
 			sql = " SELECT  * FROM grZahlungsbedingung "
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 			while not rs.EOF 
 				sql = " SELECT * FROM [priceCompareHaendler_Zahlungsbedingungen] WHERE Bedingung= " & rs("Nr") & " and IDNR= " & merch
-				set rsZ = objConnection.Execute(sql)
+				set rsZ = ObjConnectionExecute(sql)
 				if rsZ.BOF and rsZ.EOF then
 					check = false
 				else
@@ -579,10 +579,10 @@ else ' merch <> ""
 			wend
 			Response.Write "<tr><td colspan=2 align=middle bgcolor=#d0d0d0><b> Zahlungsbedingungen </b></td></tr>"
 			sql = " SELECT * FROM grZahlungsmethode "
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 			while not rs.EOF 
 				sql = " SELECT * FROM [priceCompareHaendler_Zahlungsmethoden] WHERE methode='" & rs("methode") & "' and IDNR= " & merch
-				set rsZ = objConnection.Execute(sql)
+				set rsZ = ObjConnectionExecute(sql)
 				if rsZ.BOF and rsZ.EOF then
 					check = false
 				else
@@ -602,7 +602,7 @@ else ' merch <> ""
 			<tr><td align=right><b>Price of Delivery (&euro;)</b></td>
 			<td align=center><input name="priceOfDelivery" style='width:100'></td></tr><%
 			sql = " SELECT PaymentMode FROM priceCompareHaendler WHERE LieferantNr=" & merch
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 			Response.Write "<tr><td align=right><b>Payment Mode</b></td>"
 			Response.Write "<td align=center><select name='PaymentMode' style='width:100'><option"
 			if rs("PaymentMode") = "base" then 
@@ -632,10 +632,10 @@ else ' merch <> ""
 				sql = " UPDATE [priceCompareHaendler] set ftpserver='" & request("ftpserver") & _
 					  "', ftpusername='" & request("ftpusername") & "', ftppassword='"& request("ftppassword") & _
 					  "', filename='" & request("filename") & "' WHERE LieferantNr = " & merch
-				objConnection.Execute(sql)
+				ObjConnectionExecute(sql)
 			end if	
 			sql = " SELECT * FROM [priceCompareHaendler] WHERE LieferantNr = " & merch
-			set rs = objConnection.Execute(sql)
+			set rs = ObjConnectionExecute(sql)
 		%>
 			<form action="adminMerchants.asp?edit=ftp&merch=<%=merch%>" method=post id=form3 name=form3>
 			<h1><center>Upload settings for <%=merchname%></h1></center>

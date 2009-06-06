@@ -39,7 +39,7 @@ const REASON_ORDERS = "Order"
  dim sql ,rs 
  getCountPoints = 0
  'exit function 
-  Dim MCHAR: MCHAR = "*": if Session("dbType") ="SQL" then MCHAR ="%"
+  Dim MCHAR: MCHAR = "*": if Session("dbType") ="SQL" or Session("dbType") ="MySQL"  then MCHAR ="%"
   
  if REASON = "" then 
 	sql = "select count(id) as CountPoints from [ofAdressen-Bonuspunkte] where idnr = " & idnr 

@@ -1,7 +1,7 @@
 <!-- EXPORT FILE FOR SMARTEFOX.COM-->
-<!--#include file="../../intrasoft/connopen.asp"-->
-<!--#include file="../login.asp"-->   
-<!--#include file="../../intrasoft/functions.asp"-->
+<!--#include virtual="/intrasoft/connopen.asp"-->
+<!--#include virtual="/admin/login.asp"-->   
+<!--#include virtual="/intrasoft/functions.asp"-->
 <%
 
     sql= "SELECT grArtikel.ArtNr AS nr, [grArtikel-Kategorien].Name AS category, grArtikel.Bezeichnung AS Name, " & _ 

@@ -1,5 +1,6 @@
-<!--#include file="../login.asp"-->   
+<!--#include virtual="/admin/login.asp"-->   
 <%
+'Response.Write "dbType=" & Session("dbType"): Response.End
 ' Query
 Session("dbFields") = "*"
 Session("dbRs") = "ofVars"

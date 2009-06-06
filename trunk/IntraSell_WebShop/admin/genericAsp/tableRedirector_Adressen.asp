@@ -1,4 +1,4 @@
-<!--#include file="../login.asp"-->   
+<!--#include virtual="/admin/login.asp"-->   
 <%
 Dim whereClause: whereClause = " 1=1 "
 If Request("IDNR") <> "" then whereClause = whereClause & " AND " & "IDNR=" & Request("IDNR") 
