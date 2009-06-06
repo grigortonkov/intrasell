@@ -412,7 +412,8 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         Dim sql
         Dim rs
         Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
-        
+        CurrentDB.BeginTrans
+         
         tableNameFrom = getVorgangTableForType(FromOrder)
         tableNameFromProducts = getVorgangArtikelTableForType(FromOrder)
         
@@ -477,6 +478,7 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         'response.write SQL
         Call openRecordset(sql, "")
         'response.write "Converting was OK!"
+        CurrentDB.CommitTrans
         convertFromTo = nextRechnungNummer
 End Function
 
