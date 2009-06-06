@@ -29,7 +29,7 @@ if merch = "" then
 
 	sql = "SELECT lieferantenAdressen.Firma, lieferantenAdressen.IDNR  FROM lieferantenAdressen " & _
 		  "INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	if rs.BOF and rs.EOF then ' no merchants 
 	else
 	  %>
@@ -45,7 +45,7 @@ else
 	IDtoImport = Request("impID")
 	IDtoAdd = Request("addID")
 	sql = "SELECT  Firma FROM lieferantenAdressen WHERE IDNR = " & merch
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	merchname = rs("Firma")
 	
 	if IDtoAdd <> "" then
@@ -72,7 +72,7 @@ else
 			  
 			  
 				sql = "SELECT Line FROM priceComparePricesToImport WHERE LieferantNr = " & merch & " and ID = " & IDtoAdd
-				set rsImp = ObjConnection.execute(SQL) 
+				set rsImp = ObjConnectionExecute(SQL) 
 				csValues = Split( rsImp("Line" ), ";" )
 				Dim YesNo(3)
 				Dim query1
@@ -125,7 +125,7 @@ else
 				Response.Write  "</td>" 	
 				
 				sql = "SELECT Line FROM priceComparePricesToImport WHERE LieferantNr = " & merch & " and ID = " & IDtoAdd
-				set rsImp = ObjConnection.execute(SQL) 
+				set rsImp = ObjConnectionExecute(SQL) 
 				csValues = Split( rsImp("Line" ), ";" )
 				
 					
@@ -138,7 +138,7 @@ else
 				Response.Write "<tr><td align='right'>Einheit:</td><td><input name='Einheit' style='width:150' value='" & csValues(13) & "'></td></tr>"
 				Response.Write "<tr><td align='right'>Manifacturer (name oder interne Nummer):</td>"
 				sql = "SELECT IDNR, Name FROM lieferantenAdressen WHERE IDNR = " & merch' csValues(4)
-				set rsOther = objConnection.Execute(sql)
+				set rsOther = ObjConnectionExecute(sql)
 				if rsOther.EOF and rsOther.BOF then ' no such manufacturer !
 					Response.Write "<td align='left'><input name='manifacturer' style='width:150'></td>>"
 				else	
@@ -171,7 +171,7 @@ else
 			sql = "SELECT  ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] " & _
 			      " WHERE ArtKatNrParent = -1" 
 			      
-			set rsOther = objConnection.Execute(sql)
+			set rsOther = ObjConnectionExecute(sql)
 			qString = "&addId=" & IDtoAdd & "&merch=" & merch
 			While not rsOther.EOF
 				DisplayCategory rsOther("Name"), 0, rsOther("ArtKatNr"), qString, "adminImportPrices.asp"
@@ -194,40 +194,40 @@ else
 	if IDtoDelete <> "" then
 		if IDtoDelete = "all" then  'delete all
 			SQL = "DELETE FROM priceComparePricesToImport WHERE LieferantNr = " & merch	
-			ObjConnection.execute(SQL) 
+			ObjConnectionExecute(SQL) 
 		else ' delete only one 
 			SQL = "DELETE FROM priceComparePricesToImport WHERE ID = " & IDtoDelete
-			ObjConnection.execute(SQL) 
+			ObjConnectionExecute(SQL) 
 		end if	
 	end if	
 	
 	if IDtoImport <> "" then
 		if IDtoImport = "all" then  'import all
 			sql = "SELECT Line FROM priceComparePricesToImport WHERE LieferantNr = " & merch 
-			set rsImp = ObjConnection.execute(SQL) 
+			set rsImp = ObjConnectionExecute(SQL) 
 			csValues = Split( rsImp("Line" ), ";" )
 			SQL = "SELECT * FROM priceComparePricesToImport WHERE LieferantNr = " & merch
-			set rsImp = ObjConnection.execute(SQL) 
+			set rsImp = ObjConnectionExecute(SQL) 
 			
 			while not rsImp.EOF
 				csValues = Split( rsImp("Line" ), ";" )
 				sql = "Select * FROM grArtikel	WHERE Bezeichnung LIKE '" & csValues(2) & "'"
-				set rsOther = objConnection.Execute(sql)			
+				set rsOther = ObjConnectionExecute(sql)			
 				if rsOther.EOF and rsOther.BOF then ' Not in the database
 				else
 					'sql = "Select ArtNr FROM grArtikel	WHERE Bezeichnung LIKE '" & csValues(2) & "'"
-					'Set rsOther = objConnection.Execute(sql)			
+					'Set rsOther = ObjConnectionExecute(sql)			
 					if rsOther("bezeichnung1") = "" or rsOther("preisATS") = 0 then  ' first merchant with such produkt
 						sql = "UPDATE grArtikel set bezeichnung1 = '" & csValues(12) & _
 							  "', preisATS = " & csValues(6) & ", preisEuro = " & csValues(6) & _
 							  " WHERE ArtNr = " & rsOther("ArtNr")
-						ObjConnection.execute(sql) 		
+						ObjConnectionExecute(sql) 		
 					else	
 						if rsOther("preisATS") > rsImp("EKPreis") then
 							sql = "UPDATE grArtikel set bezeichnung1 = '" & csValues(12) & _
 								  "', preisATS = " & csValues(6) & ", preisEuro = " & csValues(6) & _
 								  " WHERE ArtNr = " & rsOther("ArtNr")
-							ObjConnection.execute(sql) 		
+							ObjConnectionExecute(sql) 		
 						end if	
 					end if	
 			
@@ -238,9 +238,9 @@ else
 						  "," & rsOther("ArtNr") & "," & csValues(0) & "," & csValues(6) & "," & csValues(6)& _
 						  ",'" & GermanSQLDate( rsImp("FromDate")) & "','" & csValues(3) & "','" & _
 						  csValues(12) & "'," & csValues(8) & ")"	
-					ObjConnection.execute(sql) 
+					ObjConnectionExecute(sql) 
 					sql = "DELETE FROM priceComparePricesToImport WHERE ID = " & rsImp("ID") 
-					ObjConnection.execute(SQL) 
+					ObjConnectionExecute(SQL) 
 				end if	
 				rsImp.MoveNext
 			wend
@@ -249,22 +249,22 @@ else
 		  
 		   Response.Write "Import One!" 
 			SQL = "SELECT priceComparePricesToImport.*  FROM priceComparePricesToImport WHERE LieferantNr = " & merch & " and ID = " & IDtoImport
-			set rsImp = ObjConnection.execute(SQL) 
+			set rsImp = ObjConnectionExecute(SQL) 
 			csValues = Split( rsImp("Line") , ";" ) 
 			
 			sql = "Select * FROM grArtikel	WHERE Bezeichnung LIKE '" & csValues(2) & "'"
-			Set rsOther = objConnection.Execute(sql)			
+			Set rsOther = ObjConnectionExecute(sql)			
 			if rsOther("bezeichnung1") = "" or rsOther("preisATS") = 0 then  ' first merchant with such produkt
 				sql = "UPDATE grArtikel set bezeichnung1 = '" & csValues(12) & _
 					  "', preisATS = " & csValues(6) & ", preisEuro = " & csValues(6) & _
 					  " WHERE ArtNr = " & rsOther("ArtNr")
-				ObjConnection.execute(sql) 		
+				ObjConnectionExecute(sql) 		
 			else	
 				if rsOther("preisATS") > csValues(6) then
 					sql = "UPDATE grArtikel set bezeichnung1 = '" & csValues(12) & _
 						  "', preisATS = " & csValues(6) & ", preisEuro = " & csValues(6) & _
 						  " WHERE ArtNr = " & rsOther("ArtNr")
-					ObjConnection.execute(sql) 		
+					ObjConnectionExecute(sql) 		
 				end if	
 			end if	
 			
@@ -276,10 +276,10 @@ else
 						  ",'" & csValues(3) & "','" & _
 						  csValues(12) & "'," & csValues(8) & ")"	
 			'Response.Write sql
-			ObjConnection.execute(sql) 
+			ObjConnectionExecute(sql) 
 			Response.Write "<h4><b><font color='green'>Price for produkt <i>" & csValues(2) & " was imported successfuly !</font></b></h4><BR>"			
 			sql = "DELETE FROM priceComparePricesToImport WHERE ID = " & rsImp("ID") 
-			ObjConnection.execute(SQL) 
+			ObjConnectionExecute(SQL) 
 		end if
 		'rsOther.close
 		'set rsOther = nothing	
@@ -288,7 +288,7 @@ else
 	
 
 	SQL = "SELECT * FROM priceComparePricesToImport WHERE LieferantNr = " & merch '& " and State Like 'New'"	
-	set rsImp = ObjConnection.execute(SQL) 
+	set rsImp = ObjConnectionExecute(SQL) 
 	if rsImp.BOF and rsImp.EOF then ' nothing to import
 		ReDim butArr(1,2)
 		butArr(1,1) = "Get Preise"
@@ -325,7 +325,7 @@ else
 			csValues = Split(line , ";" )
 			Response.Write "<tr>" '"<td>"
 			sql = "Select ArtNr FROM grArtikel	WHERE Bezeichnung LIKE '" & csValues(2) & "'"
-			Set rsOther = objConnection.Execute(sql)			
+			Set rsOther = ObjConnectionExecute(sql)			
 			if rsOther.EOF and rsOther.BOF then ' Not in the database
 				Response.Write "<td>[Import]</td>"
 				Response.Write "<td><a href=""adminImportPrices.asp?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"

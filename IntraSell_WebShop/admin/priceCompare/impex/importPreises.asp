@@ -14,14 +14,14 @@ sql  = " UPDATE [grArtikel] SET " & _
   	   " WHERE ArtNR = " & artNR 
   	
   	'Response.Write "<BR>sql=" & sql
-  	ObjConnection.execute(sql)
+  	ObjConnectionExecute(sql)
   	
 sql = " UPDATE [grArtikel] SET " & _ 
 	   " grArtikel.PreisEuro = grArtikel.PreisATS " & _ 
 	   " WHERE ArtNR = " & artNR
   	  
    'Response.Write "<BR>sql=" & sql
-   ObjConnection.execute(sql)
+   ObjConnectionExecute(sql)
    
 end function 
 
@@ -57,7 +57,7 @@ function importPreiseLine(preisLine)
   picture= fields(15)  
 
   Dim sql: sql =  "select * from grArtikel where artNr=" & nr
-  Dim rs: set rs = ObjConnection.execute(sql)
+  Dim rs: set rs = ObjConnectionExecute(sql)
   Dim IsNEW: IsNEW = rs.EOF 
   rs.close 
  
@@ -91,7 +91,7 @@ function importPreiseLine(preisLine)
  '
 
  'response.write "<br>sql=" & sql
- ObjConnection.execute(sql)
+ ObjConnectionExecute(sql)
  call UpdatePreises (Nr)
  
  response.flush

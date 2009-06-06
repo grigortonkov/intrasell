@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <%
 Dim OrderType: OrderType = Request("OrderType")
 Dim tableNameOrders: tableNameOrders = getNameForTable(OrderType)
@@ -40,7 +40,7 @@ Dim sql: sql = "SELECT * FROM " & tableNameOrders  & _
 		" Order BY Datum desc, Nummer desc" 
 		
 'response.write sql
-dim rs: set rs = ObjConnection.execute(sql)
+dim rs: set rs = ObjConnectionExecute(sql)
 while not rs.EOF 
   %>
 

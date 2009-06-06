@@ -1,9 +1,9 @@
 
 <%
 DATABASEPATH = "D:\Business\IntraSoft\IntraSell\accessServer.mdb"	
-Session ("MyDSN")  = "driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & DATABASEPATH & ";"
+Session ("MyDSN1")  = "driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & DATABASEPATH & ";"
 set objConnection1=server.createobject("adodb.connection")
-objConnection1.open Session ("MyDSN")
+objConnection1.open Session ("MyDSN1")
 %>
 <!--#include file="functions.asp"-->  
 <%

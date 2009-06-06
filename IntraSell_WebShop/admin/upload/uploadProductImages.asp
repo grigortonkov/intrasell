@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <!--#include File ="upload.inc"-->
 <SCRIPT LANGUAGE="JavaScript">
 function UpdateID(x) {
@@ -76,11 +76,11 @@ if getData("UploadButton") <> "" then
 			Server.ScriptTimeout = 250
 			If myfilename <> "" then
 				sql = "SELECT ArtNr, Bezeichnung FROM [grArtikel] WHERE ArtNr=" & pId
-				set rs = objConnection.Execute(sql)		
+				set rs = ObjConnectionExecute(sql)		
 				If saveAs(fName,"") = true then
 					response.write ("<br><font color='green'>Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' was successfull.</font>")
 					sql = "UPDATE [grArtikel] SET picture='" & myfilename & "' WHERE ArtNr=" & pId
-					objConnection.Execute(sql)							
+					ObjConnectionExecute(sql)							
 				else
  					response.write("<br><font color='red'>An Error occured with Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' !</font>")
 				end if
@@ -107,7 +107,7 @@ end if
 	Response.Write "<tr><td align='right'>" & count& ".</td><td align='center'><input name='ProductId" & count & "' style='width:50'></td>" & CHR(13) & CHR(10)
 	Response.Write "<td align='center'><select name='selectProduct" & count &"' style='width:250' onChange='UpdateID(" & count & ")'>" & CHR(13) & CHR(10)
 	sql = "SELECT ArtNr, Bezeichnung FROM [grArtikel] WHERE ArtNr >= 1000 ORDER BY Bezeichnung"
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	Response.Write "<option value=-1 SELECTED>Wählen Sie ein Produkt aus</option>" & CHR(13) & CHR(10)
 	while not rs.EOF 
 		Response.Write "<option value=" & rs("ArtNr") & ">" & rs("Bezeichnung") & "</option>" & CHR(13) & CHR(10)

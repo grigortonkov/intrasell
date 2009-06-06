@@ -1,0 +1,174 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="DataSet_Members" targetNamespace="http://www.tempuri.org/DataSet_Members.xsd"
+	xmlns:mstns="http://www.tempuri.org/DataSet_Members.xsd" xmlns="http://www.tempuri.org/DataSet_Members.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+	xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="DataSet_Members" msdata:IsDataSet="true" msdata:Locale="de-AT">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Members">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ID1" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="ID" type="xs:double" minOccurs="0" />
+							<xs:element name="TypeOfAccount" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Category_5" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Category_6" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Title" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="First_name" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Middle_Name" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Last_Name" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Student" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Address" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="City" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="State" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="ZipCode" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Work_Phone" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Fax_Phone" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Other_Phone" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Board_x0020_Member" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="E-mail_x0020_Address" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Contact" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="PaymentMethod" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Notes_1" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Notes" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="paid_x0020_2005" type="xs:boolean" minOccurs="0" />
+							<xs:element name="payment_x0020_2005" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Date_x0020_paid_x0020_2005" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Paid_x0020_2004" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Payment_x0020_2004" type="xs:decimal" minOccurs="0" />
+							<xs:element name="date_x0020_paid_x0020_2004" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="paid_x0020_Member_x0020_2003" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Payment2003" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Privacy_x0020_Option" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Paid_x0020_Member_x0020_2002" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Paid_x0020_Member_x0020_2001" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Delivery_x0020_Point" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Payment" type="xs:decimal" minOccurs="0" />
+							<xs:element name="DatePaid" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="LicenseNumber" type="xs:double" minOccurs="0" />
+							<xs:element name="Jan292003Payment" type="xs:decimal" minOccurs="0" />
+							<xs:element name="April02event" type="xs:boolean" minOccurs="0" />
+							<xs:element name="CreationTime" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="ChangeTime" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Password" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="PasswordConfirmation" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="OfficeAddress" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="TypeOfPraxis" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Website" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_First_Degree" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_First_Year" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_First_School" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Second_Degree" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Second_Year" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Second_School" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Spec_Degree" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Spec_Year" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+							<xs:element name="Edu_Spec_School" type="xs:string" minOccurs="0" msprop:nullValue="_empty" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Meetings">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Description" type="xs:string" minOccurs="0" />
+							<xs:element name="Price" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Events">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Presenter" type="xs:string" minOccurs="0" />
+							<xs:element name="Topic" type="xs:string" minOccurs="0" />
+							<xs:element name="Schedule" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Place" type="xs:string" minOccurs="0" />
+							<xs:element name="Price" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Member_Events">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Member" type="xs:int" minOccurs="0" />
+							<xs:element name="Event" type="xs:int" minOccurs="0" />
+							<xs:element name="RegisteredAt" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="IP" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Member_Meetings">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Member" type="xs:int" minOccurs="0" />
+							<xs:element name="Meeting" type="xs:int" minOccurs="0" />
+							<xs:element name="RegisteredAt" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="IP" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Member_Payment">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PID" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="ID1" type="xs:double" minOccurs="0" />
+							<xs:element name="TypeOfAccount" type="xs:string" minOccurs="0" />
+							<xs:element name="PaymentMethod" type="xs:string" minOccurs="0" />
+							<xs:element name="Notes" type="xs:string" minOccurs="0" />
+							<xs:element name="Delivery_x0020_Point" type="xs:string" minOccurs="0" />
+							<xs:element name="PaymentAmount" type="xs:decimal" minOccurs="0" />
+							<xs:element name="DatePaid" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="LicenseNumber" type="xs:double" minOccurs="0" />
+							<xs:element name="CreationTime" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="ChangeTime" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="DataSet_MembersKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Members" />
+			<xs:field xpath="mstns:ID1" />
+		</xs:unique>
+		<xs:unique name="DataSet_MembersKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Meetings" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+		<xs:unique name="DataSet_MembersKey3" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Events" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+		<xs:unique name="DataSet_MembersKey4" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Member_Events" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+		<xs:unique name="DataSet_MembersKey5" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Member_Meetings" />
+			<xs:field xpath="mstns:Id" />
+		</xs:unique>
+		<xs:keyref name="MembersMember_Meetings" refer="mstns:DataSet_MembersKey1">
+			<xs:selector xpath=".//mstns:Member_Meetings" />
+			<xs:field xpath="mstns:Member" />
+		</xs:keyref>
+		<xs:keyref name="MembersMember_Events" refer="mstns:DataSet_MembersKey1">
+			<xs:selector xpath=".//mstns:Member_Events" />
+			<xs:field xpath="mstns:Member" />
+		</xs:keyref>
+		<xs:keyref name="MeetingsMember_Meetings" refer="mstns:DataSet_MembersKey2">
+			<xs:selector xpath=".//mstns:Member_Meetings" />
+			<xs:field xpath="mstns:Meeting" />
+		</xs:keyref>
+		<xs:keyref name="EventsMember_Events" refer="mstns:DataSet_MembersKey3">
+			<xs:selector xpath=".//mstns:Member_Events" />
+			<xs:field xpath="mstns:Event" />
+		</xs:keyref>
+		<xs:unique name="DataSet_MembersKey6" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Member_Payment" />
+			<xs:field xpath="mstns:PID" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

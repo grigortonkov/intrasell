@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/functions.asp"-->
+<!--#include virtual="/intrasoft/functions.asp"-->
 <!--#include file="functionsReferers.asp"-->
 <head>
 <meta http-equiv="Content-Language" content="de">

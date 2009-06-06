@@ -1,8 +1,8 @@
 <%@ LANGUAGE = VBScript.Encode %>
 <%'Session ("BASENAME") = "http://" & Request.ServerVariables("SERVER_NAME")  & left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("\admin\default.asp"))%>
-<!--#include file="../intrasoft/connopen.asp"--> 
-<!--#include file="../intrasoft/functions.asp"--> 
-<!--#include file="../intrasoft/functionsCache.asp"--> 
+<!--#include virtual="/intrasoft/connopen.asp"--> 
+<!--#include virtual="/intrasoft/functions.asp"--> 
+<!--#include virtual="/intrasoft/functionsCache.asp"--> 
 <!--#include file="login.asp"-->   
 <html>
 <head>

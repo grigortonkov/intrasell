@@ -83,11 +83,11 @@ temp = Request("DeleteButton")
 if temp <> "" then
 	if temp = "Delete" then ' delete current
 		sql = "DELETE FROM [grArtikel-Kategorien] WHERE ArtKatNr = " & idKat 
-		ObjConnection.execute(sql) 	  
+		ObjConnectionExecute(sql) 	  
 		Response.Redirect("adminCategories.asp")
 	else ' delete sub kategory	
 		sql = "DELETE FROM [grArtikel-Kategorien] WHERE ArtKatNr = " & temp
-		ObjConnection.execute(sql) 	  
+		ObjConnectionExecute(sql) 	  
 	end if	
 end if	
 
@@ -122,7 +122,7 @@ if Request("EditButton") <> "" then
 	sql = "UPDATE [grArtikel-Kategorien] set Name='" & Request.Form("Name") & "', ArtKatNrParent= " & _
 		  Request.Form("ParentId") & sqlString1 & " WHERE ArtKatNr = " & idKat
  	'Response.Write "SQL : " & SQL & "<BR>"
-	ObjConnection.execute(sql) 	  	
+	ObjConnectionExecute(sql) 	  	
 end if	
 
 if Request("AddSubButton") <> "" then
@@ -157,7 +157,7 @@ if Request("AddSubButton") <> "" then
 	sql = sql & sqlString1 & ") Values(" & NextId("[grArtikel-Kategorien]","ArtKatNr") & ",'" & Request.Form("sName")
 	sql = sql & "'," & request("sParentId") & sqlString2 & ")"
 '	Response.Write "SQL : " & SQL & "<BR>"
-	ObjConnection.execute(sql) 	  	
+	ObjConnectionExecute(sql) 	  	
 	if request("From") = "Keywords" then 
 		Response.Redirect("adminCategoriesKeywords.asp")
 	end if
@@ -172,11 +172,11 @@ end if
 Response.Write "<form name=""CategoriesForm"" action=""adminCategories.asp?KatNr=" & idKat & "&edit=" & edit & """ method=""POST"">" &  CHR(13) & CHR(10)
 if idKat <> ""  then
 	sql = "SELECT  Name FROM [grArtikel-Kategorien] WHERE ArtKatNr = " & idKat	
-	set rsKat = objConnection.Execute(sql)
+	set rsKat = ObjConnectionExecute(sql)
 	catname = rsKat("Name")
 	if edit = "" then
 		sql = "SELECT  * FROM [grArtikel-Kategorien] WHERE ArtKatNr = " & idKat	
-		set rs = objConnection.Execute(sql)%>
+		set rs = ObjConnectionExecute(sql)%>
 		<table width="100%" height="80%" border="0" cellspacing="2" cellpadding="0">
 		<tr><td colspan="4" align="center" valign ="center">
 			<br><h4><b>Category  <i><%=rs("Name")%></i></b></h4></td>
@@ -232,7 +232,7 @@ if idKat <> ""  then
 		if edit = "Sub" then
 			sql = "SELECT  ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] " & _
 			      " WHERE ArtKatNrParent = " & idKat
-			set rsKat = objConnection.Execute(sql)
+			set rsKat = ObjConnectionExecute(sql)
 			if rsKat.BOF and rsKat.EOF then
 				Response.Write "<center><br><h4><b>Category <I>" & catname & "</i> doesn't have SubCategories </b></h4><br>" &  CHR(13) & CHR(10)
 			else
@@ -255,7 +255,7 @@ else
 		sql = "SELECT  ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] " & _
 		      " WHERE ArtKatNrParent = -1" 
 		      
-		set rsKat = objConnection.Execute(sql)
+		set rsKat = ObjConnectionExecute(sql)
 		While not rsKat.EOF
 			DisplayCategory rsKat("Name"), 0, rsKat("ArtKatNr"), edit, "adminCategories.asp"
 			GetSubCategories rsKat("ArtKatNr"), 1, edit, "adminCategories.asp"
@@ -314,7 +314,7 @@ Sub GetSubCategories( idParent, intLevel, qustr, page )
 	Dim rsSub
 	sql = "SELECT  ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] " & _
       " WHERE ArtKatNrParent = " & idParent 
-	set rsSub = objConnection.Execute(sql)
+	set rsSub = ObjConnectionExecute(sql)
 		while not rsSub.EOF 
 		DisplayCategory rsSub("Name"), intLevel, rsSub("ArtKatNr"), qustr, page
 		GetSubCategories rsSub("ArtKatNr"), intLevel + 1, qustr, page
@@ -340,7 +340,7 @@ Sub GetSubCategoriesInTab( idParent, intLevel, qustr, page, grParent )
 	Dim rsSub
 	sql = "SELECT  ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] " & _
       " WHERE ArtKatNrParent = " & idParent 
-	set rsSub = objConnection.Execute(sql)
+	set rsSub = ObjConnectionExecute(sql)
 		while not rsSub.EOF 
 		call DisplayCategoryInTab( rsSub("Name"), intLevel, rsSub("ArtKatNr"), qustr, page, grParent)
 		call GetSubCategoriesInTab( rsSub("ArtKatNr"), intLevel + 1, qustr, page, grParent )
@@ -354,7 +354,7 @@ Sub WriteComboOptions( table, itemsField, valuesField, value )
 	Dim sql
 	Dim rsB 
 	sql = "SELECT * FROM " & table & " ORDER BY " & itemsField
-	set rsB = objConnection.Execute(sql)
+	set rsB = ObjConnectionExecute(sql)
 	if valuesField <> "" then
 		while not rsB.EOF 
 			Response.Write "<option value=" & rsB( valuesField )

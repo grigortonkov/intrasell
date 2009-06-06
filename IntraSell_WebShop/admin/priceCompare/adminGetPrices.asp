@@ -45,18 +45,18 @@ Dim categoriesUpdated: categoriesUpdated=""' keeps all updated categories in thi
 dim internalNumbersImported: internalNumbersImported="" ' keeps all imported products in this import 
 if merch <> "" then
 	sql = "SELECT  lieferantenAdressen.Firma  FROM lieferantenAdressen WHERE IDNR = " & merch
-	set rs = objConnection.Execute(sql)
+	set rs = ObjConnectionExecute(sql)
 	dim merchname: merchname = rs("Firma")
 
 
 	sql = " SELECT priceCompareHaendler.* FROM priceCompareHaendler WHERE " & _
 		  " priceCompareHaendler.lieferantNr = " & merch
-	Set rs = objConnection.Execute(sql)
+	Set rs = ObjConnectionExecute(sql)
 	if rs.EOF and rs.BOF then Response.Write " No such merchant ! "
 
 
      Response.Write "<br> Delete old open prices ...<br>": Response.Flush
-     objConnection.execute("DELETE FROM priceComparePricesToImport WHERE LieferantNr="& rs("lieferantNr"))
+     ObjConnectionExecute("DELETE FROM priceComparePricesToImport WHERE LieferantNr="& rs("lieferantNr"))
         
         
 	'the ftp price getting will be saved in this file 
@@ -143,7 +143,7 @@ if merch <> "" then
 			             SQL = " INSERT INTO priceComparePricesToImport (State, Line, LieferantNr,Error ) " & _ 
 				               " Values('" & PARSE_ERROR & "' , '" & strLine & "'," & merch & ",'" & errDesc & "')"	
 						'Response.Write SQL 
-						ObjConnection.execute(SQL) 
+						ObjConnectionExecute(SQL) 
 						counterErrors = counterErrors+1		
 			     'error add to open prices
 			     end if                     
@@ -163,7 +163,7 @@ if merch <> "" then
 				       " where ArtikelNr in (select ArtNr from grArtikel where ArtKatNr in (-100" & categoriesUpdated &  "))" &  _ 
 				      " AND lieferantNr= " & merch  & " AND (preisDatum+1)<" & TOSQLDATE(date()) 
 				Response.Write sql
-				ObjConnection.execute(SQL)
+				ObjConnectionExecute(SQL)
 				'end delete 
                call UpdateMinPrice()
 	 
@@ -200,7 +200,7 @@ call drawWindowPart1("Get Prices","","state",butArr)
 <td colspan="2">&nbsp;&nbsp;</td></b></tr><%
 sql = " SELECT  lieferantenAdressen.Firma, priceCompareHaendler.*  FROM lieferantenAdressen " & _
       " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
-set rs = objConnection.Execute(sql)
+set rs = ObjConnectionExecute(sql)
 while not rs.EOF
 	Response.Write "<tr align=""center""><td>" & rs("Firma") & "</td><td>" & rs("ftpserver") & "</td><td>" 
 	Response.Write rs("ftpusername") & "</td><td>" & rs("ftppassword") & "</td><td>" & rs("filename") & "</td>" & _ 

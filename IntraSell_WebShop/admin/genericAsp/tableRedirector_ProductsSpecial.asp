@@ -1,8 +1,8 @@
-<!--#include file="../login.asp"-->   
+<!--#include virtual="/admin/login.asp"-->   
 <%
 ' Query
 Session("dbFields") = "*"
-Session("dbRs") = "grArtikel "
+Session("dbRs") = "grArtikel"
 Session("dbWhere") = "ArtNR<1000"
 Session("dbGroupBy") = ""
 Session("dbOrderBy") = ""

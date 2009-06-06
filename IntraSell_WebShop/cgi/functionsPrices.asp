@@ -127,5 +127,9 @@ Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr)
   getNewVorgangNummer = IntraSellPreise().getNewVorgangNummer(Typ, IdNr)
 End Function
 
+Public Function  convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr)
+  convertFromTo = IntraSellPreise().convertFromTo(FromOrder, ToOrder, fromNummer, NewKundNr)
+End Function
+
 
 %>

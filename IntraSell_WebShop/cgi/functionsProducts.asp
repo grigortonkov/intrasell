@@ -729,7 +729,7 @@ rsArtikel.close
 call replaceEmbededSQL(productTemplate)
 
 
-
+'productTemplate  = parseTemplate(productTemplate, null)
 makeProductPageWithTemplate = productTemplate
 
 end function
@@ -888,8 +888,10 @@ end function
 	   'html = html & "<h4>Weitere Informationen</h4>"
 	   html = html &  hiRS("HTLMInfo")
 	'end if
-	   hiRS.moveNExt 
+	   hiRS.moveNext 
 	wend 
+	
+	html = fixRelativeImageLinks(html)
 	getHTMLInfo = html 
 end function 	
  

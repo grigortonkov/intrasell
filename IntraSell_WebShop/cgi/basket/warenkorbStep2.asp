@@ -75,6 +75,9 @@ dim logHTML: logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "
 logHTML = replace (logHTML,"[USER_PASSWORD]",PasswordOld)
 logHTML = replace (logHTML,"[USER_EMAIL]",EmailOld)
 
+logHTML = parseTemplate(logHTML, null)
+
+
 Response.Write logHTML
 %>
 

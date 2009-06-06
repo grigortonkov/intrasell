@@ -1,0 +1,84 @@
+; Dependency file for Replication Manager
+
+; Default Dependencies ----------------------------------------------
+
+[Replman.exe]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=rplman40.hlp
+Uses2=rplman40.cnt
+Uses3=msremr40.dll
+Uses4=msrpfs40.dll
+Uses5=mstran40.exe
+Uses6=mstrai40.exe
+Uses7=
+
+[Msremr40.dll]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+[rplman40.hlp]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+[rplman40.cnt]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+
+; Jet Transporters -------------------------------------------------
+;
+; *Need* to write reg key 
+; HKLM\Software\Microsoft\Jet\4.0\Replication Manager\syncronizerPath = 
+;            $(Common Files)\Microsoft Shared\Replication Manager 4.0\mstran40.exe
+;
+[mstran40.exe]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+[mstrai40.exe]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+[msrpfs40.dll]
+Dest=$(CommonFiles)\Microsoft Shared\Replication Manager 4.0
+Uses1=
+
+; Localized Dependencies -------------------------------------------- 
+;
+; msremr40.dll is localized for German, French, and Japan only
+
+; ** German (DE) ***
+; (0007 = German)
+;
+[msremr40.dll <0007>]
+Uses1=
+
+[rplman40.hlp <0007>]
+Uses1=
+
+[rplman40.cnt <0007>]
+Uses1=
+
+; ** French (FR) ***
+; (000C = French)
+;
+[msremr40.dll <000C>]
+Uses1=
+
+[rplman40.hlp <000C>]
+Uses1=
+
+[rplman40.cnt <000C>]
+Uses1=
+
+; ** Japanese (JP) ***
+; (0011 = Japanese)
+;
+[msremr40.dll <0011>]
+Uses1=
+
+[rplman40.hlp <0011>]
+Uses1=
+
+[rplman40.cnt <0011>]
+Uses1=

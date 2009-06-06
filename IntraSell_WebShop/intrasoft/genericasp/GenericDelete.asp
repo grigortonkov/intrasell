@@ -1,4 +1,4 @@
-<!--#include file="../menu.asp"-->  
+<!--#include virtual="/intrasoft/menu.asp"-->  
 <!--#include file="GenericLanguage.asp" -->
 <% 
 ' Generic Database - Delete Record
@@ -73,6 +73,9 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 set xrs = Server.CreateObject("ADODB.Recordset")
 xrs.Open strsql, xConn, 1, 2
@@ -87,12 +90,13 @@ Next
 
 xrs.Close
 strsql = "SELECT " & strFields & " FROM [" & strTable & "]" & " WHERE [" & aFields(strKeyField,1) & "]" & "=" & strKey
-If strType = "SQL" Then
+If strType = "SQL" or strType = "MYSQL" Then
 	' Strip brackets for SQL
 	strsql = Replace(strsql,"[","")
 	strsql = Replace(strsql,"]","")
+ 
 End If
-If strType = "SQL" Then
+If strType = "SQL" or strType = "MYSQL" Then
 	xrs.Open strsql, xConn, 2, 3, 1
 Else
 	xrs.Open strsql, xConn, 2, 3

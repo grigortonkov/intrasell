@@ -15,7 +15,7 @@ sql  = " UPDATE [grArtikel] SET " & _
   	   " WHERE ArtNR = " & artNR 
   	
   	'Response.Write "<BR>sql=" & sql
-  	ObjConnection.execute(sql)
+  	ObjConnectionExecute(sql)
 end function 
 
 
@@ -55,7 +55,7 @@ function importPreiseLine(preisLine)
    if not isnumeric(manufacturer) then manufacturer=getIntraSellManufacturerNr(manufacturer)' get by name 
 
   Dim sql: sql =  "select * from grArtikel where artNr=" & nr
-  Dim rs: set rs = ObjConnection.execute(sql)
+  Dim rs: set rs = ObjConnectionExecute(sql)
   Dim IsNEW: IsNEW = rs.EOF 
   rs.close 
  
@@ -91,7 +91,7 @@ function importPreiseLine(preisLine)
  on error resume next
  'response.write "<br><font color=red>Error occured</font> on sql=" & sql:Response.Flush
  'Response.end
- ObjConnection.execute(sql)
+ ObjConnectionExecute(sql)
  if err.number > 0 then 
 	response.write "<br><font color=red>Error occured</font> on sql=" & sql:Response.Flush
 	err.Clear 
@@ -119,13 +119,13 @@ function getIntraSellManufacturerNr(byVal foreignManufacturerName)
  
   dim sql, rs 
   sql = "SELECT IdNR from [lieferantenAdressen] WHERE [Firma] like '" & foreignManufacturerName & "'"
-  set rs = ObjConnection.Execute(sql)  
+  set rs = ObjConnectionExecute(sql)  
   if rs.eof then 
 	'getIntraSellArtKAtNRForItallCategory = -1
 	sql = "INSERT INTO LieferantenAdressen (IDNR,[Name],Firma, PLZ) Values (" & _ 
 	       NextId("lieferantenAdressen","IdNR") & ",'" & foreignManufacturerName & "','" & foreignManufacturerName & "',1)"
 	'Response.Write sql
-	ObjConnection.Execute(sql) 
+	ObjConnectionExecute(sql) 
 	getIntraSellManufacturerNr = getIntraSellManufacturerNr(foreignManufacturerName) 'try again 
   else
     getIntraSellManufacturerNr = rs("IdNr")

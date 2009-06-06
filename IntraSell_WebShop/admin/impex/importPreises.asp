@@ -1,4 +1,4 @@
-<!--#include file="../../intrasoft/menu.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
 <!--#include file="functionsImpEx.asp"-->
 <%
 
@@ -76,11 +76,11 @@ Dim ImportData, countUpdates, countNew, countErrors
   <h1>IMPORT&nbsp;</h1>
   <p><textarea rows="7" name="ImportData" cols="100000">
 Lˆschen Sie diese und die n‰chste Zeile  
-nr;category;name;description;manufacturer;taxclass;price;weight;minorder;manufacturernr;variation;mult;avail;units;difftxt;picture
-1004;21;"Beispiel Artikel 1";Das ist nur ein Beispielartikel| Techinfo:RAM=200,MZ=100| SpecialChoice:Color=Green,Red,Black|Size=100,120,170;1;2;1320;1;1;4;0;1;lagernd;stk;1;1000.gif
-1005;21;"Beispiel Artikel 2";Das ist nur ein Beispielartikel| Techinfo:RAM=200,MZ=100;1;2;925;1;1;4;0;1;lagernd;stk;1;http://193.171.36.87/WebShop/company/images/company.gif
-1006;21;"Beispiel Artikel 3";;1;2;870;1;1;4;0;1;lagernd;stk;1;no-image
-1007;22;"Beispiel Artikel 4";;1;2;10800;1;1;4;0;1;In kÅrze wieder lagernd;stk;1;1000.gif
+nr;category;name;description;manufacturer;taxclass;price;weight;minorder;manufacturernr;variation;mult;avail;units;difftxt;picture;-1
+1004;21;"Beispiel Artikel 1";Das ist nur ein Beispielartikel| Techinfo:RAM=200,MZ=100| SpecialChoice:Color=Green,Red,Black|Size=100,120,170;1;2;1320;1;1;4;0;1;lagernd;stk;1;1000.gif;-1
+1005;21;"Beispiel Artikel 2";Das ist nur ein Beispielartikel| Techinfo:RAM=200,MZ=100;1;2;925;1;1;4;0;1;lagernd;stk;1;http://193.171.36.87/WebShop/company/images/company.gif;-1
+1006;21;"Beispiel Artikel 3";;1;2;870;1;1;4;0;1;lagernd;stk;1;no-image;-1
+1007;22;"Beispiel Artikel 4";;1;2;10800;1;1;4;0;1;In kÅrze wieder lagernd;stk;1;1000.gif;-1
 
 </textarea></p>
   <p>

@@ -1268,7 +1268,7 @@ end function
 public function getCountOrdersProducts(idnr, orderType)
   dim sql, rs 
   dim MCHAR: MCHAR="*"
-   if session("dbType") = "SQL" then MCHAR = "%"
+   if session("dbType") = "SQL" or  session("dbType") = "MySQL" then MCHAR = "%"
   sql = "SELECT count(artnr) as co from [" & getVorgangArtikelTableForType(orderType) & "]" &  _
         " WHERE Bezeichnung not like '" & MCHAR & "CALCULATE" &  MCHAR & "' and rechnr in " & _ 
         "(select nummer from " & getVorgangTableForType(orderType) & " where kundnr= " & idnr & ")"
@@ -1287,7 +1287,7 @@ end function
 public function getBookmarkCount(idnr, descTyp)
   dim sql, rs 
   dim MCHAR: MCHAR="*"
-   if session("dbType") = "SQL" then MCHAR = "%"
+   if session("dbType") = "SQL" or  session("dbType") = "MySQL" then MCHAR = "%"
  
 SQL = "Select count(*) as co From UserBookmarks where (UserId=" & idnr & ")" &  _ 
       " and Description like '" & descTyp & "'"

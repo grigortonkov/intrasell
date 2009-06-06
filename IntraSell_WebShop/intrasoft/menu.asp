@@ -1,9 +1,9 @@
-<!--#include file="../admin/includeall.inc"-->  
+<!--#include virtual="/admin/includeall.inc"-->  
 <%
 		'Aplication settings for Generic ASP 
-		Session("MyDSN") = ObjConnection
+		'Session("MyDSN") = ObjConnection
 		if Session("dbExitPage") = "" then
-			Session("dbExitPage") = "http://www.vegsys.com"
+			Session("dbExitPage") = "http://www.griton.eu"
 		end if	
 		Session("dbTitle") = "IntraSell"
 		'Session("dbType") = "Access" '"SQL"' 'set in global asa

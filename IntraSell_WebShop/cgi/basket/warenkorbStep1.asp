@@ -203,5 +203,11 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 <%end if
 end if 'purchasing allowed 
 %>
-<%= readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))%>
+<%
+dim logHTML1 
+logHTML1 = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
+logHTML1 = parseTemplate(logHTML, null)
+Response.Write logHTML1
+
+%>
 <!-- END WARENKORB  -->

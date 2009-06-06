@@ -27,6 +27,9 @@ Select Case dbType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+    Case "MySQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 set xrs = Server.CreateObject("ADODB.Recordset")
 

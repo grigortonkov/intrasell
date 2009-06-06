@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!--#include file="../login.asp"-->
-<!--#include file="../../intrasoft/functions.asp"-->
+<!--#include virtual="/admin/login.asp"-->
+<!--#include virtual="/intrasoft/functions.asp"-->
 <html>
 <head><TITLE>Table Manager</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=unicode">
@@ -16,9 +16,9 @@ Dim URL : URL =  Request.ServerVariables("URL")
 
 
 Session("MyDSN") = ObjConnection
-Session("dbExitPage") = "http://www.noxel.com"
+Session("dbExitPage") = "http://www.griton.eu"
 Session("dbTitle") = "IntraSell"
-Session("dbType") = "Access" '"SQL"'
+'Session("dbType") = "SQL" '"UDF"
 Session("dbConn") = Session("MyDSN") 
 %>
 <LINK href="../../style.css" rel=stylesheet type=text/css>

@@ -1,4 +1,4 @@
-<!--#include file="../menu.asp"-->  
+<!--#include virtual="/intrasoft/menu.asp"-->  
 <!--#include file="GenericLanguage.asp" -->
 <% 
 ' Generic Database - List Records
@@ -174,7 +174,13 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
+
+'Response.Write strType & ":" &  strsql ': Response.End 
+
 If Not Trim(strGroupBy) = "" Then
 	strsql = strsql & " GROUP BY " & strGroupBy
 	intAllowSort = 0
@@ -231,6 +237,9 @@ Select Case strType
 	Case "SQL" 
 		strsql = Replace(strsql,"[","")
 		strsql = Replace(strsql,"]","")
+	Case "MYSQL" 
+		strsql = Replace(strsql,"[","`")
+		strsql = Replace(strsql,"]","`")
 End Select
 If (strWhere & "x") <> "x" Then	strsql = strsql & " WHERE " & strWhere
 If NOT Trim(strGroupBy) = "" Then strsql = strsql & " GROUP BY " & strGroupBy

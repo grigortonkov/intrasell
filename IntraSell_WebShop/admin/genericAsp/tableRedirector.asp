@@ -1,4 +1,4 @@
-<!--#include file="../login.asp"-->   
+<!--#include virtual="/admin/login.asp"-->   
 <html>
 <head>
 <title>Table Redirector</title>
@@ -13,7 +13,7 @@ if RS ="" THEN %>
 
 	' Generic interface to the Northwinds Employee table. 
 	Session("dbGenericPath") = "GenericASPFull/"
-	Session("dbExitPage") = "http://www.yahoo.com"
+	Session("dbExitPage") = "http://www.griton.eu"
 	Session("dbTitle") = "WMS System"
 	'MS Access Connection 
 	'Session("dbConn") = "DRIVER={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=d:\daten\bene\design.mdb"
@@ -32,7 +32,7 @@ if RS ="" THEN %>
 	Session("dbViewPage") = Request.ServerVariables("PATH_INFO")
 	
 	Session("dbDebug") = 0
-	Session("dbType") = "SQL" 
+	'Session("dbType") = "SQL" 
 	
 	Response.Redirect Session("dbGenericPath") & "GenericList.asp"
 %>

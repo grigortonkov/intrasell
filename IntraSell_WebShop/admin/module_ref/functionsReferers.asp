@@ -19,7 +19,7 @@ function getInternalIDNRFromForeignRefererId(foreignRefererId)
    
    dim sql, rs
    sql ="select * from webreferers where refererId=" & foreignRefererId
-   set rs = ObjConnection.execute(sql)	
+   set rs = ObjConnectionExecute(sql)	
    if rs.eOF then
 		getInternalIDNRFromForeignRefererId = -1
    else
@@ -39,7 +39,7 @@ function createReference(OrderType, OrderNummer, RefererId)
    sql  = "INSERT INTO webOrderReferenz (RefererId, OrderNummer, OrderType, Bezahlt) " & _ 
 		  "Values (" & RefererId & "," & OrderNummer &",'" & OrderType &  "',-1)"   
 		  
-   ObjConnection.execute(sql)		  
+   ObjConnectionExecute(sql)		  
 		  
 end function 
 
@@ -49,7 +49,7 @@ end function
 function isRefererAllowed(RefererId)
   Dim sql, rs 
   sql = "Select * from webreferers Where idnr=" & RefererId
-  set rs = ObjConnection.execute(sql)	
+  set rs = ObjConnectionExecute(sql)	
   isRefererAllowed = NOT rs.EOF  
 end function
 
@@ -61,7 +61,7 @@ function getExternalRefererId(idnr)
   Dim sql, rs 
   sql = "Select * from webreferers Where idnr=" & idnr
 'response.write sql
-  set rs = ObjConnection.execute(sql)	
+  set rs = ObjConnectionExecute(sql)	
   if not rs.EOF then 
        getExternalRefererId = rs("refererId")
   else 
@@ -89,7 +89,7 @@ sql = "SELECT webOrderReferenz.RefererId, " & tableNameOrder & ".Datum, " & tabl
 	" WHERE RefererID= " & RefererId & _ 
 	" GROUP BY webOrderReferenz.RefererId, " & tableNameOrder & ".Datum, " & tableNameOrder & ".Nummer"
 'Response.Write "<br>sql=" & sql	
-Set rs = ObjConnection.execute(sql)		
+Set rs = ObjConnectionExecute(sql)		
 
 %>
 
@@ -145,7 +145,7 @@ Liebe Grüsse! <br>
 <%=TABLEVALUE("ofAdressen","idnr",idnr,"Name")%>
 
 <%
-Set rsTop  = ObjConnection.execute(sql)
+Set rsTop  = ObjConnectionExecute(sql)
 if rsTop.BOF and rsTop.EOF then
 else
 	inRow = 0

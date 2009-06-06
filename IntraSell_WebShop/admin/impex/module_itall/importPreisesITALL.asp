@@ -1,6 +1,5 @@
-
-<!--#include file="../../../intrasoft/menu.asp"-->
-<!--#include file="../functionsImpEx.asp"-->
+<!--#include virtual="/intrasoft/menu.asp"-->
+<!--#include virtual="/admin/impex/functionsImpEx.asp"-->
 <%
 
 
@@ -20,9 +19,9 @@ sub prepareForImport()
 	if AlreadyCreated ="JA" then
 	else    
 			sql ="CREATE TABLE itallCategoryMapping ( IntraSellCatName VARCHAR(255), ItallCatName VARCHAR(255))"
-			ObjConnection.Execute(sql)  
+			ObjConnectionExecute(sql)  
 			sql = "INSERT INTO ofVARS ([Name],Wert) VALUES ('itallCategoryMapping','JA')"
-			ObjConnection.Execute(sql)  
+			ObjConnectionExecute(sql)  
 	end if 		
 end sub 
 
@@ -33,7 +32,7 @@ function getIntraSellArtKAtNRForItallCategory(itallCategory)
   dim sql, rs 
   sql = "SELECT ArtKatNr from [grArtikel-Kategorien] WHERE [Name]  In (SELECT intraSellCatName from itallCategoryMapping WHERE itallCatName like '" & itallCategory & "')"
   'Response.Write sql
-  set rs = ObjConnection.Execute(sql)  
+  set rs = ObjConnectionExecute(sql)  
   if rs.eof then 
 	getIntraSellArtKAtNRForItallCategory = -1
   else
