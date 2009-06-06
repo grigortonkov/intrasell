@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin VB.MDIForm IntraSell 
    BackColor       =   &H8000000C&
-   Caption         =   "IntraSell3 by grigor.tonkov@gmail.com"
+   Caption         =   "IntraSell3 by grigor.tonkov@gmail.com: Save Time! Save Money!"
    ClientHeight    =   7890
-   ClientLeft      =   165
-   ClientTop       =   735
+   ClientLeft      =   225
+   ClientTop       =   855
    ClientWidth     =   11445
    Icon            =   "IntraSell.frx":0000
    LinkTopic       =   "Form1"
@@ -21,8 +21,11 @@ Begin VB.MDIForm IntraSell
    End
    Begin VB.Menu Help 
       Caption         =   "&Hilfe"
+      Begin VB.Menu CheckUpdates 
+         Caption         =   "&Update"
+      End
       Begin VB.Menu ISHomepage 
-         Caption         =   "Intrasell Homepage"
+         Caption         =   "&Intrasell Homepage"
       End
    End
 End
@@ -100,6 +103,19 @@ End Function
 
  
 
+Private Sub CheckUpdates_Click()
+    NavigateURL "http://code.google.com/p/intrasell"
+End Sub
+
+Private Sub ISHomepage_Click()
+    NavigateURL "http://www.griton.eu"
+End Sub
+
+Private Sub MDIForm_DblClick()
+   'open DB
+   Call openDatabase
+End Sub
+
 Private Sub MDIForm_Load()
 
 On Error GoTo errLine
@@ -113,11 +129,10 @@ On Error GoTo errLine
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
         
-        Call Open_Click
+        Call openDatabase
         
-
-Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
-Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+        Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
+        Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
         Exit Sub
         
@@ -129,39 +144,62 @@ errLine:
         
 End Sub
 
-Private Sub MDIForm_Unload(Cancel As Integer)
- Call Close_Click
+Public Sub NavigateURL(ByVal URL As String)
+
+Dim File As String
+Dim fH   As Integer
+
+   ' Create a URLShortcut File so that the url.dll function OpenURL will work
+   File = App.Path & "\" & VBA.Format(Now, "HH_NN_SS") & ".URL"
+   fH = FreeFile
+   Open File For Output As #fH
+      Print #fH, "[InternetShortcut]"
+      Print #fH, "URL=" & URL
+   Close #fH
+   
+   Shell "rundll32.exe url.dll, OpenURL " & File, 1
+   
+   Kill File
+
 End Sub
 
-Private Sub Open_Click()
+
+
+Private Function openDatabase()
 On Error GoTo errLine
     ' Open a database in exclusive mode:
     Dim isFilename As String
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
     Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
     
-     Exit Sub
+     Exit Function
         
         'error
 errLine:
         MsgBox "Error in Open_Click" & Err.Description
         Err.Clear
-        Exit Sub
-        
+        Exit Function
+End Function
+
+Private Sub MDIForm_Unload(Cancel As Integer)
+    Call Close_Click
+End Sub
+
+Private Sub Open_Click()
+   Call openDatabase
 End Sub
 
 Private Sub Close_Click()
 On Error GoTo errLine
-   Call oAccess.CloseCurrentDatabase
-   
+   If Not IsNull(oAccess) Then
+      Call oAccess.CloseCurrentDatabase
+   End If
  Exit Sub
         
         'error
 errLine:
-        MsgBox "Error in Close_Click" & Err.Description
+        Debug.Print "Error in Close_Click" & Err.Description
         Err.Clear
         Exit Sub
-        
-        
 End Sub
 
