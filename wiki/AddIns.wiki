@@ -3,7 +3,7 @@
 
 = Einfürung =
 
-Hier finden Sie bereits implementierte AddIns für IntraSell.
+#summary Hier finden Sie bereits implementierte AddIns für IntraSell.
 
  
 == Add Ins ==  
