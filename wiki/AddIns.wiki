@@ -3,7 +3,7 @@
 
 #IntraSell AddIns
 
-= Einfürung =
+= Einführung =
 
 == Add Ins ==  
   * IntraSell AddIn_Sparkasse_PayPal
