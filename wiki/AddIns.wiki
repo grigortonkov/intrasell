@@ -6,15 +6,15 @@
 = Einfürung =
 
 == Add Ins ==  
-  * IntraSell_AddIn_Sparkasse_PayPal.mdb<br/>
-  * IntraSell_AddIn_GLS.mdb<br/>
-  * IntraSell_AddIn_EUROFIBU.mdb<br/>
-  * IntraSell_AddIn_BMD.mdb<br/>
-  * IntraSell_AddIn_PriceCompare.mdb<br/>
-  * IntraSell_AddIn_Nachname.mdb<br/>
-  * IntraSell_AddIn_Migration.mdb<br/>
-  * IntraSell_AddIn_Listen.mdb<br/> 
-  * IntraSell_AddIn_KeywordsManager.mdb<br/>
-  * IntraSell_AddIn_Ingram.mdb<br/>
-  * IntraSell_AddIn_ImportManager.mdb<br/>
-  * IntraSell_AddIn_Barverkauf.mdb<br/>
+  * IntraSell AddIn_Sparkasse_PayPal<br/>
+  * IntraSell AddIn_GLS<br/>
+  * IntraSell AddIn_EUROFIBU.mdb<br/>
+  * IntraSell AddIn_BMD.mdb<br/>
+  * IntraSell AddIn_PriceCompare.mdb<br/>
+  * IntraSell AddIn_Nachname.mdb<br/>
+  * IntraSell AddIn_Migration.mdb<br/>
+  * IntraSell AddIn_Listen.mdb<br/> 
+  * IntraSell AddIn_KeywordsManager.mdb<br/>
+  * IntraSell AddIn_Ingram.mdb<br/>
+  * IntraSell AddIn_ImportManager.mdb<br/>
+  * IntraSell AddIn_Barverkauf.mdb<br/>
