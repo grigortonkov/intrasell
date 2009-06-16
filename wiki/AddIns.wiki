@@ -6,15 +6,15 @@
 = Einfürung =
 
 == Add Ins ==  
-  * IntraSell AddIn_Sparkasse_PayPal <br/>
-  * IntraSell AddIn_GLS <br/>
-  * IntraSell AddIn_EUROFIBU <br/>
-  * IntraSell AddIn_BMD <br/>
-  * IntraSell AddIn_PriceCompare <br/>
-  * IntraSell AddIn_Nachnam e<br/>
-  * IntraSell AddIn_Migration <br/>
-  * IntraSell AddIn_Listen <br/> 
-  * IntraSell AddIn_KeywordsManager <br/>
-  * IntraSell AddIn_Ingram <br/>
-  * IntraSell AddIn_ImportManager <br/>
-  * IntraSell AddIn_Barverkauf <br/>
+  * IntraSell AddIn_Sparkasse_PayPal
+  * IntraSell AddIn_GLS
+  * IntraSell AddIn_EUROFIBU
+  * IntraSell AddIn_BMD
+  * IntraSell AddIn_PriceCompare
+  * IntraSell AddIn_Nachname
+  * IntraSell AddIn_Migration
+  * IntraSell AddIn_Listen
+  * IntraSell AddIn_KeywordsManager
+  * IntraSell AddIn_Ingram
+  * IntraSell AddIn_ImportManager
+  * IntraSell AddIn_Barverkauf
