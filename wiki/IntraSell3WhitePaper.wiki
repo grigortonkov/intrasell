@@ -37,9 +37,9 @@ IntraSell wurde auf einem neuen Plug In konzept umgestellt. Sie können mit rela
 Die IntraSell Online Version wurde mit dem gleichen Preisberechungsmodul umprogrammiert. Ab sofort können Sie Ihren Kunden auch Online die Kundenbezogenen  Preisen … todo 
  
 ==Neue Schnittstellen==
-BMD
-GLS 
-Pay Pal (online)
+*BMD
+*GLS 
+*Pay Pal (online)
 
 ==Der Preis==
 IntraSell ist open source. D.h. Sie können kostenlos selbst die Software herunterladen und benutzen. Falls Sie professionelle Unterstützung benötigen dann wenden Sie sich an uns. 
