@@ -6,15 +6,15 @@
 = Einführung =
 
 == Add Ins ==  
-  * IntraSell AddIn_Sparkasse_PayPal
-  * IntraSell AddIn_GLS
-  * IntraSell AddIn_EUROFIBU
-  * IntraSell AddIn_BMD
-  * IntraSell AddIn_PriceCompare
-  * IntraSell AddIn_Nachname
-  * IntraSell AddIn_Migration
-  * IntraSell AddIn_Listen
-  * IntraSell AddIn_KeywordsManager
-  * IntraSell AddIn_Ingram
-  * IntraSell AddIn_ImportManager
-  * IntraSell AddIn_Barverkauf
+  * IntraSell AddIn Sparkasse PayPal
+  * IntraSell AddIn GLS
+  * IntraSell AddIn EUROFIBU
+  * IntraSell AddIn BMD
+  * IntraSell AddIn PriceCompare
+  * IntraSell AddIn Nachname
+  * IntraSell AddIn Migration
+  * IntraSell AddIn Listen
+  * IntraSell AddIn KeywordsManager
+  * IntraSell AddIn Ingram
+  * IntraSell AddIn ImportManager
+  * IntraSell AddIn Barverkauf
