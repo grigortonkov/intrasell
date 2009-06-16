@@ -1,5 +1,5 @@
 #labels Featured,Phase-Design
-#IntraSell 3 - Neue Funktionen – eine Zusammenfassung
+IntraSell 3 - Neue Funktionen – eine Zusammenfassung
 
 =IntraSell 3=
 ==Neue Funktionen – eine Zusammenfassung==
@@ -9,7 +9,7 @@ Sehr geehrte Damen und Herren,
 Das Moto von IntraSell 3 lautet: 
 Save Time! Save Money!
 
-hiermit bekommen Sie ein Kurze Übersicht über die neuen Funktionen von IntraSell 3.  
+hiermit bekommen Sie ein kurze Übersicht über die neuen Funktionen von IntraSell 3.  
 ==Mobiles Vertrieb==
 Mit der Funktion mobilen Vertrieb können Ihre Ausserdienstmitarbieter auch ohne Onlineverbindung auf den wichtigsten Daten zugreifen, Kundenspezifische Angebote erstellen (mit Kundenpreise wie im Büro). Die Daten sind mit TrueCrypt mit dem neuesten Stand der Verschlüsselungstechnik gesichert. Sobald der Mitarbeiter wieder eine Online Verbindung hat werden seine Aktivitäten an die zentrale Datenbank übergeben. 
 
