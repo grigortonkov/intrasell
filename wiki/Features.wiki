@@ -1,7 +1,9 @@
+#summary Die folgende Auflistung liefert eine Darstellung der Basisaufgaben die mit IntraSell abgedeckt sind.
 #labels Featured
+
 = Features IntraSell 3 =
 
-#summary Die folgende Auflistung liefert eine Darstellung der Basisaufgaben die mit IntraSell abgedeckt sind. 
+
 
 
 == IntraSell 3 Featuresliste ==
