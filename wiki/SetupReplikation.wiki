@@ -1,6 +1,6 @@
 #summary Beschreibt Replikation mit MySQL
 
-=Einrichtung Replikation=
+==Einrichtung Replikation==
 
 Befehle:
 
@@ -33,7 +33,7 @@ CHANGE MASTER TO
 
 
 
-=Weitere Einrichtung Replikation wenn der User VPN (Einwählen) benutzt=
+==Weitere Einrichtung der Replikation wenn der User VPN (Einwählen) benutzt==
 -----------------------------------------------------------------
 rem Windows Batch File für automatisches Starten der Replikation (VPN) 
 
