@@ -1,5 +1,5 @@
+#summary IntraSell 3 - Neue Funktionen – eine Zusammenfassung
 #labels Featured,Phase-Design
-IntraSell 3 - Neue Funktionen – eine Zusammenfassung
 
 =IntraSell 3=
 ==Neue Funktionen – eine Zusammenfassung==
