@@ -1,5 +1,6 @@
 #labels Featured
 = Screenshots IntraSell 3=
+#summary Screenshots IntraSell 3 classic
 
 Hauptseite
 <img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3.jpg">
