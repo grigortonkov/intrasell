@@ -1,11 +1,10 @@
+#summary Hier finden Sie bereits implementierte AddIns für IntraSell.
 #labels Featured
+
 #IntraSell AddIns
 
 = Einfürung =
 
-#summary Hier finden Sie bereits implementierte AddIns für IntraSell.
-
- 
 == Add Ins ==  
   * IntraSell_AddIn_Sparkasse_PayPal.mdb<br/>
   * IntraSell_AddIn_GLS.mdb<br/>
