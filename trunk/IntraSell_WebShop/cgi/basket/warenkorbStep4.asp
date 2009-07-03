@@ -144,7 +144,7 @@ if NOT errorsFound then
 				OnClick="document.location='cgi/account/printPreviewOrder.asp?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>'"
 				style="float: right">
 		-->
-		<input type="button" value="<%=getTranslation("Bestätigung ausdrucken")%>" 
+		<input type="button" class="button" value="<%=getTranslation("Bestätigung ausdrucken")%>" 
 			   OnClick="window.open('cgi/account/printPreviewOrder.asp?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>','Invoice','top=100,left=100,height=640,width=800,status=yes,toolbar=yes,menubar=no,location=no');"
 			   style="float: right">
 						
@@ -152,7 +152,7 @@ if NOT errorsFound then
 		
 		<td width="33%" align=center>
 		<a href="default.asp">
-		<input type="button" value="<%=getTranslation("Home")%>" OnClick="document.location='default.asp';" /> 
+		<input type="button" class="button" value="<%=getTranslation("Home")%>" OnClick="document.location='default.asp';" /> 
 		<!--<img border="0"  src="<%=imageFullName("home.gif")%>" align="right" hspace="0">
 		-->
 		</a>		
@@ -160,7 +160,7 @@ if NOT errorsFound then
 		
 		<td width="33%">	 
 		<a href="cgi/account/logout.asp">
-		<input type="button" value="<%=getTranslation("Abmelden")%>" OnClick="document.location='cgi/account/logout.asp';" /> 
+		<input type="button" class="button" value="<%=getTranslation("Abmelden")%>" OnClick="document.location='cgi/account/logout.asp';" /> 
 		<!--<img border="0"  src="<%=imageFullName("logout.gif")%>" align="right" hspace="0">-->
 		</a>		
 		</td>

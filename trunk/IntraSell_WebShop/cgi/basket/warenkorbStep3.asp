@@ -93,24 +93,16 @@ if NOT errorsFound then
           <a href="default.asp?PageToShow=GESETZ"><%=getTranslation("Informationen zum Fernabsatzgesetz lesen ...")%></a> 
           <% end if%>
           </Td>
-    </tr>
-		 <tr>
+        </tr>
+		<tr>
         <td>
-      
-        </td>
-            <td>
-				<table>
-					<tr>
-						<td>
-						  <a href="default.asp?pageToShow=warenkorbStep1"> <%'=getTranslation("Bestellung aendern")%> 
-						    <img border="0" src="<%=imageFullName("change_order.gif")%>" alt="<%=getTranslation("Bestellung aendern")%>"  />
-						  </a>
-						</td>
-						<td>            
-						  <input type="image" class="submit" src="<%=imageFullName("bestellen.gif")%>" value="BESTELLEN" name="I3" border="0" align="right">
-						</td>
-					</tr>
-				</table>
+        <td>
+			 <p align=right>
+					<input type="button" class="button" value="<%=getTranslation("Bestellung ändern")%>" onclick ="document.location='default.asp?pageToShow=warenkorbStep1'" />
+					&nbsp; &nbsp;
+					<input type="submit" class="button" value="<%=getTranslation("bestellen")%>">
+			</p>
+				 
         </td>
 		</tr>
 	</table>

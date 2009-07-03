@@ -135,7 +135,7 @@ Dim totalBrutto : totalBrutto = 0
 	if cdbl(rsCheck("cc")) < 500 then 
 	%>
 	<%call query2list("Select ArtNR,'-',Bezeichnung from grArtikel Order BY ArtNr","AddNew")%>
-	<%else%> or type the # <input name="addNew" value "" size ="10" ID="Text5">
+	<%else%> or type the # <input class="button" name="addNew" value "" size ="10" ID="Text5">
 	<%end if
 	rscheck.close
 	set rsCheck = nothing%>
@@ -143,7 +143,7 @@ Dim totalBrutto : totalBrutto = 0
 	</tr>
 	<tr>	
 	<td colspan=6 align=center>
-      <p align="left"><input type="submit" value="<%=getTranslation("aktualisieren")%>" ID="Submit1" NAME="Submit1"></p>
+      <p align="left"><input type="submit"  class="button" value="<%=getTranslation("aktualisieren")%>"></p>
     </td>
 	</tr>
 </table>
