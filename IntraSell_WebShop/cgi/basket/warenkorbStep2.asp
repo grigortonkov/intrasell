@@ -62,9 +62,9 @@ If request("notiz") <> "" then Session("notiz")=request("notiz")
 <input type="hidden" name="CHECK_AUTHENTIFICATION" value="YES">
    
 <p align=right>
-                <a href="default.asp" style="text-decoration: none">
-                <img border="0" src="<%=imageFullName("weiteraussuchen.gif")%>" align="center" hspace="0"></a>&nbsp;&nbsp;
-                <input type="image" class="submit" src="<%=imageFullName("zurkasse.gif")%>"  valign="bottom" value="BESTELLEN" name="I3" border="0" align="center">
+                <input type="button" class="button"  value="<%=getTranslation("weiter suchen")%>" onclick="document.location='default.asp';">&nbsp;&nbsp;
+                <input type="submit" class="button"  value="<%=getTranslation("bestellen")%>">
+ </p>
                        
 <%
 'get LOGIN HTML 

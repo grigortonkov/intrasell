@@ -90,7 +90,7 @@ End if
 emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destination)
 %>
 	<%if emptySet then %>
-	<input type="image" class="submit" src="<%=imageFullName("updatewarenkorb.gif")%>" value="Update Warenkorb" name="submit1" id=submit1 align="left" border="0" hspace="0" style="text-align: center" vspace="3">
+		<input type="submit" class="button"  value="<%=getTranslation("Warenkorb aktualisieren")%>">
 	<%end if%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
@@ -194,11 +194,13 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 			<!-- END SELECT PLACE OF DELIVERY  -->
 		</table>
 	</center>
-<%if (not payMode& "" = "" ) and (not postMode& "" = "" ) and (not destination& "" = "" ) then %>
-	<input type="image" class="submit" src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>"   align="right" border="0" hspace="0" vspace="3">
-<% else %>
-    <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
-<%end if %>
+	<p align=right>
+			<%if (not payMode& "" = "" ) and (not postMode& "" = "" ) and (not destination& "" = "" ) then %>
+				<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
+			<% else %>
+			    <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
+			<%end if %>
+    </p>
 </form>
 <%end if
 end if 'purchasing allowed 
