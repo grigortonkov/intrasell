@@ -27,28 +27,37 @@ end function
 
 'returns html string with image proportional width and height
 function makeImageSizeAttributes(byVal imageFileName, byVal maxWidth, byVal maxHeight)
+    'Response.Write "makeImageSizeAttributes start "
+    'Response.Write "maxWidth = " & maxWidth
+    'Response.Write "maxHeight = " & maxHeight
+    
     Dim CImage
 	Set CImage = Server.CreateObject("CImageInfo.GetInfo")
 	Dim FilePath
 	FilePath = Server.MapPath(imageFileName) 'Type the path of your image file.
 	CImage.SetPath (FilePath)
-	'Response.Write "Image Type : " & CImage.TypeOfImage & "<BR>"
-	'Response.Write "Image Height : " & CImage.GetHeight & "<BR>"
-	'Response.Write "Image Width : " & CImage.GetWidth & "<BR>"
-	'Response.Write "Image Depth : " & CImage.GetDepth & "<BR>"
-	'Response.Write "Image Path : " & CImage.GetPath & "<BR><BR>"
-	'Response.Write "<b>About : -</b> " & CImage.About
+	if false then 
+	   Response.Write "Image Type : " & CImage.TypeOfImage & "<BR>"
+	   Response.Write "Image Height : " & CImage.GetHeight & "<BR>"
+	   Response.Write "Image Width : " & CImage.GetWidth & "<BR>"
+	   Response.Write "Image Depth : " & CImage.GetDepth & "<BR>"
+	   Response.Write "Image Path : " & CImage.GetPath & "<BR><BR>"
+	   Response.Write "<b>About : -</b> " & CImage.About
+	end if 
 	
-	if maxWidth <= CImage.GetWidth and maxHeight >= CImage.GetHeight  then 'reduce by Widht
+	if cint(maxWidth) <= cint(CImage.GetWidth) and cint(maxHeight )>= cint(CImage.GetHeight)  then 'reduce by Widht
 	    makeImageSizeAttributes = "width=""" & maxWidth & """ height=""" &  CImage.GetHeight*maxWidth/CImage.GetWidth  & """"
 	end if 
 
-	if maxWidth >= CImage.GetWidth and maxHeight <= CImage.GetHeight  then 'reduce by Height
+	if cint(maxWidth) >= cint(CImage.GetWidth) and cint(maxHeight) <= cint(CImage.GetHeight)  then 'reduce by Height
 	    makeImageSizeAttributes = "width=""" & CImage.GetWidth*maxHeight/CImage.GetHeight & """ height=""" &  maxHeight  & """"
 	end if 
+	
+	
 		
-    if maxWidth <= CImage.GetWidth and maxHeight <= CImage.GetHeight  then 'reduce by Widht and Height
-      if CImage.GetWidth/maxWidth >CImage.GetHeight/maxHeight then 'brighter than higher case 
+    if cint(maxWidth) <= cint(CImage.GetWidth) and cint(maxHeight) <= int(CImage.GetHeight)  then 'reduce by Width and Height
+    Response.Write "here"
+      if CImage.GetWidth/maxWidth > CImage.GetHeight/maxHeight then 'brighter than higher case 
 	    makeImageSizeAttributes = "width=""" & maxWidth & """ height=""" &  CImage.GetHeight*maxWidth/CImage.GetWidth  & """"
 	   else
 	    makeImageSizeAttributes = "width=""" & CImage.GetWidth*maxHeight/CImage.GetHeight & """ height=""" &  maxHeight  & """"
@@ -56,7 +65,7 @@ function makeImageSizeAttributes(byVal imageFileName, byVal maxWidth, byVal maxH
 	end if 
 	
 	'else do nothing ' do not increase 
-	
+	'Response.End 
 Set CImage = nothing 
 end function 
 
@@ -75,7 +84,7 @@ function makeImgTag(byVal imageRelativeURL, byVal bezeichnung, byVal maxSize)
   bezeichnung = Server.HTMLEncode(bezeichnung&"")
 
   
-  'if on onther seerver 
+  'if on other seerver 
   if lcase(left(image,4)) = "http" then 'absolute path on other server
    dim html : html = "" 
    Randomize
@@ -101,7 +110,7 @@ function makeImgTag(byVal imageRelativeURL, byVal bezeichnung, byVal maxSize)
    exit function 
   end if
   
-  on error resume next 
+  'on error resume next 
   if image & "" <> "" AND image <> "no-image" then 
     if fileExists(Server.MapPath("" & image)) then 
        
@@ -112,9 +121,11 @@ function makeImgTag(byVal imageRelativeURL, byVal bezeichnung, byVal maxSize)
 	    end if 
 	    
 	    
+	    
 	    if VARVALUE("BenutzeImageResize") = "TRUE" then
+	        'Response.Write "Image Resize!" & VARVALUE("BenutzeImageResize"): Response.End 
 			'using the component if registered 
-			 makeImgTag = "<img align=""center"" border=""0"" src=""" & image & """ alt=""" & imageRelativeURL & """ " &  makeImageSizeAttributes( imageRelativeURL,maxSize,maxSize) & ">"
+			 makeImgTag = "<img align=""center"" border=""0"" src=""" & image & """ alt=""" & imageRelativeURL & """ " &  makeImageSizeAttributes( imageRelativeURL, maxSize, maxSize) & ">"
 	    end if 
 	    
 	else ' no image on server
@@ -132,7 +143,7 @@ function makeImgTag(byVal imageRelativeURL, byVal bezeichnung, byVal maxSize)
   else
     makeImgTag = "<b>" & Image & "</b>"
   end if 
-  on error goto 0
+  'on error goto 0
 end function 
  
  

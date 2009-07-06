@@ -679,15 +679,14 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
 <br>
 <br>
 <center>
-<table border="1" cellspacing="3" bordercolor="#CCCCCC" style="border-collapse: collapse" cellpadding="3" width="450" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bgcolor="#F3F3F3">
+<table width="450"  border="1" cellspacing="3" cellpadding="3" bordercolor="#CCCCCC" style="border-collapse: collapse" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bgcolor="#F3F3F3">
 
 <input type="hidden" name="Branche<%=typeOfAddress%>" value="0"><!-- simple account  -->
 
   <%if typeOfAddress = ACCOUNT then %>
-  <tr><td colspan=3 align=center width="350" bgcolor="#FFCF00" height="18">
-  <p align="left">
-  <font color="#980000" size="1"><b>&nbsp;<%=getTranslation("Anmeldeinformation")%></b></font>
-  </td></tr>
+  <tr><th colspan=3 align=center width="100%" bgcolor="#FFCF00" height="18">
+  &nbsp;<%=getTranslation("Anmeldeinformation")%>
+  </th></tr>
   
   <tr>
     <td align="right" width="150"><span style="font-weight: 400">
@@ -745,16 +744,15 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
   <%end if%>
   <%end if %>
 </table>
-&nbsp; <br>
-&nbsp;<table border="1" cellspacing="1" style="border-collapse: collapse" cellpadding="3" width="450" bgcolor="#F3F3F3" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
+&nbsp; <br/>
+<table border="1" cellspacing="1" style="border-collapse: collapse" cellpadding="3" width="450" bgcolor="#F3F3F3" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
   <input type="hidden" name="Redirection" value="<%=Request("Redirection")%>">
   <tr>
-    <td colspan=2 width="420" bgcolor="#FFCF00" height="18">
-  <%if typeOfAddress= 1 then %><b><font size="1" color="#980000"><%=getTranslation("Ihr Account")%><br><%end if%> 
-  <%if typeOfAddress= 2 then %><%=getTranslation("Lieferadresse")%><br><%=getTranslation("(nur wenn Lieferadresse vom Account abweicht)")%><%end if%> 
-  <%if typeOfAddress= 3 then %><%=getTranslation("Rechnungsadresse")%><br><%=getTranslation("(nur wenn Rechnungsadresse vom Account abweicht)")%><%end if%>
-  </font></b> 
-  </td></tr>
+    <th colspan="3">
+  <%if typeOfAddress= 1 then %><%=getTranslation("Ihr Account")%><br/><%end if%> 
+  <%if typeOfAddress= 2 then %><%=getTranslation("Lieferadresse")%><br/><%=getTranslation("(nur wenn Lieferadresse vom Account abweicht)")%><%end if%> 
+  <%if typeOfAddress= 3 then %><%=getTranslation("Rechnungsadresse")%><br/><%=getTranslation("(nur wenn Rechnungsadresse vom Account abweicht)")%><%end if%>
+  </th></tr>
   
   <tr>
     <td align="right" width="138"><span style="font-weight: 400">

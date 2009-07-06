@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<td width="11%" height="19" align="center">&nbsp;</td>
-			<td width="81%" height="19" align="center">&nbsp; <input type="submit" value="LOGIN" name="B1">
+			<td width="81%" height="19" align="center">&nbsp; <input type="submit" class="button" value="LOGIN" name="B1">
 				&nbsp;
 			</td>
 			<td width="8%" height="19">&nbsp;</td>

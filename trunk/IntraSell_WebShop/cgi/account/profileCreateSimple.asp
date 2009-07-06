@@ -15,7 +15,7 @@ End if %>
 <form method="POST" action="default.asp">
   <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
   <%call drawEmptyProfileFormSimple(ACCOUNT, false)%>
-  <input type="submit" value="<%=getTranslation("Jetzt anmelden")%>">
+  <input type="submit"  class="button" value="<%=getTranslation("Jetzt anmelden")%>">
 </form>
 
   </center>

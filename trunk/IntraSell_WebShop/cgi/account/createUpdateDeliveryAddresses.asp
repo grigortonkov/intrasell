@@ -72,7 +72,7 @@ else 'no action requested
   <br>
 <br>
 <center>
-    <input type="submit" value="Adressen Speichern" name="B1" style="float: left">
+    <input type="submit" class="button" value="Adressen speichern" name="B1" style="float: left">
 </center>    
 </td>
   </tr>
