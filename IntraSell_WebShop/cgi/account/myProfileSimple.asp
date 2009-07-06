@@ -11,7 +11,7 @@ if getLOGIN() <> "" then
      <form method="POST" action="default.asp?pageToShow=MyProfileSimple">
 	  <input type="hidden" value="UPDATE" name="UPDATE">
 		<%call drawEmptyProfileFormSimple(1, true)%>
-	    <p align="center"><input type="submit" value="<%=getTranslation("aktualisieren")%>"><br></p>
+	    <p align="center"><input type="submit" class="button" value="<%=getTranslation("aktualisieren")%>"><br></p>
 	</form>
  <%
   end if

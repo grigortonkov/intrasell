@@ -4,7 +4,7 @@
     'response.write "new_kdnr_simple=" & new_kdnr_simple
 	if new_kdnr_simple = "" or new_kdnr_simple = "0"   then ' address saving failed /missing data 
 %>
-  <p align=center><input type="submit" value="<%=getTranslation("Speichern")%>"></p>
+  <p align=center><input type="submit" class="button" value="<%=getTranslation("Speichern")%>"></p>
 <%
     else 'anmelden
        Session("LOG_IN") = new_kdnr_simple

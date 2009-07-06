@@ -62,7 +62,11 @@ call saveSessionSearch(Sql, SearchDescription)
 		call SETVARVALUE("SHOP_SHOW_THUMBNAILS","true")		
 	end if 		
 
-	if VARVALUE("	") <> "true" and VARVALUE("SHOP_SHOW_ANGELEGTAM") <> "false" then 
+	if not isNumeric( VARVALUE("SHOP_THUMBNAIL_MAX_SIZE") ) then 
+		call SETVARVALUE("SHOP_THUMBNAIL_MAX_SIZE", "160")		
+	end if 	
+	
+	if VARVALUE("SHOP_SHOW_ANGELEGTAM") <> "true" and VARVALUE("SHOP_SHOW_ANGELEGTAM") <> "false" then 
 		call SETVARVALUE("SHOP_SHOW_ANGELEGTAM", "true")		
 	end if 		
 	
@@ -426,13 +430,13 @@ dim pagesLinks
 				'START PRODUCT LIST TABLE
 				Dim tableColumns : tableColumns = 0
 				html = html & "<table border=""0"" width=""100%"" cellpadding=""2"" cellspacing=""0"" style=""border-collapse: collapse"" bordercolor=""#111111"">"
-				html = html & "<tr bgcolor=#6b8eb5>"
+				html = html & "<tr>"
 				if showThumbnails then 
 				   tableColumns = tableColumns+1
-				   html = html & "<th width=""40"">Image</th>"
+				   html = html & "<th width=""40"" height=""52"">Image</th>"
 				end if 
 				tableColumns = tableColumns+1
-				html = html & "<th width=""400""><a href=""default.asp?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=Bezeichnung"">" & getTranslation("Bezeichnung") & "</a></th>"
+				html = html & "<th width=""400"" height=""52""><a href=""default.asp?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=Bezeichnung"">" & getTranslation("Bezeichnung") & "</a></th>"
 				if SHOP_SHOW_PRICE then
 				    tableColumns = tableColumns+1
 					html = html & "<th width=""80"" align=right><a href=""default.asp?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=PreisATS"">" & getTranslation("Preis") & "</a></th>"
@@ -457,16 +461,16 @@ dim pagesLinks
 					html = html & "<th width=""80"">" & getTranslation("Lagerinfo") & "</th>"
 				end if 	
 				tableColumns = tableColumns+1
-				html = html & "<th width=""40"">" & getTranslation("Buy") & "</th>"
+				html = html & "<th width=""40"">" & getTranslation("Kaufen") & "</th>"
 				'html = html & "<th width=""40"">Detail</th>"
 				if SHOP_SHOW_COMPARE or SHOP_SHOW_DRUCKEN then
 					tableColumns = tableColumns+1
-					html = html & "<th width=""40"">"
+					html = html & "<th width=""90"" align=""center"">"
 					if SHOP_SHOW_COMPARE then 
 						html = html & "<input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objekte vergleichen.") & """ src=""" & imageFullName("compare.gif") & """ value=""Vergleichen"" Name=""Action"">"
 					end if
 					if SHOP_SHOW_DRUCKEN then  
-						html = html & "<input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"">"
+						html = html & "<br/><input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"">"
 					end if 
 					html = html & "</th>" 
 				end if 
@@ -556,7 +560,7 @@ Dim htmlAllRows:    	htmlAllRows = ""
 						if showThumbnails then 				  
 							htmlProductRow = htmlProductRow & "<td width=""40"" bgcolor=""" & rowColor & """>" 
 							htmlProductRow = htmlProductRow & "<a href='default.asp?ArtNr=" & ArtNr & "'>"
-							htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HTMLEncode(Bezeichnung&""), PRODUCT_IMAGE_SMALL_MAX_SIZE) 
+							htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HTMLEncode(Bezeichnung&""), VARVALUE("SHOP_THUMBNAIL_MAX_SIZE")) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
 							htmlProductRow = htmlProductRow & "</a>"
 													
 										if false then 'not needed 

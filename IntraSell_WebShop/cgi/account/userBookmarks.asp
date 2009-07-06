@@ -477,7 +477,7 @@ butArr(5,2) = "logout.asp"
       <input type="text" name="other">
     </td>
     <td width="52%"><img src="<%=PAGE_BASE_URL%>img/shim.gif" width="25" height="8" >
-      <input type="Button" class="SubmitButton" Value = "senden" 
+      <input type="Button"  class="button" Value = "senden" 
       OnClick="doSubmit('send');">
   </tr>
   -->

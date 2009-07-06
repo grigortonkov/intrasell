@@ -23,7 +23,7 @@ dim new_kdnr:new_kdnr = saveBothAddresses()
 	  if new_kdnr = "" or new_kdnr = "0"  then ' address saving failed /missing data 
 	     if showForm & "" <> "false" then
 			%>
-			<p align=center><input type="submit" value="<%=getTranslation("Speichern")%>"></p>
+			<p align=center><input type="submit" class="button" value="<%=getTranslation("Speichern")%>"></p>
 			<%
 		 end if 	
 	end if 

@@ -16,7 +16,7 @@ End if %>
   <input type="hidden" name="pageToShow" value="ProfileSave">
   <%call drawProfileForm(false)%>
   <p align="center">  
-  <input type="submit" value="<%=getTranslation("Jetzt anmelden")%>">
+  <input type="submit" class="button" value="<%=getTranslation("Jetzt anmelden")%>">
   </p>
 </form>
 </div>

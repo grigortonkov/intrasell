@@ -28,9 +28,9 @@
 	    </tr>
 	    <tr>
 	      <td colspan=2 align=center width="387">
-	      <input type="hidden" name="CHANGEPASSWD" value="CHANGEPASSWD">
-	      <input type="button" value="Change Password" onClick="javascript:checkSame();"> &nbsp;
-	      <input type="button" value= "Cancel" name="B5" OnClick="document.location='default.asp'"></td>
+	      <input type="hidden" class="button" name="CHANGEPASSWD" value="CHANGEPASSWD">
+	      <input type="button" class="button" value="Change Password" onClick="javascript:checkSame();"> &nbsp;
+	      <input type="button" class="button" value= "Cancel" name="B5" OnClick="document.location='default.asp'"></td>
 	    </tr>
 	</table>
 	<center>

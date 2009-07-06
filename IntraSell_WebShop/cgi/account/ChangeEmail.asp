@@ -29,8 +29,8 @@
 	    <tr>
 	      <td colspan=2 align=middle >
 	      <input type="hidden" name="CHANGEEMAIL" value="CHANGEEMAIL">
-	      <input type="button" value="Change Email" onClick="javascript:checkSame();"> &nbsp;
-	      <input type="button" value= "Cancel" name="B5" OnClick="document.location='default.asp'"></td>
+	      <input type="button" class="button" value="Change Email" onClick="javascript:checkSame();"> &nbsp;
+	      <input type="button" class="button" value= "Cancel" name="B5" OnClick="document.location='default.asp'"></td>
 	    </tr>
 	</table>
 	<center>

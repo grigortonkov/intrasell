@@ -66,7 +66,7 @@ else 'no action requested
 		<tr>
 		<td colspan=2>
 			<center>
-			<input type="submit" value="<%=getTranslation("Speichern")%>">
+			<input type="submit" class="button" value="<%=getTranslation("Speichern")%>">
 			</center>    
 		</td>
 		</tr>
