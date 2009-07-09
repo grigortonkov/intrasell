@@ -181,10 +181,10 @@ Set rsArtikel  = objConnectionExecute(sql)
 
 if rsArtikel.EOF then 'nothing found 
 	'html = ""
-	makeProductListOnQuery = getTranslation("Die Suche hat leider keine Ergebnisse gebracht!") & "<br>" & _ 
+	makeProductListOnQuery = "<center>" & getTranslation("Ihre Suche hat leider keine Ergebnisse gebracht!") & "<br>" & _ 
 							 getTranslation("Sie haben gesucht nach:") &  SearchDescription & _
 							 "<br><a href='javascript:history.back();' _OnClick='history.back();'>" & getTranslation("Zurück") & "</a>" & _ 
-							 "<" & COUNT_RESULT_LINES & ">0</" & COUNT_RESULT_LINES & "><br>"
+							 "<!--<" & COUNT_RESULT_LINES & ">0</" & COUNT_RESULT_LINES & ">--><br></center>"
 	                           
 		'mail this event to the Shop Administration 
 		dim sendVar  'set default 

@@ -701,9 +701,11 @@ function fixRelativeImageLinks(byVal template)
      Const PRODUCTIMAGES_RELATIVE_LINK = "../productImages"
      
      Dim images_full_link: images_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/images"
-     dim full
+     Dim productimages_full_link: productimages_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/productImages"
+     
+     Dim full
      full =  replace(template,IMAGES_RELATIVE_LINK,images_full_link)
-     full =  replace(full,PRODUCTIMAGES_RELATIVE_LINK,images_full_link)
+     full =  replace(full,PRODUCTIMAGES_RELATIVE_LINK,productimages_full_link)
      
      
      fixRelativeImageLinks = full
