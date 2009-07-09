@@ -7,9 +7,10 @@ set transition number to 0 for random effect
 	<IMAGE TRANSITION="0">flashimages/1.jpg</IMAGE>
 	<IMAGE TRANSITION="0">flashimages/2.jpg</IMAGE>
 	<IMAGE TRANSITION="0">flashimages/3.jpg</IMAGE>
-	<IMAGE TRANSITION="0">flashimages/4.jpg</IMAGE>	
+	<!--
+        <IMAGE TRANSITION="0">flashimages/4.jpg</IMAGE>	
 	<IMAGE TRANSITION="0">flashimages/5.jpg</IMAGE>
 	<IMAGE TRANSITION="0">flashimages/6.jpg</IMAGE>	
 	<IMAGE TRANSITION="0">flashimages/7.jpg</IMAGE>
-        
+        -->
 </RSS>
