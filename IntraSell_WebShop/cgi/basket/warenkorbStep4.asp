@@ -151,18 +151,18 @@ if NOT errorsFound then
 		</td>
 		
 		<td width="33%" align=center>
-		<a href="default.asp">
-		<input type="button" class="button" value="<%=getTranslation("Home")%>" OnClick="document.location='default.asp';" /> 
-		<!--<img border="0"  src="<%=imageFullName("home.gif")%>" align="right" hspace="0">
-		-->
-		</a>		
+			<a href="default.asp">
+			<input type="button" class="button" value="<%=getTranslation("Home")%>" OnClick="document.location='default.asp';" /> 
+			<!--<img border="0"  src="<%=imageFullName("home.gif")%>" align="right" hspace="0">
+			-->
+			</a>		
 		</td>
 		
 		<td width="33%">	 
-		<a href="cgi/account/logout.asp">
-		<input type="button" class="button" value="<%=getTranslation("Abmelden")%>" OnClick="document.location='cgi/account/logout.asp';" /> 
-		<!--<img border="0"  src="<%=imageFullName("logout.gif")%>" align="right" hspace="0">-->
-		</a>		
+			<a href="cgi/account/logout.asp">
+			<input type="button" class="button" value="<%=getTranslation("Abmelden")%>" OnClick="document.location='cgi/account/logout.asp';" /> 
+			<!--<img border="0"  src="<%=imageFullName("logout.gif")%>" align="right" hspace="0">-->
+			</a>		
 		</td>
 		
 		</tr>

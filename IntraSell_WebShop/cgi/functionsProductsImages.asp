@@ -56,7 +56,7 @@ function makeImageSizeAttributes(byVal imageFileName, byVal maxWidth, byVal maxH
 	
 		
     if cint(maxWidth) <= cint(CImage.GetWidth) and cint(maxHeight) <= int(CImage.GetHeight)  then 'reduce by Width and Height
-    Response.Write "here"
+    'Response.Write "here"
       if CImage.GetWidth/maxWidth > CImage.GetHeight/maxHeight then 'brighter than higher case 
 	    makeImageSizeAttributes = "width=""" & maxWidth & """ height=""" &  CImage.GetHeight*maxWidth/CImage.GetWidth  & """"
 	   else
