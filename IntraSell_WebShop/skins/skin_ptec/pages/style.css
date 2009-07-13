@@ -49,7 +49,7 @@ BODY
 }
 .bestellservice {	
     color: #C3C3C3;	
-    font: bold italic 12px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font: bold italic 11px Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
 .bestellservice a {	
     color: #C3C3C3;
@@ -133,7 +133,7 @@ BODY
 	color: #fff;
 }
 .categoryTitle a {	
-	padding: 0px 0px 0px 60px;	
+	padding: 0px 0px 0px 50px;	
 	color: #fff; 
 	font: bold 14px/30px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
 	text-transform: uppercase; 
@@ -144,7 +144,7 @@ BODY
 	text-decoration: underline; 
 }
 .boxImage {	
-	padding: 20px 0px 0px 31px;
+	padding: 20px 0px 0px 30px;
 	border: 0px solid red;
 }
 .boxImage a {	
