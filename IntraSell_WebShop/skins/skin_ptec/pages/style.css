@@ -132,6 +132,12 @@ BODY
 .footer a:hover {
 	color: #fff;
 }
+
+.categoryTitle{	
+
+               background-image: url('/skins/skin_ptec/images/boxes/box_00.gif'); 
+               background-repeat: no-repeat; background-position: left top; width:256; height:200}
+
 .categoryTitle a {	
 	padding: 0px 0px 0px 50px;	
 	color: #fff; 
@@ -144,8 +150,7 @@ BODY
 	text-decoration: underline; 
 }
 .boxImage {	
-	padding: 20px 0px 0px 30px;
-	border: 0px solid red;
+	border: 0px solid #FF0000;; padding-left:15px; padding-right:0px; padding-top:20px; padding-bottom:0px
 }
 .boxImage a {	
 	padding: 0px;
@@ -377,14 +382,14 @@ A.clsMenuItemIE
     COLOR: black;
     TEXT-DECORATION: none
 }
-A.clsMenuItemIE:visited
+a:visited.clsMenuItemIE
 {
     FONT: xx-small Verdana;
     CURSOR: hand;
     COLOR: black;
     TEXT-DECORATION: none
 }
-A.clsMenuItemIE:hover
+a:hover.clsMenuItemIE
 {
     COLOR: #ffcc00
 }
