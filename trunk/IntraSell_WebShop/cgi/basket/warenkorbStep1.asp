@@ -98,12 +98,12 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 <form method="POST" action="default.asp">
 	<input type="hidden" name="PageToShow" value="warenkorbStep2">
 	<center>
-		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" height="1">
-
+		<table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse" bordercolor="#111111" height="1" width="100%">
+		<tr><td colspan="2"><hr></td></td>
 			<!-- WARENKORB POSTMODE-->
 			<tr>
-				<td height="21" valign="top"><hr><%=getTranslation("Transport:")%></td>
-				<td height="21" valign="top"><hr><%
+				<th height="21" valign="middle">1. <%=getTranslation("Transport:")%></th>
+				<td height="21" valign="middle" align="left"><%
             'dim rsZM, selected            
             sql = "select methode from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by methode order by methode"
             set rsZM = objConnectionExecute(sql) 
@@ -120,13 +120,15 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 				</td>
 			</tr>
 			<!-- END WARENKORB POSTMODE-->
+			
+			<tr><td colspan="2"><hr></td></td>
 			<!--SELECT PLACE OF DELIVERY -->
 			<% if varvalue("CALCULATE_CHANGE_DESTINATION") = "TRUE" then %>
 			<tr>
-				<td valign="top" width="257">
-					<%=getTranslation("Destination der Lieferung:")%>
-				</td>
-				<td valign="top" width="490"><hr>
+				<th valign="middle" width="257">
+					2.<%=getTranslation("Destination der Lieferung:")%>
+				</th>
+				<td valign="middle" width="490" align="left">
 					        <!--
 							 <select name="destination" onClick="document.location='default.asp?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination='+document('destination');">
 							 <option class="submit" value="<%=destination%>"> <%=destination%>
@@ -150,23 +152,26 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 					</select>
 				</td>
 			</tr>
+			
+			<tr><td colspan="2"><hr></td></td>
+			
 			<tr>
-				<td><%=getTranslation("Waehlen Sie Transportart fuer Ihre Lieferung:")%></td>
-				<td><hr>
+				<th>3. <%=getTranslation("Waehlen Sie Transportart fuer Ihre Lieferung:")%></th>
+				<td align="left">
 					<%=showPossiblePostMethodsAccordungDestination(destination,postMode,paymode)%>
 				</td>
 			</tr>
 			<!-- END OF DELIVERY -->
-			
+			<tr><td colspan="2"><hr></td></td>
 			
 			<!-- WARENKORB PAYMODE-->
 			<tr>
-				<td height="1" valign="top" width="257">
-				<hr>
-					<%=getTranslation("Bestellung-/Zahlungsart:")%>
-				</td>
-				<td height="1" valign="top" width="490">
-				<hr>
+				<th height="1" valign="middle" width="257">
+			 
+					4. <%=getTranslation("Bestellung-/Zahlungsart:")%>
+				</th>
+				<td valign="middle"  align="left">
+				 
 					<%
             dim rsZM, selected 
             
@@ -185,10 +190,11 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 				rsZM.MoveNExt
             wend
             %>
-            <hr>
+          
 				</td>
 			</tr>
 			<!-- END WARENKORB PAYMODE-->
+			<tr><td colspan="2"><hr></td></td>
 			
 			<%end if %>
 			<!-- END SELECT PLACE OF DELIVERY  -->

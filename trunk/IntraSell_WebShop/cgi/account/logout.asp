@@ -1,4 +1,4 @@
-<!--#include file="../defaultHead.inc"-->
+<!--#include virtual="/cgi/defaultHead.inc"-->
 <%
 'Objconnection.execute("delete from webSessions where SID=" & getSID())
 call logOut
