@@ -1,5 +1,5 @@
-.bg {background: url(/skins/skin_nca/images/main/menu_background.gif);}
-.menu {padding:0 0 0 32px; margin:0; list-style:none; height:30px; background:#fff url(/skins/skin_nca/images/main/menu_background.gif) repeat; position:relative; font-family:arial, verdana, sans-serif; }
+.bg {background: url(images/button4.gif);}
+.menu {padding:0 0 0 32px; margin:0; list-style:none; height:30px; background:#fff url(images/button1a.gif) repeat-x; position:relative; font-family:arial, verdana, sans-serif; }
 .menu li.top {display:block; float:left; position:relative;}
 .menu li a.top_link {display:block; float:left; height:40px; line-height:33px; color:#BBBBBB; text-decoration:none; font-size:14pt; font-weight:bold; cursor:pointer; font-style:italic; padding-left:12px; padding-right:0; padding-top:0; padding-bottom:0}
 .menu li a.top_link span {float:left; font-weight:bold; display:block; padding:0 24px 0 12px; height:40px;}
