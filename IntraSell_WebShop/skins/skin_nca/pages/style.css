@@ -164,7 +164,7 @@ INPUT
     BORDER-RIGHT: #666666 1px solid;
     BORDER-TOP: #666666 1px solid;
     FONT-WEIGHT: normal;
-    FONT-SIZE: 8pt;
+    FONT-SIZE: 10pt;
     BORDER-LEFT: #666666 1px solid;
     COLOR: #000000;
     BORDER-BOTTOM: #666666 1px solid;
@@ -447,3 +447,12 @@ background-color: #CA1C3E}
 #BasketRow {
 
 background-color: #D7556E}
+
+
+#ProfileTable {
+background-color: #CA1C3E}
+
+
+
+#ErrorMessage {
+padding:4px; border:2px solid #FF0000; background-color: #FFFFFF; color:#FF0000; position:relative; float:right; width:200; height:150}
