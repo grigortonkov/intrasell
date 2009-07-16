@@ -211,7 +211,7 @@ UNKNOWN
 
 .boxedText {
 
-   border:1px dashed #FFFFFF; color: #FFFFFF; background-color:#C60C30
+   padding:5px; border:1px dashed #FFFFFF; color: #FFFFFF; background-color:#C60C30; margin-top:5; margin-bottom:5; 
 }
 
 
