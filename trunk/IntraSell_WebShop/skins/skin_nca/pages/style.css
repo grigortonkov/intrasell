@@ -96,10 +96,16 @@ TD.marked1
 }
 TH
 {
-    border-style:dotted; border-width:1px; FONT-SIZE: 10pt;
-    COLOR: #000000;
+    border-style:dotted; border-width:1px; 
+    FONT-SIZE: 10pt;
+    COLOR: #FFFFFF;
     FONT-FAMILY: Verdana;
-    BACKGROUND-COLOR: #C0C0C0;font-weight:bold; padding-left:4px; padding-right:4px; padding-top:1px; padding-bottom:1px; background-image:url('../images/main/TH_background.jpg'); background-repeat:repeat
+    BACKGROUND-COLOR: #C0C0C0;
+    font-weight:bold; 
+    padding-left:4px; 
+    padding-right:4px; 
+    padding-top:1px; padding-bottom:1px; 
+    background-image:url('../images/main/TH_background.jpg'); background-repeat:repeat
 }
 TH a {
     COLOR: #fff;
@@ -115,8 +121,8 @@ TH a:hover {
 TABLE
 {
     FONT-WEIGHT: normal;
-    FONT-SIZE: 8pt;
-    COLOR: #666666;
+    FONT-SIZE: 12pt;
+    COLOR: #FFFFFF;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
 }
 TABLE.light
@@ -432,3 +438,12 @@ a:hover.clsMenuItemIE
 #menu a:hover {	
 	color: #C60000;
 }
+
+#BasketTable {
+
+background-color: #CA1C3E}
+
+
+#BasketRow {
+
+background-color: #D7556E}
