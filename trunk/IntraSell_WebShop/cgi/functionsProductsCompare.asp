@@ -81,21 +81,21 @@ function compareProducts(byval ArtNrArray)
 	  Response.Write "<th " & thProps & ">" & getTranslation("Produkt") & " "  & i & "</th>"
   next 
  Response.Write "</tr>"
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Bezeichnung") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Bezeichnung") & "</th>"
  for each artNR in ArtNrArray
 		Response.Write "<td><a href=""default.asp?artNr=" & artNR & """>" & tableValue("grArtikel","ArtNR",artNR,"Bezeichnung")& "</a></td>"
  next 
  response.write "</tr>"
 
 
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Hersteller") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Hersteller") & "</th>"
  for each artNR in ArtNrArray
 	Response.Write "<td>" & tableValue("lieferantenAdressen","idnr",tableValue("grArtikel","ArtNR",artnr,"herstellerNr"),"Firma")& "</td>"
  next 
  Response.Write "</tr>"
   
  
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Lagerinfo") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Lagerinfo") & "</th>"
  for each artNR in ArtNrArray
 	'Response.Write "<td>" & tableValue("grArtikel","ArtNR",artnr,"Bezeichnung1")& "</td>"
 	Response.Write "<td>" & getLieferantLagerInfo(ArtNr) & "</td>"
@@ -103,7 +103,7 @@ function compareProducts(byval ArtNrArray)
  Response.Write "</tr>"
 
 
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Preis") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Preis") & "</th>"
  dim preis
  dim mwst
   for each artNR in ArtNrArray
@@ -133,7 +133,7 @@ set rs = objConnectionExecute(sql)
      allCompareFeaturesAreEmpty = true 
      
 		kwHTML =  "<tr>"
-				kwHTML = kwHTML &  "<td " & thProps & ">" & Server.HTMLEncode(rs("Name")&"") & "</td>"
+				kwHTML = kwHTML &  "<th " & thProps & ">" & Server.HTMLEncode(rs("Name")&"") & "</th>"
 				for each artNR in ArtNrArray
 						kwHTML = kwHTML & "<td>"
 						kwCurrent = getKeyWord(keywordId, artNR)
@@ -153,14 +153,14 @@ set rs = objConnectionExecute(sql)
  wend 
  
 'IMAGE 
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Bild") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Bild") & "</th>"
  for each artNR in ArtNrArray
 	Response.Write "<td>" & makeimgTag(tableValue("grArtikel","ArtNR",artNR,"picture"),tableValue("grArtikel","ArtNR",artNR,"Bezeichnung"),200) & "</td>"
  next 
   response.write "</tr>"
 
 'BESCHREIBOUNG
- Response.Write "<tr><td " & thProps & ">" & getTranslation("Beschreibung") & "</td>"
+ Response.Write "<tr><th " & thProps & ">" & getTranslation("Beschreibung") & "</th>"
  for each artNR in ArtNrArray
 	Response.Write "<td>" & tableValue("grArtikel","ArtNR",artNR,"Beschreibung")& "</td>"
  next 
