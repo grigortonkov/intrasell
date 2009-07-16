@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
-<html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <title>[SHOP_TITLE]</title>
-<link rel="stylesheet" href="skins/skin_nca/pages/menu/menu_style.css" type="text/css" />
-<link rel="stylesheet" href="../pages/style.css" type="text/css" />
-<link rel="stylesheet" href="skins/skin_nca/pages/style.css" type="text/css" />
+ 
+	<link rel="stylesheet" href="skins/skin_nca/pages/menu/menu_style.css" type="text/css" />
+	<link rel="stylesheet" href="../pages/style.css" type="text/css" />
+	<link rel="stylesheet" href="skins/skin_nca/pages/style.css" type="text/css" />
+	 
 <script language="JavaScript">
 <!--        HIDE
         function pageLoadSetHeaderImages(catPath) {
@@ -30,41 +31,51 @@
 <div>
 	<table id="Table_Main" width="1280" border="0" cellpadding="0" cellspacing="0" align="center">
 		<tr>
-			<td colspan="3" width="1280" height="238" bgcolor="000000" valign="top" style="background-image: url('../images/main/Header.gif'); background-repeat: no-repeat">
-			<table border="0" cellpadding="0" cellspacing="0" width="96%" height="215">
+			<td colspan="3" width="1280" height="235" bgcolor="000000" valign="top" style="background-image: url('../images/main/Header.gif'); background-repeat: no-repeat">
+			<table border="0" cellpadding="0" cellspacing="0" width="96%" height="234">
 				<tr>
-					<td width="4%" height="87">&nbsp;</td>
-					<td width="28%" height="87">&nbsp;</td>
-					<td height="87" width="29%">&nbsp;</td>
-					<td width="26%" height="87">&nbsp;
+					<td width="4%" height="90">&nbsp;</td>
+					<td width="23%" height="90">
+					<img src="../images/main/spacer.gif" width="270" height="10"></td>
+					<td height="90" width="33%">
+					<p align="center">[CURRENT_USER] </p>
+					</td>
+					<td width="26%" height="90" align="center">&nbsp;
 					<div id="Language">
-						<p align="center"><font size="1" color="#666666">[LANGUAGE_SELECTION] 
-						[LAND_SELECTION]</font> </p>
-					</div>
-					;</td>
-					<td width="14%" height="87">&nbsp;
+						[LANGUAGE_SELECTION] [LAND_SELECTION] </div>
+					</td>
+					<td width="14%" height="90">&nbsp;
+					<!-- 
 					<div>
 						<p align="center">
 						<a href="default.asp?pageToShow=warenkorbStep1">
 						<img border="0" src="../images/buttons/basket_top.gif" width="50" height="18" /></a>
-						</p>
+						</p>2
 					</div>
-					</td>
+					--></td>
 				</tr>
 				<tr>
-					<td width="4%" height="30">&nbsp;</td>
-					<td width="28%" height="30">&nbsp;</td>
-					<td height="33" colspan="3">[EMBED:menu/menu.html]</td>
+					<td width="4%" height="56">&nbsp;</td>
+					<td width="23%" height="56">
+					 
+					</td>
+					<td height="56" colspan="3" width="73%">[EMBED:menu/menu.html]</td>
 				</tr>
 				<tr>
 					<td width="4%">&nbsp;</td>
-					<td width="28%">
+					<td width="23%">
 					<p align="center"><span style="background-color: #FFFFFF">[SIMPLE_SEARCH_FORM]
 					</span></p>
 					</td>
-					<td width="29%">&nbsp;</td>
-					<td width="26%">&nbsp;</td>
-					<td width="14%">&nbsp;[CURRENT_USER] </td>
+					<td width="73%" colspan="3">
+					<table border="0" width="100%" height="100%" style="background-image: url('../productImages/category_[CATEGORYNR].jpg'); background-repeat: no-repeat; background-position: left top">
+						<tr>
+							<td>
+							<img src="../images/main/spacer.gif" width="84" height="78">
+							</td>
+						</tr>
+					</table>
+					</td>
 				</tr>
 			</table>
 			</td>
@@ -81,16 +92,22 @@
 				</tr>
 				<tr>
 					<td height="515" colspan="2" bgcolor="#FFFFFF" valign="top" style="background-image: url('../images/main/grannen.gif'); background-repeat: no-repeat; background-position-y: top">
+					<div align="center" style="background-image: url('../productImages/category_name_[CATEGORYNR].gif'); background-repeat: no-repeat; background-position: center">  
+						<br><br><!--<img src="../productImages/category_name_[CATEGORYNR].jpg" alt="Kategorie [CATEGORYNR]" width="183" height="32" align="middle"> 
+						--></div>
 					<div style="padding:5px;">
+						
 						<br />
 						<br />
 						<br />
-						[CATEGORY_SUBLIST] <hr>[SIMPLE_SEARCH_FORM]
-						<hr>[NEWSLETTER] <hr>[BASKET_STATE] </div>
+						[CATEGORY_SUBLIST] <hr>[SIMPLE_SEARCH_FORM] 
+						<hr>[BASKET_STATE] <hr>
+						[NEWSLETTER]
+						</div>
 					</td>
 					<td width="898" colspan="2" bgcolor="#C60C30" valign="top" background="../images/logo/steinbock.gif" height="100%">
 					<div style="padding: 5px">
-						[BODY][SUBCATEGORIES]</div>
+						[BODY]<span style="background-color: #FFFFFF">[SUBCATEGORIES]</span></div>
 					</td>
 				</tr>
 				<tr height="26">
@@ -109,8 +126,9 @@
 			<td bgcolor="#000000">&nbsp;</td>
 			<td>
 			<p align="right">
-			<span style="color: #FFFFFF; font-family:Tahoma; font-size:10px">Copyright 
-			2001-2009 GRITON.EU, All rights reserved , Shop Created with intrasell;
+			<span style="color: #FFFFFF; font-family:Tahoma; font-size:10px">
+			Copyright 2001-2009 GRITON.EU, All rights reserved , Shop Created 
+			with intrasell;
 			<br />
 			Optimized for Microsoft Internet Explorer and Mozilla; </span></p>
 			</td>
