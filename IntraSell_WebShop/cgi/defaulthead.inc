@@ -2,7 +2,7 @@
 <%'@ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
 <%OPTION explicit%>
 <%'ON ERROR RESUME NEXT%>
-<!--#include virtual ="/intrasoft/connOpen.asp"-->
+<!--#include virtual="/intrasoft/connOpen.asp"-->
 <!--#include virtual="/intrasoft/functions.asp"-->
 <!--#include virtual="/intrasoft/functionsGUI.asp"-->
 <!--#include virtual="/intrasoft/functionsFAQ.asp"-->

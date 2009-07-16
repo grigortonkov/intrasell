@@ -500,6 +500,10 @@ Dim lastGroupValue 'keeps the last value from grouping on artkatnr
 Dim htmlProductRow ' html for the product table row 
 Dim htmlAllRows:    	htmlAllRows = ""    
   	    swnItems = 0
+  	    
+Dim SHOP_PRODUCTLIST_ROW_COLOR  : SHOP_PRODUCTLIST_ROW_COLOR = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR","#F7F7F7")  
+Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT  : SHOP_PRODUCTLIST_ROW_COLOR_ALT = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR_ALT","#FFFFFF")  
+ 
 		while (not rsArtikel.EOF) and (cdbl(swnItems)<cdbl(ITEMPERPAGE))   		        
 				swnItems = swnItems + 1
 				
@@ -509,7 +513,7 @@ Dim htmlAllRows:    	htmlAllRows = ""
 				'add for statistics 
 				call onProductList(artNr)
 				
-				if rowColor = "#F7F7F7" then rowColor = "#FFFFFF" else	rowColor = "#F7F7F7" end if 
+				if rowColor = SHOP_PRODUCTLIST_ROW_COLOR then rowColor = SHOP_PRODUCTLIST_ROW_COLOR_ALT else	rowColor = SHOP_PRODUCTLIST_ROW_COLOR end if 
 				
 				if SHOP_USE_SORT_IMPORTANCY then 'set another color for the product
 				   dim ownColorHighlight: ownColorHighlight =  getEigenschaft(artNr,"Highlight_Color") & ""
@@ -558,7 +562,7 @@ Dim htmlAllRows:    	htmlAllRows = ""
 						htmlProductRow = htmlProductRow & "<tr>"
 					    
 						if showThumbnails then 				  
-							htmlProductRow = htmlProductRow & "<td width=""40"" bgcolor=""" & rowColor & """>" 
+							htmlProductRow = htmlProductRow & "<td width=""40""  bgcolor=""" & rowColor & """>" 
 							htmlProductRow = htmlProductRow & "<a href='default.asp?ArtNr=" & ArtNr & "'>"
 							htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HTMLEncode(Bezeichnung&""), VARVALUE("SHOP_THUMBNAIL_MAX_SIZE")) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
 							htmlProductRow = htmlProductRow & "</a>"

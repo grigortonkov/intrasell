@@ -61,7 +61,7 @@ If request("notiz") <> "" then Session("notiz")=request("notiz")
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
 <input type="hidden" name="CHECK_AUTHENTIFICATION" value="YES">
    
-<p align=right>
+ <p align=right>
                 <input type="button" class="button"  value="<%=getTranslation("weiter suchen")%>" onclick="document.location='default.asp';">&nbsp;&nbsp;
                 <input type="submit" class="button"  value="<%=getTranslation("bestellen")%>">
  </p>

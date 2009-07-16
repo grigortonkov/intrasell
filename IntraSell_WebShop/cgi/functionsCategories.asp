@@ -42,7 +42,7 @@ Function SimpleListCategories(PreKatNr, inPageToShow)
 	'show error that not subcats are set
 	If rs.EOF then
 		Dim prePreKatNr: prePreKatNr = TABLEVALUE("[grArtikel-Kategorien]","artKatNr",PreKatNr,"ArtKatNrParent")
-		html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br>" 
+		'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br>" 
 		'<a href="default.asp?PreKatNr=prePreKatNr">Zurueck??</a>
 		html = html &  SimpleListCategories(prePreKatNr, inPageToShow)
 		SimpleListCategories = html 

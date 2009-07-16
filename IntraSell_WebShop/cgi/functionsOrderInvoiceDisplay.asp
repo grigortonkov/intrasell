@@ -180,16 +180,16 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
   <%if getFreiHausLieferungUmsatz()> 0 then %>
   <h2><%=getTranslation("Frei Haus Lieferung ab:")%> <%=formatNumber(getFreiHausLieferungUmsatz(),2)%></h2>
   <%end if %>
-   <table border="1" cellpadding="2" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0" bgcolor="#F3F3F3" ID="Table2">
+   <table border="1" cellpadding="2" cellspacing="0" width="100%" style="border-collapse: collapse" bordercolor="#C0C0C0" bgcolor="#F3F3F3" ID="BasketTable">
     <tr>
-      <th width="58" align="center"><font size="1"><%=getTranslation("Position")%></font></th>
-      <th width="71" align="center"><font size="1"><%=getTranslation("Anzahl")%></font></th>
-      <th width="71" align="center"><font size="1"><%=getTranslation("ArtNR")%></font></th>
-      <th width="71" align="center"><font size="1"><%=getTranslation("EAN")%></font></th>
-      <th width="322" align="center"><font size="1"><%=getTranslation("Bezeichnung")%></font></th>
-      <th width="50"  align="center"><font size="1"><%=getTranslation("Lieferung")%></font></th>      
-      <th width="100" align="center"><font size="1"><%=getTranslation("Preis")%></font></th>
-      <th width="100" align="center"><font size="1"><%=getTranslation("Total")%></font></th>
+      <th width="58" align="center"><%=getTranslation("Position")%></th>
+      <th width="71" align="center"><%=getTranslation("Anzahl")%></th>
+      <th width="71" align="center"><%=getTranslation("ArtNR")%></th>
+      <th width="71" align="center"><%=getTranslation("EAN")%></th>
+      <th width="322" align="center"><%=getTranslation("Bezeichnung")%></th>
+      <th width="50"  align="center"><%=getTranslation("Lieferung")%></th>      
+      <th width="100" align="center"><%=getTranslation("Preis")%></th>
+      <th width="100" align="center"><%=getTranslation("Total")%></th>
     </tr>	
     <tr>
       <td colspan=8>&nbsp;</td>
@@ -220,7 +220,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 		    end if 
 		    SubtotalMWST = cdbl(SubtotalMWST) + cdbl(calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)) * Stk
 		%>
-	    <tr  bgcolor="white">
+	    <tr bgcolor="white" ID="BasketRow">
 	      <td width="58" height="17"><p align="center"><%=pos%></td>	      
 	      <td align="center" height="17" >
 		  <input type=hidden  name="Art<%=pos%>" size="9" value="<%=rsWK("ArtNr")%>" ID="Hidden4"/>
@@ -234,10 +234,10 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <%=rsWK("Quantity")%>
 	      <%end if%>
 	      </td>
-	      <td height="17"><%=rsWK("ArtNR")%></td>
+	      <td height="17"><a href="default.asp?ArtNR=<%=rsWK("ArtNR")%>" target=_new><%=rsWK("ArtNR")%></a></td>
 	      <td height="17"><%=rsWK("EAN")%></td>
-	      <td height="17"><%=getTranslationDok("grArtikel" , rsWK("ArtNR"), "Bezeichnung", rsWK("Bezeichnung") & "", Language)%>&nbsp;<b><%=rsWK("Notiz")%></b></td>
-	      <td height="17"><%=rsWK("Bezeichnung1")%></td>	      
+	      <td height="17"><a href="default.asp?ArtNR=<%=rsWK("ArtNR")%>" target=_new><%=getTranslationDok("grArtikel" , rsWK("ArtNR"), "Bezeichnung", rsWK("Bezeichnung") & "", Language)%></a>&nbsp;<b><%=rsWK("Notiz")%></b></td>
+	      <td height="17"><a href="default.asp?ArtNR=<%=rsWK("ArtNR")%>" target=_new><%=rsWK("Bezeichnung1")%></a></td>	      
 	      <td align="right" height="17"> <p align="right"><%=FormatNumber(cdbl(einzelpreis),2)%></p></td>
 	      <td align="right" height="17"> <p align="right"><%=FormatNumber(cdbl(einzelpreis)*cint(stk),2)%></p></td>	      
 	    </tr>
@@ -299,7 +299,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <td colspan=2><%=getTranslation("Transportkosten")%> (<%=getTranslation("Dienst")%>: <b><%=postMode%></b>), (KG=<b><%=KG%></b>), (<%=getTranslation("Ziel")%>=<b><%=PostModeDestination%></b>)
 			   <%=messageNoCosts%></td>
 	      <td>&nbsp;</td>
-	      <td align="right" height="17" bgcolor="white"><p align="right"><%=FormatNumber(PostCosts ,2)%></p></td>
+	      <td align="right" height="17" bgcolor="white" ID="BasketRow"><p align="right"><%=FormatNumber(PostCosts ,2)%></p></td>
     </tr>
      
     <%end if %>
@@ -310,7 +310,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <td colspan=2>
 	       <%=getTranslation("Zahlungskosten")%> (<b><%=PayMode%></b>)</font></td>
 	      <td>&nbsp;</td>
-	      <td align="right" bgcolor="white"><p align="right"><%=FormatNumber( payModeExpenses,2)%></p></td>
+	      <td align="right" bgcolor="white" ID="BasketRow"><p align="right"><%=FormatNumber( payModeExpenses,2)%></p></td>
 	    </tr>
  	<%end if%>
  	
@@ -331,7 +331,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <%=bezMindestBestellMenge%>
 	      (<b><%=getTranslation("Mindestwert ist ")%> <%=formatNumber(getMinOrderValue(),2)%></b>)</td>
 	      <td>&nbsp;</td>
-	      <td align="right" height="17" bgcolor="white"><p align="right"><%=FormatNumber(getMinOrderValue_charge(),2)%></p></td>
+	      <td align="right" height="17" bgcolor="white"  ID="BasketRow"><p align="right"><%=FormatNumber(getMinOrderValue_charge(),2)%></p></td>
     </tr>
      
     <%end if 
@@ -356,7 +356,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <!--(<b><%=getTranslation("Rabatt für Ihren Einkauf")%>&nbsp;<%=formatNumber(rabatt_Value,2)%></b>)-->
 	      </td>
 	      <td>&nbsp;</td>
-	      <td align="right" height="17" bgcolor="white"><p align="right"><%=FormatNumber(rabatt_Value,2)%></p></td>
+	      <td align="right" height="17" bgcolor="white" ID="BasketRow"><p align="right"><%=FormatNumber(rabatt_Value,2)%></p></td>
     </tr>
      
     <%end if 
@@ -368,7 +368,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	      <td colspan=4>&nbsp;</td>
 	      <td colspan=2>
 	       <%=getTranslation("Gutschein")%> (<%=gutscheinNummer%>)</font></td>
-	      <td align="right" bgcolor="white"><p align="right"><%=FormatNumber(gutscheinSumme,2)%></p></td>
+	      <td align="right" bgcolor="white" ID="BasketRow"><p align="right"><%=FormatNumber(gutscheinSumme,2)%></p></td>
 
 	    </tr>
  	<%end if%>
@@ -392,7 +392,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
        <%end if %>
 	      </td>
 	      <td align="right"> <p align="right"><b><%=getTranslation("Subtotal")%>:</b></p></td>
-	      <td align="right" bgcolor="white"> <p align="right"><b><%=FormatNumber(Subtotal, 2 )%></b></td>	      
+	      <td align="right" bgcolor="white" ID="BasketRow"> <p align="right"><b><%=FormatNumber(Subtotal, 2 )%></b></td>	      
 	    </tr>	    
 	
 	<%
@@ -415,7 +415,7 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 	%>
 	   <tr>
 		  <td align="right"><p align="right"><b><%=getTranslation("Total")%> (+ <%=MWSTPercent%> % <%=getTranslation("MWST")%>):</b></p></td>
-	      <td align="right" bgcolor="white"><p align="right"><b><%=FormatNumber(SubtotalMWST, 2 )%></b></p></td>	      
+	      <td align="right" bgcolor="white" ID="BasketRow"><p align="right"><b><%=FormatNumber(SubtotalMWST, 2 )%></b></p></td>	      
        </tr>
     <%else 'add empty line%>   
        <tr><td colspan=7>&nbsp;<tr></tr>   
