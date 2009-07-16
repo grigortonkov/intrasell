@@ -155,7 +155,7 @@ if Name = "" or Vorname = "" or Strasse = "" or PLZ = "" or Ort = "" or Land = "
 		if typeOfAddress = ACCOUNT or _
 		  (Name<>"" and (typeOfAddress = SHIPPING or typeOfAddress = INVOICE)) then ' only for the first address
             %>
-			<font color="red"><b><%=getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!")%></b><br></font>
+			<font id="ErrorMessage" color="red"><b><%=getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!")%></b><br></font>
 			<%
 			'if showForm then 
 			if showForm then call drawEmptyProfileForm(typeOfAddress, true)
@@ -168,7 +168,7 @@ end if
 'check tel nr 
 if typeOfAddress = ACCOUNT then 
 	if not checkTELNR(Tel) then 
-	   %><font color="red"><b><%=getTranslation("Ungueltige TelNr!?!")%></b><br></font>
+	   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Ungueltige TelNr!?!")%></b><br></font>
 	   <%
 	   		if showForm then call drawEmptyProfileForm(typeOfAddress, true)
 			exit function 
@@ -179,7 +179,7 @@ end if
 if typeOfAddress = ACCOUNT then 
     'check email 
 	if not EMailCheck(Email) then 
-	   %><font color="red"><b><%=getTranslation("Ungueltige Email Adresse!?!")%></b><br></font>
+	   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Ungueltige Email Adresse!?!")%></b><br></font>
 	   <%
 	   		if showForm then call drawEmptyProfileForm(typeOfAddress, true)
 			exit function 
@@ -190,7 +190,7 @@ if typeOfAddress = ACCOUNT then
 						'check passwort 
 						if  Passwort<>PasswortII then 
 						   
-						   %><font color="red"><b><%=getTranslation("Die Passwortbestaetigung stimmt nicht!")%></b><br></font>
+						   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Die Passwortbestaetigung stimmt nicht!")%></b><br></font>
 						   <%
 						   		if showForm then call drawEmptyProfileForm(typeOfAddress, true)
 								exit function 
@@ -198,7 +198,7 @@ if typeOfAddress = ACCOUNT then
 
 						'check passwort length
 						if len(Passwort)<PASSWORD_LENGTH then 
-						   %><font color="red"><b><%=getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!")%></b><br></font>
+						   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!")%></b><br></font>
 						   <%
 						   		if showForm then call drawEmptyProfileForm(typeOfAddress, true)
 								exit function 
@@ -217,7 +217,7 @@ if typeOfAddress = ACCOUNT then
 						end if    
  
 						if accountUsed then  %>
-								<font color="red">
+								<font id="ErrorMessage" color="red">
 								<b><%=getTranslation("Diese von Ihnen angegebe Emailadresse ist bereits vorhanden!")%> 
 								   <%'=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br>
 								</font>
@@ -354,7 +354,7 @@ if Name = "" or Vorname = "" or Strasse = "" or PLZ = "" or Ort = "" or Land = "
 		  (Name<>"" and (typeOfAddress = SHIPPING or typeOfAddress = INVOICE)) then ' only for the first address
 				
            %>
-			<font color="red"><b><%=getTranslation("Bitte füllen Sie alle mit * gekennzeichneten Felder aus!")%></b><br></font>
+			<font id="ErrorMessage" color="red"><b><%=getTranslation("Bitte füllen Sie alle mit * gekennzeichneten Felder aus!")%></b><br></font>
 			<%
 			call drawEmptyProfileFormSimple(typeOfAddress, true)
 			end if 
@@ -365,7 +365,7 @@ end if
 if typeOfAddress = ACCOUNT then 
     'check email 
 	if not EMailCheck(Email) then 
-	   %><font color="red"><b><%=getTranslation("Ung&uuml;ltige Email Adresse!?!")%></b><br></font>
+	   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Ung&uuml;ltige Email Adresse!?!")%></b><br></font>
 	   <%
 	   		call drawEmptyProfileFormSimple(typeOfAddress, true)
 			exit function 
@@ -376,7 +376,7 @@ if typeOfAddress = ACCOUNT then
 						'check passwort 
 						if  Passwort<>PasswortII then 
 						   
-						   %><font color="red"><b><%=getTranslation("Die Passwortbest&auml;tigung stimmt nicht!")%></b><br></font>
+						   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Die Passwortbest&auml;tigung stimmt nicht!")%></b><br></font>
 						   <%
 						   		call drawEmptyProfileFormSimple(typeOfAddress, true)
 								exit function 
@@ -384,7 +384,7 @@ if typeOfAddress = ACCOUNT then
 
 						'check passwort length
 						if len(Passwort)<PASSWORD_LENGTH then 
-						   %><font color="red"><b><%=getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!")%></b><br></font>
+						   %><font id="ErrorMessage" color="red"><b><%=getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!")%></b><br></font>
 						   <%
 						   		call drawEmptyProfileFormSimple(typeOfAddress, true)
 								exit function 
@@ -403,7 +403,7 @@ if typeOfAddress = ACCOUNT then
 						end if    
  
 						if accountUsed then  %>
-								<font color="red">
+								<font id="ErrorMessage" color="red">
 								<b><%=getTranslation("Die von Ihnen angegebene Emailadresse wurde bereits verwendet!")%></b><br>
 								</font>
 								  <%
@@ -679,7 +679,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
 <br>
 <br>
 <center>
-<table width="450"  border="1" cellspacing="3" cellpadding="3" bordercolor="#CCCCCC" style="border-collapse: collapse" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bgcolor="#F3F3F3">
+<table Id="ProfileTable" width="450"  border="1" cellspacing="3" cellpadding="3" bordercolor="#CCCCCC" style="border-collapse: collapse" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bgcolor="#F3F3F3">
 
 <input type="hidden" name="Branche<%=typeOfAddress%>" value="0"><!-- simple account  -->
 
@@ -692,7 +692,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right" width="150"><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Email")%>&nbsp;&nbsp; </font></span></td>
     <td><font ><font size="1"><b>&nbsp;<input type="text" name="Email<%=typeOfAddress%>" size="20" value="<%=Email%>">
-        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
     </font></b></font>
     </td>
   </tr>
@@ -701,7 +701,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right" width="150"><span style="font-weight: 400">
     <font  size="1">* <%=getTranslation("Emailwiederholung")%>&nbsp;&nbsp; </font></span></td>
     <td> &nbsp;<input type="text" name="Emailwiederholung<%=typeOfAddress%>" size="20" value="<%=Emailwiederholung%>">
-        <%if withCheck and len(Emailwiederholung)<5 then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+        <%if withCheck and len(Emailwiederholung)<5 then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
     </td>
   </tr>
     
@@ -716,7 +716,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right"><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Passwort")%>&nbsp;&nbsp; </font></span></td>
     <td>&nbsp;<input type="password" name="Passwort<%=typeOfAddress%>" size="20">
-     <%if withCheck and len(Passwort)<PASSWORD_LENGTH then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+     <%if withCheck and len(Passwort)<PASSWORD_LENGTH then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
      <%=getTranslation("Min " & PASSWORD_LENGTH & " Zeichen!")%>
     </td>
   </tr>
@@ -725,7 +725,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right"><span style="font-weight: 400">
     <font  size="1">*<%=getTranslation("Passwortbest&auml;tigung")%>&nbsp;&nbsp; </font></span></td>
     <td>&nbsp;<input type="password" name="PasswortII<%=typeOfAddress%>" size="20">
-     <%if withCheck and len(PasswortII)<PASSWORD_LENGTH then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+     <%if withCheck and len(PasswortII)<PASSWORD_LENGTH then %></b></font><b><font size="1"  id="ErrorMessage" color="red">(!)</a><%end if%>
      <%=getTranslation("Min " & PASSWORD_LENGTH & " Zeichen!")%>
      <br/>
      <%=getTranslation("Tipp: ''%'' und ''*'' sind als Sonderzeichen nicht erlaubt!")%>
@@ -745,7 +745,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
   <%end if %>
 </table>
 &nbsp; <br/>
-<table border="1" cellspacing="1" style="border-collapse: collapse" cellpadding="3" width="450" bgcolor="#F3F3F3" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
+<table Id="ProfileTable" border="1" cellspacing="1" style="border-collapse: collapse" cellpadding="3" width="450" bgcolor="#F3F3F3" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">
   <input type="hidden" name="Redirection" value="<%=Request("Redirection")%>">
   <tr>
     <th colspan="3">
@@ -757,14 +757,14 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
   <tr>
     <td align="right" width="138"><span style="font-weight: 400">
     <font size="1" ><%=getTranslation("Firma")%>&nbsp;&nbsp; </font></span></td>
-    <td width="281"><input type="text" name="Firma<%=typeOfAddress%>" size="20" value="<%=Firma%>"></td>
+    <td><input type="text" name="Firma<%=typeOfAddress%>" size="20" value="<%=Firma%>"></td>
   </tr>
 
   
   <tr>
     <td align="right" width="138"><span style="font-weight: 400">
     <font size="1" ><%=getTranslation("UID")%>&nbsp;&nbsp; </font></span></td>
-    <td width="281"><input type="text" name="UID<%=typeOfAddress%>" size="20" value="<%=UID%>"></td>
+    <td><input type="text" name="UID<%=typeOfAddress%>" size="20" value="<%=UID%>"></td>
   </tr>
 
   <tr>
@@ -873,7 +873,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right" width="150"><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Email")%>&nbsp;&nbsp; </font></span></td>
     <td><font ><font size="1"><b>&nbsp;<input type="text" name="Email<%=typeOfAddress%>" size="20" value="<%=Email%>">
-        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
     </font></b></font>
     </td>
   </tr>
@@ -1062,7 +1062,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right" ><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Email")%>&nbsp;&nbsp; </font></span></td>
     <td>&nbsp;<input type="text" name="Email<%=typeOfAddress%>" size="20" value="<%=Email%>" ID="Text1">
-        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+        <%if withCheck and len(Email)<5 then %></b></font><b><font size="1"  id="ErrorMessage" color="red">(!)</a><%end if%>
     </td>
   </tr>
   <tr>
@@ -1071,7 +1071,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right"><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Emailwiederholung")%>&nbsp;&nbsp; </font></span></td>
     <td>&nbsp;<input type="text" name="Emailwiederholung<%=typeOfAddress%>" size="20" value="<%=Emailwiederholung%>">
-        <%if withCheck and len(Emailwiederholung)<5 then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+        <%if withCheck and len(Emailwiederholung)<5 then %></b></font><b><font size="1"  id="ErrorMessage" color="red">(!)</a><%end if%>
     </td>
   </tr>
   <tr>
@@ -1087,7 +1087,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right"><span style="font-weight: 400">
     <font size="1">* <%=getTranslation("Passwort")%>&nbsp;&nbsp; </font></span></td>
     <td><font size="1"><b> &nbsp;<input type="password" name="Passwort<%=typeOfAddress%>" size="20" ID="Password1">
-     <%if withCheck and len(Passwort)<PASSWORD_LENGTH then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+     <%if withCheck and len(Passwort)<PASSWORD_LENGTH then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
      <%=getTranslation("Min " & PASSWORD_LENGTH & " Zeichen!")%>
     </font></b>
     </td>
@@ -1097,7 +1097,7 @@ if typeOfAddress = INVOICE or typeOfAddress = SHIPPING  then tableName = "[ofAdr
     <td align="right"><span style="font-weight: 400">
     <font  size="1">* <%=getTranslation("Passwort wiederholen")%>&nbsp;&nbsp; </font></span></td>
     <td><font size="1"><b> &nbsp;<input type="password" name="PasswortII<%=typeOfAddress%>" size="20" ID="Password2">
-     <%if withCheck and len(PasswortII)<PASSWORD_LENGTH then %></b></font><b><font size="1" color="red">(!)</a><%end if%>
+     <%if withCheck and len(PasswortII)<PASSWORD_LENGTH then %></b></font><b><font size="1" id="ErrorMessage" color="red">(!)</a><%end if%>
      <%=getTranslation("Min " & PASSWORD_LENGTH & " Zeichen!")%>
     </font></b>
     </td>
