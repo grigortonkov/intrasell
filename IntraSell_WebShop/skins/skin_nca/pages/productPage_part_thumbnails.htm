@@ -1,0 +1,18 @@
+ <!--<h2>Produktabbildungen</h2>-->
+ [SQL_SIMPLE:<![CDATA[select 
+      concat('<div style=''width:100px;width:100px;float:left;''> ', replace(concat('<img border=1 src=''skins\\', img , ''' style=''max-width:100px;max-height:100px;'' width=''100%''/>'),'\\','/'), '</div>')
+ from (
+	SELECT replace(SUBSTRING_INDEX(FotoLink,'#',1), 'C:\\IntraSell3\\','') img 
+	FROM offotos o where Filter like 'ArtNR=[ArtNr]'
+) a;]]>]
+ <!--
+[SQL_SIMPLE:<![CDATA[select 
+      concat('[_makeImgTagName:..\\skins\\', img ,']')
+ from (
+	SELECT replace(SUBSTRING_INDEX(FotoLink,'#',1), 'C:\\IntraSell3\\','') img 
+	FROM offotos o where Filter like 'ArtNR=[ArtNr]'
+) a;]]>]
+ -->
+ 
+  
+  

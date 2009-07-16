@@ -1,26 +1,25 @@
+BODY
+{
+    margin: 0;
+    COLOR: #C60C30;
+    BACKGROUND-COLOR: #000000;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 10pt;
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif
+    SCROLLBAR-FACE-COLOR: #C60C30;
+    SCROLLBAR-HIGHLIGHT-COLOR: #000000;
+    SCROLLBAR-SHADOW-COLOR: #ffffff;r
+    SCROLLBAR-ARROW-COLOR: #ffcc00;
+    SCROLLBAR-TRACK-COLOR: #505050;
+	scrollbar-3dLight-Color:#c0c0c0;
+    SCROLLBAR-DARKSHADOW-COLOR: #c0c0c0;
+    SCROLLBAR-BASE-COLOR: #c0c0c0;
+}
 
-.category { 
-	color: #000; 
-	FONT-SIZE: 11px; 
-	font-weight: bold; 
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
-	margin: 0
-}
-.category a { 
-	color: #000; 
-	FONT-SIZE: 11px; 
-	font-weight: bold; 
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
-	text-decoration: none;
-}
-.category a:hover { 
-	color: #C60C30; 
-	text-decoration: underline;
-}
 
 A {
-    COLOR: #C60C30;
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif, Helvetica, sans-serif;	
+    COLOR: #FFFFFF;
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif, Helvetica, sans-serif;	
 	text-decoration: none;    
 }
 
@@ -29,167 +28,13 @@ A:hover {
 	text-decoration: none;    
 }
 
-
-BODY
-{
-    margin: 0;
-    COLOR: #000;
-    BACKGROUND-COLOR: #000;
-    FONT-WEIGHT: normal;
-    FONT-SIZE: 7pt;
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
-    SCROLLBAR-FACE-COLOR: #C60C30;
-    SCROLLBAR-HIGHLIGHT-COLOR: #000000;
-    SCROLLBAR-SHADOW-COLOR: #ffffff;
-    SCROLLBAR-ARROW-COLOR: #ffcc00;
-    SCROLLBAR-TRACK-COLOR: #505050;
-	scrollbar-3dLight-Color:#c0c0c0;
-    SCROLLBAR-DARKSHADOW-COLOR: #c0c0c0;
-    SCROLLBAR-BASE-COLOR: #c0c0c0;
-}
-.bestellservice {	
-    color: #C3C3C3;	
-    font: bold italic 11px Tahoma, Verdana, Arial, Helvetica, sans-serif;
-}
-.bestellservice a {	
-    color: #C3C3C3;
-	text-decoration: none;
-}
-.bestellservice a:hover {	
-    color: #C3C3C3;
-	text-decoration: underline;
-}
-
-#menu {	
-	height: 35px;
-}
-#menu a {	
-	margin: 0px 40px 0px 40px;
-	color: #C0C0C0;	
-	font: bold 14px/29px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-transform: uppercase;
-	text-decoration: none;
-}
-#menu a:active {	
-	color: #C60000;
-}
-#menu a:hover {	
-	color: #C60000;
-}
-.categoryTopLine {	
-	margin: 0px;
-	padding: 0px 40px 0px 50px; 
-	color: #DBDBDB;	
-	font: bold 11px/29px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-}
-.categoryTopLine a {
-	color: #fff;	
-	font: bold 11px/29px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-decoration: none;
-}
-.categoryTopLine a {
-	color: #fff;	
-	text-decoration: underline;
-}
-.productSurch td {	
-	margin: 0px;
-	padding: 0px; 
-	color: #BEBEBE;	
-	font: bold 11px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-}
-
-.bottomMenu td {	
-	color: #D1D1D1;
-	font: normal 11px/25px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-align: center;
-}
-.bottomMenu td a {
-	margin: 0px 10px 0px 10px;
-	color: #D1D1D1;	
-	font: bold 10px/26px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-transform: uppercase;
-	text-decoration: none;
-}
-.bottomMenu td a:active {
-	color: #fff;
-}
-.bottomMenu td a:hover {
-	color: #fff;
-}
-
-.footer td {
-	padding: 0px 30px 0px 30px;	
-	color: #9F9F9F;
-	font: bold 9px/15px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-transform: uppercase;
-}
-.footer a {
-	color: #CB0000;	
-	font: bold 9px/15px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-transform: uppercase;
-	text-decoration: none;
-}
-.footer a:hover {
-	color: #fff;
-}
-.categoryTitle a {	
-	padding: 0px 0px 0px 50px;	
-	color: #fff; 
-	font: bold 14px/30px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
-	text-transform: uppercase; 
-	text-decoration: none; 
-}
-.categoryTitle a:hover {	
-	color: #fff;  
-	text-decoration: underline; 
-}
-.boxImage {	
-	padding: 20px 0px 0px 30px;
-	border: 0px solid red;
-}
-.boxImage a {	
-	padding: 0px;
-	border: 0px solid red;
-}
-
-.warenkorbTitle {
-	background-color: #C60000;
-	border-top: solid 2px #5C0E0A;
-	height: 35px;
-	color: #fff;
-	font: bold 12px/35px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
-	text-transform: uppercase; 
-	padding: 0px 0px 0px 30px;
-}
-.warenkorbTitle a {
-	color: #fff;
-	font: bold 12px/35px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
-	padding: 0px 50px 0px 0px;
-	text-transform: lowercase;
-	text-decoration: none;
-}
-.warenkorbTitle a:hover {
-	color: #000;
-	text-decoration: none;
-}
-
-.accountTitle {
-	background-color: #C60000;
-	border-top: solid 2px #5C0E0A;
-	height: 20px;
-	color: #fff;
-	font: bold 12px/20px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
-	text-transform: uppercase; 
-	padding: 0px 0px 0px 30px;
-}
-
 H1
 {
     FONT-WEIGHT: normal;
     FONT-SIZE: 16pt;
-    COLOR: #000000;
+    COLOR: #FFFFFF;
     FONT-STYLE: normal;
-    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+    FONT-FAMILY: Verdana
 }
 H2
 {
@@ -226,46 +71,44 @@ H6
 }
 P
 {
-    FONT-SIZE: 8pt;
-    COLOR: black;
-    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+    margin:0; FONT-SIZE: 10pt;
+    COLOR: white;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; line-height:100%; word-spacing:0; text-indent:0
 }
 TD
 {
-    FONT-SIZE: 8pt;
-    COLOR: #000000;
+    FONT-SIZE: 10pt;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
 }
 TD.marked
 {
-    FONT-SIZE: 8pt;
+    FONT-SIZE: 10pt;
     COLOR: #666666;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
     BACKGROUND-COLOR: #efefef
 }
 TD.marked1
 {
-    FONT-SIZE: 8pt;
+    FONT-SIZE: 10pt;
     COLOR: #666666;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
     BACKGROUND-COLOR: #f3f3f3
 }
 TH
 {
-    BORDER-TOP: gray 1px solid;
-    FONT-SIZE: 8pt;
-    COLOR: #fff;
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-    BACKGROUND-COLOR: #C60000;
+    border-style:dotted; border-width:1px; FONT-SIZE: 10pt;
+    COLOR: #000000;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #C0C0C0;font-weight:bold; padding-left:4px; padding-right:4px; padding-top:1px; padding-bottom:1px; background-image:url('../images/main/TH_background.jpg'); background-repeat:repeat
 }
 TH a {
     COLOR: #fff;
-    FONT: bold 11px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    FONT: bold 11px Verdana, Tahoma, Arial, Helvetica, sans-serif;
 	text-decoration: none;
 }
 TH a:hover {
     COLOR: #000;
-    FONT: bold 11px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    FONT: bold 11px Verdana, Tahoma, Arial, Helvetica, sans-serif;
 	text-decoration: none;
 }
 
@@ -328,14 +171,6 @@ INPUT.submit {
     COLOR: #000000;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
 }
-.button {	
-    color: #fff;
-	font: bold 11px/20px Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif;
-	text-transform: uppercase;
-	background-color: #C60C30;
-	border: 0px solid #5C0E0A;
-	margin: 10px 0px 10px 0px;	
-}
 
 
 
@@ -364,6 +199,166 @@ UNKNOWN
     BORDER-BOTTOM: 2px solid;
     FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
 }
+
+
+
+
+.boxedText {
+
+   border:1px dashed #FFFFFF; color: #FFFFFF; background-color:#C60C30
+}
+
+
+.category { 
+	color: #000; 
+	FONT-SIZE: 11px; 
+	font-weight: bold; 
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
+	margin: 0
+}
+.category a { 
+	color: #000; 
+	FONT-SIZE: 11px; 
+	font-weight: bold; 
+    FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
+	text-decoration: none;
+}
+.category a:hover { 
+	color: #C60C30; 
+	text-decoration: underline;
+}
+
+.bestellservice {	
+    color: #C3C3C3;	
+    font: bold italic 11px Verdana, Tahoma, Arial, Helvetica, sans-serif;
+}
+.bestellservice a {	
+    color: #C3C3C3;
+	text-decoration: none;
+}
+.bestellservice a:hover {	
+    color: #C3C3C3;
+	text-decoration: underline;
+}
+
+.categoryTopLine {	
+	margin: 0px;
+	padding: 0px 40px 0px 50px; 
+	color: #DBDBDB;	
+	font: bold 11px/29px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+}
+.categoryTopLine a {
+	color: #fff;	
+	font: bold 11px/29px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-decoration: none;
+}
+.categoryTopLine a {
+	color: #fff;	
+	text-decoration: underline;
+}
+.productSurch td {	
+	margin: 0px;
+	padding: 0px; 
+	color: #BEBEBE;	
+	font: bold 11px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+}
+
+.bottomMenu td {	
+	color: #D1D1D1;
+	font: normal 11px/25px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-align: center;
+}
+.bottomMenu td a {
+	margin: 0px 10px 0px 10px;
+	color: #D1D1D1;	
+	font: bold 10px/26px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.bottomMenu td a:active {
+	color: #fff;
+}
+.bottomMenu td a:hover {
+	color: #fff;
+}
+
+.footer td {
+	padding: 0px 30px 0px 30px;	
+	color: #9F9F9F;
+	font: bold 9px/15px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-transform: uppercase;
+}
+.footer a {
+	color: #CB0000;	
+	font: bold 9px/15px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.footer a:hover {
+	color: #fff;
+}
+.categoryTitle a {	
+	padding: 0px 0px 0px 50px;	
+	color: #fff; 
+	font: bold 14px/30px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif; 
+	text-transform: uppercase; 
+	text-decoration: none; 
+}
+.categoryTitle a:hover {	
+	color: #fff;  
+	text-decoration: underline; 
+}
+.boxImage {	
+	padding: 20px 0px 0px 30px;
+	border: 0px solid red;
+}
+.boxImage a {	
+	padding: 0px;
+	border: 0px solid red;
+}
+
+.warenkorbTitle {
+	background-color: #C60000;
+	border-top: solid 2px #5C0E0A;
+	height: 35px;
+	color: #fff;
+	font: bold 12px/35px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif; 
+	text-transform: uppercase; 
+	padding: 0px 0px 0px 30px;
+}
+.warenkorbTitle a {
+	color: #fff;
+	font: bold 12px/35px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif; 
+	padding: 0px 50px 0px 0px;
+	text-transform: lowercase;
+	text-decoration: none;
+}
+.warenkorbTitle a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+.accountTitle {
+	background-color: #C60000;
+	border-top: solid 2px #5C0E0A;
+	height: 20px;
+	color: #fff;
+	font: bold 12px/20px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif; 
+	text-transform: uppercase; 
+	padding: 0px 0px 0px 30px;
+}
+
+
+.button {	
+    color: #C60C30;
+	font: bold 11px/20px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-transform: uppercase;
+	background-color: #FFFFFF;
+	border: 1px solid #5C0E0A;
+	margin: 10px 0px 10px 0px;	
+}
+
+
 all.clsMenuItemNS
 {
     FONT: x-small Verdana;
@@ -377,14 +372,14 @@ A.clsMenuItemIE
     COLOR: black;
     TEXT-DECORATION: none
 }
-A.clsMenuItemIE:visited
+a:visited.clsMenuItemIE
 {
     FONT: xx-small Verdana;
     CURSOR: hand;
     COLOR: black;
     TEXT-DECORATION: none
 }
-A.clsMenuItemIE:hover
+a:hover.clsMenuItemIE
 {
     COLOR: #ffcc00
 }
@@ -418,4 +413,22 @@ A.clsMenuItemIE:hover
     PADDING-TOP: 10px;
     POSITION: absolute;
     TOP: 480px
+}
+
+
+#menu {	
+	height: 35px;
+}
+#menu a {	
+	margin: 0px 40px 0px 40px;
+	color: #C0C0C0;	
+	font: bold 14px/29px Verdana, Tahoma, Arial, SunSans-Regular, Sans-Serif;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+#menu a:active {	
+	color: #C60000;
+}
+#menu a:hover {	
+	color: #C60000;
 }
