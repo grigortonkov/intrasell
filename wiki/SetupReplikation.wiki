@@ -1,4 +1,6 @@
-#summary Beschreibt Replikation mit MySQL
+#summary Beschreibt die Replikation mit MySQL. MySQL Datenbank am Server Synchron mit der MySQL im Office halten.
+
+=Replikation= 
 
 ==Einrichtung Replikation==
 
@@ -33,7 +35,23 @@ CHANGE MASTER TO
 
 
 
-==Weitere Einrichtung der Replikation wenn der User VPN (Einwählen) benutzt==
+
+== Set up VPN Verbindung == 
+=== Server ===
+1. Am Server  - Allow VPN - Netzwerkverbindungen - TCP IP 
+   Start Adresse am Client 10.0.0.2
+=== Client ===   
+1. Install UltraVNC am Client: 
+   http://www.uvnc.com/
+2.  Eine VPN Verbindung zum Server Einrichten: Windows/Netzwerke/neue Verbindung
+   IP: Deine Server IP 
+   User: Administrator
+   Passwort: xxxxxxx 
+
+
+
+
+==Weitere Einrichtung Start Replikation wenn der Client VPN (Einwählen) benutzt==
 -----------------------------------------------------------------
 rem Windows Batch File für automatisches Starten der Replikation (VPN) 
 
