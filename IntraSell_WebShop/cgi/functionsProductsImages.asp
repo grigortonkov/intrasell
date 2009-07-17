@@ -120,13 +120,18 @@ function makeImgTag(byVal imageRelativeURL, byVal bezeichnung, byVal maxSize)
 	        makeImgTag = "<img align=""center"" border=""0"" src=""thumbs/" & image & """ alt=""" & bezeichnung & """>"
 	    end if 
 	    
-	    
-	    
-	    if VARVALUE("BenutzeImageResize") = "TRUE" then
+	    if VARVALUE_DEFAULT("BenutzeImageResize", "TRUE") = "TRUE" then
 	        'Response.Write "Image Resize!" & VARVALUE("BenutzeImageResize"): Response.End 
 			'using the component if registered 
-			 makeImgTag = "<img align=""center"" border=""0"" src=""" & image & """ alt=""" & imageRelativeURL & """ " &  makeImageSizeAttributes( imageRelativeURL, maxSize, maxSize) & ">"
+			 makeImgTag = "<img align=""center"" border=""0"" src=""" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " &  makeImageSizeAttributes( imageRelativeURL, maxSize, maxSize) & ">"
 	    end if 
+	    
+	     if VARVALUE_DEFAULT("SHOP_GENERATE_THUMBNAILS", "TRUE") = "TRUE" then
+	        'Response.Write "Image Resize!" & VARVALUE("BenutzeImageResize"): Response.End 
+			'using the .NET Function productImages/thumbnail.aspx
+			 makeImgTag = "<img align=""center"" border=""0"" src=""productImages/thumbnail.aspx?width=" & maxSize & "&maxWidth=" & maxSize & "&filename=" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " &  makeImageSizeAttributes( imageRelativeURL, maxSize, maxSize) & ">"
+	    end if 
+	    
 	    
 	else ' no image on server
 	 'not in use 
