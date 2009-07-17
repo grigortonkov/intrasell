@@ -22,7 +22,12 @@
 === Server === 
   * MySQL 5.1 von der Seite www.mysql.org runterladen und in c:\mysql installieren
   * DB Script für die Intrasell_daten_2 Datenbank einspielen
-  * 
+  * SVN Installieren: http://tortoisesvn.net/downloads
+  * IntraSell_WebShop Source Code mit SVN auschecken 
+   
+    http://intrasell.googlecode.com/svn/trunk/IntraSell_WebShop
+    auschecken in c:\IntraSell\IntraSell_WebShop
+   
 === Client ===  
   * Entzippen Sie die ZIP Datei in einem belibiegen Ordner.
   * Starten Sie die setup.bat Datei für die automatische Einrichtung der Komponenten 
