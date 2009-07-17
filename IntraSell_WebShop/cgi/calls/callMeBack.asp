@@ -1,4 +1,4 @@
-<!--#include file="../defaulthead.inc"-->
+<!--#include virtual="/cgi/defaulthead.inc"-->
 <HTML>
 	<head>
 		<link REL='stylesheet' HREF='../style.css' TYPE='text/css'>
