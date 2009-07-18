@@ -1,8 +1,8 @@
 #summary One-sentence summary of this page.
 
-= Introduction =
+= AddIn BMD =
 
-Add your content here.
+Mit diesem AddIn werden Daten zwischen IntraSell und BMD (Finanzbuchhaltung) ausgetauscht.
 
 
 = Details =
