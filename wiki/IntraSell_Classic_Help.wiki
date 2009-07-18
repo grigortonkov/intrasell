@@ -55,4 +55,4 @@
  
 
 == Sicherung == 
-  * TODO  
+  * Die Sicherung inkludiert die MySQL Datenbank. Die MySQL Datenbank wird automatisch gesichert. Eine Sicherung kann mit Hilfe von MySQL Administrator eingerichtet werden.  
