@@ -6,7 +6,8 @@ To adapt a skeen you should be web designer or have at least expirience with the
   # Open Office Web Designer or FrontPage or DreamWeaver
   # Photoshop or Gimp
 
-Please list steps how you created the web design of a new shop. 
+
+Hint: Check File or WIKI Page 'shop_skins_functionality'  for Shop and CMS functions. The file is in the root of the shop.
 
 = Details =
 
