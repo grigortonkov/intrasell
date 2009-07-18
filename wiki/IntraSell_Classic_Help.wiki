@@ -1,7 +1,7 @@
 #summary Einleitung für IntraSell 3
 #labels Phase-Design
 
-= INTRASELL ONLINE HELP - IN WORK = 
+= INTRASELL ONLINE HILFE = 
 
 
 == Voraussetzungen == 
