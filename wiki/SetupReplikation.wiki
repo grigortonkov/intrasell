@@ -5,32 +5,22 @@
 ==Einrichtung Replikation==
 
 Befehle:
-
+{{{
 GRANT REPLICATION SLAVE, REPLICATION CLIENT
-
     ON *.*
-
     TO 'replication'@'*'
-
     IDENTIFIED BY 'pwd';
 
 
 CHANGE MASTER TO
-
   MASTER_HOST='80.120.22.111',
-
   MASTER_USER='replication',
-
   MASTER_PASSWORD='pwd',
-
   MASTER_PORT=3306,
-
   MASTER_LOG_FILE='master2-bin.00016',
-
   MASTER_LOG_POS=7968,
-
   MASTER_CONNECT_RETRY=10;
-
+}}}
 
 
 
@@ -52,21 +42,30 @@ CHANGE MASTER TO
 
 
 ==Weitere Einrichtung Start Replikation wenn der Client VPN (Einwählen) benutzt==
------------------------------------------------------------------
+
+Datei: startrepl.cmd
+{{{
 rem Windows Batch File für automatisches Starten der Replikation (VPN) 
-
 rem Runs SQL Commands from File at certain time! Every 10 minutes;
-
 c:\mysql\bin\mysql intrasell_daten_2 -uroot < commands.sql
-
 pause
------------------------------------------------------------------
+}}}
  
 Datei: commands.sql
------------------------------------------------------------------
-
-
+{{{
 stop slave;
 
 start slave;
------------------------------------------------------------------
+}}}
+---
+
+== Problembehebung == 
+Es kann passieren dass die Replikation nicht mehr funktioniert. 
+Die Gründe können mit dem Befehl: SHOW SLAVE STATUS; erruiert werden. 
+
+Folgende Befehle führen die Replikation ohne Fehlerbehebung weiter. So oft ausführen bis die Replikation wieder läuft. 
+{{{
+START SLAVE;
+SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;
+START SLAVE;
+}}}
