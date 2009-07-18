@@ -1,5 +1,5 @@
 #summary Einleitung für IntraSell 3
-#labels Phase-Design
+#labels Phase-Deploy,Phase-Support
 
 = INTRASELL ONLINE HILFE = 
 
