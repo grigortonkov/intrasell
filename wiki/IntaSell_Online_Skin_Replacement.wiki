@@ -26,7 +26,7 @@ Following Skin Page Files should be adapted:
 || productList_column_description || kolonata "Bezeichnung" ot stranicata s produkti ot dadena kategoriq||
 || productPage_part1 || First page of a product (you can me more such pages) ||
 || productPage_part_common || stranicata za daden produkt ||
-|| simpleSearchForm - poleto za tursene gore, vdqsno || ||
+|| simpleSearchForm || poleto za tursene gore, vdqsno ||
 || template_NewAccount|| ||
 || template_ProduktListe|| ||
 || template_warenkorbStep1 || shopping cart 1-va stupka ||
