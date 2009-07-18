@@ -46,12 +46,12 @@
   * Datei global.asa anpassen;
 
 == Funkionen == 
-  * Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten
-  * Artikel, Artikelgruppen, Preislisten
-  * Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) 
-  * Import- & Exportfunktion, ELBA Schnittstelle
-  * Etiketten, Adresskleber, Bankbelegausdruck
-  * Statistiken & Berichte
+  * Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten;
+  * Artikel, Artikelgruppen, Preislisten;
+  * Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) ;
+  * Import- & Exportfunktion, ELBA Schnittstelle;
+  * Etiketten, Adresskleber, Bankbelegausdruck;
+  * Statistiken & Berichte;
  
 
 == Sicherung == 
