@@ -19,35 +19,39 @@
     - Datenbank - MySQL, MYSQL, Oracle od. Access 2003
 
 == Installation ==
-=== Server === 
-  * MySQL 5.1 von der Seite www.mysql.org runterladen und in c:\mysql installieren
-  * DB Script für die Intrasell_daten_2 Datenbank einspielen
-  * SVN Installieren: http://tortoisesvn.net/downloads
-  * IntraSell_WebShop Source Code mit SVN auschecken 
+=== Office Server === 
+  * MySQL 5.1 von der Seite www.mysql.org herunterladen und in c:\mysql installieren;
+  * DB Script herunterladen: http://code.google.com/p/intrasell/downloads/list
+  * DB Script für die Intrasell_daten_2 Datenbank einspielen;
+  
    
-    http://intrasell.googlecode.com/svn/trunk/IntraSell_WebShop
-    auschecken in c:\IntraSell\IntraSell_WebShop
-   
-=== Client ===  
+=== Office Client ===  
+  * Downloaden Sie den letzten Release: http://code.google.com/p/intrasell/downloads/list
   * Entzippen Sie die ZIP Datei in einem belibiegen Ordner.
   * Starten Sie die setup.bat Datei für die automatische Einrichtung der Komponenten 
   * Starten Sie IntraSell.exe Datei (Doppelklick)
   * Warnung 64Bit System: Eventuell den MySQL Odbc 5.1 Treiber mit der DLL von einem 32 Bit ODBC Treiber ersetzen. 
 
-=== Shop ===  
+=== WebShop Server ===  
 
   * IntraSell_webshop in einem Folder entpacken. (wwwroot)
   * IIS Starten und eine neue Anwendung einfügen - am Besten als Root. 
   * Warnung 64Bit System:
    in IIS 7 in Applikation pool , erweiterte Einstellungen muss 32 Support aktiviert werden.
+  * SVN Installieren: http://tortoisesvn.net/downloads;
+  * IntraSell_WebShop Source Code mit SVN auschecken: 
+   
+    http://intrasell.googlecode.com/svn/trunk/IntraSell_WebShop
+    auschecken in c:\IntraSell\IntraSell_WebShop;
+  * Datei global.asa anpassen;
 
 == Funkionen == 
   * Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten
   * Artikel, Artikelgruppen, Preislisten
-  *	Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) 
-  * 	Import- & Exportfunktion, ELBA Schnittstelle
-  *	Etiketten, Adresskleber, Bankbelegausdruck
-  *	Statistiken & Berichte
+  * Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) 
+  * Import- & Exportfunktion, ELBA Schnittstelle
+  * Etiketten, Adresskleber, Bankbelegausdruck
+  * Statistiken & Berichte
  
 
 == Sicherung == 
