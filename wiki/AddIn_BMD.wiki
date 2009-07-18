@@ -5,9 +5,6 @@
 Mit diesem AddIn werden Daten zwischen IntraSell und BMD (Finanzbuchhaltung) ausgetauscht.
 
 
-= Details =
+= Maske =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_BMD.gif">
