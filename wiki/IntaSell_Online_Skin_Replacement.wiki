@@ -4,14 +4,20 @@
 
 Expirience with following tools:
 1. Open Office Web Designer
-2. ..... 
+2. Photoshop
 
 Please list steps how you created the webdesign of a new shop. 
 
 = Details =
 
-Following Skin Files should be adapterd: 
+The Skin folder contains 4 subfolders:
+|| Folder || Content || edit with || 
+|| Emails || Texts for Emails  || FrontPage ||
+|| Pages || see table bellow || 
+|| images ||Images , Icons, Logos || Gimp, Photoshop ||
+|| productImages || category and product images, place here just big images (About 400x400). The shop generates thumbnails ||
 
+Following Skin Page Files should be adapted: 
 
 || Filename || Content ||
 || template_kategorie_default || ramkata na nachalnata stranica ||
