@@ -10,7 +10,30 @@ Please list steps how you created the webdesign of a new shop.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Following Skin Files should be adapterd: 
+
+
+|| Filename || Content ||
+|| template_kategorie_default || ramkata na nachalnata stranica ||
+|| template_kategorie_home || kategoriite vutre v nachalnata stranica ||
+|| template_kategorie_produkte || ramkata na spisuka produkti ot dadena kategoria||
+|| productList_column_description || kolonata "Bezeichnung" ot stranicata s produkti ot dadena kategoriq||
+|| productPage_part1 || First page of a product (you can me more such pages) ||
+|| productPage_part_common || stranicata za daden produkt ||
+|| simpleSearchForm - poleto za tursene gore, vdqsno || ||
+|| template_NewAccount|| ||
+|| template_ProduktListe|| ||
+|| template_warenkorbStep1 || shopping cart 1-va stupka ||
+|| template_warenkorbStep2 || shopping cart 2-a stupka||
+|| template_warenkorbStep3 || shopping cart 3-ta stupka||
+|| template_warenkorbStep4 || shopping cart 4- ta stupka||
+
+Optional Pages for categories 
+
+|| template_accessories||
+|| template_antenna||
+|| template_enclosures||
+|| template_expert||
+|| template_kategorie_radarwarner||
+|| template_kategorie_xenon||
+- template_wiring
