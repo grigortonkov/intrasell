@@ -2,11 +2,11 @@
 
 = Introduction =
 
-Expirience with following tools:
-1. Open Office Web Designer
-2. Photoshop
+To adapt a skeen you should be web designer or have at least expirience with the following tools:
+# Open Office Web Designer or FrontPage or DreamWeaver
+# Photoshop or Gimp
 
-Please list steps how you created the webdesign of a new shop. 
+Please list steps how you created the web design of a new shop. 
 
 = Details =
 
@@ -42,4 +42,4 @@ Optional Pages for categories
 || template_expert||
 || template_kategorie_radarwarner||
 || template_kategorie_xenon||
-- template_wiring
+|| template_wiring ||
