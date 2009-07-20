@@ -135,7 +135,7 @@ if OrderBy <> "" then
 	ordr = orderBy
 	orderBy = " ORDER BY " & orderBy
 else 
-   	orderBy = " ORDER BY AngelegtAm desc"
+   	orderBy = " ORDER BY " & VARVALUE_DEFAULT("SHOP_PRODUCTLIST_SORT", "AngelegtAm") & " desc" 'neue Produkte Zuerst
 end if
 
 Dim requestFilterBy: requestFilterBy = request("filterBy")
@@ -320,6 +320,8 @@ dim pagesLinks
 						htmlSortBy = htmlSortBy & "			  <option value=""AngelegtAm"">AngelegtAm</option>"
 						htmlSortBy = htmlSortBy & "			  <option value=""Bezeichnung"">Bezeichnung</option>"
 						htmlSortBy = htmlSortBy & "			  <option value=""PreisATS"">Preis</option>"
+						htmlSortBy = htmlSortBy & "			  <option value=""ArtNr"">ArtNr</option>"
+						htmlSortBy = htmlSortBy & "			  <option value=""EAN"">EAN</option>"
 						if SHOP_SHOW_HERSTELLER then
 							htmlSortBy = htmlSortBy & "			  <option value=""Firma"">Hersteller</option>"
 						end if 

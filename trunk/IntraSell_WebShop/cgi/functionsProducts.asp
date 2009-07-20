@@ -153,7 +153,7 @@ end if
 
 Dim initialOrderBy
 		if request("orderby")& "" = "" then 
-			initialOrderBy = "ArtKatNr"
+			initialOrderBy = VARVALUE_DEFAULT("SHOP_PROUCTLIST_SORT", "ArtKatNr")
 		else 
 			initialOrderBy = request("orderby")
 		end if 
@@ -355,7 +355,7 @@ function makeProductList(artKatNr)
 
 	'default sortierung nach ArtNr 
 	if orderBy & "" = "" then ' nicht gesetzt
-		orderBy = "ArtNr"
+		orderBy = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_SORT", "ArtNr")
 	end if 
 
 	'sql = "SELECT  IDNR, Branche, Firma, Adresse, [grArtikel-Kategorien].Name AS CaT, grArtikel.* " & _ 
