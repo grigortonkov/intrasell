@@ -856,7 +856,7 @@ else
 			" select ArtNr from [grArtikel-VerwandteArtikel] where unterartNR = " & ArtNr 
 end if         
 set rs = ObjConnectionexecute(sql)
-dim ArtList: ArtList = "0" 
+dim ArtList: ArtList = "-1" 
 while not rs.eof
   ArtList = ArtList & "," & rs("unterartNR") 
   rs.MoveNext
@@ -903,7 +903,7 @@ sql =   " SELECT webWarenkorb.ArtNr as unterartNR FROM webWarenkorb, webWarenkor
 response.Write sql: response.Flush
         
 set rs = ObjConnectionexecute(sql)
-dim ArtList: ArtList = "0" 
+dim ArtList: ArtList = "-1" 
 while not rs.eof
   ArtList = ArtList & "," & rs("unterartNR") 
   rs.MoveNext
@@ -935,7 +935,7 @@ sql = " select unterartNR from [grArtikel-VerwandteArtikel] where ArtNr in (sele
         " HAVING  Count(webWarenkorb_1.ArtNr)>=2"
         
 set rs = ObjConnectionexecute(sql)
-dim ArtList: ArtList = "0" 
+dim ArtList: ArtList = "-1" 
 while not rs.eof
   ArtList = ArtList & "," & rs("unterartNR") 
   rs.MoveNext

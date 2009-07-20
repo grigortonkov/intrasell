@@ -1007,14 +1007,19 @@ sql = " SELECT grArtikel.ArtNr, EAN, ArtKatNR, grArtikel.Picture, Bezeichnung, B
       " MWST, Firma, lieferantenAdressen.Picture as FirmaImage, MWST, Beschreibung, Modifikationen, " &_ 
       " herstellerRabatt, herstellerRabattText FROM grArtikel, lieferantenAdressen " & _ 
       " Where lieferantenAdressen.IDNR = grArtikel.herstellerNr " & _ 
-      " AND ArtNr=" & ArtNr
+      " AND ArtNr=" & ArtNr & " AND " & DEFAULT_PRODUCT_SEARCH_WHERE
 
 
 Set rsArtikel  = objConnectionExecute(sql)
 
+
 if  rsArtikel.EOF then
-   html = "<font size='1' color='red'>"& getTranslation("Sie haben kein Produkte ausgewaehlt!") & "</font>"
+   html = "<font size='1' color='red' class='error'>"& getTranslation("Sie haben kein Produkt ausgewaehlt od. Produkt nicht verfügbar!") & "</font>"
+   makeProductPageSmallWithTemplate = html
 else 
+
+ 'Prüfung ob product online
+
 	Dim Beschreibung:Beschreibung=rsArtikel("Beschreibung")
 	'Beschreibung = getTranslationDok("grArtikel" , ArtNr, "Beschreibung", Beschreibung & "", Language)
 	Beschreibung = makeBeschreibung ( ArtNr, true)
@@ -1081,8 +1086,8 @@ else
 		call replaceEigenschaftenAndMore(ArtNr, productTemplate)
 		 
 		makeProductPageSmallWithTemplate = productTemplate
-		end if
-		rsArtikel.close
+	end if
+	rsArtikel.close
 end function 
 
 function makeProductPageSmall(byval ArtNr, pageFrom)
