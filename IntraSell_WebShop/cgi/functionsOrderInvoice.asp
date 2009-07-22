@@ -174,19 +174,22 @@ iF (request ("AddOneMore")="TRUE") then addOneMore =TRUE else addOneMore =FALSE
 
 PreKatNr = request ("PreKatNr")
 
-'Die Notiz enthählt die gewünscht Modifikationen 
+'Die Notiz enthält die gewünschte Modifikationen 
 Dim Notiz: Notiz = getTranslation("Artikel")  & "#" & ArtNr & getTranslation(" wurde gewuenscht ") & Request("Notiz") & "." & Chr(10)& Chr(13)
 Dim NotizForPosition: NotizForPosition = getTranslation("Artikel")  & " #" & ArtNr & ": " & Request("Notiz") 
 if Request("Notiz") = "" then Notiz = "": NotizForPosition = ""
+' wenn mehrere Spezifikation definiert 
+if trim(replace(Request("Notiz"),",","")) = "" then Notiz = "": NotizForPosition = "" 
+
 if Notiz <> "" then Session("Notiz")=Session("Notiz")& " " & Notiz
 
 
 'check if artikel existiert 
-sql ="select artnr from grArtikel where ProduktAktiv<>0 and artnr=" & ArtNr 
+sql ="select artnr from grArtikel where ProduktAktiv<>0 and ProduktAktivOnline <>0 and artnr=" & ArtNr 
 set rsW = objConnectionExecute(SQL)
 if rsW.EOF then 
     if checkIfActive then 'add even the product is not active 
-        message =  getTranslation("Wir haben kein Produkt mit dieser Nr.") & " Nr=[" & ArtNR & "]!"
+        message =  getTranslation("Wir haben kein Produkt mit dieser Nr.") & " Nr=[" & ArtNR & "]."
         Response.Write message
         Response.Write "<br>"
         rsW.close 
@@ -215,17 +218,25 @@ rsW.close
 
 
 'do not allow putting in Warenkorb for   products that have Special choice but no selection done ! 
+
+
 sql ="select Modifikationen from grArtikel where artnr=" & ArtNr 
 set rsW = objConnectionExecute(SQL)
 if not rsW.EOF then 
-    if (InStr(rsW("Modifikationen") & "", SPECIALCHOICECONSTANT) > 0) and Notiz="" then 'add even the product is not active 
-        message =  getTranslation("Bitte eine Selektion in den Komboboxen vornehmen! ") 
+    'if (InStr(rsW("Modifikationen") & "", SPECIALCHOICECONSTANT) > 0) then 
+    if len(rsW("Modifikationen") & "") > 0 then 
+     'Response.Write "Notiz='" & Notiz &"'" : Response.End
+     if Notiz="" then 'add even the product is not active 
+        message =  getTranslation("Wichtig: Bitte eine Selektion in den Komboboxen in der Artikel Detailseite vornehmen! ") 
         message =  message & " Modifikationen = [" +  rsW("Modifikationen")  + "]!"        
         message =  message & " Nr=[" & ArtNR & "]" 
+        message =  message & "<br/><a href=""?ArtNr=" & ArtNR & """> zur Artikelseite </a>" 
+         
         Response.Write message
         Response.Write "<br>"
         rsW.close 
 		exit function 
+		end if 
     end if 
 end if 
 rsW.close 
@@ -363,7 +374,7 @@ dim onlineKundNr:onlineKundNr = FIRSTVALUE("select Idnr from [ofadressen-setting
 if isnumeric(onlineKundNr) then 
 	AuftragNr = IntraSellPreise.getNewVorgangNummer("AU", onlineKundNr)
 else
-    Response.Write "Warnung: Bitte eine Kundengruppe namens ""Online"" mit einem eigenen Nummernkreis definieren!"
+    Response.Write "Warnung: Bitte eine Kundengruppe namens ""Online"" mit einem eigenen Nummernkreis definieren und einem Kunden zuweisen!"
 end if 
 
 Notiz = "Internet Bestellung"
@@ -389,20 +400,23 @@ objConnectionExecute(sql)
         bezeichnung = replace(bezeichnung, "'", "")
         bezeichnung = getTranslationDok("grArtikel" , rsWK("ArtNR"), "Bezeichnung", bezeichnung , Language)
         if not positionNotiz & "" = "" then 
-           bezeichnung = positionNotiz & " " & bezeichnung
+           bezeichnung = positionNotiz & "; " & bezeichnung
         end if 
         
         subtotal = subtotal + einzelpreis*stkToOrder
-			if needsSerialNr&"" = "true" or needsSerialNr&"" = "-1"  or needsSerialNr&"" = "1" then
+        
+        	 
+        				 
+			if needsSerialNr&"" = "true" or needsSerialNr&"" = "-1"  or needsSerialNr&"" = "1" then ' für jeden Eintrag eine eigene Zeile Erstellen
 			    Dim ii  
 			    for ii = 1 to stkToOrder 
-						sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS)" &_ 
-						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & 1  & ",'" & bezeichnung & "', 0)"
+						sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" &_ 
+						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & 1  & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
 						 objConnectionExecute(sql)      
 				next 	      
 			else
-			         	sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS)" &_ 
-						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & stkToOrder  & ",'" & bezeichnung & "',0)"
+			         	sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" &_ 
+						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & stkToOrder  & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
 						 objConnectionExecute(sql)      
 			end if 
 			
@@ -593,7 +607,7 @@ while not rsArt.EOF
 				 "    , PreisEuro =  "  & replace(artikelPreisNetto,",",".") & _
 				 "    , PreisATS_Brutto = "  &  replace(artikelPreisBrutto,",",".") & _ 
 				 "    , EKPreis = "  &  replace(artikelPreisEK,",",".") & _ 
-				 "    , LieferantNr=" & LieferantNR & _ 				 
+				 "    , LieferantNr =" & LieferantNR & _ 			 
 				 " WHERE RechNr=" & AuftragNr & " AND ArtNr=" & ArtNr & " AND Bezeichnung like '" & PosBezeichnung  & "'" 
 				 '" , Bezeichnung = '" & ArtikelBezeichnung & "'" & _ 
 			'response.write "<br>" & sqlUpdatePreis
