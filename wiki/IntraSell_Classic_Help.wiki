@@ -23,6 +23,7 @@
   * MySQL 5.1 von der Seite www.mysql.org herunterladen und in c:\mysql installieren;
   * DB Script herunterladen: http://code.google.com/p/intrasell/downloads/list
   * DB Script für die Intrasell_daten_2 Datenbank einspielen;
+  * MySQL User anlegen. IntraSell verwendet einen User namens WebShop.
   
    
 === Office Client ===  
@@ -44,6 +45,7 @@
     http://intrasell.googlecode.com/svn/trunk/IntraSell_WebShop
     auschecken in c:\IntraSell\IntraSell_WebShop;
   * Datei global.asa anpassen;
+  * MySQL Installieren: Siehe auch Office Server.
   * Replikation einrichten zwischen Office und WebServer: SetupReplikation
 
 == Funkionen == 
