@@ -98,15 +98,22 @@ function MAKE_EMAIL_ORDER(KDNR, AuftragNr)
         Dim realOrderLink: realOrderLink = SESSION("BASENAME") & "/cgi/account/printPreviewOrder.asp?kdnr=" & KDNR & "&nummer=" & AuftragNr & "&OrderType=AU"
         html = replace(html, "[LINK_ORDER_DIRECT]", realOrderLink)
 
-       '[EMBED_ORDER] -embeds the html for the order directly to the mail 
-        if inStr(html, TAG_EMBED_ORDER)> 0 then 'required 
-             'try create the object 
-             Dim httpReader
-             Set httpReader = Server.CreateObject("Tonkov.aspHttp")
-             Dim orderHTML: orderHTML = httpReader.getURL (realOrderLink)
-             html = replace(html, TAG_EMBED_ORDER, orderHTML)
+        if showDebug() then 
+          Response.Write "realOrderLink=" & realOrderLink
         end if 
 
+		'IF NOT RTF ORDER PRINTING , try to embed the order
+		 if NOT lcase(VARVALUE_DEFAULT("SHOP_USE_RTF_ORDER_PRINT","true")) = "true" then 
+		       '[EMBED_ORDER] - embeds the html for the order directly to the mail 
+		        if inStr(html, TAG_EMBED_ORDER)> 0 then 'required 
+		             'try create the object 
+		             Dim httpReader
+		             Set httpReader = Server.CreateObject("Tonkov.aspHttp")
+		             Dim orderHTML: orderHTML = httpReader.getURL (realOrderLink)
+		             html = replace(html, TAG_EMBED_ORDER, orderHTML)
+		        end if 
+		 end if
+		 
         call replaceUserTags(kdnr, html)
 		MAKE_EMAIL_ORDER = html		 
 end function
