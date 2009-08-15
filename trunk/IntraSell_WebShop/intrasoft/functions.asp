@@ -342,10 +342,36 @@ end function
 '********************************************************************
 'SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
 '********************************************************************
-public function sendMailFromWithSending(Recipient , Subject , MailText, from_email )
+public function sendMailFromWithSending(Recipient , Subject , MailText, From_Email )
  'on error resume next 
+ 
+ if showDebug() then 
+   Response.Write "<br/>Start sendMailFromWithSending"
+   Response.Write "<br/>Recipient: " & Recipient
+   Response.Write "<br/>Subject: " & Subject
+   Response.Write "<br/>From_Email: " & From_Email
+   Response.Write "<br/>MAILER_COMPONENT_NAME: " & VARVALUE("MAILER_COMPONENT_NAME")
+   Response.Write "<br/>"
+ end if 
+ 
+ 'Basic checks 
+  if Recipient & "" = "" then 
+ 	Response.Write "<br><b><p class='error'><font color=red>Function sendMailFromWithSending: Recipient is empty</font></p></b><br>"
+ end if 
+ 
+  'Basic checks 
+  if From_Email & "" = "" then 
+ 	Response.Write "<br><b><p class='error'><font color=red>Function sendMailFromWithSending: From_Email is empty</font></p></b><br>"
+ end if 
+ 
+ 
+ 
  'SET THE MAILER COMPONENT HERE!!!
+
+ 
+ 
  Dim MailerComponentName: MailerComponentName = VARVALUE("MAILER_COMPONENT_NAME")
+ 
  if MailerComponentName = "PERSISTS" then
 	sendMailFromWithSending = sendMailFromWithSendingPersists (Recipient , Subject , MailText, from_email )
 	'exit function 
@@ -365,7 +391,7 @@ public function sendMailFromWithSending(Recipient , Subject , MailText, from_ema
    IF err.number=0 THEN         
        'Response.write "OK"   
    else
-   	response.write "<br><font color=red>Error Number= #<b>" & err & "</font></b><br>"
+   	Response.Write "<br><font color=red>Error Number= #<b>" & err & "</font></b><br>"
    	Response.Write err.description
    	sendMailFromWithSending = false
    END IF 'END ERROR HANDLING
