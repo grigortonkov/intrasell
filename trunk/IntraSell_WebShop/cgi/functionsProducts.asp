@@ -541,6 +541,7 @@ Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ProduktAktiv, ArtKatNR
 Dim herstellerRabatt, herstellerRabattText 
 Dim herstellerNr, LieferantNR
 Dim Gewicht
+Dim LieferantLagerInfo
 
 Firma= rsArtikel("Firma")
 HerstellerLink= rsArtikel("HerstellerLink")
@@ -549,7 +550,8 @@ FirmaImage = rsArtikel("FirmaImage")
 ArtNr = rsArtikel("ArtNr")
 Picture = rsArtikel("Picture") 
 
-Bezeichnung1 = Server.HTMLEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr)&"")
+Bezeichnung1 = rsArtikel("Bezeichnung1") & ""
+LieferantLagerInfo = Server.HTMLEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr)&"")
 
 Bezeichnung = rsArtikel("Bezeichnung") & ""
 Bezeichnung = getTranslationDok("grArtikel" , ArtNr, "Bezeichnung", Bezeichnung & "", Language)
