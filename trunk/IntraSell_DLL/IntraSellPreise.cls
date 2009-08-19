@@ -409,6 +409,9 @@ End Function
 ' returns the nummer of the created new OrderType or 0 of failed
 '*****************************************************************
 Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr) As String
+
+ On Error GoTo error:
+ 
         Dim sql
         Dim rs
         Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
@@ -480,6 +483,12 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         'response.write "Converting was OK!"
         CurrentDB.CommitTrans
         convertFromTo = nextRechnungNummer
+        
+        Exit Function
+error:
+           CurrentDB.Rollback
+           MsgBox "Die Transaktion wurde storniert!" + Err.Description, vbCritical
+           
 End Function
 
 

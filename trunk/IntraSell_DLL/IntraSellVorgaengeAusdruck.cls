@@ -50,8 +50,8 @@ Function getRecSource(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String
  
  getRecSource = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname as Namen , ofAdressen.Firma, ofAdressen.Adresse, " & _
             " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort] AS plzort, " & _
-            " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, " & VonForm & ".Notiz, " & _
-            " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
+            " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto," & VonForm & ".Datum,  FIRST(" & VonForm & ".Notiz) as Notiz, " & _
+            " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
             " ofAdressen.Anrede , ofAdressen.Anrede + "" "" & ofAdressen.Titel as AnredeTitel, getLand(ofAdressen.Idnr) as land, getUID(ofAdressen.idnr) as uid, Tel, Email, " & VonForm & ".KundNr2" & _
             " FROM ((ofAdressen RIGHT JOIN " & VonForm & " ON ofAdressen.IDNR = " & VonForm & ".KundNr) " & _
             " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
@@ -59,7 +59,7 @@ Function getRecSource(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String
             " Where nummer=" & Vorgang_Nummer & "  " & _
             " GROUP BY '" & Vorgangtyp & "' , ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, " & _
             " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
-            " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode ,  " & VonForm & ".Notiz, Woher, Wohin," & _
+            " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
             " ofAdressen.Anrede, ofAdressen.Anrede + "" "" & ofAdressen.Titel, getLand(ofAdressen.Idnr), getUID(ofAdressen.idnr), Tel, Email, " & VonForm & ".KundNr2;"
             
 End Function
