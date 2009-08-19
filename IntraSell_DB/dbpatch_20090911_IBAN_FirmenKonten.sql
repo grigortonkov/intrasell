@@ -1,0 +1,8 @@
+﻿ALTER TABLE `intrasell_daten_2`.`buchfirmenkonto` ADD COLUMN `ACCOUNT_HOLDER` VARCHAR(255) AFTER `ELBA`,
+ ADD COLUMN `IBAN` VARCHAR(34) AFTER `ACCOUNT_HOLDER`,
+ ADD COLUMN `BIC_SWIFT` VARCHAR(11) AFTER `IBAN`,
+ ADD COLUMN `BANK` VARCHAR(45) AFTER `BIC_SWIFT`;
+
+
+
+ALTER TABLE `intrasell_daten_2`.`ofadressen-settings` ADD COLUMN `FirmenKontoId` int(10) UNSIGNED AFTER `language_code`;
