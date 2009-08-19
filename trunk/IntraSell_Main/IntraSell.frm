@@ -120,6 +120,21 @@ Private Sub MDIForm_Load()
 
 On Error GoTo errLine
         
+        Call initAccess
+        
+        Exit Sub
+        
+        'error
+errLine:
+        MsgBox "Error in MDIForm_Load" & Err.Description
+        Err.Clear
+        Exit Sub
+        
+End Sub
+
+'Init Access
+ Private Sub initAccess()
+
         Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
         
         ' Start a new instance of Access for Automation:
@@ -131,26 +146,19 @@ On Error GoTo errLine
         
         Call openDatabase
         
-        Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
-        Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+       ' Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
+       ' Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
-        Exit Sub
+   End Sub
+   
         
-        'error
-errLine:
-        MsgBox "Error in MDIForm_Load" & Err.Description
-        Err.Clear
-        Exit Sub
-        
-End Sub
-
 Public Sub NavigateURL(ByVal URL As String)
 
 Dim File As String
 Dim fH   As Integer
 
    ' Create a URLShortcut File so that the url.dll function OpenURL will work
-   File = App.Path & "\" & VBA.Format(Now, "HH_NN_SS") & ".URL"
+   File = App.Path & "\Link_" & VBA.Format(Now, "HH_NN_SS") & ".URL"
    fH = FreeFile
    Open File For Output As #fH
       Print #fH, "[InternetShortcut]"
@@ -166,13 +174,14 @@ End Sub
 
 
 Private Function openDatabase()
-On Error GoTo errLine
+    On Error GoTo errLine
     ' Open a database in exclusive mode:
     Dim isFilename As String
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
+    
     Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
     
-     Exit Function
+    Exit Function
         
         'error
 errLine:
@@ -193,6 +202,7 @@ Private Sub Close_Click()
 On Error GoTo errLine
    If Not IsNull(oAccess) Then
       Call oAccess.CloseCurrentDatabase
+      Set oAccess = Nothing
    End If
  Exit Sub
         
