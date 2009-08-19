@@ -1,0 +1,124 @@
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\clock.JPG"
+200 PORT command successful.
+150 Opening BINARY mode data connection for clock.JPG.
+226 Transfer complete.
+FTP: 3959 Bytes gesendet in 0,00Sekunden 3959000,00KB/s
+ftp> Quit
+221  Ciao Josef!
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\clock.JPG"
+200 PORT command successful.
+150 Opening BINARY mode data connection for clock.JPG.
+226 Transfer complete.
+FTP: 3959 Bytes gesendet in 0,00Sekunden 3959000,00KB/s
+ftp> Quit
+221  Ciao Josef!
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\clock.JPG"
+200 PORT command successful.
+150 Opening BINARY mode data connection for clock.JPG.
+226 Transfer complete.
+FTP: 3959 Bytes gesendet in 0,00Sekunden 3959000,00KB/s
+ftp> Quit
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\clock.JPG"
+200 PORT command successful.
+150 Opening BINARY mode data connection for clock.JPG.
+226 Transfer complete.
+FTP: 3959 Bytes gesendet in 0,00Sekunden 3959000,00KB/s
+ftp> Quit
+221  Ciao Josef!
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\SymbolPicture.jpg"
+200 PORT command successful.
+150 Opening BINARY mode data connection for SymbolPicture.jpg.
+226 Transfer complete.
+FTP: 5677 Bytes gesendet in 0,00Sekunden 5677000,00KB/s
+ftp> Quit
+ftp> Verbindung mit 92.51.141.139 wurde hergestellt.
+open 92.51.141.139
+220-Microsoft FTP Service
+220 Hallo Josef!
+ftp> user Josef Hannah
+331 Password required for Josef.
+230-Hallo Josef!
+230 User Josef logged in.
+ftp> ftp> 
+bin
+200 Type set to I.
+ftp> ftp> 
+cd skin_ptec/productImages
+250 CWD command successful.
+ftp> put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\501956.jpg"
+200 PORT command successful.
+150 Opening BINARY mode data connection for 501956.jpg.
+226 Transfer complete.
+FTP: 2537 Bytes gesendet in 0,00Sekunden 2537000,00KB/s
+ftp> Quit
+221  Ciao Josef!
