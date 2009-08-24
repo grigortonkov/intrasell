@@ -1,7 +1,7 @@
 Type=Exe
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
-Reference=*\G{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}#2.3#0#..\..\..\..\..\Program Files\Common Files\Microsoft Shared\OFFICE11\MSO.DLL#Microsoft Office 11.0 Object Library
-Reference=*\G{4AFFC9A0-5F99-101B-AF4E-00AA003F0F07}#9.0#0#..\..\..\..\..\Program Files\Microsoft Office\OFFICE11\MSACC.OLB#Microsoft Access 11.0 Object Library
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
+Reference=*\G{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}#2.3#0#..\..\..\..\Program Files\Common Files\Microsoft Shared\OFFICE11\MSO.DLL#Microsoft Office 11.0 Object Library
+Reference=*\G{4AFFC9A0-5F99-101B-AF4E-00AA003F0F07}#9.0#0#..\..\..\..\Program Files\Microsoft Office\OFFICE11\MSACC.OLB#Microsoft Access 11.0 Object Library
 Form=IntraSell.frm
 IconForm="IntraSell"
 Startup="IntraSell"

@@ -1,16 +1,14 @@
 VERSION 5.00
 Begin VB.MDIForm IntraSell 
-   AutoShowChildren=   0   'False
    BackColor       =   &H8000000C&
    Caption         =   "IntraSell3 by grigor.tonkov@gmail.com: Save Time! Save Money!"
    ClientHeight    =   7890
-   ClientLeft      =   165
+   ClientLeft      =   225
    ClientTop       =   855
    ClientWidth     =   11445
    Icon            =   "IntraSell.frx":0000
    LinkTopic       =   "Form1"
    StartUpPosition =   3  'Windows Default
-   Visible         =   0   'False
    WindowState     =   2  'Maximized
    Begin VB.Menu Files 
       Caption         =   "&Datei"
@@ -127,8 +125,6 @@ On Error GoTo errLine
         ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
         oAccess.Visible = True
-        
-        oAccess.SetOption "ShowWindowsInTaskbar", False
        
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
@@ -138,8 +134,6 @@ On Error GoTo errLine
         Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
-        Unload Me
-        
         Exit Sub
         
         'error
@@ -176,9 +170,6 @@ On Error GoTo errLine
     ' Open a database in exclusive mode:
     Dim isFilename As String
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
-    
-    ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
-    
     Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
     
      Exit Function
@@ -201,7 +192,7 @@ End Sub
 Private Sub Close_Click()
 On Error GoTo errLine
    If Not IsNull(oAccess) Then
-      'Call oAccess.CloseCurrentDatabase
+      Call oAccess.CloseCurrentDatabase
    End If
  Exit Sub
         
