@@ -136,7 +136,7 @@ On Error GoTo errLine
         '    oAccess.LoadCustomUI "HideRibbon", xml
         'End If
         
-        oAccess.SetOption "ShowWindowsInTaskbar", True
+        oAccess.SetOption "ShowWindowsInTaskbar", False
         ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
                
         oAccess.Visible = True
