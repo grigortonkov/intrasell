@@ -1,0 +1,39 @@
+Hier einige Beispiele für Kundenadressätze ( Sa 02 ) sowie tieferstehend die Buchungssätze für eine Ausgangsrechnung
+auf verschiedene Erlöskonten ( Sa 70 )
+Daten der Rechnung : Kontonummer 20039 ( Fa. Fischer ) Rg. Nr. 4711 vom 01.10.01, Betrag Brutto 24.000.-, Erlöskonto 4001 mit
+5000.- und 1000.- Steuer mit Steuercode 320 ( 20%) sowie Erlöskonto 4003 mit 15.000.- netto und 3000.- Mwst mit Code 320.
+Die Fälligkeit ist der 30.10.01 ( 30 Tage netto und 14 Tage 2% Skonto ). Die Kostenstelle ist jeweils 1000 und der Kostenträger
+jeweils 20600.
+
+Die Reihenfolge der Records kann auch so erfolgen : SA02 ( Kundensatz ) und anschließend
+SA70 ( Buchungsrecords ) dann SA 02 usw.
+
+
+
+
+00900110220037   00               Ehrmann                       Franz          Metallhandelsges.m.b.H.       Enzerfelderweg 10             1130     Wien                   A  878 39 1                      878 58 30/        1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000EHRMANN                       0                 000000000000000000000000000000000000000000000000
+00900110220039   00Fa.            Fischer                                      Handelsges.m.b.H.             Kapellerfeld 13               1110     Wien                   A  00431 769 13 27               00431 769 13 28   1           00300014000000200+00000+JN               0000000000                                                          0000 10000000000FISCHER                       0                 000000000000000000000000000000000000000000000000
+00900110220042   00               Roth & Co                                    Papierwarenerzeugung          Friedhofsgasse 52             1150     Wien                   A  982 12 18                     982 12 15/        1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000ROTH & CO                     0                 000000000000000000000000000000000000000000000000
+00900110220070   00               Panalpina                                                                  Brahmsweg 340/2/3             1020     Wien                   A  729 17 22/                    729 17 22/66      1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000PANALPINA                     0                 000000000000000000000000000000000000000000000000
+00900110220077   00               Gasselsdorfer                                Werbegesellschaft m.b.H.      Josef Haydn Gasse 4           1010     Wien                   A  577 13 88/0    115 815/       577 13 55/        1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000GASSELSDORFE                  0                 000000000000000000000000000000000000000000000000
+00900110220078   00               Sagmeister Spedition                         GmbH                          Staatsbahnstraße 10           1210     Wien                   A  558 22 77/                    558 22 78         1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000SAGMEISTER S                  0                 000000000000000000000000000000000000000000000000
+00900110220124   00               Schüller AG & Co. Ges.m.b.H.                                               Nordbahnstraße 7              1210     Wien                   A  855 12 31                     855 12 31/2       1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000SCHÜLLER AG                   0                 000000000000000000000000000000000000000000000000
+00900110220127   00               Demo - Deutschland                           Büro- & InformationstechnologiVorgartenstraße 15 a          01528    Mühlheim               D  0049 351/792 12               0049 351/792 13   2        DEM00000000000000000+00000+JN               000000000030019                                                     0000 10000000000DEMO - DEUTS                  0                 000000000000000000000000000000000000000000000000
+00900110220128   00               Zimmermann                                   Gesellschaft m.b.H.           Am Bräunerwald 120            5020     Salzburg               A  0662/12 77 18/2               0662/12 77 18/4   1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000ZIMMERMANN                    0                 000000000000000000000000000000000000000000000000
+00900110220139   00               Faber Dental GmbH                                                          Hofwiese 38                   1081     Wien                   A  355 13 27                     0222/355 13 27    1           00000000000000000+00000+JN               0000000000                                                          0000 10000000000FABER DENTAL                  0                 000000000000000000000000000000000000000000000000
+009001170000000SAR01100120039   4001    S0110010047110000000000            0000000024000000+N    0000000000000000+   0000000000000000+                            00000000000000000+00000+011001                                                                                                                                                                                          00     011001
+009001170000000 AR0110014001    20039   H011001004711000000100020600       0000000005000000+N320 0000000001000000+   0000000000000000+möglicher Text              00000000000000000+00000+011001                                                                                                                                                                                          00     011001
+009001170000000 AR0110014003    20039   H0110010047110000000000            0000000015000000+N320 0000000003000000+   0000000000000000+möglicher Buchungs          00000000000000000+00000+011001text                                                                                                                                                                                      00     011001
+
+
+pyrvite 10 reda v edin fail, drugite v drug, da vidim BMD.
+
+pyrvite 10 reda sa adresite na firmata. zapochvat ot stranica 11 na pdf.009001102 (kont ot ofadressen bhreference) 00  (anrede ot ofadressen pole anrede) (zuname e name ot ofadresen)
+(forname e pri nas forname ot ofadresen) 00 .. postort e ort  (lakz e ot grland da vzema pole izo2) .. UIDNOmer e UID .. nadolo prazni za doutochnenie.
+
+
+poslednite 3 reda sa ot tablica buhrehnung i buhrehartikle. ot bmd primera export bmd2.
+
+009001170... Bukz e vinagi G, sled tova AR, v query2 ima pole data, (Kont)ot ofadresen se vryzva s bhrefence, Gkto e GK v query2, shkz e S, (Beld) e buhumsdatum,
+belegnumer e rehnumber,  sledvashtite dva az izbiram default i sa za izqsnqvane, betr ima pole betrak, Brne e bruto, Stco kakto e v primera (za izqsnqvane), Stbt e prazno,
+.......
