@@ -3,7 +3,7 @@ Begin VB.MDIForm IntraSell
    BackColor       =   &H8000000C&
    Caption         =   "IntraSell3 by grigor.tonkov@gmail.com: Save Time! Save Money!"
    ClientHeight    =   7890
-   ClientLeft      =   225
+   ClientLeft      =   165
    ClientTop       =   855
    ClientWidth     =   11445
    Icon            =   "IntraSell.frx":0000
@@ -124,6 +124,21 @@ On Error GoTo errLine
         
         ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
+        
+        ' set access low macro security
+        If oAccess.Version >= "10" Then
+           oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
+        End If
+    
+        ' hide ribbons in office 2007
+        'If oAccess.Version >= "10" Then
+        '    Dim xml As String: xml = "<customUI xmlns=""http://schemas.microsoft.com/office/2006/01/customui""><ribbon startFromScratch=""true""></ribbon></customUI>"
+        '    oAccess.LoadCustomUI "HideRibbon", xml
+        'End If
+        
+        oAccess.SetOption "ShowWindowsInTaskbar", True
+        ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
+               
         oAccess.Visible = True
        
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
