@@ -1,5 +1,7 @@
 /*Table structure for table `ofDokumente` */
 
+USE `intrasell_daten_2`;
+
 DROP TABLE IF EXISTS `ofDokumente`;
 
 CREATE TABLE `ofDokumente` (
