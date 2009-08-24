@@ -122,7 +122,7 @@ Private Sub MDIForm_Load()
 
 On Error GoTo errLine
         
-        'Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
+        Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
         
         ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
