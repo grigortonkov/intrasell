@@ -4,11 +4,11 @@ Begin VB.MDIForm IntraSell
    Caption         =   "IntraSell3 by grigor.tonkov@gmail.com: Save Time! Save Money!"
    ClientHeight    =   7890
    ClientLeft      =   165
-   ClientTop       =   855
+   ClientTop       =   555
    ClientWidth     =   11445
    Icon            =   "IntraSell.frx":0000
    LinkTopic       =   "Form1"
-   StartUpPosition =   3  'Windows Default
+   StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
    Begin VB.Menu Files 
       Caption         =   "&Datei"
@@ -72,7 +72,44 @@ Const SW_SHOWNORMAL = 1
 Const SW_SHOWMINIMIZED = 2
 Const SW_SHOWMAXIMIZED = 3
 
+' Sasho begin
+Private Declare Function ShellExecute _
+    Lib "shell32.dll" Alias "ShellExecuteA" ( _
+    ByVal hwnd As Long, _
+    ByVal lpOperation As String, _
+    ByVal lpFile As String, _
+    ByVal lpParameters As String, _
+    ByVal lpDirectory As String, _
+    ByVal nShowCmd As Long) As Long
+    
+Private Declare Function URLDownloadToFile Lib "urlmon" _
+   Alias "URLDownloadToFileA" _
+  (ByVal pCaller As Long, _
+   ByVal szURL As String, _
+   ByVal szFileName As String, _
+   ByVal dwReserved As Long, _
+   ByVal lpfnCB As Long) As Long
+   
+Private Const ERROR_SUCCESS As Long = 0
+Private Const BINDF_GETNEWESTVERSION As Long = &H10
+Private Const INTERNET_FLAG_RELOAD As Long = &H80000000
 
+Public Function DownloadFile(sSourceUrl As String, _
+                             sLocalFile As String) As Boolean
+  
+  'Download the file. BINDF_GETNEWESTVERSION forces
+  'the API to download from the specified source.
+  'Passing 0& as dwReserved causes the locally-cached
+  'copy to be downloaded, if available. If the API
+  'returns ERROR_SUCCESS (0), DownloadFile returns True.
+   DownloadFile = URLDownloadToFile(0&, _
+                                    sSourceUrl, _
+                                    sLocalFile, _
+                                    BINDF_GETNEWESTVERSION, _
+                                    0&) = ERROR_SUCCESS
+   
+End Function
+' Sasho End
 
 Public Function fAccessWindow(Optional Procedure As String, Optional SwitchStatus As Boolean, Optional StatusCheck As Boolean) As Boolean
 If Procedure = "Hide" Then
@@ -101,14 +138,33 @@ If StatusCheck = True Then
 End If
 End Function
 
- 
-
 Private Sub CheckUpdates_Click()
-    NavigateURL "http://code.google.com/p/intrasell"
+On Error GoTo errLine
+    ' Old code in function begin
+    ' NavigateURL "http://code.google.com/p/intrasell"
+    ' Old code in function end
+    
+    Dim resultDownload As Boolean
+
+    resultDownload = DownloadFile("http://intrasell.googlecode.com/files/update.txt", App.Path & "\update.txt")
+        
+    If resultDownload Then
+        ' TODO Check update.txt and download and save new versions
+        
+    Else
+        MsgBox "Error in check update."
+    End If
+    
+    Exit Sub
+
+errLine:
+    MsgBox "Error: " & Err.Description
+    Err.Clear
 End Sub
 
 Private Sub ISHomepage_Click()
-    NavigateURL "http://www.griton.eu"
+    'NavigateURL "http://www.griton.eu"
+    ShellExecute 0, "OPEN", "http://www.griton.eu", vbNullString, vbNullString, SW_SHOWNORMAL
 End Sub
 
 Private Sub MDIForm_DblClick()
@@ -117,7 +173,6 @@ Private Sub MDIForm_DblClick()
 End Sub
 
 Private Sub MDIForm_Load()
-
 On Error GoTo errLine
         
         Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
@@ -125,6 +180,7 @@ On Error GoTo errLine
         ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
         
+        ' Sasho begin
         ' set access low macro security
         If oAccess.Version >= "10" Then
            oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
@@ -138,7 +194,8 @@ On Error GoTo errLine
         
         oAccess.SetOption "ShowWindowsInTaskbar", False
         ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
-               
+        'Sasho end
+        
         oAccess.Visible = True
        
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
@@ -159,27 +216,6 @@ errLine:
         
 End Sub
 
-Public Sub NavigateURL(ByVal URL As String)
-
-Dim File As String
-Dim fH   As Integer
-
-   ' Create a URLShortcut File so that the url.dll function OpenURL will work
-   File = App.Path & "\" & VBA.Format(Now, "HH_NN_SS") & ".URL"
-   fH = FreeFile
-   Open File For Output As #fH
-      Print #fH, "[InternetShortcut]"
-      Print #fH, "URL=" & URL
-   Close #fH
-   
-   Shell "rundll32.exe url.dll, OpenURL " & File, 1
-   
-   Kill File
-
-End Sub
-
-
-
 Private Function openDatabase()
 On Error GoTo errLine
     ' Open a database in exclusive mode:
@@ -187,13 +223,12 @@ On Error GoTo errLine
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
     Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
     
-     Exit Function
+    Exit Function
         
-        'error
 errLine:
-        MsgBox "Error in Open_Click" & Err.Description
-        Err.Clear
-        Exit Function
+    MsgBox "Error in Open_Click" & Err.Description
+    Err.Clear
+    Exit Function
 End Function
 
 Private Sub MDIForm_Unload(Cancel As Integer)
@@ -206,15 +241,32 @@ End Sub
 
 Private Sub Close_Click()
 On Error GoTo errLine
-   If Not IsNull(oAccess) Then
-      Call oAccess.CloseCurrentDatabase
-   End If
- Exit Sub
-        
-        'error
+    If Not IsNull(oAccess) Then
+        Call oAccess.CloseCurrentDatabase
+    End If
+    
+    Exit Sub
+
 errLine:
-        Debug.Print "Error in Close_Click" & Err.Description
-        Err.Clear
-        Exit Sub
+    Debug.Print "Error in Close_Click" & Err.Description
+    Err.Clear
+    Exit Sub
 End Sub
+
+'Public Sub NavigateURL(ByVal URL As String)
+'Dim File As String
+'Dim fH   As Integer
+'
+'   ' Create a URLShortcut File so that the url.dll function OpenURL will work
+'   File = App.Path & "\" & VBA.Format(Now, "HH_NN_SS") & ".URL"
+'   fH = FreeFile
+'   Open File For Output As #fH
+'      Print #fH, "[InternetShortcut]"
+'      Print #fH, "URL=" & URL
+'   Close #fH
+'
+'   Shell "rundll32.exe url.dll, OpenURL " & File, 1
+'
+'   Kill File
+'End Sub
 
