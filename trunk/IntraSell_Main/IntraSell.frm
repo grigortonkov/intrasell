@@ -130,13 +130,13 @@ On Error GoTo errLine
         
         oAccess.SetOption "ShowWindowsInTaskbar", False
        
-        'Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
+        Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
         
         Call openDatabase
         
-        'Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
-        'Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+        Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
+        Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
         Unload Me
         
