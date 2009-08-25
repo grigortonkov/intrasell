@@ -42,6 +42,7 @@ Const MSG_ERROR_UPDATETXT = "File update.txt not found. try laiter(not internet)
 Const MSG_ERROR_ZIP_MISED = "File @ZIP mis."
 Const MSG_PROMT_FOR_UPDATE = "Es gibt  Aktualisierung (@ZIP), wollen Sie die Programm schliessen und aktualisieren?"
 Const MSG_UPDATE_COMPLETE = "Update complete. Open program."
+Const MSG_UPTODATE = "Nothing to update."
 ' =======================================================================
 
 Private Declare Function IsWindowVisible Lib "user32" (ByVal hwnd As Long) As Long
@@ -153,6 +154,8 @@ On Error GoTo errLine
     ' NavigateURL "http://code.google.com/p/intrasell"
     ' Old code in function end
 
+    Dim needUpdate As Boolean
+
     Dim ShellClass  As Shell32.Shell
     Dim Filesource  As Shell32.Folder
     Dim Filedest    As Shell32.Folder
@@ -164,6 +167,8 @@ On Error GoTo errLine
     Dim strfName1 As String
     Dim resultDownload As Boolean
 
+    needUpdate = False
+    
     If Dir(App.Path & "\archive", vbDirectory) = "" Then MkDir (App.Path & "\archive")
     
     resultDownload = DownloadFile("http://intrasell.googlecode.com/files/update.txt", App.Path & "\update.txt")
@@ -175,6 +180,7 @@ On Error GoTo errLine
             strfName1 = Replace(strLine, "http://intrasell.googlecode.com/files/", "")
             strfName = App.Path & "\" & strfName1
             If Dir(strfName) = "" Then
+                needUpdate = True
                 If MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
                     ' download new update file
                     resultDownload = DownloadFile(strLine, strfName)
@@ -220,6 +226,9 @@ On Error GoTo errLine
                 End If
             End If
         Loop
+        
+        If Not needUpdate Then MsgBox MSG_UPTODATE, , MSG_TITLE
+        
         Close #1
         
         FileSystem.Kill App.Path & "\update.txt"
