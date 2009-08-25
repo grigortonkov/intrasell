@@ -34,6 +34,16 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+' =======================================================================
+' MSG for translate - @ZIP se zamenq s imeto na faila avtomatichno, ne go mahai
+
+Const MSG_TITLE = "IntraSell"
+Const MSG_ERROR_UPDATETXT = "File update.txt not found. try laiter(not internet) or kontakt grigor."
+Const MSG_ERROR_ZIP_MISED = "File @ZIP mis."
+Const MSG_PROMT_FOR_UPDATE = "Es gibt  Aktualisierung (@ZIP), wollen Sie die Programm schliessen und aktualisieren?"
+Const MSG_UPDATE_COMPLETE = "Update complete. Open program."
+' =======================================================================
+
 Private Declare Function IsWindowVisible Lib "user32" (ByVal hwnd As Long) As Long
 
 Private Declare Function ShowWindow Lib "user32" (ByVal hwnd As Long, _
@@ -65,7 +75,6 @@ Private pMovable As Boolean
 
 Dim dwReturn As Long
 Dim oAccess As Access.Application
-
 
 Const SW_HIDE = 0
 Const SW_SHOWNORMAL = 1
@@ -143,21 +152,107 @@ On Error GoTo errLine
     ' Old code in function begin
     ' NavigateURL "http://code.google.com/p/intrasell"
     ' Old code in function end
+
+    Dim ShellClass  As Shell32.Shell
+    Dim Filesource  As Shell32.Folder
+    Dim Filedest    As Shell32.Folder
+    Dim fItem       As Shell32.FolderItem
+    Dim Folderitems As Shell32.Folderitems
     
+    Dim strLine As String
+    Dim strfName As String
+    Dim strfName1 As String
     Dim resultDownload As Boolean
 
+    If Dir(App.Path & "\archive", vbDirectory) = "" Then MkDir (App.Path & "\archive")
+    
     resultDownload = DownloadFile("http://intrasell.googlecode.com/files/update.txt", App.Path & "\update.txt")
         
     If resultDownload Then
-        ' TODO Check update.txt and download and save new versions
+        Open App.Path & "\update.txt" For Input As #1
+        Do While Not EOF(1)
+            Line Input #1, strLine
+            strfName1 = Replace(strLine, "http://intrasell.googlecode.com/files/", "")
+            strfName = App.Path & "\" & strfName1
+            If Dir(strfName) = "" Then
+                If MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
+                    ' download new update file
+                    resultDownload = DownloadFile(strLine, strfName)
+                    If resultDownload Then
+                        ' close database
+                        Call Close_Click
+                    
+                        ' create temp directory "update"
+                        If Dir(App.Path & "\update", vbDirectory) = "" Then MkDir (App.Path & "\update")
+                        
+                        Set ShellClass = New Shell32.Shell
+                        
+                        ' unzip
+                        Set Filesource = ShellClass.NameSpace(strfName)
+                        Set Folderitems = Filesource.Items
+                        Set Filedest = ShellClass.NameSpace(App.Path & "\update")
+                        Call Filedest.CopyHere(Folderitems, 20)
+                        
+                        ' archive
+                        If Dir(App.Path & "\archive\" & strfName1, vbDirectory) = "" Then MkDir (App.Path & "\archive\" & strfName1)
+                        For Each fItem In Folderitems
+                            If Dir(App.Path & "\" & fItem) <> "" Then
+                                Call FileCopy(App.Path & "\" & fItem, App.Path & "\archive\" & strfName1 & "\" & fItem)
+                            End If
+                        Next
+                        
+                        ' copy new files
+                        Set Filesource = ShellClass.NameSpace(App.Path & "\update")
+                        Set Folderitems = Filesource.Items
+                        Set Filedest = ShellClass.NameSpace(App.Path)
+                        Call Filedest.CopyHere(Folderitems, 20)
+    
+                        FileSystem.Kill App.Path & "\update\*.*"
+                        FileSystem.RmDir App.Path & "\update"
+                        
+                        MsgBox MSG_UPDATE_COMPLETE, , MSG_TITLE
+                        
+                        ' open database again
+                        Call openDatabase
+                    Else
+                        MsgBox Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), , MSG_TITLE
+                    End If
+                End If
+            End If
+        Loop
+        Close #1
         
+        FileSystem.Kill App.Path & "\update.txt"
     Else
-        MsgBox "Error in check update."
+        MsgBox MSG_ERROR_UPDATETXT, , MSG_TITLE
     End If
     
     Exit Sub
 
 errLine:
+    ' greshka izchistvat se nehstata
+    If Dir(App.Path & "\update.txt") <> "" Then FileSystem.Kill App.Path & "\update.txt"
+    If Dir(strfName) <> "" Then FileSystem.Kill strfName
+    If Dir(App.Path & "\update", vbDirectory) <> "" Then
+        Set Filesource = ShellClass.NameSpace(App.Path & "\update")
+        Set Folderitems = Filesource.Items
+        If Folderitems.Count <> 0 Then FileSystem.Kill App.Path & "\update\*.*"
+        FileSystem.RmDir App.Path & "\update"
+        
+        If Dir(App.Path & "\archive\" & strfName1, vbDirectory) <> "" Then
+            Set Filesource = ShellClass.NameSpace(App.Path & "\archive\" & strfName1)
+            Set Folderitems = Filesource.Items
+            If Folderitems.Count <> 0 Then FileSystem.Kill App.Path & "\archive\" & strfName1 & "\*.*"
+            FileSystem.RmDir App.Path & "\archive\" & strfName1
+        End If
+    End If
+    
+    Set ShellClass = Nothing
+    Set Filesource = Nothing
+    Set Filedest = Nothing
+    Set fItem = Nothing
+    Set Folderitems = Nothing
+    
     MsgBox "Error: " & Err.Description
     Err.Clear
 End Sub
