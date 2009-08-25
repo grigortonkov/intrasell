@@ -112,6 +112,8 @@ function MAKE_EMAIL_ORDER(KDNR, AuftragNr)
 		             Dim orderHTML: orderHTML = httpReader.getURL (realOrderLink)
 		             html = replace(html, TAG_EMBED_ORDER, orderHTML)
 		        end if 
+		 else 
+		        html = replace(html, TAG_EMBED_ORDER, realOrderLink)
 		 end if
 		 
         call replaceUserTags(kdnr, html)

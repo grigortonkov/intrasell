@@ -670,7 +670,7 @@ end function
 
 function createOrderFromBasketFinish(byVal KDNR, byVal AuftragNr)
    
-   if VARVALUE_DEFAULT("SHOP_SEND_MAILS_AFTER_ORDER", "false") = "true" then 
+   if VARVALUE_DEFAULT("SHOP_SEND_MAILS_AFTER_ORDER", "true") = "true" then 
 			Dim mailtext 
 			Dim Name : Name = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Name")   
 			mailtext = MAKE_EMAIL_ORDER(KDNR, AuftragNr)				
