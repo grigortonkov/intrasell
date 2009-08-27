@@ -38,7 +38,7 @@ Attribute VB_Exposed = False
 ' MSG for translate - @ZIP se zamenq s imeto na faila avtomatichno, ne go mahai
 
 Const MSG_TITLE = "IntraSell"
-Const MSG_ERROR_UPDATETXT = "File update.txt not found. try laiter(not internet) or kontakt grigor."
+Const MSG_ERROR_UPDATETXT = "File update.txt not found. try later(not internet) or kontact grigor."
 Const MSG_ERROR_ZIP_MISED = "File @ZIP mis."
 Const MSG_PROMT_FOR_UPDATE = "Es gibt  Aktualisierung (@ZIP), wollen Sie die Programm schliessen und aktualisieren?"
 Const MSG_UPDATE_COMPLETE = "Update complete. Open program."
