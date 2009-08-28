@@ -266,6 +266,7 @@ errLine:
     Err.Clear
 End Sub
 
+
 Private Sub ISHomepage_Click()
     'NavigateURL "http://www.griton.eu"
     ShellExecute 0, "OPEN", "http://www.griton.eu", vbNullString, vbNullString, SW_SHOWNORMAL
@@ -278,6 +279,8 @@ End Sub
 
 Private Sub MDIForm_Load()
 On Error GoTo errLine
+        
+        Call CheckUpdates_Click
         
         Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
         
