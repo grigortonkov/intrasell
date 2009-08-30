@@ -486,8 +486,9 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         
         Exit Function
 error:
-           CurrentDB.Rollback
+           
            MsgBox "Die Transaktion wurde storniert!" + Err.Description, vbCritical
+           CurrentDB.Rollback
            
 End Function
 
