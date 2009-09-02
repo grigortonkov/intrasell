@@ -1,0 +1,9 @@
+bin\TestXML2Word.exe
+bin\TestXML2Word.pdb
+bin\TestXML2Word.xml
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\TestXML2Word.XML2WordForm.resources
+obj\Debug\XML2WordCMD.vbproj.GenerateResource.Cache
+obj\Debug\TestXML2Word.exe
+obj\Debug\TestXML2Word.xml
+obj\Debug\TestXML2Word.pdb

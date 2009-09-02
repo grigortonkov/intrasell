@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="TestXML2Word">
+</Property><Property Name="Solution File" Value="Z:\Business\Tools\XML2WordCMD\TestXML2Word.sln">
+</Property><Property Name="Date" Value="Donnerstag, 27. Dezember 2007">
+</Property><Property Name="Time" Value="10:36">
+</Property></Properties><Event ErrorLevel="0" Project="TestXML2Word" Source="TestXML2Word.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="TestXML2Word" Source="TestXML2Word.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="TestXML2Word.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="TestXML2Word.sln" Description="Converted">
+</Event><Event ErrorLevel="3" Project="TestXML2Word" Source="Global.vb" Description="file converted">
+</Event></UpgradeLog>

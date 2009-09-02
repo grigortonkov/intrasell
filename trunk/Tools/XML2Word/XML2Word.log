@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeLog>
+    <Settings>
+        <Setting
+            Name = "LogFile"
+            Value = "XML2Word.log"
+        />
+        <Setting
+            Name = "GenerateInterfacesForClasses"
+            Value = "FALSE"
+        />
+        <Setting
+            Name = "ProjectName"
+            Value = "XML2Word"
+        />
+        <Setting
+            Name = "OutputName"
+            Value = "XML2Word.vbproj"
+        />
+        <Setting
+            Name = "OutputDir"
+            Value = "C:\temp\Intrasell\XML\XML2Word\XML2Word.NET"
+        />
+        <Setting
+            Name = "ProjectPath"
+            Value = "C:\temp\Intrasell\XML\XML2Word\XML2Word.vbp"
+        />
+        <Setting
+            Name = "MigrateProjectTo"
+            Value = "1"
+        />
+    </Settings>
+    <File
+        OldPath = "C:\temp\Intrasell\XML\XML2Word\main.cls"
+        NewPath = "C:\temp\Intrasell\XML\XML2Word\XML2Word.NET\main.vb"
+        FileType = "Class Module"
+        Upgraded = "True"
+    />
+    <File
+        OldPath = "C:\temp\Intrasell\XML\XML2Word\Global.bas"
+        NewPath = "C:\temp\Intrasell\XML\XML2Word\XML2Word.NET\Global.vb"
+        FileType = "Module"
+        Upgraded = "True"
+    />
+</UpgradeLog>
+
