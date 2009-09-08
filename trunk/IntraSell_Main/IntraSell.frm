@@ -108,7 +108,7 @@ Private Sub CheckUpdates_Click()
     ' NavigateURL "http://code.google.com/p/intrasell"
     ' Old code in function end
 
-    Call Updata
+    Call UpdateIntraSell
 
 End Sub
 
