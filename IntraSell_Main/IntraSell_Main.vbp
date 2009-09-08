@@ -1,9 +1,10 @@
 Type=Exe
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Reference=*\G{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}#2.3#0#C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE11\MSO.DLL#Microsoft Office 11.0 Object Library
-Reference=*\G{4AFFC9A0-5F99-101B-AF4E-00AA003F0F07}#9.0#0#C:\Program Files (x86)\Microsoft Office\OFFICE11\msacc.olb#Microsoft Access 11.0 Object Library
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
+Reference=*\G{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}#2.3#0#..\..\..\..\..\Program Files\Common Files\Microsoft Shared\OFFICE11\MSO.DLL#Microsoft Office 11.0 Object Library
+Reference=*\G{4AFFC9A0-5F99-101B-AF4E-00AA003F0F07}#9.0#0#..\..\..\..\..\Program Files\Microsoft Office\OFFICE11\MSACC.OLB#Microsoft Access 11.0 Object Library
 Reference=*\G{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}#1.0#0#..\..\..\..\..\WINDOWS\system32\SHELL32.dll#Microsoft Shell Controls And Automation
 Form=IntraSell.frm
+Module=Update; Update.bas
 IconForm="IntraSell"
 Startup="IntraSell"
 HelpFile=""
