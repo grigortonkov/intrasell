@@ -108,7 +108,7 @@ Private Sub CheckUpdates_Click()
     ' NavigateURL "http://code.google.com/p/intrasell"
     ' Old code in function end
 
-    Call UpdateIntraSell
+    Call UpdateIntraSell(False)
 
 End Sub
 
@@ -120,17 +120,14 @@ End Sub
 
 Private Sub MDIForm_DblClick()
    'open DB
-   Call openDatabase
+   Call OpenDatabase
 End Sub
 
-Private Sub MDIForm_Load()
-On Error GoTo errLine
+
+Private Sub StartAccess()
+
         
-        Call CheckUpdates_Click
-        
-        Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
-        
-        ' Start a new instance of Access for Automation:
+       ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
         
         ' Sasho begin
@@ -153,24 +150,44 @@ On Error GoTo errLine
        
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+End Sub
+
+Private Sub MDIForm_Load()
+On Error GoTo errLine
+        ' show splash
+        'Dim splash As frmSplash: Set splash = New frmSplash
+        'splash.Show
         
-        Call openDatabase
+        Call UpdateIntraSell(True)
+        
+        Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
+        
+        Call StartAccess
+        
+        Call OpenDatabase
         
         Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
+        
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
         Exit Sub
         
         'error
 errLine:
-        MsgBox "Error in MDIForm_Load" & Err.Description
+        MsgBox "Error in MDIForm_Load: " & Err.Description
         Err.Clear
         Exit Sub
         
 End Sub
 
-Public Function openDatabase()
+Public Function OpenDatabase()
+
 On Error GoTo errLine
+
+   If oAccess Is Nothing Then 'open access
+    StartAccess
+   End If
+
     ' Open a database in exclusive mode:
     Dim isFilename As String
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
@@ -179,7 +196,7 @@ On Error GoTo errLine
     Exit Function
         
 errLine:
-    MsgBox "Error in Open_Click" & Err.Description
+    MsgBox "Error in openDatabase: " & Err.Description
     Err.Clear
     Exit Function
 End Function
@@ -189,12 +206,12 @@ Private Sub MDIForm_Unload(Cancel As Integer)
 End Sub
 
 Private Sub Open_Click()
-   Call openDatabase
+   Call OpenDatabase
 End Sub
 
 Public Sub Close_Click()
 On Error GoTo errLine
-    If Not IsNull(oAccess) Then
+    If Not oAccess Is Nothing Then
         Call oAccess.CloseCurrentDatabase
     End If
     
