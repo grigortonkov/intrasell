@@ -13,19 +13,23 @@ Begin VB.MDIForm IntraSell
    Begin VB.Menu Files 
       Caption         =   "&Datei"
       Begin VB.Menu Open 
-         Caption         =   "&Oeffnen"
+         Caption         =   "&Öffnen"
+         Shortcut        =   ^O
       End
       Begin VB.Menu Close 
          Caption         =   "&Schliessen"
+         Shortcut        =   ^S
       End
    End
    Begin VB.Menu Help 
       Caption         =   "&Hilfe"
       Begin VB.Menu CheckUpdates 
-         Caption         =   "&Update"
+         Caption         =   "&Update IntraSell"
+         Shortcut        =   ^U
       End
       Begin VB.Menu ISHomepage 
          Caption         =   "&Intrasell Homepage"
+         Shortcut        =   ^H
       End
    End
 End
@@ -107,9 +111,9 @@ Private Sub CheckUpdates_Click()
     ' Old code in function begin
     ' NavigateURL "http://code.google.com/p/intrasell"
     ' Old code in function end
-
+    Call Close_Click
     Call UpdateIntraSell(False)
-
+    Call OpenDatabase
 End Sub
 
 
@@ -124,33 +128,7 @@ Private Sub MDIForm_DblClick()
 End Sub
 
 
-Private Sub StartAccess()
 
-        
-       ' Start a new instance of Access for Automation:
-        Set oAccess = New Access.Application
-        
-        ' Sasho begin
-        ' set access low macro security
-        If oAccess.Version >= "10" Then
-           oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
-        End If
-    
-        ' hide ribbons in office 2007
-        'If oAccess.Version >= "10" Then
-        '    Dim xml As String: xml = "<customUI xmlns=""http://schemas.microsoft.com/office/2006/01/customui""><ribbon startFromScratch=""true""></ribbon></customUI>"
-        '    oAccess.LoadCustomUI "HideRibbon", xml
-        'End If
-        
-        oAccess.SetOption "ShowWindowsInTaskbar", False
-        ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
-        'Sasho end
-        
-        oAccess.Visible = True
-       
-        Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
-        Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
-End Sub
 
 Private Sub MDIForm_Load()
 On Error GoTo errLine
@@ -180,6 +158,35 @@ errLine:
         
 End Sub
 
+Private Sub StartAccess()
+
+        
+       ' Start a new instance of Access for Automation:
+        Set oAccess = New Access.Application
+        
+        ' Sasho begin
+        ' set access low macro security
+        If oAccess.Version >= "10" Then
+           oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
+        End If
+    
+        ' hide ribbons in office 2007
+        'If oAccess.Version >= "10" Then
+        '    Dim xml As String: xml = "<customUI xmlns=""http://schemas.microsoft.com/office/2006/01/customui""><ribbon startFromScratch=""true""></ribbon></customUI>"
+        '    oAccess.LoadCustomUI "HideRibbon", xml
+        'End If
+        
+        oAccess.SetOption "ShowWindowsInTaskbar", False
+        ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
+        'Sasho end
+        
+        oAccess.Visible = True
+       
+        Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
+        Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+End Sub
+
+
 Public Function OpenDatabase()
 
 On Error GoTo errLine
@@ -201,6 +208,22 @@ errLine:
     Exit Function
 End Function
 
+
+Public Function CloseDatabase()
+On Error GoTo errLine
+        If Not oAccess Is Nothing Then
+          Call oAccess.CloseCurrentDatabase
+        End If
+        
+        Exit Function
+    
+errLine:
+        Debug.Print "Error in Close_Click" & Err.Description
+        Err.Clear
+        On Error Resume Next
+        Exit Function
+End Function
+
 Private Sub MDIForm_Unload(Cancel As Integer)
     Call Close_Click
 End Sub
@@ -210,17 +233,7 @@ Private Sub Open_Click()
 End Sub
 
 Public Sub Close_Click()
-On Error GoTo errLine
-    If Not oAccess Is Nothing Then
-        Call oAccess.CloseCurrentDatabase
-    End If
-    
-    Exit Sub
-
-errLine:
-    Debug.Print "Error in Close_Click" & Err.Description
-    Err.Clear
-    Exit Sub
+  Call CloseDatabase
 End Sub
 
 'Public Sub NavigateURL(ByVal URL As String)
