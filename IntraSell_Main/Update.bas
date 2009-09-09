@@ -6,12 +6,12 @@ Const MSG_TITLE = "IntraSell 4.0"
 Const MSG_ERROR_UPDATETXT = "Datei update.txt wurde nicht gefunden. Stellen Sie sicher dass Sie mit Internet verbunden sind." 'Try later (not internet) or get contact with grigor.tonkov@gmail.com."
 Const MSG_ERROR_ZIP_MISED = "Datei @ZIP fehlt."
 Const MSG_PROMT_FOR_UPDATE = "Es gibt eine IntraSell Aktualisierung (@ZIP), wollen Sie die Dateien hereunterladen?"
-Const MSG_UPDATE_COMPLETE = "Upgrade ist fertig. Nun können Sie mit der Arbeit fortfahren."
+Const MSG_UPDATE_COMPLETE = "Upgrade ist fertig. Nun können Sie mit Ihrer Arbeit fortfahren."
 Const MSG_UPTODATE = "Zur Zeit gibt es keine Aktualiserungen."
 
 'Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/files/update.txt" 'From Downloads
-Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Intrasell/update.txt" ' From SVN
-Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Intrasell/" ' "http://intrasell.googlecode.com/files/"
+Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update.txt" ' From SVN
+Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/" ' "http://intrasell.googlecode.com/files/"
 ' =======================================================================
 
 Private Declare Function URLDownloadToFile Lib "urlmon" _
@@ -110,7 +110,7 @@ On Error GoTo errLine
                         MsgBox MSG_UPDATE_COMPLETE, , MSG_TITLE
                         
                         ' open database again
-                        Call IntraSell.openDatabase
+                        Call IntraSell.OpenDatabase
                     Else
                         MsgBox Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), , MSG_TITLE
                     End If
