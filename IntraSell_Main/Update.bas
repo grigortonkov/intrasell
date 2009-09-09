@@ -77,7 +77,7 @@ On Error GoTo errLine
                     resultDownload = DownloadFile(strLine, strfName)
                     If resultDownload Then
                         ' close database
-                        Call IntraSell.Close_Click
+                        'Call IntraSell.Close_Click 'must be done in calling form
                     
                         ' create temp directory "update"
                         If Dir(App.Path & "\update", vbDirectory) = "" Then MkDir (App.Path & "\update")
@@ -107,12 +107,12 @@ On Error GoTo errLine
                         FileSystem.Kill App.Path & "\update\*.*"
                         FileSystem.RmDir App.Path & "\update"
                         
-                        MsgBox MSG_UPDATE_COMPLETE, , MSG_TITLE
+                        MsgBox MSG_UPDATE_COMPLETE, vbInformation, MSG_TITLE
                         
                         ' open database again
-                        Call IntraSell.OpenDatabase
+                       ' Call IntraSell.OpenDatabase 'must be done in calling form
                     Else
-                        MsgBox Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), , MSG_TITLE
+                        MsgBox Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), vbCritical, MSG_TITLE
                     End If
                 End If
             End If
@@ -134,6 +134,7 @@ On Error GoTo errLine
 
 errLine:
     ' greshka izchistvat se nehstata
+    Debug.Print Err.Description
     If Dir(App.Path & "\update.txt") <> "" Then FileSystem.Kill App.Path & "\update.txt"
     If Dir(strfName) <> "" Then FileSystem.Kill strfName
     If Dir(App.Path & "\update", vbDirectory) <> "" Then
