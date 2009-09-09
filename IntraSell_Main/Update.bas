@@ -38,7 +38,7 @@ Public Function DownloadFile(sSourceUrl As String, _
    
 End Function
 
-Public Sub Updata()
+Public Sub UpdateIntraSell()
 On Error GoTo errLine
 
     Dim needUpdate As Boolean
