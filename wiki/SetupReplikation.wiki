@@ -4,14 +4,59 @@
 
 ==Einrichtung Replikation==
 
-Befehle:
+1. Edit the my.cnf file on the slave and on the master server:
+
+master my.cnf:
 {{{
-GRANT REPLICATION SLAVE, REPLICATION CLIENT
+[mysqld]
+server-id = 1
+log-bin
+log-slave-updates 
+replicate-do-db = intrasell_daten_2
+log-warnings
+slave-skip-errors=all
+}}}
+
+slave my.cnf:
+{{{
+[mysqld]
+server-id = 2
+log-bin
+#master-host = master-host.net
+#master-user = repl
+#master-password = repl_pass
+replicate-do-db = intrasell_daten_2
+log-warnings
+slave-skip-errors=all
+}}}
+
+2. Restart both the slave and the master.
+
+3. On the master do:
+
+{{{GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
+}}}
+4. On the slave do:
+{{{
+LOAD DATA FROM MASTER;
+GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
+}}}
+
+The slave should now download the databases specified with replicate-do-db in the slaves my.cnf, 
+and be replicating new data.
+
+
+Befehle:
+Rechte Vergeben (Am Master):
+{{{
+GRANT SUPER, REPLICATION SLAVE, REPLICATION CLIENT,RELOAD
     ON *.*
     TO 'replication'@'*'
     IDENTIFIED BY 'pwd';
+}}}
 
-
+Master setzen (am Slave):
+{{{
 CHANGE MASTER TO
   MASTER_HOST='80.120.22.111',
   MASTER_USER='replication',
