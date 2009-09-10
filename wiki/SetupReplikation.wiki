@@ -6,6 +6,8 @@
 
 1. Edit the my.cnf file on the slave and on the master server:
 
+Hint: These are additional settings to a clean MySQL installation (Version 5.1).
+
 master my.cnf:
 {{{
 [mysqld]
@@ -15,6 +17,8 @@ log-slave-updates
 replicate-do-db = intrasell_daten_2
 log-warnings
 slave-skip-errors=all
+master-connect-retry=600
+master-retry-count=1000
 }}}
 
 slave my.cnf:
@@ -28,6 +32,8 @@ log-bin
 replicate-do-db = intrasell_daten_2
 log-warnings
 slave-skip-errors=all
+master-connect-retry=600
+master-retry-count=1000
 }}}
 
 2. Restart both the slave and the master.
