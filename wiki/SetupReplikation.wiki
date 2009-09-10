@@ -35,12 +35,12 @@ slave-skip-errors=all
 3. On the master do:
 
 {{{
-GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
+GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO replication@"%" IDENTIFIED BY 'pwd';
 }}}
 4. On the slave do:
 {{{
 LOAD DATA FROM MASTER;
-GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
+GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO replication@"%" IDENTIFIED BY 'pwd';
 }}}
 
 The slave should now download the databases specified with replicate-do-db in the slaves my.cnf, 
@@ -62,7 +62,7 @@ CHANGE MASTER TO
   MASTER_HOST='80.120.22.111',
   MASTER_USER='replication',
   MASTER_PASSWORD='pwd',
-  MASTER_PORT=3306,
+  -- MASTER_PORT=3306,
   MASTER_LOG_FILE='master2-bin.00016',
   MASTER_LOG_POS=7968,
   MASTER_CONNECT_RETRY=10;
