@@ -34,7 +34,8 @@ slave-skip-errors=all
 
 3. On the master do:
 
-{{{GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
+{{{
+GRANT SUPER,REPLICATION CLIENT,REPLICATION SLAVE,RELOAD ON *.* TO repl@"%" IDENTIFIED BY 'repl_pass';
 }}}
 4. On the slave do:
 {{{
