@@ -24,7 +24,8 @@ End Sub
   If InStr(ConnStringODBC, "MySQL") Then
     sql = Replace(sql, "[", "`")
     sql = Replace(sql, "]", "`")
-    sql = Replace(sql, "Date()", "CURRENT_TIMESTAMP")
+    sql = Replace(sql, "Date()", "CURRENT_DATE")
+    sql = Replace(sql, "Now()", "CURRENT_TIMESTAMP")
   End If
   
     If InStr(sql, "INSERT") > 0 Or InStr(sql, "UPDATE") > 0 Or InStr(sql, "DELETE") > 0 Then
