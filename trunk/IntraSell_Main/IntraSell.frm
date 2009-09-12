@@ -157,10 +157,9 @@ errLine:
         Exit Sub
         
 End Sub
-
+'Start MS Access
 Private Sub StartAccess()
 
-        
        ' Start a new instance of Access for Automation:
         Set oAccess = New Access.Application
         
@@ -186,6 +185,14 @@ Private Sub StartAccess()
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 End Sub
 
+
+'Close MS Access
+Private Sub CloseAccess()
+  If Not oAccess Is Nothing Then
+     oAccess.Quit acQuitSaveAll
+     Set oAccess = Nothing
+  End If
+End Sub
 
 Public Function OpenDatabase()
 
@@ -224,16 +231,20 @@ errLine:
         Exit Function
 End Function
 
+'Unload Programm
 Private Sub MDIForm_Unload(Cancel As Integer)
     Call Close_Click
 End Sub
 
+'Menu Open
 Private Sub Open_Click()
    Call OpenDatabase
 End Sub
 
+'Menu Close
 Public Sub Close_Click()
   Call CloseDatabase
+  Call CloseAccess
 End Sub
 
 'Public Sub NavigateURL(ByVal URL As String)
