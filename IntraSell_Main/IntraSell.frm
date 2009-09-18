@@ -234,6 +234,8 @@ End Function
 'Unload Programm
 Private Sub MDIForm_Unload(Cancel As Integer)
     Call Close_Click
+    If (Not oAccess Is Nothing) Then oAccess.Quit
+    Set oAccess = Nothing
 End Sub
 
 'Menu Open

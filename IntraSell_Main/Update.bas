@@ -11,6 +11,7 @@ Const MSG_UPTODATE = "Zur Zeit gibt es keine Aktualiserungen."
 
 'Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/files/update.txt" 'From Downloads
 Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update.txt" ' From SVN
+Const INTRASELL_UPDATE_DLL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/Unzip32.dll" ' From SVN
 Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/" ' "http://intrasell.googlecode.com/files/"
 ' =======================================================================
 
@@ -45,6 +46,12 @@ End Function
 Public Sub UpdateIntraSell(silentMode As Boolean)
 On Error GoTo errLine
 
+    Dim rUnzipDLL As Boolean
+    Dim rUnzip As Integer
+    
+    Dim oUnZip As UnzipFiles
+    Set oUnZip = New UnzipFiles
+    
     Dim needUpdate As Boolean
 
     Dim ShellClass  As Shell32.Shell
@@ -88,7 +95,30 @@ On Error GoTo errLine
                         Set Filesource = ShellClass.NameSpace(strfName)
                         Set Folderitems = Filesource.Items
                         Set Filedest = ShellClass.NameSpace(App.Path & "\update")
-                        Call Filedest.CopyHere(Folderitems, 20)
+                        'Call Filedest.CopyHere(Folderitems, 20)
+                        rUnzip = unzip_Shell(Filedest, Folderitems)
+                        
+                        ' Shell32 not extract zip, using unzip32.dll to extract
+                        If (rUnzip = -1) Then
+                            ' check dll exists, if not exists download
+                            If Dir(App.Path & "\Unzip32.dll") = "" Then
+                                rUnzipDLL = DownloadFile(INTRASELL_UPDATE_DLL, App.Path & "\Unzip32.dll")
+                            End If
+                            
+                            With oUnZip
+                                .ZipFileName = strfName
+                                .ExtractDir = App.Path & "\update"
+                                
+                                ' Keep Directory Structure of Zip ?
+                                    .HonorDirectories = False
+                                ' Unzip and Display any errors as required
+                                If .Unzip <> 0 Then
+                                    MsgBox .GetLastMessage
+                                End If
+                            End With
+                            
+                            Set oUnZip = Nothing
+                        End If
                         
                         ' archive
                         If Dir(App.Path & "\archive\" & strfName1, vbDirectory) = "" Then MkDir (App.Path & "\archive\" & strfName1)
@@ -160,3 +190,16 @@ errLine:
     MsgBox "Error: " & Err.Description, vbCritical
     Err.Clear
 End Sub
+
+Private Function unzip_Shell(obj As Shell32.Folder, fItems As Shell32.Folderitems) As Integer
+On Error GoTo er
+
+    unzip_Shell = 0
+    
+    Call obj.CopyHere(fItems, 20)
+           
+    Exit Function
+    
+er:
+    unzip_Shell = -1
+End Function
