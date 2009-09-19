@@ -45,6 +45,7 @@ End Function
 
 Public Sub UpdateIntraSell(silentMode As Boolean)
 On Error GoTo errLine
+    Call writeLog("UpdateIntraSell start")
 
     Dim rUnzipDLL As Boolean
     Dim rUnzip As Integer
@@ -70,31 +71,49 @@ On Error GoTo errLine
     If Dir(App.Path & "\archive", vbDirectory) = "" Then MkDir (App.Path & "\archive")
     
     resultDownload = DownloadFile(INTRASELL_UPDATE, App.Path & "\update.txt")
-        
+    Call writeLog("update.txt downloaded")
+    
+    'Register unzip
+    Set ShellClass = New Shell32.Shell 'here happens the error
+    
     If resultDownload Then
-        Open App.Path & "\update.txt" For Input As #1
-        Do While Not EOF(1)
-            Line Input #1, strLine
+        Open App.Path & "\update.txt" For Input As #11
+        Call writeLog("update.txt opened")
+        Do While Not EOF(11)
+            Line Input #11, strLine
             strfName1 = Replace(strLine, INTRASELL_BASE_URL, "")
             strfName = App.Path & "\" & strfName1
             If Dir(strfName) = "" Then
                 needUpdate = True
                 If MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
                     ' download new update file
+                    Call writeLog("start download of " & strfName)
                     resultDownload = DownloadFile(strLine, strfName)
+                    Call writeLog("end download of " & strfName)
+                    Call writeLog("resultDownload= " & resultDownload)
+                    
                     If resultDownload Then
+                    
                         ' close database
                         'Call IntraSell.Close_Click 'must be done in calling form
-                    
+                        Call writeLog("create update folder")
                         ' create temp directory "update"
-                        If Dir(App.Path & "\update", vbDirectory) = "" Then MkDir (App.Path & "\update")
+                        If Dir(App.Path & "\update", vbDirectory) = "" Then
+                            MkDir (App.Path & "\update")
+                        End If
+                            
                         
-                        Set ShellClass = New Shell32.Shell
+                        Call writeLog("register unzip dll")
                         
                         ' unzip
+                        Call writeLog("unzip")
                         Set Filesource = ShellClass.NameSpace(strfName)
+                        Call writeLog("Filesource items " & Filesource.Items.Count)
                         Set Folderitems = Filesource.Items
                         Set Filedest = ShellClass.NameSpace(App.Path & "\update")
+                        
+                        Call writeLog("unzip_Shell")
+                        
                         'Call Filedest.CopyHere(Folderitems, 20)
                         rUnzip = unzip_Shell(Filedest, Folderitems)
                         
@@ -121,6 +140,7 @@ On Error GoTo errLine
                         End If
                         
                         ' archive
+                        Call writeLog("archive files")
                         If Dir(App.Path & "\archive\" & strfName1, vbDirectory) = "" Then MkDir (App.Path & "\archive\" & strfName1)
                         For Each fItem In Folderitems
                             If Dir(App.Path & "\" & fItem) <> "" Then
@@ -129,6 +149,7 @@ On Error GoTo errLine
                         Next
                         
                         ' copy new files
+                        Call writeLog("copy new files")
                         Set Filesource = ShellClass.NameSpace(App.Path & "\update")
                         Set Folderitems = Filesource.Items
                         Set Filedest = ShellClass.NameSpace(App.Path)
@@ -140,7 +161,7 @@ On Error GoTo errLine
                         MsgBox MSG_UPDATE_COMPLETE, vbInformation, MSG_TITLE
                         
                         ' open database again
-                       ' Call IntraSell.OpenDatabase 'must be done in calling form
+                        ' Call IntraSell.OpenDatabase 'must be done in calling form
                     Else
                         MsgBox Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), vbCritical, MSG_TITLE
                     End If
@@ -153,7 +174,7 @@ On Error GoTo errLine
            If Not silentMode Then MsgBox MSG_UPTODATE, vbInformation, MSG_TITLE
         End If
         
-        Close #1
+        Close #11
         
         FileSystem.Kill App.Path & "\update.txt"
     Else
@@ -163,8 +184,10 @@ On Error GoTo errLine
     Exit Sub
 
 errLine:
-    ' greshka izchistvat se nehstata
-    Debug.Print Err.Description
+    ' greshka izchistvat se neshtata
+    Debug.Print err.Description
+    Call writeLog("UpdateIntraSell errLine:" + err.Description)
+    
     If Dir(App.Path & "\update.txt") <> "" Then FileSystem.Kill App.Path & "\update.txt"
     If Dir(strfName) <> "" Then FileSystem.Kill strfName
     If Dir(App.Path & "\update", vbDirectory) <> "" Then
@@ -187,8 +210,8 @@ errLine:
     Set fItem = Nothing
     Set Folderitems = Nothing
     
-    MsgBox "Error: " & Err.Description, vbCritical
-    Err.Clear
+    MsgBox "Error: " & err.Description, vbCritical
+    err.Clear
 End Sub
 
 Private Function unzip_Shell(obj As Shell32.Folder, fItems As Shell32.Folderitems) As Integer
