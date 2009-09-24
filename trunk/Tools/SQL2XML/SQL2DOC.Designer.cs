@@ -32,6 +32,7 @@ namespace GriTon.SQL2XML
             this.sql2XML = new GriTon.SQL2XML.Sql2XMLDataSet();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkWordVisible = new System.Windows.Forms.CheckBox();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label3 = new System.Windows.Forms.Label();
             this.listBoxReportFiles = new System.Windows.Forms.ListBox();
@@ -46,7 +47,6 @@ namespace GriTon.SQL2XML
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.chkWordVisible = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.sql2XML)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +89,18 @@ namespace GriTon.SQL2XML
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "XML->DOC";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // chkWordVisible
+            // 
+            this.chkWordVisible.AutoSize = true;
+            this.chkWordVisible.Checked = true;
+            this.chkWordVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWordVisible.Location = new System.Drawing.Point(604, 104);
+            this.chkWordVisible.Name = "chkWordVisible";
+            this.chkWordVisible.Size = new System.Drawing.Size(93, 17);
+            this.chkWordVisible.TabIndex = 18;
+            this.chkWordVisible.Text = "show ms word";
+            this.chkWordVisible.UseVisualStyleBackColor = true;
             // 
             // webBrowser1
             // 
@@ -232,27 +244,14 @@ namespace GriTon.SQL2XML
             this.txtResult.TabIndex = 1;
             this.txtResult.Visible = false;
             // 
-            // chkWordVisible
-            // 
-            this.chkWordVisible.AutoSize = true;
-            this.chkWordVisible.Checked = true;
-            this.chkWordVisible.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkWordVisible.Location = new System.Drawing.Point(604, 104);
-            this.chkWordVisible.Name = "chkWordVisible";
-            this.chkWordVisible.Size = new System.Drawing.Size(93, 17);
-            this.chkWordVisible.TabIndex = 18;
-            this.chkWordVisible.Text = "show ms word";
-            this.chkWordVisible.UseVisualStyleBackColor = true;
-            this.chkWordVisible.Visible = false;
-            // 
-            // Main
+            // SQL2DOC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 535);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Main";
+            this.Name = "SQL2DOC";
             this.Text = "SQL->XML->DOC";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sql2XML)).EndInit();
@@ -268,9 +267,6 @@ namespace GriTon.SQL2XML
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn defaultDataGridViewTextBoxColumn;
         private Sql2XMLDataSet sql2XML;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;

@@ -188,10 +188,12 @@ namespace GriTon.SQL2XML
         /// <param name="WordTemplateFilename">DOT filename = document template filename.</param>
         /// <param name="ReportParameters">Report Parameters connected with "&". Example: Rechnung=46&Bank=10001000</param>
         /// <param name="Documentprefix">Optional document prefix to have different name than template</param>
-        public void GenerateDocument(string XMLDataSourceFilename, 
-            string WordTemplateFilename,  
-            string ReportParameters,
-            string Documentprefix) 
+        /// <param name="ForcedConnectionString">Optional connection string for the query // instead the one in the datasource</param>
+        public void GenerateDocument(String XMLDataSourceFilename,
+            String WordTemplateFilename,
+            String ReportParameters,
+            String Documentprefix,
+            String ForcedConnectionString) 
          {
             
             //cry if usage without parameters 
@@ -208,6 +210,7 @@ namespace GriTon.SQL2XML
                  #region  Part I generate XML
                  SQL2XML s2x = new SQL2XML();
                  //txtResult.Text = s2x.Parse("SQL2XMLExample.xml", "ID='123'");
+                 s2x.ForcedConnectionString = ForcedConnectionString;
                  string resultXML = s2x.Parse(
                              XMLDataSourceFilename,
                              ReportParameters);
