@@ -1,3 +1,4 @@
+Attribute VB_Name = "Update"
 ' =======================================================================
 ' MSG for translate - @ZIP se zamenq s imeto na faila avtomatichno, ne go mahai
 
@@ -45,6 +46,8 @@ End Function
 Public Sub UpdateIntraSell(silentMode As Boolean)
 On Error GoTo errLine
 
+    Call writeLog("UpdateIntraSell start")
+
     Dim rUnzipDLL As Boolean
     
     Dim oUnZip As UnzipFiles
@@ -66,9 +69,11 @@ On Error GoTo errLine
     If Dir(App.Path & "\archive", vbDirectory) = "" Then MkDir (App.Path & "\archive")
     
     resultDownload = DownloadFile(INTRASELL_UPDATE, App.Path & "\update.txt")
+    Call writeLog("update.txt downloaded")
     
     If resultDownload Then
         Open App.Path & "\update.txt" For Input As #11
+        Call writeLog("update.txt opened")
         Do While Not EOF(11)
             Line Input #11, strLine
             strfName1 = Replace(strLine, INTRASELL_BASE_URL, "")
@@ -77,8 +82,13 @@ On Error GoTo errLine
                 needUpdate = True
                 If MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
                     ' download new update file
+                    Call writeLog("start download of " & strfName)
                     resultDownload = DownloadFile(strLine, strfName)
+                    Call writeLog("end download of " & strfName)
+                    Call writeLog("resultDownload= " & resultDownload)
+                    
                     If resultDownload Then
+                        Call writeLog("create update folder")
                         ' create temp directory "update"
                         If Dir(App.Path & "\update", vbDirectory) = "" Then
                             MkDir (App.Path & "\update")
@@ -89,6 +99,9 @@ On Error GoTo errLine
                             rUnzipDLL = DownloadFile(INTRASELL_UPDATE_DLL, App.Path & "\Unzip32.dll")
                         End If
                         
+                        Call writeLog("register unzip dll")
+                        
+                        Call writeLog("unzip")
                         With oUnZip
                             .ZipFileName = strfName
                             .ExtractDir = App.Path & "\update"
@@ -106,8 +119,10 @@ On Error GoTo errLine
                         Set fld = fso.GetFolder(App.Path & "\update")
                         For Each fItem In fld.Files
                             If Dir(App.Path & "\" & fItem.Name) <> "" Then
+                                Call writeLog("archive files: " & fItem.Name)
                                 Call FileCopy(App.Path & "\" & fItem.Name, App.Path & "\archive\" & strfName1 & "\" & fItem.Name)
                             End If
+                            Call writeLog("copy files: " & fItem.Name)
                             Call FileCopy(App.Path & "\update\" & fItem.Name, App.Path & "\" & fItem.Name)
                         Next
                         
@@ -143,6 +158,8 @@ On Error GoTo errLine
     Exit Sub
 
 errLine:
+    Call writeLog("UpdateIntraSell errLine:" + err.Description)
+    
     If Dir(strfName) <> "" Then FileSystem.Kill strfName
     
     Set fld = fso.GetFolder(App.Path & "\update")
