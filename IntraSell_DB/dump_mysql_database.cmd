@@ -1,0 +1,1 @@
+mysqldump IntraSell_Daten_2 --u=root>>IntraSell_daten.dump
