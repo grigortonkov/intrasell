@@ -282,8 +282,16 @@
 		</tag>
 		<tag>
 			<name>[Bezeichnung1]</name>
-			<description>Attribute</description>
+			<description>Lagerinformation</description>
 		</tag>
+		
+		<tag>
+			<name>[LieferantLagerInfo]</name>
+			<description>Lagerinformation vom Lieferanten</description>
+		</tag>
+
+		
+		
 		<tag>
 			<name>[MWSTGROUP]</name>
 			<description>Attribute</description>
