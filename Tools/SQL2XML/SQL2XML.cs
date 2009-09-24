@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.Odbc;
 using System.Xml;
 
@@ -11,6 +12,22 @@ namespace GriTon.SQL2XML
     /// </summary>
     public class SQL2XML
     {
+
+        /// <summary>
+        /// Force using this connection string instead of the one defined in the XML 
+        /// </summary>
+        private string forcedConnectionString  = null; 
+
+        /// <summary>
+        ///  Force using this connection string instead of the one defined in the XML 
+        /// </summary>
+        public string ForcedConnectionString
+        {
+            get { return forcedConnectionString; }
+            set { forcedConnectionString = value; }
+        }
+
+
 
         /// <summary>
         /// Parses a specific data source filename, using the speicified parameters 
@@ -49,6 +66,12 @@ namespace GriTon.SQL2XML
                 string connString = command.ChildNodes[0].InnerText;  //"CommandText"
                 string commandText = command.ChildNodes[1].InnerText; //"ConnectionString"     
                 string rowTagName = command.ChildNodes[2].InnerText;  //"RowTagName"  
+
+                if (ForcedConnectionString != null)
+                {
+                    connString = ForcedConnectionString;
+                }
+
                 string newXML = Query2XML(connString, commandText, rowTagName);
                 newXML = newXML.Replace("<NewDataSet>", "");
                 newXML = newXML.Replace("</NewDataSet>", "");
@@ -124,12 +147,26 @@ namespace GriTon.SQL2XML
         private string Query2XML(string connString, string commandText, string rowTagName)
         {
             DataSet ds = new DataSet();
-            OdbcConnection conn = new OdbcConnection(connString);
-            OdbcDataAdapter dAdapt = new OdbcDataAdapter(commandText, conn);
+            if (!connString.Contains("Driver="))  //try MS SQL Native Connection support 
+            {
+                //Example for Connection 
+                //Data Source=ATCT0002;Initial Catalog=AEKIS_00291;Integrated Security=True
+                SqlConnection conn = new SqlConnection(connString);
+                SqlDataAdapter dAdapt = new SqlDataAdapter(commandText, conn);
 
-            conn.Open();
-            dAdapt.Fill(ds, rowTagName);
-            conn.Close();
+                conn.Open();
+                dAdapt.Fill(ds, rowTagName);
+                conn.Close();
+            }
+            else
+            {
+                OdbcConnection conn = new OdbcConnection(connString);
+                OdbcDataAdapter dAdapt = new OdbcDataAdapter(commandText, conn);
+
+                conn.Open();
+                dAdapt.Fill(ds, rowTagName);
+                conn.Close();
+            }
 
             return ds.GetXml();
             //XmlDocument doc = new XmlDocument();
