@@ -79,3 +79,12 @@ INSERT INTO `addin_nachnameerf_vars` (`ID`,`AuszugsGruppe`,`AuszugsDatum`,`Buchu
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+
+
+ALTER TABLE `intrasell_daten_2`.`addin_nachnameerf_eingang`
+ MODIFY COLUMN `Exportiert` BOOLEAN NOT NULL;
+
+
+ALTER TABLE `intrasell_daten_2`.`addin_nachnameerf_eingang` 
+ MODIFY COLUMN `Exportiert` TINYINT(1) NOT NULL DEFAULT 0;  
