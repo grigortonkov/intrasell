@@ -80,7 +80,9 @@ On Error GoTo errLine
             strfName = App.Path & "\" & strfName1
             If Dir(strfName) = "" Then
                 needUpdate = True
-                If MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
+                If Not MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
+                   Exit Sub
+                Else
                     ' download new update file
                     Call writeLog("start download of " & strfName)
                     resultDownload = DownloadFile(strLine, strfName)
@@ -144,15 +146,21 @@ On Error GoTo errLine
         Set oUnZip = Nothing
         
         If Not needUpdate Then
+           Call writeLog(MSG_UPTODATE)
            Debug.Print MSG_UPTODATE
-           If Not silentMode Then MsgBox MSG_UPTODATE, vbInformation, MSG_TITLE
+           If Not silentMode Then
+               MsgBox MSG_UPTODATE, vbInformation, MSG_TITLE
+            End If
         End If
         
         Close #11
         
         FileSystem.Kill App.Path & "\update.txt"
     Else
-        MsgBox MSG_ERROR_UPDATETXT, vbCritical, MSG_TITLE
+        Call writeLog(MSG_ERROR_UPDATETXT)
+        If Not silentMode Then
+           MsgBox MSG_ERROR_UPDATETXT, vbCritical, MSG_TITLE
+        End If
     End If
     
     Exit Sub
@@ -160,6 +168,10 @@ On Error GoTo errLine
 errLine:
     Call writeLog("UpdateIntraSell errLine:" + err.Description)
     
+    If Not silentMode Then
+           MsgBox "Unerwarteter Fehler:" & err.Description, vbCritical, MSG_TITLE
+    End If
+        
     If Dir(strfName) <> "" Then FileSystem.Kill strfName
     
     Set fld = fso.GetFolder(App.Path & "\update")
