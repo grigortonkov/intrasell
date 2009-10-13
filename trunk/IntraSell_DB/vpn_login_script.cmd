@@ -1,0 +1,1 @@
+copy DATE >> c:\logedin.log
