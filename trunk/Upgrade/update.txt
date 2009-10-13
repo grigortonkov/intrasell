@@ -3,4 +3,6 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_EUROFIBU_20090
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell3_DLL_20090912.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_EUROFIBU_20090915.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20091009a.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20091013.zip
+
 
