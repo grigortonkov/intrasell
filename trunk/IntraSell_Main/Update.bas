@@ -30,6 +30,9 @@ Private Const INTERNET_FLAG_RELOAD As Long = &H80000000
 Public Function DownloadFile(sSourceUrl As String, _
                              sLocalFile As String) As Boolean
   
+  Call writeLog("DownloadFile start")
+  Call writeLog("sSourceUrl:" & sSourceUrl)
+  Call writeLog("sLocalFile:" & sLocalFile)
   'Download the file. BINDF_GETNEWESTVERSION forces
   'the API to download from the specified source.
   'Passing 0& as dwReserved causes the locally-cached
@@ -40,6 +43,10 @@ Public Function DownloadFile(sSourceUrl As String, _
                                     sLocalFile, _
                                     BINDF_GETNEWESTVERSION, _
                                     0&) = ERROR_SUCCESS
+                                    
+                                    
+                                    
+   Call writeLog("DownloadFile end")
    
 End Function
 
