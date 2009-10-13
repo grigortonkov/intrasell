@@ -25,23 +25,32 @@ USE intrasell_daten_2;
 -- Definition of table `calcsheetpositions`
 --
 
-DROP TABLE IF EXISTS `calcsheetpositions`;
-CREATE TABLE `calcsheetpositions` (
-  `Position` int(10) NOT NULL,
-  `Gruppe` varchar(50) DEFAULT NULL,
-  `Bezeichnung` varchar(50) DEFAULT NULL,
-  `Col1` longtext,
-  `Col2` longtext,
-  `Col3` longtext,
-  `Col4` longtext,
-  `Operation` varchar(50) DEFAULT NULL,
-  `Sortierung` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Position`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- DROP TABLE IF EXISTS `calcsheetpositions`;
+-- CREATE TABLE `calcsheetpositions` (
+--   `Position` int(10) NOT NULL,
+--   `Gruppe` varchar(50) DEFAULT NULL,
+--   `Bezeichnung` varchar(50) DEFAULT NULL,
+--   `Col1` longtext,
+--   `Col2` longtext,
+--   `Col3` longtext,
+--   `Col4` longtext,
+--   `Operation` varchar(50) DEFAULT NULL,
+--   `Sortierung` int(11) DEFAULT NULL,
+--   PRIMARY KEY (`Position`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calcsheetpositions`
 --
+
+
+-- backup 
+create table calcsheetpositionsBak as 
+select * from calcsheetpositions; 
+
+
+delete from calcsheetpositions;
+
 
 /*!40000 ALTER TABLE `calcsheetpositions` DISABLE KEYS */;
 INSERT INTO `calcsheetpositions` (`Position`,`Gruppe`,`Bezeichnung`,`Col1`,`Col2`,`Col3`,`Col4`,`Operation`,`Sortierung`) VALUES 
