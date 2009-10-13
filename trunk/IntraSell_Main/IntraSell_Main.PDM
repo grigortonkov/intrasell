@@ -1,0 +1,105 @@
+[Root]
+Most Recent Package=Standard Setup Package 1
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=Z:\Business\IntraSell_System\IntraSell_Main_Package
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+
+[Package|Standard Setup Package 1|Files Released]
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACC.OLB=
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSO.DLL=
+Z:\Business\IntraSell_System\IntraSell_Main\Unzip32.dll=
+C:\Windows\System32\urlmon.dll=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+C:\Windows\SysWOW64\scrrun.dll=
+
+[Package|Standard Setup Package 1|Files Added]
+
+[Package|Standard Setup Package 1|Files Removed]
+
+[Package|Standard Setup Package 1|Files In Project]
+Z:\Business\IntraSell_System\IntraSell_Main\IntraSell.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\urlmon.dll=Yes
+Z:\Business\IntraSell_System\IntraSell_Main\Unzip32.dll=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSO.DLL=Yes
+C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACC.OLB=Yes
+C:\Windows\SysWOW64\scrrun.dll=Yes
+C:\Windows\SysWOW64\msvcrt.dll=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+Z:\Business\IntraSell_System\IntraSell_Main\IntraSell.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\urlmon.dll=$(WinSysPath)
+Z:\Business\IntraSell_System\IntraSell_Main\Unzip32.dll=$(WinSysPath)
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSO.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACC.OLB=$(WinSysPath)
+C:\Windows\SysWOW64\scrrun.dll=$(WinSysPath)
+C:\Windows\SysWOW64\msvcrt.dll=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+Z:\Business\IntraSell_System\IntraSell_Main\IntraSell.exe=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=
+Title=IntraSell 4
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=IntraSell 4
+PrivateGroup0=Falsch
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|IntraSell 4]
+Icon1=IntraSell.exe
+Title1=IntraSell 4
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=Z:\Business\IntraSell_System\IntraSell_Main_Package
+ProjectFolder=Z:\Business\IntraSell_System\IntraSell_Main
+ServerSideCab=
+File1=Z:\Business\IntraSell_System\IntraSell_Main_Package\setup.exe
+File2=Z:\Business\IntraSell_System\IntraSell_Main_Package\Setup.Lst
+File3=Z:\Business\IntraSell_System\IntraSell_Main_Package\IntraSell.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
