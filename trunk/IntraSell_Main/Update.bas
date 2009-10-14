@@ -30,6 +30,7 @@ Private Const INTERNET_FLAG_RELOAD As Long = &H80000000
 Public Function DownloadFile(sSourceUrl As String, _
                              sLocalFile As String) As Boolean
   
+  On Error GoTo err
   Call writeLog("DownloadFile start")
   Call writeLog("sSourceUrl:" & sSourceUrl)
   Call writeLog("sLocalFile:" & sLocalFile)
@@ -47,6 +48,11 @@ Public Function DownloadFile(sSourceUrl As String, _
                                     
                                     
    Call writeLog("DownloadFile end")
+   Exit Function
+err:
+   DownloadFile = False
+   Call writeLog("DownloadFile error:" & err.Description)
+
    
 End Function
 
