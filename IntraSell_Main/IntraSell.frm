@@ -135,25 +135,34 @@ On Error GoTo errLine
         ' show splash
         'Dim splash As frmSplash: Set splash = New frmSplash
         'splash.Show
-        
+        Call writeLogMain("UpdateIntraSell start")
         Call UpdateIntraSell(True)
         
+        Call writeLogMain("ShowWindow start")
         Call ShowWindow(Me.hwnd, SW_SHOWMAXIMIZED)
         
+        Call writeLogMain("StartAccess start")
         Call StartAccess
         
+        Call writeLogMain("OpenDatabase start")
         Call OpenDatabase
-        
+               
+        Call writeLogMain("ShowWindow 1")
         Call ShowWindow(oAccess.hWndAccessApp, SW_HIDE)
         
+        Call writeLogMain("ShowWindow 2")
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
 
         Exit Sub
         
         'error
 errLine:
-        MsgBox "Error in MDIForm_Load: " & Err.Description
-        Err.Clear
+        Call writeLogMain("Error in MDIForm_Load: " & err.Number)
+        Call writeLogMain("Error in MDIForm_Load: " & err.Description)
+        Call writeLogMain("Error in MDIForm_Load: " & err.Source)
+        
+        MsgBox "Error in MDIForm_Load: " & err.Description
+        err.Clear
         Exit Sub
         
 End Sub
@@ -161,12 +170,17 @@ End Sub
 Private Sub StartAccess()
 
        ' Start a new instance of Access for Automation:
+        Call writeLogMain("StartAccess start")
         Set oAccess = New Access.Application
         
         ' Sasho begin
         ' set access low macro security
+        Call writeLogMain("StartAccess set low macro security")
+        Call writeLogMain("oAccess.Version=" & oAccess.Version)
+        
         If oAccess.Version >= "10" Then
-           oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
+           'maybe error pri george
+           'oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
         End If
     
         ' hide ribbons in office 2007
@@ -175,14 +189,18 @@ Private Sub StartAccess()
         '    oAccess.LoadCustomUI "HideRibbon", xml
         'End If
         
+        Call writeLogMain("ShowWindowsInTaskbar")
         oAccess.SetOption "ShowWindowsInTaskbar", False
         ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
         'Sasho end
-        
+        Call writeLogMain("set Visible")
         oAccess.Visible = True
        
+        Call writeLogMain("set parent")
         Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
+        Call writeLogMain("show window")
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+        Call writeLogMain("StartAccess start")
 End Sub
 
 
@@ -198,6 +216,7 @@ Public Function OpenDatabase()
 
 On Error GoTo errLine
 
+   Call writeLogMain("OpenDatabase start")
    If oAccess Is Nothing Then 'open access
     StartAccess
    End If
@@ -205,13 +224,15 @@ On Error GoTo errLine
     ' Open a database in exclusive mode:
     Dim isFilename As String
     isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
-    Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
     
+    Call writeLogMain("OpenCurrentDatabase start")
+    Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")
+    Call writeLogMain("OpenCurrentDatabase end")
     Exit Function
         
 errLine:
-    MsgBox "Error in openDatabase: " & Err.Description
-    Err.Clear
+    MsgBox "Error in openDatabase: " & err.Description
+    err.Clear
     Exit Function
 End Function
 
@@ -225,8 +246,8 @@ On Error GoTo errLine
         Exit Function
     
 errLine:
-        Debug.Print "Error in Close_Click" & Err.Description
-        Err.Clear
+        Debug.Print "Error in Close_Click" & err.Description
+        err.Clear
         On Error Resume Next
         Exit Function
 End Function
