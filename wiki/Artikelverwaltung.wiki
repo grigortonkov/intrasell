@@ -1,4 +1,4 @@
-#summary Artikelverwaltung mit IntraSell.
+#summary Hilfe: Artikelverwaltung mit IntraSell.
 
 = Introduction =
 
