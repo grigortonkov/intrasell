@@ -49,7 +49,7 @@
   * Replikation einrichten zwischen Office und WebServer: SetupReplikation
 
 == Funkionen == 
-  * Stammdatenverwaltung: Kunden, Lieferanten, Adressen, Etiketten;
+  * [Stammdatenverwaltung]: Kunden, Lieferanten, Adressen, Etiketten;
   * Artikel, Artikelgruppen, Preislisten;
   * Angebot, Auftrag, Rechnung, Lieferschein, Retourschein (Umwandlungsfunktion wie z.B. Rechnung aus einem Angebot zu erstellen) ;
   * Import- & Exportfunktion, ELBA Schnittstelle;
