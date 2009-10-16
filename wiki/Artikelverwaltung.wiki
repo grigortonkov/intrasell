@@ -2,12 +2,12 @@
 
 = Introduction =
 
-Add your content here.
+Hier finden Sie Anleitungen für die Artikelverwaltung in IntraSell. 
 
 
-= Details =
+= Artikelanlage =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Artikeländerungen =
+
+= Vorbereitung fürs Web =
+ 
