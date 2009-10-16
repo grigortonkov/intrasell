@@ -1,6 +1,6 @@
 #summary Hilfe: Artikelverwaltung mit IntraSell.
 
-= Introduction =
+= Allgemein =
 
 Hier finden Sie Anleitungen für die Artikelverwaltung in IntraSell. 
 
