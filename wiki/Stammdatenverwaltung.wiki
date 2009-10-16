@@ -1,0 +1,11 @@
+#summary Stammdatenverwaltung in IntraSell.
+
+= Stammdatenverwaltung =
+
+== Kunden ==
+
+== Lieferanten ==
+
+== Artikel ==
+
+ 
