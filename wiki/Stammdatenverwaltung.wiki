@@ -1,4 +1,4 @@
-#summary Stammdatenverwaltung in IntraSell.
+#summary Hilfe: Stammdatenverwaltung in IntraSell.
 
 = Stammdatenverwaltung =
 
@@ -6,6 +6,6 @@
 
 == Lieferanten ==
 
-== Artikel ==
+== Einstellungen ==
 
  
