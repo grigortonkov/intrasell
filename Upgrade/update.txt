@@ -2,6 +2,6 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_DokSys_2009090
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell3_DLL_20090912.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_EFIBU_20091016.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Stats_20091016.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20091222.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20091223.zip
 
 
