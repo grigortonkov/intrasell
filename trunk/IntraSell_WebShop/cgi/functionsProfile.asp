@@ -487,7 +487,7 @@ if typeOfAddress = SHIPPING or typeOfAddress=INVOICE then tableName = "[ofAdress
 
 			'response.write "LoG=" & Session ("LOG_IN")
 			'Response.End 
-			  Dim NextIDNR : NextIDNR = NextID("ofAdressen", "IDNR")
+			    Dim NextIDNR: NextIDNR = NextID("ofAdressen", "IDNR")
 				'Create new
 				'PROFILE NEW 
 				SQL = " INSERT INTO " & tableName & " (IDNR, Firma, Anrede, Status, Titel, Name, Vorname, Adresse, PLZ, Email, Tel, Tel2, Passwort ,Land, Branche, AngelegtAn, Mobil, Fax, Web, UID) " & _ 
@@ -500,17 +500,27 @@ if typeOfAddress = SHIPPING or typeOfAddress=INVOICE then tableName = "[ofAdress
 				SQL = " UPDATE " & tableName & " SET Geburtstag = " & makeSQLDate(Geburtstag) & " WHERE IDNR=" & NextIDNR  
 				call writeLog ("createNewAdress.log", SQL)
 				objConnectionExecute(SQL)
-					
+				
+				'Adressen Settings einfügen 
+			    SQL = " INSERT INTO  [ofadressen-settings] (IDNR, Kundengruppe, Preisliste, language_code ) " & _ 
+					   "Values (" & NextIDNR & ",'" & VARVALUE_DEFAULT("SHOP_DEFAULT_KUNDENGRUPPE","Online") & "','" & VARVALUE_DEFAULT("SHOP_DEFAULT_PREISLISTE","1-Letztverbraucher")  & "', 'DEU')"  
+				call writeLog ("createNewAdress.log", SQL)
+				objConnectionExecute(SQL)
+			 		   
+			   	
 				if typeOfAddress = ACCOUNT and Session("SEND_REGISTRATION_MAIL") <> "FALSE" then 
 					'SEND REGISTRATION EMAIL 
 					response.write "SENDING... "								
-					sendMailFromWithSending Email,  "Ihre Registrierung bei " & VARVALUE("DOMAIN") & "!", MAKE_EMAIL_REGISTRATION(NextIDNR) , VARVALUE("EMAIL_REGISTER")
+					sendMailFromWithSending Email,  "Ihre Registrierung bei " & VARVALUE("DOMAIN") & "!", MAKE_EMAIL_REGISTRATION(NextIDNR) , VARVALUE_DEFAULT("EMAIL_REGISTER","register@domain.com")
 					'send email to the fax or email 
-					sendMailFromWithSending "sales@XSCORPION.COM",  "480-393-4348", MAKE_EMAIL_REGISTRATION(NextIDNR) , "faxout@faxthruemail.com"
+					sendMailFromWithSending VARVALUE_DEFAULT("EMAIL_REGISTER","register@domain.com"), VARVALUE_DEFAULT("FAX_REGISTER","480-393-4348"), MAKE_EMAIL_REGISTRATION(NextIDNR),  VARVALUE_DEFAULT("EMAIL_FAX_GATEWAY", "faxout@faxthruemail.com")
 					response.write " OK!"
 				 end if    
 				
 			   createNewAdress = NextIDNR 
+			   
+			
+			   
 			   if typeOfAddress = ACCOUNT then 
 			   'bitte html comment nicht ändert da das XML es als function result ausgelesen wird
 					    %>
