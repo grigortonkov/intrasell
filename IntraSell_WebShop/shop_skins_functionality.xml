@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Tropicana (DPEE) -->
 <!--Description of IntraSell webshop template Tags. These file describes where the tags can be used and their behaviour. -->
 <template_descriptions>
@@ -530,6 +530,10 @@
 		</tag>
 		<tag>
 			<name>[USER_EMAIL]</name>
+			<description>Attribute</description>
+		</tag>
+		<tag>
+			<name>[USER_PASSWORD]</name>
 			<description>Attribute</description>
 		</tag>
 		<tag>

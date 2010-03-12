@@ -24,7 +24,7 @@ if session("dbType") = "SQL" or session("dbType") = "MySQL" then MCHAR = "%"
 		  " WHERE "& tableOrdersProducts &".RechNr = " &tableOrders& ".Nummer" & _
 		  " and " & tableOrdersProducts &".ArtNR = grArtikel.ArtNr " & _ 
 		  " and " & tableOrders &".KundNr=" & getLOGIN() & _
-		  " and grArtikel.ArtNR>=1000 and grArtikel.bezeichnung not like '" & MCHAR & "CALCULATE" & MCHAR & "' " & _ 
+		  " and grArtikel.ArtNR>=1 and grArtikel.bezeichnung not like '" & MCHAR & "CALCULATE" & MCHAR & "' " & _ 
 		  " ORDER BY ("& tableOrdersProducts &".RechNr) DESC "	
    
    'if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  

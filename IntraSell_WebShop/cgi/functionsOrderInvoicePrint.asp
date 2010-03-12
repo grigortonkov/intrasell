@@ -33,7 +33,7 @@ Function getRecSource(VorgangTyp, Vorgang_Nummer)
             " " & vonForm & ".Nummer, concat([grPLZ].[plz], ' ' , [grPLZ].[ort]) AS plzort, [grPLZ].[plz] as PLZ, [grPLZ].[ort] as Ort, " & _
             " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & vonForm & ".Datum, " & vonForm & ".Notiz, " & _
             " Sum([Stk]*[PreisEuro]) AS summeEuro, " & vonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & vonForm & ".Notiz, Woher, Wohin," & _
-            " Anrede , Tel, Email" & _
+            " Anrede , Tel, Email, KundNr2" & _
             " FROM ((ofAdressen RIGHT JOIN " & vonForm & " ON ofAdressen.IDNR = " & vonForm & ".KundNr) " & _
             " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
             " ON " & vonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
@@ -41,13 +41,13 @@ Function getRecSource(VorgangTyp, Vorgang_Nummer)
             " GROUP BY ofAdressen.Idnr, ofAdressen.Name, Vorname, Firma, Adresse, " & _
             " " & vonForm & ".Nummer, [grPLZ].[plz], [grPLZ].[ort], " & vonForm & ".Datum, " & _
             " " & vonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode ,  " & vonForm & ".Notiz, Woher, Wohin," & _
-            " Anrede, Tel, Email"
+            " Anrede, Tel, Email, KundNr2"
  else 'ACCESS
   getRecSource =  "SELECT '" & VorgangTyp & "'  as VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & ' ' & Vorname as Namen , Firma, Adresse, " & _
             " " & vonForm & ".Nummer, [grPLZ].[plz] & ' ' & [grPLZ].[ort] AS plzort, [grPLZ].[plz] as PLZ, [grPLZ].[ort] as Ort, " & _
             " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & vonForm & ".Datum, " & vonForm & ".Notiz, " & _
             " Sum([Stk]*[PreisEuro]) AS summeEuro, " & vonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & vonForm & ".Notiz, Woher, Wohin," & _
-            " Anrede , Tel, Email" & _
+            " Anrede , Tel, Email, KundNr2" & _
             " FROM ((ofAdressen RIGHT JOIN " & vonForm & " ON ofAdressen.IDNR = " & vonForm & ".KundNr) " & _
             " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
             " ON " & vonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
@@ -55,7 +55,7 @@ Function getRecSource(VorgangTyp, Vorgang_Nummer)
             " GROUP BY '" & VorgangTyp & "' , ofAdressen.Idnr, ofAdressen.Name & ' ' & Vorname, Firma, Adresse, " & _
             " " & vonForm & ".Nummer, [grPLZ].[plz] & ' ' & [grPLZ].[ort], [grPLZ].[ort], [grPLZ].[PLZ], " & vonForm & ".Datum, " & _
             " " & vonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode ,  " & vonForm & ".Notiz, Woher, Wohin," & _
-            " Anrede, Tel, Email"
+            " Anrede, Tel, Email, KundNr2"
   end if                      
 End Function
 
@@ -185,7 +185,8 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
     
     fileContent = Replace(fileContent, "[Idnr]", rs("Idnr") & "", 1, 1)
     fileContent = Replace(fileContent, "[Kundennummer]", rs("Idnr") & "", 1, 1)
-     
+  
+    'Rechnungsadresse 
     fileContent = Replace(fileContent, "[Firma]", rs("firma") & "", 1, 1)
     fileContent = Replace(fileContent, "[Name]", rs("namen") & "", 1, 1)
     fileContent = Replace(fileContent, "[Strasse]", rs("adresse") & "", 1, 1)
@@ -193,6 +194,31 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
     fileContent = Replace(fileContent, "[PLZ]", rs("plz") & "", 1, 1)
     fileContent = Replace(fileContent, "[Ort]", rs("ort") & "", 1, 1)
 
+    'Lieferadresse 
+    if rs("kundnr2") & "" <> "" then 
+		dim addressType: addressType = "LI"
+		dim sqlLI
+			sqlLI  = "Select a.*, p.* from [ofAdressen-Weitere] a, grPLZ p where a.PLZ=p.IDNR and a.typ= '" & addressType &  "' and a.ID=" & rs("kundnr2")
+		dim rsLI
+		'Response.Write sqlLI 
+		set rsLI = objConnectionExecute(sqlLI) 
+		if not rsLI.EOF then 
+			fileContent = Replace(fileContent, "[Lieferadresse_Firma]", rsLI("firma") & "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Name]", rsLI("name") & " " & rsLI("vorname") & "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", rsLI("adresse") & "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", rsLI("plz") & " " & rsLI("ort") & "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", rsLI("plz") & "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Ort]", rsLI("ort") & "", 1, 1)
+		else 
+		    fileContent = Replace(fileContent, "[Lieferadresse_Firma]", "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Name]",  "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Strasse]",  "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_plz ort]",  "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_PLZ]",  "", 1, 1)
+			fileContent = Replace(fileContent, "[Lieferadresse_Ort]",  "", 1, 1)
+		end if 
+    end if 
+    
     fileContent = Replace(fileContent, "[Titel]", VorgangTyp & "-" & Vorgang_Nummer, 1, 1)
     fileContent = Replace(fileContent, "[Datum]", rs("Datum") & "", 1, 1)
     fileContent = Replace(fileContent, "[Betreuer]", "")

@@ -1380,6 +1380,14 @@ public function parseTemplateUserIDNR(idnr, accountPageHTML)
 		accountPageHTML = replace(accountPageHTML,"[USER_EMAIL]", "")
 	    end if
 	end if 
+	
+	 if inStr(accountPageHTML,"[USER_PASSWORD]")>0 then  
+            if getLOGIN() > 0 then
+		accountPageHTML = replace(accountPageHTML,"[USER_PASSWORD]", tablevalue("ofAdressen","IDNR",getLOGIN(),"Passwort"))
+            else
+		accountPageHTML = replace(accountPageHTML,"[USER_PASSWORD]", "")
+	    end if
+	end if 
 
 	 if inStr(accountPageHTML,"[USER_DATE_REGISTRATION]")>0 then  accountPageHTML = replace(accountPageHTML,"[USER_DATE_REGISTRATION]", tablevalue("ofAdressen","IDNR",getLOGIN(),"AngelegtAn"))  
 	 

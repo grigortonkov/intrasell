@@ -20,7 +20,7 @@ else 'logged in
 			" WHERE " & tableOrdersProductsArtikel &".RechNr = " & tableOrdersArtikel & ".Nummer " & _
 			" and " & tableOrdersProductsArtikel &".ArtNR = grArtikel.ArtNr " & _ 
 			" and " & tableOrdersArtikel &".KundNr=" & getLOGIN() & _
-			" and grArtikel.ArtNR>=1000 and grArtikel.bezeichnung not like '" & MC & "CALCULATE" & MC & "' " & _ 
+			" and grArtikel.ArtNR>=1 and grArtikel.bezeichnung not like '" & MC & "CALCULATE" & MC & "' " & _ 
 			" ORDER BY ("& tableOrdersProductsArtikel &".RechNr) DESC "	
 
 	' if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  		  
