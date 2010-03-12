@@ -641,8 +641,12 @@ Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT  : SHOP_PRODUCTLIST_ROW_COLOR_ALT = VARVALUE_
 						   
 							htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor &"""><font color='"  & color_angelegt_am & "'>" & angelegtAm & "</font></td>"
 						end if 	
-												
-						htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor &""">" & ArtNr & "</td>"
+						if UCASE(VARVALUE("BenutzeEAN")) = "TRUE" then 	'EAN					
+							htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor &""">" & EAN & "</td>"
+						else 'ArtNR 
+						    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor &""">" & ArtNr & "</td>"
+						end if 
+						
 						if showlagerInfo then 
 							htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor &""">" & lagerInfo & "</td>"
 						end if 

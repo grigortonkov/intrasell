@@ -49,7 +49,8 @@ dim gesetzAgree: gesetzAgree =  (ucase(request("GESETZ"))="ON")
 if  VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" then
 	if not gesetzAgree then 
 		%>
-		<font color="red"><%=getTranslation("Sie müssen das Fernabsatzgesetz lesen und akzeptieren!")%> <a href="javascript:history.back();" _href="default.asp?pageToShow=warenkorbStep3"><%=getTranslation("zur&uuml;ck")%> ...</a>!</font>
+		<font color="red"><%=getTranslation("Sie müssen das Fernabsatzgesetz lesen und akzeptieren!")%> 
+		<a href="javascript:history.back();" _href="default.asp?pageToShow=warenkorbStep3"><%=getTranslation("zur&uuml;ck")%> ...</a>!</font>
 		<hr>
 		<%
 		errorsFound = true 
@@ -106,6 +107,16 @@ if NOT errorsFound then
 	Dim gutscheinNummerStep4: gutscheinNummerStep4 = session("gutscheinNummer")
 	
 	Dim ordId: ordID = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, Notiz, gutscheinNummerStep4)
+    
+    if ordID & "" = "" then 'Fehler bei der Erstellung 
+      Response.Write getTranslation("Ihre Bestellung konnte nicht angenommen werden.")  
+      %>
+      &nbsp;<a href="javascript:history.back();" _href="default.asp?pageToShow=warenkorbStep3"><%=getTranslation("zur&uuml;ck")%> ...</a>!
+      <%
+      errorsFound = true 
+      Response.End
+    end if 
+    
     
     Dim client_name , client_address , client_postCode, client_email
     

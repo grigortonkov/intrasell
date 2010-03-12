@@ -387,13 +387,15 @@ objConnectionExecute(sql)
    sql =  " SELECT " & AuftragNr & " as AuftragNr, ArtNr, Quantity, Notiz " & _ 
 		  " FROM webWarenkorb " & _
 		  " Where SID=" & SID & " AND webWarenkorb.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
-   dim rsWK: set rsWK = objConnectionExecute(sql) 
-   dim subtotal: subtotal = 0 
-   while not rsWK.EOF	
+   Dim rsWK: set rsWK = objConnectionExecute(sql) 
+   Dim subtotal: subtotal = 0 
+   
+   While Not rsWK.EOF	
 	
 		Dim stkToOrder : stkToOrder = cdbl(rsWK("Quantity"))
 		Dim needsSerialNr: needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr"), "Seriennummer")  
 		Dim einzelpreis: einzelpreis = cdbl(makeNettoPreis(rsWK("ArtNr"), stkToOrder, SID))
+		einzelpreis = getPreis(KDNR, rsWK("ArtNr"), stkToOrder)
         Dim bezeichnung: bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr"), "bezeichnung")
         Dim positionNotiz : positionNotiz = rsWK("Notiz") 
         
@@ -405,19 +407,23 @@ objConnectionExecute(sql)
         
         subtotal = subtotal + einzelpreis*stkToOrder
         
-        	 
-        				 
+       if showdebug() then 
+		Response.Write "subtotal = " & subtotal 	 
+		Response.Write "einzelpreis = " & einzelpreis 	
+		Response.Write "stkToOrder = " & stkToOrder 	
+       end if 
+       
 			if needsSerialNr&"" = "true" or needsSerialNr&"" = "-1"  or needsSerialNr&"" = "1" then ' für jeden Eintrag eine eigene Zeile Erstellen
 			    Dim ii  
 			    for ii = 1 to stkToOrder 
 						sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" &_ 
 						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & 1  & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
-						 objConnectionExecute(sql)      
+						objConnectionExecute(sql)      
 				next 	      
 			else
 			         	sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" &_ 
 						      " VALUES (" & rsWK("AuftragNr")  & "," & rsWK("ArtNr")  & "," & stkToOrder  & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
-						 objConnectionExecute(sql)      
+						objConnectionExecute(sql)      
 			end if 
 			
 			rsWK.moveNext
@@ -515,10 +521,19 @@ Dim KG: KG = getWeightOfOrder("AU", AuftragNr)
 			 
 			 
 			'MINDESTBESTELLMENGE 
-  			if cdbl(getMinOrderValue()) > cdbl(subtotal) then 'leider kauft der kunde zu wenig 
+  			if cdbl(getMinOrderValue()) > cdbl(subtotal) then 'leider kauft der kunde zu wenig
+  			
+  			if VARVALUE_DEFAULT("SHOP_MIN_ORDER_VALUE_ACCEPT", "false") = "false" then 
+  			 Response.write  "<br><font color='red'>" & getTranslation("Mindestbestellmenge wurde nicht erreicht!") & "<br> " & _
+  			                          getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " netto. " & _
+  			                          getTranslation("Ihre Bestellung hat einen Wert von ") & cdbl(subtotal) & " netto.</font><br/>"
+  			 exit function   
+  			 'Response.end 
+  			end if 
+  			 
   					  Dim mindestBestellmengeArtNr : mindestBestellmengeArtNr = getMinOrderValue_charge_artnr()	
   					  Dim mindestBestellmengeSumme : mindestBestellmengeSumme = getMinOrderValue_charge()						  
-					  Dim mindestBestellmengeMWST  : mindestBestellmengeMWST  =  makeBruttoPreis2(getMinOrderValue_charge_artnr(), 1, Land) 
+					  Dim mindestBestellmengeMWST  : mindestBestellmengeMWST  = makeBruttoPreis2(getMinOrderValue_charge_artnr(), 1, Land) 
                       Dim mindestBestellmengeBez   : mindestBestellmengeBez   = tablevalue("grArtikel","ArtNr", mindestBestellmengeArtNr, "Bezeichnung")
  					  
  					  if mindestBestellmengeArtNr > 0 then 
