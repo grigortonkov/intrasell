@@ -77,15 +77,14 @@ sql = "SELECT [" & TableVorgangArtikel & "].* " & _
 	  
 'response.write sql
 	  
-dim rsWK
-set rsWK = objConnectionExecute(sql)
+Dim rsWK
+Set rsWK = objConnectionExecute(sql)
 Dim pos : pos = 0
 %>
 <%
 Dim totalBrutto : totalBrutto = 0
  while not rsWK.EOF 
  pos = pos + 1 
- 
  totalBrutto = totalBrutto + cdbl(rsWK("PreisATS_Brutto"))
 %>
     <tr>
@@ -95,7 +94,13 @@ Dim totalBrutto : totalBrutto = 0
       <input type="checkbox" name="checkD<%=pos%>" value="ON" onclick="return checkD<%=pos%>_onclick()" ID="Checkbox4"></td>
       <td height="17" align="center">
       <%=pos%></td>
-      <td height="17"><%=rsWK("ArtNr")%></td>
+     <td height="17">
+      <%if UCASE(VARVALUE("BenutzeEAN")) = "TRUE" then %>
+         <%=rsWK("EAN")%>
+      <%else%>
+         <%=rsWK("ArtNr")%>
+      <%end if%>
+      </td>
       <td height="17"><%=rsWK("Bezeichnung")%></td>
       <td height="17" align="center">
       <input name="Stk<%=pos%>" size="4" value="<%=rsWK("Stk")%>" ID="Text2">
@@ -109,7 +114,7 @@ Dim totalBrutto : totalBrutto = 0
     </tr>
    <%   
    rsWK.MoveNext 
-   WEND
+   wend
    rsWK.close 
    %>   
       <tr>
@@ -214,11 +219,12 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
 			
 		    Subtotal = cdbl(Subtotal) + cdbl(Einzelpreis) * cint(stk)
 		    'SubtotalMWST = cdbl(SubtotalMWST) + cdbl(makeBruttoPreis2(ArtNr, Stk, Land)) * Stk 'Old Way 
-		    dim IDNR: IDNR = getLOGIN()
+		    Dim IDNR: IDNR = getLOGIN()
 		    if IDNR  & "" ="" then 'der user ist noch nicht angemeldet 
 		       IDNR = 0
 		    end if 
 		    SubtotalMWST = cdbl(SubtotalMWST) + cdbl(calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)) * Stk
+		    'Response.Write "SubtotalMWST = " & SubtotalMWST
 		%>
 	    <tr bgcolor="white" ID="BasketRow">
 	      <td width="58" height="17"><p align="center"><%=pos%></td>	      
@@ -253,28 +259,34 @@ function visualizeWarenkorb(StepN, Land, PayMode, PostMode, PostModeDestination)
      <% 'POST and MODE COSTS 
       Dim KG: KG = getWeightOfBasket(SID)
  	  Dim PostCosts :  PostCosts = 0
- 	  Dim PostExpensesMWST : PostExpensesMWST =0
+ 	  Dim PostExpensesMWST : PostExpensesMWST = 0
  	  
  	  Dim payModeExpenses : payModeExpenses = 0
- 	  Dim payModeExpensesMWST : payModeExpensesMWST =0
+ 	  Dim payModeExpensesMWST : payModeExpensesMWST = 0
  	  
- 	  Dim gutscheinSumme : gutscheinSumme=0
- 	  Dim gutscheinSummeMWST : gutscheinSummeMWST=0 
+ 	  Dim gutscheinSumme : gutscheinSumme = 0
+ 	  Dim gutscheinSummeMWST : gutscheinSummeMWST = 0 
  	 
  	  	  
  	  Dim messageNoCosts : messageNoCosts  =""
  	  
  	  'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
- 	   'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
+ 	  'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
  	   if (1*subtotal < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
  				if ucase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" then 
+ 				   Dim postSpendsArtNr : postSpendsArtNr = getPostSpendsArtNr(Land, KG, PostMode) 
  				   PostCosts = calculatePostSpends(PostModeDestination, KG, PostMode)	
- 				   PostExpensesMWST = makeBruttoPreis(PostCosts,2, Land)
+ 				   PostExpensesMWST = makeBruttoPreis(PostCosts, 2, Land)
+ 				   PostExpensesMWST =  cdbl(calculateBruttoPreis(PostCosts, postSpendsArtNr, IDNR))
+ 				   'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
  				end if 
  	  
  				if ucase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" then 
+ 				    Dim payModeArtNr : payModeArtNr = getPaymentModeSpendsArtNr(PayMode, Land)
  					if PayMode<> "" then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotalNoAddCharged)	
- 					payModeExpensesMWST = makeBruttoPreis(payModeExpenses,2, Land)
+ 					payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
+ 					payModeExpensesMWST =  cdbl(calculateBruttoPreis(payModeExpenses, payModeArtNr, IDNR))
+ 				    'if (SubtotalMWST = 0 ) then  payModeExpensesMWST = 0
  				end if 
  				'END POST AND MODE COSTS 
  	   else 	
@@ -473,18 +485,21 @@ destination = Request("destination"): if destination = "" then destination  = Se
 		Dim pos: pos = 0		
 		Dim Subtotal : Subtotal = 0
 		Dim SubtotalMWST : SubtotalMWST = 0
-		while not rsWK.EOF 
 		
-			pos = pos + 1 
-			Dim ArtNr: ArtNR = rsWK("ArtNR")			
-			Dim stk: stk = rsWK("Quantity")
-			Dim einzelpreis: einzelpreis = makeNettoPreis(ArtNR, Stk, sid)
+		Dim ArtNr
+		Dim stk
+		Dim einzelpreis
+		
+		While not rsWK.EOF 
+			ArtNR = rsWK("ArtNR")
+			pos = pos + 1 						
+			stk = rsWK("Quantity")
+			einzelpreis = makeNettoPreis(ArtNR, Stk, sid)
 			
-		subtotal = subtotal +einzelpreis * stk
-		'SubtotalMWST =  SubtotalMWST + makeBruttoPreis(rsWK("PreisATS"),rsWK("MWST"))  * rsWK("Quantity") 
-		SubtotalMWST =   SubtotalMWST + makeBruttoPreis2(rsWK("ArtNR"), stk, Session("Land")) * stk
-		
-		
+			subtotal = subtotal + einzelpreis * stk
+		   'SubtotalMWST =  SubtotalMWST + makeBruttoPreis(rsWK("PreisATS"),rsWK("MWST"))  * rsWK("Quantity") 
+			SubtotalMWST =   SubtotalMWST + makeBruttoPreis2(rsWK("ArtNR"), stk, Session("Land")) * stk
+	        
 		rsWK.MoveNext 
 		WEND
 		rsWK.close 
@@ -499,12 +514,12 @@ destination = Request("destination"): if destination = "" then destination  = Se
  	  
  	  if VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" then 
  	     PostCosts = calculatePostSpends(Land, KG, PostMode)	
- 	     PostExpensesMWST =makeBruttoPreis2(getPostSpendsArtNr(Land, KG, PostMode),1, Session("Land"))
+ 	     PostExpensesMWST = makeBruttoPreis2(getPostSpendsArtNr(Land, KG, PostMode), 1, Session("Land"))
  	  end if 
  	  
  	  if VARVALUE(CALCULATE_PAYMODECOSTS) = "TRUE" then 
  		if PayMode<> "" then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotal)	
- 		payModeExpensesMWST =  makeBruttoPreis2(getPaymentModeSpendsArtNr(PayMode, Land),1, Session("Land"))
+ 		payModeExpensesMWST = makeBruttoPreis2(getPaymentModeSpendsArtNr(PayMode, Land), 1, Session("Land"))
  	  end if 
  	  'END POST AND MODE COSTS 
  	  
@@ -600,8 +615,7 @@ function makeLieferKalkulatorForm( byVal payMode, byVal postMode, byVal destinat
  
  <!-- SELECT PLACE OF DELIVERY  -->
   <p align=left><%=getTranslation("Destination der Lieferung")%>: 
-
-  <%
+			<%
             'dim rsZM, selected            
             sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by destination  order by destination"
             set rsZM = objConnectionExecute(sql) 
