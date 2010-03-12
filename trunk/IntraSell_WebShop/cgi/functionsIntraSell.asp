@@ -338,8 +338,14 @@ function getPaketNummer(byval orderType, byVal rechNR)
   dim rs, sql 
   sql = "select * from buchVorgaengeEigenschaften where vorgangTyp = '" & orderType & "' and Nummer = " & rechNR & " and [Name] like 'Paketnummer'"
   set rs = objConnectionExecute(sql) 
-  if not rs.eof then 
-      getPaketNummer = rs("Value")
+  if not rs.eof then
+  dim allePakete 'as string  
+    while not rs.eof 'do
+      allePakete = allePakete & ", " & rs("Value")
+      rs.MoveNext 
+    wend   
+    allePakete = right(allePakete, len(allePakete) - 2)
+    getPaketNummer = allePakete
   else 
       getPaketNummer = ""   
   end if 
