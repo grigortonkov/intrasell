@@ -1,0 +1,266 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F7CD460-BB50-448A-9D1B-62E9FC4B4E9E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebShop_2008</RootNamespace>
+    <AssemblyName>WebShop_2008</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="admin\default.aspx" />
+    <Content Include="admin\help.aspx" />
+    <Content Include="admin\includeall.inc" />
+    <Content Include="admin\login.aspx" />
+    <Content Include="admin\module_ref\functionsReferers.aspx" />
+    <Content Include="admin\module_ref\howToRegister.txt" />
+    <Content Include="admin\module_ref\showMySells.aspx" />
+    <Content Include="admin\style.css" />
+    <Content Include="admin\test1.aspx" />
+    <Content Include="cgi\account\ChangeEmail.aspx" />
+    <Content Include="cgi\account\ChangePassword.aspx" />
+    <Content Include="cgi\account\createUpdateAddressSpecial.aspx" />
+    <Content Include="cgi\account\createUpdateDeliveryAddresses.aspx" />
+    <Content Include="cgi\account\DoSendPassword.aspx" />
+    <Content Include="cgi\account\logout.aspx" />
+    <Content Include="cgi\account\myAccount.aspx" />
+    <Content Include="cgi\account\myAccountActivate.aspx" />
+    <Content Include="cgi\account\myAccountLogin.aspx" />
+    <Content Include="cgi\account\myProfile.aspx" />
+    <Content Include="cgi\account\myProfileSimple.aspx" />
+    <Content Include="cgi\account\passwortLost.aspx" />
+    <Content Include="cgi\account\passwortLostSend.aspx" />
+    <Content Include="cgi\account\printPreviewOrder.aspx" />
+    <Content Include="cgi\account\profileCreate.aspx" />
+    <Content Include="cgi\account\profileCreateSimple.aspx" />
+    <Content Include="cgi\account\profileSave.aspx" />
+    <Content Include="cgi\account\profileSaveSimple.aspx" />
+    <Content Include="cgi\account\rechnungs.aspx" />
+    <Content Include="cgi\account\rechnungsArtikel.aspx" />
+    <Content Include="cgi\account\saveBookmark.aspx" />
+    <Content Include="cgi\account\saveUserQuery.aspx" />
+    <Content Include="cgi\account\showBookmark.aspx" />
+    <Content Include="cgi\account\showUserQuery.aspx" />
+    <Content Include="cgi\account\showUserSearches.aspx" />
+    <Content Include="cgi\account\template_login.htm" />
+    <Content Include="cgi\account\testEmailOrder.aspx" />
+    <Content Include="cgi\account\userBookmarks.aspx" />
+    <Content Include="cgi\basket\redirect_restoreWarenkorb.aspx" />
+    <Content Include="cgi\basket\restoreWarenkorb.aspx" />
+    <Content Include="cgi\basket\warenkorbStep1.aspx" />
+    <Content Include="cgi\basket\warenkorbStep2.aspx" />
+    <Content Include="cgi\basket\warenkorbStep3.aspx" />
+    <Content Include="cgi\basket\warenkorbStep4.aspx" />
+    <Content Include="cgi\batch\createMailsForDisabledObjects.aspx" />
+    <Content Include="cgi\batch\createMailsForNewObjects.aspx" />
+    <Content Include="cgi\calls\callMeBack.aspx" />
+    <Content Include="cgi\calls\DoCallMeBack.aspx" />
+    <Content Include="cgi\calls\DoOrderInfo.aspx" />
+    <Content Include="cgi\calls\DoRequestJob.aspx" />
+    <Content Include="cgi\calls\DoRMARequest.aspx" />
+    <Content Include="cgi\calls\DoSendToAssociate.aspx" />
+    <Content Include="cgi\calls\DoSendToFriend.aspx" />
+    <Content Include="cgi\calls\DoSendToFriend_included.aspx" />
+    <Content Include="cgi\calls\registerNewsletter.aspx" />
+    <Content Include="cgi\calls\registerNewsletterNew.aspx" />
+    <Content Include="cgi\calls\requestJob.aspx" />
+    <Content Include="cgi\calls\requestOrderInfo.aspx" />
+    <Content Include="cgi\calls\RMARequest.aspx" />
+    <Content Include="cgi\calls\RMASave.aspx" />
+    <Content Include="cgi\calls\sendToFriend.aspx" />
+    <Content Include="cgi\calls\unregisterNewsletter.aspx" />
+    <Content Include="cgi\createTables_sql.aspx" />
+    <Content Include="cgi\default.aspx" />
+    <Content Include="cgi\defaultbody.inc.aspx" />
+    <Content Include="cgi\defaulthead.inc.aspx" />
+    <Content Include="cgi\defaultheadVars.inc.aspx" />
+    <Content Include="cgi\defaultTemplate.aspx" />
+    <Content Include="cgi\eCard\card_1.gif" />
+    <Content Include="cgi\eCard\card_2.gif" />
+    <Content Include="cgi\eCard\card_3.gif" />
+    <Content Include="cgi\eCard\card_4.gif" />
+    <Content Include="cgi\eCard\card_5.gif" />
+    <Content Include="cgi\eCard\card_6.gif" />
+    <Content Include="cgi\eCard\dot.GIF" />
+    <Content Include="cgi\eCard\index.aspx" />
+    <Content Include="cgi\eCard\send.aspx" />
+    <Content Include="cgi\eCard\view.aspx" />
+    <Content Include="cgi\extras\banner.aspx" />
+    <Content Include="cgi\extras\Banner.java" />
+    <Content Include="cgi\extras\bgapp.gif" />
+    <Content Include="cgi\functionsBanners.aspx" />
+    <Content Include="cgi\functionsCategories.aspx" />
+    <Content Include="cgi\functionsCats.aspx" />
+    <Content Include="cgi\functionsDictionary.aspx" />
+    <Content Include="cgi\functionsExtras.aspx" />
+    <Content Include="cgi\functionsGutschein.aspx" />
+    <Content Include="cgi\functionsIntraSell.aspx" />
+    <Content Include="cgi\functionsIntraSellDLL.aspx" />
+    <Content Include="cgi\functionsLieferanten.aspx" />
+    <Content Include="cgi\functionsNewsletter.aspx" />
+    <Content Include="cgi\functionsOrderInvoice.aspx" />
+    <Content Include="cgi\functionsOrderInvoiceDisplay.aspx" />
+    <Content Include="cgi\functionsOrderInvoicePrint.aspx" />
+    <Content Include="cgi\functionsOrderInvoicePrintASP.aspx" />
+    <Content Include="cgi\functionsPayment.aspx" />
+    <Content Include="cgi\functionsPrices.aspx" />
+    <Content Include="cgi\functionsProducts.aspx" />
+    <Content Include="cgi\functionsProductsCompare.aspx" />
+    <Content Include="cgi\functionsProductsImages.aspx" />
+    <Content Include="cgi\functionsProductsLists.aspx" />
+    <Content Include="cgi\functionsProductsPrint.aspx" />
+    <Content Include="cgi\functionsProductsQuery.aspx" />
+    <Content Include="cgi\functionsProfile.aspx" />
+    <Content Include="cgi\functionsProfileFormTest.aspx" />
+    <Content Include="cgi\functionsSessions.aspx" />
+    <Content Include="cgi\functionsSkins.aspx" />
+    <Content Include="cgi\functionsStatistics.aspx" />
+    <Content Include="cgi\functionsStatistics.aspx.vb" />
+    <Content Include="cgi\functionsTemplate.aspx" />
+    <Content Include="cgi\functionsToolbar.aspx" />
+    <Content Include="cgi\functionsUserPoints.aspx" />
+    <Content Include="cgi\functionsUserSearches.aspx" />
+    <Content Include="cgi\lager\lagerBook.aspx" />
+    <Content Include="cgi\lager\warehouse_manager.htm" />
+    <Content Include="cgi\lager\warehouse_manager_.htm" />
+    <Content Include="cgi\mailtexts.aspx" />
+    <Content Include="cgi\menu.js" />
+    <Content Include="cgi\MenuStyle.css" />
+    <Content Include="cgi\module_ref_ShowMyProducts.aspx" />
+    <Content Include="cgi\module_ref_ShowMyProductsAdmin.aspx" />
+    <Content Include="cgi\PriceCompare\autoscrollProducts.aspx" />
+    <Content Include="cgi\PriceCompare\buyFromMerchant.asp.aspx" />
+    <Content Include="cgi\PriceCompare\calendar.htc" />
+    <Content Include="cgi\PriceCompare\calendarcontrol.aspx" />
+    <Content Include="cgi\PriceCompare\calendarSelect.aspx" />
+    <Content Include="cgi\PriceCompare\calendar_de.htc" />
+    <Content Include="cgi\PriceCompare\ChartConst.inc.aspx" />
+    <Content Include="cgi\PriceCompare\defaultbody.inc.aspx" />
+    <Content Include="cgi\PriceCompare\functionsInterface.aspx" />
+    <Content Include="cgi\PriceCompare\functionsMerchants.aspx" />
+    <Content Include="cgi\PriceCompare\functionsPriceCompare.aspx" />
+    <Content Include="cgi\PriceCompare\makeChart.aspx" />
+    <Content Include="cgi\PriceCompare\makeProductMerchantList.aspx" />
+    <Content Include="cgi\PriceCompare\makeProductMerchantList2.aspx" />
+    <Content Include="cgi\PriceCompare\merchantChart.aspx" />
+    <Content Include="cgi\PriceCompare\merchantCompare.aspx" />
+    <Content Include="cgi\PriceCompare\merchantPage.aspx" />
+    <Content Include="cgi\PriceCompare\plzSelector.aspx" />
+    <Content Include="cgi\productReviewsWriteReview.aspx" />
+    <Content Include="cgi\productSearchOnKeywords.aspx" />
+    <Content Include="cgi\redirectBanners.aspx" />
+    <Content Include="cgi\services\createAccountService.aspx" />
+    <Content Include="cgi\services\createOrderService.aspx" />
+    <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
+    <Content Include="cgi\style.css" />
+    <Content Include="cgi\test.aspx" />
+    <Content Include="cgi\test2.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="DefaultPrintEdition.aspx" />
+    <Content Include="Default_Dummy.aspx" />
+    <Content Include="Intrasoft\connClose.aspx" />
+    <Content Include="Intrasoft\connOpen.aspx" />
+    <Content Include="Intrasoft\functions.aspx" />
+    <Content Include="Intrasoft\functionsCache.aspx" />
+    <Content Include="Intrasoft\functionsDictionary.aspx" />
+    <Content Include="Intrasoft\functionsFAQ.aspx" />
+    <Content Include="Intrasoft\functionsGUI.aspx" />
+    <Content Include="Intrasoft\functionsLogs.aspx" />
+    <Content Include="DefaultTest.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Default_Dummy.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default_Dummy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default_Dummy.aspx.designer.cs">
+      <DependentUpon>Default_Dummy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="cgi\functionsStatistics.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cgi\batch\runJobNewObjects.bat" />
+    <None Include="cgi\extras\Banner.class" />
+    <None Include="cgi\IntraSell_user.tmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52906</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
