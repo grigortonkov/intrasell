@@ -1,0 +1,4 @@
+<% 
+    objConnection.close()
+    objConnection = Nothing
+%>

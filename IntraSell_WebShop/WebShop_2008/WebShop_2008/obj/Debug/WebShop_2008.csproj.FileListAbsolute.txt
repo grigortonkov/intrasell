@@ -1,0 +1,7 @@
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\bin\WebShop_2008.dll
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\bin\WebShop_2008.pdb
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\ResolveAssemblyReference.cache
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.dll
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.pdb
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.cgi.functionsStatistics.aspx.resources
+Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.csproj.GenerateResource.Cache
