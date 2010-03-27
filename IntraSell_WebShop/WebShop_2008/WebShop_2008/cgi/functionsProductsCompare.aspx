@@ -1,31 +1,34 @@
 <script language="VB" runat="server">  
 
-
-    '===============================================================================
-    ' creates form for product comparisment 
-    '===============================================================================
+''' <summary>
+''' creates form for product comparisment 
+''' </summary>
+''' <param name="ArtNr1"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function compareProductsSelectForm(ByVal ArtNr1)
-        Dim html
-        Const COUNT_CHARS_TO_COMPARE = 30
+        Dim html As String
+        Const COUNT_CHARS_TO_COMPARE as Integer = 30
         html = "<form action=""default.aspx?pageToShow=compareTwoProducts"">"
         html = html + "<input name=""artNr1"" type=""hidden"" value=""" & ArtNr1 & """>"
         html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareTwoProducts"">"
-        Dim sql, rs
+        Dim sql As String, rs
         sql = "Select artNr, Bezeichnung from grArtikel where ArtNr <> " & ArtNr1 & _
               " AND produktAktiv<>0 and ArtKatNR in (Select  ArtKatNR from grArtikel where ArtNr = " & ArtNr1 & ") " & _
               " ORDER BY Bezeichnung"
         rs = objConnectionExecute(sql)
  
         html = html & "vergleichen mit <select name=""ArtNr2"">"
-        Dim compareWithName
+        Dim compareWithName As String 
+        
         While Not rs.EOF
-            compareWithName = rs("Bezeichnung")
+            compareWithName = rs("Bezeichnung").Value 
    
             If Len(compareWithName) > COUNT_CHARS_TO_COMPARE Then
                 compareWithName = Left(compareWithName, COUNT_CHARS_TO_COMPARE) & " ..."
             End If
        
-            html = html & "<option value=""" & rs("ArtNr") & """>" & compareWithName
+            html = html & "<option value=""" & rs("ArtNr").Value     & """>" & compareWithName
             rs.moveNExt()
         End While
  
@@ -71,7 +74,12 @@
     End Function
 
 
-    'ArtNrArray -  array with product numbers 
+    ''' <summary>
+    ''' ArtNrArray -  array with product numbers 
+    ''' </summary>
+    ''' <param name="ArtNrArray"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function compareProducts(ByVal ArtNrArray)
         Dim thProps : thProps = " width=""200"" bgcolor=""#C0C0C0"" "
         Dim artKatNR, artNr, i
@@ -84,7 +92,7 @@
         End If
         artKatNR = tableValue("grArtikel", "ArtNR", ArtNrArray(1), "ArtKatNR")
  
-        Dim tableWidth : tableWidth = 200 + 200 * (UBound(ArtNrArray) + 1)
+        Dim tableWidth As Integer : tableWidth = 200 + 200 * (UBound(ArtNrArray) + 1)
         Response.Write("<table width=""" & tableWidth & """ border=0>")
         Response.Write("<tr>")
         Response.Write("<th " & thProps & ">Feature</th>")

@@ -1,7 +1,7 @@
 <!--#include file="includeall.inc"-->
-<!--#include file="Title.asp"-->
+<!--#include file="Title.aspx"-->
 <body topmargin="0" leftmargin="0">
-    <!--#include file="menu.asp"-->
+    <!--#include file="menu.aspx"-->
     <%
         Dim ArtNr : ArtNr = CLng(Request("ArtNr"))
         Dim sql, rs
@@ -10,7 +10,7 @@
             Call drawErrorBox("Error", "Das Produkt ist unbekannt!", "", "")
             Response.End()
         End If
-        Dim artKatNr : artKatNr = rs("artKatNr")
+        Dim artKatNr : artKatNr = rs("artKatNr").Value
     %>
     <%
         'Draw BANNER
@@ -37,11 +37,11 @@
                     butArr(4, 1) = "Produktreviews"
                     butArr(5, 1) = "Review_schreiben"
 
-                    butArr(1, 2) = "productManufacturerInfos.asp?ArtNR=" & ArtNr
-                    butArr(2, 2) = "merchantChart.asp?ArtNR=" & ArtNr
-                    butArr(3, 2) = "account/saveBookmark.asp?Title=Produkt " & Server.UrlEncode(rs("Bezeichnung")) & "&Folder=Produkte&URL=../merchantCompare.asp?ArtNr=" & ArtNr
-                    butArr(4, 2) = "productReviews.asp?ArtNR=" & ArtNr
-                    butArr(5, 2) = "writeReview.asp?ArtNR=" & ArtNr
+                    butArr(1, 2) = "productManufacturerInfos.aspx?ArtNR=" & ArtNr
+                    butArr(2, 2) = "merchantChart.aspx?ArtNR=" & ArtNr
+                    butArr(3, 2) = "account/saveBookmark.aspx?Title=Produkt " & Server.UrlEncode(rs("Bezeichnung").Value) & "&Folder=Produkte&URL=../merchantCompare.aspx?ArtNr=" & ArtNr
+                    butArr(4, 2) = "productReviews.aspx?ArtNR=" & ArtNr
+                    butArr(5, 2) = "writeReview.aspx?ArtNR=" & ArtNr
                     Call drawWindowPart1Product("Produkt Information", " ", "", butArr)%>
                 <table cellspacing="0" style="height: 159px" border="0" width="700">
                     <tr>
@@ -54,7 +54,7 @@
                                                 &nbsp;HerstellerNr.</p>
                                         </th>
                                         <td width="225" height="18">
-                                            <%=rs("EAN")%>
+                                            <%=rs("EAN").Value%>
                                         </td>
                                     </tr>
                                     <tr>
@@ -63,7 +63,7 @@
                                                 &nbsp;Bezeichnung</p>
                                         </th>
                                         <td width="225" height="18">
-                                            <%=rs("Bezeichnung")%>
+                                            <%=rs("Bezeichnung").Value%>
                                         </td>
                                     </tr>
                                     <tr>
@@ -82,7 +82,7 @@
                                         </th>
                                         <td width="225" height="18">
                                             €
-                                            <%=formatnumber(rs("PreisATS"),2)%>
+                                            <%=formatnumber(rs("PreisATS").Value,2)%>
                                         </td>
                                     </tr>
                                     <!--   <tr>
@@ -98,7 +98,7 @@
                                                     &nbsp;Hersteller</p>
                                             </th>
                                             <td width="225" height="18">
-                                                <%=makeManufacturerView(rs("LieferantNR"))%>
+                                                <%=makeManufacturerView(rs("LieferantNR").Value)%>
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,8 +108,8 @@
                                             </th>
                                             <td width="225" height="194">
                                                 <p align="center">
-                                                    <% Call downloadFile(rs("Picture"), ArtNr)%>
-                                                    <%=makeImgTag(TABLEValue("grArtikel","ArtNr",ArtNR,"picture"), rs("Bezeichnung"),200)%>
+                                                    <% Call downloadFile(rs("Picture").Value, ArtNr)%>
+                                                    <%=makeImgTag(TABLEValue("grArtikel", "ArtNr", ArtNr, "picture"), rs("Bezeichnung").Value, 200)%>
                                                 </p>
                                             </td>
                                         </tr>
@@ -124,7 +124,7 @@
                                         <p align="center">
                                             <img border="0" src="menu/preisalarm.gif" align="left">Ich möchte informiert werden,
                                             sobald der Preis günstiger ist!&nbsp;
-                                            <form action="account/priceAlarmRegister.asp" method="post" id="form1" name="form1"
+                                            <form action="account/priceAlarmRegister.aspx" method="post" id="form1" name="form1"
                                             target="PriceAlarm">
                                             <table border="0" cellspacing="0" width="290">
                                                 <tr>
@@ -140,7 +140,7 @@
                                                         Enddatum*
                                                     </th>
                                                     <td width="186">
-                                                        <input name="EndDate" id="EndDate" size="15" value="<%=Date()+30%>" onclick="window.open('calendarSelect.asp?toElementName=EndDate', 'remote','top=300,left=300,height=400,width=350,status=yes,toolbar=no,menubar=no');">
+                                                        <input name="EndDate" id="EndDate" size="15" value="<%=Date()+30%>" onclick="window.open('calendarSelect.aspx?toElementName=EndDate', 'remote','top=300,left=300,height=400,width=350,status=yes,toolbar=no,menubar=no');">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -148,7 +148,7 @@
                                                         nur wenn Preis unter
                                                     </th>
                                                     <td width="186">
-                                                        <input name="PriceBorder" size="15" value="<%=formatNumber(rs("PreisATS"),2)%>">
+                                                        <input name="PriceBorder" size="15" value="<%=formatNumber(rs("PreisATS").Value,2)%>">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -172,7 +172,7 @@
                             <table border="1" width="31%" cellspacing="0" align="right">
                                 <tr>
                                     <td width="100%" bordercolor="#f7f7f7">
-                                        <form method="POST" action="merchantCompare.asp" target="_self">
+                                        <form method="POST" action="merchantCompare.aspx" target="_self">
                                         <input type="hidden" value="<%=artNR%>" name="ArtNr">
                                         <table border="0" height="53" width="292">
                                             <tr>
@@ -203,7 +203,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td width="41%" align="right">
-                                                                PLZ:<input type="button" value="?" name="plzSucheButton" onclick="window.open('plzSelector.asp?toElementName=PLZ', 'remote','top=300,left=300,height=300,width=550,status=yes,toolbar=no,menubar=no');">&nbsp;
+                                                                PLZ:<input type="button" value="?" name="plzSucheButton" onclick="window.open('plzSelector.aspx?toElementName=PLZ', 'remote','top=300,left=300,height=300,width=550,status=yes,toolbar=no,menubar=no');">&nbsp;
                                                             </td>
                                                             <td width="30%" colspan="2">
                                                                 <input type="text" name="PLZ" size="7">
@@ -233,7 +233,7 @@
                     End If
   
                 %>
-                <!--#include file="merchantCompareMerchantList.asp"-->
+                <!--#include file="merchantCompareMerchantList.aspx"-->
             </td>
         </tr>
     </table>
@@ -242,5 +242,5 @@
         ObjConnectionexecute("INSERT INTO webWarenkorb (ARTNR, Quantity) VALUES (" & ArtNr & ",1)")
         Call LOG() ' save in login table 
     %>
-    <!--#include file="footer.asp"-->
+    <!--#include file="footer.aspx"-->
 </body>

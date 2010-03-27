@@ -45,7 +45,7 @@
             <th width="300" style="border-bottom: 2 solid #C0C0C0">
                 Zahlungs- &amp; Lieferungsmethoden
             </th>
-            <!--<th width="100" style="border-bottom: 2 solid #C0C0C0"><a href="merchantCompare.asp?ArtNr=<%=ArtNr%>&amp;OrderBy=ArtikelNrLieferant"> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
+            <!--<th width="100" style="border-bottom: 2 solid #C0C0C0"><a href="merchantCompare.aspx?ArtNr=<%=ArtNr%>&amp;OrderBy=ArtikelNrLieferant"> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
             <th width="100" style="border-bottom: 2 solid #C0C0C0">
                 Zum Shop
             </th>
@@ -94,7 +94,7 @@ end if
 -->
         <td bgcolor="<%=rowColor%>">
             <p align="center">
-                <a target="_new" href="cgi/priceCompare/buyFromMerchant.asp?LieferantNr=<%=rsL("LieferantNR")%>&ArtNr=<%=ArtNr%>&ArtikelNrLieferant=<%=rsL("ArtikelNrLieferant")%>">
+                <a target="_new" href="cgi/priceCompare/buyFromMerchant.aspx?LieferantNr=<%=rsL("LieferantNR")%>&ArtNr=<%=ArtNr%>&ArtikelNrLieferant=<%=rsL("ArtikelNrLieferant")%>">
                     <img border="0" src="<%=imageFullName("buy.gif")%>" alt="Click here to buy!"></a>
             </p>
         </td>
@@ -103,4 +103,4 @@ end if
 rsL.MoveNext 
 WEND%>
 </table>
-<!--#include file="../../intrasoft/connClose.asp"-->
+<!--#include file="../../intrasoft/connClose.aspx"-->

@@ -57,7 +57,7 @@
             If rsBan("openInNewWindow") Then
                 target = "target =""_new"""
             End If
-            bannerString = "<a " & target & " href=""cgi/RedirectBanners.asp?ID=" & rsBan("bannerId") & """>"
+            bannerString = "<a " & target & " href=""cgi/RedirectBanners.aspx?ID=" & rsBan("bannerId") & """>"
             bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile") & """ alt=""" & rsBan("BannerName") & """></a>"
         End If
         rsBan.close()

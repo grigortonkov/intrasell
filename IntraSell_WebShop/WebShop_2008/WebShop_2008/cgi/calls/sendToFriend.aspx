@@ -5,7 +5,7 @@
     /style.css' TYPE='text/css'>
 </head>
 <body bgcolor="#FFFFFF">
-    <form action='DoSendToFriend.asp' method='post'>
+    <form action='DoSendToFriend.aspx' method='post'>
     <table border="0" cellspacing="0" bordercolor="#0000A0">
         <tr>
             <td>

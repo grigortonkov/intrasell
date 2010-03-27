@@ -16,7 +16,7 @@
         <h2>
             RMA / Rücksendung</h2>
         <div align="center">
-            <form action='doRMARequest.asp' method='post'>
+            <form action='doRMARequest.aspx' method='post'>
             <table border="0" bordercolor="green" cellpadding="3" cellspacing="0">
                 <tr>
                     <td border="0" class="style1">
@@ -108,4 +108,4 @@
     </center>
 </body>
 </HTML>
-<!--#include file="../../intrasoft/connClose.asp"-->
+<!--#include file="../../intrasoft/connClose.aspx"-->

@@ -12,10 +12,14 @@
         Response.Write(t1)
     End Sub
 
- 
+ ''' <summary>
+ ''' IntraSellDictionary
+ ''' </summary>
+ ''' <returns></returns>
+ ''' <remarks></remarks>
     Public Function IntraSellDictionary()
         'get from cache 
-        If Session("IntraSell.IntraSellDictionary") Is Nothing Then
+        If Not Session("IntraSell.IntraSellDictionary") Is Nothing Then
             IntraSellDictionary = Session("IntraSell.IntraSellDictionary")
             Exit Function
         End If
@@ -30,13 +34,23 @@
     End Function
 
 
+''' <summary>
+''' getTranslationDok
+''' </summary>
+''' <param name="TableName"></param>
+''' <param name="Key"></param>
+''' <param name="FieldName"></param>
+''' <param name="TextToTranslate"></param>
+''' <param name="Language_Code"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function getTranslationDok( _
-                             ByVal TableName, _
-                             ByVal Key, _
-                             ByVal FieldName, _
-                             ByVal TextToTranslate, _
-                             ByVal Language_Code)
-        If LCase(Request("debug")) = "true" Then
+                             ByVal TableName As String, _
+                             ByVal Key as String, _
+                             ByVal FieldName as String , _
+                             ByVal TextToTranslate As String , _
+                             ByVal Language_Code As String)
+        If showDebug() Then
             Response.Write("<br>" & Chr(13) & " TableName = [" & TableName & "]")
             Response.Write("<br>" & Chr(13) & " Key = [" & Key & "]")
             Response.Write("<br>" & Chr(13) & " FieldName = [" & FieldName & "]")
@@ -46,7 +60,7 @@
         If (TextToTranslate & "" = "") Then
             getTranslationDok = ""
         Else
-            getTranslationDok = IntraSellDictionary.getTranslationDok(TableName, Key, FieldName, TextToTranslate, Language_Code)
+            getTranslationDok = IntraSellDictionary().getTranslationDok(TableName, Key, FieldName, TextToTranslate, Language_Code)
         End If
     End Function
 

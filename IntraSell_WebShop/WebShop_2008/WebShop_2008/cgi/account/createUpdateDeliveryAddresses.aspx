@@ -1,12 +1,14 @@
 <%
 
     'dim kdnr: 
-    kdnr = getLOGIN()
-
+    Dim kdnr As Long : kdnr = getLOGIN()
+    Dim EmailOld As String
+    Dim PasswordOld As String
+    
     'create new profile if not 
     If Request("action") = "saveAddresses" Then 'save actgion required 
 %>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="PageToShow" value="createUpdateDeliveryAddresses">
 <input type="hidden" name="action" value="saveAddresses">
 <%
@@ -45,11 +47,14 @@ End If
 'Response.Write "Kdnr=[" & kdnr & "]"
 
 	
+Dim EmailStep3 As String
+Dim PasswordStep3 As String
+
 EmailStep3 = TABLEVALUE("ofAdressen", "idnr", kdnr, "Email")
 PasswordStep3 = TABLEVALUE("ofAdressen", "idnr", kdnr, "Passwort")
 Else 'no action requested 
 %>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="pageToShow" value="createUpdateDeliveryAddresses">
 <input type="hidden" name="action" value="saveAddresses">
 <table border="0" width="100%" bordercolor="#CCCCCC" style="border-collapse: collapse"

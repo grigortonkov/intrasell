@@ -5,7 +5,7 @@
         html = html & "<table border=""0"" width=""172"" cellspacing=""5"" cellpadding=""5"">"
         html = html & "  <tr>"
         html = html & "	<td bgcolor=""#F7F3F7"">"
-        html = html & "		<a href=""default.asp"" onClick=""this.style.behavior='url(#default#homepage)';this.setHomePage('http://" & varvalue("DOMAIN") & "');"">"
+        html = html & "		<a href=""default.aspx"" onClick=""this.style.behavior='url(#default#homepage)';this.setHomePage('http://" & varvalue("DOMAIN") & "');"">"
         html = html & "      <li><FONT color=#980000><B>Startseite</B></FONT></a>"
         html = html & "           <br> Klicken Sie hier um " & varvalue("DOMAIN") & " als Startseite festzulegen.</td>"
         html = html & "  </tr><tr>"
@@ -34,7 +34,7 @@
         html = html & "	a.document.write (""<center>\n"");" & CHR(13) & CHR(10)
         html = html & "	a.document.write (""<div align=center><BR>\n"");" & CHR(13) & CHR(10)
         html = html & "	//a.document.write (""<table width=100% border=0 cellspacing=0 bordercolor=#0000A0><tr><td><img src="" + imageFullName(""emailafriend.gif"") + "" align=left><BIG></BIG></td></tr></table>\n"");" & CHR(13) & CHR(10)
-        html = html & "	a.document.write (""<form action='cgi/calls/DoSendToFriend.asp' method='post' id=form1 name=form1>\n"");" & CHR(13) & CHR(10)
+        html = html & "	a.document.write (""<form action='cgi/calls/DoSendToFriend.aspx' method='post' id=form1 name=form1>\n"");" & CHR(13) & CHR(10)
         html = html & "	a.document.write (""<TABLE border=0 borderColor=green cellPadding=3 cellSpacing=0>\n"");" & CHR(13) & CHR(10)
         html = html & "	a.document.write (""<TR>\n"");" & CHR(13) & CHR(10)
         html = html & "	a.document.write (""<Td align=right border=0><B>Von (Email):</B></Td>\n"");" & CHR(13) & CHR(10)

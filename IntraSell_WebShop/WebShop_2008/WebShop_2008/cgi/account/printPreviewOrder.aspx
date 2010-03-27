@@ -1,4 +1,4 @@
-<!--#include file="../defaultHead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <html>
 <head>
     <meta http-equiv="Content-Language" content="de">

@@ -14,7 +14,7 @@
             Response.End()
             'Session("LOG_IN") = ""
         End If%>
-    <form method="POST" action="default.asp">
+    <form method="POST" action="default.aspx">
     <input type="hidden" name="pageToShow" value="ProfileSave">
     <%Call drawProfileForm(False)%>
     <p align="center">

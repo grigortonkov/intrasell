@@ -6,7 +6,7 @@
 <script language="VB" runat="server">  
     
     '===========================================================================
-    ' Autor: Written and edited by Grigor Tonkov 2001 (R)
+    ' Autor: Written and edited by Grigor Tonkov 2001 -2010 (R)
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 

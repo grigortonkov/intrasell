@@ -1,105 +1,108 @@
 <%
-GERMAN = varvalue("LANGUAGE") <> "ENG"  
-ENGLISH = NOT GERMAN
+    
+    Dim GERMAN, ENGLISH As Boolean
+    
+    GERMAN = varvalue("LANGUAGE") <> "ENG"
+    ENGLISH = Not GERMAN
 
-Dim Modus, Errors, Preview
+    Dim Modus, Errors, Preview
 
-Modus =  Request.Form("Modus")
-Errors = FALSE 
-Preview = FALSE 
-if Modus = "Preview" THEN Preview = TRUE 
+    Modus = Request.Form("Modus")
+    Errors = False
+    Preview = False
+    If Modus = "Preview" Then Preview = True
+
+    Dim FromName = Request("FromName")
+    Dim FromEmail = Request("FromEmail")
+    Dim ToName = Request("ToName")
+    Dim ToEmail = Request("ToEmail")
+    Dim LoveText = Request("LoveText")
+    Dim CardName = Request("CardName")
 
 
+    If Not Preview Then
 
-if Preview THEN 
-	FromName = Request("FromName")
-	FromEmail = Request("FromEmail")
-	ToName = Request("ToName")
-	ToEmail = Request("ToEmail")
-	LoveText = Request("LoveText")
-	CardName = Request("CardName")
+        ' View mode - the normal mode to see the postcard
+        Dim SQL = "SELECT * FROM webCards " & _
+         " WHERE LoveCard_Id =" & Request("LoveCard_Id") & _
+         " AND ToName='" & Request("ToName") & "' " & _
+         " ORDER BY DATEFROM DESC"
+        Dim rs = objConnectionExecute(SQL)
 
-	else   ' View mode - the normal mode to see the postcard
-	SQL = "SELECT * FROM webCards " & _ 
-		" WHERE LoveCard_Id =" & Request("LoveCard_Id") & _ 
-		" AND ToName='" & Request("ToName") & "' " & _ 
-		" ORDER BY DATEFROM DESC"
-	Set rs = objConnectionExecute(SQL)
-
-		IF NOT rs.EOF THEN 
- 			FromName = Rs("FromName")
-			FromEmail = Rs("FromEmail")
-			ToName = Rs("ToName")
-			ToEmail = Rs("ToEmail")
-			LoveText = Rs("LoveText")
-			CardName  = Rs("CardName")
-		ELSE 
-			Errors = TRUE 
-		END IF 
-	END IF
+        If Not rs.EOF Then
+            FromName = rs("FromName").Value
+            FromEmail = rs("FromEmail").Value
+            ToName = rs("ToName").Value
+            ToEmail = rs("ToEmail").Value
+            LoveText = rs("LoveText").Value
+            CardName = rs("CardName").Value
+        Else
+            Errors = True
+        End If
+    End If
 	
 
 %>
 <%
-IF GERMAN THEN%>
+    If GERMAN Then%>
 <%
 
 
-'Response.write "Modus =" & Modus 
+    'Response.write "Modus =" & Modus 
 
-if Preview THEN 
+    If Preview Then
  
- 'response.Write "Check " & FromEmail & CheckEmail(FromEmail): response.end ' 
- if NOT CheckEmail(FromEmail) THEN
+        'response.Write "Check " & FromEmail & CheckEmail(FromEmail): response.end ' 
+        If Not CheckEmail(FromEmail) Then
 %>
 <br>
 <font color="red">Ihre Emailadresse ist keine gültige Emailadresse! </font>
 <% 
-    Errors = true 
- END IF
+    Errors = True
+End If
 
- if Len (ToName)<1 THEN
+If Len(ToName) < 1 Then
 %>
 <br>
 <font color="red">Sie haben keinen Empfänger eingegeben! </font>
 <% 
-    Errors = true 
- END IF
+    Errors = True
+End If
  
- if Len (FromName)<1 THEN
+If Len(FromName) < 1 Then
 %>
 <br>
 <font color="red">Ihr Name wurde nicht eingegeben! </font>
 <% 
-    Errors = true 
- END IF
+    Errors = True
+End If
  
- if Len (LoveText)=0 THEN
+If Len(LoveText) = 0 Then
 %>
 <br>
 <font color="red">Sie haben keinen Text verfasst! </font>
 <% 
-    Errors = true 
- END IF
+    Errors = True
+End If
  
-END IF
+End If
 
 
- if NOT CheckEmail (ToEmail) THEN
+If Not CheckEmail(ToEmail) Then
 %>
 <br>
 <font color="red">Die Emailadresse des Empfängers ist keine gültige Emailadresse!
 </font>
 <% 
-  Errors = true 
- END IF
+    Errors = True
+End If
 %>
-<%If Preview THEN%>
+<%  If Preview Then%>
 <h1 align="center">
     Vorschau&nbsp;
 </h1>
-<% end if %>
-<%if not errors THEN %>
+<%  End If%>
+<%  If Not Errors Then%>
 <form method="post" action="default.aspx?pageToShow=EcardSend" id="Form1">
 <input type="hidden" name="FromEmail" value="<%=FromEmail%>" size="30" id="Hidden1">
 <input type="hidden" name="FromName" value="<%=FromName%>" size="30" id="Hidden2">
@@ -130,7 +133,7 @@ END IF
                 <table border="5" width="90" id="Table2">
                     <tr>
                         <td>
-                            <a href="defaut.asp?PageToShow=Ecard">
+                            <a href="defaut.aspx?PageToShow=Ecard">
                                 <img border="0" src="cgi/ecard/<%=CardName%>" width="265" height="281"></a>
                         </td>
                     </tr>
@@ -140,79 +143,79 @@ END IF
     </tr>
 </table>
 <p>
-    <%If Preview THEN%>
+    <%If Preview Then%>
     <p align="center">
         <input type="submit" value="Dem Empfänger senden" name="Send" id="Submit1"></p>
-    <%ELSE %>
+    <%Else%>
     <p align="center">
         Senden Sie auch eine Karte: <a href="default.aspx?PageToShow=Ecard">e-card</a></p>
-    <%END IF%>
+    <%End If%>
 </form>
-<%ELSE'ERROR FOUND%>
+<%  Else 'ERROR FOUND%>
 <p align="center">
     <a href='javascript:history.back();'><strong>BACK</strong></a></p>
-<%END IF ' errors%>
-<%END IF ' GERMAN%>
-<%IF ENGLISH THEN%>
+<%  End If ' errors%>
+<%  End If ' GERMAN%>
+<%  If ENGLISH Then%>
 <%
 
  
-'Response.write "Modus =" & Modus 
+    'Response.write "Modus =" & Modus 
 
 
 
-	if NOT CheckEmail(ToEmail) THEN
+    If Not CheckEmail(ToEmail) Then
 	
 %>
 <br>
 <font color="red">Your email address is not correct! </font>
 <% 
-		Errors = true 
-	END IF
+    Errors = True
+End If
 
-	if Len (ToName)<1 THEN
+If Len(ToName) < 1 Then
 %>
 <br>
 <font color="red">The receiving person name is missing! </font>
 <% 
-		Errors = true 
-	END IF
+    Errors = True
+End If
 	 
-	if Len (FromName)<1 THEN
+If Len(FromName) < 1 Then
 %>
 <br>
 <font color="red">Your name is missing! </font>
 <% 
-		Errors = true 
-	END IF
+    Errors = True
+End If
 	 
-	if Len (LoveText)=0 THEN
+If Len(LoveText) = 0 Then
 %>
 <br>
 <font color="red">You have to type some text! </font>
 <% 
-		Errors = true 
-	END IF
+    Errors = True
+End If
  
 
 
 
- if NOT CheckEmail(ToEmail) THEN
+If Not CheckEmail(ToEmail) Then
 %>
 <br>
 <font color="red">The receiver's email address is not correct! </font>
 <% 
-  Errors = true 
- END IF
+    Errors = True
+End If
 %>
 </p>
 <h1 align="center">
     Card &nbsp;
-    <%If Preview THEN%>
+    <%If Preview Then%>
     preview
-    <%END IF%>
+    <%End If%>
 </h1>
-<%if not errors THEN %>
+<%  If Not Errors Then%>
 <form method="post" action="default.aspx?pageToShow=EcardSend" id="Form2">
 <input type="hidden" name="FromEmail" value="<%=FromEmail%>" size="30" id="Hidden7">
 <input type="hidden" name="FromName" value="<%=FromName%>" size="30" id="Hidden8">
@@ -243,7 +246,7 @@ END IF
                 <table border="5" width="90" id="Table4">
                     <tr>
                         <td>
-                            <a href="defaul.asp">
+                            <a href="defaul.aspx">
                                 <img border="0" src="cgi/ecard/<%=CardName%>" width="265" height="281"></a>
                         </td>
                     </tr>
@@ -253,16 +256,16 @@ END IF
     </tr>
 </table>
 <p>
-    <%If Preview THEN%>
+    <%If Preview Then%>
     <p align="center">
         <input type="submit" value=" Send this e-card " name="Send" id="Submit2"></p>
-    <%ELSE %>
+    <%Else%>
     <p align="center">
         You can send also a card: <a href="default.aspx?PageToShow=Ecard">e-card</a></p>
-    <%END IF%>
+    <%End If%>
 </form>
-<%ELSE'ERROR FOUND%>
+<%  Else 'ERROR FOUND%>
 <p align="center">
     <a href='javascript:history.back();'><strong>BACK</strong></a></p>
-<%END IF' errors%>
-<%END IF ' ENGLISH%>
+<%  End If ' errors%>
+<%  End If ' ENGLISH%>

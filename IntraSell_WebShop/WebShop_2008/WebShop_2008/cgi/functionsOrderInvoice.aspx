@@ -205,11 +205,13 @@
 
 
         'do not allow putting in Warenkorb for special products 
+        Dim nichtBestellbar As Boolean  = False
         SQL = "select NichtBestellbar from grArtikel where artnr=" & ArtNr
         rsW = objConnectionExecute(SQL)
         If Not rsW.EOF Then
-            Response.Write(rsW("NichtBestellbar"))
-            If Not (CInt(rsW("NichtBestellbar")) = 0) Then 'add even the product is not active 
+            if IsDebug() then Response.Write(rsW("NichtBestellbar"))
+            nichtBestellbar = Not (CInt(rsW("NichtBestellbar").Value) = 0)
+            If nichtBestellbar Then 'add even the product is not active 
                 message = getTranslation("Artikel ist derzeit nicht bestellbar! Wir bitten um Ihr Verständnis! ") & " Nr=[" & ArtNr & "]!"
                 Response.Write(message)
                 Response.Write("<br>")
@@ -228,11 +230,11 @@
         rsW = objConnectionExecute(SQL)
         If Not rsW.EOF Then
             'if (InStr(rsW("Modifikationen") & "", SPECIALCHOICECONSTANT) > 0) then 
-            If Len(rsW("Modifikationen") & "") > 0 Then
+            If Len(rsW("Modifikationen").Value & "") > 0 Then
                 'Response.Write "Notiz='" & Notiz &"'" : Response.End
                 If Notiz = "" Then 'add even the product is not active 
                     message = getTranslation("Wichtig: Bitte eine Selektion in den Komboboxen in der Artikel Detailseite vornehmen! ")
-                    message = message & " Modifikationen = [" + rsW("Modifikationen") + "]!"
+                    message = message & " Modifikationen = [" + rsW("Modifikationen").Value + "]!"
                     message = message & " Nr=[" & ArtNr & "]"
                     message = message & "<br/><a href=""?ArtNr=" & ArtNr & """> zur Artikelseite </a>"
          
@@ -301,7 +303,7 @@
         
             
         While Not rsZM.EOF
-            postMode = rsZM("Methode")
+            postMode = rsZM("Methode").Value
               
             PostCosts = calculatePostSpends(destination, getWeightOfBasket(sidM), postMode)
             PostExpensesMWST = PostCosts
@@ -314,7 +316,7 @@
             'Response.Write selected
             html = html & _
               "<input " & selected & " type='radio' class='submit' value='" & rsZM("methode") & "' " & _
-               " name='PostModeDestination' onClick=""document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & paymode & "&postmode=" & rsZM("methode") & "';"">" & _
+               " name='PostModeDestination' onClick=""document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & paymode & "&postmode=" & rsZM("methode").Value & "';"">" & _
               rsZM("methode") & " - " & getTranslation("Preis") & ": " & FormatNumber(PostExpensesMWST, 2) & "<br>"
 			
             rsZM.MoveNExt()
@@ -328,9 +330,10 @@
     ' showBasket
     '****************************************************************************
     Public Function showBasket()
-        Dim BasketSQL
-        Dim cntItems
-        Dim html
+        Dim BasketSQL As String
+        Dim cntItems As Double
+        Dim html As String 
+        
         BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0)"
 	
         Dim rsBasket : rsBasket = objConnectionExecute(BasketSQL)
@@ -339,7 +342,7 @@
         Else
             cntItems = 0
             While Not rsBasket.EOF
-                cntItems = cntItems + rsBasket("Quantity")
+                cntItems = cntItems + rsBasket("Quantity").Value
                 rsBasket.MoveNext()
             End While
             html = html & getTranslation("Warenkorb") & ": " & cntItems & " " & getTranslation("Stueck")
@@ -364,13 +367,13 @@
     ' if no then back to Warenkorb2
     '*************************************************************************
     Function createOrderFromBasket(ByVal KDNR, ByVal SID, ByVal PayMode, ByVal PostMode, ByVal Destination, ByVal notizOrder, ByVal GutscheinNummer)
-        Dim Land : Land = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
+        Dim Land As String : Land = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
  
         'Response.Write "PostMode=" & PostMode 
         'exit function 
         'land is ok 
         'Create auftrag (Order)
-        Dim AuftragNr, Notiz, sql
+        Dim AuftragNr, Notiz, sql As String
         AuftragNr = NextId("buchAuftrag", "Nummer")
 
         ' Issue 59:  eigene Kundengruppe und Vorgangnummernkreis für online Bestellungen  
@@ -397,15 +400,15 @@
    
         While Not rsWK.EOF
 	
-            Dim stkToOrder : stkToOrder = CDbl(rsWK("Quantity"))
-            Dim needsSerialNr : needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr"), "Seriennummer")
-            Dim einzelpreis : einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr"), stkToOrder, SID))
+            Dim stkToOrder : stkToOrder = CDbl(rsWK("Quantity").Value)
+            Dim needsSerialNr : needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "Seriennummer")
+            Dim einzelpreis : einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr").Value, stkToOrder, SID))
             einzelpreis = getPreis(KDNR, rsWK("ArtNr"), stkToOrder)
-            Dim bezeichnung : bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr"), "bezeichnung")
-            Dim positionNotiz : positionNotiz = rsWK("Notiz")
+            Dim bezeichnung : bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "bezeichnung")
+            Dim positionNotiz : positionNotiz = rsWK("Notiz").Value
         
             bezeichnung = Replace(bezeichnung, "'", "")
-            bezeichnung = getTranslationDok("grArtikel", rsWK("ArtNR"), "Bezeichnung", bezeichnung, Language)
+            bezeichnung = getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", bezeichnung, Language)
             If Not positionNotiz & "" = "" Then
                 bezeichnung = positionNotiz & "; " & bezeichnung
             End If
@@ -422,12 +425,12 @@
                 Dim ii
                 For ii = 1 To stkToOrder
                     sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
-            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr") & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
+            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr").Value & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
                     objConnectionExecute(sql)
                 Next
             Else
                 sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
-            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr") & "," & stkToOrder & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
+            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr").Value & "," & stkToOrder & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
                 objConnectionExecute(sql)
             End If
 			
@@ -437,16 +440,12 @@
         rsWK.close()
         ' response.write "<br>" & sql
         ' Response.Flush
-  
-  
-
-  
-        Dim KG : KG = getWeightOfOrder("AU", AuftragNr)
+ 
+        Dim KG  As Double: KG = getWeightOfOrder("AU", AuftragNr)
 
         If (1 * calculateWarenkorbSum() < getFreiHausLieferungUmsatz()) Or (getFreiHausLieferungUmsatz() = -1) Then 'CALCULATE_COSTS 
             'POST SPENDS
             If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
-						
 						
                 If KG >= 0 Then
                     Dim postNr : postNr = getPostSpendsArtNr(Land, KG, PostMode)
@@ -490,8 +489,8 @@
                     If IsNumeric(paymodeNr) Then
                         If CLng(paymodeNr) > 0 Then
                             sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
-        " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & payModeExpenses & "," & payModeExpensesMWST & _
-        ", '" & ArtBezeichnungForPayMode & "')"
+                                    " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & payModeExpenses & "," & payModeExpensesMWST & _
+                                    ", '" & ArtBezeichnungForPayMode & "')"
                             objConnectionExecute(sql)
                         End If
                     Else
@@ -580,12 +579,12 @@
         Dim rsArt : rsArt = objConnectionExecute(sqlArt)
         Dim sqlUpdatePreis
         While Not rsArt.EOF
-            Dim ArtNr : ArtNr = rsArt("ArtNr")
-            Dim Stk : Stk = rsArt("Stk")
+            Dim ArtNr : ArtNr = rsArt("ArtNr").Value
+            Dim Stk : Stk = rsArt("Stk").Value
             Dim ArtikelPreisNetto : ArtikelPreisNetto = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
             Dim ArtikelPreisBrutto : ArtikelPreisBrutto = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
             Dim ArtikelPreisEK : ArtikelPreisEK = getEKPreis(ArtNr)
-            Dim PosBezeichnung : PosBezeichnung = rsArt("Bezeichnung")
+            Dim PosBezeichnung : PosBezeichnung = rsArt("Bezeichnung").Value
             Dim ArtikelEAN : ArtikelEAN = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
 	
             Dim ArtikelBezeichnung
@@ -607,7 +606,7 @@
             sqlL = "select * from lieferantenAdressen where firma like '" & getBestLieferant(ArtNr) & "'"
             rsL = objConnectionExecute(sqlL)
             If Not rsL.EOF Then
-                LieferantNR = rsL("IDNR")
+                LieferantNR = rsL("IDNR").Value
             Else
                 LieferantNR = 0
             End If
@@ -647,9 +646,9 @@
                                     " FROM [buchAuftrag-artikel] where RechNr = " & AuftragNr
         Dim rsSumme : rsSumme = objConnectionExecute(sqlSumme)
 	
-        Dim Summe : Summe = rsSumme("summe") & ""
-        Dim SummeMWST : SummeMWST = rsSumme("SummeMWST") & ""
-        Dim SummeBrutto : SummeBrutto = rsSumme("SummeBrutto") & ""
+        Dim Summe : Summe = rsSumme("summe").Value & ""
+        Dim SummeMWST : SummeMWST = rsSumme("SummeMWST").Value & ""
+        Dim SummeBrutto : SummeBrutto = rsSumme("SummeBrutto").Value & ""
         sqlUpdateAuftrag = "UPDATE buchAuftrag " & _
                            " SET Summe =" & Replace(Summe, ",", ".") & _
                            ", SummeMWST =" & Replace(SummeMWST, ",", ".") & _
@@ -659,7 +658,7 @@
         'END UPDATE SUMME 
 	
         'SET KUNDNr2 für abweichende Lieferadresse 
-        Dim sqlLI, rsLI
+        Dim sqlLI As String, rsLI
         Dim addressType : addressType = "LI"
         Dim kundNr2
 	
@@ -688,6 +687,13 @@
     End Function
 
 
+''' <summary>
+''' createOrderFromBasketFinish
+''' </summary>
+''' <param name="KDNR"></param>
+''' <param name="AuftragNr"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function createOrderFromBasketFinish(ByVal KDNR, ByVal AuftragNr)
    
         If VARVALUE_DEFAULT("SHOP_SEND_MAILS_AFTER_ORDER", "true") = "true" Then

@@ -6,7 +6,7 @@
 
     Public Function IntraSellPreise()
         'get from cache 
-        If Session("IntraSell.IntraSellPreise") Is Nothing Then
+        If not Session("IntraSell.IntraSellPreise") Is Nothing Then
             IntraSellPreise = Session("IntraSell.IntraSellPreise")
             Exit Function
         End If

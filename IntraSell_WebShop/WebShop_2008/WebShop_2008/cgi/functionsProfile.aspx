@@ -560,7 +560,7 @@
         'make form if error in saving 
         '% >
         '</form>
-        '			<form method="POST" action="default.asp">
+        '			<form method="POST" action="default.aspx">
         '			<input type="hidden" name="pageToShow" value="ProfileSave">
         '< %
         idnr1 = saveProfile(ACCOUNT)
@@ -1249,7 +1249,7 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function changePassword()
+    Function changeMyPassword()
         Dim rsP, oldP, newP, cnewp
         Dim sql As String
         
@@ -1266,11 +1266,11 @@
         Else
             sql = " UPDATE ofAdressen Set Passwort = '" & newP & "' WHERE IDNR = " & CLng(getLOGIN())
             rsP = objConnectionExecute(sql)
-		 
             Response.Write("<P align=center>Ihr Passwort wurde ge&auml;ndert!")
             
         End If
-
+        Return True
+        
     End Function
 
     
@@ -1321,7 +1321,7 @@
         If rs.eof Then
             getCountOrders = 0
         Else
-            getCountOrders = rs("co")
+            getCountOrders = rs("co").Value
         End If
         rs.close()
     End Function
@@ -1345,7 +1345,7 @@
         If rs.eof Then
             getCountOrdersProducts = 0
         Else
-            getCountOrdersProducts = rs("co")
+            getCountOrdersProducts = rs("co").Value
         End If
         rs.close()
     End Function
@@ -1369,7 +1369,7 @@
         If rs.eof Then
             getBookmarkCount = 0
         Else
-            getBookmarkCount = rs("co")
+            getBookmarkCount = rs("co").Value
         End If
         rs.close()
     End Function
@@ -1391,7 +1391,7 @@
             getNewsletterCount = 0
         Else
             Dim nlC
-            nlC = CInt(rs("co"))
+            nlC = CInt(rs("co").Value)
             If CInt(nlC) > 3 Then nlC = 3
             If active Then
                 getNewsletterCount = nlC

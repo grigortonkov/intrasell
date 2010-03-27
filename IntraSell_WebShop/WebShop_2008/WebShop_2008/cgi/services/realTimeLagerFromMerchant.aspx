@@ -1,5 +1,5 @@
 <!--#include file="../defaultHead.inc"-->
-<!--#include file="../priceCompare/functionsMerchants.asp"-->
+<!--#include file="../priceCompare/functionsMerchants.aspx"-->
 <html>
 <head>
     <meta http-equiv="Content-Language" content="de-at">
@@ -27,7 +27,7 @@
 
                 'response.Write "<br>ArtikelNrLieferant=" & ArtikelNrLieferant
                 'response.Write "<br>LieferantNr=" & LieferantNr
-                'example Call cgi/services/realTimeLagerFromMerchant.asp?ArtikelNrLieferant=[ArtNrLieferant]&ArtNr=[ArtNr]&LieferantNr=1
+                'example Call cgi/services/realTimeLagerFromMerchant.aspx?ArtikelNrLieferant=[ArtNrLieferant]&ArtNr=[ArtNr]&LieferantNr=1
 
 
 
@@ -74,7 +74,7 @@
                 If UrlShop = "" Then
                     Call drawErrorBox("Keine Shopumleitung", "Dieser Lieferant hat keine Shopumleitung aktiviert! " & _
                           " Moechten Sie anstatt das die Homepage diesen Lieferanten besuchen?", _
-                                      " merchantPage.asp?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), "")
+                                      " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), "")
                 Else
                     'the user will be send directly to the shop 
                     Response.Write("<br>Sie werden automatisch zum Lieferantenshop weitergeleitet!")
@@ -108,4 +108,4 @@
     </p>
 </body>
 </html>
-<!--#include file="../../intrasoft/connclose.asp"-->
+<!--#include file="../../intrasoft/connclose.aspx"-->

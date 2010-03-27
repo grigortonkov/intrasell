@@ -83,7 +83,7 @@ function FrontPage_Form1_Validator(theForm)
 //--></script>
 
                 <!--webbot BOT="GeneratedScript" endspan -->
-                <form method="POST" action="module_ref_showMyProductsAdmin.asp" onsubmit="return FrontPage_Form1_Validator(this)"
+                <form method="POST" action="module_ref_showMyProductsAdmin.aspx" onsubmit="return FrontPage_Form1_Validator(this)"
                 name="FrontPage_Form1">
                 <p align="left">
                     <input type="hidden" name="refererID" size="9" value="<%=refererID%>">
@@ -93,7 +93,7 @@ function FrontPage_Form1_Validator(theForm)
         bot="Validation" S-Data-Type="Integer" S-Number-Separators="x" -->
                     <input type="text" name="ArtNr" size="9">
                     <input type="submit" value="Produkt auswählen" name="send"></p>
-                (<a href="default.asp" target="_new">Suchen</a>) Tipp: Das ist die ArtNr. im Detailansicht
+                (<a href="default.aspx" target="_new">Suchen</a>) Tipp: Das ist die ArtNr. im Detailansicht
                 eines Produktes!
                 </form>
             </td>
@@ -115,7 +115,7 @@ function FrontPage_Form1_Validator(theForm)
 
             While Not rsTop.EOF
         %>
-        <form method="POST" action="module_ref_showMyProductsAdmin.asp">
+        <form method="POST" action="module_ref_showMyProductsAdmin.aspx">
         <tr>
             <td width="182" height="26">
                 <%=TABLEVALUE("grArtikel","ArtNR",rsTop("ArtNR"),"Bezeichnung")%>

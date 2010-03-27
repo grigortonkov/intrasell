@@ -118,4 +118,4 @@ private function getPriceAt(byval artnr, byval dateAt)
    rs.close 
 end function
 %>
-<!--#include file="../../intrasoft/connClose.asp"-->
+<!--#include file="../../intrasoft/connClose.aspx"-->

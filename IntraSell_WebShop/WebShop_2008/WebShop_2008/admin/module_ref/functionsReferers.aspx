@@ -24,8 +24,8 @@
         If rs.eOF Then
             getInternalIDNRFromForeignRefererId = -1
         Else
-            getInternalIDNRFromForeignRefererId = rs("IDNR")
-            'Response.Write "Sie sind auf dieser Seite aufgrund Referer " & foreignRefererId & "/" & rs("IDNR")
+            getInternalIDNRFromForeignRefererId = rs("IDNR").Value
+            'Response.Write "Sie sind auf dieser Seite aufgrund Referer " & foreignRefererId & "/" & rs("IDNR").Value
         End If
    
     End Function
@@ -64,7 +64,7 @@
         'response.write sql
         rs = ObjConnectionExecute(sql)
         If Not rs.EOF Then
-            getExternalRefererId = rs("refererId")
+            getExternalRefererId = rs("refererId").Value
         Else
             getExternalRefererId = -1
         End If
@@ -112,18 +112,18 @@
         While Not rs.EOF
  
             Response.Write("<TR>")
-            Response.Write("<TD align=right width=102>" & rs("RefererId") & "</TD>")
+            Response.Write("<TD align=right width=102>" & rs("RefererId").Value & "</TD>")
      
-            Response.Write("<TD align=right width=99>" & rs("Datum") & "</TD>")
+            Response.Write("<TD align=right width=99>" & rs("Datum").Value & "</TD>")
             Response.Write("<TD align=right width=106>")
             
-            If Not (rs("Umsatz")) Is Nothing Then
-                Response.Write(FormatNumber(rs("Umsatz"), 2) & " €</TD>")
+            If Not (rs("Umsatz").Value) Is Nothing Then
+                Response.Write(FormatNumber(rs("Umsatz").Value, 2) & " €</TD>")
             End If
             
             Response.Write("<TD align=right width=92>")
-            If Not (rs("Gewinn")) Is Nothing Then
-                Response.Write(FormatNumber(rs("Gewinn"), 2) & " €</TD>")
+            If Not (rs("Gewinn").Value) Is Nothing Then
+                Response.Write(FormatNumber(rs("Gewinn").Value, 2) & " €</TD>")
             End If
    
             Response.Write("</TR>")

@@ -1,7 +1,7 @@
 <%@ LANGUAGE = VBScript.Encode%>
 <%'@ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
 <%'OPTION explicit%>
-<!--#include file="login.asp"-->
+<!--#include file="login.aspx"-->
 <!--#include virtual="/intrasoft/connopen.aspx"-->
 <!--#include virtual="/intrasoft/functions.aspx"-->
 <!--#include virtual="/intrasoft/functionsDictionary.aspx"-->

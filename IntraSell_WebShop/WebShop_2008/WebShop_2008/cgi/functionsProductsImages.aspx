@@ -79,16 +79,18 @@
     ''' <param name="maxSize"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function makeImgTag(ByVal imageRelativeURL, ByVal bezeichnung, ByVal maxSize) As String
+    Function makeImgTag(ByVal imageRelativeURL As Object, ByVal bezeichnung As String, ByVal maxSize As String) As String
   
         'will use any thumbnail generator like thumbnail.aspx
-        Dim SHOP_USE_LOCAL_THUMBS : SHOP_USE_LOCAL_THUMBS = VARVALUE("SHOP_USE_LOCAL_THUMBS")
+        Dim SHOP_USE_LOCAL_THUMBS As Boolean : SHOP_USE_LOCAL_THUMBS = VARVALUE_DEFAULT("SHOP_USE_LOCAL_THUMBS", "false")
    
         If SHOP_USE_LOCAL_THUMBS <> "true" And SHOP_USE_LOCAL_THUMBS <> "false" Then
             SHOP_USE_LOCAL_THUMBS = SETVARVALUE("SHOP_USE_LOCAL_THUMBS", "false")
         End If
 	
-        Dim image : image = imageRelativeURL
+        Dim image As String = ""
+        
+        If Not imageRelativeURL.Equals(DBNull.Value) Then image = imageRelativeURL
         bezeichnung = Server.HtmlEncode(bezeichnung & "")
 
   
@@ -145,7 +147,7 @@
                 'not in use 
                 'makeImgTag = "<p class=""error"">" & Image & " fehlt!</p>" ' Abbildung wurde am Server nicht gefunden</b>"
 	
-                Dim fakeImage : fakeImage = "productImages/SymbolPicture.jpg"
+                Dim fakeImage As String : fakeImage = "productImages/SymbolPicture.jpg"
                 If fileExists(Server.MapPath(fakeImage)) Then
                     makeImgTag = makeImgTag(fakeImage, bezeichnung, maxSize)
                 Else

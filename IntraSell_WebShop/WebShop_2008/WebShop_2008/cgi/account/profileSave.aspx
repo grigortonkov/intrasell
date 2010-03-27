@@ -11,7 +11,7 @@
         End If
     End If
 %>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="pageToShow" value="ProfileSave">
 <%  
 

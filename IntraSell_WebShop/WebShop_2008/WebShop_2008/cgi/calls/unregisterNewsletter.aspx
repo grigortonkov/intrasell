@@ -8,7 +8,7 @@
     End If
   
 %>
-<form method="POST" action="unregisterNewsletter.asp">
+<form method="POST" action="unregisterNewsletter.aspx">
 <%=getTranslation("Geben Sie ihre Emailadresse bekannt, hiermit werden Sie abgemeldet:")%>
 <center>
     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;

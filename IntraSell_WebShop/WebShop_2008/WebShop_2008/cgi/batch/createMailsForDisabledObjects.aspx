@@ -47,7 +47,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
 		 
             'Link für Objekt aktivieren!
             htmlListNewObjects = htmlListNewObjects & _
-                                 ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/cgi/immo/jobs/immoAktivieren.asp?produktAktiv=-1&anbieter=" & rsBatch("HerstellerNr") & "&ArtNr=" & rsNewObjects("ArtNr") & "'>" & _
+                                 ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/cgi/immo/jobs/immoAktivieren.aspx?produktAktiv=-1&anbieter=" & rsBatch("HerstellerNr") & "&ArtNr=" & rsNewObjects("ArtNr") & "'>" & _
                                  getTranslation("Objekt aktivieren") & "</a><br>"
 		                                                 
             'TODO: Link so dass der User direkt von Email aktivieren kann 

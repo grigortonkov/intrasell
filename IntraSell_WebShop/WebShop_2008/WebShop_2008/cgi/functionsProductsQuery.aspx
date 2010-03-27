@@ -85,10 +85,10 @@
         End If
         'end set 
 
-        Dim SHOP_SHOW_PRICE : SHOP_SHOW_PRICE = VARVALUE("SHOP_SHOW_PRICE")
-        Dim SHOP_SHOW_COMPARE : SHOP_SHOW_COMPARE = VARVALUE("SHOP_SHOW_COMPARE")
-        Dim SHOP_SHOW_DRUCKEN : SHOP_SHOW_DRUCKEN = VARVALUE("SHOP_SHOW_DRUCKEN")
-        Dim SHOP_SHOW_ANGELEGTAM : SHOP_SHOW_ANGELEGTAM = VARVALUE("SHOP_SHOW_ANGELEGTAM")
+        Dim SHOP_SHOW_PRICE  As Boolean: SHOP_SHOW_PRICE = VARVALUE("SHOP_SHOW_PRICE")
+        Dim SHOP_SHOW_COMPARE  As Boolean: SHOP_SHOW_COMPARE = VARVALUE("SHOP_SHOW_COMPARE")
+        Dim SHOP_SHOW_DRUCKEN  As Boolean: SHOP_SHOW_DRUCKEN = VARVALUE("SHOP_SHOW_DRUCKEN")
+        Dim SHOP_SHOW_ANGELEGTAM  As Boolean: SHOP_SHOW_ANGELEGTAM = VARVALUE("SHOP_SHOW_ANGELEGTAM")
  
 	 
         Dim SHOP_ALLOW_SORTING : SHOP_ALLOW_SORTING = VARVALUE("SHOP_ALLOW_SORTING")
@@ -376,7 +376,7 @@
                     If Request("FilterBy") <> "" Then htmlHeader = htmlHeader & "<option value=""" & Request("FilterBy") & """>" & Request("FilterBy")
                     htmlFilterBy = htmlFilterBy & "        <option value=""ALLE"">" & getTranslation("ALLE")
                     While Not rsF.EOF
-                        htmlFilterBy = htmlFilterBy & "<option value=""" & rsF("Firma") & """>" & rsF("Firma")
+                        htmlFilterBy = htmlFilterBy & "<option value=""" & rsF("Firma").Value & """>" & rsF("Firma").Value
                         rsF.MoveNext()
                     End While
                     rsF.close()
@@ -462,6 +462,7 @@
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""80"">" & getTranslation("Lagerinfo") & "</th>"
             End If
+            
             tableColumns = tableColumns + 1
             html = html & "<th width=""40"">" & getTranslation("Kaufen") & "</th>"
             'html = html & "<th width=""40"">Detail</th>"
@@ -496,8 +497,8 @@
             End If
 	
             Dim rowColor
-            Dim artNr, VKPreis, Bezeichnung, picture, firma, ean, mwst, herstellerRabatt, lagerInfo, artKatNrProdukt, angelegtAm
-
+            Dim artNr, VKPreis, Bezeichnung, picture, firma, ean, mwst, herstellerRabatt, lagerInfo, artKatNrProdukt
+            Dim angelegtAm As Date
             Dim lastGroupValue 'keeps the last value from grouping on artkatnr 
             Dim htmlProductRow ' html for the product table row 
             Dim htmlAllRows : htmlAllRows = ""
@@ -509,7 +510,7 @@
             While (Not rsArtikel.EOF) And (CDbl(swnItems) < CDbl(ITEMPERPAGE))
                 swnItems = swnItems + 1
 				
-                artNr = rsArtikel("ArtNR")
+                artNr = rsArtikel("ArtNR").Value
 				
 				
                 'add for statistics 
@@ -532,7 +533,7 @@
                 If LCase(ordr) = "artkatnr" Then 'only on this sorting show grouping headings 
                     If lastGroupValue <> artKatNrProdukt Then 'show 
                         htmlProductRow = htmlProductRow & "<tr><td colspan='" & (tableColumns) & "'>"
-                        htmlProductRow = htmlProductRow & getTranslation("Produkte der Kategorie") & ":" & showCategoryPath(artKatNrProdukt, "default.asp")
+                        htmlProductRow = htmlProductRow & getTranslation("Produkte der Kategorie") & ":" & showCategoryPath(artKatNrProdukt, "default.aspx")
                         htmlProductRow = htmlProductRow & "</td></tr>"
                         lastGroupValue = artKatNrProdukt 'take new value 
                     End If
@@ -543,8 +544,8 @@
                 htmlProductRow = getCache(productRowCacheName)
                 If htmlProductRow = "" Then
 				
-                    mwst = rsArtikel("MWST")
-                    picture = rsArtikel("Picture")
+                    mwst = rsArtikel("MWST").Value
+                    picture = rsArtikel("Picture").Value.ToString()
                     VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), artNr, 1), mwst, Session("Land")), 2)
 						
                     If IsNumeric(VKPreis) Then
@@ -555,22 +556,29 @@
                         VKPreis = getTranslation("Login für Preise!")
                     End If
 
-                    Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung") & "")
+                    Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
                     Bezeichnung = getTranslationDok("grArtikel", artNr, "Bezeichnung", Bezeichnung, Language)
 						
-                    firma = Server.HtmlEncode(rsArtikel("Firma") & "")
-                    ean = rsArtikel("EAN")
-                    angelegtAm = rsArtikel("AngelegtAm")
+                    firma = Server.HtmlEncode(rsArtikel("Firma").Value & "")
+                    ean = rsArtikel("EAN").Value
+                    
+                    If rsArtikel("AngelegtAm").Value.ToString <> DBNull.Value.ToString then 
+                        angelegtAm = rsArtikel("AngelegtAm").Value
+                    Else 
+                        angelegtAm = Now
+                    End If 
+                    
                     herstellerRabatt = tablevalue("grArtikel", "ArtNR", artNr, "herstellerRabatt") : If herstellerRabatt = "0" Then herstellerRabatt = ""
                     lagerInfo = getLieferantLagerInfo(artNr)
                     artKatNrProdukt = tablevalue("grArtikel", "ArtNR", artNr, "ArtKatNr")
 								
                     htmlProductRow = htmlProductRow & "<tr>"
 					    
+					Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
                     If showThumbnails Then
                         htmlProductRow = htmlProductRow & "<td width=""40""  bgcolor=""" & rowColor & """>"
                         htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & artNr & "'>"
-                        htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HtmlEncode(Bezeichnung & ""), VARVALUE("SHOP_THUMBNAIL_MAX_SIZE")) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
+                        htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HtmlEncode(Bezeichnung & ""), SHOP_THUMBNAIL_MAX_SIZE) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
                         htmlProductRow = htmlProductRow & "</a>"
 													
                         If False Then 'not needed 

@@ -100,30 +100,78 @@
         calculateBruttoPreis = IntraSellPreise().calculateBruttoPreis(CDbl(VKPreis), CStr(ArtNr), CStr(IDNR))
     End Function
 
+''' <summary>
+''' getEKPreis
+''' </summary>
+''' <param name="ArtNr"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function getEKPreis(ByVal ArtNr)
         getEKPreis = IntraSellPreise().getEKPreis(ArtNr)
     End Function
 
-    Public Function getBestLieferant(ByVal ArtNr)
+''' <summary>
+''' getBestLieferant
+''' </summary>
+''' <param name="ArtNr"></param>
+''' <returns></returns>
+''' <remarks></remarks>
+    Public Function getBestLieferant(ByVal ArtNr As Long)
         getBestLieferant = IntraSellPreise().getBestLieferant(ArtNr)
     End Function
 
-    Public Function getLieferantLagerInfo(ByVal ArtNR)
-        getLieferantLagerInfo = IntraSellPreise().getLieferantLagerInfo(ArtNR)
+    ''' <summary>
+    ''' getLieferantLagerInfo
+    ''' </summary>
+    ''' <param name="ArtNR"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function getLieferantLagerInfo(ByVal ArtNR As Long) As String 
+        Try 
+            getLieferantLagerInfo = IntraSellPreise().getLieferantLagerInfo(ArtNR)
+        Catch
+            getLieferantLagerInfo =  Err.Description
+        End Try
+        
     End Function
 
-    Public Function getVorgangTableForType(ByVal Typ)
+''' <summary>
+''' getVorgangTableForType
+''' </summary>
+''' <param name="Typ"></param>
+''' <returns></returns>
+''' <remarks></remarks>
+    Public Function getVorgangTableForType(ByVal Typ As String)
         getVorgangTableForType = IntraSellPreise().getVorgangTableForType(Typ)
     End Function
 
+''' <summary>
+''' getVorgangArtikelTableForType
+''' </summary>
+''' <param name="Typ"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function getVorgangArtikelTableForType(ByVal Typ)
         getVorgangArtikelTableForType = IntraSellPreise().getVorgangArtikelTableForType(Typ)
     End Function
 
+''' <summary>
+''' getDruckForType
+''' </summary>
+''' <param name="Typ"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function getDruckForType(ByVal Typ)
         getDruckForType = IntraSellPreise().getDruckForType(Typ)
     End Function
 
+
+''' <summary>
+''' getClientLand
+''' </summary>
+''' <param name="IdNr"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function getClientLand(ByVal IdNr)
         getClientLand = IntraSellPreise().getClientLand(IdNr)
     End Function

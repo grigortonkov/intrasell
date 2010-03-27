@@ -14,7 +14,7 @@
 
 Sub ShowLogin
 %>
-<form action="default.asp" method="post">
+<form action="default.aspx" method="post">
 <div align="center">
     <center>
         <table width="316" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0"
@@ -72,7 +72,7 @@ Sub CheckLogin()
     If LCase(Request.Form("username")) = LCase(VARVALUE("ADMIN")) And LCase(Request.Form("userpwd")) = LCase(VARVALUE("ADMINPASS")) Then
         Session("UserLoggedIn") = "true"
         Session("ADMIN") = "TRUE" 'used to show "product bearbeiten" in normal shop
-        Response.Redirect("default.asp")
+        Response.Redirect("default.aspx")
     Else
 %><font color="#FF0000">Login Failed.</font><br>
 <% 

@@ -4,10 +4,11 @@
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 
-    '******************************************************************************
-    ' createSession - function 
-    ' needs the table webSessions in the database
-    '******************************************************************************
+''' <summary>
+''' createSession - function, needs the table webSessions in the database
+''' </summary>
+''' <returns></returns>
+''' <remarks></remarks>
     Function createSession()
         Dim sid
 	
@@ -19,6 +20,11 @@
         End If
     End Function
 
+''' <summary>
+''' createNewSession
+''' </summary>
+''' <returns></returns>
+''' <remarks></remarks>
     Function createNewSession() As String
         Dim sid, SQL
         sid = NextId("webSessions", "SID")
@@ -29,36 +35,40 @@
         createNewSession = sid
     End Function
 
-    '******************************************************************************
-    ' returns session id according the set session or by the IP adress
-    '******************************************************************************
+    ''' <summary>
+    ''' returns session id according the set session or by the IP adress
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getSID() As String
         Dim sql As String
         Dim sid
-        If Session("SID") <> "" Then
+        Dim remoteHost As String = Request.ServerVariables("REMOTE_HOST")
+        
+        If Not Session("SID") Is Nothing Then
             sid = Session("SID")
         Else
             Dim rs
             'Get one sesssion if ip matches in the 10 minutes last
             sql = "Select SID from webSessions " & _
                   " where CreationTime>=(" & SQLNOW(-10 * 1 / (24 * 60)) & ") and IP Like '" & _
-                  Request.ServerVariables("REMOTE_HOST") & "' " & _
+                  remoteHost & "' " & _
                   " and loggedOut=0 " & _
                   " ORDER BY creationDate DESC"
             'Response.Write sql:Response.Flush
             rs = objConnectionExecute(sql)
             If Not rs.EOF Then
-                sid = rs("SID")
-                If showDebug() Then Response.Write("<br><font color=red>Your Session is " & rs("SID") & "!</font>")
+                sid = rs("SID").Value
+                If showDebug() Then Response.Write("<br/><font color=red>Your Session is " & rs("SID").Value & "!</font>")
             Else
-                If showDebug() Then Response.Write("<font color=red>Your Session is wrong! Please activate the cookies!</font>")
+                If showDebug() Then Response.Write("<br/><font color=red>Your Session is wrong! Please activate the cookies!</font>")
             End If
             rs.close()
             rs = Nothing
         End If
   
         'set last time
-        If sid <> "" Then
+        If Not sid Is Nothing Then
             sql = "UPDATE webSessions SET lastregisteredTime = " & SQLNOW(0) & " WHERE SID=" & sid
             objConnectionExecute(sql)
         End If
@@ -66,25 +76,27 @@
     End Function
 
 
-    '******************************************************************************
-    ' returns logged client id according the set session or by the IP adress
-    '******************************************************************************
-    Function getLOGIN()
+    ''' <summary>
+    ''' returns logged client id according the set session or by the IP adress
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function getLOGIN() As String
         Const LOG_IN = "LOG_IN"
- 
+        Dim remoteHost As String = Request.ServerVariables("REMOTE_HOST")
         If Session(LOG_IN) <> "" Then
             getLOGIN = Session(LOG_IN)
         Else
             Dim sql, rs
             sql = "Select sid, kundenIdnr, ip from webSessions where CreationTime>=(" & SQLNOW(-0.05) & ") and IP Like '" & _
-                  Request.ServerVariables("REMOTE_HOST") & "' ORDER BY creationDate DESC"
+                  remoteHost & "' ORDER BY creationDate DESC"
             'Response.Write sql
             rs = objConnectionExecute(sql)
             If Not rs.eOF Then
-                If rs("kundenIdnr") > 0 Then 'do not return 0 
-                    getLOGIN = rs("kundenIdnr")
+                If rs("kundenIdnr").Value.ToString() <> "" Then 'do not return 0 
+                    getLOGIN = rs("kundenIdnr").Value
                 End If
-                If showDebug() Then Response.Write("<font color=red>Your Session is " & rs("SID") & "!</font>")
+                If showDebug() Then Response.Write("<font color=red>Your Session is " & rs("SID").Value & "!</font>")
             Else
                 If showDebug() Then Response.Write("<font color=red>Your Session is wrong! Please activate the cookies!</font>")
             End If
@@ -94,6 +106,10 @@
      
     End Function
 
+    ''' <summary>
+    ''' LogOut
+    ''' </summary>
+    ''' <remarks></remarks>
     Sub LogOut()
         ObjconnectionExecute("update webSessions set loggedOut=-1 where SID=" & getSID())
         Session("LOG_IN") = ""

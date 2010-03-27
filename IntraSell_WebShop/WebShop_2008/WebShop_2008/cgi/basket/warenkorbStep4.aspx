@@ -8,12 +8,12 @@
     <%=getTranslation("Ihre Bestellung")%></h1>
 <p align="left">
     <%
-        If debug() Then
+        If showDebug() Then
             Response.Write("DEFAULT_PAYMODE=" + DEFAULT_PAYMODE)
         End If
 
         Dim Email, Password, kdnr
-        'Dim landOfCalculation 
+        Dim landOfCalculation
 
         payMode = Session("PayMode")
         postMode = Session("postMode")
@@ -29,8 +29,7 @@
         Dim KundNr
         KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
-        'Dim errorsFound: 
-        errorsFound = False
+        Dim errorsFound : errorsFound = False
 
 
 
@@ -168,23 +167,23 @@ If payMode & "" = "" Then
                     <td width="33%">
                         <!--
 		<input type="button" value="<%=getTranslation("Bestätigung ausdrucken")%>" 
-				OnClick="document.location='cgi/account/printPreviewOrder.asp?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>'"
+				OnClick="document.location='cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>'"
 				style="float: right">
 		-->
                         <input type="button" class="button" value="<%=getTranslation("Bestätigung ausdrucken")%>"
-                            onclick="window.open('cgi/account/printPreviewOrder.asp?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>','Invoice','top=100,left=100,height=640,width=800,status=yes,toolbar=yes,menubar=no,location=no');"
+                            onclick="window.open('cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>','Invoice','top=100,left=100,height=640,width=800,status=yes,toolbar=yes,menubar=no,location=no');"
                             style="float: right">
                     </td>
                     <td width="33%" align="center">
-                        <a href="default.asp">
-                            <input type="button" class="button" value="<%=getTranslation("Home")%>" onclick="document.location='default.asp';" />
+                        <a href="default.aspx">
+                            <input type="button" class="button" value="<%=getTranslation("Home")%>" onclick="document.location='default.aspx';" />
                             <!--<img border="0"  src="<%=imageFullName("home.gif")%>" align="right" hspace="0">
 			-->
                         </a>
                     </td>
                     <td width="33%">
-                        <a href="cgi/account/logout.asp">
-                            <input type="button" class="button" value="<%=getTranslation("Abmelden")%>" onclick="document.location='cgi/account/logout.asp';" />
+                        <a href="cgi/account/logout.aspx">
+                            <input type="button" class="button" value="<%=getTranslation("Abmelden")%>" onclick="document.location='cgi/account/logout.aspx';" />
                             <!--<img border="0"  src="<%=imageFullName("logout.gif")%>" align="right" hspace="0">-->
                         </a>
                     </td>

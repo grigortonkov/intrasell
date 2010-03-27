@@ -143,13 +143,11 @@
         rs = ObjConnectionExecute(sql)
    
         If Not rs.EOF Then
-            Dim tmpCurLang : tmpCurLang = rs(currentLanguage)
+            Dim tmpCurLang : tmpCurLang = rs(currentLanguage).Value
             If Len(tmpCurLang) > 0 Then getTranslation_NoCache = tmpCurLang
             'decoding for bulgarian
             If currentLanguage = "BUL" Then
                 If Len(tmpCurLang) > 0 Then
-                    
-               
                     getTranslation_NoCache = tmpCurLang 'TODO Funktion NOT FOUND  stringToCyr(tmpCurLang)
                 End If
                 

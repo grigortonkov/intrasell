@@ -314,7 +314,7 @@
         If rs.EOF Then
             TABLEVALUE = "<font color=red>Datensatz [" + searchfield + "] in Tabelle [" + tablename + "] und spalte [" + colname + "] mit Wert " & varname & " ist nicht vorhanden!</font>"
         Else
-            TABLEVALUE = rs(searchfield)
+            TABLEVALUE = rs(searchfield).Value
         End If
         rs.close()
     End Function
@@ -322,13 +322,13 @@
     '********************************************************************
     'SUCHT EINE VARIABLE IN EINE TABELLE
     '********************************************************************
-    Function FIRSTVALUE(ByVal SQLString) As String
+    Function FIRSTVALUE(ByVal SQLString) As Object
         Dim rs
         rs = objConnectionExecute(SQLString)
         If rs.EOF Then
             FIRSTVALUE = "N.A."
         Else
-            FIRSTVALUE = rs(0)
+            FIRSTVALUE = rs(0).Value
         End If
         rs.close()
     End Function
@@ -337,7 +337,7 @@
     '=============================================================================
     ' getFirstField
     '=============================================================================
-    Function getFirstField(ByVal sql) As String
+    Function getFirstField(ByVal sql) As Object
         Dim rs
 
         rs = objConnectionExecute(sql)
@@ -349,14 +349,30 @@
         rs.close()
     End Function
 
+
+''' <summary>
+''' Debug
+''' </summary>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function isDebug() As Boolean
         isDebug = showDebug()
     End Function
 
+''' <summary>
+''' Debug
+''' </summary>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function debug() As Boolean
         debug = showDebug()
     End Function
 
+''' <summary>
+''' Use for Debug
+''' </summary>
+''' <returns></returns>
+''' <remarks></remarks>
     Public Function showDebug() As Boolean
         If UCase(Request("DEBUG")) = "TRUE" Then
             showDebug = True
@@ -366,10 +382,17 @@
          
     End Function
 
-    '********************************************************************
-    'SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
-    '********************************************************************
-    Public Function sendMailFromWithSending(ByVal Recipient, ByVal Subject, ByVal MailText, ByVal From_Email) As Boolean
+
+''' <summary>
+''' SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
+''' </summary>
+''' <param name="Recipient"></param>
+''' <param name="Subject"></param>
+''' <param name="MailText"></param>
+''' <param name="From_Email"></param>
+''' <returns></returns>
+''' <remarks></remarks>
+    Public Function sendMailFromWithSending(ByVal Recipient As String, ByVal Subject As String, ByVal MailText As String, ByVal From_Email As String) As Boolean
         'on error resume next 
  
         If showDebug() Then
@@ -421,7 +444,17 @@
  
     End Function
 
-    Function sendMailFromWithSendingCDONT(ByVal Recipient, ByVal Subject, ByVal MailText, ByVal from_email) As Boolean
+
+''' <summary>
+''' sendMailFromWithSendingCDONT
+''' </summary>
+''' <param name="Recipient"></param>
+''' <param name="Subject"></param>
+''' <param name="MailText"></param>
+''' <param name="from_email"></param>
+''' <returns></returns>
+''' <remarks></remarks>
+    Function sendMailFromWithSendingCDONT(ByVal Recipient As String, ByVal Subject As String, ByVal MailText As String, ByVal from_email as string) As Boolean
         Const cstCdoMailFormatMime = 1
         Const cstCdoMailFormatText = 0
 
@@ -443,11 +476,18 @@
         sendMailFromWithSendingCDONT = True '"Mail has been sent."
     End Function
 
-    '********************************************************************
-    'SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
+
+''' <summary>
+'''     'SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
     ' SENDS HTML MAILS
-    '********************************************************************
-    Function sendMailFromWithSendingPersists(ByVal Recipient, ByVal Subject, ByVal MailText, ByVal from_email) As Boolean
+''' </summary>
+''' <param name="Recipient"></param>
+''' <param name="Subject"></param>
+''' <param name="MailText"></param>
+''' <param name="from_email"></param>
+''' <returns></returns>
+''' <remarks></remarks>
+    Function sendMailFromWithSendingPersists(ByVal Recipient As String, ByVal Subject As String, ByVal MailText As String, ByVal from_email As String) As Boolean
         On Error Resume Next
         sendMailFromWithSendingPersists = False
         'on error resume next 
@@ -475,7 +515,7 @@
     '********************************************************************
     'SENDS DIRECTLY THE EMAIL WITHOUT TO SAVE IT IN THE Table for Sending
     '********************************************************************
-    Function sendMailFromWithSendingSVG(ByVal Recipient, ByVal Subject, ByVal MailText, ByVal from_email)
+    Function sendMailFromWithSendingSVG(ByVal Recipient As String, ByVal Subject As String, ByVal MailText As String, ByVal from_email As String)
         'on error resume next 
         'Response.Write "Send mail from " & from_email & " to " & Recipient
         If Len(Trim(Recipient)) > 4 Then
@@ -725,9 +765,12 @@
 
     End Function
 
-    '********************************************************************
-    ' CREATE FOLDER
-    '********************************************************************
+    ''' <summary>
+    ''' CREATE FOLDER
+    ''' </summary>
+    ''' <param name="folder"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function Createfolder(ByVal folder)
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
@@ -736,7 +779,12 @@
         'file_delete = True
     End Function
 
-    'CLEANS THE USER INPUT FROM UNNOLLOWED CHARS 
+    ''' <summary>
+    ''' CLEANS THE USER INPUT FROM UNNOLLOWED CHARS 
+    ''' </summary>
+    ''' <param name="userInput"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function cleanUserInput(ByVal userInput)
         Dim cleaned
         Dim errorFound : errorFound = False
@@ -982,37 +1030,37 @@
     Dim fsa
     Dim fea
     
-    Sub query2list(ByVal myquery, ByVal listname)
+    Function query2list(ByVal myquery, ByVal listname)
         htmlstart = "<select name='" & listname & "'><option></option>"
         htmlend = "</select>"
         rowstart = "<option>"
         rowend = "</option>"
         fieldstart = ""
         fieldend = ""
-        Call query2html(myquery)
-    End Sub
+        Return query2html(myquery)
+    End Function
 
-    Sub query2listMultiLines(ByVal myquery, ByVal listname, ByVal lines)
+    Function query2listMultiLines(ByVal myquery, ByVal listname, ByVal lines)
         htmlstart = "<select name='" & listname & "' size='" & lines & "'>"
         rowstart = "<option>"
         rowend = "</option>"
         htmlend = "</select>"
         fieldstart = ""
         fieldend = ""
-        Call query2html(myquery)
-    End Sub
+        Return query2html(myquery)
+    End Function
 
-    Sub query2table(ByVal myquery)
+    Function query2table(ByVal myquery)
         htmlstart = "<table border=1>"
         htmlend = "</table>"
         rowstart = "<tr>"
         rowend = "</tr>"
         fieldstart = "<td valign=top>"
         fieldend = "</td>"
-        Call query2html(myquery)
-    End Sub
+        Return query2html(myquery)
+    End Function
 
-    Sub query2form(ByVal myquery)
+    Function query2form(ByVal myquery)
         htmlstart = ""
         htmlend = ""
         rowstart = ""
@@ -1022,10 +1070,10 @@
         fieldnames = True
         namestart = ""
         nameend = "&nbsp;=&nbsp;"
-        Call query2html(myquery)
-    End Sub
+        Return query2html(myquery)
+    End Function
 
-    Sub query2entryform(ByVal myquery)
+    Function query2entryform(ByVal myquery)
         htmlstart = ""
         htmlend = ""
         rowstart = ""
@@ -1035,18 +1083,20 @@
         fieldnames = False
         namestart = ""
         nameend = "&nbsp;&nbsp;="
-        Call query2html(myquery)
-    End Sub
+        Return query2html(myquery)
+    End Function
 
     '********************************************************************
     '********************************************************************
-    Sub query2html(ByVal inputquery As Object)
+    Function query2html(ByVal inputquery As Object)
         'set conntemp=server.createobject("adodb.connection")
         'conntemp.open "DSN=Student;uid=student;pwd=magic"
+        Dim html As String
+        
         Dim conntemp, rstemp
         conntemp = objConnection
         rstemp = conntemp.execute(inputquery)
-        If rstemp.EOF Then Exit Sub
+        If rstemp.EOF Then Exit Function
         Dim howmanyfields, i, counter
         howmanyfields = rstemp.fields.count - 1
         ReDim fsa(howmanyfields)
@@ -1060,17 +1110,17 @@
             fsa(i) = tempstart
             fea(i) = tempend
         Next
-        Response.Write(htmlstart & vbCrLf)
+        html = html & (htmlstart & vbCrLf)
         counter = 0
         Do Until rstemp.eof
-            Response.Write(rowstart & vbCrLf)
+            html = html & (rowstart & vbCrLf)
             For i = 0 To howmanyfields
                 If fieldnames = True Then
-                    Response.Write(namestart & rstemp(i).name & nameend)
+                    html = html & (namestart & rstemp(i).name & nameend)
                 End If
-                Response.Write(fsa(i) & rstemp(i) & fea(i) & vbCrLf)
+                html = html & (fsa(i) & rstemp(i) & fea(i) & vbCrLf)
             Next
-            Response.Write(rowend & vbCrLf)
+            html = html & (rowend & vbCrLf)
             counter = counter + 1
             rstemp.movenext()
             If Response.IsClientConnected = False Then
@@ -1081,8 +1131,11 @@
         rstemp = Nothing
         'conntemp.close
         'set conntemp=nothing ' needed also by other connections
-        Response.Write(htmlend)
-    End Sub
+        html = html & (htmlend)
+        
+        Return html
+        
+    End Function
 
 
 

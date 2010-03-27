@@ -1,7 +1,7 @@
 <!--#include file="../defaulthead.inc"-->
 <%
     'Example: 
-    'http://test.vegsys.com/cgi/services/createAccountService.asp?Email1=grigor1@vegsys.com&Emailwiederholung1=grigor1@vegsys.com&Passwort1=123123&PasswortII1=123123&Titel1=Mag&Anrede1=Mr.&Name1=Tonkov&Vorname1=grigor&Strasse1=test&PLZ1=123123&Ort1=LA&Tel1=0123123123&Mobil1=01234123123&Fax1=0123123123&Land1=1&debug=true
+    'http://test.vegsys.com/cgi/services/createAccountService.aspx?Email1=grigor1@vegsys.com&Emailwiederholung1=grigor1@vegsys.com&Passwort1=123123&PasswortII1=123123&Titel1=Mag&Anrede1=Mr.&Name1=Tonkov&Vorname1=grigor&Strasse1=test&PLZ1=123123&Ort1=LA&Tel1=0123123123&Mobil1=01234123123&Fax1=0123123123&Land1=1&debug=true
 
     Dim sql
     Session("SID") = "" 'to generate new session on request 
@@ -30,4 +30,4 @@
         End If
     End If
 %>
-<!--#include file="../../intrasoft/connclose.asp"-->
+<!--#include file="../../intrasoft/connclose.aspx"-->

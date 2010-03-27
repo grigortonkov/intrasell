@@ -29,11 +29,21 @@
 <!--#include file="cgi/functionsProfile.aspx"-->
 <!--#include file="cgi/functionsNewsletter.aspx"-->
 <!--#include file="cgi/functionsOrderInvoice.aspx"-->
+<!--#include file="cgi/functionsOrderInvoiceDisplay.aspx"-->
+<!--#include file="cgi/functionsOrderInvoicePrint.aspx"-->
+
+<!--#include file="cgi/functionsOrderInvoicePrintASP.aspx"-->
+
 <!--#include file="cgi/functionsGutschein.aspx"-->
 <!--#include file="cgi/functionsStatistics.aspx"-->
 <!--#include file="cgi/functionsBanners.aspx"-->
 <!--#include file="cgi/functionsExtras.aspx"-->
 <!--#include file="cgi/functionsToolbar.aspx"-->
+<!--#include file="admin/module_ref/functionsReferers.aspx"-->
+
+
+<!--#include file="cgi/account/showUserSearches.aspx"-->
+
 
 <% 
     

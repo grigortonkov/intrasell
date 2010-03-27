@@ -1,63 +1,63 @@
 <script language="VB" runat="server">   
-'===========================================================================
-' General ASP Functions
-' This is collection of usefull ASP functions and procedures.
-' Written and edited by Grigor Tonkov 2001 (R)
-' See intrasoft.soft-ware.de for last changes. 
-'
-'
-'============================================================================
-' History
-'____________________________________________________________________________
-' DATE         WHAT
-'____________________________________________________________________________
-'FAQ List oriented help  on every page
-'shows help according the FAQ lists
-' if Seite is empty or nothing defined in the FAQ Table hten the function returns nothing
-'**Start Encode**
-Function showFAQList (Seite) 
-dim html 
-if Seite ="" or ucase(Seite)="FAQ" then 
- showFAQList = "<!-- FAQ ist leer-->"
- exit function 
-end if 
+    '===========================================================================
+    ' General ASP Functions
+    ' This is collection of usefull ASP functions and procedures.
+    ' Written and edited by Grigor Tonkov 2001 (R)
+    ' See intrasoft.soft-ware.de for last changes. 
+    '
+    '
+    '============================================================================
+    ' History
+    '____________________________________________________________________________
+    ' DATE         WHAT
+    '____________________________________________________________________________
+    'FAQ List oriented help  on every page
+    'shows help according the FAQ lists
+    ' if Seite is empty or nothing defined in the FAQ Table hten the function returns nothing
+    '**Start Encode**
+    Function showFAQList(ByVal Seite)
+        Dim html
+        If Seite = "" Or UCase(Seite) = "FAQ" Then
+            showFAQList = "<!-- FAQ ist leer-->"
+            Exit Function
+        End If
 
-Dim SQLString, rs
-  		SQLString ="SELECT * FROM webFAQ WHERE Page Like 'ALL%' or Page Like '" & Seite & "'"    
-		'Response.Write sqlString 
+        Dim SQLString, rs
+        SQLString = "SELECT * FROM webFAQ WHERE Page Like 'ALL%' or Page Like '" & Seite & "'"
+        'Response.Write sqlString 
         rs = objConnectionExecute(SQLString)
 		
-    if rs.eof then 
-     exit function 
+        If rs.eof Then
+            Exit Function
      
-     html = "Keine Fragen wurden soweit gestellt."
+            html = "Keine Fragen wurden soweit gestellt."
      
-     end if    
+        End If
      
-		'html = html &   "<hr>"
-		html = "Fragen und Antworten zur Seite [" & Seite & "]"
-		html = html &  "<br>"
+        'html = html &   "<hr>"
+        html = "Fragen und Antworten zur Seite [" & Seite & "]"
+        html = html & "<br>"
        		
-	Dim frage, count
-	count = 0	
- 	while not rs.EOF 
-        count = count +1 
-        Frage = rs("Frage") 
-        if len(Frage)>60 then Frage = left(Frage,60) & " ..."
-		html = html &   "<a href=""default.aspx?PageToShow=FAQ&FAQPage=" & Seite &"#" & left(Frage,10) & """>"
-		html = html &  "<li>"
-		html = html &  Frage
-		'html = html &  "<br>"
-		html = html &  "</a>"  
- 	    rs.movenext
+        Dim frage, count
+        count = 0
+        While Not rs.EOF
+            count = count + 1
+            frage = rs("Frage").Value
+            If Len(frage) > 60 Then frage = Left(frage, 60) & " ..."
+            html = html & "<a href=""default.aspx?PageToShow=FAQ&FAQPage=" & Seite & "#" & Left(frage, 10) & """>"
+            html = html & "<li>"
+            html = html & frage
+            'html = html &  "<br>"
+            html = html & "</a>"
+            rs.movenext()
         End While
- 	rs.close 
- 	showFAQList = html 
- ' END CONTENT	
-END Function
+        rs.close()
+        showFAQList = html
+        ' END CONTENT	
+    End Function
 
 
-'Shoqs full listing of FAQ for any Page 
+    'Shoqs full listing of FAQ for any Page 
     Function showFAQ(ByVal seite) As String
         Dim SQLString
         Dim rs
@@ -74,7 +74,7 @@ END Function
         count = 0
         While Not rs.EOF
             count = count + 1
-            Frage = rs("Frage")
+            Frage = rs("Frage").Value
   
             html = html & "<a href=""#" & Left(Frage, 10) & """>"
             html = html & "<li>"
@@ -94,7 +94,7 @@ END Function
         count = 0
         While Not rs.EOF
             count = count + 1
-            Frage = rs("Frage")
+            Frage = rs("Frage").Value
 
             html = html & "<li> "
             html = html & "<a name=""" & Left(Frage, 10) & """>"
@@ -111,26 +111,4 @@ END Function
         showFAQ = html
     End Function
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
