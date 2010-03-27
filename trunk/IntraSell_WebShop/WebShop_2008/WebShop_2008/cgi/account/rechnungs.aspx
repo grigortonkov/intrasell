@@ -20,13 +20,13 @@
         Dim MCHAR : MCHAR = "*"
         If Session("dbType") = "SQL" Or Session("dbType") = "MySQL" Then MCHAR = "%"
 	
-	SQL = " SELECT " & tableOrders &".Datum, Status,  "& tableOrdersProducts &".* " & _
-		  " FROM grArtikel, " & tableOrdersProducts & ", " & tableOrders  & _
-		  " WHERE "& tableOrdersProducts &".RechNr = " &tableOrders& ".Nummer" & _
-		  " and " & tableOrdersProducts &".ArtNR = grArtikel.ArtNr " & _ 
-		  " and " & tableOrders &".KundNr=" & getLOGIN() & _
-		  " and grArtikel.ArtNR>=1 and grArtikel.bezeichnung not like '" & MCHAR & "CALCULATE" & MCHAR & "' " & _ 
-		  " ORDER BY ("& tableOrdersProducts &".RechNr) DESC "	
+        SQL = " SELECT " & tableOrders & ".Datum, Status,  " & tableOrdersProducts & ".* " & _
+           " FROM grArtikel, " & tableOrdersProducts & ", " & tableOrders & _
+           " WHERE " & tableOrdersProducts & ".RechNr = " & tableOrders & ".Nummer" & _
+           " and " & tableOrdersProducts & ".ArtNR = grArtikel.ArtNr " & _
+           " and " & tableOrders & ".KundNr=" & getLOGIN() & _
+           " and grArtikel.ArtNR>=1 and grArtikel.bezeichnung not like '" & MCHAR & "CALCULATE" & MCHAR & "' " & _
+           " ORDER BY (" & tableOrdersProducts & ".RechNr) DESC "
    
         'if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  
 		  
@@ -99,7 +99,7 @@
                             <img border="0" src='<%=imageFullName("printer.png")%>'>
                         </td>
                         <td>
-                            <a href="cgi/account/printPreviewOrder.asp?nummer=<%=OrderNR%>&amp;OrderType=<%=OrderType%>"
+                            <a href="cgi/account/printPreviewOrder.aspx?nummer=<%=OrderNR%>&amp;OrderType=<%=OrderType%>"
                                 target="blank">
                                 <!--#<%=count%>&nbsp;-->
                                 <%=getTranslation("ausdrucken")%>&nbsp; </a>
@@ -110,7 +110,7 @@
                             <img border="0" src='<%=imageFullName("data_information.png")%>'>
                         </td>
                         <td>
-                            <a href="cgi/calls/requestJob.asp?Job=RequestOrderInfo&ProductId=ALL&OrderId=<%=OrderType%><%=OrderNR%>"
+                            <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=ALL&OrderId=<%=OrderType%><%=OrderNR%>"
                                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=400,width=400,status=yes,toolbar=no,menubar=no,location=no');">
                                 <%=getTranslation("Bestellinfo")%>
                             </a>

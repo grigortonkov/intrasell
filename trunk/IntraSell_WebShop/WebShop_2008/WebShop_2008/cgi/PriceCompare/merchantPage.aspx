@@ -1,4 +1,4 @@
-<!--#include file="merchantView/merchantWindow.asp"-->
+<!--#include file="merchantView/merchantWindow.aspx"-->
 <%
     Call LOG() ' save in login table 
     If Request("MERCHANT_HOME") <> "" Then 'redirect to merchant page is required' redirect       
@@ -22,7 +22,7 @@
                 butArrMerch(2, 1) = "Adresse_merken"
                 butArrMerch(3, 1) = "Filialen"
                 butArrMerch(1, 2) = "default.aspx?pageToShow=LieferantenInformationen&merchantId=" & merchantId & "&LieferantNr=" & merchantId & "&MERCHANT_HOME=" & rsM("Web")
-                butArrMerch(2, 2) = "cgi/account/saveBookmark.asp?Title=Lieferant  " & TABLEVALUE("lieferantenAdressen", "IDNR", merchantId, "Firma") & "&Folder=Lieferanten&URL=../merchantPage.asp?merchantId=" & merchantId
+                butArrMerch(2, 2) = "cgi/account/saveBookmark.aspx?Title=Lieferant  " & TABLEVALUE("lieferantenAdressen", "IDNR", merchantId, "Firma") & "&Folder=Lieferanten&URL=../merchantPage.aspx?merchantId=" & merchantId
                 butArrMerch(3, 2) = "#Filialen"
                 Call drawWindowPart1Merchant("Händler Information", " ", "", butArrMerch)
             %>
@@ -110,7 +110,7 @@
                             Web:
                         </td>
                         <td width="223">
-                            <a href="<%="merchantPage.asp?merchantId=" & merchantId & "&MERCHANT_HOME="&rsM("Web")%>">
+                            <a href="<%="merchantPage.aspx?merchantId=" & merchantId & "&MERCHANT_HOME="&rsM("Web")%>">
                                 <%=rsM("Web")%></a>
                         </td>
                         <td width="112">

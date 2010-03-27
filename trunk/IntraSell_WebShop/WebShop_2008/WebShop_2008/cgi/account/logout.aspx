@@ -2,5 +2,5 @@
 <%
     'Objconnection.execute("delete from webSessions where SID=" & getSID())
     Call logOut()
-    Response.Redirect("../../default.asp")
+    Response.Redirect("../../default.aspx")
 %>

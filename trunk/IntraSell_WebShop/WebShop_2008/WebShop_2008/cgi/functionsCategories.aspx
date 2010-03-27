@@ -61,11 +61,11 @@
         Dim rsCheck
         While Not rs.EOF
             'check if the cat or the sub cat contains products 
-            ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr"),5) & ")"
+            ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr").Value,5) & ")"
             ''not needed set rsCheck = ObjConnectionexecute(sql)
             Dim name
-            Dim ShowArtKatNR : ShowArtKatNR = rs("ArtKatNr")
-            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name"), Language) & ""
+            Dim ShowArtKatNR : ShowArtKatNR = rs("ArtKatNr").Value
+            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR.ToString(), "Name", rs("Name").Value, Language) & ""
             name = Server.HtmlEncode(name)            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>:: " & name & "</div></a>"
             ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  
@@ -92,7 +92,7 @@
         sql = "SELECT ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] WHERE ArtKatNrParent=" & PreKatNr & " ORDER BY Name "
         rs = ObjConnectionexecute(sql)
         While Not rs.EOF
-            Response.Write("<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr") & """>" & rs("Name") & "</a> - ")
+            Response.Write("<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr").Value & """>" & rs("Name") & "</a> - ")
             rs.MoveNext()
         End While
         rs.Close()
@@ -156,8 +156,8 @@
             Exit Function
         End If
    
-        showCategoryPath = showCategoryPath(rs("ArtKatNrParent"), inPageToShow) & " > " & _
-          "<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr") & """>" & Server.HtmlEncode(rs("Name")) & "</a>"
+        showCategoryPath = showCategoryPath(rs("ArtKatNrParent").Value, inPageToShow) & " > " & _
+          "<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr").Value & """>" & Server.HtmlEncode(rs("Name").Value) & "</a>"
   
     End Function
 
@@ -175,7 +175,7 @@
             Exit Function
         End If
    
-        showCategoryPathNoLinks = showCategoryPathNoLinks(rs("ArtKatNrParent"), inPageToShow) & " - " & Server.HtmlEncode(rs("Name"))
+        showCategoryPathNoLinks = showCategoryPathNoLinks(rs("ArtKatNrParent").Value, inPageToShow) & " - " & Server.HtmlEncode(rs("Name").Value)
   
     End Function
 
@@ -199,7 +199,7 @@
             Exit Function
         End If
    
-        showCategoryName = Server.HtmlEncode(rs("Name"))
+        showCategoryName = Server.HtmlEncode(rs("Name").Value)
         rs.close()
     End Function
 
@@ -459,9 +459,9 @@
     '30-09-2004 erweterung mit LAND l=AT etc. 
     '==============================================================================
     Function makeSubcategories(ByVal ArtKatNr, ByVal Levels) As String
-        Const MAX_CATS_OF_LEVEL_1 = 5
-        Dim html
-        Dim sql, rs
+        Const MAX_CATS_OF_LEVEL_1 As Integer = 5
+        Dim html As String
+        Dim sql As String , rs
         makeSubcategories = ""
         If Levels <= 0 Then Exit Function 'no more levels to show
  
@@ -476,14 +476,14 @@
         End If
         'Response.Write "sql=" & sql
         If Levels = 2 Then html = "<table  align=""center"" cellspacing=""10"" width=""100%""><tr>"
-        Dim i : i = 0
+        Dim i As Integer : i = 0
         While Not rs.EOF
             i = i + 1
             If Levels = 2 Then html = html & "<td valign=top ><B>"
             'html = html & "<a href=""default.aspx?PageToShow=CatBrowse&ArtKatNr=" & rs("ArtKatNr") & """>" &  rs("Name")  & "</A>"
-            Dim catLink : catLink = "default.aspx?PreKatNr=" & rs("ArtKatNr")
+            Dim catLink : catLink = "default.aspx?PreKatNr=" & rs("ArtKatNr").Value
             'read land 
-            Dim catLand : catLand = tableValue("[grArtikel-Kategorien]", "ArtKatNr", rs("ArtKatNr"), "Land")
+            Dim catLand As String : catLand = tableValue("[grArtikel-Kategorien]", "ArtKatNr", rs("ArtKatNr").Value, "Land")
             If Len(catLand) = 2 Then 'defined 
                 catLink = catLink & "&l=" & catLand
             End If
@@ -491,7 +491,7 @@
             html = html & "<a href=""" & catLink & """>"
             If Levels = 2 Then html = html & "<B>"
             If Levels = 2 Or (Levels = 1 And i <= MAX_CATS_OF_LEVEL_1) Then
-                html = html & Server.HtmlEncode(rs("Name"))
+                html = html & Server.HtmlEncode(rs("Name").Value)
             Else
                 ' html = html & "."
             End If
@@ -500,17 +500,18 @@
             'anzahl von product is out 
      
             If Levels = 2 Then 'countOfProducts only on step 2
-                Dim countOfProducts : countOfProducts = getCountOfProducts(rs("ArtKatNr"))
+                Dim countOfProducts As Long : countOfProducts = getCountOfProducts(rs("ArtKatNr").Value)
                 If CLng(countOfProducts) > 0 Then
                     html = html & " <font color=""#980000"" size=""1"">(" & countOfProducts & ")</font>"
                 End If
             End If
+            
             If Levels = 2 Then html = html & "</b><br>"
             If Levels = 1 Then
                 If i < MAX_CATS_OF_LEVEL_1 Then html = html & ", " Else html = html & " "
             End If
      
-            html = html & makeSubcategories(rs("ArtKatNr"), Levels - 1)
+            html = html & makeSubcategories(rs("ArtKatNr").Value, Levels - 1)
             If Levels = 2 Then html = html & "</td>"
             If i = 2 And Levels = 2 Then
                 html = html & "</tr><tr>"
@@ -595,12 +596,12 @@
             Exit Function
         End If
         findTemplate = catTemplate
-				
+        
         findTemplate = Replace(findTemplate, "&lt;", "<")
         findTemplate = Replace(findTemplate, "&gt;", ">")
         findTemplate = Replace(findTemplate, "&quot;", """")
         findTemplate = Replace(findTemplate, "&amp;nbsp;", "&nbsp;")
-	  
+        
     End Function
 
 
@@ -756,23 +757,23 @@
     'returns the count of products in the given and all subcategories 
     '******************************************************************
 
-    Function getCountOfProducts(ByVal ArtKatNR)
-        Dim sql, rs
+    Function getCountOfProducts(ByVal ArtKatNR) As Long
+        Dim sql As String, rs
         sql = " select count(*) as countProds from grArtikel " & _
            " Where ProduktAktiv <> 0 and ArtKatNr in (" & ArtKatNR & "," & makeSubcategoriesList(ArtKatNR, 5) & ")"
         rs = ObjConnectionexecute(sql)
         If rs.EOf Then
             getCountOfProducts = 0
         Else
-            getCountOfProducts = rs("countProds")
+            getCountOfProducts = rs("countProds").Value
         End If
         rs = Nothing
     End Function
 
 
 
-    Function getCountOfProductsOpt(ByVal optArtKatNR, ByVal optLieferantNr, ByVal optHerstellerNr)
-        Dim sql, rs
+    Function getCountOfProductsOpt(ByVal optArtKatNR, ByVal optLieferantNr, ByVal optHerstellerNr) As Long
+        Dim sql As String, rs
         sql = " select count(*) as countProds from grArtikel  " & _
               " Where ProduktAktiv <> 0 "
      
@@ -785,7 +786,7 @@
         If rs.EOf Then
             getCountOfProductsOpt = 0
         Else
-            getCountOfProductsOpt = rs("countProds")
+            getCountOfProductsOpt = rs("countProds").Value
         End If
         rs = Nothing
     End Function
@@ -796,7 +797,7 @@
     ' statistics for the most clicked products by category 
     '****************************************************************************
 
-    Function statisticTopClicksOnCategoryCache(ByVal ArtKatNr)
+    Function statisticTopClicksOnCategoryCache(ByVal ArtKatNr) As String 
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "SUB_CAT_TOPCLICKS_" & ArtKatNr
         temp = getCache(CACHE_NAME)
@@ -806,10 +807,10 @@
         statisticTopClicksOnCategoryCache = temp
     End Function
 
-    Function statisticTopClicksOnCategory(ByVal ArtKatNrParam)
+    Function statisticTopClicksOnCategory(ByVal ArtKatNrParam) As String 
         'exit function 
-        Dim MAX_PRODUCTS : MAX_PRODUCTS = 10
-        Dim sql
+        Dim MAX_PRODUCTS As Integer : MAX_PRODUCTS = 10
+        Dim sql As String
         Dim html
         'DONE: optimize this SQL statement 
         If Session("dbType") = "MySQL" Then
@@ -835,7 +836,7 @@
         End If
 		
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
+        Dim i As Integer : i = 0
         If Not rs.eOF Then
             html = html & "<table border=0>"
             'html = html & "<tr><th><p align=""center""><b>Top " & MAX_PRODUCTS & " Kategorien</b></th></tr>"
@@ -932,7 +933,7 @@
         While Not rs_.eof
             subCats = makeSubcategoriesList(rs_("ArtKatNr"), 10)
             sql_ = "insert into webCatsIndex (ArtKatNrPArent, ArtKatNr) select " & rs_("ArtKatNr") & ", ArtKatNr from [grArtikel-Kategorien] where ArtKatNr in (" & subCats & ")"
-            response.write(sql_ & "<br>") : response.flush()
+            Response.Write(sql_ & "<br>") : Response.Flush()
             objConnectionExecute(sql_)
    		
             rs_.moveNext()

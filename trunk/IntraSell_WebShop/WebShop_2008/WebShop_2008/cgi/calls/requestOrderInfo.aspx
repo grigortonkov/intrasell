@@ -7,11 +7,11 @@
         a.document.write("<center>\n");
         a.document.write("<div align=center>\n");
         //a.document.write ("<table width=100% border=1 cellspacing=0 bordercolor=#0000A0><tr><td><img src=htmlimg/email.gif align=left width=30 height=20>&nbsp;<BIG>EMAIL FORM</BIG></td></tr></table>\n");
-        a.document.write("<form action='cgi/calls/DoOrderInfo.asp' method='post'>\n");
+        a.document.write("<form action='cgi/calls/DoOrderInfo.aspx' method='post'>\n");
         a.document.write("<TABLE border=1 borderColor=green cellPadding=3 cellSpacing=0>\n");
         a.document.write("<TR>\n");
         a.document.write("<Th align=right><B>FROM:</B></Th>\n");
-        a.document.write("<td><input type='input' name='FromMail' value='<%=GetClientEMail(KundNr)%>'></td>\n");
+        a.document.write("<td><input type='input' name='FromMail' value='<%=GetClientEMail(getLOGIN())%>'></td>\n");
         a.document.write("</tr>");
 
         a.document.write("<TR>\n");

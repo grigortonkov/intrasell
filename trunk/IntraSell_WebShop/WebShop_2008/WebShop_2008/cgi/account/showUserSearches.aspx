@@ -4,19 +4,20 @@
     'sidQueryId, Action or Nothing For List
  
     Dim sidQueryId, sidActionQuery
- 
+    Dim SQL As String
+    
     sidQueryId = cleanUserInput(Request("QueryId"))
     sidActionQuery = cleanUserInput(Request("Action"))
        
     If sidActionQuery = "dilit" And sidQueryId = "" Then
-     Response.Write "Es fehlt ein Parameter sidQueryId=" & QueryId& "!"
+        Response.Write("Es fehlt ein Parameter QueryId!")
     End If
 
     'DELETE ACTION 
     If sidActionQuery = "dilit" And sidQueryId <> "" Then
         SQL = "delete from userSearches where QueryId = " & sidQueryId & " and sId=" & getSID()
         objConnectionExecute(SQL)
-			 Response.Write "Erfolgreich gelöscht wurde QueryId=" & sidQueryId& "!"
+        Response.Write("Erfolgreich gelöscht wurde QueryId=" & sidQueryId & "!")
     End If
 
 

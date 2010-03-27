@@ -56,12 +56,12 @@
         PasswordOld = TABLEVALUE("ofAdressen", "IDNR", getLOGIN(), "Passwort")
     End If
 %>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
 <input type="hidden" name="CHECK_AUTHENTIFICATION" value="YES">
 <p align="right">
     <input type="button" class="button" value="<%=getTranslation("weiter suchen")%>"
-        onclick="document.location='default.asp';">&nbsp;&nbsp;
+        onclick="document.location='default.aspx';">&nbsp;&nbsp;
     <input type="submit" class="button" value="<%=getTranslation("bestellen")%>">
 </p>
 <%
@@ -73,7 +73,7 @@
     logHTML = Replace(logHTML, "[USER_PASSWORD]", PasswordOld)
     logHTML = Replace(logHTML, "[USER_EMAIL]", EmailOld)
 
-    logHTML = parseTemplate(logHTML, null)
+    logHTML = parseTemplate(logHTML, Nothing)
 
 
     Response.Write(logHTML)

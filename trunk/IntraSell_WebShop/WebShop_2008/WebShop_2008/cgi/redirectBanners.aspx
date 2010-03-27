@@ -6,7 +6,7 @@
     Dim bannerLink
 
     If banId = "" Then
-        Response.Redirect("default.asp")
+        Response.Redirect("default.aspx")
     End If
 
     sql = "SELECT * FROM webBanners WHERE bannerId = " & banId
@@ -14,7 +14,7 @@
     If rsBan.EOF And rsBan.BOF Then
         rsBan.close()
         rsBan = Nothing
-        Response.Redirect("default.asp")
+        Response.Redirect("default.aspx")
     Else
         'increment clicks
         sql = "UPDATE webBanners set ClicksCount = " & rsBan("ClicksCount") + 1 & " WHERE bannerId = " & banId

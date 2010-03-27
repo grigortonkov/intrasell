@@ -62,10 +62,10 @@
         rs = objConnectionExecute(sql)
  
         If Not rs.eof Then
-            If (rs("CountPoints")) Is Nothing Then
+            If (rs("CountPoints").Value) Is Nothing Then
                 getCountPoints = 0
             Else
-                getCountPoints = CLng(rs("CountPoints")) + 0
+                getCountPoints = CLng(rs("CountPoints").Value) + 0
             End If
         End If
         rs.close()
@@ -85,10 +85,10 @@
         rs = objConnectionExecute(sql)
  
         If Not rs.eof Then
-            If (rs("sumPoints")) Is Nothing Then
+            If rs("sumPoints").Value Is Nothing Then
                 getSumPoints = 0
             Else
-                getSumPoints = rs("sumPoints") + 0
+                getSumPoints = rs("sumPoints").Value + 0
             End If
         End If
         rs.close()

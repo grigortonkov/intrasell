@@ -24,33 +24,34 @@
             makeMerchantView = "N/A"
             Exit Function
         End If
-        Dim stars : stars = rs("stars")
+        
+        Dim stars : stars = rs("stars").Value
         Dim i, starshtml
         For i = 1 To CInt(stars)
             starshtml = "*" & starshtml
         Next
         Dim html '<td width=50>" & starshtml & "</td>" & _ 
         html = "<table border=0><tr><td>"
-        html = html & "<a href=""default.aspx?pageToShow=LieferantenInformationen&MERCHANT_HOME=" & rs("web") & "&merchantId=" & merchantId & """ target=""_new"">"
+        html = html & "<a href=""default.aspx?pageToShow=LieferantenInformationen&MERCHANT_HOME=" & rs("web").Value & "&merchantId=" & merchantId & """ target=""_new"">"
 	
         'LOGO VIEW 
         'click on logo goes directly to the merchant homepage
         If LCase(rs("PaymentMode")) = "top" Then
-            html = html & "<img border=""0"" _width=100 _height=25 alt=""" & rs("Firma") & """ src=""../merchantLogos/" & rs("LieferantNr") & ".jpg"">"
+            html = html & "<img border=""0"" _width=100 _height=25 alt=""" & rs("Firma").Value & """ src=""../merchantLogos/" & rs("LieferantNr").Value & ".jpg"">"
         End If
         'BOLD VIEW 
-        If LCase(rs("PaymentMode")) = "middle" Then html = html & "<b>" & rs("Firma") & "</b>"
+        If LCase(rs("PaymentMode")) = "middle" Then html = html & "<b>" & rs("Firma").Value & "</b>"
 	
         'ONLY COMPANY NAME
-        If LCase(rs("PaymentMode")) = "base" Then html = html & rs("Firma")
+        If LCase(rs("PaymentMode")) = "base" Then html = html & rs("Firma").Value
 
 	
         html = html & "</a>"
-        'html = html & " <a href=""cgi/priceCompare/merchantPage.asp?merchantId=" & merchantID & """>info</a>" 
+        'html = html & " <a href=""cgi/priceCompare/merchantPage.aspx?merchantId=" & merchantID & """>info</a>" 
         html = html & " <a href=""default.aspx?pageToShow=LieferantenInformationen&merchantId=" & merchantId & """>info</a>"
     
         'TODO: not needed now
-        'if rs("web") <> "" then html = html & " <a href=""merchantPage.asp?MERCHANT_HOME="& rs("web") &"&merchantId=" & merchantID & """>home</a>" 
+        'if rs("web") <> "" then html = html & " <a href=""merchantPage.aspx?MERCHANT_HOME="& rs("web") &"&merchantId=" & merchantID & """>home</a>" 
         html = html & "</td></tr></table>"
     
         makeMerchantView = html
@@ -147,8 +148,8 @@
         Next
         Dim html
         html = "<table border=0><tr><td>" & _
-               " <a href=""cgi/priceCompare/merchantPage.asp?MERCHANT_HOME=" & rs("web") & "&merchantId=" & merchantId & """ target=""_new"">" & rs("Firma") & "</a>" & _
-               " <a href=""cgi/priceCompare/merchantPage.asp?merchantId=" & merchantId & """>info</a>"
+               " <a href=""cgi/priceCompare/merchantPage.aspx?MERCHANT_HOME=" & rs("web") & "&merchantId=" & merchantId & """ target=""_new"">" & rs("Firma") & "</a>" & _
+               " <a href=""cgi/priceCompare/merchantPage.aspx?merchantId=" & merchantId & """>info</a>"
         html = html & "</td></tr></table>"
     
         makeMerchantSimpleView = html

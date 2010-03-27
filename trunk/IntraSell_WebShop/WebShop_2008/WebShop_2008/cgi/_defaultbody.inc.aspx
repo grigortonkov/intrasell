@@ -1,6 +1,8 @@
- 
-<%
+<!--#include file="defaulthead.inc.aspx"-->
 
+<%
+  
+  
     filenameForBodyTemplate = Server.MapPath("skins/skin" & SKINNUMBER & "/pages/template_" & PageToShow & ".htm")
     
     If fileExists(filenameForBodyTemplate) Then
@@ -15,7 +17,7 @@
             pageToShow = "NOTHING"
         End If
     Else
-        If showDebug() Then
+        If LCase(Request("debug")) = "true" Then
             Response.Write("No Template File was found for this page! Page=" & filenameForBodyTemplate)
         End If
     End If
@@ -33,9 +35,7 @@
     '<!--#include file="immo/defaultBody.inc"-->
 %>
 <%   
-    if showDebug() then 
-      Response.write ( "PageToshow:" & PageToShow )
-    end if 
+    'Response.write "PageToshow:" & PageToShow
      
     Select Case pageToShow%>
 <%  Case "ProductList", "" 'we have category Browse%>
@@ -64,7 +64,7 @@
 <%  Case "PutInWarenkorb"%>
 <%  Call PutInWarenkorb()%>
 <%  Case "RestoreWarenkorb"%>
-<!--#include file="basket/restoreWarenkorb.aspx"-->
+<!--#include file="_basket/restoreWarenkorb.aspx"-->
 <%  Case "FAQ"%>
 <%  Call showFAQ(Request("FAQPage"))%>
 <%  'ACCOUNT PAGES%>
@@ -87,7 +87,7 @@
 <%  Case "NewAccountSimple"%>
 <!--#include file="account/profileCreateSimple.aspx"-->
 <%  Case "ProfileSave"%>
-<!--#include file="account/profileSave.aspx"-->
+<!--#include file="_account/profileSave.aspx"-->
 <%  Case "ProfileSaveSimple"%>
 <!--#include file="account/profileSaveSimple.aspx"-->
 <%  Case "MyAccountActivate"%>
@@ -123,25 +123,25 @@
 <%  Case "Newsletter"%>
 <%  Call registerForNewsletter(Request("EmailForNewsletter"), Request("Interest"))%>
 <%  Case "Bookmarks"%>
-<%'<!--#include file="account/userBookmarks.aspx"-->%>
-<%'  Case "MyBookmarks"%>
-<%'<!--#include file="account/showBookmark.aspx"-->%>
-<%'  Case "SaveBookmark"%>
-<%'<!--#include file="account/saveBookmark.aspx"-->%>
+<!--#include file="account/userBookmarks.aspx"-->
+<%  Case "MyBookmarks"%>
+<!--#include file="_account/showBookmark.aspx"-->
+<%  Case "SaveBookmark"%>
+<!--#include file="_account/saveBookmark.aspx"-->
 <%  Case "SaveUserQuery"%>
-<!--#include file="account/saveUserQuery.aspx"-->
+<!--#include file="_account/saveUserQuery.aspx"-->
 <%  Case "ShowUserQuery"%>
-<!--#include file="account/showUserQuery.aspx"-->
+<!--#include file="_account/showUserQuery.aspx"-->
 <%  Case "ShowUserSearch"%>
-<!--#include file="account/showUserSearches.aspx"-->
+<!--#include file="_account/showUserSearches.aspx"-->
 <%  Case "DoEmailAFriend"%>
-<!--#include file="calls/DoSendToFriend_included.aspx"-->
+<!--#include file="_calls/DoSendToFriend_included.aspx"-->
 <%  Case "TestEmailOrder"%>
-<!--#include file="account/testEmailOrder.aspx"-->
+<!--#include file="_account/testEmailOrder.aspx"-->
 <%  Case "Ecard"%>
-<!--#include file="ecard/index.aspx"-->
+<!--#include file="_ecard/index.aspx"-->
 <%  Case "EcardView"%>
-<!--#include file="ecard/view.aspx"-->
+<!--#include file="_ecard/view.aspx"-->
 <%  Case "EcardSend"%>
 <!--#include file="ecard/send.aspx"-->
 <%  Case "FirstPage", "", "WebPage"  ' default page%>
@@ -149,15 +149,11 @@
 <%=convertToHTML(parseTemplate(tableValue("webPages","[Title]","'" & webPage & "'","html"),0))%>
 <%
 End Select
-
 Dim ArtNrToRedirekt : ArtNrToRedirekt = Request("ArtNr")
-
-If ArtNrToRedirekt = "" Then 
-    ArtNrToRedirekt = Request("ProduktId")
-end if
-   	 
+If ArtNrToRedirekt = "" Then ArtNrToRedirekt = Request("ProduktId")
+  	 
 If Request("NextPageToShow") <> "" Then
-    Response.Redirect("default.aspx?pageToShow=" & Request("NextPageToShow") & "&ArtNR=" & ArtNrToRedirekt & "&message=" & message)
+Response.Redirect("default.aspx?pageToShow=" & Request("NextPageToShow") & "&ArtNR=" & ArtNrToRedirekt & "&message=" & message)
 End If
  		
 %>

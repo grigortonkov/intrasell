@@ -1,5 +1,5 @@
-<!--#include virtual="/intrasoft/functions.asp"-->
-<!--#include file="functionsReferers.asp"-->
+<!--#include virtual="/intrasoft/functions.aspx"-->
+<!--#include file="functionsReferers.aspx"-->
 <head>
 <meta http-equiv="Content-Language" content="de">
 <link REL="stylesheet" HREF="../../style.css" TYPE="text/css">

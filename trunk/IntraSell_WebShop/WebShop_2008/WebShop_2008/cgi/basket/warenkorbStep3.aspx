@@ -39,7 +39,7 @@
     If Not errorsFound Then
 
     %>
-    <form method="POST" action="default.asp" name="warenkorbStep3">
+    <form method="POST" action="default.aspx" name="warenkorbStep3">
     <input type="hidden" name="EmailOld" size="20" value="<%=EmailStep3%>">
     <input type="hidden" name="PasswordOld" size="20" value="<%=PasswordStep3%>">
     <input type="hidden" name="PageToShow" value="warenkorbStep4">

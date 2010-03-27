@@ -1,5 +1,5 @@
 <%@  Language="VBScript.Encode" %>
-<%'Session ("BASENAME") = "http://" & Request.ServerVariables("SERVER_NAME")  & left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("\admin\default.asp"))%>
+<%'Session ("BASENAME") = "http://" & Request.ServerVariables("SERVER_NAME")  & left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("\admin\default.aspx"))%>
 <!--#include virtual="/intrasoft/connopen.aspx"-->
 <!--#include virtual="/intrasoft/functions.aspx"-->
 <!--#include virtual="/intrasoft/functionsCache.aspx"-->
@@ -17,11 +17,11 @@ if VARVALUE("ADMINPASS")="123" then 'new setup
     %>
     Sie sind das erste mal hier!?<br>
     Herzliche Gratulation für das Erwerben dieses Produkt!<br>
-    Sie sollten jetzt die <a href="setup/wizzard.asp">Grundeinstellungen vornehmen!</a><br>
+    Sie sollten jetzt die <a href="setup/wizzard.aspx">Grundeinstellungen vornehmen!</a><br>
     Viel Erfolg!
     <%
 else 
-   response.redirect "lists/listOrders.asp?OrderType=AU"
+   response.redirect "lists/listOrders.aspx?OrderType=AU"
 end if 
     %>
 </body>

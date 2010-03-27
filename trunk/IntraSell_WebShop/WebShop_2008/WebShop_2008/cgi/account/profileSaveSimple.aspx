@@ -1,4 +1,4 @@
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
 <%  Dim new_kdnr_simple : new_kdnr_simple = saveProfileSimple(ACCOUNT)
     'response.write "new_kdnr_simple=" & new_kdnr_simple

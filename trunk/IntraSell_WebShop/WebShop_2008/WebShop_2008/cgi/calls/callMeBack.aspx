@@ -12,7 +12,7 @@
                 </td>
             </tr>
         </table>
-        <form action='DoCallMeBack.asp' method='post'>
+        <form action='DoCallMeBack.aspx' method='post'>
         <table border="0" bordercolor="green" cellpadding="3" cellspacing="0">
             <tr>
                 <td align="center" border="0">

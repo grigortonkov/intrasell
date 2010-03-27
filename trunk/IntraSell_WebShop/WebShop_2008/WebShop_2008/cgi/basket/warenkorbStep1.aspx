@@ -4,93 +4,85 @@
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 
-    Const SHOW_SELECT_POST = False
-    Const SHOW_SELECT_DESTINATION = False
+    Const SHOW_SELECT_POST as Boolean = False
+    Const SHOW_SELECT_DESTINATION As Boolean = False
 
 %>
-<div id="Hinweis" style="color=red">
+<div id="Hinweis" style="color: red">
     &nbsp;</div>
 
 <script language="JavaScript">
 			function WaitForCalculation() {    
 			   //alert("Warten Sie bis die Berechnung l&auml;uft!");
 			  if(document.all) //IEXplorer 
-			   document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung fertig ist!") & getTranslation(" Tipp: Browser Symbol dreht sich nicht mehr.")%>";
+			   document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung abgeschlossen ist!") & getTranslation(" Tipp: Der Browser Symbol dreht sich nicht mehr sobald die Berechnung abgeschlossen wurde.")%>";
 			   //document.write("Warten Sie bis die Berechnung l&auml;uft!");
 			 }; 	 
 </script>
 
-<form method="POST" action="default.asp" id="warenkorbStep1" name="warenkorbStep1">
+<form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
 <input type='hidden' name='pageToShow' value='warenkorbStep1'>
 <!-- WARENKORB -->
 <%
 
-    Dim i, pos
-    Dim an, qn, chn
-    Dim rsWK
-    Dim sql
-    Dim emptySet
-    Dim paymode, postmode, destination
-    Dim gutscheinNummer
-
-
+ 
     If Not isPurchasingAllowed() Then
         Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden erlaubt!"))
     Else 'allowed  
        	 
-payMode = Request("PayMode"):   if payMode&"" = "" then payMode = Session("PayMode"): if payMode&"" = "" then payMode = DEFAULT_PAYMODE
-postMode = Request("postMode"): if postMode&"" = "" then postMode = Session("postMode"): if postMode&"" = "" then postMode = DEFAULT_POSTMODE
-destination = Request("destination"): if destination&"" = "" then destination  = Session("destination"): if destination&"" = "" then destination  = DEFAULT_POSTMODE_DESTINATION
-                                'Session("LAND") = destination 
+        paymode = Request("PayMode") : If paymode & "" = "" Then paymode = Session("PayMode") : If paymode & "" = "" Then paymode = DEFAULT_PAYMODE
+        postmode = Request("postMode") : If postmode & "" = "" Then postmode = Session("posIMode") : If postmode & "" = "" Then postmode = DEFAULT_POSTMODE
+        destination = Request("destination") : If destination & "" = "" Then destination = Session("destination") : If destination & "" = "" Then destination = DEFAULT_POSTMODE_DESTINATION
+        'Session("LAND") = destination 
 
-                                Session("PayMode") = paymode
-                                Session("postMode") = postmode
-                                Session("destination") = destination
+        Session("PayMode") = paymode
+        Session("postMode") = postmode
+        Session("destination") = destination
 
-                                If debug() Then
-                                    Response.Write("payMode=" & paymode)
-                                    Response.Write("DEFAULT_PAYMODE=" & DEFAULT_PAYMODE)
-                                End If
+        If showDebug() Then
+            Response.Write("payMode=" & paymode)
+            Response.Write("DEFAULT_PAYMODE=" & DEFAULT_PAYMODE)
+        End If
 
-                                'for mecom 
-                                If destination = "Germany" Then paymode = "Vorauskasse"
-                                If Request("notiz") <> "" Then Session("notiz") = Request("notiz")
+        'for mecom 
+        If destination = "Germany" Then paymode = "Vorauskasse"
+        If Request("notiz") <> "" Then Session("notiz") = Request("notiz")
 
 
-                                'GUTSCHEIN PROBLEMATIK 
-                                'Response.Write "gutscheinNummer: " & request("gutscheinNummer")
-                                If Request("gutscheinNummer") <> "" Then
-                                    If getPreisForGutschein(Request("gutscheinNummer")) > 0 Then
-                                        Session("gutscheinNummer") = Request("gutscheinNummer")
-                                    Else
-                                        Response.Write("Gutschein Nr. [" & Request("gutscheinNummer") & "] wurde nicht akzeptiert!")
-                                    End If
-                                End If
+        'GUTSCHEIN PROBLEMATIK 
+        'Response.Write "gutscheinNummer: " & request("gutscheinNummer")
+        If Request("gutscheinNummer") <> "" Then
+            If getPreisForGutschein(Request("gutscheinNummer")) > 0 Then
+                Session("gutscheinNummer") = Request("gutscheinNummer")
+            Else
+                Response.Write("Gutschein Nr. [" & Request("gutscheinNummer") & "] wurde nicht akzeptiert!")
+            End If
+        End If
 
-                                'Response.Write "ITEMS:" & request("Items")
-                                If Request("Items") <> "" Then ' Update is needed
-                                    For i = 1 To CInt(Request("Items"))
-                                        an = "Art" & i
-                                        qn = "Stk" & i
-                                        chn = "checkD" & i
-                                        'Response.write " qn = " & request(qn) & " checked is : " & request(chn)
-                                        If LCase(Request(chn)) = "on" Then ' delete item
-                                            sql = "Update webWarenkorb set Quantity='0'"
-                                            sql = sql & " WHERE ArtNr = " & Request(an)
-                                            sql = sql & " AND SID=" & getSID()
-                                            rsWK = objConnectionExecute(sql)
-                                        Else ' update quantity
-                                            sql = "Update webWarenkorb set Quantity='" & Request(qn)
-                                            sql = sql & "' WHERE ArtNr = " & Request(an)
-                                            sql = sql & " AND SID=" & getSID()
-                                            rsWK = objConnectionExecute(sql)
-                                        End If
+        'Response.Write "ITEMS:" & request("Items")
+        If Request("Items") <> "" Then ' Update is needed
+            For i = 1 To CInt(Request("Items"))
+                an = "Art" & i
+                qn = "Stk" & i
+                chn = "checkD" & i
+                'Response.write " qn = " & request(qn) & " checked is : " & request(chn)
+                If LCase(Request(chn)) = "on" Then ' delete item
+                    sql = "Update webWarenkorb set Quantity='0'"
+                    sql = sql & " WHERE ArtNr = " & Request(an)
+                    sql = sql & " AND SID=" & getSID()
+                    rsWK = objConnectionExecute(sql)
+                Else ' update quantity
+                    sql = "Update webWarenkorb set Quantity='" & Request(qn)
+                    sql = sql & "' WHERE ArtNr = " & Request(an)
+                    sql = sql & " AND SID=" & getSID()
+                    rsWK = objConnectionExecute(sql)
+                End If
 			
-                                    Next
+            Next
 	
-                                End If
+        End If
 
-                                emptySet = visualizeWarenkorb("1", Session("LAND"), paymode, postmode, destination)
+        emptySet = visualizeWarenkorb("1", Session("LAND"), paymode, postmode, destination)
 %>
 <%  If emptySet Then%>
 <input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">
@@ -98,7 +90,7 @@ destination = Request("destination"): if destination&"" = "" then destination  =
 </form>
 <!-- END WARENKORB UPDATE FORM-->
 <%  If emptySet Then%>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
 <center>
     <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
@@ -120,11 +112,11 @@ destination = Request("destination"): if destination&"" = "" then destination  =
                         sql = "select methode from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by methode order by methode"
                         rsZM = objConnectionExecute(sql)
                         While Not rsZM.EOF
-                            If UCase(Trim(postmode)) = UCase(Trim(rsZM("methode"))) Then selected = "checked" Else selected = ""
+                            If UCase(Trim(postmode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
                             'Response.Write selected
                     %>
-                    <input type="radio" class="submit" value="<%=rsZM("methode")%>" name="PostMode" <%=selected%>
-                        onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode")%>';">
+                    <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
+                        <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode")%>';">
                     <%=rsZM("methode")%>
                     <%
                         rsZM.MoveNExt()
@@ -150,16 +142,16 @@ destination = Request("destination"): if destination&"" = "" then destination  =
 							 <option class="submit" value="<%=destination%>"> <%=destination%>
 							 -->
                         <%
-                            'dim rsZM, selected            
+                            Dim rsZM, selected
                             sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' and Methode = '" & postmode & "' group by destination  order by destination"
                             rsZM = objConnectionExecute(sql)
                             While Not rsZM.EOF
-                                If UCase(Trim(destination)) = UCase(Trim(rsZM("destination"))) Then selected = "checked" Else selected = ""
+                                If UCase(Trim(destination)) = UCase(Trim(rsZM("destination").Value)) Then selected = "checked" Else selected = ""
                                 'Response.Write selected
                         %>
                         <!--<option class="submit" value="<%=rsZM("destination")%>"> <%=rsZM("destination")%>
 								-->
-                        <input type="radio" class="submit" value="<%=rsZM("destination")%>" name="destination"
+                        <input type="radio" class="submit" value="<%=rsZM("destination").Value%>" name="destination"
                             <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination")%>';">
                         <%=rsZM("destination")%>
                         <%
@@ -197,8 +189,7 @@ destination = Request("destination"): if destination&"" = "" then destination  =
                             </th>
                             <td valign="middle" align="left">
                                 <%
-                                    Dim rsZM, selected
-            
+                                  
                                     sql = "select methode, Destination from [grArtikel-Vertriebskosten] where typ like 'PAYMENT' group by methode, Destination order by methode"
                                     rsZM = objConnectionExecute(sql)
                                     While Not rsZM.EOF
@@ -220,7 +211,7 @@ destination = Request("destination"): if destination&"" = "" then destination  =
                         <!-- END WARENKORB PAYMODE-->
                         <tr>
                             <td colspan="2">
-                                <hr>
+                                <hr />
                             </td>
                             </td>
                             <%End If%>
@@ -228,9 +219,9 @@ destination = Request("destination"): if destination&"" = "" then destination  =
     </table>
 </center>
 <p align="right">
-    <%if (not payMode& "" = "" ) and (not postMode& "" = "" ) and (not destination& "" = "" ) then %>
+    <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
     <input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
-    <% Else%>
+    <%Else%>
     <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
     <%End If%>
 </p>
@@ -239,10 +230,24 @@ destination = Request("destination"): if destination&"" = "" then destination  =
 End If 'purchasing allowed 
 %>
 <%
-    Dim logHTML1
-    logHTML1 = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
-    logHTML1 = parseTemplate(logHTML, null)
-    Response.Write(logHTML1)
+    Dim logHTML
+    logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
+    logHTML = parseTemplate(logHTML, Nothing)
+    Response.Write(logHTML)
 
 %>
 <!-- END WARENKORB  -->
+
+<script language="VB" runat="server">
+    Dim rsZM
+    Dim i, pos
+    Dim an, qn, chn
+    Dim rsWK
+    Dim sql
+    Dim emptySet
+    Dim paymode, postmode, destination
+    Dim gutscheinNummer
+    Dim selected
+    
+</script>
+

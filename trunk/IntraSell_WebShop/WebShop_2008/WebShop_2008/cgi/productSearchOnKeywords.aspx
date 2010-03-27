@@ -50,7 +50,7 @@
 
     'ERROR no SEARCH ATTR
     If Len(whereClause) <= Len(DEFAULT_PRODUCT_SEARCH_WHERE) Then
-        Call drawErrorBox(getTranslation("Suche ohne Kriterien"), getTranslation("Sie haben ohne Kriterien gesucht! M&ouml;chten Sie jetzt Kriterien festlegen?"), "default.asp", "")
+        Call drawErrorBox(getTranslation("Suche ohne Kriterien"), getTranslation("Sie haben ohne Kriterien gesucht! M&ouml;chten Sie jetzt Kriterien festlegen?"), "default.aspx", "")
     Else
         'END BUILD WHERE CONDITION
         'save query 

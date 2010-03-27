@@ -1,33 +1,36 @@
 <%
 
+    Dim GERMAN, ENGLISH As Boolean
+     
     GERMAN = varvalue("LANGUAGE") <> "ENG"
     ENGLISH = Not GERMAN
  
     'Dim SQL, RS
     Dim LoveCard_ID
 
-    FromName = Request("FromName")
-    FromEmail = Request("FromEmail")
-    ToName = Request("ToName")
-    ToEmail = Request("ToEmail")
-    LoveText = Request("LoveText")
-    CardName = Request("CardName")
+    Dim FromName As String : FromName = Request("FromName")
+    Dim FromEmail As String : FromEmail = Request("FromEmail")
+    Dim ToName As String = Request("ToName")
+    Dim ToEmail As String = Request("ToEmail")
+    Dim LoveText As String = Request("LoveText")
+    Dim CardName As String = Request("CardName")
+    Dim mailtext As String
+    
+    Dim nextCardId As Integer : nextCardId = nextId("webCards", "LoveCard_Id")
 
-    Dim nextCardId : nextCardId = nextId("webCards", "LoveCard_Id")
-
-    SQL = "INSERT INTO webCards (LoveCard_Id, FromName,FromEmail, ToName, ToEmail, LoveText, CardName, DateFrom)" & _
+    Dim SQL = "INSERT INTO webCards (LoveCard_Id, FromName,FromEmail, ToName, ToEmail, LoveText, CardName, DateFrom)" & _
           "VALUES(" & nextCardId & ",'" & FromName & "','" & FromEmail & "','" & ToName & "','" & ToEmail & "','" & LoveText & "','" & _
             CardName & "'," & SQLNOW(0) & ")"
 
     'response.write SQL
 
-    rs = objConnectionExecute(SQL)
+    Dim rs = objConnectionExecute(SQL)
 
     'GET THE CARD ID 
     SQL = "SELECT * FROM webCards ORDER BY LoveCard_Id DESC"
     rs = objConnectionExecute(SQL)
  
-    LoveCard_ID = rs("LoveCard_Id")
+    LoveCard_ID = rs("LoveCard_Id").Value
 
     If GERMAN Then
         MailText = "Hallo " & ToName & "!" & Chr(13) & Chr(10) & _

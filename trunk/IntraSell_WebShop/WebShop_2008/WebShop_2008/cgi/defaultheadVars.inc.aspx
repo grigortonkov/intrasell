@@ -96,7 +96,7 @@
         PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
     End If
 
-    If Session("CURRENT_PRODUCT_CATEGORY") <> "" And IsNumeric(Session("CURRENT_PRODUCT_CATEGORY")) Then
+    If  Not Session("CURRENT_PRODUCT_CATEGORY") is nothing And IsNumeric(Session("CURRENT_PRODUCT_CATEGORY")) Then
         If CLng(Session("CURRENT_PRODUCT_CATEGORY")) > 0 Then
             PAGETITLE = PAGETITLE & " > " & tablevalue("[grArtikel-Kategorien]", "ArtKatNR", Session("CURRENT_PRODUCT_CATEGORY"), "Name")
         End If
@@ -108,9 +108,9 @@
  
  
     'response.write Request.ServerVariables("URL") 
-    'Session ("BASENAME") = "http://" & Request.ServerVariables("SERVER_NAME")  & left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("/default.asp"))
+    'Session ("BASENAME") = "http://" & Request.ServerVariables("SERVER_NAME")  & left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("/default.aspx"))
 
-    SHOP_TITLE = PAGETITLE & VARVALUE("DOMAIN") & " eStore in " & Session("LAND")
+    SHOP_TITLE = PAGETITLE & VARVALUE("DOMAIN") & " WebShop in " & Session("LAND")
     SHOP_TITLE = PAGETITLE & Request.ServerVariables("HTTP_HOST") & " : " & Session("LAND")
 %>
 

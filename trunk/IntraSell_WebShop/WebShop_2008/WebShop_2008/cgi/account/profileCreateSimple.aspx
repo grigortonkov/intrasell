@@ -13,7 +13,7 @@
                 Response.End()
                 ' Session("LOG_IN") = ""
             End If%>
-        <form method="POST" action="default.asp">
+        <form method="POST" action="default.aspx">
         <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
         <%Call drawEmptyProfileFormSimple(ACCOUNT, False)%>
         <input type="submit" class="button" value="<%=getTranslation("Jetzt anmelden")%>">

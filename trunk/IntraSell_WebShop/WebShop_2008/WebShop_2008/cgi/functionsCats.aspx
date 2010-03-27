@@ -1,12 +1,12 @@
 <% @ LANGUAGE = VBScript.Encode%>
 <%' @ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
 <%OPTION explicit%>
-<!--#include file="../intrasoft/connOpen.asp"-->
-<!--#include file="../intrasoft/functions.asp"-->
-<!--#include file="../intrasoft/functionsGUI.asp"-->
-<!--#include file="../intrasoft/functionsFAQ.asp"-->
-<!--#include file="../intrasoft/functionsCache.asp"-->
-<!--#include file="functionsCategories.asp"-->
+<!--#include file="../intrasoft/connOpen.aspx"-->
+<!--#include file="../intrasoft/functions.aspx"-->
+<!--#include file="../intrasoft/functionsGUI.aspx"-->
+<!--#include file="../intrasoft/functionsFAQ.aspx"-->
+<!--#include file="../intrasoft/functionsCache.aspx"-->
+<!--#include file="functionsCategories.aspx"-->
 <%
 
 'start - rebuilding index for the categories - 

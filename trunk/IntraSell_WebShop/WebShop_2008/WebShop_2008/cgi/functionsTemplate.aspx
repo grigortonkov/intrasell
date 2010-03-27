@@ -178,7 +178,7 @@
         'TAG_SUBCATEGORIES 
         If InStr(template, TAG_SUBCATEGORIES) > 0 Then 'TAG_SUBCATEGORIES request
             Dim title
-            title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.asp"), 1) & "</font>"
+            title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
             'html =  drawAreaHTML(title, makeSubcategories(artKatNr,2),"", 600)
             html = makeSubcategoriesFromCache(artKatNr, 2)
             parseTemplate = parseTemplate(Replace(template, TAG_SUBCATEGORIES, html), artKatNr)
@@ -187,7 +187,7 @@
   
         'TAG_SUBCATEGORIESTREE 
         If InStr(template, TAG_SUBCATEGORIESTREE) > 0 Then 'TAG_SUBCATEGORIES request    
-            Title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.asp"), 1) & "</font>"
+            Title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
             'html =  drawAreaHTML(title, makeSubcategories(artKatNr,2),"", 600)
             html = makeCategoriesTreeFromCache(artKatNr, 2, "", "")
             parseTemplate = parseTemplate(Replace(template, TAG_SUBCATEGORIESTREE, html), artKatNr)
@@ -203,14 +203,14 @@
   
         'TAG_CATEGORYPATH 
         If InStr(template, TAG_CATEGORYPATH) > 0 Then 'TAG_CATEGORYPATH request
-            html = showCategoryPathFromCache(artKatNr, "default.asp")
+            html = showCategoryPathFromCache(artKatNr, "default.aspx")
             parseTemplate = parseTemplate(Replace(template, TAG_CATEGORYPATH, html), artKatNr)
             Exit Function
         End If
 
         'TAG_CATEGORYPATH_NOLINKS
         If InStr(template, TAG_CATEGORYPATH_NOLINKS) > 0 Then 'TAG_CATEGORYPATH_NOLINKS request
-            html = showCategoryPathNoLinks(artKatNr, "default.asp")
+            html = showCategoryPathNoLinks(artKatNr, "default.aspx")
             parseTemplate = parseTemplate(Replace(template, TAG_CATEGORYPATH_NOLINKS, html), artKatNr)
             Exit Function
         End If
@@ -224,7 +224,7 @@
   
         'TAG_CATEGORY_SUBLIST
         If InStr(template, TAG_CATEGORY_SUBLIST) > 0 Then 'TAG_CATEGORY_SUBLIST request
-            html = SimpleListCategoriesFromCache(artKatNr, "default.asp")
+            html = SimpleListCategoriesFromCache(artKatNr, "default.aspx")
             parseTemplate = parseTemplate(Replace(template, TAG_CATEGORY_SUBLIST, html), artKatNr)
             Exit Function
         End If
@@ -238,7 +238,7 @@
   
         'TAG_SUBCATEGORY_IMAGES
         If InStr(template, TAG_SUBCATEGORY_IMAGES) > 0 Then 'TAG_SUBCATEGORY_IMAGES request
-            html = makeSubcategoriesPicturePages(artKatNr, "default.asp")
+            html = makeSubcategoriesPicturePages(artKatNr, "default.aspx")
             parseTemplate = parseTemplate(Replace(template, TAG_SUBCATEGORY_IMAGES, html), artKatNr)
             Exit Function
         End If
@@ -464,7 +464,7 @@
         'TAG_LOGOUT_LINK
         If InStr(template, TAG_LOGOUT_LINK) > 0 Then 'TAG_LOGOUT_LINK
             If getLOGIN() > 0 Then
-                html = "<a href='cgi/account/logout.asp'><img border=0 src='" & imageFullName("logout.gif") & "' alt='LOGIN'></a>"
+                html = "<a href='cgi/account/logout.aspx'><img border=0 src='" & imageFullName("logout.gif") & "' alt='LOGIN'></a>"
             Else
                 html = "<a href='default.aspx?pagetoshow=MyAccount'><img border=0 src='" & imageFullName("login.gif") & "' alt='LOGOUT'></a>"
             End If

@@ -46,7 +46,7 @@
                 <input type="hidden" name="CHANGEEMAIL" value="CHANGEEMAIL">
                 <input type="button" class="button" value="Change Email" onclick="javascript:checkSame();">
                 &nbsp;
-                <input type="button" class="button" value="Cancel" name="B5" onclick="document.location='default.asp'">
+                <input type="button" class="button" value="Cancel" name="B5" onclick="document.location='default.aspx'">
             </td>
         </tr>
     </table>

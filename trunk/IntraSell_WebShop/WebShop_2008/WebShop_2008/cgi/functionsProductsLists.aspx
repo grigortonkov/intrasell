@@ -28,6 +28,14 @@
     ''' </summary>
     ''' <remarks></remarks>
     Const TOP_MARGIN_PERCENT_PRICE_DROPS = 25
+    
+    
+    Const SESSION_NAME_VISITED_PRODUCT = "VISITED_PRODUCT_"
+    
+    
+    Const COUNT_VISITED_PRODUCTS = 5
+    
+    
     '****************************************************************************
     ' Show the top products from some category
     '****************************************************************************
@@ -77,7 +85,7 @@
                 If inRow = 0 Then html = html & "<tr>"
         
                 html = html & "<td>"
-                html = html & makeProductPageSmallWithTemplate(rsTop("ProductID"), "default.asp", "skins/skin" & SkinNumber & "/pages/productPageSmall_" & Typ & ".htm", 100)
+                html = html & makeProductPageSmallWithTemplate(rsTop("ProductID"), "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_" & Typ & ".htm", 100)
                 html = html & "</td>"
 	
                 inRow = inRow + 1
@@ -126,7 +134,7 @@
 					
                     inRow = inRow + 1
                     html = html & "<td>"
-                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.asp")
+                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.aspx")
                     html = html & "</td>"
 		        
 		         
@@ -192,7 +200,7 @@
 					
                     inRow = inRow + 1
                     html = html & "<td>"
-                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.asp")
+                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.aspx")
                     html = html & "</td>"
 		        
 		         
@@ -308,7 +316,7 @@
         Dim i : i = 0
 
         While Not rs.EOF And i < MAX_PRODUCTS
-            html = html & makeProductPageSmallWithTemplate(rs("ArtNr"), "default.asp", "skins/skin" & SkinNumber & "/pages/productPageSmall_Bestseller.htm", 100)
+            html = html & makeProductPageSmallWithTemplate(rs("ArtNr"), "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_Bestseller.htm", 100)
             rs.movenext()
             i = i + 1
         End While
@@ -518,7 +526,7 @@
         Else
             Dim artNr : artNr = rs("ProductID")
             rs.close()
-            makeTopDeal = makeProductPageSmallWithTemplate(artNr, "default.asp", "skins/skin" & SkinNumber & "/pages/productPageSmall_TopDeal.htm", 100)
+            makeTopDeal = makeProductPageSmallWithTemplate(artNr, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_TopDeal.htm", 100)
             Exit Function
         End If
         rs.close()
@@ -751,8 +759,6 @@
             " and grArtikel.ArtNR in " & _
                         " (select ArtNr from  [grArtikel-Lagerbestand] where lagerBestand>0 " & _
                         " and reserviertStk<lagerBestand and LagerOrt =  '" & DEFAULT_LAGER_NR & "')"
-
-
         statisticClearanceCenterAll = makeProductListOnQuery(sql, "", "", "Produkte im ClearCenter")
     End Function
 
@@ -802,15 +808,15 @@
  
         While Not rsArtikel.EOF
  
-            Dim bruttoPreis : bruttoPreis = getPreis(getLOGIN(), rsArtikel("ArtNr"), 1)
-            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rsArtikel("MWST"), Session("Land")), 2)
+            Dim bruttoPreis : bruttoPreis = getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1)
+            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rsArtikel("MWST").Value, Session("Land")), 2)
     
  
             html = html & "<tr>"
             html = html & "<td width='575' bordercolor='#CECFCE' style='border-bottom-style: solid; border-bottom-width: 1'>"
             html = html & " <font size='1'>"
 
-            html = html & " <a href='default.aspx?ArtNr=" & rsArtikel("ArtNr") & "'>" & Server.HtmlEncode(rsArtikel("Bezeichnung")) & "</a></font>"
+            html = html & " <a href='default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "'>" & Server.HtmlEncode(rsArtikel("Bezeichnung").Value) & "</a></font>"
             html = html & "</td>"
             html = html & "<td width='75' align='right' bordercolor='#CECFCE' style='border-bottom-style: solid; border-bottom-width: 1'><font size=" '1'>
             html = html & getCurrencySymbol() & " " & bruttoPreis & "</font></td>"
@@ -824,6 +830,8 @@
         html = html & "</div>"
  
         rsArtikel.close()
+        Response.Write(html)
+        
     End Sub
 
 
@@ -854,7 +862,7 @@
         'Dim artKatNr: artKatNr = clng(tablevalue("grArtikel","ArtNr", ArtNr,"ArtKatNr"))
         Const MAX_LINES = 10
 
-        'html = html & "<a href="writeReview.asp?ArtNr=ArtNr">Review verfassen</a> 
+        'html = html & "<a href="writeReview.aspx?ArtNr=ArtNr">Review verfassen</a> 
  
  
         Dim Sql
@@ -953,9 +961,13 @@
         makeRelatedArtikelList = tamplate_html
     End Function
 
-    '==============================================================================
-    '
-    '==============================================================================
+    
+    ''' <summary>
+    ''' makeRelatedArtikelListOtherUsersBuy
+    ''' </summary>
+    ''' <param name="ArtNR"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeRelatedArtikelListOtherUsersBuy(ByVal ArtNR)
         Dim html
         Dim sql As String
@@ -996,6 +1008,12 @@
         makeRelatedArtikelListOtherUsersBuy = html
     End Function
        
+    
+    ''' <summary>
+    ''' makeRelatedArtikelListForWarenkorb
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeRelatedArtikelListForWarenkorb()
         Dim sql As String
         Dim rs, html
@@ -1011,7 +1029,7 @@
         rs = ObjConnectionexecute(sql)
         Dim ArtList : ArtList = "-1"
         While Not rs.eof
-            ArtList = ArtList & "," & rs("unterartNR")
+            ArtList = ArtList & "," & rs("unterartNR").Value
             rs.MoveNext()
         End While
         
@@ -1033,8 +1051,8 @@
         template = "<table><tr><td>[1]</td><td>[2]</td><td>[3]</td></tr><tr><td>[4]</td><td>[5]</td><td>[6]</td></tr></table>"
         Dim kk : kk = 1
         While Not rs.eof
-            html = html & makeProductPageSmallForRelatedProducts(rs("ArtNR"), "")
-            template = Replace(template, "[" & kk & "]", makeProductPageSmallForRelatedProducts(rs("ArtNR"), ""))
+            html = html & makeProductPageSmallForRelatedProducts(rs("ArtNR").Value, "")
+            template = Replace(template, "[" & kk & "]", makeProductPageSmallForRelatedProducts(rs("ArtNR").Value, ""))
             kk = kk + 1
             rs.MoveNext()
         End While
@@ -1055,8 +1073,7 @@
     ' addToUserVisitedProducts
     ' When Detail of Product is shown this function adds the product to an session list 
     '================================================================================
-    Const SESSION_NAME_VISITED_PRODUCT = "VISITED_PRODUCT_"
-    Const COUNT_VISITED_PRODUCTS = 5
+
     
     Function addToUserVisitedProducts(ByVal artNr)
         Dim i
@@ -1100,7 +1117,7 @@
             If artNR & "" <> "" Then
                 'html = html &  makeProductLine(artNR, false)
                 html = html & "<tr><td>"
-                html = html & makeProductPageSmallWithTemplate(artNR, "default.asp", "skins/skin" & SkinNumber & "/pages/productPageSmall_visitedProduct.htm", 100)
+                html = html & makeProductPageSmallWithTemplate(artNR, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_visitedProduct.htm", 100)
                 html = html & "</td></tr>"
                 ' Response.Write "Add line " 
             End If
@@ -1119,7 +1136,7 @@
             If artNR & "" <> "" Then
                 'html = html &  makeProductLine(artNR, false)
                 html = html & "<td>"
-                html = html & makeProductPageSmallWithTemplate(artNR, "default.asp", "skins/skin" & SkinNumber & "/pages/productPageSmall_visitedProduct.htm", 100)
+                html = html & makeProductPageSmallWithTemplate(artNR, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_visitedProduct.htm", 100)
                 html = html & "</td>"
                 ' Response.Write "Add line " 
             End If
@@ -1128,9 +1145,13 @@
         listUserVisitedProductsHorizontal = html
     End Function
 
-    '****************************************************************************
-    ' statistics for the most clicked products by category 
-    '**************************************************************************** 
+ 
+    ''' <summary>
+    ''' statistics for the most clicked products by category 
+    ''' </summary>
+    ''' <param name="ArtKatNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function statisticNewProducts(ByVal ArtKatNr)
         Const MAX_PRODUCTS = 10
         Const MAX_CHARS = 25
@@ -1151,10 +1172,10 @@
         While Not rs.EOF And i < MAX_PRODUCTS
             'html = html &  makeProductPageSmall(rs("ArtNR"), "TopClicks")
             'html = html & makeProductLine(rs("ArtNR"), true)
-            bezeichnung = Server.HtmlEncode(rs("Bezeichnung") & "")
+            bezeichnung = Server.HtmlEncode(rs("Bezeichnung").Value & "")
             If Len(bezeichnung) > MAX_CHARS Then bezeichnung = Left(bezeichnung, MAX_CHARS) & ".."
-            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr") & """>" & bezeichnung & "</a></td>"
-            html = html & "<td>" & getTranslation("seit") & " " & GermanSQLDate(rs("AngelegtAm")) & "</td></tr>"
+            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & bezeichnung & "</a></td>"
+            html = html & "<td>" & getTranslation("seit") & " " & GermanSQLDate(rs("AngelegtAm").Value) & "</td></tr>"
             rs.movenext()
             i = i + 1
         End While

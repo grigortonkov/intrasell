@@ -10,7 +10,7 @@
             <h2>
                 Task:
                 <%=request("JOB")%></h2>
-            <form action='DoRequestJob.asp' method='post'>
+            <form action='DoRequestJob.aspx' method='post'>
             <input type='hidden' name='OrderID' value='<%=request("OrderID")%>'>
             <input type='hidden' name='ProductID' value='<%=request("ProductID")%>'>
             <input type='hidden' name='JOB' value='<%=request("JOB")%>'>

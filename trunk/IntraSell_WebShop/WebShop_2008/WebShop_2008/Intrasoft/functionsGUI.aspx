@@ -11,23 +11,55 @@
 '____________________________________________________________________________
 ' DATE         WHAT
 '____________________________________________________________________________
-'**Start Encode**
-'********************************************************************************
-'Name:
-'Description:1
-'Important:
-'Autor:
-'Changes:
-'Usage:
-' Parameters: 
-' State: free string representing state of window
-'********************************************************************************
-' 
-function drawWindow(byVal Title, byVal Body, byVal State, byVal ActionButtons)
-   call drawWindowPart1(Title, Body, State, ActionButtons)
-   call drawWindowPart2(Title, Body, State, ActionButtons)
-end function
+    '**Start Encode**
+    
+    ''' <summary>
+    ''' readTextFile
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function readTextFile(ByVal filename As String) As String
+        'Response.Write "Filename:" & filename: Response.Flush
+        Dim content, fs, file
+        fs = CreateObject("Scripting.FileSystemObject")
+        On Error Resume Next
+        file = fs.OpenTextFile(filename, 1, False, False)
+        content = file.readAll
+        file.Close()
+        If Err.Number > 0 Then
+            If LCase(Request("debug")) = "true" Then
+                Response.Write("File is missing:[" & filename & "]<br>")
+                Response.Write(Err.Description)
+            End If
+        End If
+        On Error GoTo 0
+        readTextFile = content
+    End Function
+    
+    ''' <summary>
+    ''' ' State: free string representing state of window
+    ''' </summary>
+    ''' <param name="Title"></param>
+    ''' <param name="Body"></param>
+    ''' <param name="State"></param>
+    ''' <param name="ActionButtons"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function drawWindow(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons)
+        Call drawWindowPart1(Title, Body, State, ActionButtons)
+        Call drawWindowPart2(Title, Body, State, ActionButtons)
+    End Function
 
+    ''' <summary>
+    ''' drawWindowPart1
+    ''' </summary>
+    ''' <param name="Title"></param>
+    ''' <param name="Body"></param>
+    ''' <param name="State"></param>
+    ''' <param name="ActionButtons"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawWindowPart1(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons) As String
         Dim html As String : html = ""
         html = html & "<table border=""1"" width=""750"" cellspacing=""0"" cellpadding=""3"">"""
@@ -50,6 +82,15 @@ end function
         drawWindowPart1 = html
     End Function
 
+    ''' <summary>
+    ''' drawWindowPart2
+    ''' </summary>
+    ''' <param name="Title"></param>
+    ''' <param name="Body"></param>
+    ''' <param name="State"></param>
+    ''' <param name="ActionButtons"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawWindowPart2(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons) As String
         Dim html As String : html = ""
         
@@ -78,22 +119,18 @@ end function
     ' State: free string representing state of window
     '********************************************************************************
     Function drawButtonLine(ByVal ActionButtons) As String
-        Dim html As String : html = ""
+        Dim html As String = ""
         
         html = html & "<table border=""0"" cellspacing=""1"" cellpadding=""0"">"
         html = html & "<tr>"
-    
-    
+   
         Dim i
         For i = 1 To UBound(ActionButtons)
       
             html = html & "<td>"
-     
             'respone.write button
             Call DrawButton("button_" & i, ActionButtons(i, 1), ActionButtons(i, 2), "white")
-	 
             html = html & "</td>"
-    
         Next
     
         html = html & "<td></td>"
@@ -140,7 +177,7 @@ end function
         html = " <table border=""1"" width=""" & Width & """ cellspacing=""0"">"
         html = html & "<tr>"
         html = html & "<td bgcolor=""#6699FF"" bordercolor=""#99CCFF"" width=""" & titlewidth & """>" & Title & "</td>"
-        html = html & "<td bgcolor=""yellow"" bordercolor=""red"" width=""" & QuestionMarkWidth & """><center><a href=""faq.asp?faq=" & Title & """>?</a></center></td>"
+        html = html & "<td bgcolor=""yellow"" bordercolor=""red"" width=""" & QuestionMarkWidth & """><center><a href=""faq.aspx?faq=" & Title & """>?</a></center></td>"
         html = html & "</tr>"
         html = html & "<tr>"
         html = html & "<td colspan=""2"">" & Body & "</td>"
@@ -255,14 +292,15 @@ end function
  end function 
 
  
-    '********************************************************************************
-    'Name:
-    'Description:
-    'Important: this functions need included button.js and buttonStyleshet.css 
-    'Autor:
-    'Changes:
-    'Usage:
-    '********************************************************************************
+    ''' <summary>
+    ''' Important: this functions need included button.js and buttonStyleshet.css 
+    ''' </summary>
+    ''' <param name="ButtonId"></param>
+    ''' <param name="Value"></param>
+    ''' <param name="Link"></param>
+    ''' <param name="Color"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function DrawButton(ByVal ButtonId, ByVal Value, ByVal Link, ByVal Color) As String
         Dim html As String : html = ""
 
@@ -283,33 +321,15 @@ end function
         DrawButton = html
  end function 
  
-    '********************************************************************************
-    'Name:
-    'Description:
-    'Important: 
-    'Autor:
-    'Changes:
-    'Usage:
-    '********************************************************************************
-    Function readTextFile(ByVal filename)
-        'Response.Write "Filename:" & filename: Response.Flush
-        Dim content, fs, file
-        fs = CreateObject("Scripting.FileSystemObject")
-        On Error Resume Next
-        file = fs.OpenTextFile(filename, 1, False, False)
-        content = file.readAll
-        file.Close()
-        If Err.Number > 0 Then
-            If LCase(Request("debug")) = "true" Then
-                Response.Write("File is missing:[" & filename & "]<br>")
-                Response.Write(Err.Description)
-            End If
-        End If
-        On Error GoTo 0
-        readTextFile = content
-    End Function
+ 
 
 
+    ''' <summary>
+    ''' convertToHTML
+    ''' </summary>
+    ''' <param name="genericDBHTML"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function convertToHTML(ByVal genericDBHTML)
         Dim curVal
         curVal = Replace(genericDBHTML, "&lt;", "<")
@@ -319,7 +339,15 @@ end function
     End Function
 
 
-
+    ''' <summary>
+    ''' drawWindowForum
+    ''' </summary>
+    ''' <param name="von"></param>
+    ''' <param name="datum"></param>
+    ''' <param name="review"></param>
+    ''' <param name="buttons"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawWindowForum(ByVal von, ByVal datum, ByVal review, ByVal buttons)
         Dim html
         html = "<table width=""100%"">"

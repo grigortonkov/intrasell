@@ -1,7 +1,7 @@
 <%@  Language="VBScript.Encode" %>
-<!--#include file="../../intrasoft/connOpen.asp"-->
-<!--#include file="../../intrasoft/functions.asp"-->
-<!--#include file="../../intrasoft/functionsGUI.asp"-->
+<!--#include file="../../intrasoft/connOpen.aspx"-->
+<!--#include file="../../intrasoft/functions.aspx"-->
+<!--#include file="../../intrasoft/functionsGUI.aspx"-->
 <%
 Dim ArtNr: ArtNr = clng(request("ArtNr"))
 dim days:  days  = clng(request("days"))
@@ -28,11 +28,11 @@ butArr(5,1) = "ein_Jahr"
 
  
 
-butArr(1,2) = "merchantChart.asp?Days=7&ArtNR=" & ArtNR
-butArr(2,2) = "merchantChart.asp?Days=14&ArtNR=" & ArtNR
-butArr(3,2) = "merchantChart.asp?Days=31&ArtNR=" & ArtNR
-butArr(4,2) = "merchantChart.asp?Days=90&ArtNR=" & ArtNR
-butArr(5,2) = "merchantChart.asp?Days=366&ArtNR=" & ArtNR
+butArr(1,2) = "merchantChart.aspx?Days=7&ArtNR=" & ArtNR
+butArr(2,2) = "merchantChart.aspx?Days=14&ArtNR=" & ArtNR
+butArr(3,2) = "merchantChart.aspx?Days=31&ArtNR=" & ArtNR
+butArr(4,2) = "merchantChart.aspx?Days=90&ArtNR=" & ArtNR
+butArr(5,2) = "merchantChart.aspx?Days=366&ArtNR=" & ArtNR
 
 dim LinksForChart
 dim i 
@@ -41,7 +41,7 @@ for i =1 to 5
    LinksForChart = LinksForChart & "<a href="""  & butArr(i,2) &  """>" & butArr(i,1) & "</a> "
 next
 
-Dim links: links = LinksForChart & " <a href=""merchantCompare.asp?ArtNR=" & ArtNR & """> Produktseite </a>"
+Dim links: links = LinksForChart & " <a href=""merchantCompare.aspx?ArtNR=" & ArtNR & """> Produktseite </a>"
 
 'call drawWindowPart1("Preisentwicklung", links ,"", butArr)
 
@@ -67,7 +67,7 @@ end if
 							Response.Write "<br><br>"
 							call drawErrorBox("Zu wenig Information", "Es ist leider nicht genug Information vorhanden um eine Grafik zu erstellen!","","") 
 				else %>
-                <img src="MakeChart.asp?DaysInPast=<%=days%>&Field=Ekpreis&ChartType=1&ArtNr=<%=CStr(ArtNr)%>">
+                <img src="MakeChart.aspx?DaysInPast=<%=days%>&Field=Ekpreis&ChartType=1&ArtNr=<%=CStr(ArtNr)%>">
                 <%end if %>
         </tr>
     </table>
@@ -75,4 +75,4 @@ end if
 'call drawWindowPart2("Preisentwicklung"," ","", butArr)
     %>
 </body>
-<!--#include file="../../intrasoft/connClose.asp"-->
+<!--#include file="../../intrasoft/connClose.aspx"-->

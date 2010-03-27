@@ -2,7 +2,7 @@
     'Response.write "PageToshow:" & PageToShow
     Select Case pageToShow%>
 <%  Case "LieferantenInformationen"%>
-<!--#include file="merchantPage.asp"-->
+<!--#include file="merchantPage.aspx"-->
 <%
 End Select
 %>

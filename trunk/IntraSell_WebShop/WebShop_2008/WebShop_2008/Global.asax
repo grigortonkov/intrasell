@@ -24,7 +24,7 @@
         Session("DATABASEPATH") = "c:\"
         Session("SMTPSERVER") = "www.arfaian.com" ' Used for mail functionality 
         Session("SMTPSERVERSPAMM") = SMTPSERVER
-        Session("BASENAME") = "http://localhost:80"
+        Session("BASENAME") = "http://localhost:88"
         'Session ("BASENAME")        = "http://" & Request.ServerVariables("SERVER_NAME")  '& left(Request.ServerVariables("URL"), len(Request.ServerVariables("URL")) - len("\global.asa"))
         'response.write Session ("BASENAME") 
 

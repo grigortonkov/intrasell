@@ -151,7 +151,7 @@
     
         If checkIfWeitereVorhanden(rs("idnr"), VorgangTyp) And VorgangTyp = "LI" Then
             'If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) Then
-            rs = CurrentDb.openRecordset(getRecSource_Weitere(VorgangTyp, Vorgang_Nummer), dbOpenDynaset)
+            rs = ObjConnectionExecute(getRecSource_Weitere(VorgangTyp, Vorgang_Nummer))
             'End If
         End If
     

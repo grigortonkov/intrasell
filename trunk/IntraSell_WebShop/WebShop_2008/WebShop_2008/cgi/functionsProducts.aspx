@@ -19,7 +19,6 @@
     Const DAYS_TO_LOOK_BACK_CLICKS = 3
     Const DEFAULT_PRODUCT_SEARCH_WHERE = "ProduktAktiv<>0 and ProduktAktivOnline<>0 and ArtNr>=0 and preisATS<>0"
 
- 
     Const TAG_EIGENSCHAFT_ = "[Eigenschaft" 'usage [Eigenschaft:name]
     Const TAG_IMAGETAGNAME_ = "[makeImgTagName" 'usage [makeImgTag:imageName]
     Const TAG_HTMLINFONAME_ = "[HTMLInfoName" 'usage [htmlInfoName:name]
@@ -31,7 +30,6 @@
     Const FLENAME_PRODUCT_LIST_HEADER = "productList_header.htm"
 
     Const ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS = "ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS" 'wenn TRUE dann nur Kunden können die Preise sehen und einkaufen  
-
 
     Const TAG_CREATEPRODUCTSPECIALCHOICE = "[createProductSpecialChoice]"
     Const TAG_CREATESTAFFELPREISTABLE = "[createStaffelPreiseTable]"
@@ -45,8 +43,14 @@
     Dim PRODUCT_SHORT_DESCRIPTION_MAX_SIZE ' : PRODUCT_SHORT_DESCRIPTION_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_SHORT_DESCRIPTION_MAX_SIZE", 255) 'MAX SIZE FOR SEARCH/LIST, SMALL PRODUCT VIEW 
 
     
-
-    'WHERE Condition for all subcategories 
+    ''' <summary>
+    ''' WHERE Condition for all subcategories 
+    ''' </summary>
+    ''' <param name="fieldNAme"></param>
+    ''' <param name="artKatNr"></param>
+    ''' <param name="SUBLEVELS"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeArtKatNrInPart(ByVal fieldNAme, ByVal artKatNr, ByVal SUBLEVELS) As String
         If artKatNr = 0 Or artKatNr = 1 Then
             makeArtKatNrInPart = " 1=1 "
@@ -55,7 +59,14 @@
         End If
     End Function
 
-    'WHERE Condition for all supercategories 
+    ''' <summary>
+    ''' WHERE Condition for all supercategories 
+    ''' </summary>
+    ''' <param name="fieldNAme"></param>
+    ''' <param name="artKatNr"></param>
+    ''' <param name="SUBLEVELS"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeArtKatNrInPartParentCats(ByVal fieldNAme, ByVal artKatNr, ByVal SUBLEVELS)
         If artKatNr = 0 Or artKatNr = 1 Then
             makeArtKatNrInPartParentCats = " 1=1 "
@@ -65,29 +76,30 @@
     End Function
 
  
-    '****************************************************************************
-    ' DisplaySearchResults - search after product attributes  
-    '
-    ' added support for search in the subcats 
-    '****************************************************************************
-    Sub DisplaySearchResults(ByVal SearchKeywords)
+''' <summary>
+''' DisplaySearchResults - search after product attributes  
+''' added support for search in the subcats 
+''' </summary>
+''' <param name="SearchKeywords"></param>
+''' <remarks></remarks>
+    Sub DisplaySearchResults(ByVal SearchKeywords as String)
         Dim SEARCH_IN_DESCRIPTION : SEARCH_IN_DESCRIPTION = False
+        Const MIN_SEARCHABLE As Integer = 3
  
         'init 
         SEARCH_IN_DESCRIPTION = VARVALUE_DEFAULT("SHOP_SEARCH_IN_DESCRIPTION", "true")
- 
 
-        Const MIN_SEARCHABLE = 3
+        
         If Len(Trim(SearchKeywords)) < MIN_SEARCHABLE Then
             Call drawErrorBox(getTranslation("Suche ungültig!"), _
-                 getTranslation("Die Suche muss mindestens 3 Symbole enthalten!"), "", "")
+                 getTranslation("Die Suche muss mindestens " + MIN_SEARCHABLE + " Symbole enthalten!"), "", "")
             Exit Sub
         End If
 
         Response.Write(getTranslation("Suchergebnisse") & "...")
 
-        Dim MC : If Session("dbType") = "Access" Then MC = "*" Else MC = "%"
-        Dim sql, rsQ
+        Dim MC : If ucase(Session("dbType")) = ucase("Access") Then MC = "*" Else MC = "%"
+        Dim sql As String, rsQ
         Dim ArtKatNr_ToSearchInto : ArtKatNr_ToSearchInto = Request("ArtKatNr_ToSearchInto")
         Dim SearchOnlyInthisCategory : SearchOnlyInthisCategory = Request("SearchOnlyInthisCategory")
 
@@ -103,9 +115,9 @@
         'Response.Write "SearchOnlyInthisCategory=" & SearchOnlyInthisCategory
 
 
-        Dim catPath, catPathOld
-        catPath = ""
-        Dim AllKeywords
+        Dim catPath As String = "", catPathOld
+ 
+        Dim AllKeywords As String()
         SearchKeywords = Replace(SearchKeywords, "'", "")
         SearchKeywords = Replace(SearchKeywords, """", "")
 
@@ -113,7 +125,7 @@
         AllKeywords = Split(Trim(SearchKeywords), " ")
         sql = "1=1 "
 
-        If ArtKatNr_ToSearchInto <> "" Then
+        If Not ArtKatNr_ToSearchInto is Nothing Then
             If CInt(ArtKatNr_ToSearchInto) > 0 Then
                 sql = sql & "AND grArtikel.ArtKatNR in (" & makeSubcategoriesList(ArtKatNr_ToSearchInto, 4) & ")"
             End If
@@ -137,7 +149,7 @@
                         " OR [EAN] like '" & MC & key & MC & "' " & _
                         " OR [Beschreibung] like '" & MC & key & MC & "' " & _
                         " OR [Firma] like '" & MC & key & MC & "' " & _
-                                       " OR EXISTS (SELECT 1 FROM  translations t where t.key= ArtNr and t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ))"
+                        " OR EXISTS (SELECT 1 FROM  translations t where t.key= ArtNr and t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ))"
                     Else 'Fast
                         sql = sql + "AND ([Bezeichnung] like '" & MC & key & MC & "'" & _
                         " OR [EAN] like '" & MC & key & MC & "' " & _
@@ -191,7 +203,7 @@
         If Not rsKat.eof Then 'ok the user searches maybe products in these cats 
             html = html & "<br>" & getTranslation("M&ouml;chten Sie die Produkte in den folgenden Kategorien auch ansehen?") & "<br>"
             While Not rsKat.eof
-                html = html & showCategoryPath(rsKat("ArtKatNr"), "default.asp") & "<br>"
+                html = html & showCategoryPath(rsKat("ArtKatNr"), "default.aspx") & "<br>"
                 rsKat.moveNext()
             End While
             rsKat.close()
@@ -450,17 +462,17 @@
             Dim rowColor
             Dim artNr, VKPreis
             While (Not rsArtikel.EOF)
-                artNr = rsArtikel("ArtNR")
-                VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), rsArtikel("ArtNr"), 1), rsArtikel("MWST"), Session("Land")), 2)
+                artNr = rsArtikel("ArtNR").Value
+                VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1), rsArtikel("MWST").Value, Session("Land")), 2)
                 If rowColor = "#F7F7F7" Then rowColor = "#FFFFFF" Else rowColor = "#F7F7F7"
 				  
                 html = html & "<tr>"
-                html = html & "<td width=""300"" align=""left"" bgcolor=""" & rowColor & """><a href='default.aspx?ArtNr=" & artNr & "'>" & rsArtikel("Bezeichnung") & "</a></td>"
+                html = html & "<td width=""300"" align=""left"" bgcolor=""" & rowColor & """><a href='default.aspx?ArtNr=" & artNr & "'>" & rsArtikel("Bezeichnung").Value & "</a></td>"
                 html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """><p align=""right"">" & VKPreis & "</td>"
-                html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """>" & rsArtikel("Firma") & "</td>"
-                html = html & "<td width=""100"" align=""left"" bgcolor=""" & rowColor & """>" & rsArtikel("EAN") & "</td>"
-                html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """>" & rsArtikel("Bezeichnung1") & "</td>"
-                html = html & "<td width=""100""  align=""center"" bgcolor=""" & rowColor & """><a href='putInWarenkorb.asp?ArtNr=" & artNr & "'>Buy</a></td>"
+                html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """>" & rsArtikel("Firma").Value & "</td>"
+                html = html & "<td width=""100"" align=""left"" bgcolor=""" & rowColor & """>" & rsArtikel("EAN").Value & "</td>"
+                html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """>" & rsArtikel("Bezeichnung1").Value & "</td>"
+                html = html & "<td width=""100""  align=""center"" bgcolor=""" & rowColor & """><a href='putInWarenkorb.aspx?ArtNr=" & artNr & "'>Buy</a></td>"
                 html = html & "<td width=""100""  align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?ArtNr=" & artNr & "'>detail</a></td>"
                 html = html & "<td><input type=""checkbox"" value=""" & artNr & """ name=""ArtNrToCompare""></td>"
                 html = html & "</tr>"
@@ -491,7 +503,7 @@
     Function makeProductPage(ByVal ArtNr, ByVal pagePart) As String
         Call onProductView(ArtNr)
         If Session("ADMIN") <> "" Then  ' if the administrator is logged in then show link for changing of prices and so on 
-            Response.Write("<h1><a href='admin/genericasp/tableRedirector_Products.asp?ArtNr=" & ArtNr & "'>Artikel Bearbeiten </a></h1>")
+            Response.Write("<h1><a href='admin/genericasp/tableRedirector_Products.aspx?ArtNr=" & ArtNr & "'>Artikel Bearbeiten </a></h1>")
         End If
 
         Dim filenameForTemplate
@@ -548,34 +560,40 @@
 
         'product found 
 
-        Dim Firma, FirmaImage, HerstellerLink, Picture, PreisATS, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
-        Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ProduktAktiv, ArtKatNR
-        Dim herstellerRabatt, herstellerRabattText
+        Dim Firma As String = ""
+        Dim FirmaImage, HerstellerLink, Picture, PreisATS, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
+        Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ArtKatNR
+        Dim ProduktAktiv As Boolean 
+        Dim herstellerRabatt As Double
+        Dim herstellerRabattText As String 
         Dim herstellerNr, LieferantNR
-        Dim Gewicht
-        Dim LieferantLagerInfo
+        Dim Gewicht As String
+        Dim LieferantLagerInfo As String 
 
-        Firma = rsArtikel("Firma")
-        HerstellerLink = rsArtikel("HerstellerLink")
+        If not rsArtikel("Firma").Value.Equals(DBNull.Value) then  Firma = rsArtikel("Firma").Value
+        HerstellerLink = rsArtikel("HerstellerLink").Value
 
-        FirmaImage = rsArtikel("FirmaImage")
-        ArtNr = rsArtikel("ArtNr")
-        Picture = rsArtikel("Picture")
+        FirmaImage = rsArtikel("FirmaImage").Value
+        ArtNr = rsArtikel("ArtNr").Value
+        Picture = rsArtikel("Picture").Value
 
-        Bezeichnung1 = rsArtikel("Bezeichnung1") & ""
-        LieferantLagerInfo = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "")
-
-        Bezeichnung = rsArtikel("Bezeichnung") & ""
+        Bezeichnung1 = rsArtikel("Bezeichnung1").Value & ""
+        Try 
+            LieferantLagerInfo = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "")
+        Catch 
+            LieferantLagerInfo = "N.A."
+        End Try 
+        Bezeichnung = rsArtikel("Bezeichnung").Value & ""
         Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung & "", Language)
         Bezeichnung = Server.HtmlEncode(Bezeichnung & "")
 
-        MWSTGROUP = rsArtikel("MWST")
+        MWSTGROUP = rsArtikel("MWST").Value
 
-        EAN = rsArtikel("EAN")
-        ArtKatNR = rsArtikel("ArtKatNR")
+        EAN = rsArtikel("EAN").Value
+        ArtKatNR = rsArtikel("ArtKatNR").Value
 
-        herstellerNr = rsArtikel("HerstellerNr")
-        LieferantNR = rsArtikel("LieferantNR")
+        herstellerNr = rsArtikel("HerstellerNr").Value
+        LieferantNR = rsArtikel("LieferantNR").Value
 
         'PreisATS is going to be calculated now 
         If InStr(productTemplate, "[makeBruttoPreis]") > 0 Then
@@ -588,18 +606,25 @@
             PreisATS = getTranslation("Login für Preise!")
         End If
 
-        herstellerRabatt = rsArtikel("herstellerRabatt") : If herstellerRabatt = 0 Then herstellerRabatt = ""
-        herstellerRabattText = rsArtikel("herstellerRabattText")
-        ProduktAktiv = rsArtikel("produktAktiv")
-        herstellerNr = rsArtikel("herstellerNr")
-        Gewicht = rsArtikel("Gewicht")
+         If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString  Then 
+            herstellerRabatt = 0 
+         else 
+            herstellerRabatt = rsArtikel("herstellerRabatt").Value 
+         end if
+         
+        herstellerRabattText = rsArtikel("herstellerRabattText").Value.ToString
+        ProduktAktiv = rsArtikel("produktAktiv").Value.ToString
+        herstellerNr = rsArtikel("herstellerNr").Value.ToString
+        If rsArtikel("Gewicht").Value.ToString <> DBNull.Value.ToString then 
+         Gewicht = rsArtikel("Gewicht").Value
+        End If 
 
-        Beschreibung = rsArtikel("Beschreibung") & ""
+        Beschreibung = rsArtikel("Beschreibung").Value & ""
         Beschreibung = getTranslationDok("grArtikel", ArtNr, "Beschreibung", Beschreibung & "", Language)
-        Modifikationen = rsArtikel("Modifikationen")
+        Modifikationen = rsArtikel("Modifikationen").Value
 
-        'GT: alwas parse the product 
-        If herstellerNr = getLOGIN() Or LieferantNR = getLOGIN() Or True Then 'Das ist der inserat anbieter und er darf die seite sehen!
+        'GT: always parse the product 
+        If herstellerNr = getLOGIN() Or ((not DBNull.Value.Equals( LieferantNR)) and LieferantNR.Equals(  getLOGIN() )) Then 'Das ist der inserat anbieter und er darf die seite sehen!
             'response.Write "Dieses Objekt ist nicht aktiv!"
         Else 'do not allow to see this page 
             If ProduktAktiv = 0 Then
@@ -900,7 +925,7 @@
         While Not hiRS.eof
             'if len(hiRS("HTLMInfo"))>0 then 
             'html = html & "<h4>Weitere Informationen</h4>"
-            html = html & hiRS("HTLMInfo")
+            html = html & hiRS("HTLMInfo").Value
             'end if
             hiRS.moveNext()
         End While
@@ -1034,23 +1059,23 @@
 
             'Prüfung ob product online
 
-            Dim Beschreibung : Beschreibung = rsArtikel("Beschreibung")
+            Dim Beschreibung : Beschreibung = rsArtikel("Beschreibung").Value
             'Beschreibung = getTranslationDok("grArtikel" , ArtNr, "Beschreibung", Beschreibung & "", Language)
             Beschreibung = makeBeschreibung(ArtNr, True)
 
-            Dim Modifikationen : Modifikationen = rsArtikel("Modifikationen")
-            Dim Firma : Firma = rsArtikel("Firma")
-            Dim FirmaImage : FirmaImage = rsArtikel("FirmaImage")
-            Dim Bezeichnung : Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung") & "")
+            Dim Modifikationen : Modifikationen = rsArtikel("Modifikationen").Value
+            Dim Firma : Firma = rsArtikel("Firma").Value
+            Dim FirmaImage : FirmaImage = rsArtikel("FirmaImage").Value
+            Dim Bezeichnung : Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
             Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung & "", Language)
             Bezeichnung = Server.HtmlEncode(Bezeichnung)
 	
-            Dim Bezeichnung1 : Bezeichnung1 = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "") 'rsArtikel("Bezeichnung1")
-            Dim Picture : Picture = rsArtikel("Picture")
-            Dim ArtKatNr : ArtKatNr = rsArtikel("ArtKatNr")
-            Dim MWSTGROUP : MWSTGROUP = rsArtikel("MWST")
-            Dim herstellerRabatt : herstellerRabatt = rsArtikel("herstellerRabatt") : If herstellerRabatt = 0 Then herstellerRabatt = ""
-            Dim herstellerRabattText : herstellerRabattText = rsArtikel("herstellerRabattText")
+            Dim Bezeichnung1 : Bezeichnung1 = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "") 'rsArtikel("Bezeichnung1").Value
+            Dim Picture : Picture = rsArtikel("Picture").Value
+            Dim ArtKatNr : ArtKatNr = rsArtikel("ArtKatNr").Value
+            Dim MWSTGROUP : MWSTGROUP = rsArtikel("MWST").Value
+            Dim herstellerRabatt : herstellerRabatt = rsArtikel("herstellerRabatt").Value ': If herstellerRabatt = 0 Then herstellerRabatt = ""
+            Dim herstellerRabattText : herstellerRabattText = rsArtikel("herstellerRabattText").Value
  
             Dim imgTagPicture
             imgTagPicture = "<a href=""default.aspx?artNr=" & ArtNr & """>" & makeImgTag(Picture, Bezeichnung, maxImageSize) & "</a>"
@@ -1075,7 +1100,7 @@
             'On Error GoTo 0
 		
             productTemplate = Replace(productTemplate, "[ArtNr]", ArtNr & "")
-            productTemplate = Replace(productTemplate, "[EAN]", rsArtikel("EAN") & "")
+            productTemplate = Replace(productTemplate, "[EAN]", rsArtikel("EAN").Value & "")
             productTemplate = Replace(productTemplate, TAG_BEZEICHNUNG, Bezeichnung & "")
             productTemplate = Replace(productTemplate, "[Bezeichnung1]", Bezeichnung1 & "")
             productTemplate = Replace(productTemplate, "[MWSTGROUP]", MWSTGROUP & "")
@@ -1105,10 +1130,24 @@
         rsArtikel.close()
     End Function
 
+    ''' <summary>
+    ''' makeProductPageSmall
+    ''' </summary>
+    ''' <param name="ArtNr"></param>
+    ''' <param name="pageFrom"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeProductPageSmall(ByVal ArtNr, ByVal pageFrom)
         makeProductPageSmall = makeProductPageSmallWithTemplate(ArtNr, pageFrom, "skins/skin" & SkinNumber & "/pages/productPageSmall.htm", PRODUCT_IMAGE_SMALL_MAX_SIZE)
     End Function
 
+    ''' <summary>
+    ''' makeProductPageSmallForRelatedProducts
+    ''' </summary>
+    ''' <param name="ArtNr"></param>
+    ''' <param name="pageFrom"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeProductPageSmallForRelatedProducts(ByVal ArtNr, ByVal pageFrom)
         makeProductPageSmallForRelatedProducts = makeProductPageSmallWithTemplate(ArtNr, pageFrom, _
                                                  "skins/skin" & SkinNumber & "/pages/productPageSmall_RelatedProduct.htm", _
@@ -1221,7 +1260,7 @@
 
         html = html & "<table name=""reviews"" border=""0"" cellspacing=""0"" cellpadding=""0"" align=""center"">"
         html = html & "<tr><td valign=""top"" width=""100%"">"
-        'html = html & "<a href="writeReview.asp?ArtNr=ArtNr">Review verfassen</a> 
+        'html = html & "<a href="writeReview.aspx?ArtNr=ArtNr">Review verfassen</a> 
  
  
         Dim Sql

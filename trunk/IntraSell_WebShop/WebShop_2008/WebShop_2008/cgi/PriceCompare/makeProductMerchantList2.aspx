@@ -33,7 +33,7 @@
         html = html & "<th width='100'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=VKPreis'>Preis</a>&nbsp;&nbsp;<br>/inkl. MWST/<br>"
         html = html & "<th width='100'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=LagerInfo'>Verfügbarkeit</a></th>"
         html = html & "<th width='300'>Zahlungs- &amp; Lieferungsmethoden</th>"
-        '<!--<th width='100' style='border-bottom: 2 solid #C0C0C0'><a href='merchantCompare.asp?ArtNr=" & ArtNr & "&amp;OrderBy=ArtikelNrLieferant'> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
+        '<!--<th width='100' style='border-bottom: 2 solid #C0C0C0'><a href='merchantCompare.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=ArtikelNrLieferant'> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
         html = html & "<th width='100'>Zum Shop</th>"
         html = html & "</tr>"
 
@@ -79,7 +79,7 @@
             '<p align="center">rsL("ArtikelNrLieferant")</p>
             '</td>-->
 				
-            Dim zumShopLink : zumShopLink = "cgi/priceCompare/buyFromMerchant.asp?LieferantNr=" & lieferantNr & "&ArtNr=" & ArtNr & "&ArtikelNrLieferant=" & rsL("ArtikelNrLieferant")
+            Dim zumShopLink : zumShopLink = "cgi/priceCompare/buyFromMerchant.aspx?LieferantNr=" & lieferantNr & "&ArtNr=" & ArtNr & "&ArtikelNrLieferant=" & rsL("ArtikelNrLieferant")
             Dim altShopLink : altShopLink = "zum Shop - " & rsL("Firma")
             html = html & "<td bgcolor=""" & rowColor & """>"
             html = html & "<p align=""center""><a target=""_new"" href=""" & zumShopLink & """>"

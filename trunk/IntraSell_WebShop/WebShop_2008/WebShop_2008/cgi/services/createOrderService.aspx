@@ -5,7 +5,7 @@
     'Paramters:
     ' ArtNR (Array) 
     ' IDNR (ClientID) 
-    ' Example for call: ./cgi/services/createOrderService.asp?debug=_true&ArtNrForOrder=2&ArtNrForOrder=1&ArtNrForOrder=3&ArtNrForOrder=4&ArtNrForOrder=5&ArtNrForOrder=5138&IDNR=1&PayMode=CreditCard
+    ' Example for call: ./cgi/services/createOrderService.aspx?debug=_true&ArtNrForOrder=2&ArtNrForOrder=1&ArtNrForOrder=3&ArtNrForOrder=4&ArtNrForOrder=5&ArtNrForOrder=5138&IDNR=1&PayMode=CreditCard
 
     Session("SID") = "" 'to generate new session on request 
     Session("LOG_IN") = ""
@@ -34,4 +34,4 @@
     Dim ordId : ordId = createOrderFromBasket(IDNR, ServiceSID, payMode, postMode, destination, Notiz, gutscheinNummerStep4)
     Response.Write("<AuftragNummer>" & ordId & "</AuftragNummer>")
 %>
-<!--#include file="../../intrasoft/connclose.asp"-->
+<!--#include file="../../intrasoft/connclose.aspx"-->

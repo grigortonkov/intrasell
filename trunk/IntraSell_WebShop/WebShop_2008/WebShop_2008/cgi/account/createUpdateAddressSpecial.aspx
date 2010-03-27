@@ -1,5 +1,5 @@
 <%
-    kdnr = getLOGIN()
+    Dim kdnr As Long : kdnr = getLOGIN()
 
     Dim typeOfAddress : typeOfAddress = Request("typeOfAddress")
     Dim typeOfAddressToShow
@@ -17,7 +17,7 @@
     'create new profile if not 
     If Request("action") = "saveAddresses" Then 'save action required 
 %>
-<form method="POST" action="default.asp" id="form1" name="form1">
+<form method="POST" action="default.aspx" id="form1" name="form1">
 <input type="hidden" name="PageToShow" value="createUpdateAddressSpecial">
 <input type="hidden" name="action" value="saveAddresses">
 <%
@@ -49,7 +49,7 @@ End If
 
 Else 'no action requested 
 %>
-<form method="POST" action="default.asp">
+<form method="POST" action="default.aspx">
 <input type="hidden" name="pageToShow" value="createUpdateAddressSpecial">
 <input type="hidden" name="action" value="saveAddresses">
 <input type="hidden" name="typeOfAddress" value="<%=typeOfAddress%>">

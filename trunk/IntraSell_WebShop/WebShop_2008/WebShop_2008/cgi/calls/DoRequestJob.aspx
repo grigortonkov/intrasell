@@ -43,7 +43,7 @@
         <input type="button" onclick='window.close()' name="close" value="Close">
     </p>
 </html>
-<!--#include file="../../intrasoft/ConnClose.asp"-->
+<!--#include file="../../intrasoft/ConnClose.aspx"-->
 
 <script>
 window.setTimeout('window.close();',3000);

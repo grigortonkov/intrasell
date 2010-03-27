@@ -33,7 +33,7 @@ Function createSearchFormNoCache(ByVal categoryId)
    
    
     html = html & "<table width=""180"" border=""0"" ><tr>"
-    html = html & "<form action=""productSearch.asp"" method=""POST"">"
+    html = html & "<form action=""productSearch.aspx"" method=""POST"">"
     html = html & "<td>"
     html = html & "Suche " '"</td><td>" 
     If Not rs.EOF Then html = html & "<br>"
@@ -138,7 +138,7 @@ Function makeBanner(ByVal ArtKatNr, ByVal Nr)
         If rsBan("openInNewWindow") Then
             target = "target =""_new"""
         End If
-        bannerString = "<a " & target & " href=""RedirectBanners.asp?ID=" & rsBan("bannerId") & """>"
+        bannerString = "<a " & target & " href=""RedirectBanners.aspx?ID=" & rsBan("bannerId") & """>"
         bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile") & """ alt=""" & rsBan("BannerName") & """></a>"
     End If
     rsBan.close()

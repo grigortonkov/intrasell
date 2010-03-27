@@ -1,5 +1,5 @@
 <!--#include file="../defaultHead.inc"-->
-<!--#include file="functionsMerchants.asp"-->
+<!--#include file="functionsMerchants.aspx"-->
 <html>
 <head>
     <title>Welcome to Price Compare - redirect to merchant's shop</title>
@@ -18,7 +18,7 @@
         If UrlShop = "" Then
             Call drawErrorBox("Keine Shopumleitung", "Dieser Lieferant hat keine Shopumleitung aktiviert! " & _
                   " Möchten Sie anstatt das die Homepage diesen Lieferanten besuchen?", _
-                              " merchantPage.asp?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), "")
+                              " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), "")
         Else
             'the user will be send directly to the shop 
             Response.Write("<br>Sie werden automatisch zum Lieferantenshop weitergeleitet!")

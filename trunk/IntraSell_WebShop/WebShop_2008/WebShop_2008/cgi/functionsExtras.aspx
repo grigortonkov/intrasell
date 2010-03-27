@@ -45,7 +45,7 @@
    
    
         html = html & "<table border=""0"" ><tr>"
-        html = html & "<form action=""default.asp"" method=""POST"">"
+        html = html & "<form action=""default.aspx"" method=""POST"">"
    
         html = html & "<input type=""Hidden"" name=""PageToShow"" value=""productSearchOnKeywords"">"
         html = html & "<input type=""Hidden"" name=""preKatNr"" value=""" & categoryId & """>"

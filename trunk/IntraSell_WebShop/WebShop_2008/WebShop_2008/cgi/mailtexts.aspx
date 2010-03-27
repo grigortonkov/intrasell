@@ -96,7 +96,7 @@
         rsLO.close()
 
         '[LINK_ORDER_DIRECT]
-        Dim realOrderLink : realOrderLink = Session("BASENAME") & "/cgi/account/printPreviewOrder.asp?kdnr=" & KDNR & "&nummer=" & AuftragNr & "&OrderType=AU"
+        Dim realOrderLink : realOrderLink = Session("BASENAME") & "/cgi/account/printPreviewOrder.aspx?kdnr=" & KDNR & "&nummer=" & AuftragNr & "&OrderType=AU"
         html = Replace(html, "[LINK_ORDER_DIRECT]", realOrderLink)
 
         If showDebug() Then
