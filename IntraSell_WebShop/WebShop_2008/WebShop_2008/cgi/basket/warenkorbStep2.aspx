@@ -9,17 +9,14 @@
 
     'CHECK AUTHENTIFICATION AND SEND TO STEP 3
     If Request("CHECK_AUTHENTIFICATION") = "YES" Then
-        Dim KundNrStep2
+        Dim KundNrStep2 As Long 
         KundNrStep2 = authenticate(Request("EmailOld"), Request("PasswordOld")) 'stops processing on this page if not proper authenitification !!!
-        If KundNrStep2 <> "" Then ' OK
-          
+        If KundNrStep2 <> -1 Then ' OK
             Response.Redirect("default.aspx?pageToShow=warenkorbStep3&EmailOld=" & Request("EmailOld") & "&PasswordOld=" & Request("PasswordOld"))
         Else
-        
             Response.Write(getTranslation("Ihre Angaben sind nicht korrekt!"))
         End If
-         
-        
+
     End If
     'END CHECK 
 
@@ -44,14 +41,13 @@
     ccNr = Request("ccNR")
     CCDat = Request("ccDat")
 
-
     If Request("notiz") <> "" Then Session("notiz") = Request("notiz")
 
 %>
 <%  Call visualizeWarenkorb("2", Session("LAND"), PayMode, PostMode, Destination)%>
 <%
     Dim EmailOld, PasswordOld
-    If Session("LOG_IN") <> "" Then
+    If getLOGIN() > 0 Then
         EmailOld = TABLEVALUE("ofAdressen", "IDNR", getLOGIN(), "Email")
         PasswordOld = TABLEVALUE("ofAdressen", "IDNR", getLOGIN(), "Passwort")
     End If

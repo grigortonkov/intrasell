@@ -26,9 +26,9 @@ Important: This job only creates mails, please use the mail tool to send the ema
         totalQueriesChecked = totalQueriesChecked + 1
         userMailtext = mailtext & "" 'copy from template 
         objectFound = False 'true when some found  
-        emailAnbieter = rsBatch("Email")
+        emailAnbieter = rsBatch("Email").Value
 	     
-        sqlNewObjects = "select * from grArtikel where HerstellerNr=" & rsBatch("HerstellerNr") & _
+        sqlNewObjects = "select * from grArtikel where HerstellerNr=" & rsBatch("HerstellerNr").Value & _
                         " and ProduktAktiv<>0 and AngelegtAm<" & SQLNOW(-1 * PRODUCTS_DISABLED_AFTER_DAYS)
 	                     
         subject = getTranslation("Ihre Objekte wurden deaktiviert!")
@@ -42,12 +42,12 @@ Important: This job only creates mails, please use the mail tool to send the ema
             counterI = counterI + 1
             objectFound = True
             htmlListNewObjects = htmlListNewObjects & _
-                                 counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr") & "'>" & _
-                                 rsNewObjects("Bezeichnung") & "</a> "
+                                 counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
+                                 rsNewObjects("Bezeichnung").Value & "</a> "
 		 
             'Link für Objekt aktivieren!
             htmlListNewObjects = htmlListNewObjects & _
-                                 ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/cgi/immo/jobs/immoAktivieren.aspx?produktAktiv=-1&anbieter=" & rsBatch("HerstellerNr") & "&ArtNr=" & rsNewObjects("ArtNr") & "'>" & _
+                                 ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/cgi/immo/jobs/immoAktivieren.aspx?produktAktiv=-1&anbieter=" & rsBatch("HerstellerNr").Value & "&ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
                                  getTranslation("Objekt aktivieren") & "</a><br>"
 		                                                 
             'TODO: Link so dass der User direkt von Email aktivieren kann 
@@ -59,12 +59,12 @@ Important: This job only creates mails, please use the mail tool to send the ema
 		 
         'prepare mail 
         If objectFound Then
-            userMailtext = Replace(userMailtext, "[NAME]", rsBatch("Name"))
+            userMailtext = Replace(userMailtext, "[NAME]", rsBatch("Name").Value)
             'userMailtext = replace(userMailtext, "[VORNAME]", rsBatch("Vorname")) 
-            userMailtext = Replace(userMailtext, "[EMAIL]", rsBatch("Email"))
+            userMailtext = Replace(userMailtext, "[EMAIL]", rsBatch("Email").Value)
             userMailtext = Replace(userMailtext, "[PRODUCTLIST]", htmlListNewObjects)
 					 
-            If LCase(Request("debug")) = "true" Then
+            If isDebug() Then
                 Response.Write("sqlNewObjects=" & sqlNewObjects)
                 Response.Write("Emailtext:<hr/>" & userMailtext & "<hr/>")
             End If
@@ -77,13 +77,13 @@ Important: This job only creates mails, please use the mail tool to send the ema
             If True Then
                 totalMailsCreated = totalMailsCreated + 1
                 sqlK = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text]) values(" & _
-                     rsBatch("HerstellerNr") & ",'" & subject & "','" & userMailtext & "')"
+                     rsBatch("HerstellerNr").Value & ",'" & subject & "','" & userMailtext & "')"
                 objConnectionExecute(sqlK)
                 'TODO: save this for the statistics 
 						
                 'DISABLE PRODUCTS 
                 sqlK = "update grArtikel set ProduktAktiv=0 " & _
-                 " where HerstellerNr=" & rsBatch("HerstellerNr") & _
+                 " where HerstellerNr=" & rsBatch("HerstellerNr").Value & _
                                 " and ProduktAktiv<>0 and AngelegtAm<" & SQLNOW(-1 * PRODUCTS_DISABLED_AFTER_DAYS)
                 objConnectionExecute(sqlK)
 						
@@ -92,7 +92,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
             End If
 					
         Else ' no object found 
-            Response.Write("<br>No Objects found for Lieferant=" & rsBatch("HerstellerNr") & " and Email: " & rsBatch("Email"))
+            Response.Write("<br>No Objects found for Lieferant=" & rsBatch("HerstellerNr").Value & " and Email: " & rsBatch("Email").Value)
         End If
         rsBatch.MoveNext()
     End While

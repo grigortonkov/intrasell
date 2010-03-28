@@ -45,7 +45,7 @@
 
         Dim lieferantNr
         While Not rsL.EOF
-            lieferantNr = rsL("LieferantNR")
+            lieferantNr = rsL("LieferantNR").Value
             If rowColor = "#F7F7F7" Then
                 rowColor = "#FFFFFF"
             Else
@@ -62,17 +62,17 @@
             html = html & "</td>"
 				
             html = html & "<td bgcolor=""" & rowColor & """>"
-            html = html & "<p align=""right"" bgcolor=""" & rowColor & """>" & FormatNumber(rsL("VKPreis"), 2) & " €</p>"
+            html = html & "<p align=""right"" bgcolor=""" & rowColor & """>" & FormatNumber(rsL("VKPreis").Value, 2) & " €</p>"
             html = html & "</td>"
 				
             html = html & "<td bgcolor=""" & rowColor & """>"
-            html = html & "<p align=""center"">" & rsL("LagerInfo") & "</p>"
+            html = html & "<p align=""center"">" & rsL("LagerInfo").Value & "</p>"
             html = html & "</td>"
 						
             html = html & "<td bgcolor=""" & rowColor & """>"
             html = html & listPaymentMethods(lieferantNr)
             html = html & "<br>" & listDeliveryMethods(lieferantNr)
-            html = html & "<br>" & rsL("deliveryPrice")
+            html = html & "<br>" & rsL("deliveryPrice").Value
             html = html & "</td>"
 				
             '<!--<td width="144" bgcolor="" & rowColor & "">

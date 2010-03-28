@@ -76,13 +76,13 @@
     End Function
 
  
-''' <summary>
-''' DisplaySearchResults - search after product attributes  
-''' added support for search in the subcats 
-''' </summary>
-''' <param name="SearchKeywords"></param>
-''' <remarks></remarks>
-    Sub DisplaySearchResults(ByVal SearchKeywords as String)
+    ''' <summary>
+    ''' DisplaySearchResults - search after product attributes  
+    ''' added support for search in the subcats 
+    ''' </summary>
+    ''' <param name="SearchKeywords"></param>
+    ''' <remarks></remarks>
+    Sub DisplaySearchResults(ByVal SearchKeywords As String)
         Dim SEARCH_IN_DESCRIPTION : SEARCH_IN_DESCRIPTION = False
         Const MIN_SEARCHABLE As Integer = 3
  
@@ -98,7 +98,7 @@
 
         Response.Write(getTranslation("Suchergebnisse") & "...")
 
-        Dim MC : If ucase(Session("dbType")) = ucase("Access") Then MC = "*" Else MC = "%"
+        Dim MC : If UCase(Session("dbType")) = UCase("Access") Then MC = "*" Else MC = "%"
         Dim sql As String, rsQ
         Dim ArtKatNr_ToSearchInto : ArtKatNr_ToSearchInto = Request("ArtKatNr_ToSearchInto")
         Dim SearchOnlyInthisCategory : SearchOnlyInthisCategory = Request("SearchOnlyInthisCategory")
@@ -125,7 +125,7 @@
         AllKeywords = Split(Trim(SearchKeywords), " ")
         sql = "1=1 "
 
-        If Not ArtKatNr_ToSearchInto is Nothing Then
+        If Not ArtKatNr_ToSearchInto Is Nothing Then
             If CInt(ArtKatNr_ToSearchInto) > 0 Then
                 sql = sql & "AND grArtikel.ArtKatNR in (" & makeSubcategoriesList(ArtKatNr_ToSearchInto, 4) & ")"
             End If
@@ -203,7 +203,7 @@
         If Not rsKat.eof Then 'ok the user searches maybe products in these cats 
             html = html & "<br>" & getTranslation("M&ouml;chten Sie die Produkte in den folgenden Kategorien auch ansehen?") & "<br>"
             While Not rsKat.eof
-                html = html & showCategoryPath(rsKat("ArtKatNr"), "default.aspx") & "<br>"
+                html = html & showCategoryPath(rsKat("ArtKatNr").Value, "default.aspx") & "<br>"
                 rsKat.moveNext()
             End While
             rsKat.close()
@@ -216,18 +216,19 @@
     ' DisplaySearchResults - search after product attributes  
     '****************************************************************************
     Public Sub DisplayDetailSearchForm()
-        Dim searchForm
-        Dim herstellerList
+        Dim searchForm As String
+        Dim herstellerList As String
 
-        Dim rs, sql
+        Dim rs
+        Dim sql As String
         sql = "Select distinct  Firma from lieferantenAdressen where rolle like 'Hersteller' ORDER BY Firma"
         rs = objConnectionExecute(sql)
         herstellerList = "<Select Name='HerstellerListSearch'>"
 
         herstellerList = herstellerList & "<Option></Option>"
         While Not rs.eof
-            herstellerList = herstellerList & "<Option>" & rs("Firma")
-            rs.moveNExt()
+            herstellerList = herstellerList & "<Option>" & rs("Firma").Value
+            rs.moveNext()
         End While
         herstellerList = herstellerList & "</Select>"
         rs.close()
@@ -398,9 +399,13 @@
     End Function
 	
 
+    ''' <summary>
+    ''' requery SQL 
+    ''' </summary>
+    ''' <remarks></remarks>
     Sub requerySQL()
 
-        Dim sql : sql = Session("CURRENT_SEARCH") ' take last search 
+        Dim sql As String : sql = Session("CURRENT_SEARCH") ' take last search 
         Dim orderBy : orderBy = Request("orderBy")
         Dim filterByHersteller : filterByHersteller = Request("filterBy")
  
@@ -434,7 +439,8 @@
     Function makeProductListOnQuerySimple(ByVal Sql)
         
         'Response.Write sql: Response.Flush
-        Dim rsArtikel, html
+        Dim rsArtikel
+        Dim html As String
         rsArtikel = objConnectionExecute(Sql)
 
         If rsArtikel.BOF And rsArtikel.EOF Then
@@ -460,7 +466,7 @@
 
 
             Dim rowColor
-            Dim artNr, VKPreis
+            Dim artNr, VKPreis As Double
             While (Not rsArtikel.EOF)
                 artNr = rsArtikel("ArtNR").Value
                 VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1), rsArtikel("MWST").Value, Session("Land")), 2)
@@ -563,14 +569,14 @@
         Dim Firma As String = ""
         Dim FirmaImage, HerstellerLink, Picture, PreisATS, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
         Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ArtKatNR
-        Dim ProduktAktiv As Boolean 
+        Dim ProduktAktiv As Boolean
         Dim herstellerRabatt As Double
-        Dim herstellerRabattText As String 
+        Dim herstellerRabattText As String
         Dim herstellerNr, LieferantNR
         Dim Gewicht As String
-        Dim LieferantLagerInfo As String 
+        Dim LieferantLagerInfo As String
 
-        If not rsArtikel("Firma").Value.Equals(DBNull.Value) then  Firma = rsArtikel("Firma").Value
+        If Not rsArtikel("Firma").Value.Equals(DBNull.Value) Then Firma = rsArtikel("Firma").Value
         HerstellerLink = rsArtikel("HerstellerLink").Value
 
         FirmaImage = rsArtikel("FirmaImage").Value
@@ -578,17 +584,16 @@
         Picture = rsArtikel("Picture").Value
 
         Bezeichnung1 = rsArtikel("Bezeichnung1").Value & ""
-        Try 
+        Try
             LieferantLagerInfo = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "")
-        Catch 
+        Catch
             LieferantLagerInfo = "N.A."
-        End Try 
+        End Try
         Bezeichnung = rsArtikel("Bezeichnung").Value & ""
         Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung & "", Language)
         Bezeichnung = Server.HtmlEncode(Bezeichnung & "")
 
         MWSTGROUP = rsArtikel("MWST").Value
-
         EAN = rsArtikel("EAN").Value
         ArtKatNR = rsArtikel("ArtKatNR").Value
 
@@ -606,25 +611,25 @@
             PreisATS = getTranslation("Login für Preise!")
         End If
 
-         If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString  Then 
-            herstellerRabatt = 0 
-         else 
-            herstellerRabatt = rsArtikel("herstellerRabatt").Value 
-         end if
+        If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString Then
+            herstellerRabatt = 0
+        Else
+            herstellerRabatt = rsArtikel("herstellerRabatt").Value
+        End If
          
         herstellerRabattText = rsArtikel("herstellerRabattText").Value.ToString
         ProduktAktiv = rsArtikel("produktAktiv").Value.ToString
         herstellerNr = rsArtikel("herstellerNr").Value.ToString
-        If rsArtikel("Gewicht").Value.ToString <> DBNull.Value.ToString then 
-         Gewicht = rsArtikel("Gewicht").Value
-        End If 
+        If rsArtikel("Gewicht").Value.ToString <> DBNull.Value.ToString Then
+            Gewicht = rsArtikel("Gewicht").Value
+        End If
 
         Beschreibung = rsArtikel("Beschreibung").Value & ""
         Beschreibung = getTranslationDok("grArtikel", ArtNr, "Beschreibung", Beschreibung & "", Language)
         Modifikationen = rsArtikel("Modifikationen").Value
 
         'GT: always parse the product 
-        If herstellerNr = getLOGIN() Or ((not DBNull.Value.Equals( LieferantNR)) and LieferantNR.Equals(  getLOGIN() )) Then 'Das ist der inserat anbieter und er darf die seite sehen!
+        If herstellerNr = getLOGIN() Or ((Not DBNull.Value.Equals(LieferantNR)) And LieferantNR.Equals(getLOGIN())) Then 'Das ist der inserat anbieter und er darf die seite sehen!
             'response.Write "Dieses Objekt ist nicht aktiv!"
         Else 'do not allow to see this page 
             If ProduktAktiv = 0 Then
@@ -915,11 +920,16 @@
     End Function
 
 
- 
+    ''' <summary>
+    ''' getHTMLInfo - SHOWS PRODUCT HTML INFO IF DEFINED 
+    ''' </summary>
+    ''' <param name="ArtNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getHTMLInfo(ByVal ArtNr)
-        'SHOW HTML INFO IF DEFINED 
-        Dim html
-        Dim htmlInfoSQL, hiRS : htmlInfoSQL = "select HTLMInfo from [grArtikel-HTMLInfo] " & _
+        
+        Dim html As String
+        Dim htmlInfoSQL As String, hiRS : htmlInfoSQL = "select HTLMInfo from [grArtikel-HTMLInfo] " & _
               " where ArtNr=" & ArtNr
         hiRS = objConnectionExecute(htmlInfoSQL)
         While Not hiRS.eof
@@ -936,6 +946,13 @@
  
 	
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="ArtNR"></param>
+    ''' <param name="infoAutorName"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getHTMLInfoName(ByVal ArtNR, ByVal infoAutorName)
         Dim sql : sql = "select HTLMInfo from [grArtikel-HTMLInfo] " & _
                        " where Autor like '" & infoAutorName & "' and ArtNr=" & ArtNR
@@ -943,7 +960,7 @@
         Dim rs : rs = ObjConnectionExecute(sql)
         getHTMLInfoName = ""
         If Not rs.eof Then
-            getHTMLInfoName = rs("HTLMInfo")
+            getHTMLInfoName = rs("HTLMInfo").Value
         End If
         rs.Close()
     End Function
@@ -1001,8 +1018,8 @@
     ' Create Stafelpreise Tabelle
     '****************************************************************************
     Function createStaffelPreiseTable(ByVal ArtNr)
-        Dim html
-        Dim sql
+        Dim html As String
+        Dim sql As String
         sql = "Select ArtNr, StkAb from [grArtikel-Staffelpreise] where ArtNr=" & ArtNr
         Dim rs
         rs = objConnectionExecute(sql)
@@ -1017,9 +1034,9 @@
         html = html & "</tr>"
  
   
-        Dim stkAb, Preis
+        Dim stkAb As Double, Preis As Double
         While Not rs.EOF
-            stkAb = rs("StkAb")
+            stkAb = rs("StkAb").Value
             Preis = FormatNumber(makeBruttoPreis2(ArtNr, stkAb, Session("Land")))
   
    
@@ -1169,16 +1186,16 @@
     '****************************************************************************
     ' returns bezeichnung mit link und preis
     '****************************************************************************
-    Function makeProductLine(ByVal ArtNR, ByVal showPrice)  'rs is the record set 
+    Function makeProductLine(ByVal ArtNR, ByVal showPrice) As String  'rs is the record set 
         Dim rs, sql, html
         rs = objConnectionExecute("select ArtNr, Bezeichnung, MWST from grArtikel where ArtNr=" & ArtNR)
         If rs.EOF Then
             makeProductLine = ""
         Else
             Dim bruttoPreis : bruttoPreis = FormatNumber(getPreis(getLOGIN(), ArtNR, 1), 2) 'makeBruttoPreis(getPreis(getSID(),ArtNr), rs("MWST"),session("Land"))
-            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rs("MWST"), Session("Land")), 2)
+            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rs("MWST").Value, Session("Land")), 2)
   
-            html = "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr") & """>" & Server.HtmlEncode(rs("Bezeichnung") & "") & "</a></td>"
+            html = "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & Server.HtmlEncode(rs("Bezeichnung").Value & "") & "</a></td>"
             If showPrice Then html = html & "<td>" & getCurrencySymbol() & "</td><td align=""right""> " & FormatNumber(bruttoPreis, 2) & "</td>"
             html = html & "</tr>"
             makeProductLine = html
@@ -1221,8 +1238,8 @@
             html = html & "<th width=""50%"" bgcolor=""#ffffff""></th></tr>"
 
             While Not rs.EOF
-                html = html & "<tr><td width=""50%""  bgcolor=""#e0e0e0"">" & Server.HtmlEncode(rs("Name") & "") & "&nbsp;</td>"
-                html = html & "<td width=""50%"" >" & rs("Value") & "&nbsp;</td></tr>"
+                html = html & "<tr><td width=""50%""  bgcolor=""#e0e0e0"">" & Server.HtmlEncode(rs("Name").Value & "") & "&nbsp;</td>"
+                html = html & "<td width=""50%"" >" & rs("Value").Value & "&nbsp;</td></tr>"
                 rs.movenext()
             End While
             html = html & "</table></center>"
@@ -1234,17 +1251,17 @@
     ' get One Eigenschaft (Keyword) Value
     '===============================================================================
     Function getEigenschaft(ByVal artNr, ByVal propertyName)
-        Dim sql, rs
+        Dim SQL As String, rs
         '" [grArtikel-KeyWords].[Order], " & _ 
-        sql = "SELECT [Name], [Value], [ArtNr] " & _
+        SQL = "SELECT [Name], [Value], [ArtNr] " & _
         " FROM [grArtikel-KeyWords] INNER JOIN [grArtikel-KeyWordsToProducts] ON [grArtikel-KeyWords].KeyWordId = [grArtikel-KeyWordsToProducts].KeyWordId " & _
         " WHERE [grArtikel-KeyWordsToProducts].ArtNr=" & artNr & " and [grArtikel-KeyWords].Name Like '" & propertyName & "'"
         '" ORDER BY [grArtikel-KeyWords].[Order]"
         'response.write sql
         getEigenschaft = ""
-        rs = objConnectionExecute(sql)
+        rs = objConnectionExecute(SQL)
         If Not rs.eOF Then
-            getEigenschaft = rs("Value")
+            getEigenschaft = rs("Value").Value
         End If
         rs.close()
     End Function
@@ -1253,7 +1270,12 @@
 
 
 
- 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="artNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeReviewsPage(ByVal artNr)
         Dim html
         Dim artKatNr : artKatNr = CLng(tablevalue("grArtikel", "ArtNr", artNr, "ArtKatNr"))
@@ -1281,9 +1303,9 @@
         Else
             While Not rsTop.EOF
                 'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)	
-                html = html & drawWindowForum(getTranslation("Beitrag von ") & rsTop("Autor"), _
-                                               getTranslation("Datum:") & rsTop("DateCreation"), _
-                                               rsTop("Review"), "")
+                html = html & drawWindowForum(getTranslation("Beitrag von ") & rsTop("Autor").Value, _
+                                               getTranslation("Datum:") & rsTop("DateCreation").Value, _
+                                               rsTop("Review").Value, "")
                 rsTop.moveNext()
             End While
 
@@ -1348,13 +1370,13 @@
     '==========================================================================================
     ' creates image html for the product "bewertung" 
     '==========================================================================================
-    Function makeBewertungStars(ByVal artNr)
-        Dim sql, rs
+    Function makeBewertungStars(ByVal artNr) As String
+        Dim sql As String, rs
         sql = "select avg(Points)as aPoints from [grArtikel-Reviews] where ArtNr=" & artNr & " having count(*) >=3"
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
-            Dim points
-            points = rs("aPoints")
+            Dim points As Double
+            points = rs("aPoints").Value
             If points - Math.Round(points, 0) <= 0.25 Or Math.Round(points, 0) - points > 0.75 Then
                 points = Math.Round(points, 0)
             Else
@@ -1372,15 +1394,15 @@
     End Function
 
     '==========================================================================================
-    ' creates count  
+    ' returns count of Bewertungen 
     '==========================================================================================
-    Function makeBewertungAnzahl(ByVal artNr)
+    Function makeBewertungAnzahl(ByVal artNr) As String
         Dim sql, rs
         makeBewertungAnzahl = 0
         sql = "select count(Points)as aPoints from [grArtikel-Reviews] where ArtNr=" & artNr & " having count(*) >=3"
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
-            makeBewertungAnzahl = rs("aPoints")
+            makeBewertungAnzahl = rs("aPoints").Value
         End If
         rs.close()
         rs = Nothing
@@ -1390,12 +1412,12 @@
     'this functions is called everytime the product page is shown 
     '==========================================================================
     Function onProductView(ByVal ArtNR)
+        Const DAYS_TO_LOOK_BACK As Integer = 3
         If Request("nostats") = "true" Then Exit Function
-   
-        Const DAYS_TO_LOOK_BACK = 3
-        Dim sql, rs
-        sql = "select * from webProductClicks WHERE  ArtNR=" & ArtNR
-        sql = sql & " and FIRSTCLICK >= " & SQLNOW(-1 * DAYS_TO_LOOK_BACK_CLICKS)
+
+        Dim sql As String, rs
+        sql = "select * from webProductClicks WHERE  ArtNR=" & ArtNR & _
+              " and FIRSTCLICK >= " & SQLNOW(-1 * DAYS_TO_LOOK_BACK_CLICKS)
    
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
@@ -1417,10 +1439,11 @@
     'this functions is called everytime the product page is shown 
     '==========================================================================
     Function onProductList(ByVal ArtNR)
+        
         If Request("nostats") = "true" Then Exit Function
    
-        Const DAYS_TO_LOOK_BACK = 3
-        Dim sql, rs
+        Const DAYS_TO_LOOK_BACK As Integer = 3
+        Dim sql As String, rs
         sql = "select ArtNR from webProductLists WHERE  ArtNR=" & ArtNR
         sql = sql & " and FIRSTCLICK >= " & SQLNOW(-1 * DAYS_TO_LOOK_BACK_CLICKS)
    

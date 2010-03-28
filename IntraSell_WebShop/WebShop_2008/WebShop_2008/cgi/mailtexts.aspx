@@ -50,28 +50,40 @@
     End Function
 
 
+    ''' <summary>
+    ''' MAKE_EMAIL_SEND_PASSWORD
+    ''' </summary>
+    ''' <param name="KDNR"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function MAKE_EMAIL_SEND_PASSWORD(ByVal KDNR)
  
-        Dim html
-        Dim Passwort
-        Dim email As String
+        Dim html As String
+        Dim Passwort As String
+        Dim Email As String
         
         html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_send_password.htm"))
         html = Replace(html, "[DOMAIN]", VARVALUE("DOMAIN"))
         html = Replace(html, "[FIRMA_EMAIL_SALE]", VARVALUE("EMAIL_SALE"))
         html = Replace(html, "[FIRMA_TEL]", VARVALUE("TEL"))
-        html = Replace(html, "[LINK_REGISTRATION]", Session("BASENAME") & "/default.aspx?pageToShow=MyAccount&Email=" & email & "&Password=" & Passwort)
-        html = Replace(html, "[LINK_REGISTRATION_ACTIVATION]", Session("BASENAME") & "/default.aspx?pageToShow=MyAccountActivate&Email=" & email & "&Password=" & Passwort)
+        html = Replace(html, "[LINK_REGISTRATION]", Session("BASENAME") & "/default.aspx?pageToShow=MyAccount&Email=" & Email & "&Password=" & Passwort)
+        html = Replace(html, "[LINK_REGISTRATION_ACTIVATION]", Session("BASENAME") & "/default.aspx?pageToShow=MyAccountActivate&Email=" & Email & "&Password=" & Passwort)
 
         Call replaceUserTags(KDNR, html)
         
         MAKE_EMAIL_SEND_PASSWORD = html
-	 																 								
     End Function
 
+    ''' <summary>
+    ''' Make Email Order 
+    ''' </summary>
+    ''' <param name="KDNR"></param>
+    ''' <param name="AuftragNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function MAKE_EMAIL_ORDER(ByVal KDNR, ByVal AuftragNr)
-        Const TAG_EMBED_ORDER = "[EMBED_ORDER]"
-        Dim html
+        Const TAG_EMBED_ORDER As String = "[EMBED_ORDER]"
+        Dim html As String
 		
         'reads from root folder 
         html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_order_confirmation.htm"))
@@ -82,13 +94,13 @@
         html = Replace(html, "[FIRMA_TEL]", VARVALUE("TEL"))
         'get the last object inserted 
         
-        
         '[OBJECT_VIEW]
-        Dim rsLO, sqlLO : sqlLO = "select max(ArtNr) as lO from [buchAuftrag-Artikel] where RechNr=" & AuftragNr
+        Dim rsLO
+        Dim sqlLO As String : sqlLO = "select max(ArtNr) as lO from [buchAuftrag-Artikel] where RechNr=" & AuftragNr
         rsLO = ObjConnectionExecute(sqlLO)
         If Not rsLO.eof Then
             Dim filenameForTemplate : filenameForTemplate = "productPage_OrderConfirmation.htm"
-            Dim maxArt : maxArt = rsLO("lo")
+            Dim maxArt : maxArt = rsLO("lo").Value
             If (maxArt) Is Nothing Then maxArt = "-1"
             Dim objectHTML : objectHTML = makeProductPageWithTemplate(maxArt, readTextFile(Server.MapPath(filenameForTemplate)))
             html = Replace(html, "[OBJECT_VIEW]", objectHTML)
@@ -121,6 +133,13 @@
         MAKE_EMAIL_ORDER = html
     End Function
 
+    ''' <summary>
+    ''' MAKE_EMAIL_TELL_A_FRIEND
+    ''' </summary>
+    ''' <param name="ProductURL"></param>
+    ''' <param name="BodyMail"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function MAKE_EMAIL_TELL_A_FRIEND(ByVal ProductURL, ByVal BodyMail)
         Dim html
         Dim name : name = Request("ToName")
@@ -153,6 +172,12 @@
 		 
     End Function
 		 
+    ''' <summary>
+    ''' MAKE_EMAIL_NEWSLETTER
+    ''' </summary>
+    ''' <param name="Email"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function MAKE_EMAIL_NEWSLETTER(ByVal Email)
         MAKE_EMAIL_NEWSLETTER = " Liebe(r)  Benutzer(in)!" & Chr(10) & Chr(13) & _
         " Vielen Dank f&uuml;r Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters." & Chr(10) & Chr(13) & _
@@ -164,17 +189,23 @@
         " Ihr Team"
     End Function
 	 
-    'replaces user tags as [Name] [Email] in the emailtext 
+    '
+    ''' <summary>
+    ''' replaces user tags as [Name] [Email] in the emailtext 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <param name="html"></param>
+    ''' <remarks></remarks>
     Sub replaceUserTags(ByVal idnr, ByRef html)
         Dim kdnr : kdnr = idnr
-        Dim Firma : Firma = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Firma")
-        Dim Name : Name = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Name")
-        Dim Vorname : Vorname = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Vorname")
-        Dim Anrede : Anrede = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Anrede")
-        Dim Titel : Titel = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Titel")
-        Dim Email : Email = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Email")
-        Dim Passwort : Passwort = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Passwort")
-        Dim Begruessung : Begruessung = "geehrter" : If LCase(Anrede) <> "herr" Then Begruessung = "geehrte"
+        Dim Firma As String : Firma = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Firma")
+        Dim Name As String : Name = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Name")
+        Dim Vorname As String : Vorname = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Vorname")
+        Dim Anrede As String : Anrede = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Anrede")
+        Dim Titel As String : Titel = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Titel")
+        Dim Email As String : Email = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Email")
+        Dim Passwort As String : Passwort = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Passwort")
+        Dim Begruessung As String : Begruessung = "geehrter" : If LCase(Anrede) <> "herr" Then Begruessung = "geehrte"
 
 
         html = Replace(html, "[Email]", Email & "")

@@ -85,17 +85,17 @@
         End If
         'end set 
 
-        Dim SHOP_SHOW_PRICE  As Boolean: SHOP_SHOW_PRICE = VARVALUE("SHOP_SHOW_PRICE")
-        Dim SHOP_SHOW_COMPARE  As Boolean: SHOP_SHOW_COMPARE = VARVALUE("SHOP_SHOW_COMPARE")
-        Dim SHOP_SHOW_DRUCKEN  As Boolean: SHOP_SHOW_DRUCKEN = VARVALUE("SHOP_SHOW_DRUCKEN")
-        Dim SHOP_SHOW_ANGELEGTAM  As Boolean: SHOP_SHOW_ANGELEGTAM = VARVALUE("SHOP_SHOW_ANGELEGTAM")
+        Dim SHOP_SHOW_PRICE As Boolean : SHOP_SHOW_PRICE = VARVALUE_DEFAULT("SHOP_SHOW_PRICE", "true")
+        Dim SHOP_SHOW_COMPARE As Boolean : SHOP_SHOW_COMPARE = VARVALUE_DEFAULT("SHOP_SHOW_COMPARE", "true")
+        Dim SHOP_SHOW_DRUCKEN As Boolean : SHOP_SHOW_DRUCKEN = VARVALUE_DEFAULT("SHOP_SHOW_DRUCKEN", "true")
+        Dim SHOP_SHOW_ANGELEGTAM As Boolean : SHOP_SHOW_ANGELEGTAM = VARVALUE_DEFAULT("SHOP_SHOW_ANGELEGTAM", "true")
  
 	 
-        Dim SHOP_ALLOW_SORTING : SHOP_ALLOW_SORTING = VARVALUE("SHOP_ALLOW_SORTING")
-        Dim SHOP_ALLOW_DROPDOWN_SORTING : SHOP_ALLOW_DROPDOWN_SORTING = VARVALUE("SHOP_ALLOW_DROPDOWN_SORTING")
-        Dim SHOP_SHOW_HERSTELLER : SHOP_SHOW_HERSTELLER = VARVALUE("SHOP_SHOW_HERSTELLER")
-        Dim ITEMPERPAGE : ITEMPERPAGE = VARVALUE("SHOP_RESULT_LIST_ITEMS_PER_PAGE")
-        Dim SHOW_PRODUCT_DETAILS : SHOW_PRODUCT_DETAILS = VARVALUE("SHOP_SHOW_PRODUCT_DESCRIPTIONS")
+        Dim SHOP_ALLOW_SORTING As Boolean : SHOP_ALLOW_SORTING = VARVALUE_DEFAULT("SHOP_ALLOW_SORTING", "true")
+        Dim SHOP_ALLOW_DROPDOWN_SORTING As Boolean : SHOP_ALLOW_DROPDOWN_SORTING = VARVALUE_DEFAULT("SHOP_ALLOW_DROPDOWN_SORTING", "true")
+        Dim SHOP_SHOW_HERSTELLER As Boolean : SHOP_SHOW_HERSTELLER = VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true")
+        Dim ITEMPERPAGE As Integer : ITEMPERPAGE = VARVALUE_DEFAULT("SHOP_RESULT_LIST_ITEMS_PER_PAGE", "50")
+        Dim SHOW_PRODUCT_DETAILS As Boolean : SHOW_PRODUCT_DETAILS = VARVALUE_DEFAULT("SHOP_SHOW_PRODUCT_DESCRIPTIONS", "true")
         Dim SHOWLAGERINFO : SHOWLAGERINFO = VARVALUE("SHOP_SHOW_LAGERINFO")
         Dim SHOP_SAVE_QUERY : SHOP_SAVE_QUERY = VARVALUE("SHOP_SAVE_QUERY")
 
@@ -374,13 +374,13 @@
                     rsF = objConnectionExecute(sqlF)
 						    
                     If Request("FilterBy") <> "" Then htmlHeader = htmlHeader & "<option value=""" & Request("FilterBy") & """>" & Request("FilterBy")
-                    htmlFilterBy = htmlFilterBy & "        <option value=""ALLE"">" & getTranslation("ALLE")
+                    htmlFilterBy = htmlFilterBy & "   <option value=""ALLE"">" & getTranslation("ALLE")
                     While Not rsF.EOF
                         htmlFilterBy = htmlFilterBy & "<option value=""" & rsF("Firma").Value & """>" & rsF("Firma").Value
                         rsF.MoveNext()
                     End While
                     rsF.close()
-                    htmlFilterBy = htmlFilterBy & "			</select>"
+                    htmlFilterBy = htmlFilterBy & "</select>"
                     'END FILTER 
                 Else
                     htmlFilterBy = htmlFilterBy & "			<select style=""visibility:hidden"" id=""filterBy"" name=""filterBy"" onchange=""GOLinkFilter();"" ></select>" 'empty select
@@ -496,12 +496,12 @@
                 End If
             End If
 	
-            Dim rowColor
-            Dim artNr, VKPreis, Bezeichnung, picture, firma, ean, mwst, herstellerRabatt, lagerInfo, artKatNrProdukt
-            Dim angelegtAm As Date
+            Dim rowColor As String
+            Dim ArtNr, VKPreis As Double, Bezeichnung As String, Picture, Firma, EAN, MWSt, HerstellerRabatt, LagerInfo As String, ArtKatNrProdukt
+            Dim AngelegtAm As Date
             Dim lastGroupValue 'keeps the last value from grouping on artkatnr 
             Dim htmlProductRow ' html for the product table row 
-            Dim htmlAllRows : htmlAllRows = ""
+            Dim htmlAllRows As String : htmlAllRows = ""
             swnItems = 0
   	    
             Dim SHOP_PRODUCTLIST_ROW_COLOR : SHOP_PRODUCTLIST_ROW_COLOR = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR", "#F7F7F7")
@@ -510,11 +510,11 @@
             While (Not rsArtikel.EOF) And (CDbl(swnItems) < CDbl(ITEMPERPAGE))
                 swnItems = swnItems + 1
 				
-                artNr = rsArtikel("ArtNR").Value
+                ArtNr = rsArtikel("ArtNR").Value
 				
 				
                 'add for statistics 
-                Call onProductList(artNr)
+                Call onProductList(ArtNr)
 				
                 If rowColor = SHOP_PRODUCTLIST_ROW_COLOR Then
                     rowColor = SHOP_PRODUCTLIST_ROW_COLOR_ALT
@@ -523,7 +523,7 @@
                 End If
 				
                 If SHOP_USE_SORT_IMPORTANCY Then 'set another color for the product
-                    Dim ownColorHighlight : ownColorHighlight = getEigenschaft(artNr, "Highlight_Color") & ""
+                    Dim ownColorHighlight : ownColorHighlight = getEigenschaft(ArtNr, "Highlight_Color") & ""
                     If ownColorHighlight <> "" Then
                         rowColor = ownColorHighlight
                     End If
@@ -531,22 +531,22 @@
 				
                 'start GROUP ROW
                 If LCase(ordr) = "artkatnr" Then 'only on this sorting show grouping headings 
-                    If lastGroupValue <> artKatNrProdukt Then 'show 
+                    If lastGroupValue <> ArtKatNrProdukt Then 'show 
                         htmlProductRow = htmlProductRow & "<tr><td colspan='" & (tableColumns) & "'>"
-                        htmlProductRow = htmlProductRow & getTranslation("Produkte der Kategorie") & ":" & showCategoryPath(artKatNrProdukt, "default.aspx")
+                        htmlProductRow = htmlProductRow & getTranslation("Produkte der Kategorie") & ":" & showCategoryPath(ArtKatNrProdukt, "default.aspx")
                         htmlProductRow = htmlProductRow & "</td></tr>"
-                        lastGroupValue = artKatNrProdukt 'take new value 
+                        lastGroupValue = ArtKatNrProdukt 'take new value 
                     End If
                 End If
                 'end GROUP ROW 
 				
-                Dim productRowCacheName : productRowCacheName = "PROD_ROW_" & artNr
+                Dim productRowCacheName : productRowCacheName = "PROD_ROW_" & ArtNr
                 htmlProductRow = getCache(productRowCacheName)
                 If htmlProductRow = "" Then
 				
-                    mwst = rsArtikel("MWST").Value
-                    picture = rsArtikel("Picture").Value.ToString()
-                    VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), artNr, 1), mwst, Session("Land")), 2)
+                    MWSt = rsArtikel("MWST").Value
+                    Picture = rsArtikel("Picture").Value.ToString()
+                    VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), ArtNr, 1), MWSt, Session("Land")), 2)
 						
                     If IsNumeric(VKPreis) Then
                         If VKPreis <= 0 Then VKPreis = "n.a." 'remove VKPreis for -1 and so on 
@@ -557,45 +557,45 @@
                     End If
 
                     Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
-                    Bezeichnung = getTranslationDok("grArtikel", artNr, "Bezeichnung", Bezeichnung, Language)
+                    Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung, Language)
 						
-                    firma = Server.HtmlEncode(rsArtikel("Firma").Value & "")
-                    ean = rsArtikel("EAN").Value
+                    Firma = Server.HtmlEncode(rsArtikel("Firma").Value & "")
+                    EAN = rsArtikel("EAN").Value
                     
-                    If rsArtikel("AngelegtAm").Value.ToString <> DBNull.Value.ToString then 
-                        angelegtAm = rsArtikel("AngelegtAm").Value
-                    Else 
-                        angelegtAm = Now
-                    End If 
+                    If rsArtikel("AngelegtAm").Value.ToString <> DBNull.Value.ToString Then
+                        AngelegtAm = rsArtikel("AngelegtAm").Value
+                    Else
+                        AngelegtAm = Now
+                    End If
                     
-                    herstellerRabatt = tablevalue("grArtikel", "ArtNR", artNr, "herstellerRabatt") : If herstellerRabatt = "0" Then herstellerRabatt = ""
-                    lagerInfo = getLieferantLagerInfo(artNr)
-                    artKatNrProdukt = tablevalue("grArtikel", "ArtNR", artNr, "ArtKatNr")
+                    HerstellerRabatt = tablevalue("grArtikel", "ArtNR", ArtNr, "herstellerRabatt") : If HerstellerRabatt = "0" Then HerstellerRabatt = ""
+                    LagerInfo = getLieferantLagerInfo(ArtNr)
+                    ArtKatNrProdukt = tablevalue("grArtikel", "ArtNR", ArtNr, "ArtKatNr")
 								
                     htmlProductRow = htmlProductRow & "<tr>"
 					    
-					Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
+                    Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
                     If showThumbnails Then
                         htmlProductRow = htmlProductRow & "<td width=""40""  bgcolor=""" & rowColor & """>"
-                        htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & artNr & "'>"
-                        htmlProductRow = htmlProductRow & makeImgTag(picture, Server.HtmlEncode(Bezeichnung & ""), SHOP_THUMBNAIL_MAX_SIZE) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
+                        htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & ArtNr & "'>"
+                        htmlProductRow = htmlProductRow & makeImgTag(Picture, Server.HtmlEncode(Bezeichnung & ""), SHOP_THUMBNAIL_MAX_SIZE) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
                         htmlProductRow = htmlProductRow & "</a>"
 													
                         If False Then 'not needed 
-                            If picture <> "" And picture <> "no-image" Then
+                            If Picture <> "" And Picture <> "no-image" Then
                                 Dim thumbnailBezForToolTip : thumbnailBezForToolTip = Server.HtmlEncode(Bezeichnung & "")
                                 Dim thumbnailURL
                                 If LCase(VARVALUE_DEFAULT("SHOP_USE_LOCAL_THUMBS", "true")) = "true" Then
-                                    thumbnailURL = "thumbs/" & picture
+                                    thumbnailURL = "thumbs/" & Picture
                                 Else
-                                    If InStr(picture, "ttp") > 0 Then 'it is absolute url 
-                                        thumbnailURL = picture
+                                    If InStr(Picture, "ttp") > 0 Then 'it is absolute url 
+                                        thumbnailURL = Picture
                                     Else
-                                        thumbnailURL = "productImages/thumbnail.aspx?width=" & PRODUCT_IMAGE_SMALL_MAX_SIZE & "&filename=" & picture
+                                        thumbnailURL = "productImages/thumbnail.aspx?width=" & PRODUCT_IMAGE_SMALL_MAX_SIZE & "&filename=" & Picture
                                     End If
                                 End If
 								                    
-                                htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & artNr & "'>"
+                                htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & ArtNr & "'>"
                                 htmlProductRow = htmlProductRow & "<img src=""" & thumbnailURL & """ alt='Image fuer " & _
                                 Server.HtmlEncode(Bezeichnung & "") & _
                                 "' tooltip='" & thumbnailBezForToolTip & "' border=0>"
@@ -613,61 +613,61 @@
                     If template_ColumnDescription <> "" Then 'template exists 
                         'handles in SHOW_PRODUCT_DETAILS	
                     Else
-                        htmlProductRow = htmlProductRow & "<b><a href='default.aspx?ArtNr=" & artNr & "'>" & Bezeichnung & "</b></a>"
+                        htmlProductRow = htmlProductRow & "<b><a href='default.aspx?ArtNr=" & ArtNr & "'>" & Bezeichnung & "</b></a>"
                     End If
 								
                     If SHOW_PRODUCT_DETAILS Then 'the Description can be templated with a file FLENAME_COLUMNT_DESCRIPTION
 
                         If template_ColumnDescription <> "" Then 'file exists 
                             Dim copyTempl : copyTempl = "" & template_ColumnDescription
-                            htmlProductRow = htmlProductRow & makeProductPageWithTemplate(artNr, copyTempl)
+                            htmlProductRow = htmlProductRow & makeProductPageWithTemplate(ArtNr, copyTempl)
                         Else 'no template file 
                             Dim beschreibung
                             'beschreibung =  tablevalue("grArtikel", "ArtNR", ArtNR, "Beschreibung")
                             'beschreibung = getTranslationDok("grArtikel" , ArtNr, "Beschreibung", Beschreibung, Language)
-                            beschreibung = makeBeschreibung(artNr, True)
+                            beschreibung = makeBeschreibung(ArtNr, True)
                             htmlProductRow = htmlProductRow & "<br>" & beschreibung
-                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Hersteller Nr:") & "<b>" & ean & "</b>"
+                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
                         End If
                     End If
                     htmlProductRow = htmlProductRow & "</td>"
 						
                     If SHOP_SHOW_PRICE Then
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><p align=""right"">" & VKPreis
-                        If herstellerRabatt <> "" Then
-                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Rabatt") & ":" & herstellerRabatt
+                        If HerstellerRabatt <> "" Then
+                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Rabatt") & ":" & HerstellerRabatt
                         End If
                         htmlProductRow = htmlProductRow & "</td>"
                     End If
 						
                     If SHOP_SHOW_HERSTELLER Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & firma & "</td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & Firma & "</td>"
                     End If
 
                     If SHOP_SHOW_ANGELEGTAM Then
                         Dim color_angelegt_am
                         'cloro to take the attention to the new producs
-                        If angelegtAm <= Now().AddDays(-30) Then color_angelegt_am = "gray"
-                        If angelegtAm > Now().AddDays(-30) Then color_angelegt_am = "blue"
-                        If angelegtAm > Now().AddDays(-10) Then color_angelegt_am = "green"
-                        If angelegtAm > Now().AddDays(-3) Then color_angelegt_am = "red"
+                        If AngelegtAm <= Now().AddDays(-30) Then color_angelegt_am = "gray"
+                        If AngelegtAm > Now().AddDays(-30) Then color_angelegt_am = "blue"
+                        If AngelegtAm > Now().AddDays(-10) Then color_angelegt_am = "green"
+                        If AngelegtAm > Now().AddDays(-3) Then color_angelegt_am = "red"
 						   
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><font color='" & color_angelegt_am & "'>" & angelegtAm & "</font></td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><font color='" & color_angelegt_am & "'>" & AngelegtAm & "</font></td>"
                     End If
                     If UCase(VARVALUE("BenutzeEAN")) = "TRUE" Then  'EAN					
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ean & "</td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & EAN & "</td>"
                     Else 'ArtNR 
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & artNr & "</td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ArtNr & "</td>"
                     End If
 						
                     If SHOWLAGERINFO Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & lagerInfo & "</td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & LagerInfo & "</td>"
                     End If
 						
-                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & artNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Kaufen") & " " & Bezeichnung & "'></a></td>"
+                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Kaufen") & " " & Bezeichnung & "'></a></td>"
                     'html = html & "<td align=""center"" bgcolor=""" & rowColor &"""><a href='default.aspx?ArtNr=" & ArtNr & "'>detail</a></td>"
                     If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ ><input type=""checkbox"" value=""" & artNr & """ name=""ArtNrToCompare""  class=""submit""></td>"
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ ><input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit""></td>"
                     End If
                     htmlProductRow = htmlProductRow & "</tr>"
 				        
@@ -677,7 +677,7 @@
 				
 				
                 If SHOP_USE_SORT_IMPORTANCY Then
-                    Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(artNr, "Wichtigkeit") & ""
+                    Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(ArtNr, "Wichtigkeit") & ""
                     If productHasBetterSorting <> "" Then 'put on the top 
                         htmlAllRows = htmlProductRow & _
                         "<tr colspan=" & (tableColumns - 1) & "><td></td></tr>" & _

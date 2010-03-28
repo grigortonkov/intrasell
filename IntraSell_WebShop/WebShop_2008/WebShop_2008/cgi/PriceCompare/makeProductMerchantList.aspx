@@ -68,25 +68,25 @@ end if
     %>
     <tr>
         <td bgcolor="<%=rowColor%>">
-            <%=makeMerchantView(rsL("LieferantNR"))%>
+            <%=makeMerchantView(rsL("LieferantNR").Value)%>
         </td>
         <td bgcolor="<%=rowColor%>">
             <p align="center">
-                <%=rsL("Bezeichnung")%></p>
+                <%=rsL("Bezeichnung").Value%></p>
         </td>
         <td bgcolor="<%=rowColor%>">
             <p align="center">
-                <%=rsL("LagerInfo")%></p>
+                <%=rsL("LagerInfo").Value%></p>
         </td>
         <td bgcolor="<%=rowColor%>">
             <p align="right" bgcolor="<%=rowColor%>">
-                <%=formatnumber(rsL("VKPreis"),2)%>
+                <%=formatnumber(rsL("VKPreis").Value,2)%>
                 €</p>
         </td>
         <td bgcolor="<%=rowColor%>">
-            <%=listPaymentMethods(rsL("LieferantNR"))%>
+            <%=listPaymentMethods(rsL("LieferantNR").Value)%>
             <p>
-                <%=listDeliveryMethods(rsL("LieferantNR"))%>
+                <%=listDeliveryMethods(rsL("LieferantNR").Value)%>
         </td>
         <!--<td width="144" bgcolor="<%=rowColor%>">
   <p align="center"><%=rsL("ArtikelNrLieferant")%></p>
@@ -94,13 +94,13 @@ end if
 -->
         <td bgcolor="<%=rowColor%>">
             <p align="center">
-                <a target="_new" href="cgi/priceCompare/buyFromMerchant.aspx?LieferantNr=<%=rsL("LieferantNR")%>&ArtNr=<%=ArtNr%>&ArtikelNrLieferant=<%=rsL("ArtikelNrLieferant")%>">
+                <a target="_new" href="cgi/priceCompare/buyFromMerchant.aspx?LieferantNr=<%=rsL("LieferantNR").Value%>&ArtNr=<%=ArtNr%>&ArtikelNrLieferant=<%=rsL("ArtikelNrLieferant").Value%>">
                     <img border="0" src="<%=imageFullName("buy.gif")%>" alt="Click here to buy!"></a>
             </p>
         </td>
     </tr>
     <%
 rsL.MoveNext 
-WEND%>
+end while%>
 </table>
 <!--#include file="../../intrasoft/connClose.aspx"-->

@@ -6,13 +6,13 @@
 Dim ArtNr: ArtNr = clng(request("ArtNr"))
 dim days:  days  = clng(request("days"))
 Dim sql , rs
-set rs = ObjConnectionexecute("Select * from grArtikel where ArtNR=" & ArtNr)
+  rs = ObjConnectionexecute("Select * from grArtikel where ArtNR=" & ArtNr)
 if rs.eof then 
     call drawErrorBox("Error", "Das Produkt ist unbekannt!", "", "")
 	Response.End 	
 end if 
 
-Dim artKatNr: artKatNr = rs("artKatNr")
+Dim artKatNr: artKatNr = rs("artKatNr").Value
 %>
 <body topmargin="0" leftmargin="0">
     <%

@@ -90,8 +90,8 @@
                     Dim sqlDL : sqlDL = "select deepLink from [lieferantenArtikel-Preise] where LieferantNr= " & LieferantNr & " and ArtikelNrLieferant='" & ArtikelNrLieferant & "'"
                     Dim rsDL : rsDL = ObjConnectionExecute(sqlDL)
                     If Not rsDL.EOF Then
-                        If rsDL("DeepLink") & "" <> "" Then
-                            buyDirektURL = rsDL("DeepLink")
+                        If rsDL("DeepLink").Value & "" <> "" Then
+                            buyDirektURL = rsDL("DeepLink").Value
                         End If
                     End If
                     rsDL.close()

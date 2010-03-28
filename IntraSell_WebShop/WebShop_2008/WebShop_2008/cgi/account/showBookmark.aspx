@@ -32,9 +32,9 @@
             End If
 
             Do While Not RSParents.EOF
-                Response.Write("<li><a href='" & RSParents("URL") & "'> " & rsParents("Name") & "</a>")
+                Response.Write("<li><a href='" & RSParents("URL").Value & "'> " & rsParents("Name").Value & "</a>")
                 'DELETE ACTION
-                Response.Write("  <a href='default.aspx?pageToshow=MyBookmarks&description=" & descTyp & "&action=dilete&bookmarkid=" & RSParents("BookmarkId") & "'><font color=red> " & getTranslation("löschen") & "</font></a>")
+                Response.Write("  <a href='default.aspx?pageToshow=MyBookmarks&description=" & descTyp & "&action=dilete&bookmarkid=" & RSParents("BookmarkId").Value & "'><font color=red> " & getTranslation("löschen") & "</font></a>")
                 RSParents.MoveNext()
             Loop
             RSParents.Close()

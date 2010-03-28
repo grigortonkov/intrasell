@@ -170,7 +170,7 @@
                 html = html & "<td>"
 	  
                 inRow = inRow + 1
-                Call makeProductPageSmall(rsTop("ArtNr"), "")
+                Call makeProductPageSmall(rsTop("ArtNr").Value, "")
                 rsTop.moveNext()
 		 
                 html = html & "</td>"

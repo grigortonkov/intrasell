@@ -56,9 +56,9 @@
                     sql = "Select * From UserBookmarks where BookmarkId = " & curr_id & userQuery
                     RSNode.Open(sql, ObjConnection, 2, 3, 1)
                     If Not RSNode.EOF Then
-                        my_name = RSNode("Name")
-                        my_descr = RSNode("Description")
-                        my_url = RSNode("Url")
+                        my_name = RSNode("Name").Value
+                        my_descr = RSNode("Description").Value
+                        my_url = RSNode("Url").Value
                     End If
                 Else
                     RSNode = Server.CreateObject("ADODB.Recordset")
@@ -98,8 +98,8 @@
                                 sql = "Select * FROM UserBookmarks WHERE BookmarkID = " & newCurrent
                                 rs = objConnectionExecute(sql)
                                 If Not rs.EOF Then
-                                    my_name = Server.HtmlEncode(rs("Name"))
-                                    my_descr = Server.HtmlEncode(rs("Description"))
+                                    my_name = Server.HtmlEncode(rs("Name").Value)
+                                    my_descr = Server.HtmlEncode(rs("Description").Value)
                                 End If
                             Else
                                 curr_id = 0
@@ -121,7 +121,7 @@
                         If preid <> "" Then ' the current is file and the parent for our new bookmark will be it's parent
                             sql = "Select PreBookmarkId as prid FROM UserBookmarks WHERE BookmarkID = " & curr_id
                             rs = objConnectionExecute(sql)
-                            preid = rs("prid")
+                            preid = rs("prid").Value
                         Else
                             preid = curr_id ' set the user id to take the user bookmarks o this number later
                         End If
@@ -132,7 +132,7 @@
                             rs = objConnectionExecute(sql)
 			
                             Do While Not rs.EOF
-                                If rs("Name") = my_name And rs("Url") = my_url Then Exit Do
+                                If rs("Name").Value = my_name And rs("Url").Value = my_url Then Exit Do
                                 rs.moveNext()
                             Loop
 			
@@ -168,9 +168,9 @@
                             my_name = Trim(Request("Title"))
                             my_descr = Trim(Request("Description"))
                             my_url = Trim(Request("Url"))
-                            turl = Trim(rs("Url"))
+                            turl = Trim(rs("Url").Value)
                             If (turl) Is Nothing Then turl = ""
-                            If rs("Name") <> my_name Or rs("Description") <> my_descr Or turl <> my_url Then
+                            If rs("Name").Value <> my_name Or rs("Description").Value <> my_descr Or turl <> my_url Then
                                 If (turl <> "" And my_url <> "") Or (turl = "" And my_url = "") Then
                                     sql = "Update userBookmarks set "
                                     sql = sql & "Name='" & my_name & "', "
@@ -202,7 +202,7 @@
                                 Else
                                     sql = "Select EMail FROM Users WHERE UserId <>" & Uid ' all other users
                                     rs = objConnectionExecute(sql)
-                                    strTo = rs("EMail") 'Request.Form("users")
+                                    strTo = rs("EMail").Value 'Request.Form("users")
                                 End If
                             End If
 			
@@ -213,7 +213,7 @@
                                 Dim strMessage
                                 sql = "Select EMail FROM Users WHERE UserId = " & Uid ' all other users
                                 rs = objConnectionExecute(sql)
-                                strFrom = rs("EMail")
+                                strFrom = rs("EMail").Value
                                 strSubject = "Bookmark URL!"
                                 strMessage = Request.Form("url")
                                 myCDONTSMail = CreateObject("CDONTS.NewMail")
@@ -329,8 +329,8 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
 
                                 'The main parent loop
 		Do While Not RSParents.EOF
-			Display RSParents("Name"), Level, RSParents("BookmarkId"), RSParents("URL"), RSParents("Description")
-			OutputChildren RSParents("BookmarkId"), Level + 1
+			Display RSParents("Name").Value, Level, RSParents("BookmarkId").Value, RSParents("URL").Value, RSParents("Description").Value
+			OutputChildren RSParents("BookmarkId").Value, Level + 1
 			RSParents.MoveNext
 		Loop
                             %>
@@ -475,8 +475,8 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
         sql = "Select * From UserBookmarks where PreBookmarkId = " & idParent & userQuery
         RSChildren.Open(sql, ObjConnection, 2, 3, 1)
         Do While Not RSChildren.EOF
-            Display(RSChildren("Name"), intLevel, RSChildren("BookmarkId"), RSChildren("URL"), RSChildren("Description"))
-            OutputChildren(RSChildren("BookmarkId"), intLevel + 1)
+            Display(RSChildren("Name").Value, intLevel, RSChildren("BookmarkId").Value, RSChildren("URL").Value, RSChildren("Description").Value)
+            OutputChildren(RSChildren("BookmarkId").Value, intLevel + 1)
             RSChildren.MoveNext()
         Loop
         RSChildren.Close()

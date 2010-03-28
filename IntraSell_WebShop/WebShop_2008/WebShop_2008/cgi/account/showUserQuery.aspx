@@ -55,8 +55,8 @@
             SQL = "select * from userQueries where QueryId = " & QueryId & " and UserId=" & getLOGIN()
             Dim rsQ : rsQ = objConnectionExecute(SQL)
             If Not rsQ.eof Then 'erfolg 
-                Dim wherePart : wherePart = Replace(rsQ("SQLString"), "~", "'")
-                Dim whereDesc : whereDesc = Replace(rsQ("SQLDescription"), "~", "'")
+                Dim wherePart : wherePart = Replace(rsQ("SQLString").Value, "~", "'")
+                Dim whereDesc : whereDesc = Replace(rsQ("SQLDescription").Value, "~", "'")
                 Response.Write("Erfolgreich gezeigt wurde QueryId=" & QueryId & "!")
 				
                 Response.Write(makeProductListOnQuery(wherePart, "", "", whereDesc))

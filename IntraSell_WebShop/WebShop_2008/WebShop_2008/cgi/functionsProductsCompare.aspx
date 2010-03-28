@@ -1,14 +1,14 @@
 <script language="VB" runat="server">  
 
-''' <summary>
-''' creates form for product comparisment 
-''' </summary>
-''' <param name="ArtNr1"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' creates form for product comparisment 
+    ''' </summary>
+    ''' <param name="ArtNr1"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function compareProductsSelectForm(ByVal ArtNr1)
         Dim html As String
-        Const COUNT_CHARS_TO_COMPARE as Integer = 30
+        Const COUNT_CHARS_TO_COMPARE As Integer = 30
         html = "<form action=""default.aspx?pageToShow=compareTwoProducts"">"
         html = html + "<input name=""artNr1"" type=""hidden"" value=""" & ArtNr1 & """>"
         html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareTwoProducts"">"
@@ -19,16 +19,16 @@
         rs = objConnectionExecute(sql)
  
         html = html & "vergleichen mit <select name=""ArtNr2"">"
-        Dim compareWithName As String 
+        Dim compareWithName As String
         
         While Not rs.EOF
-            compareWithName = rs("Bezeichnung").Value 
+            compareWithName = rs("Bezeichnung").Value
    
             If Len(compareWithName) > COUNT_CHARS_TO_COMPARE Then
                 compareWithName = Left(compareWithName, COUNT_CHARS_TO_COMPARE) & " ..."
             End If
        
-            html = html & "<option value=""" & rs("ArtNr").Value     & """>" & compareWithName
+            html = html & "<option value=""" & rs("ArtNr").Value & """>" & compareWithName
             rs.moveNExt()
         End While
  
@@ -108,14 +108,12 @@
         Next
         Response.Write("</tr>")
 
-
         Response.Write("<tr><th " & thProps & ">" & getTranslation("Hersteller") & "</th>")
         For Each artNr In ArtNrArray
             Response.Write("<td>" & tableValue("lieferantenAdressen", "idnr", tableValue("grArtikel", "ArtNR", artNr, "herstellerNr"), "Firma") & "</td>")
         Next
         Response.Write("</tr>")
   
- 
         Response.Write("<tr><th " & thProps & ">" & getTranslation("Lagerinfo") & "</th>")
         For Each artNr In ArtNrArray
             'Response.Write "<td>" & tableValue("grArtikel","ArtNR",artnr,"Bezeichnung1")& "</td>"
@@ -123,10 +121,10 @@
         Next
         Response.Write("</tr>")
 
-
         Response.Write("<tr><th " & thProps & ">" & getTranslation("Preis") & "</th>")
-        Dim preis
-        Dim mwst
+       
+        Dim preis As Double
+        Dim mwst As Double
         For Each artNr In ArtNrArray
             mwst = tableValue("grArtikel", "ArtNR", artNr, "MWST")
             preis = makeBruttoPreis(getPreis(getLOGIN(), artNr, 1), mwst, Session("Land"))
@@ -136,7 +134,7 @@
  
 
         'compare the keywords 
-        Dim sql, rs
+        Dim sql As String, rs
         sql = "SELECT KeywordID, Name " & _
         " FROM [grArtikel-KeyWords] " & _
         " WHERE " & makeArtKatNrInPartParentCats("ArtKatNr", artKatNR, 5)
@@ -147,14 +145,14 @@
         'response.write sql
         rs = objConnectionExecute(sql)
         Dim keywordId, kwCurrent
-        Dim kwHTML : kwHTML = ""
+        Dim kwHTML As String : kwHTML = ""
  
         While Not rs.EOF
-            keywordId = rs("keywordId")
+            keywordId = rs("keywordId").Value
             allCompareFeaturesAreEmpty = True
      
             kwHTML = "<tr>"
-            kwHTML = kwHTML & "<th " & thProps & ">" & Server.HtmlEncode(rs("Name") & "") & "</th>"
+            kwHTML = kwHTML & "<th " & thProps & ">" & Server.HtmlEncode(rs("Name").Value & "") & "</th>"
             For Each artNr In ArtNrArray
                 kwHTML = kwHTML & "<td>"
                 kwCurrent = getKeyWord(keywordId, artNr)
@@ -170,7 +168,7 @@
                 Response.Write(kwHTML)
             End If
 		    
-            rs.moveNExt()
+            rs.moveNext()
         End While
  
         'IMAGE 
@@ -189,13 +187,20 @@
         Response.Write("</table>")
     End Function
 
-    'help function for compareProducts function 
+    
+    ''' <summary>
+    ''' help function for compareProducts function 
+    ''' </summary>
+    ''' <param name="keywordId"></param>
+    ''' <param name="ArtNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getKeyWord(ByVal keywordId, ByVal ArtNr)
-        Dim sql, rs
+        Dim sql As String, rs
         sql = "select * from [grArtikel-KeywordsToProducts] where ArtNr=" & ArtNr & "  AND  KeywordId = " & keywordId
         rs = objConnectionExecute(sql)
         If Not rs.EOF Then
-            getKeyWord = rs("Value")
+            getKeyWord = rs("Value").Value
         Else
             getKeyWord = ""
         End If

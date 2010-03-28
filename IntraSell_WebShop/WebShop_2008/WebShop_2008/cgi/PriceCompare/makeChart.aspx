@@ -2,6 +2,7 @@
 <!--#include file="../../intrasoft/connOpen.aspx"-->
 <!--#include file="../../intrasoft/functions.aspx"-->
 <%
+
 Response.Buffer = true  
  ' enable buffering so that ALL browsers will save image as a JPEG when						
  ' a user right-clicks over it and saves it to disk
@@ -97,7 +98,7 @@ private function getPriceAt(byval artnr, byval dateAt)
 'Retrieves records in the field specified by the input argument
 'If no error occurs we return a recordset, otherwise returns nothing		
   'Response.write "<br>Get price for:"  & dateAt
-	dim sql, rs		'SQL statement
+	dim sql as string, rs		'SQL statement
 	sql = "SELECT Min(EKPreis) AS EKPreisMin, AVG(EKPreis) AS EKPreisAVG, Max(EKPreis) AS EKPreisMax, PreisDatum FROM " + _
 				   " (Select EKPreis, PreisDatum FROM priceCompareLieferantenArtikelPreiseArchive " + _
 				   " WHERE ArtikelNr = " & ArtNr & " AND PreisDatum <= "  & TOSQLDATE(dateat) & _ 
@@ -112,7 +113,7 @@ private function getPriceAt(byval artnr, byval dateAt)
    if rs.EOF then
      getPriceAt = 0
    else 
-     getPriceAt = rs("EKPreisMin")
+     getPriceAt = rs("EKPreisMin").Value
    end if   
 	
    rs.close 

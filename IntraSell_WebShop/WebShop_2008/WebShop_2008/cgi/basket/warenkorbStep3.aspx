@@ -19,10 +19,10 @@
 
         'response.write Email & Password
         'Find Client 
-        Dim KundNrStep3 : KundNrStep3 = authenticate(EmailStep3, PasswordStep3) 'stops processing on this page if not proper authenitification !!!
-        Dim errorsFound : errorsFound = False
+        Dim KundNrStep3 As Long : KundNrStep3 = authenticate(EmailStep3, PasswordStep3) 'stops processing on this page if not proper authenitification !!!
+        Dim errorsFound As Boolean : errorsFound = False
 
-        If KundNrStep3 = "" Or KundNrStep3 = "0" Then errorsFound = True
+        If KundNrStep3 <= 0 Then errorsFound = True
 
         If isWarenkorbEmpty(getSID()) Then
     %><font color="red"><%=getTranslation("Ihr Warenkorb ist leer!")%></font>
@@ -92,6 +92,7 @@
         <tr>
             <td>
                 <p align="left">
+                    &nbsp;
                     <input type="checkbox" name="AGB" value="ON" class="submit">
                     <a name="agb"></a>&nbsp;<%=getTranslation("Ich habe die AGB gelesen und akzeptiert!")%>
                     <a href="default.aspx?PageToShow=AGB">

@@ -1,4 +1,3 @@
- 
 <%
 
     filenameForBodyTemplate = Server.MapPath("skins/skin" & SKINNUMBER & "/pages/template_" & PageToShow & ".htm")
@@ -146,7 +145,7 @@
 <!--#include file="ecard/send.aspx"-->
 <%  Case "FirstPage", "", "WebPage"  ' default page%>
 <%  Dim webPage : If Request("WebPage") <> "" Then webPage = Request("WebPage") Else webPage = "FirstPage"%>
-<%=convertToHTML(parseTemplate(tableValue("webPages","[Title]","'" & webPage & "'","html"),0))%>
+<%=convertToHTML(parseTemplate(tableValue("webPages", "[Title]", "'" & webPage & "'", "html"),0)) %>
 <%
 End Select
 
@@ -165,7 +164,7 @@ End If
 <!--BODY END-->
 
 <script language="VB" runat="server">
-    Dim bodyPageTemplate, body_part1, body_part2
+    Dim bodyPageTemplate as String, body_part1 as String, body_part2 as String
     Dim filenameForBodyTemplate as String 
 </script>
 

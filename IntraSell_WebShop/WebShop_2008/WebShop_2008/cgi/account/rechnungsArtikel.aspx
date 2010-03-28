@@ -81,7 +81,7 @@
         orderNRArtikel = ""
         countArtikel = 0
         While Not rsRechArtikel.EOF
-            orderNRArtikel = rsRechArtikel("RechNr")
+            orderNRArtikel = rsRechArtikel("RechNr").Value
     %>
     <%If Not prevOrderNRArtikel = orderNRArtikel Then%>
     <tr>
@@ -93,7 +93,7 @@
     <tr>
         <%If Not prevOrderNRArtikel = orderNRArtikel Then%>
         <td width="69" align="middle">
-            <%=rsRechArtikel("Datum")%>&nbsp;
+            <%=rsRechArtikel("Datum").Value%>&nbsp;
         </td>
         <td width="169" align="middle">
             <a href="cgi/account/printPreviewOrder.aspx?nummer=<%=OrderNRArtikel%>&amp;OrderType=<%=OrderTypeArtikel%>"
@@ -111,40 +111,40 @@
         </td>
         <% End If%>
         <td align="middle" width="169">
-            <%=rsRechArtikel("ArtNr")%>&nbsp;
+            <%=rsRechArtikel("ArtNr").Value%>&nbsp;
         </td>
         <td align="middle" width="175">
-            <%=Server.HTMLEncode(rsRechArtikel("Bezeichnung")&"")%>&nbsp;
+            <%=Server.HtmlEncode(rsRechArtikel("Bezeichnung").Value & "")%>&nbsp;
         </td>
         <td align="middle" width="126" align="center">
             <p align="center">
-                <%=rsRechArtikel("Stk")%>&nbsp;</p>
+                <%=rsRechArtikel("Stk").Value%>&nbsp;</p>
         </td>
         <td align="right" width="74" align="right">
             <p align="right">
-                <%=FormatNumber(rsRechArtikel("PreisATS_Brutto"),2)%></p>
+                <%=FormatNumber(rsRechArtikel("PreisATS_Brutto").Value, 2)%></p>
         </td>
         <td align="middle" width="149">
-            <%=rsRechArtikel("Status")%>&nbsp;
+            <%=rsRechArtikel("Status").Value%>&nbsp;
         </td>
         <td align="middle" width="138">
-            <%=rsRechArtikel("PositionStatus")%>&nbsp;
+            <%=rsRechArtikel("PositionStatus").Value%>&nbsp;
         </td>
         <!-- 
                 <td align="middle" width="153"><%=getPaketnummer(OrderTypeArtikel, OrderNRArtikel)%>&nbsp;</td>
     			-->
         <td align="left" width="185">
-            <img border="0" src='<%=imageFullName("data_information.png")%>'>&nbsp; <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=<%=rsRechArtikel("ArtNr")%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
+            <img border="0" src='<%=imageFullName("data_information.png")%>'>&nbsp; <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
                 <%=getTranslation("Bestellinfo")%>
             </a>
             <br>
             <img border="0" src='<%=imageFullName("question.gif")%>'>&nbsp;
-            <!--<a href="cgi/calls/requestJob.aspx?Job=RMARequest&ProductId=<%=rsRechArtikel("ArtNr")%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>" 
+            <!--<a href="cgi/calls/requestJob.aspx?Job=RMARequest&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>" 
 				    target="JOB" OnClick="window.open ('JOB', 'JOB', 'height=400,width=400,status=yes,toolbar=no,menubar=no,location=no');">
 				    <%=getTranslation("RMA")%>
 		            </a>-->
-            <a href="cgi/calls/RMARequest.aspx?Job=RMARequest&ArtNr=<%=rsRechArtikel("ArtNr")%>&Nummer=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
+            <a href="cgi/calls/RMARequest.aspx?Job=RMARequest&ArtNr=<%=rsRechArtikel("ArtNr").Value%>&Nummer=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
                 <%=getTranslation("RMA")%>
             </a>

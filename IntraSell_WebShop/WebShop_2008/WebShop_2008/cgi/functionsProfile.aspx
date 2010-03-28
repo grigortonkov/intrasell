@@ -30,10 +30,10 @@
     ''' </summary>
     ''' <param name="Email"></param>
     ''' <param name="Password"></param>
-    ''' <returns></returns>
+    ''' <returns>KDNR or -1 if wrong</returns>
     ''' <remarks></remarks>
-    Function authenticate(ByVal Email, ByVal Password)
-        Dim SQL
+    Function authenticate(ByVal Email, ByVal Password) As Long
+        Dim SQL As String
         'Find Client 
         Email = Trim(Left(Email, 50))
         Password = Trim(Left(Password, 16))
@@ -46,7 +46,7 @@
             SQL = "SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
 		
             rsP = objConnectionExecute(SQL)
-            Dim LoginError 'as string 
+            Dim LoginError As String
 		
             If rsP.EOF Then
                 LoginError = getTranslation("Das Passwort oder der Name stimmt nicht!")
@@ -54,17 +54,16 @@
                 LoginError = getTranslation("Ihr Account ist noch NICHT nicht freigeschalten!") & "<br>" & _
                              getTranslation("Bitte zuerst den Link (in Ihrem Emailprogramm) anklicken fuer Account Aktivierung und dann Anmelden probieren!") & "<br>" & _
                              getTranslation("Wir haben Ihnen gerade Email für Accountaktivierung gesendet!") & "<br>" & _
-                             getTranslation("Die Email wurde an :") & getClientEmail(rsP("idnr")) & getTranslation("gesendet!")
+                             getTranslation("Die Email wurde an: ") & getClientEmail(rsP("idnr").Value) & " " & getTranslation("gesendet!")
                 'resend Email with confirmation 
-				                            
-                sendMailFromWithSending(getClientEmail(rsP("idnr")), _
+                            
+                sendMailFromWithSending(getClientEmail(rsP("idnr").Value), _
                      "Ihre Registrierung bei " & VARVALUE("DOMAIN") & "!", _
-                  MAKE_EMAIL_REGISTRATION_SIMPLE(rsP("idnr")), _
+                  MAKE_EMAIL_REGISTRATION_SIMPLE(rsP("idnr").Value), _
                   VARVALUE("EMAIL_REGISTER"))
-				                            
+
             End If
-            authenticate = ""
-			
+            authenticate = -1
             Response.Write("<LoginError>" & LoginError & "</LoginError>")
             Response.Write("Sorry! <font color=""#FF0000"">" & LoginError & "</font>" & _
          "<br><font color=black>" & getTranslation("Benutzen Sie unbedingt die Zurueck Schaltflaeche um Ihre Eingaben nicht zu verlieren!") & "</font>" & _
@@ -73,14 +72,14 @@
             Exit Function
 				
         End If
-        authenticate = rsP("IDNR")
+        authenticate = rsP("IDNR").Value
         Session("LOG_IN") = authenticate
         'Session("LAND") = getClientLand(authenticate) 
         Session("LAND") = getClientDestinationLand(authenticate)
         'update session
-        SQL = "update webSessions set kundenIdnr=" & rsP("IDNR") & " where SID=" & getSid()
+        SQL = "update webSessions set kundenIdnr=" & rsP("IDNR").Value & " where SID=" & getSid()
         objConnectionExecute(SQL)
-        Response.Write("<!--<" & IDNR_TAG & ">" & rsP("IDNR") & "</" & IDNR_TAG & ">-->") 'write this for services parcing 
+        Response.Write("<!--<" & IDNR_TAG & ">" & rsP("IDNR").Value & "</" & IDNR_TAG & ">-->") 'write this for services parcing 
         rsP.close()
     End Function
 
@@ -93,19 +92,21 @@
     '**********************************************************************************
 
     Function saveProfile(ByVal typeOfAddress)
-        Dim showForm : If LCase(Request("showForm") = "false") Then showForm = False Else showForm = True
+        Dim showForm As Boolean : If LCase(Request("showForm") = "false") Then showForm = False Else showForm = True
         'response.write "Saving address...type:" & typeOfAddress
         saveProfile = 0
-        Dim tableName : tableName = "ofAdressen"
+        Dim tableName As String : tableName = "ofAdressen"
         Dim html As String
         
         If typeOfAddress = SHIPPING Or typeOfAddress = INVOICE Then tableName = "[ofAdressen-Weitere]"
 
-        Dim rsPLZORT, sql, rs
-        Dim Anrede, Titel, Firma, Name, Strasse, PLZ, Ort, Email, Tel, Passwort, PasswortII, Land, TelII, Geburtstag, Vorname
-        Dim Mobil, Fax, Web, Branche
+        Dim rsPLZORT, sql As String, rs
+        Dim Anrede As String, Titel As String, Firma As String, Vorname As String, Name As String, Strasse As String, PLZ As String, Ort As String
+        Dim Email As String, Tel As String, Passwort As String, PasswortII As String, Land As String, TelII As String
+        Dim Geburtstag
+        Dim Mobil As String, Fax As String, Web As String, Branche As String
         Dim IchWillNewsletter
-        Dim UID
+        Dim UID As String
 
         Firma = Request("Firma" & typeOfAddress) : If Trim(Firma) = "" Then Firma = "-"
         Name = Request("Name" & typeOfAddress)
@@ -240,7 +241,7 @@
         'Find PLZ, ORT
         Dim NextIDNRPLZ : NextIDNRPLZ = getPLZ(Land, Ort, PLZ)
 
-        Dim typ : typ = getTyp(typeOfAddress)
+        Dim typ As String : typ = getTyp(typeOfAddress)
         'PROFILE UPDATE
         If getLOGIN() <> "" Then ' WE HAVE UPDATE OR NEW ADDITIONAL ADDRESS 
             Dim idnrToUpdate : idnrToUpdate = getLOGIN()
@@ -250,7 +251,7 @@
 			   
             'check if the second address is existing 
                   
-            Dim additionalWhere
+            Dim additionalWhere As String
 				  
             If typeOfAddress <> ACCOUNT Then
                 additionalWhere = " AND typ= '" & typ & "'"
@@ -284,10 +285,10 @@
             'end check  
                  
             'Update profile
-            Dim where
+            Dim where As String
             where = "IDNR = " & idnrToUpdate
             If typeOfAddress <> ACCOUNT Then
-                where = " ID=" & rsUPDT("ID")
+                where = " ID=" & rsUPDT("ID").Value
             End If
             sql = " UPDATE " & tableName & " Set Anrede = '" & Anrede & "', Titel = '" & Titel & "', " & _
                   " Firma = '" & Firma & "', Name = '" & Name & "', VorName = '" & Vorname & "', Adresse = '" & Strasse & "', Plz = '" & NextIDNRPLZ & "', Ort = '" & Ort & "'" & _
@@ -452,7 +453,7 @@
             Dim where
             where = "IDNR = " & idnrToUpdate
             If typeOfAddress <> ACCOUNT Then
-                where = " ID=" & rsUPDT("ID")
+                where = " ID=" & rsUPDT("ID").Value
             End If
             sql = " UPDATE " & tableName & " Set Anrede = '" & Anrede & "', Titel = '" & Titel & "', Firma = '" & Firma & "', Name = '" & Name & "', VorName = '" & Vorname & "', Adresse = '" & Strasse & "', Plz = '" & NextIDNRPLZ & _
                "' , Land = " & Land & ", Email = '" & Email & "', Tel = '" & Tel & "', Tel2 = '" & TelII & "', Branche=" & Branche & " WHERE " & where
@@ -654,36 +655,36 @@
         Dim Bundesland
         Dim UID
 
-        If fill Then firma = rsR("Firma") Else firma = Request("Firma" & typeOfAddress)
-        If fill Then UID = rsR("UID") Else UID = Request("UID" & typeOfAddress)
+        If fill Then firma = rsR("Firma").Value Else firma = Request("Firma" & typeOfAddress)
+        If fill Then UID = rsR("UID").Value Else UID = Request("UID" & typeOfAddress)
 
-        If fill Then name = rsR("name") Else name = Request("Name" & typeOfAddress)
-        If fill Then vorname = rsR("Vorname") Else vorname = Request("Vorname" & typeOfAddress)
-        If fill Then Anrede = rsR("Anrede") Else Anrede = Request("Anrede" & typeOfAddress)
+        If fill Then name = rsR("name").Value Else name = Request("Name" & typeOfAddress)
+        If fill Then vorname = rsR("Vorname").Value Else vorname = Request("Vorname" & typeOfAddress)
+        If fill Then Anrede = rsR("Anrede").Value Else Anrede = Request("Anrede" & typeOfAddress)
     
-        If fill Then Titel = rsR("Titel") Else Titel = Request("Titel" & typeOfAddress)
+        If fill Then Titel = rsR("Titel").Value Else Titel = Request("Titel" & typeOfAddress)
 
-        If fill Then strasse = rsR("Adresse") Else strasse = Request("strasse" & typeOfAddress)
-        If fill Then plz = rsR("plzplz") Else plz = Request("plz" & typeOfAddress)
-        If fill Then ort = rsR("plzort") Else ort = Request("ort" & typeOfAddress)
-        If fill Then Bundesland = rsR("BLAND") Else Bundesland = Request("BundesLand" & typeOfAddress)
-        If fill Then Land = rsR("Land") Else Land = Request("Land" & typeOfAddress)
+        If fill Then strasse = rsR("Adresse").Value Else strasse = Request("strasse" & typeOfAddress)
+        If fill Then plz = rsR("plzplz").Value Else plz = Request("plz" & typeOfAddress)
+        If fill Then ort = rsR("plzort").Value Else ort = Request("ort" & typeOfAddress)
+        If fill Then Bundesland = rsR("BLAND").Value Else Bundesland = Request("BundesLand" & typeOfAddress)
+        If fill Then Land = rsR("Land").Value Else Land = Request("Land" & typeOfAddress)
 	
-        If fill Then tel = rsR("tel") Else tel = Request("tel" & typeOfAddress)
-        If fill Then telII = rsR("tel2") Else telII = Request("telII" & typeOfAddress)
+        If fill Then tel = rsR("tel").Value Else tel = Request("tel" & typeOfAddress)
+        If fill Then telII = rsR("tel2").Value Else telII = Request("telII" & typeOfAddress)
     
-        If fill Then Fax = rsR("Fax") Else telII = Request("Fax" & typeOfAddress)
-        If fill Then Mobil = rsR("tel2") Else telII = Request("Mobil" & typeOfAddress)
+        If fill Then Fax = rsR("Fax").Value Else telII = Request("Fax" & typeOfAddress)
+        If fill Then Mobil = rsR("tel2").Value Else telII = Request("Mobil" & typeOfAddress)
     
         If fill Then Web = rsR("Web") Else telII = Request("Web" & typeOfAddress)
     
         If fill Then Email = rsR("Email") Else Email = Request("Email" & typeOfAddress)
         Emailwiederholung = Request("Emailwiederholung" & typeOfAddress)
     
-        If fill Then passwort = rsR("passwort") Else passwort = Request("passwort" & typeOfAddress)
-        If fill Then passwortII = rsR("passwort") Else passwortII = Request("passwortII" & typeOfAddress)
+        If fill Then passwort = rsR("passwort").Value Else passwort = Request("passwort" & typeOfAddress)
+        If fill Then passwortII = rsR("passwort").Value Else passwortII = Request("passwortII" & typeOfAddress)
 	
-        If fill Then Geburtstag = rsR("Geburtstag") Else Geburtstag = Request("Geburtstag" & typeOfAddress)
+        If fill Then Geburtstag = rsR("Geburtstag").Value Else Geburtstag = Request("Geburtstag" & typeOfAddress)
         Geburtstag = makeStringDate(Geburtstag)
 	
         If name = "" And strasse = "" And plz = "" And ort = "" Or Land = "" And _
@@ -990,23 +991,23 @@
     ''' <remarks></remarks>
     Sub selectLand(ByVal fill, ByVal Land)
         Dim html As String
-        Dim DEFAULT_LAND_NR : DEFAULT_LAND_NR = varvalue("DEFAULT_LAND_NR")
+        Dim DEFAULT_LAND_NR As String : DEFAULT_LAND_NR = varvalue("DEFAULT_LAND_NR")
 
 		 
         html = html & "<option value='" & DEFAULT_LAND_NR & "'>" & tablevalue("grLand", "idnr", DEFAULT_LAND_NR, "Name") & "</option>"
 		     
-        Dim sql, rsC
+        Dim sql As String, rsC
         sql = "SELECT * FROM grLand ORDER BY [NAME]"
         rsC = objConnectionExecute(sql)
         While Not rsC.EOF
 				 
-            html = html & "<option value='" & rsC("IdNr") & "'"
+            html = html & "<option value='" & rsC("IdNr").Value & "'"
             'if fill then  
-            If CStr(Land) = CStr(rsC("IdNr")) Then
+            If CStr(Land) = CStr(rsC("IdNr").Value) Then
                 Response.Write("SELECTED")
             End If
             'end if
-            html = html & ">" & rsC("Name") & "</option>"
+            html = html & ">" & rsC("Name").Value & "</option>"
 					     
             rsC.MoveNext()
         End While
@@ -1035,13 +1036,13 @@
         rsC = objConnectionExecute(sql)
         While Not rsC.EOF
 					 
-            html = html & "<option value='" & rsC("BLAND") & "'"
+            html = html & "<option value='" & rsC("BLAND").Value & "'"
             'if fill then  
-            If CStr(land) = CStr(rsC("BLAND")) Then
+            If CStr(land) = CStr(rsC("BLAND").Value) Then
                 html = html & "SELECTED"
             End If
             'end if
-            html = html & ">" & rsC("BLAND") & "</option>"
+            html = html & ">" & rsC("BLAND").Value & "</option>"
 				 
             rsC.MoveNext()
         End While
@@ -1087,10 +1088,10 @@
 	
 
     
-        If fill Then Email = rsR("Email") Else Email = Request("Email" & typeOfAddress)
-        If fill Then Emailwiederholung = rsR("Email") Else Emailwiederholung = Request("Emailwiederholung" & typeOfAddress)
-        If fill Then passwort = rsR("passwort") Else passwort = Request("passwort" & typeOfAddress)
-        If fill Then passwortII = rsR("passwort") Else passwortII = Request("passwortII" & typeOfAddress)
+        If fill Then Email = rsR("Email").Value Else Email = Request("Email" & typeOfAddress)
+        If fill Then Emailwiederholung = rsR("Email").Value Else Emailwiederholung = Request("Emailwiederholung" & typeOfAddress)
+        If fill Then passwort = rsR("passwort").Value Else passwort = Request("passwort" & typeOfAddress)
+        If fill Then passwortII = rsR("passwort").Value Else passwortII = Request("passwortII" & typeOfAddress)
 	
         'if fill then Geburtstag=rsR("Geburtstag") else Geburtstag=request("Geburtstag" & typeOfAddress)
         'Geburtstag  = makeStringDate(Geburtstag)
@@ -1202,7 +1203,7 @@
 
     'returns the idnr of the combiation PLZ/ORT/LAND
     Function getPLZ(ByVal Land, ByVal Ort, ByVal PLZ)
-        Dim NextIDNRPLZ, sql, rsPLZORT
+        Dim NextIDNRPLZ, sql As String, rsPLZORT
         sql = "SELECT * FROM grPLZ where PLZ='" & PLZ & "' AND Land =" & Land '& " AND Ort = '" & Ort & "'"
         rsPLZORT = objConnectionExecute(sql)
         If rsPLZORT.EOF Then 'save PLZ ORT 
@@ -1219,7 +1220,7 @@
             objConnectionExecute(sql)
             NextIDNRPLZ = getPLZ(Land, Ort, PLZ)
         Else
-            NextIDNRPLZ = rsPLZORT("idnr")
+            NextIDNRPLZ = rsPLZORT("idnr").Value
         End If
         getPLZ = NextIDNRPLZ
     End Function
@@ -1227,7 +1228,7 @@
 
 
     'return true or false 
-    Function checkTELNR(ByVal telNR)
+    Function checkTELNR(ByVal telNR) As Boolean
         checkTELNR = True
  
         If Len(telNR) < 5 Then
@@ -1313,7 +1314,7 @@
     ''' <param name="orderType"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getCountOrders(ByVal idnr, ByVal orderType)
+    Public Function getCountOrders(ByVal idnr, ByVal orderType) As Integer
         Dim sql, rs
         sql = "SELECT count(*) as co from " & getVorgangTableForType(orderType) & " where kundnr= " & idnr
   
@@ -1333,9 +1334,9 @@
     ''' <param name="orderType"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getCountOrdersProducts(ByVal idnr, ByVal orderType)
-        Dim sql, rs
-        Dim MCHAR : MCHAR = "*"
+    Public Function getCountOrdersProducts(ByVal idnr, ByVal orderType) As Integer
+        Dim sql As String, rs
+        Dim MCHAR As String : MCHAR = "*"
         If Session("dbType") = "SQL" Or Session("dbType") = "MySQL" Then MCHAR = "%"
         sql = "SELECT count(artnr) as co from [" & getVorgangArtikelTableForType(orderType) & "]" & _
               " WHERE Bezeichnung not like '" & MCHAR & "CALCULATE" & MCHAR & "' and rechnr in " & _
@@ -1404,11 +1405,16 @@
 
 	        
 
-    'possible TAGS 
+
+
+    ''' <summary>
+    '''     'possible TAGS 
     '[IDNR]
     '[USER_COUNT_POINTS]
-
-
+    ''' </summary>
+    ''' <param name="accountPageHTML"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function parseTemplateUser(ByVal accountPageHTML)
         parseTemplateUser = parseTemplateUserIDNR(getLOGIN(), accountPageHTML)
     End Function

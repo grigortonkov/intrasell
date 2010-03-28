@@ -40,8 +40,8 @@
         SQL = "select * from userSearches where QueryId = " & sidQueryId & " and SId=" & getSID()
         Dim rsQ_sid : rsQ_sid = objConnectionExecute(SQL)
         If Not rsQ_sid.eof Then 'erfolg 
-            Dim wherePart_sid : wherePart_sid = Replace(rsQ_sid("SQLString"), "~", "'")
-            Dim whereDesc_sid : whereDesc_sid = Replace(rsQ_sid("SQLDescription"), "~", "'")
+            Dim wherePart_sid : wherePart_sid = Replace(rsQ_sid("SQLString").Value, "~", "'")
+            Dim whereDesc_sid : whereDesc_sid = Replace(rsQ_sid("SQLDescription").Value, "~", "'")
             'Response.Write "Erfolgreich gezeigt wurde QueryId=" & sidQueryId& "!"
             Response.Write(makeProductListOnQuery(wherePart_sid, "", "", whereDesc_sid))
         End If

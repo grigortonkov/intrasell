@@ -120,7 +120,7 @@
         If rsP.EOF Then
             calculatePostSpends = 0
         Else
-            calculatePostSpends = rsP("Fixekosten") + rsP("VariableKostenNachGewicht") * Kg
+            calculatePostSpends = rsP("Fixekosten").Value + rsP("VariableKostenNachGewicht").Value * Kg
         End If
         rsP.close()
     End Function
@@ -302,7 +302,8 @@
             Response.Write("Sorry! You have no ofAdressen entries in the table!!!! Please create some inition Client!")
             Exit Function
         End If
-        kdnr = rsK("minIDNR") : rsK.close()
+        kdnr = rsK("minIDNR").Value
+        rsK.close()
 	 
    
         tableNameOrders = getNameForTable(OrderType)
@@ -315,19 +316,23 @@
         createEmptyOrder = AuftragNr
     End Function
 
-    '*************************************************************************
-    ' returns the destination land for this customer 
-    ' remove this function to functionprices.asp
-    '*************************************************************************
+
+    ''' <summary>
+    ''' remove this function to functionprices.asp
+    ''' </summary>
+    ''' <param name="IdNr"></param>
+    ''' <returns>returns the destination land for this customer </returns>
+    ''' <remarks></remarks>
     Function getClientDestinationLand(ByVal IdNr)
-        Dim plzLAND, clientPLZ
+        Dim plzLAND As Long, clientPLZ
         plzLAND = TABLEVALUE("[ofAdressen-Weitere]", "IDNR", IdNr, "LAND")
         'response.write "<br>PLZLand =" & PLZLand
         If IsNumeric(plzLAND) Then
-            If plzLAND = 43 Then getClientDestinationLand = "AT"
-            If plzLAND = 49 Then getClientDestinationLand = "DE"
-            If plzLAND = 359 Then getClientDestinationLand = "BG"
-            If plzLAND = 1 Then getClientDestinationLand = "US"
+            'If plzLAND = 43 Then getClientDestinationLand = "AT"
+            'If plzLAND = 49 Then getClientDestinationLand = "DE"
+            'If plzLAND = 359 Then getClientDestinationLand = "BG"
+            'If plzLAND = 1 Then getClientDestinationLand = "US"
+            getClientDestinationLand = FirstValue("select ISO2 from grLand where IdNr = " & plzLAND)
         Else
             getClientDestinationLand = getClientLand(IdNr)
         End If
@@ -360,7 +365,7 @@
             If rsC.EOF = True Then
                 GetClientEmail = ""
             Else
-                GetClientEmail = rsC("Email")
+                GetClientEmail = rsC("Email").Value
             End If
         Else
             GetClientEmail = ""
@@ -402,17 +407,18 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function getPaketNummer(ByVal orderType, ByVal rechNR)
-        Dim tableOrders, tableOrdersProducts
+        Dim tableOrders, tableOrdersProducts As String
         tableOrders = getNameForTable(orderType)
         tableOrdersProducts = "[" & getNameForTableProducts(orderType) & "]"
 
-        Dim rs, sql
+        Dim rs
+        Dim sql As String
         sql = "select * from buchVorgaengeEigenschaften where vorgangTyp = '" & orderType & "' and Nummer = " & rechNR & " and [Name] like 'Paketnummer'"
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
             Dim allePakete 'as string  
             While Not rs.eof 'do
-                allePakete = allePakete & ", " & rs("Value")
+                allePakete = allePakete & ", " & rs("Value").Value
                 rs.MoveNext()
             End While
             allePakete = Right(allePakete, Len(allePakete) - 2)

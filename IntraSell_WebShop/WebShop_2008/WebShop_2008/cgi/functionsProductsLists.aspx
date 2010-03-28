@@ -85,7 +85,7 @@
                 If inRow = 0 Then html = html & "<tr>"
         
                 html = html & "<td>"
-                html = html & makeProductPageSmallWithTemplate(rsTop("ProductID"), "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_" & Typ & ".htm", 100)
+                html = html & makeProductPageSmallWithTemplate(rsTop("ProductID").Value, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_" & Typ & ".htm", 100)
                 html = html & "</td>"
 	
                 inRow = inRow + 1
@@ -108,10 +108,11 @@
     Function TopCatProductsTwoInRow(ByVal artKatNr)
 
         Const MAXPRODUCTSTOSHOW = 8
-        Dim html, sql
+        Dim html As String, sql As String
         sql = makeSQLTopClick(artKatNr)
 
-        Dim rsTop, inRow
+        Dim rsTop
+        Dim inRow As Integer
         rsTop = ObjConnectionexecute(sql)
         'if rsTop.EOF then 'get products from clicks 
         '  set rsTop = ObjConnectionexecute(makeSQLTopClick(artKatNr))
@@ -127,14 +128,14 @@
 		
             While (Not rsTop.EOF) And i < MAXPRODUCTSTOSHOW
                 i = i + 1
-                If InStr(alreadyShownProducts, rsTop("ArtNr")) < 1 Then 'not shown  
-                    alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr")
+                If InStr(alreadyShownProducts, rsTop("ArtNr").Value) < 1 Then 'not shown  
+                    alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr").Value
 				 
                     If inRow = 0 Then html = html & "<tr>"
 					
                     inRow = inRow + 1
                     html = html & "<td>"
-                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.aspx")
+                    html = html & makeProductPageSmall(rsTop("ArtNr").Value, "default.aspx")
                     html = html & "</td>"
 		        
 		         
@@ -173,18 +174,19 @@
     '****************************************************************************
     Function TopCatProductsVertical(ByVal artKatNr)
 
-        Const MAXPRODUCTSTOSHOW = 4
-        Dim html, sql
+        Const MAXPRODUCTSTOSHOW As Integer = 4
+        Dim html As String, sql As String
         sql = makeSQLTopClick(artKatNr)
 
-        Dim rsTop, inRow
+        Dim rsTop
+        Dim inRow As Integer
         rsTop = ObjConnectionexecute(sql)
         'if rsTop.EOF then 'get products from clicks 
         '  set rsTop = ObjConnectionexecute(makeSQLTopClick(artKatNr))
         'end if 
 				
         If rsTop.EOF Then
-            html = getTranslation("keine Produkte angeklickt (v)")
+            html = getTranslation("keine Produkte ausgewählt (v)")
         Else
             inRow = 0
             html = html & "<table align=center cellspacing=""10"">"
@@ -193,14 +195,14 @@
 		
             While (Not rsTop.EOF) And i < MAXPRODUCTSTOSHOW
                 i = i + 1
-                If InStr(alreadyShownProducts, rsTop("ArtNr")) < 1 Then 'not shown  
-                    alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr")
+                If InStr(alreadyShownProducts, rsTop("ArtNr").Value) < 1 Then 'not shown  
+                    alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr").Value
 				 
                     If inRow = 0 Then html = html & "<tr>"
 					
                     inRow = inRow + 1
                     html = html & "<td>"
-                    html = html & makeProductPageSmall(rsTop("ArtNr"), "default.aspx")
+                    html = html & makeProductPageSmall(rsTop("ArtNr").Value, "default.aspx")
                     html = html & "</td>"
 		        
 		         
@@ -241,8 +243,8 @@
         statisticTopClicks = TopCatProductsTwoInRow(0)
         'exit function 
         'not used now 
-        Dim MAX_PRODUCTS : MAX_PRODUCTS = 10
-        Dim sql, html
+        Dim MAX_PRODUCTS As Integer : MAX_PRODUCTS = 10
+        Dim sql As String, html As String
 
         If Session("dbType") = "MySQL" Then
             sql = " SELECT ArtNr, Count(webWarenkorb.ArtNr) AS AnzahlArtNr " & _
@@ -260,10 +262,10 @@
 	  
 	  
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
+        Dim i As Integer : i = 0
 
         While Not rs.EOF And i < MAX_PRODUCTS
-            html = html & makeProductPageSmall(rs("ArtNR"), "TopClicks")
+            html = html & makeProductPageSmall(rs("ArtNR").Value, "TopClicks")
             rs.movenext()
             i = i + 1
         End While
@@ -313,10 +315,10 @@
         End If
 	  
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
+        Dim i As Integer : i = 0
 
         While Not rs.EOF And i < MAX_PRODUCTS
-            html = html & makeProductPageSmallWithTemplate(rs("ArtNr"), "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_Bestseller.htm", 100)
+            html = html & makeProductPageSmallWithTemplate(rs("ArtNr").Value, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_Bestseller.htm", 100)
             rs.movenext()
             i = i + 1
         End While
@@ -400,17 +402,16 @@
     '****************************************************************************
 
     Function statisticTopClicksList(ByVal ArtKatNr)
-        Dim MAX_PRODUCTS : MAX_PRODUCTS = 10
-        Dim sql
-        Dim html
-        sql = makeSQLTopClick(ArtKatNr)
-        'Response.Write sql	  
+        Dim MAX_PRODUCTS As Integer : MAX_PRODUCTS = 10
+        Dim sql As String = makeSQLTopClick(ArtKatNr)
+        Dim html As String
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
+        Dim i As Integer : i = 0
+        
         html = html & "<table border=0>"
         While Not rs.EOF And i < MAX_PRODUCTS
             'html = html &  makeProductPageSmall(rs("ArtNR"), "TopClicks")
-            html = html & makeProductLine(rs("ArtNR"), False)
+            html = html & makeProductLine(rs("ArtNR").Value, False)
             rs.movenext()
             i = i + 1
         End While
@@ -464,15 +465,15 @@
 		
         'Response.Write sql	  :Response.Flush
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
-        Dim bezeichnung
+        Dim i As Integer : i = 0
+        Dim Bezeichnung As String
         html = html & "<table border=0>"
         While Not rs.EOF And i < MAX_PRODUCTS
-            'html = html &  makeProductPageSmall(rs("ArtNR"), "TopClicks")
-            'html = html & makeProductLine(rs("ArtNR"), true)
-            bezeichnung = Server.HtmlEncode(rs("Bezeichnung"))
-            If Len(bezeichnung) > MAX_CHARS Then bezeichnung = Left(bezeichnung, MAX_CHARS) & ".."
-            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr") & """>" & bezeichnung & "</a></td></tr>"
+            'html = html &  makeProductPageSmall(rs("ArtNR"),.Value "TopClicks")
+            'html = html & makeProductLine(rs("ArtNR").Value, true)
+            Bezeichnung = Server.HtmlEncode(rs("Bezeichnung").Value)
+            If Len(Bezeichnung) > MAX_CHARS Then Bezeichnung = Left(Bezeichnung, MAX_CHARS) & ".."
+            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & Bezeichnung & "</a></td></tr>"
             rs.movenext()
             i = i + 1
         End While
@@ -505,7 +506,8 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function makeTopDeal(ByVal artKatNr)
-        Dim rs, sql
+        Dim rs
+        Dim sql As String
         Const TOP_TYPE = "TopProduct"
         sql = " SELECT ProductID, 1 from webCatTopProducts WHERE type like '" & TOP_TYPE & "' and CatID=" & artKatNr & _
              " UNION" & _
@@ -524,7 +526,7 @@
         If rs.EOF Then
             makeTopDeal = getTranslation("Kein Top Deal für Heute!") & "!"
         Else
-            Dim artNr : artNr = rs("ProductID")
+            Dim artNr : artNr = rs("ProductID").Value
             rs.close()
             makeTopDeal = makeProductPageSmallWithTemplate(artNr, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_TopDeal.htm", 100)
             Exit Function
@@ -601,23 +603,23 @@
     ''' <remarks></remarks>
     Function statisticPriceDrops(ByVal ArtKatNr)
         Dim MAX_PRODUCTS : MAX_PRODUCTS = 10
-        Dim sql
-        Dim html
+        Dim sql As String
+        Dim html As String
         sql = makeSQLPriceDrops(ArtKatNr)
         'Response.Write sql	  
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
-        Dim bruttoPreis
+        Dim i As Integer : i = 0
+        Dim bruttoPreis As Double
         html = html & "<table border=0>"
         While Not rs.EOF And i < MAX_PRODUCTS
-            'html = html & makeProductLine(rs("ArtNR"), true)
-            'html = html & "<tr><td>" & rs("Bezeichnung") & "</td><td>" & rs("difference") & "</td><td></td></tr>"
-            bruttoPreis = FormatNumber(getPreis(getLOGIN(), rs("ArtNr"), 1), 2) 'makeBruttoPreis(getPreis(getSID(),ArtNr), rs("MWST"),session("Land"))
-            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rs("MWST"), Session("Land")), 2)
-            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr") & """>" & Server.HtmlEncode(rs("Bezeichnung")) & "</a></td>"
+            'html = html & makeProductLine(rs("ArtNR").Value, true)
+            'html = html & "<tr><td>" & rs("Bezeichnung").Value & "</td><td>" & rs("difference") & "</td><td></td></tr>"
+            bruttoPreis = FormatNumber(getPreis(getLOGIN(), rs("ArtNr").Value, 1), 2) 'makeBruttoPreis(getPreis(getSID(),ArtNr), rs("MWST"),session("Land"))
+            bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rs("MWST").Value, Session("Land")), 2)
+            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & Server.HtmlEncode(rs("Bezeichnung").Value) & "</a></td>"
             html = html & "<td align=""right""> " & FormatNumber(bruttoPreis, 2) & "</td>"
-            html = html & "<td align=""right""> " & FormatNumber(rs("difference"), 2) & "</td>"
-            html = html & "<td align=""right""> " & FormatNumber(100 * rs("difference") / bruttoPreis, 2) & "%</td>"
+            html = html & "<td align=""right""> " & FormatNumber(rs("difference").Value, 2) & "</td>"
+            html = html & "<td align=""right""> " & FormatNumber(100 * rs("difference").Value / bruttoPreis, 2) & "%</td>"
             html = html & "</tr>"
             rs.movenext()
             i = i + 1
@@ -698,9 +700,10 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function statisticClearanceCenter(ByVal ArtKatNr)
-        Dim MAX_PRODUCTS : MAX_PRODUCTS = 10
-        Dim sql
-        Dim html
+        
+        Dim MAX_PRODUCTS As Integer : MAX_PRODUCTS = 10
+        Dim sql As String
+        Dim html As String
 
         sql = "select ArtNr from grArtikel where ArtNR in " & _
                " (select ArtNr from  [grArtikel-Lagerbestand] where lagerBestand>0 and " & _
@@ -709,10 +712,11 @@
                " ORDER BY PreisATS Desc"
         'Response.Write sql	  
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
+        Dim i As Integer : i = 0
+        
         html = html & "<table border=0>"
         While Not rs.EOF And i < MAX_PRODUCTS
-            html = html & makeProductLine(rs("ArtNR"), True)
+            html = html & makeProductLine(rs("ArtNR").Value, True)
             rs.movenext()
             i = i + 1
         End While
@@ -789,8 +793,9 @@
     ''' </summary>
     ''' <remarks></remarks>
     Sub makeTOPTEN()
-        Dim Sql
+        Dim Sql As String
         Dim rsArtikel
+        Dim html As String : html = ""
         'PreKatNr = ""
         'ArtNr = ""
         'SESSION("CURRENT_PRODUCT_CATEGORY") = ""
@@ -799,19 +804,19 @@
           " grArtikel.herstellerNR = lieferantenAdressen.IDNR) ON webTopTen.productID = grArtikel.ArtNr " & _
           " ORDER BY grArtikel.ArtKatNr; "
         rsArtikel = ObjConnectionexecute(Sql)
-        Dim html As String : html = ""
+        
         
         html = html & "<h3 align=center><img border='0' src='" & imageFullName("pricehits.gif") & "'></h3>"
         html = html & "<div align='center'>"
         html = html & "<center>"
         html = html & "<table width='600' style='border-collapse: collapse' bordercolor='#111111' cellpadding='0' cellspacing='0'>"
- 
+        Dim bruttoPreis As Double
+        
         While Not rsArtikel.EOF
  
-            Dim bruttoPreis : bruttoPreis = getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1)
+            bruttoPreis = getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1)
             bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, rsArtikel("MWST").Value, Session("Land")), 2)
     
- 
             html = html & "<tr>"
             html = html & "<td width='575' bordercolor='#CECFCE' style='border-bottom-style: solid; border-bottom-width: 1'>"
             html = html & " <font size='1'>"
@@ -858,14 +863,14 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function printNewReviews(ByVal artKatNr)
-        Dim html
+        Dim html As String
         'Dim artKatNr: artKatNr = clng(tablevalue("grArtikel","ArtNr", ArtNr,"ArtKatNr"))
-        Const MAX_LINES = 10
+        Const MAX_LINES As Integer = 10
 
         'html = html & "<a href="writeReview.aspx?ArtNr=ArtNr">Review verfassen</a> 
  
  
-        Dim Sql
+        Dim Sql As String
         Sql = " SELECT [grArtikel-Reviews].DateCreation, grArtikel.Bezeichnung, [grArtikel-Reviews].Points, " & _
              " [grArtikel-Reviews].Autor, [grArtikel-Reviews].Review, [grArtikel-Reviews].ReviewID, grArtikel.ArtNr " & _
              " FROM grArtikel INNER JOIN [grArtikel-Reviews] ON grArtikel.ArtNr = [grArtikel-Reviews].ArtNR " & _
@@ -873,7 +878,7 @@
 
         'Response.Write sql
         Dim rsTop
-        Dim i : i = 0
+        Dim i As Integer : i = 0
         rsTop = ObjConnectionexecute(Sql)
         If rsTop.EOF Then
             html = "Derzeit keine Bewertungen vorhanden."
@@ -883,7 +888,7 @@
             While Not rsTop.EOF And i < MAX_LINES
                 i = i + 1
                 'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)	
-                html = html & drawWindowForum("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation"), rsTop("Review"), "")
+                html = html & drawWindowForum("Beitrag von " & rsTop("Autor").Value, "Datum:" & rsTop("DateCreation").Value, rsTop("Review").Value, "")
                 rsTop.moveNext()
             End While
 
@@ -904,19 +909,19 @@
         'makeRelatedArtikelList = ""
         'exit function 
  
-        Dim tamplate_html
+        Dim tamplate_html As String
         tamplate_html = "<table border=0 width='100%'>" & _
-             "<tr><td>[1]</td><td>[2]</td><td>[3]</td><td>[4]</td></tr>" & _
-             "<tr><td>[5]</td><td>[6]</td><td>[7]</td><td>[8]</td></tr>" & _
-             "<tr><td>[9]</td><td>[10]</td><td>[11]</td><td>[12]</td></tr>" & _
-           "</table>"
+                         "<tr><td>[1]</td><td>[2]</td><td>[3]</td><td>[4]</td></tr>" & _
+                         "<tr><td>[5]</td><td>[6]</td><td>[7]</td><td>[8]</td></tr>" & _
+                         "<tr><td>[9]</td><td>[10]</td><td>[11]</td><td>[12]</td></tr>" & _
+                       "</table>"
      
         tamplate_html = "<table border=0 width='100%'>" & _
-          "<tr><td>[1]</td><td>[2]</td><td>[3]</td></tr>" & _
-          "<tr><td>[4]</td><td>[5]</td><td>[6]</td></tr>" & _
-          "<tr><td>[7]</td><td>[8]</td><td>[9]</td></tr>" & _
-          "<tr><td>[10]</td><td>[11]</td><td>[12]</td></tr>" & _
-        "</table>"
+                              "<tr><td>[1]</td><td>[2]</td><td>[3]</td></tr>" & _
+                              "<tr><td>[4]</td><td>[5]</td><td>[6]</td></tr>" & _
+                              "<tr><td>[7]</td><td>[8]</td><td>[9]</td></tr>" & _
+                              "<tr><td>[10]</td><td>[11]</td><td>[12]</td></tr>" & _
+                            "</table>"
        
         'html = getTranslation(Bezeichnung)  & ":" '"Zubehoer:"
         'html = html & "" 
@@ -935,7 +940,7 @@
         rs = ObjConnectionexecute(sql)
         Dim ArtList : ArtList = "-1"
         While Not rs.eof
-            ArtList = ArtList & "," & rs("unterartNR")
+            ArtList = ArtList & "," & rs("unterartNR").Value
             rs.MoveNext()
         End While
         
@@ -948,7 +953,7 @@
         Dim i : i = 0
         While Not rs.eof
             i = i + 1
-            tamplate_html = Replace(tamplate_html, "[" & i & "]", makeProductPageSmallForRelatedProducts(rs("ArtNR"), ""))
+            tamplate_html = Replace(tamplate_html, "[" & i & "]", makeProductPageSmallForRelatedProducts(rs("ArtNR").Value, ""))
             rs.MoveNext()
         End While
 
@@ -969,13 +974,13 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function makeRelatedArtikelListOtherUsersBuy(ByVal ArtNR)
-        Dim html
+        Dim html As String
         Dim sql As String
         Dim rs
         
         'makeRelatedArtikelList = ""
         'exit function 
-        html = "Die Benutzer kaufen auch:"
+        html = "Unsere Kunden kaufen auch:"
         html = html & ""
 
         sql = " SELECT webWarenkorb.ArtNr as unterartNR FROM webWarenkorb, webWarenkorb webWarenkorb_1 " & _
@@ -987,9 +992,9 @@
         Response.Write(sql) : Response.Flush()
         
         rs = ObjConnectionexecute(sql)
-        Dim ArtList : ArtList = "-1"
+        Dim ArtList As String : ArtList = "-1"
         While Not rs.eof
-            ArtList = ArtList & "," & rs("unterartNR")
+            ArtList = ArtList & "," & rs("unterartNR").Value
             rs.MoveNext()
         End While
         
@@ -1000,7 +1005,7 @@
        
         rs = ObjConnectionexecute(sql)
         While Not rs.eof
-            html = html & makeProductPageSmallForRelatedProducts(rs("ArtNR"), "")
+            html = html & makeProductPageSmallForRelatedProducts(rs("ArtNR").Value, "")
             rs.MoveNext()
         End While
         rs.Close()
@@ -1027,7 +1032,7 @@
                 " HAVING  Count(webWarenkorb_1.ArtNr)>=2"
         
         rs = ObjConnectionexecute(sql)
-        Dim ArtList : ArtList = "-1"
+        Dim ArtList As String : ArtList = "-1"
         While Not rs.eof
             ArtList = ArtList & "," & rs("unterartNR").Value
             rs.MoveNext()
@@ -1153,10 +1158,10 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function statisticNewProducts(ByVal ArtKatNr)
-        Const MAX_PRODUCTS = 10
-        Const MAX_CHARS = 25
-        Dim sql
-        Dim html
+        Const MAX_PRODUCTS As Integer = 10
+        Const MAX_CHARS As Integer = 25
+        Dim sql As String
+        Dim html As String
 
         sql = "SELECT grArtikel.ArtKatNr, grArtikel.ArtNr, grArtikel.Bezeichnung, AngelegtAm " & _
         " FROM grArtikel " & _
@@ -1166,15 +1171,15 @@
 
         'Response.Write sql	  :Response.Flush
         Dim rs : rs = ObjConnectionexecute(sql)
-        Dim i : i = 0
-        Dim bezeichnung
+        Dim i As Integer : i = 0
+        Dim Bezeichnung As String
         html = html & "<table border=0>"
         While Not rs.EOF And i < MAX_PRODUCTS
-            'html = html &  makeProductPageSmall(rs("ArtNR"), "TopClicks")
-            'html = html & makeProductLine(rs("ArtNR"), true)
-            bezeichnung = Server.HtmlEncode(rs("Bezeichnung").Value & "")
-            If Len(bezeichnung) > MAX_CHARS Then bezeichnung = Left(bezeichnung, MAX_CHARS) & ".."
-            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & bezeichnung & "</a></td>"
+            'html = html &  makeProductPageSmall(rs("ArtNR").Value, "TopClicks")
+            'html = html & makeProductLine(rs("ArtNR").Value, true)
+            Bezeichnung = Server.HtmlEncode(rs("Bezeichnung").Value & "")
+            If Len(Bezeichnung) > MAX_CHARS Then Bezeichnung = Left(Bezeichnung, MAX_CHARS) & ".."
+            html = html & "<tr><td><a href=""default.aspx?ArtNr=" & rs("ArtNr").Value & """>" & Bezeichnung & "</a></td>"
             html = html & "<td>" & getTranslation("seit") & " " & GermanSQLDate(rs("AngelegtAm").Value) & "</td></tr>"
             rs.movenext()
             i = i + 1

@@ -22,12 +22,12 @@ FUNCTION MAIL_LOST_PASSWORD(Person_Id)
 
 
 
-   EMAILTEXT = "Hallo " & rs.fields("Name")   & " !" & CHR13CHR10 & CHR13CHR10& _ 
+   EMAILTEXT = "Hallo " & rs.fields("Name").Value   & " !" & CHR13CHR10 & CHR13CHR10& _ 
     "Da sind die angeforderten Daten. " & _ 
     "F&uuml;r den Einstieg in http://www.date-for-you.com  ben&ouml;tigen Sie Ihre Profil Nr. " & CHR13CHR10& _ 
     "und Passwort.  " & CHR13CHR10& _ 
-    "Ihre Profil Nr. lautet: " & rs.fields("Person_Id")   & CHR13CHR10& _ 
-    "Ihr Passwort ist: " & rs.fields("Passwort")  & CHR13CHR10 & CHR13CHR10 & _ 
+    "Ihre Profil Nr. lautet: " & rs.fields("Person_Id").Value   & CHR13CHR10& _ 
+    "Ihr Passwort ist: " & rs.fields("Passwort").Value  & CHR13CHR10 & CHR13CHR10 & _ 
     "Viel Spass dabei!!! " & CHR13CHR10& _ 
     "Evelyn  " 
 
@@ -93,10 +93,10 @@ END IF
     </h2>
     <%
  ELSE      
-	   email_text = MAIL_LOST_PASSWORD(rs_pass("Person_ID"))
+	   email_text = MAIL_LOST_PASSWORD(rs_pass("Person_ID").Value)
        subject = "Ihr Passwort"
      	email_sender = VARVALUE("OFFICEEmail")
-     	recipient = rs_pass("Email")
+     	recipient = rs_pass("Email").Value
      	
         'Response.write email_text
      	

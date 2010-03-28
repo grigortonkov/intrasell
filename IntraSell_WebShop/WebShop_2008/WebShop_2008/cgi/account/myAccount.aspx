@@ -40,7 +40,7 @@
 
     If getLOGIN() = "" Or LCase(Request("action")) = "login" Then 'try to Log In
         If Len(Request("B1")) > 0 Or LCase(Request("action")) = "login" Then 'Button Login is pressed
-            If authenticate(Email, Password) = "" Then
+            If authenticate(Email, Password) = -1 Then
                 'Response.Write "Password/Name is wrong!"
                 accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
                 Response.Write(accountLoginPageHTML)

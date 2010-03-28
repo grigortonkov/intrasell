@@ -47,18 +47,18 @@
             Exit Function
         Else    'new record in banner logs
             sql1 = "INSERT INTO webBannersLogs (BannerId, FromIP , ReferingURL, [Type]) " & _
-               " Values( " & rsBan("BannerId") & ",'" & remoteAddress & "'," & localURL & "'," & "'View')"
+               " Values( " & rsBan("BannerId").Value & ",'" & remoteAddress & "'," & localURL & "'," & "'View')"
             'response.write sql1
             objConnectionExecute(sql1)
             'increment impressions 
-            sql1 = "UPDATE webBanners set ImpresionsCount = ImpresionsCount  + 1  WHERE bannerId = " & rsBan("BannerId")
+            sql1 = "UPDATE webBanners set ImpresionsCount = ImpresionsCount  + 1  WHERE bannerId = " & rsBan("BannerId").Value
             objConnectionExecute(sql1)
             Dim target : target = ""
-            If rsBan("openInNewWindow") Then
+            If rsBan("openInNewWindow").Value Then
                 target = "target =""_new"""
             End If
-            bannerString = "<a " & target & " href=""cgi/RedirectBanners.aspx?ID=" & rsBan("bannerId") & """>"
-            bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile") & """ alt=""" & rsBan("BannerName") & """></a>"
+            bannerString = "<a " & target & " href=""cgi/RedirectBanners.aspx?ID=" & rsBan("bannerId").Value & """>"
+            bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile").Value & """ alt=""" & rsBan("BannerName").Value & """></a>"
         End If
         rsBan.close()
         rsBan = Nothing

@@ -115,7 +115,7 @@
         If rsTemp.EOF Then
             getProductCat = 0
         Else
-            getProductCat = rsTemp("ArtKatNr")
+            getProductCat = rsTemp("ArtKatNr").Value
         End If
     End Function
 
@@ -283,24 +283,25 @@
         sql = "SELECT ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] WHERE ArtKatNrParent=" & PreKatNr & " ORDER BY Name "
         rs = ObjConnectionexecute(sql)
         While Not rs.EOF
-            If rs("ArtKatNrParent") = 0 Then
+            If rs("ArtKatNrParent").Value = 0 Then
                 Response.Write("menu.addItem (""menu" & _
-                rs("ArtKatNr") & """, """ & _
-                Server.HtmlEncode(rs("Name")) & """, """ & _
-                Server.HtmlEncode(rs("Name")) & """, """ & _
-                inPageToShow & "?PreKatNr=" & rs("ArtKatNr") & """ , null );")
+                rs("ArtKatNr").Value & """, """ & _
+                Server.HtmlEncode(rs("Name").Value) & """, """ & _
+                Server.HtmlEncode(rs("Name").Value) & """, """ & _
+                inPageToShow & "?PreKatNr=" & rs("ArtKatNr").Value & """ , null );")
                 '"null , null );"
                 Response.Write(Chr(10) & Chr(13))
 
-                sql = "SELECT ArtKatNr, Name, ArtKAtNrParent FROM [grArtikel-Kategorien] WHERE ArtKatNrParent=" & rs("ArtKatNr") & " ORDER BY Name "
+                sql = "SELECT ArtKatNr, Name, ArtKAtNrParent FROM [grArtikel-Kategorien] WHERE ArtKatNrParent=" & rs("ArtKatNr").Value & " ORDER BY Name "
                 rsSub = ObjConnectionexecute(sql)
 
                 While Not rsSub.EOF
                     Response.Write("menu.addSubItem (""menu" & _
-                    rs("ArtKatNr") & """, """ & _
-                    rsSub("Name") & """, """ & _
-                    rsSub("Name") & """, """ & _
-                    inPageToShow & "?PreKatNr=" & rsSub("ArtKatNr") & """);")
+                        rs("ArtKatNr").Value & """, """ & _
+                        rsSub("Name").Value & """, """ & _
+                        rsSub("Name").Value & """, """ & _
+                        inPageToShow & "?PreKatNr=" & rsSub("ArtKatNr").Value & """);")
+                    
                     rsSub.MoveNext()
                     Response.Write(Chr(10) & Chr(13))
                 End While
@@ -310,6 +311,7 @@
             rs.MoveNext()
 	  
         End While
+        
         rs.Close()
         rs = Nothing
         'end loop of initialization
@@ -415,10 +417,11 @@
             '    html = html & TABLEVALUE("[grArtikel-kategorien]","ArtKatNR",rs("ArtKatNRParent"),"Name") & "->" 
             'end if 
      
-            Dim LINK_KAT : LINK_KAT = "default.aspx?preKatNr=" & rs("ArtKatNr")
-            Dim LINK_PRODUCTS : LINK_PRODUCTS = "default.aspx?pageToShow=DetailSearchResult&artKatNrSearch=" & rs("ArtKatNr") & "&HerstellerSearch=" & manufacturer & "&LieferantSearch=" & merchantName
+            Dim LINK_KAT : LINK_KAT = "default.aspx?preKatNr=" & rs("ArtKatNr").Value
+            Dim LINK_PRODUCTS : LINK_PRODUCTS = "default.aspx?pageToShow=DetailSearchResult&artKatNrSearch=" & rs("ArtKatNr").Value & _
+                                                "&HerstellerSearch=" & manufacturer & "&LieferantSearch=" & merchantName
 
-            Dim produktAnzahl : produktAnzahl = getCountOfProductsOpt(rs("ArtKatNr"), lieferantNr, herstellerNr)
+            Dim produktAnzahl : produktAnzahl = getCountOfProductsOpt(rs("ArtKatNr").Value, lieferantNr, herstellerNr)
 
 
             If useHerstellerOderLieferant And CLng(produktAnzahl) <= 0 Then
@@ -428,20 +431,20 @@
             'Response.Write "ANZAHL=" & cint(rs("Produktanzahl"))
             If CLng(produktAnzahl) > 0 Then
                 If useHerstellerOderLieferant Then
-                    html = html & Server.HtmlEncode(rs("Name")) '& "  <a href=""" & LINK_KAT & """>" &  getTranslation("Alle Produkte in der Kategorie...")  & "</A>" 
+                    html = html & Server.HtmlEncode(rs("Name").Value) '& "  <a href=""" & LINK_KAT & """>" &  getTranslation("Alle Produkte in der Kategorie...")  & "</A>" 
                 Else
-                    html = html & "<a href=""" & LINK_KAT & """><b>" & Server.HtmlEncode(rs("Name")) & "</b></A>"
+                    html = html & "<a href=""" & LINK_KAT & """><b>" & Server.HtmlEncode(rs("Name").Value) & "</b></A>"
                 End If
             Else ' keine produkte
                 If useHerstellerOderLieferant Then
                     'html = html & "<a href=""" & LINK_KAT & """>" &  left(rs("Name"),5) & "..."  & "</A>" 
                 Else 'die standart produktkarte 
-                    html = html & "<a href=""" & LINK_KAT & """>" & Server.HtmlEncode(rs("Name")) & "</A>"
+                    html = html & "<a href=""" & LINK_KAT & """>" & Server.HtmlEncode(rs("Name").Value) & "</A>"
                 End If
             End If
        
             If CLng(produktAnzahl) > 0 Then html = html & " - " & "<a href='" & LINK_PRODUCTS & "'>" & produktAnzahl & " " & gettranslation("Produkte") & "</a></b>"
-            html = html & makeCategoriesTree(rs("ArtKatNr"), Levels - 1, manufacturer, merchantName)
+            html = html & makeCategoriesTree(rs("ArtKatNr").Value, Levels - 1, manufacturer, merchantName)
      
             If useHerstellerOderLieferant And CLng(produktAnzahl) <= 0 Then
             Else
@@ -461,7 +464,7 @@
     Function makeSubcategories(ByVal ArtKatNr, ByVal Levels) As String
         Const MAX_CATS_OF_LEVEL_1 As Integer = 5
         Dim html As String
-        Dim sql As String , rs
+        Dim sql As String, rs
         makeSubcategories = ""
         If Levels <= 0 Then Exit Function 'no more levels to show
  
@@ -688,7 +691,7 @@
             html = "keine Webpages definiert!"
         End If
         While Not rsS.EOF
-            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title") & """>" & rsS("Title") & "</a><br>"
+            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & rsS("Title").Value & "</a><br>"
                     
             rsS.moveNext()
         End While
@@ -740,7 +743,7 @@
         Dim i : i = 0
         While Not rs.EOF
             i = i + 1
-            catList = catList & rs("ArtKatNr") & ","
+            catList = catList & rs("ArtKatNr").Value & ","
             rs.moveNext()
         End While
         rs.close()
@@ -797,7 +800,7 @@
     ' statistics for the most clicked products by category 
     '****************************************************************************
 
-    Function statisticTopClicksOnCategoryCache(ByVal ArtKatNr) As String 
+    Function statisticTopClicksOnCategoryCache(ByVal ArtKatNr) As String
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "SUB_CAT_TOPCLICKS_" & ArtKatNr
         temp = getCache(CACHE_NAME)
@@ -807,7 +810,7 @@
         statisticTopClicksOnCategoryCache = temp
     End Function
 
-    Function statisticTopClicksOnCategory(ByVal ArtKatNrParam) As String 
+    Function statisticTopClicksOnCategory(ByVal ArtKatNrParam) As String
         'exit function 
         Dim MAX_PRODUCTS As Integer : MAX_PRODUCTS = 10
         Dim sql As String
@@ -842,11 +845,11 @@
             'html = html & "<tr><th><p align=""center""><b>Top " & MAX_PRODUCTS & " Kategorien</b></th></tr>"
             Dim alreadyProcessedCats : alreadyProcessedCats = ""
             While Not rs.EOF And i < MAX_PRODUCTS
-                Dim artKatNr : artKatNr = rs("ArtKAtNR") 'TABLEVALUE("grArtikel","ArtNR",rs("ArtNR"),"ArtKatNr")
+                Dim artKatNr : artKatNr = rs("ArtKAtNR").Value 'TABLEVALUE("grArtikel","ArtNR",rs("ArtNR"),"ArtKatNr")
                 If InStr(alreadyProcessedCats, artKatNr) <= 0 Then
                     html = html & "<tr><td><a href=""default.aspx?PreKAtNr=" & artKatNr & """>" & _
-                           Server.HtmlEncode(TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNR", rs("ArtKatNrParent"), "Name")) & "&gt;" & " " & _
-                           Server.HtmlEncode(rs("Name")) & "</a></td></tr>"
+                           Server.HtmlEncode(TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNR", rs("ArtKatNrParent").Value, "Name")) & "&gt;" & " " & _
+                           Server.HtmlEncode(rs("Name").Value) & "</a></td></tr>"
                     i = i + 1
                     alreadyProcessedCats = alreadyProcessedCats & "," & artKatNr
                 End If
@@ -910,7 +913,7 @@
         Dim i : i = 0
         While Not rs.EOF
             i = i + 1
-            catList = "<a href='default.aspx?preKatNr=" & rs("ArtKatNr") & "'>" & "<img border=0 src='" & rs("Picture") & "' alt='" & rs("ArtKatNr") & "'></a>"
+            catList = "<a href='default.aspx?preKatNr=" & rs("ArtKatNr").Value & "'>" & "<img border=0 src='" & rs("Picture") & "' alt='" & rs("ArtKatNr").Value & "'></a>"
             tamplate_html = Replace(tamplate_html, "[" & i & "]", catList)
             rs.moveNext()
         End While
@@ -926,13 +929,13 @@
 
     'rebuild index for cat searching 
     Function rebuildCats()
-        Dim sql_, rs_
+        Dim sql_ As String, rs_
         sql_ = "select * from [grArtikel-Kategorien] order by artKAtNR"
         rs_ = objConnectionExecute(sql_)
         Dim subCats
         While Not rs_.eof
-            subCats = makeSubcategoriesList(rs_("ArtKatNr"), 10)
-            sql_ = "insert into webCatsIndex (ArtKatNrPArent, ArtKatNr) select " & rs_("ArtKatNr") & ", ArtKatNr from [grArtikel-Kategorien] where ArtKatNr in (" & subCats & ")"
+            subCats = makeSubcategoriesList(rs_("ArtKatNr").Value, 10)
+            sql_ = "insert into webCatsIndex (ArtKatNrPArent, ArtKatNr) select " & rs_("ArtKatNr").Value & ", ArtKatNr from [grArtikel-Kategorien] where ArtKatNr in (" & subCats & ")"
             Response.Write(sql_ & "<br>") : Response.Flush()
             objConnectionExecute(sql_)
    		

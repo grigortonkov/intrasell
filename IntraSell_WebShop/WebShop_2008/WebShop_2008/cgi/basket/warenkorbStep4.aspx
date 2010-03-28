@@ -26,7 +26,7 @@
 
         'response.write Email & Password
         'Find Client 
-        Dim KundNr
+        Dim KundNr As Long
         KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
         Dim errorsFound : errorsFound = False
