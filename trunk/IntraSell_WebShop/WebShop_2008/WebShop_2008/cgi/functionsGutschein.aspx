@@ -14,7 +14,7 @@
         sql = "select artnr from grArtikel where bezeichnung like '" & NAME_FOR_GUTSCHEIN_PRODUCT & "'"
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
-            getArtNrForGutschein = rs("Artnr")
+            getArtNrForGutschein = rs("Artnr").Value
         Else
             getArtNrForGutschein = ""
         End If
@@ -34,7 +34,7 @@
         sql = "select Summe from buchGutschein where Nummer like '" & gutscheinNummer & "'"
         rs = objConnectionExecute(sql)
         If Not rs.eof Then
-            getPreisForGutschein = rs("Summe")
+            getPreisForGutschein = rs("Summe").Value
         Else
             getPreisForGutschein = 0
         End If

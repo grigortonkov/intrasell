@@ -84,8 +84,10 @@
     Function getLOGIN() As String
         Const LOG_IN = "LOG_IN"
         Dim remoteHost As String = Request.ServerVariables("REMOTE_HOST")
-        If Session(LOG_IN) <> "" Then
-            getLOGIN = Session(LOG_IN)
+        If not Session(LOG_IN) is Nothing  then 
+            If  Session(LOG_IN).ToString <> "" Then
+                getLOGIN = Session(LOG_IN)
+            End If 
         Else
             Dim sql, rs
             sql = "Select sid, kundenIdnr, ip from webSessions where CreationTime>=(" & SQLNOW(-0.05) & ") and IP Like '" & _

@@ -36,11 +36,11 @@
         html = html & "                <font color='#000000'>"
         Dim rsKUND
         Dim knd
-        Dim sql
-        sql = "Select * from " & TableVorgang & " where Nummer=" & Nummer
-        rsKUND = objConnectionExecute(sql)
-        knd = rsKUND("KundNr")
-        Dim orderDate : orderDate = rsKUND("Datum")
+        Dim SQL As String
+        SQL = "Select * from " & TableVorgang & " where Nummer=" & Nummer
+        rsKUND = objConnectionExecute(SQL)
+        knd = rsKUND("KundNr").Value
+        Dim orderDate : orderDate = rsKUND("Datum").Value
         rsKUND.close()
                             
         html = html & " " & getTranslation("Lieferadresse") & ":"
@@ -123,7 +123,7 @@
                              
 
         Dim LAND : LAND = getClientLand(knd)
-        sql = " SELECT MWST, Datum, [" & TableVorgangArtikel & "].* " & _
+        SQL = " SELECT MWST, Datum, [" & TableVorgangArtikel & "].* " & _
            " FROM grArtikel " & _
            " INNER JOIN ([" & TableVorgangArtikel & "]" & _
            " INNER JOIN " & TableVorgang & _
@@ -135,9 +135,9 @@
 
         'response.write sql
 
-        Dim rsWK : rsWK = objConnectionExecute(sql)
-        Dim Pos : Pos = 0
-        Dim Subtotal, Total
+        Dim rsWK : rsWK = objConnectionExecute(SQL)
+        Dim Pos As Integer : Pos = 0
+        Dim Subtotal As Double, Total As Double
         Dim MWSTARRAY(2, 5) ' up to 5 file MWST cases
 
         Dim i As Integer = 0
@@ -161,33 +161,33 @@
             html = html & "               </tr>"
             html = html & "                <tr>"
             html = html & "                    <td width='58%' style='border-style: none; border-width: medium'>"
-            html = html & "                        " & rsWK("Bezeichnung") & "&nbsp;"
+            html = html & "                        " & rsWK("Bezeichnung").Value & "&nbsp;"
             html = html & "                    </td>"
             html = html & "                    <td width='17%' style='border-style: none; border-width: medium' align='right'>"
-            html = html & "                        " & FormatNumber(CDbl(rsWK("PreisATS")), 2) & "&nbsp;"
+            html = html & "                        " & FormatNumber(CDbl(rsWK("PreisATS").Value), 2) & "&nbsp;"
             html = html & "                    </td>"
             html = html & "                    <td width='9%' style='border-style: none; border-width: medium' align='center'>"
-            html = html & "                        " & rsWK("Stk") & "&nbsp;"
+            html = html & "                        " & rsWK("Stk").Value & "&nbsp;"
             html = html & "                    </td>"
             html = html & "                    <td width='16%' style='border-style: none; border-width: medium' align='right'>"
-            html = html & "                        " & FormatNumber(CDbl(rsWK("PreisATS")) * CDbl(rsWK("Stk")), 2) & "&nbsp;"
+            html = html & "                        " & FormatNumber(CDbl(rsWK("PreisATS").Value) * CDbl(rsWK("Stk").Value), 2) & "&nbsp;"
             html = html & "                    </td>"
             html = html & "               </tr>"
             html = html & "                <tr>"
                                   
-            Subtotal = Subtotal + CDbl(rsWK("PreisATS")) * CDbl(rsWK("Stk"))
+            Subtotal = Subtotal + CDbl(rsWK("PreisATS").Value) * CDbl(rsWK("Stk").Value)
             Dim found
             found = False
             For i = 1 To 5
-                If (MWSTARRAY(1, i) = "" Or MWSTARRAY(1, i) = rsWK("MWST")) And (Not found) Then
-                    MWSTARRAY(1, i) = rsWK("MWST")
-                    MWSTARRAY(2, i) = MWSTARRAY(2, i) + (CDbl(rsWK("PreisATS_Brutto")) * rsWK("Stk") - CDbl(rsWK("PreisATS")) * rsWK("Stk"))
+                If (MWSTARRAY(1, i) = "" Or MWSTARRAY(1, i) = rsWK("MWST").Value) And (Not found) Then
+                    MWSTARRAY(1, i) = rsWK("MWST").Value
+                    MWSTARRAY(2, i) = MWSTARRAY(2, i) + (CDbl(rsWK("PreisATS_Brutto").Value) * rsWK("Stk") - CDbl(rsWK("PreisATS").Value) * rsWK("Stk").Value)
                     found = True
                 End If
             Next
     
             'subtotalMWST = subtotalMWST +   makeBruttoPreis(cdbl(rsWK("PreisATS")), cdbl(rsWK("MWST")))*rsWK("Stk")   
-            Total = Total + CDbl(rsWK("PreisATS_Brutto")) * rsWK("Stk")
+            Total = Total + CDbl(rsWK("PreisATS_Brutto")) * rsWK("Stk").Value
     
             rsWK.MoveNext()
         End While

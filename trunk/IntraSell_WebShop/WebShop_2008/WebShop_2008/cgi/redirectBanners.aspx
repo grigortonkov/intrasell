@@ -1,9 +1,9 @@
 <!--#include file="defaultHead.inc.aspx"-->
 <%
-    Dim sql
+    Dim sql as string
     Dim rsBan
     Dim banId : banId = Request.QueryString("ID")
-    Dim bannerLink
+    Dim bannerLink as String
 
     If banId = "" Then
         Response.Redirect("default.aspx")
@@ -17,7 +17,7 @@
         Response.Redirect("default.aspx")
     Else
         'increment clicks
-        sql = "UPDATE webBanners set ClicksCount = " & rsBan("ClicksCount") + 1 & " WHERE bannerId = " & banId
+        sql = "UPDATE webBanners set ClicksCount = " & rsBan("ClicksCount").Value + 1 & " WHERE bannerId = " & banId
         objConnectionExecute(sql)
 	
         Dim remoteAddress : remoteAddress = Request.ServerVariables("REMOTE_ADDR")
@@ -28,7 +28,7 @@
         objConnectionExecute(sql)
 	
 	
-        bannerLink = rsBan("BannerLink")
+        bannerLink = rsBan("BannerLink").Value
         rsBan.close()
         rsBan = Nothing
         Response.Redirect(bannerLink)

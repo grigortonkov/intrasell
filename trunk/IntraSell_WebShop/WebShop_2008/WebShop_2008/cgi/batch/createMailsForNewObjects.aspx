@@ -28,13 +28,13 @@ Important: This job only creates mails, please use the mail tool to send the ema
         totalQueriesChecked = totalQueriesChecked + 1
         userMailtext = mailtext & "" 'copy from template 
         objectFound = False 'true when some found  
-        EmailAnbieter = rsBatch("Email")
-        sqlNewObjects = rsBatch("SQLString")
-        subject = getTranslation("Neue Objekte eingetroffen! Ihre Suche:") & rsBatch("SQLDescription")
+        EmailAnbieter = rsBatch("Email").Value
+        sqlNewObjects = rsBatch("SQLString").Value
+        subject = getTranslation("Neue Objekte eingetroffen! Ihre Suche:") & rsBatch("SQLDescription").Value
          
         'Response.Write "<br>sqlBatch('SQLString')=" & sqlNewObjects:Response.Flush
         sqlNewObjects = Replace(sqlNewObjects, "~", "'")
-        sqlNewObjects = sqlNewObjects & " AND angelegtAm > " & SQLNOW(-1 * (rsBatch("IntervalInDays")))
+        sqlNewObjects = sqlNewObjects & " AND angelegtAm > " & SQLNOW(-1 * (rsBatch("IntervalInDays").Value))
         rsNewObjects = objConnectionExecute(sqlNewObjects)
 		 
         Dim htmlListNewObjects : htmlListNewObjects = ""
@@ -43,8 +43,8 @@ Important: This job only creates mails, please use the mail tool to send the ema
             counterI = counterI + 1
             objectFound = True
             htmlListNewObjects = htmlListNewObjects & _
-                                 counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr") & "'>" & _
-                                 rsNewObjects("Bezeichnung") & "</a><br>"
+                                 counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
+                                 rsNewObjects("Bezeichnung").Value & "</a><br>"
             rsNewObjects.moveNext()
 		    
         End While
@@ -53,9 +53,9 @@ Important: This job only creates mails, please use the mail tool to send the ema
 		 
         'prepare mail 
         If objectFound Then
-            userMailtext = Replace(userMailtext, "[NAME]", rsBatch("Name"))
-            userMailtext = Replace(userMailtext, "[VORNAME]", rsBatch("Vorname"))
-            userMailtext = Replace(userMailtext, "[EMAIL]", rsBatch("Email"))
+            userMailtext = Replace(userMailtext, "[NAME]", rsBatch("Name").Value)
+            userMailtext = Replace(userMailtext, "[VORNAME]", rsBatch("Vorname").Value)
+            userMailtext = Replace(userMailtext, "[EMAIL]", rsBatch("Email").Value)
             userMailtext = Replace(userMailtext, "[PRODUCTLIST]", htmlListNewObjects)
 					 
             If LCase(Request("debug")) = "true" Then
@@ -71,11 +71,11 @@ Important: This job only creates mails, please use the mail tool to send the ema
             If True Then
                 totalMailsCreated = totalMailsCreated + 1
                 sqlK = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text]) values(" & _
-                     rsBatch("idnr") & ",'" & subject & "','" & userMailtext & "')"
+                     rsBatch("idnr").Value & ",'" & subject & "','" & userMailtext & "')"
                 objConnectionExecute(sqlK)
 						
                 'TODO: save this for the statistics 
-                sqlK = "Update UserQueries set NextRun =" & SQLNOW(rsBatch("IntervalInDays")) & " where queryId=" & rsBatch("QueryId")
+                sqlK = "Update UserQueries set NextRun =" & SQLNOW(rsBatch("IntervalInDays").Value) & " where queryId=" & rsBatch("QueryId").Value
                 objConnectionExecute(sqlK)
 						
             Else
@@ -83,7 +83,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
             End If
 					
         Else ' no object found 
-            Response.Write("<br>No Objects found for QueryId=" & rsBatch("QueryId") & " and Email: " & rsBatch("Email"))
+            Response.Write("<br>No Objects found for QueryId=" & rsBatch("QueryId").Value & " and Email: " & rsBatch("Email").Value)
         End If
         rsBatch.MoveNext()
     End While

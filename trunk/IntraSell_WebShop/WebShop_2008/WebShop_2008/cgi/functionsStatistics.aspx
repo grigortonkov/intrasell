@@ -35,14 +35,32 @@
         stat1 = getFirstField("select count(countClicks) from grArtikel a, webProductClicks c where a.ArtNr = c.ArtNr and a.herstellerNr=" & idnr)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat2(ByVal idnr)
         stat2 = getFirstField("select count(countClicks) from grArtikel a, webProductLists c where a.ArtNr = c.ArtNr and a.herstellerNr=" & idnr)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat3(ByVal idnr)
         stat3 = getFirstField("select count(*) from ofKorespondenz k where subjekt like 'Schnell%' and k.idnr=" & idnr)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat4(ByVal idnr)
         If Session("dbType") <> "MySQL" Then
             stat4 = getFirstField("select count(*) from UserBookmarks ub, grArtikel a where ub.URL like '*ArtNR=' & a.ArtNr and a.herstellerNr=" & idnr)
@@ -51,19 +69,43 @@
         End If
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat5(ByVal idnr)
         stat5 = getFirstField("select count(ToEmail) from webProductsSendToFriend sf, grArtikel a where sf.artNr=a.ArtNr and a.herstellerNr=" & idnr)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat6(ByVal idnr)
         stat6 = getFirstField("select count(*) from ofKorespondenz k where subjekt like 'Objekt%' and k.idnr=" & idnr)
     End Function
 
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function stat7(ByVal idnr)
         stat7 = getFirstField("select count(*) from userQueries k where UserId=" & idnr)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="idnr"></param>
+    ''' <param name="active"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getProductsCount(ByVal idnr, ByVal active)
         getProductsCount = getFirstField("Select count(*) as co From grArtikel where HerstellerNr =" & idnr & " and ProduktAktiv=" & CLng(CInt(active)))
     End Function

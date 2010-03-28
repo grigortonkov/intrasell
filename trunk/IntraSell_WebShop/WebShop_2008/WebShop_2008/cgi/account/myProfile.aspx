@@ -2,7 +2,7 @@
 <%
     'try to get login with help of send password and email 
     If Request("Email1") <> "" And Request("Passwort1") <> "" Then 'try Login 
-        If authenticate(Request("Email1"), Request("Passwort1")) = "" Then
+        If authenticate(Request("Email1"), Request("Passwort1")) = -1 Then
             Response.Write(getTranslation("Ihre Anmeldedaten sind nicht korrekt!"))
             Response.End()
         Else 'getLogin works now 

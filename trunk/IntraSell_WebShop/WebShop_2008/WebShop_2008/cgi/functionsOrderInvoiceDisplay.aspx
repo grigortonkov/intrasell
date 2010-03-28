@@ -12,7 +12,7 @@
         Dim html As String
         
         Dim sql As String
-        Dim TableVorgang, TableVorgangArtikel
+        Dim TableVorgang As String, TableVorgangArtikel As String
     
         TableVorgang = getNameForTable(OrderType)
         TableVorgangArtikel = getNameForTableProducts(OrderType)
@@ -32,21 +32,19 @@
         html = html & "<tr>"
         html = html & "<td width='220'>"
         html = html & " " & getTranslation("Datum")
-        html = html & "   <input name='Datum' size='25'" & rsV("Datum") & " id='Text1'>"
+        html = html & "   <input name='Datum' size='25'" & rsV("Datum").Value & " id='Text1'>"
         html = html & "     </td>"
         html = html & "     <td width='566' colspan='2' align='center'>"
-        html = html & getTranslation("bezahlt") & "<input type='checkbox' name='C1' value='ON' " & SQLToCheck(rsV("Bezahlt")) & " id='Checkbox1'> "
-        html = html & getTranslation("Gedruckt") & "<input type='checkbox' name='C2' value='ON' " & SQLToCheck(rsV("Ausgedrukt")) & " id='Checkbox2'>"
-        html = html & getTranslation("Abgeschloﬂen") & "<input type='checkbox' name='C3' value='ON' " & SQLToCheck(rsV("anElba")) & " id='Checkbox3'>"
+        html = html & getTranslation("bezahlt") & "<input type='checkbox' name='C1' value='ON' " & SQLToCheck(rsV("Bezahlt").Value) & " id='Checkbox1'> "
+        html = html & getTranslation("Gedruckt") & "<input type='checkbox' name='C2' value='ON' " & SQLToCheck(rsV("Ausgedrukt").Value) & " id='Checkbox2'>"
+        html = html & getTranslation("Abgeschloﬂen") & "<input type='checkbox' name='C3' value='ON' " & SQLToCheck(rsV("anElba").Value) & " id='Checkbox3'>"
     
         html = html & "    </td>"
         html = html & " </tr>"
         html = html & " <tr>"
-        html = html & "    <td width='220'>"
-        html = html & "        " & getTranslation("Kunde") & ":"
-    
-        html = html & "        <input type='hidden' name='IDNR' size='15' value='" & rsV("KundNr") & "' id='Hidden1'>"
-        html = html & "    " & printAddress(rsV("KundNr"), OrderType, True) & ""
+        html = html & "    <td width='220'>" & getTranslation("Kunde") & ":"
+        html = html & "        <input type='hidden' name='IDNR' size='15' value='" & rsV("KundNr").Value & "' id='Hidden1'>"
+        html = html & "    " & printAddress(rsV("KundNr").Value, OrderType, True) & ""
         html = html & "     <br>"
         html = html & "     " & getTranslation("aendern") & ":"
         html = html & query2list("Select IdNR, '-', Name FROM ofAdressen Order BY IdNR, Name", "newIDNR")
@@ -93,32 +91,32 @@
         Dim totalBrutto : totalBrutto = 0
         While Not rsWK.EOF
             pos = pos + 1
-            totalBrutto = totalBrutto + CDbl(rsWK("PreisATS_Brutto"))
+            totalBrutto = totalBrutto + CDbl(rsWK("PreisATS_Brutto").Value)
     
             html = html & "<tr>"
             html = html & "<td height='17'>"
             html = html & "<p align='center'>"
-            html = html & "    <input name='art' & Pos & "" type='hidden' value='" & rsWK("ArtNR") & "' id='Hidden2'>"
+            html = html & "    <input name='art' & Pos & "" type='hidden' value='" & rsWK("ArtNR").Value & "' id='Hidden2'>"
             html = html & "    <input type='checkbox' name='checkD" & pos & "' value='ON' onclick='return checkD'" & pos & "_onclick()' id='Checkbox4'>"
             html = html & "</td>"
             html = html & "<td height='17' align='center'>" & pos & "<td height='17'>"
             If UCase(VARVALUE("BenutzeEAN")) = "TRUE" Then
-                html = html & "" & rsWK("EAN") & ""
+                html = html & "" & rsWK("EAN").Value & ""
             Else
-                html = html & "" & rsWK("ArtNr") & ""
+                html = html & "" & rsWK("ArtNr").Value & ""
             End If
             html = html & "</td>"
             html = html & "<td height='17'>"
-            html = html & "" & rsWK("Bezeichnung") & ""
+            html = html & "" & rsWK("Bezeichnung").Value & ""
             html = html & "</td>"
             html = html & "<td height='17' align='center'>"
-            html = html & "   <input name='Stk" & pos & "' size='4' value='" & rsWK("Stk") & "' id='Text2'>"
+            html = html & "   <input name='Stk" & pos & "' size='4' value='" & rsWK("Stk").Value & "' id='Text2'>"
             html = html & "</td>"
             html = html & "<td height='17' align='right'>"
-            html = html & "<input name='PreisATS" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS"), 2) & "'  id='Text3'>"
+            html = html & "<input name='PreisATS" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS").Value, 2) & "'  id='Text3'>"
             html = html & "</td>"
             html = html & "<td height='17' align='right'>"
-            html = html & "<input name='PreisATS_Brutto" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS_Brutto"), 2) & "'  id='Text4'>"
+            html = html & "<input name='PreisATS_Brutto" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS_Brutto").Value, 2) & "'  id='Text4'>"
             html = html & "</td>"
             html = html & "</tr>"
         
@@ -153,7 +151,6 @@
         Dim rsCheck
         rsCheck = objConnectionExecute("Select count(*) as cc from grArtikel")
         If CDbl(rsCheck("cc")) < 500 Then
-             
             Call query2list("Select ArtNR,'-',Bezeichnung from grArtikel Order BY ArtNr", "AddNew")
         Else
             html = html & " or type the #"
@@ -175,6 +172,8 @@
         Response.Write(html)
     End Sub
  
+
+    ''' <summary>
     '****************************************************************************
     ' Description: shows content of the shopping basket
     ' Show what is in WK
@@ -182,10 +181,18 @@
     ' Modifications: 22-01.2005 
     '
     '****************************************************************************
+    ''' </summary>
+    ''' <param name="StepN"></param>
+    ''' <param name="Land"></param>
+    ''' <param name="PayMode"></param>
+    ''' <param name="PostMode"></param>
+    ''' <param name="PostModeDestination"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function visualizeWarenkorb(ByVal StepN, ByVal Land, ByVal PayMode, ByVal PostMode, ByVal PostModeDestination)
         Dim sql As String, rsWK
         Dim gutscheinNummer : gutscheinNummer = Session("GutscheinNummer")
-        Dim sid : sid = getSID()
+        Dim sid As String : sid = getSID()
         Dim html As String
          
         Dim IDNR As Long : IDNR = getLOGIN()
@@ -241,22 +248,22 @@
             html = html & "</td>"
             html = html & "</tr>"
     
-            Dim pos  As Integer: pos = 0
+            Dim pos As Integer : pos = 0
             Dim Subtotal As Double : Subtotal = 0
             Dim SubtotalMWST As Double : SubtotalMWST = 0
+            Dim ArtNr
+            Dim Stk As Integer
+            
             While Not rsWK.EOF
 		
                 pos = pos + 1
-                Dim ArtNr : ArtNr = rsWK("ArtNR").Value
-                Dim Stk as Integer: Stk = CInt(rsWK("Quantity").Value)
+                ArtNr = rsWK("ArtNR").Value
+                Stk = CInt(rsWK("Quantity").Value)
                 Dim Einzelpreis As Double = 0
                 'Einzelpreis = makeNettoPreis(ArtNR, Stk, sid) 'old way to calculate prices
                 Einzelpreis = getPreis(getLOGIN(), ArtNr, Stk)
-			
-			
                 'call Response.Write ("Stk:[" &  stk & "]")
                 'call Response.Write ("Einzelpreis:[" & einzelpreis & "]")
-			
                 Subtotal = CDbl(Subtotal) + CDbl(Einzelpreis) * CInt(Stk)
                 'SubtotalMWST = cdbl(SubtotalMWST) + cdbl(makeBruttoPreis2(ArtNr, Stk, Land)) * Stk 'Old Way 
                 
@@ -276,8 +283,7 @@
                 If StepN = "1" Then
                     html = html & "<a href='default.aspx?pagetoShow=warenkorbStep1&Items=1&Art1=" & rsWK("ArtNr").Value & "&checkD1=ON'>"
                     html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' align='middle'></a>"
-                    
-                    html = html & "<!-- <input type='checkbox' name='checkD' & pos & " ' value='ON'> -->
+                    html = html & "<!-- <input type='checkbox' name='checkD'" & pos & " ' value='ON'> -->"
                     html = html & "<input name='Stk" & pos & " ' size='3' value='" & rsWK("Quantity").Value & "' id='Text6' />"
                 Else
                     html = html & "" & rsWK("Quantity").Value & ""
@@ -290,21 +296,16 @@
                 html = html & "<td height='17'>"
                 html = html & "" & rsWK("EAN").Value & ""
                 html = html & "</td>"
+                html = html & "<td height='17'><a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
+                html = html & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b></td>"
                 html = html & "<td height='17'>"
-                html = html & "   <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
-                html = html & "    " & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b>"
-                html = html & "</td>"
-                html = html & "<td height='17'>"
-                html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
-                html = html & "" & rsWK("Bezeichnung1").Value & "</a>"
+                html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("Bezeichnung1").Value & "</a>"
                 html = html & "</td>"
                 html = html & "<td align='right' height='17'>"
-                html = html & "<p align='right'>"
-                html = html & "" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
+                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
                 html = html & "</td>"
                 html = html & "<td align='right' height='17'>"
-                html = html & "<p align='right'>"
-                html = html & "" & FormatNumber(CDbl(Einzelpreis) * CInt(Stk), 2) & "</p>"
+                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis) * CInt(Stk), 2) & "</p>"
                 html = html & "</td>"
                 html = html & "</tr>"
        
@@ -317,18 +318,17 @@
      
             html = html & "<input type='hidden' name='Items' value='" & pos & "' id='Hidden5'>"
             'POST and MODE COSTS 
-            Dim KG : KG = getWeightOfBasket(sid)
-            Dim PostCosts : PostCosts = 0
-            Dim PostExpensesMWST : PostExpensesMWST = 0
+            Dim KG As Double : KG = getWeightOfBasket(sid)
+            Dim PostCosts As Double : PostCosts = 0
+            Dim PostExpensesMWST As Double : PostExpensesMWST = 0
  	  
-            Dim payModeExpenses : payModeExpenses = 0
+            Dim payModeExpenses As Double : payModeExpenses = 0
             Dim payModeExpensesMWST : payModeExpensesMWST = 0
  	  
-            Dim gutscheinSumme : gutscheinSumme = 0
-            Dim gutscheinSummeMWST : gutscheinSummeMWST = 0
+            Dim gutscheinSumme As Double : gutscheinSumme = 0
+            Dim gutscheinSummeMWST As Double : gutscheinSummeMWST = 0
  	 
- 	  	  
-            Dim messageNoCosts : messageNoCosts = ""
+            Dim messageNoCosts As String : messageNoCosts = ""
  	  
             'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
             'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
@@ -588,34 +588,34 @@
         Else
             visualizeWarenkorbSmall = True
 
-            Dim pos : pos = 0
-            Dim Subtotal : Subtotal = 0
-            Dim SubtotalMWST : SubtotalMWST = 0
+            Dim Pos As Double : Pos = 0
+            Dim Subtotal As Double : Subtotal = 0
+            Dim SubtotalMWST As Double : SubtotalMWST = 0
 		
             Dim ArtNr
-            Dim stk
-            Dim einzelpreis
+            Dim Stk As Double
+            Dim Einzelpreis As Double
 		
             While Not rsWK.EOF
-                ArtNr = rsWK("ArtNR")
+                ArtNr = rsWK("ArtNR").Value
                 pos = pos + 1
-                stk = rsWK("Quantity")
+                stk = rsWK("Quantity").Value
                 einzelpreis = makeNettoPreis(ArtNr, stk, sid)
 			
                 Subtotal = Subtotal + einzelpreis * stk
                 'SubtotalMWST =  SubtotalMWST + makeBruttoPreis(rsWK("PreisATS"),rsWK("MWST"))  * rsWK("Quantity") 
-                SubtotalMWST = SubtotalMWST + makeBruttoPreis2(rsWK("ArtNR"), stk, Session("Land")) * stk
+                SubtotalMWST = SubtotalMWST + makeBruttoPreis2(rsWK("ArtNR").Value, Stk, Session("Land")) * Stk
 	        
                 rsWK.MoveNext()
             End While
             rsWK.close()
 
             'POST and MODE COSTS 
-            Dim KG : KG = getWeightOfBasket(sid)
-            Dim PostCosts : PostCosts = 0
-            Dim payModeExpenses : payModeExpenses = 0
-            Dim payModeExpensesMWST : payModeExpensesMWST = 0
-            Dim PostExpensesMWST : PostExpensesMWST = 0
+            Dim KG As Double : KG = getWeightOfBasket(sid)
+            Dim PostCosts As Double : PostCosts = 0
+            Dim payModeExpenses As Double : payModeExpenses = 0
+            Dim payModeExpensesMWST As Double : payModeExpensesMWST = 0
+            Dim PostExpensesMWST As Double : PostExpensesMWST = 0
  	  
  	  
             If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then
@@ -714,16 +714,16 @@
         rsZM = objConnectionExecute(sql)
         While Not rsZM.EOF
             'show only PayMethods for the selected destination or general destinations 
-            If UCase(Trim(rsZM("destination"))) = "" Or UCase(Trim(rsZM("destination"))) = UCase(Trim(destination)) Then
-                If UCase(Trim(payMode)) = UCase(Trim(rsZM("methode"))) Then selected = "checked" Else selected = ""
+            If UCase(Trim(rsZM("destination").Value)) = "" Or UCase(Trim(rsZM("destination").Value)) = UCase(Trim(destination)) Then
+                If UCase(Trim(payMode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
                 'Response.Write selected
    
-                html = html & "<input type='radio' value='" & rsZM("methode") & "' name='PayMode' " & selected & " onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & rsZM("methode") & "&postmode=" & postMode & "';"
+                html = html & "<input type='radio' value='" & rsZM("methode").Value & "' name='PayMode' " & selected & " onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & rsZM("methode").Value & "&postmode=" & postMode & "';"
                 html = html & "   id='Radio1'>"
-                html = html & "" & rsZM("methode") & ""
+                html = html & "" & rsZM("methode").Value & ""
     
             End If
-            rsZM.MoveNExt()
+            rsZM.MoveNext()
         End While
     
         html = html & "<!-- END WARENKORB PAYMODE-->"
@@ -734,15 +734,16 @@
         sql = "select methode from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by methode order by methode"
         rsZM = objConnectionExecute(sql)
         While Not rsZM.EOF
-            If UCase(Trim(postMode)) = UCase(Trim(rsZM("methode"))) Then selected = "checked" Else selected = ""
+            If UCase(Trim(postMode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
             'Response.Write selected
          
-            html = html & "<input type='radio' value='" & rsZM("methode") & "' name='PostMode' " & selected & " onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & payMode & "&postmode=" & rsZM("methode") & "';"
+            html = html & "<input type='radio' value='" & rsZM("methode").Value & "' name='PostMode' " & selected & " onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & payMode & "&postmode=" & rsZM("methode") & "';"
             html = html & "   id='Radio2'>"
-            html = html & "" & rsZM("methode") & ""
+            html = html & "" & rsZM("methode").Value & ""
         
-            rsZM.MoveNExt()
+            rsZM.MoveNext()
         End While
+        
         html = html & "</p>"
         html = html & "<!-- END WARENKORB POSTMODE-->"
         html = html & "<!-- SELECT PLACE OF DELIVERY  -->"
@@ -753,15 +754,15 @@
         sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by destination  order by destination"
         rsZM = objConnectionExecute(sql)
         While Not rsZM.EOF
-            If UCase(Trim(destination)) = UCase(Trim(rsZM("destination"))) Then selected = "checked" Else selected = ""
+            If UCase(Trim(destination)) = UCase(Trim(rsZM("destination").Value)) Then selected = "checked" Else selected = ""
             'Response.Write selected
           
-            html = html & "<input type='radio' value='" & rsZM("destination") & "' name='destination' " & selected & ""
-            html = html & "   onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & payMode & "&postmode=" & postMode & "&destination=" & rsZM("destination") & "';'"
+            html = html & "<input type='radio' value='" & rsZM("destination").Value & "' name='destination' " & selected & ""
+            html = html & "   onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & payMode & "&postmode=" & postMode & "&destination=" & rsZM("destination").Value & "';'"
             html = html & "   id='Radio3'>"
-            html = html & "" & rsZM("destination") & ""
+            html = html & "" & rsZM("destination").Value
         
-            rsZM.MoveNExt()
+            rsZM.MoveNext()
         End While
          
         html = html & "</p>"

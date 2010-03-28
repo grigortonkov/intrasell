@@ -56,7 +56,7 @@
             '			"Ihr Passwort ist: " & rsF("Passwort")  & CHR13CHR10 & CHR13CHR10 & _ 
             '			"Viel Spass dabei!!! " & CHR13CHR10 
 				 
-            email_text = MAKE_EMAIL_SEND_PASSWORD(rsF("idnr"))
+            email_text = MAKE_EMAIL_SEND_PASSWORD(rsF("idnr").Value)
 
             subject = getTranslation("Ihr Passwort")
             recipient = Request("Email")

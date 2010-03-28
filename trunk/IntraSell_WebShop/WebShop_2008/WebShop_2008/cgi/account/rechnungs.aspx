@@ -87,8 +87,8 @@
         While Not rsRech.EOF
     %>
     <tr>
-        <%  If orderNR <> rsRech("RechNr") Then 'new invoice
-                orderNR = rsRech("RechNr")
+        <%  If orderNR <> rsRech("RechNr").Value Then 'new invoice
+                orderNR = rsRech("RechNr").Value
                 count = count + 1
         %>
         <tr>
@@ -139,10 +139,10 @@
                 <%=OrderType%>-<%=OrderNR%>
             </td>
             <td align="center">
-                <%=rsRech("Datum")%>&nbsp;
+                <%=rsRech("Datum").Value%>&nbsp;
             </td>
             <td align="center">
-                <%=rsRech("Status")%>&nbsp;
+                <%=rsRech("Status").Value%>&nbsp;
             </td>
             <td align="center">
                 <%=getPaketnummer(OrderType, OrderNR)%>&nbsp;
@@ -153,23 +153,23 @@
             </td>
             <%End If%>
             <td align="center">
-                <%=rsRech("ArtNr")%>&nbsp;
+                <%=rsRech("ArtNr").Value%>&nbsp;
             </td>
             <td align="center">
-                <%=Server.HTMLEncode(rsRech("Bezeichnung")&"")%>&nbsp;
+                <%=Server.HtmlEncode(rsRech("Bezeichnung").Value & "")%>&nbsp;
             </td>
             <td align="center">
                 <p align="center">
-                    <%=rsRech("Stk")%>&nbsp;</p>
+                    <%=rsRech("Stk").Value%>&nbsp;</p>
             </td>
             <td align="right">
                 <b>
                     <p align="right">
-                        <%=FormatNumber(rsRech("PreisATS_Brutto"),2)%></p>
+                        <%=FormatNumber(rsRech("PreisATS_Brutto").Value, 2)%></p>
                 </b>
             </td>
             <td align="center">
-                <%=rsRech("PositionStatus")%>&nbsp;
+                <%=rsRech("PositionStatus").Value%>&nbsp;
             </td>
         </tr>
         <%

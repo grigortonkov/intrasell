@@ -100,7 +100,7 @@
             html = html & "<a name=""" & Left(Frage, 10) & """>"
             html = html & "Frage: <font color=""blue"">" & Frage & "</font><br>"
             html = html & "Antwort:<font color=""green"">"
-            html = html & rs.fields("Antwort")
+            html = html & rs("Antwort").Value
             html = html & "</font> "
             html = html & "<hr>"
  

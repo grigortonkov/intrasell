@@ -4,7 +4,7 @@
     Dim showForm : showForm = Request("showForm") 'Show Form for Save Again 
     If LCase(Request("action")) = "update" Then
         'login first 
-        If authenticate(Request("Email1"), Request("Passwort1")) = "" Then 'cannot authentificate
+        If authenticate(Request("Email1"), Request("Passwort1")) = -1 Then 'cannot authentificate
             Response.Write("Please provide valid creditentials!")
         Else
             'the user will be logged in and an update will happen !     

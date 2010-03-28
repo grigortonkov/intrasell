@@ -107,13 +107,14 @@
 
     'recursive function, searches for the constants above and replaces with the output from functions 
     'returns the parsed template
-    Dim priceListIsUsed ': priceListIsUsed = false 
-    Function parseTemplate(ByVal template, ByVal artKatNr)
+    Dim priceListIsUsed As Boolean ': priceListIsUsed = false 
+    
+    Function parseTemplate(ByVal template, ByVal artKatNr) As String
         ObjConnection.close()
         ObjConnection.Open() 'FOR SQL SERVER
         'Response.Write "<br>call " & template
         'Response.Flush
-        Dim html
+        Dim html As String
   
  
   

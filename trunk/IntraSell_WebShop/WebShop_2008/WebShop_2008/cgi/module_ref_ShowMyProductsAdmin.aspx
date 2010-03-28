@@ -6,7 +6,7 @@
         'one of both idnr or refereridmust be defined
         'Dim refererID 'incoming parameter
         Dim idnr 'incoming parameter
-        Dim sql
+        Dim sql As String
 
         If Request("idnr") <> "" Then ' it is possible that the idnr is send instead of the referer id 
             idnr = Request("idnr")
@@ -123,7 +123,7 @@ function FrontPage_Form1_Validator(theForm)
             <td width="279" valign="middle">
                 <input type="hidden" name="refererID" size="9" value="<%=refererID%>">
                 <input type="hidden" name="mode" size="9" value="delete"><!--webbot bot="Validation" S-Data-Type="Integer" S-Number-Separators="x" -->
-                <input type="hidden" name="ArtNr" value="<%=rsTop("ArtNR")%>" size="9">
+                <input type="hidden" name="ArtNr" value="<%=rsTop("ArtNR").Value%>" size="9">
                 <input type="submit" value="löschen" name="entfernen">
         </tr>
         </form>

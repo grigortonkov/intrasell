@@ -78,22 +78,22 @@
         End If
 
         Dim PLZ, Ort, Landname
-        PLZ = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ") & "'", "PLZ")
-        Ort = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ") & "'", "Ort")
-        Landname = TableValue("grLand", "IdNr", rsKUND("Land"), "Name")
+        PLZ = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "PLZ")
+        Ort = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "Ort")
+        Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
 
         html = "<b>" & message & "</b><br><br>"
 
-        If Trim(rsKUND("Firma") & "") <> "" Then
-            html = html & rsKUND("Firma") & "<br>"
+        If Trim(rsKUND("Firma").Value & "") <> "" Then
+            html = html & rsKUND("Firma").Value & "<br>"
         End If
 			    
-        html = html & rsKUND("Anrede") & " " & rsKUND("Name") & " " & rsKUND("VorName") & "<br>"
-        html = html & rsKUND("Adresse") & " <br>"
+        html = html & rsKUND("Anrede").Value & " " & rsKUND("Name").Value & " " & rsKUND("Vorname").Value & "<br>"
+        html = html & rsKUND("Adresse").Value & " <br>"
         html = html & PLZ & "-" & Ort & " <br>"
         html = html & Landname & " <br>"
-        html = html & "Tel:" & rsKUND("Tel") & " <br>"
-        html = html & "Email:<a href='mailto:" & rsKUND("Email") & "'>" & rsKUND("Email") & "</a><br>"
+        html = html & "Tel:" & rsKUND("Tel").Value & " <br>"
+        html = html & "Email:<a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br>"
 
         printAddress = html
     End Function
@@ -107,32 +107,31 @@
         Dim Land : Land = Session("Land")
  
         Dim sql, rsWK
-        Dim sid : sid = getSID()
+        Dim SID : SID = getSID()
         sql = "SELECT webWarenkorb.SID, webWarenkorb.Quantity, grArtikel.ArtNr, grArtikel.Bezeichnung " & _
            " FROM webWarenkorb INNER JOIN grArtikel ON webWarenkorb.ArtNr = grArtikel.ArtNr" & _
-           " Where SID=" & sid & " AND webWarenkorb.Quantity > 0 "
+           " Where SID=" & SID & " AND webWarenkorb.Quantity > 0 "
         rsWK = objConnectionExecute(sql)
         If rsWK.EOF And rsWK.BOF Then ' empty basket
-	
             calculateWarenkorbSum = 0
         Else
-            Dim pos : pos = 0
-            Dim Subtotal : Subtotal = 0
-            Dim SubtotalMWST : SubtotalMWST = 0
+            Dim Pos As Integer : Pos = 0
+            Dim Subtotal As Double : Subtotal = 0
+            Dim SubtotalMWST As Double : SubtotalMWST = 0
 		
-            Dim ArtNr, stk
-            Dim bruttoPreis
+            Dim ArtNr, Stk As Double
+            Dim bruttoPreis As Double
             ''NOT USED Dim einzelpreis
             While Not rsWK.EOF
-                pos = pos + 1
-                ArtNr = rsWK("ArtNR")
-                stk = CInt(rsWK("Quantity"))
+                Pos = Pos + 1
+                ArtNr = rsWK("ArtNR").Value
+                Stk = CInt(rsWK("Quantity").Value)
                 ''NOT USED einzelpreis = makeNettoPreis(ArtNR,Stk,sid)
                 ''NOT USED subtotal = subtotal +einzelpreis * stk
-                bruttoPreis = makeBruttoPreis2(rsWK("ArtNR"), stk, Session("Land"))
+                bruttoPreis = makeBruttoPreis2(rsWK("ArtNR").Value, Stk, Session("Land"))
                 'Response.Write "stk = [" & stk & "]"
                 'Response.Write "bruttoPreis = [" & bruttoPreis & "]"
-                SubtotalMWST = CDbl(SubtotalMWST) + CDbl(bruttoPreis) * CDbl(stk)
+                SubtotalMWST = CDbl(SubtotalMWST) + CDbl(bruttoPreis) * CDbl(Stk)
                 rsWK.MoveNext()
             End While
             rsWK.close()
@@ -167,7 +166,7 @@
     Function PutInWarenkorbByArtNr(ByVal ArtNr, ByVal q, ByVal checkIfActive, ByVal wkSID)
         Dim rsW
         Dim addOneMore
-        Dim PreKatNr, SQL
+        Dim PreKatNr, SQL As String
         Dim message As String
 
         'Dim message: 
@@ -193,7 +192,7 @@
         rsW = objConnectionExecute(SQL)
         If rsW.EOF Then
             If checkIfActive Then 'add even the product is not active 
-                message = getTranslation("Wir haben kein Produkt mit dieser Nr.") & " Nr=[" & ArtNr & "]."
+                message = getTranslation("Wir bieten Produkt mit der Nr.") & " Nr=[" & ArtNr & "] nicht an."
                 Response.Write(message)
                 Response.Write("<br>")
                 rsW.close()
@@ -205,11 +204,11 @@
 
 
         'do not allow putting in Warenkorb for special products 
-        Dim nichtBestellbar As Boolean  = False
+        Dim nichtBestellbar As Boolean = False
         SQL = "select NichtBestellbar from grArtikel where artnr=" & ArtNr
         rsW = objConnectionExecute(SQL)
         If Not rsW.EOF Then
-            if IsDebug() then Response.Write(rsW("NichtBestellbar"))
+            If IsDebug() Then Response.Write(rsW("NichtBestellbar").Value)
             nichtBestellbar = Not (CInt(rsW("NichtBestellbar").Value) = 0)
             If nichtBestellbar Then 'add even the product is not active 
                 message = getTranslation("Artikel ist derzeit nicht bestellbar! Wir bitten um Ihr Verständnis! ") & " Nr=[" & ArtNr & "]!"
@@ -249,7 +248,7 @@
         'end check 
 
         'check if Preis > 0 then do not show 
-        Dim preisATS : preisATS = getPreis(getLOGIN(), ArtNr, q)
+        Dim preisATS As Double : preisATS = getPreis(getLOGIN(), ArtNr, q)
         If CDbl(preisATS) <= 0 Then
             message = getTranslation("Wir bieten derzeit Produkt mit dieser Nummer nicht!") & " Nr=[" & ArtNr & "]"
             Response.Write(message)
@@ -268,9 +267,9 @@
             objConnectionExecute(SQL)
         Else
             addOneMore = True ' put always in Basket, do not ask anymore!!! -Grigor
-            If addOneMore Or rsW("Quantity") = 0 Then
+            If addOneMore Or rsW("Quantity").Value = 0 Then
                 message = getTranslation("Sie haben eine Position im Warenkorb aktualisiert.")
-                SQL = "UPDATE webWarenkorb set Quantity='" & CStr(rsW("Quantity") + q) & "'" & _
+                SQL = "UPDATE webWarenkorb set Quantity='" & CStr(rsW("Quantity").Value + q) & "'" & _
                       " WHERE ArtNr = " & ArtNr & _
                       " AND SID=" & wkSID
                 rsW = objConnectionExecute(SQL)
@@ -315,9 +314,9 @@
             If UCase(postMode) = UCase(postModeCurrent) Then selected = "checked" Else selected = ""
             'Response.Write selected
             html = html & _
-              "<input " & selected & " type='radio' class='submit' value='" & rsZM("methode") & "' " & _
+              "<input " & selected & " type='radio' class='submit' value='" & rsZM("methode").Value & "' " & _
                " name='PostModeDestination' onClick=""document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & paymode & "&postmode=" & rsZM("methode").Value & "';"">" & _
-              rsZM("methode") & " - " & getTranslation("Preis") & ": " & FormatNumber(PostExpensesMWST, 2) & "<br>"
+              rsZM("methode").Value & " - " & getTranslation("Preis") & ": " & FormatNumber(PostExpensesMWST, 2) & "<br>"
 			
             rsZM.MoveNExt()
         End While
@@ -332,7 +331,7 @@
     Public Function showBasket()
         Dim BasketSQL As String
         Dim cntItems As Double
-        Dim html As String 
+        Dim html As String
         
         BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0)"
 	
@@ -373,7 +372,8 @@
         'exit function 
         'land is ok 
         'Create auftrag (Order)
-        Dim AuftragNr, Notiz, sql As String
+        Dim AuftragNr, Notiz As String
+        Dim SQL As String
         AuftragNr = NextId("buchAuftrag", "Nummer")
 
         ' Issue 59:  eigene Kundengruppe und Vorgangnummernkreis für online Bestellungen  
@@ -387,23 +387,24 @@
 
         Notiz = "Internet Bestellung"
         If notizOrder = "" Then notizOrder = Notiz
-        sql = "INSERT INTO buchAuftrag (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum)  " & _
+        SQL = "INSERT INTO buchAuftrag (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum)  " & _
            "Values(" & AuftragNr & "," & KDNR & ",'" & notizOrder & "','" & PayMode & "','" & PostMode & "','" & PayMode & "', " & SQLNOW(0) & ")"
-        objConnectionExecute(sql)
+        objConnectionExecute(SQL)
 
         'Move Warenkorb To Auftrag, fuer jede Position die eine Seriennummer erfordert wird eigene Zeile eingefuegt 
-        sql = " SELECT " & AuftragNr & " as AuftragNr, ArtNr, Quantity, Notiz " & _
+        SQL = " SELECT " & AuftragNr & " as AuftragNr, ArtNr, Quantity, Notiz " & _
          " FROM webWarenkorb " & _
          " Where SID=" & SID & " AND webWarenkorb.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
-        Dim rsWK : rsWK = objConnectionExecute(sql)
-        Dim subtotal : subtotal = 0
+        
+        Dim rsWK : rsWK = objConnectionExecute(SQL)
+        Dim subtotal As Double : subtotal = 0
    
         While Not rsWK.EOF
 	
             Dim stkToOrder : stkToOrder = CDbl(rsWK("Quantity").Value)
             Dim needsSerialNr : needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "Seriennummer")
             Dim einzelpreis : einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr").Value, stkToOrder, SID))
-            einzelpreis = getPreis(KDNR, rsWK("ArtNr"), stkToOrder)
+            einzelpreis = getPreis(KDNR, rsWK("ArtNr").Value, stkToOrder)
             Dim bezeichnung : bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "bezeichnung")
             Dim positionNotiz : positionNotiz = rsWK("Notiz").Value
         
@@ -424,14 +425,14 @@
             If needsSerialNr & "" = "true" Or needsSerialNr & "" = "-1" Or needsSerialNr & "" = "1" Then ' für jeden Eintrag eine eigene Zeile Erstellen
                 Dim ii
                 For ii = 1 To stkToOrder
-                    sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
-            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr").Value & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
-                    objConnectionExecute(sql)
+                    SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
+                          " VALUES (" & rsWK("AuftragNr").Value & "," & rsWK("ArtNr").Value & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
+                    objConnectionExecute(SQL)
                 Next
             Else
-                sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
-            " VALUES (" & rsWK("AuftragNr") & "," & rsWK("ArtNr").Value & "," & stkToOrder & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
-                objConnectionExecute(sql)
+                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
+                      " VALUES (" & rsWK("AuftragNr").Value & "," & rsWK("ArtNr").Value & "," & stkToOrder & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
+                objConnectionExecute(SQL)
             End If
 			
             rsWK.moveNext()
@@ -441,7 +442,7 @@
         ' response.write "<br>" & sql
         ' Response.Flush
  
-        Dim KG  As Double: KG = getWeightOfOrder("AU", AuftragNr)
+        Dim KG As Double : KG = getWeightOfOrder("AU", AuftragNr)
 
         If (1 * calculateWarenkorbSum() < getFreiHausLieferungUmsatz()) Or (getFreiHausLieferungUmsatz() = -1) Then 'CALCULATE_COSTS 
             'POST SPENDS
@@ -459,11 +460,11 @@
                     PostExpensesMWST = Replace(PostExpensesMWST, ",", ".")
 							                                
                     If IsNumeric(postNr) Then
-                        sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                        SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                " VALUES (" & AuftragNr & ", " & postNr & ", 1," & postSpends & "," & _
                 PostExpensesMWST & ",'" & ArtBezeichnungForPostSpends & "')"
                         'response.write "<br>" & sql
-                        objConnectionExecute(sql)
+                        objConnectionExecute(SQL)
                     Else
                         Response.Write("<br>" & getTranslation("Versandkosten wurden nicht verrechnet!")) 'getTranslation("Post expenses were not calculated!")    
                     End If 'PostNr found
@@ -488,10 +489,10 @@
 							                                
                     If IsNumeric(paymodeNr) Then
                         If CLng(paymodeNr) > 0 Then
-                            sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                            SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                                     " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & payModeExpenses & "," & payModeExpensesMWST & _
                                     ", '" & ArtBezeichnungForPayMode & "')"
-                            objConnectionExecute(sql)
+                            objConnectionExecute(SQL)
                         End If
                     Else
                         Response.Write("<br>" & getTranslation("Zahlungskosten wurden nicht verrechnet!")) 'getTranslation("Payment mode was not calculated!")    
@@ -512,10 +513,10 @@
                 gutscheinSumme = Replace(gutscheinSumme, ",", ".")
                 gutscheinSummeMWST = Replace(gutscheinSummeMWST, ",", ".")
 					     
-                sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & gutscheinArtNr & ", 1," & gutscheinSumme & "," & _
                   gutscheinSummeMWST & ",'" & ArtBezeichnungForGutschein & "')"
-                objConnectionExecute(sql)
+                objConnectionExecute(SQL)
             Else
                 Response.Write("<br>" & getTranslation("Gutschein konnte nicht abgerechnet werden!"))
             End If
@@ -544,10 +545,10 @@
                 mindestBestellmengeSumme = Replace(mindestBestellmengeSumme, ",", ".")
                 mindestBestellmengeMWST = Replace(mindestBestellmengeMWST, ",", ".")
 					     
-                sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & mindestBestellmengeArtNr & ", 1," & mindestBestellmengeSumme & "," & _
                   mindestBestellmengeMWST & ",'" & mindestBestellmengeBez & "')"
-                objConnectionExecute(sql)
+                objConnectionExecute(SQL)
             Else
                 Response.Write("<br>" & getTranslation("Mindestbestellmenge konnte nicht abgerechnet werden!"))
             End If
@@ -564,30 +565,31 @@
             Dim rabatt_Value : rabatt_Value = -1 * getBasketDiscount_Value(subtotal)
   				
   				
-            sql = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+            SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & rabattArtNr & ", 1," & Replace(rabatt_Value, ",", ".") & "," & _
                   Replace(rabatt_MWST, ",", ".") & ",'" & rabattBez & "')"
             'response.Write sql              
-            objConnectionExecute(sql)
+            objConnectionExecute(SQL)
 					     
         End If
         'END WARENKORB RABATT 
     
 		 
         'UPDATE Artikel mit PREIS und BEZEICHNUNG
-        Dim sqlArt : sqlArt = "SELECT * from [buchAuftrag-Artikel]  WHERE RechNr=" & AuftragNr
+        Dim sqlArt As String : sqlArt = "SELECT * from [buchAuftrag-Artikel]  WHERE RechNr=" & AuftragNr
         Dim rsArt : rsArt = objConnectionExecute(sqlArt)
-        Dim sqlUpdatePreis
+        Dim sqlUpdatePreis As String
+        
         While Not rsArt.EOF
             Dim ArtNr : ArtNr = rsArt("ArtNr").Value
-            Dim Stk : Stk = rsArt("Stk").Value
-            Dim ArtikelPreisNetto : ArtikelPreisNetto = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
-            Dim ArtikelPreisBrutto : ArtikelPreisBrutto = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
-            Dim ArtikelPreisEK : ArtikelPreisEK = getEKPreis(ArtNr)
-            Dim PosBezeichnung : PosBezeichnung = rsArt("Bezeichnung").Value
-            Dim ArtikelEAN : ArtikelEAN = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
-	
-            Dim ArtikelBezeichnung
+            Dim Stk As Double : Stk = rsArt("Stk").Value
+            Dim ArtikelPreisNetto As Double : ArtikelPreisNetto = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
+            Dim ArtikelPreisBrutto As Double : ArtikelPreisBrutto = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
+            Dim ArtikelPreisEK As Double : ArtikelPreisEK = getEKPreis(ArtNr)
+            Dim PosBezeichnung As String : PosBezeichnung = rsArt("Bezeichnung").Value
+            Dim ArtikelEAN As String : ArtikelEAN = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
+            Dim ArtikelBezeichnung As String
+            
             'ArtikelBezeichnung = tableValue("grArtikel", "ArtNR", ArtNR, "Bezeichnung")
             'ArtikelBezeichnung = replace(ArtikelBezeichnung, "'", "")
             'ArtikelBezeichnung = getTranslationDok("grArtikel" , ArtNR, "Bezeichnung", ArtikelBezeichnung , Language)
@@ -639,16 +641,16 @@
         rsArt = Nothing
 
         'UPDATE SUMME VOM AUFTRAG
-        Dim sqlUpdateAuftrag
-        Dim sqlSumme : sqlSumme = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
+        Dim sqlUpdateAuftrag As String
+        Dim sqlSumme As String : sqlSumme = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
                                     " SUM(Stk*(PreisATS_Brutto-PreisATS))  as summeMwst, " & _
                                     " SUM(Stk*PreisATS_Brutto)  as summeBrutto  " & _
                                     " FROM [buchAuftrag-artikel] where RechNr = " & AuftragNr
         Dim rsSumme : rsSumme = objConnectionExecute(sqlSumme)
 	
-        Dim Summe : Summe = rsSumme("summe").Value & ""
-        Dim SummeMWST : SummeMWST = rsSumme("SummeMWST").Value & ""
-        Dim SummeBrutto : SummeBrutto = rsSumme("SummeBrutto").Value & ""
+        Dim Summe As Double : Summe = rsSumme("summe").Value & ""
+        Dim SummeMWST As Double : SummeMWST = rsSumme("SummeMWST").Value & ""
+        Dim SummeBrutto As Double : SummeBrutto = rsSumme("SummeBrutto").Value & ""
         sqlUpdateAuftrag = "UPDATE buchAuftrag " & _
                            " SET Summe =" & Replace(Summe, ",", ".") & _
                            ", SummeMWST =" & Replace(SummeMWST, ",", ".") & _
@@ -659,14 +661,14 @@
 	
         'SET KUNDNr2 für abweichende Lieferadresse 
         Dim sqlLI As String, rsLI
-        Dim addressType : addressType = "LI"
+        Dim addressType As String : addressType = "LI"
         Dim kundNr2
 	
         sqlLI = "Select ID from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & KDNR
         'Response.Write sqlLI 
         rsLI = objConnectionExecute(sqlLI)
         If Not rsLI.EOF Then
-            kundNr2 = rsLI("ID")
+            kundNr2 = rsLI("ID").Value
             sqlUpdateAuftrag = "UPDATE buchAuftrag " & _
                         " SET KundNr2 =" & kundNr2 & _
                         " WHERE Nummer = " & AuftragNr
@@ -687,13 +689,13 @@
     End Function
 
 
-''' <summary>
-''' createOrderFromBasketFinish
-''' </summary>
-''' <param name="KDNR"></param>
-''' <param name="AuftragNr"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' createOrderFromBasketFinish
+    ''' </summary>
+    ''' <param name="KDNR"></param>
+    ''' <param name="AuftragNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function createOrderFromBasketFinish(ByVal KDNR, ByVal AuftragNr)
    
         If VARVALUE_DEFAULT("SHOP_SEND_MAILS_AFTER_ORDER", "true") = "true" Then
@@ -713,18 +715,28 @@
    
     End Function
 
+    
+    ''' <summary>
+    ''' getVorgangEigenschaft
+    ''' </summary>
+    ''' <param name="VorgangTyp"></param>
+    ''' <param name="Nummer"></param>
+    ''' <param name="Name"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getVorgangEigenschaft(ByVal VorgangTyp, ByVal Nummer, ByVal Name)
 
-        Dim sql : sql = "select [Value] as val  from buchVorgaengeEigenschaften where VorgangTyp = '" & VorgangTyp & "'" & _
-                       " and Nummer ='" & Nummer & "' and [Name] ='" & Name & "'"
+        Dim sql As String : sql = "select [Value] as val  from buchVorgaengeEigenschaften where VorgangTyp = '" & VorgangTyp & "'" & _
+                                    " and Nummer ='" & Nummer & "' and [Name] ='" & Name & "'"
         Dim rs : rs = ObjConnectionExecute(sql)
 
         If Not rs.EOF Then
-            getVorgangEigenschaft = rs("val")
+            getVorgangEigenschaft = rs("val").Value
         Else
             getVorgangEigenschaft = ""
         End If
-
+        rs.Close()
+        
     End Function
 
 </script>

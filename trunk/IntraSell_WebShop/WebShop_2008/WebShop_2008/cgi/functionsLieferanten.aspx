@@ -19,23 +19,23 @@
         End If
 
         Dim PLZ, Ort, Landname
-        PLZ = TableValue("grPLZ", "IDNR", rsKUND("PLZ"), "PLZ")
-        Ort = TableValue("grPLZ", "IDNR", rsKUND("PLZ"), "Ort")
-        Landname = TableValue("grLand", "IdNr", rsKUND("Land"), "Name")
+        PLZ = TableValue("grPLZ", "IDNR", rsKUND("PLZ").Value, "PLZ")
+        Ort = TableValue("grPLZ", "IDNR", rsKUND("PLZ").Value, "Ort")
+        Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
 
         html = ""
-        If Trim(rsKUND("Firma")) <> "" Then
-            html = html & rsKUND("Firma") & "<br>"
+        If Trim(rsKUND("Firma").Value) <> "" Then
+            html = html & rsKUND("Firma").Value & "<br>"
         End If
-        html = html & rsKUND("Anrede") & " " & rsKUND("Name1") & " " & rsKUND("Name") & "<br>"
-        html = html & rsKUND("Adresse") & " <br>"
+        html = html & rsKUND("Anrede").Value & " " & rsKUND("Name1").Value & " " & rsKUND("Name").Value & "<br>"
+        html = html & rsKUND("Adresse").Value & " <br>"
         html = html & PLZ & "-" & Ort & " <br>"
         html = html & Landname & " <br>"
-        html = html & "Mobil:" & rsKUND("Mobil") & " <br>"
-        html = html & "Tel:" & rsKUND("Tel") & " <br>"
-        html = html & "Fax:" & rsKUND("Fax") & " <br>"
-        html = html & "Email:<a href='mailto:" & rsKUND("Email") & "'>" & rsKUND("Email") & "</a><br>"
-        html = html & "Web:<a href='" & rsKUND("Web") & "'>" & rsKUND("Web") & "</a><br>"
+        html = html & "Mobil:" & rsKUND("Mobil").Value & " <br>"
+        html = html & "Tel:" & rsKUND("Tel").Value & " <br>"
+        html = html & "Fax:" & rsKUND("Fax").Value & " <br>"
+        html = html & "Email:<a href='mailto:" & rsKUND("Email") & "'>" & rsKUND("Email").Value & "</a><br>"
+        html = html & "Web:<a href='" & rsKUND("Web").Value & "'>" & rsKUND("Web").Value & "</a><br>"
 
         printAddressLieferant = html
     End Function
@@ -112,16 +112,18 @@
             html = html & "<tr>"
             html = html & "<td bgcolor='" & rowColor & "'>"
             If showHersteller Then
-                html = html & makeManufacturerView(rs("idnr"))
+                html = html & makeManufacturerView(rs("idnr").Value)
             Else 'Lieferant
-                html = html & makeMerchantView(rs("idnr"))
+                html = html & makeMerchantView(rs("idnr").Value)
             End If
  
             html = html & "</td>"
-            html = html & "<td bgcolor='" & rowColor & "'><p align='right'>" & rs("Produktanzahl") & "</td>"
-            html = html & "<td bgcolor='" & rowColor & "'><a href='default.aspx?pageToShow=" & iff(showHersteller, "Manufacturer", "Merchant") & "Products&idnr=" & rs("IdNR") & ">[" & getTranslation("als Ergebnisliste") & "]</a> oder"
-            html = html & "<br><a href='default.aspx?pageToShow=ProductMap&" & iff(showHersteller, "Manufacturer", "Merchant") & "=" & rs("Firma") & ">[" & getTranslation("in Kategoriebaum") & "]</a></p></td>"
-            html = html & "<td bgcolor='" & rowColor & "'><p align='center'><a href='" & rs("Web") & "'>" & rs("Web") & "</p></td>"
+            html = html & "<td bgcolor='" & rowColor & "'><p align='right'>" & rs("Produktanzahl").Value & "</td>"
+            html = html & "<td bgcolor='" & rowColor & "'><a href='default.aspx?pageToShow=" & iff(showHersteller, "Manufacturer", "Merchant") & "Products&idnr=" & rs("IdNR").Value & _
+            ">[" & getTranslation("als Ergebnisliste") & "]</a> oder"
+            html = html & "<br><a href='default.aspx?pageToShow=ProductMap&" & iff(showHersteller, "Manufacturer", "Merchant") & "=" & rs("Firma").Value & _
+            ">[" & getTranslation("in Kategoriebaum") & "]</a></p></td>"
+            html = html & "<td bgcolor='" & rowColor & "'><p align='center'><a href='" & rs("Web").Value & "'>" & rs("Web").Value & "</p></td>"
             html = html & "</tr>"
  
             rs.MoveNext()

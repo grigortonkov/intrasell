@@ -39,15 +39,15 @@
     
     Function makeForm_PayPal(ByVal amount, ByVal orderId, ByVal client_name, ByVal adress, ByVal postCode, ByVal email) 'As String
 
-        Dim html : html = "" 'As String
+        Dim html As String : html = "" 'As String
 		
         Dim rs
         rs = ObjConnectionexecute("select Bezeichnung, Stk from [buchAuftrag-Artikel] where RechNr=" & orderId)
         Dim item_name : item_name = ""
         Dim item_number : item_number = 0
         While Not rs.EOF
-            item_name = item_name + ", " + rs("Bezeichnung")
-            item_number = item_number + CInt(rs("Stk"))
+            item_name = item_name + ", " + rs("Bezeichnung").Value
+            item_number = item_number + CInt(rs("Stk").Value)
             rs.MoveNext()
         End While
 	

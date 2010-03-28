@@ -10,23 +10,11 @@
         rsPLZ = ObjConnectionexecute("select * from grPLZ order by BLAND, Ort, PLZ")
 
         While Not rsPLZ.EOF
-            Response.Write("new Array(""" & rsPLZ("BLAND") & """,""" & rsPLZ("Ort") & """,""" & rsPLZ("PLZ") & """)," & Chr(13) & Chr(10))
+            Response.Write("new Array(""" & rsPLZ("BLAND").Value & """,""" & rsPLZ("Ort").Value & """,""" & rsPLZ("PLZ").Value & """)," & Chr(13) & Chr(10))
             rsPLZ.MoveNext()
         End While
         Response.Write("new Array("""","""",""""));</SCRIPT>")
     %>
-
-    <script>
-/*LandOrtPLZArray = new Array(
-new Array("Wi","Wien","10"),
-new Array("OÖ","Linz","4020"),
-new Array("OÖ","Urfahr","4040"),
-new Array("OÖ","Traun","4050"),
-new Array("OÖ","St.Magdalena","4070"),
-new Array("Salz","Salzburg","8050")
-);
-*/
-    </script>
 
     <script>
 //

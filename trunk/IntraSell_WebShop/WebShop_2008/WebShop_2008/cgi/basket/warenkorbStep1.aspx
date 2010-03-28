@@ -79,7 +79,6 @@
                 End If
 			
             Next
-	
         End If
 
         emptySet = visualizeWarenkorb("1", Session("LAND"), paymode, postmode, destination)
@@ -103,8 +102,7 @@
             <!-- WARENKORB POSTMODE-->
             <tr>
                 <th height="21" valign="middle">
-                    1.
-                    <%=getTranslation("Transport:")%>
+                    1.<%=getTranslation("Transport:")%>
                 </th>
                 <td height="21" valign="middle" align="left">
                     <%
@@ -114,11 +112,11 @@
                         While Not rsZM.EOF
                             If UCase(Trim(postmode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
                             'Response.Write selected
-                    %>
-                    <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
-                        <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode")%>';">
-                    <%=rsZM("methode")%>
-                    <%
+                            %>
+                            <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
+                                <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';">
+                            <%=rsZM("methode").Value%>
+                            <%
                         rsZM.MoveNExt()
                     End While
                     %>
@@ -152,8 +150,8 @@
                         <!--<option class="submit" value="<%=rsZM("destination")%>"> <%=rsZM("destination")%>
 								-->
                         <input type="radio" class="submit" value="<%=rsZM("destination").Value%>" name="destination"
-                            <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination")%>';">
-                        <%=rsZM("destination")%>
+                            <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination").Value%>';">
+                        <%=rsZM("destination").Value%>
                         <%
                             rsZM.MoveNExt()
                         End While
@@ -172,7 +170,7 @@
                             <%=getTranslation("Waehlen Sie Transportart fuer Ihre Lieferung:")%>
                         </th>
                         <td align="left">
-                            <%=showPossiblePostMethodsAccordungDestination(destination,postMode,paymode)%>
+                            <%=showPossiblePostMethodsAccordungDestination(destination, postMode, paymode)%>
                         </td>
                     </tr>
                     <!-- END OF DELIVERY -->
@@ -194,13 +192,13 @@
                                     rsZM = objConnectionExecute(sql)
                                     While Not rsZM.EOF
                                         'show only PayMethods for the selected destination or general destinations 
-                                        If UCase(Trim(rsZM("destination"))) = "" Or UCase(Trim(rsZM("destination"))) = UCase(Trim(destination)) Then
-                                            If UCase(Trim(paymode)) = UCase(Trim(rsZM("methode"))) Then selected = "checked" Else selected = ""
+                                        If UCase(Trim(rsZM("destination").Value)) = "" Or UCase(Trim(rsZM("destination").Value)) = UCase(Trim(destination)) Then
+                                            If UCase(Trim(paymode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
                                             'Response.Write selected
                                 %>
-                                <input type="radio" class="submit" value="<%=rsZM("methode")%>" name="PayMode" <%=selected%>
-                                    onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=rsZM("methode")%>&postmode=<%=postmode%>';">
-                                <%=rsZM("methode")%>
+                                <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PayMode"
+                                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=rsZM("methode").Value%>&postmode=<%=postmode%>';">
+                                <%=rsZM("methode").Value%>
                                 <%
                                 End If
                                 rsZM.MoveNExt()
@@ -240,14 +238,13 @@ End If 'purchasing allowed
 
 <script language="VB" runat="server">
     Dim rsZM
-    Dim i, pos
-    Dim an, qn, chn
     Dim rsWK
-    Dim sql
+    Dim i As  Integer, pos As  Integer
+    Dim an, qn  As  Integer, chn
+    Dim sql As String
     Dim emptySet
-    Dim paymode, postmode, destination
-    Dim gutscheinNummer
-    Dim selected
-    
+    Dim paymode As String, postmode As String, destination As String
+    Dim gutscheinNummer As String
+    Dim selected As String
 </script>
 

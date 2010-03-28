@@ -6,20 +6,20 @@
     ' Autor: 
     ' Changes: 
     '******************************************************************
-    Function makeMerchantView(ByVal merchantId)
+    Function makeMerchantView(ByVal merchantId) As String
         If merchantId = "" Then
             makeMerchantView = ""
             Exit Function
         End If
   
-        Dim sql, rs
-        sql = " SELECT LieferantNr, Firma, Name, Stars, PaymentMode, Web  " & _
+        Dim SQL As String, rs
+        SQL = " SELECT LieferantNr, Firma, Name, Stars, PaymentMode, Web  " & _
         " FROM lieferantenAdressen INNER JOIN priceCompareHaendler ON " & _
         " (priceCompareHaendler.LieferantNr = lieferantenAdressen.IDNR) " & _
         " AND (lieferantenAdressen.IDNR = priceCompareHaendler.LieferantNr) " & _
         " WHERE LieferantNr = " & merchantId
         'Response.Write sql	 	 
-        rs = objConnectionExecute(sql)
+        rs = objConnectionExecute(SQL)
         If rs.EOF Then
             makeMerchantView = "N/A"
             Exit Function
@@ -51,7 +51,7 @@
         html = html & " <a href=""default.aspx?pageToShow=LieferantenInformationen&merchantId=" & merchantId & """>info</a>"
     
         'TODO: not needed now
-        'if rs("web") <> "" then html = html & " <a href=""merchantPage.aspx?MERCHANT_HOME="& rs("web") &"&merchantId=" & merchantID & """>home</a>" 
+        If rs("web") <> "" Then html = html & " <a href=""merchantPage.aspx?MERCHANT_HOME=" & rs("web").Value & "&merchantId=" & merchantId & """>home</a>"
         html = html & "</td></tr></table>"
     
         makeMerchantView = html
@@ -66,6 +66,12 @@
     End Function
 
 
+    ''' <summary>
+    ''' makeMerchantViewBewertung
+    ''' </summary>
+    ''' <param name="merchantId"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeMerchantViewBewertung(ByVal merchantId)
         If merchantId = "" Then
             makeMerchantViewBewertung = ""
@@ -85,9 +91,9 @@
             Exit Function
         End If
    
-        Dim stars : stars = rs("stars")
+        Dim stars : stars = rs("stars").Value
    
-        Dim i, starshtml
+        Dim i, starshtml As String
         'for i = 1 to cint(stars)  
         '   starshtml = "*" & starshtml
         'next   
@@ -98,10 +104,14 @@
     End Function
 
 
-    '==========================================================================================
-    ' creates image html for the product "bewertung" 
-    '==========================================================================================
-    Function makeBewertungStarsMerchant(ByVal points)
+ 
+    ''' <summary>
+    ''' creates image html for the product "bewertung" 
+    ''' </summary>
+    ''' <param name="points"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function makeBewertungStarsMerchant(ByVal points) As String
 
         If points - Math.Round(points, 0) <= 0.25 Or Math.Round(points, 0) - points > 0.75 Then
             points = Math.Round(points, 0)
@@ -121,14 +131,14 @@
     ' Autor: 
     ' Changes: 
     '******************************************************************
-    Function makeMerchantSimpleView(ByVal merchantId)
+    Function makeMerchantSimpleView(ByVal merchantId) As String
         'Response.Write "Merchant ..."
         If merchantId = "" Then
             makeMerchantSimpleView = "N/A"
             Exit Function
         End If
   
-        Dim sql, rs
+        Dim sql As String, rs
         sql = " SELECT LieferantNr, Firma, Name, Stars, PaymentMode, Web  " & _
         " FROM lieferantenAdressen INNER JOIN priceCompareHaendler ON " & _
         " (priceCompareHaendler.LieferantNr = lieferantenAdressen.IDNR) " & _
@@ -141,14 +151,14 @@
             makeMerchantSimpleView = "N/A"
             Exit Function
         End If
-        Dim stars : stars = rs("stars")
-        Dim i, starshtml
+        Dim stars : stars = rs("stars").Value
+        Dim i As Integer, starshtml As String
         For i = 1 To stars
             starshtml = "*" & starshtml
         Next
         Dim html
         html = "<table border=0><tr><td>" & _
-               " <a href=""cgi/priceCompare/merchantPage.aspx?MERCHANT_HOME=" & rs("web") & "&merchantId=" & merchantId & """ target=""_new"">" & rs("Firma") & "</a>" & _
+               " <a href=""cgi/priceCompare/merchantPage.aspx?MERCHANT_HOME=" & rs("web").Value & "&merchantId=" & merchantId & """ target=""_new"">" & rs("Firma").Value & "</a>" & _
                " <a href=""cgi/priceCompare/merchantPage.aspx?merchantId=" & merchantId & """>info</a>"
         html = html & "</td></tr></table>"
     
@@ -156,10 +166,10 @@
         rs.close()
         'write log for statistics 
         sql = "INSERT INTO login(PATH_TRANSLATED,REMOTE_ADDR,REMOTE_HOST,REMOTE_USER)  VALUES " & _
-        "('showMerchantAsFeaturedMerchant?merchantId=" & merchantId & "','" & _
-               Request.ServerVariables("REMOTE_ADDR ") & " ','" & _
-         Request.ServerVariables("REMOTE_HOST") & "','" & _
-         Request.ServerVariables("REMOTE_USER") & "')"
+                "('showMerchantAsFeaturedMerchant?merchantId=" & merchantId & "','" & _
+                Request.ServerVariables("REMOTE_ADDR ") & " ','" & _
+                Request.ServerVariables("REMOTE_HOST") & "','" & _
+                Request.ServerVariables("REMOTE_USER") & "')"
         objConnectionExecute(sql)
     End Function
 
@@ -262,9 +272,9 @@
             'Response.Write sql
         End If
         While Not rs.EOF And i < MAX_PRODUCTS
-            If InStr(listedMerchants, "," & rs("LieferantNr")) <= 0 Then
-                html = html & makeMerchantSimpleView(rs("LieferantNr"))
-                listedMerchants = listedMerchants & "," & rs("LieferantNr")
+            If InStr(listedMerchants, "," & rs("LieferantNr").Value) <= 0 Then
+                html = html & makeMerchantSimpleView(rs("LieferantNr").Value)
+                listedMerchants = listedMerchants & "," & rs("LieferantNr").Value
                 i = i + 1
             End If
             rs.movenext()
@@ -295,13 +305,19 @@
         rs = objConnectionExecute(sql)
          
         While Not rs.EOF
-            strAll = strAll & ", " & rs("Methode")
+            strAll = strAll & ", " & rs("Methode").Value
             rs.moveNext()
         End While
         If strAll = "" Then strAll = "xx "
         listDeliveryMethods = Mid(strAll, 3)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="MerchantId"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function listPaymentMethods(ByVal MerchantId)
         Dim rs, sql, strAll
         sql = "SELECT * FROM [priceCompareHaendler_Zahlungsmethoden] " & _
@@ -309,7 +325,7 @@
         rs = objConnectionExecute(sql)
          
         While Not rs.EOF
-            strAll = strAll & ", " & rs("Methode")
+            strAll = strAll & ", " & rs("Methode").Value
             rs.moveNext()
         End While
         If strAll = "" Then strAll = "xx "
@@ -324,30 +340,38 @@
     Function printAddressLieferanten(ByVal kdnr)
 
         printAddressLieferanten = ""
-        Exit Function
+        '        Exit Function
         Dim rsKUND
-        Dim sql
+        Dim sql As String
         sql = "Select * from lieferantenAdressen where IDNR=" & kdnr
         rsKUND = objConnectionExecute(sql)
-        Dim PLZ, Ort, Landname
-        PLZ = TableValue("grPLZ", "IDNR", rsKUND("PLZ"), "PLZ")
-        Ort = TableValue("grPLZ", "IDNR", rsKUND("PLZ"), "Ort")
-        Landname = TableValue("grLand", "IdNr", rsKUND("Land"), "Name")
+        Dim PLZ, Ort, Landname As String
+        PLZ = TableValue("grPLZ", "IDNR", rsKUND("PLZ").Value, "PLZ")
+        Ort = TableValue("grPLZ", "IDNR", rsKUND("PLZ").Value, "Ort")
+        Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
  
-        If Trim(rsKUND("Firma")) <> "" Then
-            Response.Write("Fa. " & rsKUND("Firma") & " <br>")
+        If Trim(rsKUND("Firma").Value) <> "" Then
+            Response.Write("Fa. " & rsKUND("Firma").Value & " <br>")
         End If
         '=rsKUND ("Anrede")%> <%'=rsKUND ("Name")<br>%> 
-        Response.Write(rsKUND("Adresse") & "<br>")
+        Response.Write(rsKUND("Adresse").Value & "<br>")
         Response.Write(PLZ & "-" & Ort & "<br>")
         Response.Write(Landname & "<br>")
-        Response.Write("Tel:" & rsKUND("Tel") & "<br>")
+        Response.Write("Tel:" & rsKUND("Tel").Value & "<br>")
 
     End Function
 
-    '
-    ' searches for merchants of a productin a zip region 
-    '
+ 
+    ''' <summary>
+    ''' searches for merchants of a productin a zip region 
+    ''' </summary>
+    ''' <param name="bundesland"></param>
+    ''' <param name="ort"></param>
+    ''' <param name="plz"></param>
+    ''' <param name="artnr"></param>
+    ''' <param name="searchWideArea"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function findMerchants(ByVal bundesland, ByVal ort, ByVal plz, ByVal artnr, ByVal searchWideArea)
         If bundesland = "" And ort = "" And plz = "" Then
             Call drawErrorBox("Fehler", "Sie haben keine Kriterien eingegeben!", "", "")
@@ -391,9 +415,9 @@
         '<%
         '      Dim i : i = 0
         '      While Not rs.EOF
-        '		%><tr><td width="177"> <%=makeMerchantView(rs("IDNR")) %> 
+        '		%><tr><td width="177"> <%=makeMerchantView(rs("IDNR")).Value %> 
         '		</td><td width="166"><% 
-        '          Call printAddressLieferanten(rs("IDNR"))
+        '          Call printAddressLieferanten(rs("IDNR").Value)
         '		%>
         '		</td><td>
 
@@ -446,15 +470,15 @@
     ' Getter and Setter for the Haendler Vars 
     '********************************************************************************************
     Function varValueMerchant(ByVal lieferantNr, ByVal VarNAme)
-        Dim sql : sql = "select * from priceCompareHaendlerOfVars where LieferantNr= " & _
+        Dim sql As String : sql = "select * from priceCompareHaendlerOfVars where LieferantNr= " & _
                        lieferantNr & " And [Name] Like '" & VarNAme & "'"
         Dim rs : rs = objConnectionExecute(sql)
-        Dim UrlShop
+        Dim UrlShop As String
         If rs.EOF Then
             Response.Write("Die Variable [" & VarNAme & "] ist nicht definiert für Haendler # " & lieferantNr & "!")
             varValueMerchant = ""
         Else
-            varValueMerchant = rs("Wert")
+            varValueMerchant = rs("Wert").Value
         End If
     End Function
 

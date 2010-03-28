@@ -1,9 +1,16 @@
 <script language="VB" runat="server">  
-    'needs: 
+
+
+    ''' <summary>
+    '''     'needs: 
     'Session("SQLString")
     'Session("SQLDescription")
     'SID
-
+    ''' </summary>
+    ''' <param name="SQLString"></param>
+    ''' <param name="SQLDescription"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function saveSessionSearch(ByVal SQLString, ByVal SQLDescription)
         Dim SQL As String
         'response.Write "Save search!" 

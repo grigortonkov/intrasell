@@ -48,7 +48,7 @@
                             Tel:
                         </td>
                         <td width="133">
-                            <%=rsM("Tel")%>
+                            <%=rsM("Tel").Value%>
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +58,7 @@
                             Tel2:
                         </td>
                         <td width="133">
-                            <%=rsM("Tel2")%>
+                            <%=rsM("Tel2").Value%>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                             Fax:
                         </td>
                         <td width="133">
-                            <%=rsM("Fax")%>
+                            <%=rsM("Fax").Value%>
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@
                             Fax2:
                         </td>
                         <td width="133">
-                            <%=rsM("Fax2")%>
+                            <%=rsM("Fax2").Value%>
                         </td>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
                             Mobil:
                         </td>
                         <td width="133">
-                            <%=rsM("Mobil")%>
+                            <%=rsM("Mobil").Value%>
                         </td>
                     </tr>
                     <tr>
@@ -97,8 +97,8 @@
                             Email:
                         </td>
                         <td width="223">
-                            <a href="mailto:<%=rsM("Email")%>">
-                                <%=rsM("Email")%></a>
+                            <a href="mailto:<%=rsM("Email").Value%>">
+                                <%=rsM("Email").Value%></a>
                         </td>
                         <td width="112">
                         </td>
@@ -110,8 +110,8 @@
                             Web:
                         </td>
                         <td width="223">
-                            <a href="<%="merchantPage.aspx?merchantId=" & merchantId & "&MERCHANT_HOME="&rsM("Web")%>">
-                                <%=rsM("Web")%></a>
+                            <a href="<%="merchantPage.aspx?merchantId=" & merchantId & "&MERCHANT_HOME="&rsM("Web").Value%>">
+                                <%=rsM("Web").Value%></a>
                         </td>
                         <td width="112">
                         </td>
@@ -156,10 +156,10 @@
                                 <b>Preis per Lieferung (€)</b>
                             </td>
                             <td align="center" width="50%">
-                                <%  If IsNumeric(rsM("deliveryPrice")) Then
-                                        Response.Write("€ " & FormatNumber(rsM("deliveryPrice"), 2))
+                                <%  If IsNumeric(rsM("deliveryPrice").Value) Then
+                                        Response.Write("€ " & FormatNumber(rsM("deliveryPrice").Value, 2))
                                     Else
-                                        Response.Write(rsM("deliveryPrice"))
+                                        Response.Write(rsM("deliveryPrice").Value)
                                     End If
                                 %>
                             </td>
@@ -174,14 +174,14 @@
                             sql = " SELECT  * FROM grZahlungsbedingung "
                             rsM = objConnectionExecute(sql)
                             While Not rsM.EOF
-                                sql = " SELECT * FROM [priceCompareHaendler_Zahlungsbedingungen] WHERE Bedingung= " & rsM("Nr") & " and IDNR= " & merch
+                                sql = " SELECT * FROM [priceCompareHaendler_Zahlungsbedingungen] WHERE Bedingung= " & rsM("Nr").Value & " and IDNR= " & merch
                                 rsZ = objConnectionExecute(sql)
-				if rsZ.BOF and rsZ.EOF then	check = false else check = true	end if		
+                                If rsZ.BOF And rsZ.EOF Then check = False Else check = True
                         %>
                         <tr>
                             <td align="right" width="50%">
                                 <b>
-                                    <%=rsM("Methode")%>:</b>
+                                    <%=rsM("Methode").Value%>:</b>
                             </td>
                             <td align="center" width="50%">
                                 <%If check = True Then%><img src="cgi/priceCompare/images/check-ja.gif"><%Else%><img
@@ -202,14 +202,14 @@
                             sql = " SELECT * FROM grZahlungsmethode "
                             rsM = objConnectionExecute(sql)
                             While Not rsM.EOF
-                                sql = " SELECT * FROM [priceCompareHaendler_Zahlungsmethoden] WHERE methode='" & rsM("methode") & "' and IDNR= " & merch
+                                sql = " SELECT * FROM [priceCompareHaendler_Zahlungsmethoden] WHERE methode='" & rsM("methode").Value & "' and IDNR= " & merch
                                 rsZ = objConnectionExecute(sql)
-				if rsZ.BOF and rsZ.EOF then	check = false else check = true	end if		
+                                If rsZ.BOF And rsZ.EOF Then check = False Else check = True
                         %>
                         <tr>
                             <td align="right" width="50%">
                                 <b>
-                                    <%=rsM("Methode")%>:</b>
+                                    <%=rsM("Methode").Value%>:</b>
                             </td>
                             <td align="center" width="50%">
                                 <%If check = True Then%><img src="cgi/priceCompare/images/check-ja.gif">
@@ -235,12 +235,12 @@
                             While Not rsM.EOF
                                 sql = " SELECT * FROM [priceCompareHaendler_Lieferungbedingungen] WHERE BedingungNr= " & rsM("Nr") & " and IDNR= " & merch
                                 rsZ = objConnectionExecute(sql)
-				if rsZ.BOF and rsZ.EOF then	check = false else check = true	end if		
+                                If rsZ.BOF And rsZ.EOF Then check = False Else check = True
                         %>
                         <tr>
                             <td align="right" width="50%">
                                 <b>
-                                    <%=rsM("Bedingung")%>:</b>
+                                    <%=rsM("Bedingung").Value%>:</b>
                             </td>
                             <td align="center" width="50%">
                                 <%If check = True Then%><img src="cgi/priceCompare/images/check-ja.gif"><%Else%><img
@@ -263,12 +263,12 @@
                             While Not rsM.EOF
                                 sql = " SELECT * FROM [priceCompareHaendler_Services] WHERE ServiceNr= " & rsM("Nr") & " and IDNR= " & merch
                                 rsZ = objConnectionExecute(sql)
-				if rsZ.BOF and rsZ.EOF then	check = false else check = true	end if		
+                                If rsZ.BOF And rsZ.EOF Then check = False Else check = True
                         %>
                         <tr>
                             <td align="right" width="50%">
                                 <b>
-                                    <%=rsM("Service")%>:</b>
+                                    <%=rsM("Service").Value%>:</b>
                             </td>
                             <td align="center" width="50%">
                                 <%If check = True Then%><img src="cgi/priceCompare/images/check-ja.gif"><%Else%><img
@@ -312,12 +312,12 @@
                             While Not rsFil.EOF
                         %><tr>
                             <td width="300">
-                                <% Call printAddressLieferanten(rsFil("FilialeNr"))%>
+                                <% Call printAddressLieferanten(rsFil("FilialeNr").Value)%>
                                 <hr>
                             </td>
                             <td width="300">
                                 <%  If Not rsFil.EOF Then
-                                        Call printAddressLieferanten(rsFil("FilialeNr"))
+                                        Call printAddressLieferanten(rsFil("FilialeNr").Value)
                                         ik = ik + 1
                                         rsFil.movenext()
                                     End If

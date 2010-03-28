@@ -15,6 +15,12 @@ function createSearchForm(categoryId)
     createSearchForm = temp
 End Function
 
+''' <summary>
+''' Suchform erstellen
+''' </summary>
+''' <param name="categoryId"></param>
+''' <returns></returns>
+''' <remarks></remarks>
 Function createSearchFormNoCache(ByVal categoryId)
     Dim searchFreeText : searchFreeText = Request("searchFreeText")
     Const MAX_KEYWORDS_TO_SHOW = 15
@@ -44,10 +50,10 @@ Function createSearchFormNoCache(ByVal categoryId)
     Dim i : i = 0
     While Not rs.EOF And i < MAX_KEYWORDS_TO_SHOW
         i = i + 1
-        Dim kwName : kwName = Server.HtmlEncode(rs("Name"))
+        Dim kwName : kwName = Server.HtmlEncode(rs("Name").Value)
         html = html & "<tr><td>" & kwName & "<br>"
         'html = html &  "</td>"
-        sql = "Select distinct [value] from priceCompareKeyWordsToProducts Where KeywordId=" & rs("KeywordId") & " ORDER BY [VALUE]"
+        sql = "Select distinct [value] from priceCompareKeyWordsToProducts Where KeywordId=" & rs("KeywordId").Value & " ORDER BY [VALUE]"
         rsSub = objConnectionExecute(sql)
       
         'html = html & "<td>" 
@@ -57,10 +63,10 @@ Function createSearchFormNoCache(ByVal categoryId)
             'response.write "rs(Name)=" & kwName 
             If kwName <> "" And Request(kwName) <> "" Then html = html & "<OPTION></OPTION>" 'Empty choice for reducing the search criterias
 			
-            html = html & "<OPTION SELECTED>" & Request(kwName) & "</OPTION>"
+            html = html & "<OPTION SELECTED>" & Request(kwName).Value & "</OPTION>"
 			
             While Not rsSub.EOF
-                html = html & "<OPTION>" & rsSub("Value") & "</OPTION>"
+                html = html & "<OPTION>" & rsSub("Value").Value & "</OPTION>"
                 rsSub.MoveNext()
             End While
             rsSub.close() : rsSub = Nothing
@@ -106,7 +112,7 @@ End Function
 'function makeBanner(ArtKatNr, Nr) 
 '  makeBanner = "<img border=""0"" src=""../banners/Intrasell.gif"" alt="""" width=468 height=60>"
 'end function 
-'REal implementation from spas, Grigor
+'Real implementation from spas, Grigor
 Function makeBanner(ByVal ArtKatNr, ByVal Nr)
     Dim sql1
     Dim rsBan
@@ -128,18 +134,18 @@ Function makeBanner(ByVal ArtKatNr, ByVal Nr)
         Exit Function
     Else    'new record in banner logs
         sql1 = "INSERT INTO PriceCompareBannersLogs (BannerId, FromIP , ReferingURL, [Type]) " & _
-           " Values( " & rsBan("BannerId") & ",'" & remoteAddress & "'," & localURL & "'," & "'View')"
+           " Values( " & rsBan("BannerId").Value & ",'" & remoteAddress & "'," & localURL & "'," & "'View')"
         'response.write sql1
         objConnectionExecute(sql1)
         'increment impressions 
-        sql1 = "UPDATE priceCompareBanners set ImpresionsCount = ImpresionsCount  + 1  WHERE bannerId = " & rsBan("BannerId")
+        sql1 = "UPDATE priceCompareBanners set ImpresionsCount = ImpresionsCount  + 1  WHERE bannerId = " & rsBan("BannerId").Value
         objConnectionExecute(sql1)
         Dim target : target = ""
         If rsBan("openInNewWindow") Then
             target = "target =""_new"""
         End If
-        bannerString = "<a " & target & " href=""RedirectBanners.aspx?ID=" & rsBan("bannerId") & """>"
-        bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile") & """ alt=""" & rsBan("BannerName") & """></a>"
+        bannerString = "<a " & target & " href=""RedirectBanners.aspx?ID=" & rsBan("bannerId").Value & """>"
+        bannerString = bannerString & "<img border=""0""  src=""" & rsBan("BannerFile").Value & """ alt=""" & rsBan("BannerName").Value & """></a>"
     End If
     rsBan.close()
     rsBan = Nothing

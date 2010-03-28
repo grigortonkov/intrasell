@@ -77,16 +77,16 @@
         Dim i : i = 0
         While Not rs.EOF And i < MAX_KEYWORDS_TO_SHOW
             i = i + 1
-            Dim kwName : kwName = Server.HtmlEncode(rs("Name"))
+            Dim kwName : kwName = Server.HtmlEncode(rs("Name").Value)
             html = html & "<tr><td>"
-            sql = "Select distinct [value] from [grArtikel-KeyWordsToProducts] Where KeywordId=" & rs("KeywordId") & " ORDER BY [VALUE]"
+            sql = "Select distinct [value] from [grArtikel-KeyWordsToProducts] Where KeywordId=" & rs("KeywordId").Value & " ORDER BY [VALUE]"
             rsSub = objConnectionExecute(sql)
       
             'html = html & "<td>" 
             'make keywords 
             Dim maxSize : maxSize = 0
-            If IsNumeric(rs("MaxSizeForComboBox")) Then
-                maxSize = rs("MaxSizeForComboBox") * 1
+            If IsNumeric(rs("MaxSizeForComboBox").Value) Then
+                maxSize = rs("MaxSizeForComboBox").Value * 1
             Else
                 maxSize = 0
             End If
@@ -96,11 +96,11 @@
             If maxSize > 1 And Not rsSub.EOF Then ' comboBox is needed	
                 html = html & "<br>" & kwName
                 html = html & "<SELECT Name=""" & kwName & """ style=""width: 70%; position: relative;"">"
-                'response.write "rs(Name)=" & kwName 
+                'response.write "rs(Name).Value=" & kwName 
                 If kwName <> "" And Request(kwName) <> "" Then html = html & "<OPTION></OPTION>" 'Empty choice for reducing the search criterias
                 html = html & "<OPTION SELECTED>" & Request(kwName) & "</OPTION>"
                 While Not rsSub.EOF
-                    html = html & "<OPTION>" & rsSub("Value") & "</OPTION>"
+                    html = html & "<OPTION>" & rsSub("Value").Value & "</OPTION>"
                     rsSub.MoveNext()
                 End While
                 html = html & "</SELECT></td>"
@@ -109,7 +109,7 @@
                     If Not rsSub.EOF Then
                         Dim kwChecked : kwChecked = ""
                         If Request(kwName) <> "" Then kwChecked = "checked"
-                        html = html & "<input class='extra' type='checkbox' name='" & kwName & "' value='" & rsSub("Value") & "' " & kwChecked & ">"
+                        html = html & "<input class='extra' type='checkbox' name='" & kwName & "' value='" & rsSub("Value").Value & "' " & kwChecked & ">"
                         html = html & "&nbsp;" & kwName
                     End If
                 Else   ' text Box is needed 
@@ -139,17 +139,25 @@
     End Function
 
 
-    'make SELECT for Hersteller 
-    Function makeSelectForHersteller(ByVal ArtKAtNR, ByVal currentSQL, ByVal defaultHersteller)
+
+    ''' <summary>
+    ''' make SELECT for Hersteller 
+    ''' </summary>
+    ''' <param name="ArtKatNR"></param>
+    ''' <param name="currentSQL"></param>
+    ''' <param name="defaultHersteller"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function makeSelectForHersteller(ByVal ArtKatNR As String, ByVal currentSQL As String, ByVal defaultHersteller As String)
         Dim html, sqlF, rsF
   
         If Session("CURRENT_SEARCH") <> "" Then
             sqlF = "Select distinct firma from (" & Session("CURRENT_SEARCH") & ") NEWTBL " & _
                    " group by Firma order by Firma"
         Else
-            If ArtKAtNR >= 0 Then  'select only the meaning Hersteller from this cat 
+            If ArtKatNR >= 0 Then  'select only the meaning Hersteller from this cat 
                 sqlF = "Select distinct Firma from lieferantenAdressen where Rolle like 'Hersteller' " & _
-                       "and idnr in (select HerstellerNr from grArtikel where ArtKatNr=" & ArtKAtNR & ") " & _
+                       "and idnr in (select HerstellerNr from grArtikel where ArtKatNr=" & ArtKatNR & ") " & _
                        "group by Firma order by Firma"
             End If
         End If
@@ -170,7 +178,7 @@
         html = html & "<option value=""ALLE"">" & getTranslation("ALLE")
         Dim firma
         While Not rsF.EOF
-            firma = rsF("Firma")
+            firma = rsF("Firma").Value
             'cut if more than 13 chars 
             If Len(firma) > 12 Then firma = Left(firma, 12) & ".."
             html = html & "<option value=""" & firma & """>" & firma
@@ -258,7 +266,8 @@
         End If
 		
         If Hersteller <> "" And Left(Hersteller, 3) <> "ALL" Then
-            whereClause = whereClause & " AND herstellerNr in (select IDNR from lieferantenAdressen where [Name] Like  '" & META_CHAR & Hersteller & META_CHAR & "' or [Firma] Like  '" & META_CHAR & Hersteller & META_CHAR & "') "
+            whereClause = whereClause & " AND herstellerNr in (select IDNR from lieferantenAdressen where [Name] Like  '" & _
+            META_CHAR & Hersteller & META_CHAR & "' or [Firma] Like  '" & META_CHAR & Hersteller & META_CHAR & "') "
         End If
 		
         'Response.Write "Global:" & request("GlobalSearch")

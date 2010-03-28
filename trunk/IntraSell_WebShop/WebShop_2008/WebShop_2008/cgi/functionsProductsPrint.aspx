@@ -2,14 +2,21 @@
 '===============================================================================
 ' creates form for product print
 ' NOT IN USE 
-'===============================================================================
+    '===============================================================================
+    
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="ArtNr1"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function printProductsSelectForm(ByVal ArtNr1) As String
-        Dim html
+        Dim html As String
         Const COUNT_CHARS_TO_COMPARE = 30
         html = "<form action=""default.aspx?pageToShow=compareTwoProducts"">"
         html = html + "<input name=""artNr1"" type=""hidden"" value=""" & ArtNr1 & """>"
         html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareTwoProducts"">"
-        Dim sql, rs
+        Dim sql As String, rs
         sql = "Select artNr, Bezeichnung from grArtikel where ArtNr <> " & ArtNr1 & _
               " AND ArtKatNR in (Select  ArtKatNR from grArtikel where ArtNr = " & ArtNr1 & ") ORDER BY Bezeichnung"
         rs = objConnectionExecute(sql)
@@ -17,13 +24,13 @@
         html = html & "vergleichen mit <select name=""ArtNr2"">"
         Dim compareWithName
         While Not rs.EOF
-            compareWithName = rs("Bezeichnung")
+            compareWithName = rs("Bezeichnung").Value
    
             If Len(compareWithName) > COUNT_CHARS_TO_COMPARE Then
                 compareWithName = Left(compareWithName, COUNT_CHARS_TO_COMPARE) & " ..."
             End If
        
-            html = html & "<option value=""" & rs("ArtNr") & """>" & compareWithName
+            html = html & "<option value=""" & rs("ArtNr").Value & """>" & compareWithName
             rs.moveNExt()
         End While
  

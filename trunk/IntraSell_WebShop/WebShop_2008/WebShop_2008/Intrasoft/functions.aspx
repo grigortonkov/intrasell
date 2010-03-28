@@ -293,9 +293,16 @@
         End If
     End Function
 
-    '********************************************************************
-    'SUCHT EINE VARIABLE IN EINE TABELLE
-    '********************************************************************
+ 
+    ''' <summary>
+    ''' SUCHT EINE VARIABLE IN EINE TABELLE
+    ''' </summary>
+    ''' <param name="tablename"></param>
+    ''' <param name="colname"></param>
+    ''' <param name="varname"></param>
+    ''' <param name="searchfield"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function TABLEVALUE(ByVal tablename, ByVal colname, ByVal varname, ByVal searchfield) As String
         On Error Resume Next
         Dim rs
@@ -305,7 +312,7 @@
         End If
         'on error resume next
         'response.write varname
-        Dim SQLString
+        Dim SQLString As String
         SQLString = "SELECT " & searchfield & " FROM " & tablename & " WHERE " & colname & "=" & varname
         'SQLString = "SELECT * FROM " &  tablename & " WHERE " & colname & "=" & varname  
         'response.write SQLString & " --> " & searchfield 
@@ -319,10 +326,14 @@
         rs.close()
     End Function
 
-    '********************************************************************
-    'SUCHT EINE VARIABLE IN EINE TABELLE
-    '********************************************************************
-    Function FIRSTVALUE(ByVal SQLString) As Object
+ 
+    ''' <summary>
+    ''' SUCHT EINE VARIABLE IN EINE TABELLE
+    ''' </summary>
+    ''' <param name="SQLString"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function FIRSTVALUE(ByVal SQLString As String) As Object
         Dim rs
         rs = objConnectionExecute(SQLString)
         If rs.EOF Then
@@ -333,10 +344,13 @@
         rs.close()
     End Function
 
-
-    '=============================================================================
-    ' getFirstField
-    '=============================================================================
+ 
+    ''' <summary>
+    ''' getFirstField
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getFirstField(ByVal sql) As Object
         Dim rs
 
@@ -344,7 +358,7 @@
         If rs.EOF Then
             getFirstField = Nothing
         Else
-            getFirstField = rs.fields(0)
+            getFirstField = rs.fields(0).Value
         End If
         rs.close()
     End Function
@@ -892,11 +906,15 @@
     End Function
 
 
-    '********************************************************************
-    ' generates nextId from Table and FieldName 
-    ' fileNames - array with filenames(normaly in the user's folder), if empty will be created an empty document
-    ' return value is the new documentId
-    '********************************************************************
+    ''' <summary>
+    '''     generates nextId from Table and FieldName 
+    '''     fileNames - array with filenames(normaly in the user's folder), if empty will be created an empty document
+    '''     return value is the new documentId
+    ''' </summary>
+    ''' <param name="table"></param>
+    ''' <param name="column"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function nextId(ByVal table As String, ByVal column As String) As Long
         Dim newId, sql, rs
         'find the next Id
@@ -1030,6 +1048,13 @@
     Dim fsa
     Dim fea
     
+    ''' <summary>
+    ''' query2list
+    ''' </summary>
+    ''' <param name="myquery"></param>
+    ''' <param name="listname"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2list(ByVal myquery, ByVal listname)
         htmlstart = "<select name='" & listname & "'><option></option>"
         htmlend = "</select>"
@@ -1040,6 +1065,14 @@
         Return query2html(myquery)
     End Function
 
+    ''' <summary>
+    ''' query2listMultiLines
+    ''' </summary>
+    ''' <param name="myquery"></param>
+    ''' <param name="listname"></param>
+    ''' <param name="lines"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2listMultiLines(ByVal myquery, ByVal listname, ByVal lines)
         htmlstart = "<select name='" & listname & "' size='" & lines & "'>"
         rowstart = "<option>"
@@ -1050,6 +1083,12 @@
         Return query2html(myquery)
     End Function
 
+    ''' <summary>
+    ''' query2table
+    ''' </summary>
+    ''' <param name="myquery"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2table(ByVal myquery)
         htmlstart = "<table border=1>"
         htmlend = "</table>"
@@ -1060,6 +1099,12 @@
         Return query2html(myquery)
     End Function
 
+    ''' <summary>
+    ''' query2form
+    ''' </summary>
+    ''' <param name="myquery"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2form(ByVal myquery)
         htmlstart = ""
         htmlend = ""
@@ -1073,6 +1118,12 @@
         Return query2html(myquery)
     End Function
 
+    ''' <summary>
+    ''' query2entryform
+    ''' </summary>
+    ''' <param name="myquery"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2entryform(ByVal myquery)
         htmlstart = ""
         htmlend = ""
@@ -1086,8 +1137,13 @@
         Return query2html(myquery)
     End Function
 
-    '********************************************************************
-    '********************************************************************
+ 
+    ''' <summary>
+    ''' query2html
+    ''' </summary>
+    ''' <param name="inputquery"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function query2html(ByVal inputquery As Object)
         'set conntemp=server.createobject("adodb.connection")
         'conntemp.open "DSN=Student;uid=student;pwd=magic"
@@ -1138,8 +1194,15 @@
     End Function
 
 
-
-    'sqlToHTML
+ 
+    ''' <summary>
+    ''' sqlToHTML
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <param name="showColNames"></param>
+    ''' <param name="makeHTMLTable"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function sqlToHTML(ByVal sql, ByVal showColNames, ByVal makeHTMLTable) As String
         Dim html
         Dim rs
@@ -1169,7 +1232,14 @@
     End Function
  
  
-    'sqlToHTML
+    ''' <summary>
+    ''' sqlToHTML
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <param name="showColNames"></param>
+    ''' <param name="makeHTMLTable"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function sqlToSimple(ByVal sql, ByVal showColNames, ByVal makeHTMLTable) As String
         Dim html
         Dim rs
@@ -1192,7 +1262,13 @@
     End Function
  
  
-    'url = Replace(url"Ae", "Ä", )
+    
+    ''' <summary>
+    ''' url = Replace(url"Ae", "Ä", )
+    ''' </summary>
+    ''' <param name="url"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function retainUmlaute(ByVal url) As String
         url = Replace(url, "Ae", "Ä")
         url = Replace(url, "Oe", "Ö")
@@ -1216,14 +1292,19 @@
         retainUmlaute = url
     End Function
 
-  
-  
-    'adds spaces to the regquired length 
+ 
+    ''' <summary>
+    ''' adds spaces to the regquired length 
+    ''' </summary>
+    ''' <param name="stringToPad"></param>
+    ''' <param name="length"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function pad(ByVal stringToPad, ByVal length)
   
-        Dim i : i = 0
+        Dim i As Integer : i = 0
         If Len(stringToPad) < length Then
-            Dim missingChars : missingChars = length - Len(stringToPad)
+            Dim missingChars As Integer : missingChars = length - Len(stringToPad)
             For i = 1 To missingChars
                 stringToPad = stringToPad & " "
             Next
