@@ -53,7 +53,7 @@
 <%=getTranslation("Dieses E-Mail wurde an Sie via nachfolgender gesendet.")%> <%=VARVALUE ("EMAIL")%> 
 <%=getTranslation("Es beinhaltet Produktinformationen welche Ihnen ein Freund mitteilen m&ouml;chte:")%>
 <%  Response.Write("http://" & varvalue("DOMAIN") & "/cgi/default.aspx?ArtNr=" & Request("ArtNr"))%>
-		</textarea>
+        </textarea>
             </td>
         </tr>
         <tr>

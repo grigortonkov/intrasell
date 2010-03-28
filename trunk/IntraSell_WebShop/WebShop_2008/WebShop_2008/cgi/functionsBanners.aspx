@@ -27,9 +27,9 @@
                " ORDER BY ImpresionsCount" ' this way we will show alwas the banner with smallest impressions
         'Response.Write sql1: Response.end      
         rsBan = objConnectionExecute(sql1)
-		
+        
         'Response.Write sql1
-	
+    
         If rsBan.EOF Then ' no such banner
             'bannerString = "Banner not found"
             'response.Write "Banner not found"
@@ -42,8 +42,8 @@
                     Exit Function
                 End If
             End If
-			
-            makeBanner = "" 'kein Banner definiert  				
+            
+            makeBanner = "" 'kein Banner definiert                  
             Exit Function
         Else    'new record in banner logs
             sql1 = "INSERT INTO webBannersLogs (BannerId, FromIP , ReferingURL, [Type]) " & _

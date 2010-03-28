@@ -19,13 +19,13 @@
         sql = "insert into lagerLagerBuchung (Email, ArtNr, LagerOrt, Stk, Datum) " & _
          "VALUES ('" & Email & "'," & ArtNr & "," & LagerOrt & "," & Stk & "," & TOSQLDATE(ReserviertBis) & ")"
         Call ObjConnectionExecute(sql)
-		
+        
         Call createUpdateLager(ArtNr, LagerOrt, 0)
         'set reserviert field 
         sql = "update [grArtikel-Lagerbestand] set ReserviertStk = ReserviertStk + " & Stk & _
           " where lagerOrt=" & LagerOrt & " and ArtNr=" & ArtNr
         Call ObjConnectionExecute(sql)
-				
+                
         Response.Write("Reservation ok!")
     End If
 

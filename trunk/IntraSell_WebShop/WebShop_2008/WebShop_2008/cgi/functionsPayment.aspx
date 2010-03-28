@@ -40,7 +40,7 @@
     Function makeForm_PayPal(ByVal amount, ByVal orderId, ByVal client_name, ByVal adress, ByVal postCode, ByVal email) 'As String
 
         Dim html As String : html = "" 'As String
-		
+        
         Dim rs
         rs = ObjConnectionexecute("select Bezeichnung, Stk from [buchAuftrag-Artikel] where RechNr=" & orderId)
         Dim item_name : item_name = ""
@@ -50,8 +50,8 @@
             item_number = item_number + CInt(rs("Stk").Value)
             rs.MoveNext()
         End While
-	
-	
+    
+    
         html = html & "<form action=""https://www.paypal.com/cgi-bin/webscr"" method=""post"" name='Pay' target='PayResponse'>"
         html = html & "  <input type=""hidden"" name=""cmd"" value=""_xclick"">"
         html = html & "  <input type='hidden' name='business' value='" & VARVALUE_DEFAULT("SHOP_PAYPAL_BUSINESS", "office@yourdomain.com") & "'>"

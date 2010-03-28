@@ -54,21 +54,21 @@
 </form>
 
 <script>
-	function checkSame () {
-		var n;
-		var cn;
-		n = document.formCPWD.item ("NewPasswd").value;
-		cn = document.formCPWD.item ("CNewPasswd").value;
-			if (n != cn )
-				alert ("The Password doesn't match");
-			else {
-				if (n.length>3)
-					document.formCPWD.submit ();
-				else
-					alert ("Password should be at least 4 chars");
-			}	
-			
-	}	
+    function checkSame () {
+        var n;
+        var cn;
+        n = document.formCPWD.item ("NewPasswd").value;
+        cn = document.formCPWD.item ("CNewPasswd").value;
+            if (n != cn )
+                alert ("The Password doesn't match");
+            else {
+                if (n.length>3)
+                    document.formCPWD.submit ();
+                else
+                    alert ("Password should be at least 4 chars");
+            }    
+            
+    }    
 </script>
 
 <!-- End Change Password -->

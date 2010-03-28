@@ -302,7 +302,7 @@
                     If rsFil.EOF Then
                 %>
                 Dieser Lieferant hat keine Filialen eingetragen!
-                <% 	
+                <%     
                 End If
                 %>
                 <center>

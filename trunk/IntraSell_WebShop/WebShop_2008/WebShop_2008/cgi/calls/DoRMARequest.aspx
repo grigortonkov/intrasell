@@ -21,14 +21,14 @@
 
         mailtext = mailtext + "Diese Anforderung finden Sie auch in der Tabelle ofKorrespondenz und Form Korrespondenz."
 
-		   
+           
         subject = Replace(subject, """", "") : subject = Replace(subject, "'", "")
         mailtext = Replace(mailtext, """", "") : mailtext = Replace(mailtext, "'", "")
-		   
+           
         Dim idnr : idnr = getLOGIN() : If Trim(idnr) = "" Or (idnr) Is Nothing Then idnr = "0"
         Dim sql
         sql = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text], DAtum) values(" & idnr & ",'" & subject & "','" & mailtext & "', " & SQLNOW(0) & ")"
-        'Response.Write sql		   
+        'Response.Write sql           
         objConnectionExecute(sql)
         If sendMailFromWithSending(Request("ToMail"), subject, mailtext, Request("FromMail")) Then
     %>

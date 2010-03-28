@@ -54,21 +54,21 @@
 </form>
 
 <script>
-	function checkSame () {
-		var n;
-		var cn;
-		n = document.formCPWD.item ("NewEmail").value;
-		cn = document.formCPWD.item ("CNewEmail").value;
-			if (n != cn )
-				alert ("The Emails doesn't match");
-			else {
-				if (n.length>10)
-					document.formCPWD.submit ();
-				else
-					alert ("Email should be at least 10 chars");
-			}	
-			
-	}	
+    function checkSame () {
+        var n;
+        var cn;
+        n = document.formCPWD.item ("NewEmail").value;
+        cn = document.formCPWD.item ("CNewEmail").value;
+            if (n != cn )
+                alert ("The Emails doesn't match");
+            else {
+                if (n.length>10)
+                    document.formCPWD.submit ();
+                else
+                    alert ("Email should be at least 10 chars");
+            }    
+            
+    }    
 </script>
 
 <!-- End Change Password -->

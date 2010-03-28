@@ -74,13 +74,13 @@ END IF
       
  IF  ParamsOK  THEN 
         ' IN Spammails speichern
-     	SQLString = " SELECT Personen.Person_ID, Passwort, Name, Email " & _ 
-     				  " FROM  Personen, Kunden " & _ 
-     				  " WHERE Kunden.Person_Id = Personen.Person_ID " & _ 
-     				  " AND EMail = '" & Email & "'" & _ 
-     				  " AND Name = '" & Name & "'"
-     				   
-     	Set rs_pass = objConnectionExecute(SQLString) 
+         SQLString = " SELECT Personen.Person_ID, Passwort, Name, Email " & _ 
+                       " FROM  Personen, Kunden " & _ 
+                       " WHERE Kunden.Person_Id = Personen.Person_ID " & _ 
+                       " AND EMail = '" & Email & "'" & _ 
+                       " AND Name = '" & Name & "'"
+                        
+         Set rs_pass = objConnectionExecute(SQLString) 
      
  IF rs_pass.EOF THEN 
     %>
@@ -93,18 +93,18 @@ END IF
     </h2>
     <%
  ELSE      
-	   email_text = MAIL_LOST_PASSWORD(rs_pass("Person_ID").Value)
+       email_text = MAIL_LOST_PASSWORD(rs_pass("Person_ID").Value)
        subject = "Ihr Passwort"
-     	email_sender = VARVALUE("OFFICEEmail")
-     	recipient = rs_pass("Email").Value
-     	
+         email_sender = VARVALUE("OFFICEEmail")
+         recipient = rs_pass("Email").Value
+         
         'Response.write email_text
-     	
-    	response.write "SENDING... "
+         
+        response.write "SENDING... "
         'sendMailFrom recipient, subject, email_text, email_sender
-     	response.write " OK!"
-		
-		rs_pass.close 
+         response.write " OK!"
+        
+        rs_pass.close 
     %>
     <h2 align="center">
         <font face="Arial">

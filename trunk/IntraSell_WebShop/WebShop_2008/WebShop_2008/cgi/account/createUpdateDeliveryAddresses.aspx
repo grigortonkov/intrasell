@@ -14,7 +14,7 @@
 <%
     Dim res1 : res1 = saveProfile(SHIPPING)
     Dim res2 : res2 = saveProfile(INVOICE)
-    'kdnr = saveBothAddresses()	
+    'kdnr = saveBothAddresses()    
     'Response.Write res1 & " und " &   res2
     If res1 = 0 Or res2 = 0 Then ' adress saving failed /missing data 
 %>
@@ -31,7 +31,7 @@ Else
         EmailOld = TABLEVALUE("ofAdressen", "IDNR", Session("LOG_IN"), "Email")
         PasswordOld = TABLEVALUE("ofAdressen", "IDNR", Session("LOG_IN"), "Passwort")
     End If
-	         
+             
 %>
 </form>
 <center>
@@ -46,7 +46,7 @@ End If
 
 'Response.Write "Kdnr=[" & kdnr & "]"
 
-	
+    
 Dim EmailStep3 As String
 Dim PasswordStep3 As String
 

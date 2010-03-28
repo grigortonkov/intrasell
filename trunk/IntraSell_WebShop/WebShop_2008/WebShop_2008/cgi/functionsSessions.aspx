@@ -11,7 +11,7 @@
 ''' <remarks></remarks>
     Function createSession()
         Dim sid
-	
+    
         ''hidden because shown before html tag response.Write "<!--" 'start html kommentar um ev. getSID errors zu verstecken 
         sid = getSID()
         ''hidden because shown before html tag response.Write "-->" 

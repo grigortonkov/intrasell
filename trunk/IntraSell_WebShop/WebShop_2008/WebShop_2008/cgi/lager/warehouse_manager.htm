@@ -1,19 +1,19 @@
  <!--Important: copy this file in skins and use it in the product pages!-->
 
  <script language="javascript"> 
-			function  isLoggedIn() {
-				return "[USER_EMAIL]".indexOf("nicht vorhanden") <= 0;
-			}
+            function  isLoggedIn() {
+                return "[USER_EMAIL]".indexOf("nicht vorhanden") <= 0;
+            }
 </script>
 
 <script language="javascript"> 
-			if (isLoggedIn()) {
-			    
-			     document.write ("<div>"); 
-			     }
-			else   {
-				document.write ("<h2><font color=red>YOU ARE NOT LOGGED IN!</font></h2>"); 
-			     document.write ("<div style=\"position: absolute; left: 0; top: 0; width: 0; height: 0;visibility: hidden\">");
+            if (isLoggedIn()) {
+                
+                 document.write ("<div>"); 
+                 }
+            else   {
+                document.write ("<h2><font color=red>YOU ARE NOT LOGGED IN!</font></h2>"); 
+                 document.write ("<div style=\"position: absolute; left: 0; top: 0; width: 0; height: 0;visibility: hidden\">");
 
 }
 </script>
@@ -33,25 +33,25 @@ You are logged in as: [USER_EMAIL]
   <tr>
     <td align="center" width="135"><b>US WAREHOUSE</b></td>
     <td align="center" width="109">[SQL:<![CDATA[SELECT LagerBestand FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
     <td align="center" width="87" bgcolor="#FF3300">[SQL:<![CDATA[SELECT ReserviertStk FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
     <td align="center" width="97" bgcolor="#33CC33">[SQL:<![CDATA[SELECT LagerBestand-ReserviertStk FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=1 and ArtNr=[ArtNr];]]>]</td>
     <td width="572">[SQL:<![CDATA[SELECT Email, Datum, Stk FROM lagerLagerBuchung WHERE 
-					LagerOrt=1 and ArtNr=[ArtNr] and Datum >= Date()-7 ORDER BY
+                    LagerOrt=1 and ArtNr=[ArtNr] and Datum >= Date()-7 ORDER BY
       Datum desc;]]>]</td>
   </tr>
   <tr>
     <td align="center" width="135"><b>AT WAREHOUSE</b></td>
     <td align="center" width="109">[SQL:<![CDATA[SELECT LagerBestand FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
     <td align="center" width="87" bgcolor="#FF3300">[SQL:<![CDATA[SELECT ReserviertStk FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
     <td align="center" width="97" bgcolor="#33CC33">[SQL:<![CDATA[SELECT LagerBestand-ReserviertStk FROM 
-					[grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
+                    [grArtikel-Lagerbestand] WHERE LagerOrt=3 and ArtNr=[ArtNr];]]>]</td>
     <td width="572">[SQL:<![CDATA[SELECT Email, Datum, Stk FROM lagerLagerBuchung WHERE 
-					LagerOrt=3 and ArtNr=[ArtNr] and Datum >= Date()-7 ORDER BY
+                    LagerOrt=3 and ArtNr=[ArtNr] and Datum >= Date()-7 ORDER BY
       Datum desc;]]>]</td>
   </tr>
 </table>

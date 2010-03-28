@@ -14,7 +14,7 @@
     Response.Flush()
 
     '    dim myCDONTSMail 
-    '	Set myCDONTSMail = CreateObject("CDONTS.NewMail")
+    '    Set myCDONTSMail = CreateObject("CDONTS.NewMail")
 
 
     'response.end 

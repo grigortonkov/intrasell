@@ -110,7 +110,7 @@
         Else
             Kg = Math.Round(Kg, 2)
         End If
-	
+    
         Dim sql, rsP
         sql = "SELECT destination, Fixekosten, VariableKostenNachGewicht " & _
               " FROM [grArtikel-Vertriebskosten] Where destination like '" & PostModeDestionation & "'" & _
@@ -166,7 +166,7 @@
         sql = "SELECT ArtNR, Stk from [" & getVorgangArtikelTableForType(OrderType) & "] Where RechNr=" & Nummer
         rs = objConnectionExecute(sql)
         Dim totalKG As Double : totalKG = 0
-	 
+     
         While Not rs.EOF
             totalKG = totalKG + CDbl(rs("Stk").Value) * getWeightOfProduct(rs("ArtNR").Value)
             rs.MoveNext()
@@ -185,10 +185,10 @@
         Dim sql As String, rs
         sql = "SELECT SID, ArtNr, Quantity FROM webWarenkorb " & _
            "WHERE SID=" & Sid & " AND Quantity > 0 "
-			  
+              
         rs = objConnectionExecute(sql)
         Dim totalKG As Double : totalKG = 0
-	 
+     
         While Not rs.EOF
             totalKG = totalKG + rs("Quantity").Value * getWeightOfProduct(rs("ArtNR").Value)
             rs.MoveNext()
@@ -248,7 +248,7 @@
     ' kalkuliert rabatt für eine Bestellung 
     ' Added at 18.04.2005 for xscorpion 
     ' returns -1 if no discount calculation is set
-    '*************************************************************************	
+    '*************************************************************************    
     Function getBasketDiscount_artnr()
         Dim discArt
         discArt = tablevalue("grArtikel", "EAN", "'" & CALCULATE_BASKET_DISCOUNT & "'", "ArtNr")
@@ -262,7 +262,7 @@
     '*************************************************************************
     ' kalkuliert rabatt für eine Bestellung 
     ' Added at 18.04.2005 for xscorpion 
-    '*************************************************************************	
+    '*************************************************************************    
     Function getBasketDiscount_Value(ByVal totalValueOfBasket)
 
         getBasketDiscount_Value = 0
@@ -304,7 +304,7 @@
         End If
         kdnr = rsK("minIDNR").Value
         rsK.close()
-	 
+     
    
         tableNameOrders = getNameForTable(OrderType)
         AuftragNr = NextId(tableNameOrders, "Nummer")

@@ -33,8 +33,8 @@
             If newsletterRegistriert Then
                 Response.Write("Vielen Dank für Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters.")
                 Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten  informieren.</p>")
-		 
-		
+         
+        
                 Response.Write("SENDING... ")
                 sendMailFromWithSending(EmailForNewsletter, "Ihre Newsletter registrierung bei " & VARVALUE("DOMAIN") & "!", _
                       MAKE_EMAIL_NEWSLETTER(EmailForNewsletter), VARVALUE("EMAIL_REGISTER"))

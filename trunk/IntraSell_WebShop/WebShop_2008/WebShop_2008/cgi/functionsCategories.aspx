@@ -108,10 +108,10 @@
     ''' <remarks></remarks>
     Function getProductCat(ByVal ArtNr) As String
         Dim sql, rsTemp
-	
+       
         sql = "SELECT * FROM [grArtikel] WHERE ArtNr=" & ArtNr
         rsTemp = ObjConnectionexecute(sql)
-	
+        
         If rsTemp.EOF Then
             getProductCat = 0
         Else
@@ -212,12 +212,12 @@
         catToShow = Request("PreKatNr")
         'Response.Write "<br>PreKatNr1 = '" & catToShow & "'<br>"
         Response.Write("<a href=""default.aspx?pageToShow="">Home</a>")
-	
+
         If InStr(pageToShow, "Product") <= 0 Then ' show only the requested page 
             Response.Write(">" & pageToShow)
             Exit Sub
         End If
-	
+    
         If catToShow = "" Then
             catToShow = Request("ArtNr")
             If catToShow = "" Then
@@ -252,10 +252,10 @@
         Else
             Session("CURRENT_PRODUCT_CATEGORY") = catToShow
         End If
-	
+    
         If catToShow = "" Then catToShow = "0"
         Dim path
-	
+    
         path = "Categories: " & showCategoryPath(catToShow, inPageToShow) & "<br>"
         'response.write path & " the fuck ! <br>"
         Response.Write(SimpleListCategoriesFromCache(catToShow, inPageToShow))
@@ -309,7 +309,7 @@
                 rsSub = Nothing
             End If
             rs.MoveNext()
-	  
+      
         End While
         
         rs.Close()
@@ -318,7 +318,7 @@
         Response.Write("menu.showMenu ();}" & Chr(10) & Chr(13))
         Response.Write("showToolbar();")
         Response.Write("</ script>" & Chr(10) & Chr(13))
-	
+    
     End Function
 
     '******************************************************************
@@ -381,15 +381,15 @@
             sql = "SELECT [grArtikel-Kategorien].ArtKatNr, [grArtikel-Kategorien].Name, 1*Count(grArtikel.ArtNr) AS [Produktanzahl], ArtKatNRParent " & _
         " FROM [grArtikel-Kategorien] LEFT JOIN grArtikel ON [grArtikel-Kategorien].ArtKatNr = grArtikel.ArtKatNr " & _
         " WHERE "
-			
+            
             'if manufacturer <> "" then sql = sql & MANUFACTURER_FILTER & " and " 
             'if merchantName <> "" then sql = sql & MERCHANT_FILTER & " and " 
-			
+            
             sql = sql & _
              " ArtKatNrParent=" & ArtKatNr & _
              " GROUP BY [grArtikel-Kategorien].ArtKatNr, [grArtikel-Kategorien].Name, ArtKatNRParent " & _
              " ORDER BY [grArtikel-Kategorien].ArtKatNRParent"
-            'levels = 0 	
+            'levels = 0     
         Else
    
             sql = "SELECT [grArtikel-Kategorien].ArtKatNr, [grArtikel-Kategorien].Name, [grArtikel-Kategorien].ArtKatNrParent, 1*Count(grArtikel.ArtNr) AS [Produktanzahl], ArtKatNRParent " & _
@@ -398,7 +398,7 @@
               " GROUP BY [grArtikel-Kategorien].ArtKatNr, [grArtikel-Kategorien].Name, [grArtikel-Kategorien].ArtKatNrParent " & _
               " ORDER BY [grArtikel-Kategorien].ArtKatNrParent"
         End If
-        '" HAVING Count(grArtikel.ArtNr)>0 " & _ 	
+        '" HAVING Count(grArtikel.ArtNr)>0 " & _     
         'Response.write "<BR>" & sql : Response.Flush
 
 
@@ -637,7 +637,7 @@
     Public Function findTemplateForProduct(ByVal artKatNr) As String
         If Not IsNumeric(artKatNr) Then findTemplateForProduct = NOT_DEFINED : Exit Function 'nothing found 
         If artKatNr = "" Or CLng(artKatNr) < 0 Then findTemplateForProduct = NOT_DEFINED : Exit Function 'nothing found 
-				
+                
         Dim catTemplate
         catTemplate = TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNr", artKatNr, "TemplateForProduct")
         If Trim(catTemplate) & "" = "" Then 'not defined search parent 
@@ -645,14 +645,14 @@
             findTemplateForProduct = findTemplateForProduct(TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNr", artKatNr, "ArtKatNrParent"))
             Exit Function
         End If
-			
+            
         catTemplate = Replace(catTemplate, "&lt;", "<")
         catTemplate = Replace(catTemplate, "&gt;", ">")
         catTemplate = Replace(catTemplate, "&quot;", """")
         catTemplate = Replace(catTemplate, "&amp;nbsp;", "&nbsp;")
-				
+                
         findTemplateForProduct = catTemplate
-				
+                
     End Function
 
     ''' <summary>
@@ -837,7 +837,7 @@
             " GROUP BY [grArtikel-Kategorien].ArtKatNr, [Name], ArtKatNrPArent " & _
             " ORDER BY sum(CountClicks) DESC"
         End If
-		
+        
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
         If Not rs.eOF Then
@@ -938,7 +938,7 @@
             sql_ = "insert into webCatsIndex (ArtKatNrPArent, ArtKatNr) select " & rs_("ArtKatNr").Value & ", ArtKatNr from [grArtikel-Kategorien] where ArtKatNr in (" & subCats & ")"
             Response.Write(sql_ & "<br>") : Response.Flush()
             objConnectionExecute(sql_)
-   		
+            
             rs_.moveNext()
         End While
         rs_.close()

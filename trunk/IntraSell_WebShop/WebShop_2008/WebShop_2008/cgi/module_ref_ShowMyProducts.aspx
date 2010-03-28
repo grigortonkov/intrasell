@@ -16,7 +16,7 @@
 
         If idnr < 0 Then 'not okay!!! 
  call drawErrorBox("Referer not existing!","No referer for this refererId is internaly defined! " &_ 
-				   " Please, contact the administrator!","","") 
+                   " Please, contact the administrator!","","") 
             Response.Write("</body>")
             Response.End()
         End If

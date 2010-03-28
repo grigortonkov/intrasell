@@ -25,7 +25,7 @@ End If
 
 
 Dim body : body = MAKE_EMAIL_TELL_A_FRIEND(Request("ProductURL"), Request("BodyMail"))
-'if sendMailFromWithSending (Request ("ToMail"), Request ("Subject") , body, Request("FromMail")) then 	 
+'if sendMailFromWithSending (Request ("ToMail"), Request ("Subject") , body, Request("FromMail")) then      
 If sendMailFromWithSending(Request("ToMail"), Request("Subject"), body, Varvalue("Email")) Then
     Call addUserPoints(getLOGIN(), COUNT_POINTS_SEND_TO_FRIEND, REASON_SEND_TO_FRIEND)
     'Response.write (body)

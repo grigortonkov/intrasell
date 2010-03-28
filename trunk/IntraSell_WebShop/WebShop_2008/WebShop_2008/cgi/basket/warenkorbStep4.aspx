@@ -116,9 +116,9 @@ If payMode & "" = "" Then
 
     If Not errorsFound Then
         Dim notiz : notiz = Request("notiz")
-	
+    
         Dim gutscheinNummerStep4 : gutscheinNummerStep4 = Session("gutscheinNummer")
-	
+    
         Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4)
     
         If ordId & "" = "" Then 'Fehler bei der Erstellung 
@@ -166,10 +166,10 @@ If payMode & "" = "" Then
                 <tr>
                     <td width="33%">
                         <!--
-		<input type="button" value="<%=getTranslation("Bestätigung ausdrucken")%>" 
-				OnClick="document.location='cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>'"
-				style="float: right">
-		-->
+        <input type="button" value="<%=getTranslation("Bestätigung ausdrucken")%>" 
+                OnClick="document.location='cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>'"
+                style="float: right">
+        -->
                         <input type="button" class="button" value="<%=getTranslation("Bestätigung ausdrucken")%>"
                             onclick="window.open('cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>','Invoice','top=100,left=100,height=640,width=800,status=yes,toolbar=yes,menubar=no,location=no');"
                             style="float: right">
@@ -178,7 +178,7 @@ If payMode & "" = "" Then
                         <a href="default.aspx">
                             <input type="button" class="button" value="<%=getTranslation("Home")%>" onclick="document.location='default.aspx';" />
                             <!--<img border="0"  src="<%=imageFullName("home.gif")%>" align="right" hspace="0">
-			-->
+            -->
                         </a>
                     </td>
                     <td width="33%">

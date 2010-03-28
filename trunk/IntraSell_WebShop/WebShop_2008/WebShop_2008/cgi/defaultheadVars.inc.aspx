@@ -75,7 +75,7 @@
  
     'Response.Write "pagetoShow:" & pagetoShow    
     'if pageToShow = "TopTen" or pageToShow = "TopClicks" or pageToShow = "" Then
-    '		SESSION("CURRENT_PRODUCT_CATEGORY") = ""
+    '        SESSION("CURRENT_PRODUCT_CATEGORY") = ""
     'end if  
  
  

@@ -68,7 +68,7 @@
                  " ORDER BY CreatedOn desc "
             'objConnectionExecute (SQL)
         End If
-				
+                
         ListUserSearches = sqlToHTML(sql, True, True)
     End Function
 
@@ -90,7 +90,7 @@
                  " ORDER BY CreatedOn desc "
             'objConnectionExecute (SQL)
         End If
-				
+                
         ListUserLastSearch = sqlToHTML(sql, True, True)
     End Function
 

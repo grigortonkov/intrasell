@@ -26,11 +26,11 @@ Verwenden sie bitte den beigelegten Link um Ihren Account zu aktivieren!
        "Eine neue Registrierung bei " & VARVALUE("DOMAIN") & "!", _
     MAKE_EMAIL_REGISTRATION_SIMPLE(new_kdnr_simple), _
     VARVALUE("EMAIL_REGISTER"))
-		
+        
     If LCase(Request("debug")) = "true" Then
         Response.Write(MAKE_EMAIL_REGISTRATION_SIMPLE(new_kdnr_simple))
     End If
-		
+        
     'Logout until activate by Email 
     Session("LOG_IN") = ""
 End If

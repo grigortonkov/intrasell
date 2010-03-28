@@ -19,8 +19,8 @@
          " [lieferantenArtikel-Preise].Lagerinfo, [lieferantenArtikel-Preise].Bestellmenge, [lieferantenArtikel-Preise].Kategorie, " & _ 
          " [lieferantenArtikel-Preise].Prioritaet, [lieferantenArtikel-Preise].EAN, lieferantenAdressen.Firma " & _ 
          " FROM lieferantenAdressen INNER JOIN (grArtikel INNER JOIN [lieferantenArtikel-Preise] ON grArtikel.ArtNr = [lieferantenArtikel-Preise].ArtikelNr) ON lieferantenAdressen.IDNR = [lieferantenArtikel-Preise].LieferantNr " & _ 
-		 " WHERE ArtNr = " & ArtNR & " " & _ 
-		 " ORDER BY " & OrderBy
+         " WHERE ArtNr = " & ArtNR & " " & _ 
+         " ORDER BY " & OrderBy
     
   ' response.write sqlL: response.flush  
    set rsL = objConnectionExecute(sqlL)      
@@ -61,9 +61,9 @@ end if
 while not rsL.EOF 
 
 if rowColor = "#F7F7F7" then 
-	rowColor = "#FFFFFF" 
+    rowColor = "#FFFFFF" 
 else
-	rowColor = "#F7F7F7"
+    rowColor = "#F7F7F7"
 end if 
     %>
     <tr>

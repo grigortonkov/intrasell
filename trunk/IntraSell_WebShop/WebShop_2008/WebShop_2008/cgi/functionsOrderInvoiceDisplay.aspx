@@ -19,7 +19,7 @@
 
         sql = "SELECT *  FROM " & TableVorgang & " Where Nummer=" & Nummer
         ' response.write sql
-	 
+     
         Dim rsV
         rsV = objConnectionExecute(sql)
         If rsV.EOF Then
@@ -81,9 +81,9 @@
         sql = "SELECT [" & TableVorgangArtikel & "].* " & _
            " FROM [" & TableVorgangArtikel & "] INNER JOIN grArtikel ON [" & TableVorgangArtikel & "].ArtNR = grArtikel.ArtNr" & _
            " Where RechNr=" & Nummer
-	  
+      
         'response.write sql
-	  
+      
         Dim rsWK
         rsWK = objConnectionExecute(sql)
         Dim pos : pos = 0
@@ -255,7 +255,7 @@
             Dim Stk As Integer
             
             While Not rsWK.EOF
-		
+        
                 pos = pos + 1
                 ArtNr = rsWK("ArtNR").Value
                 Stk = CInt(rsWK("Quantity").Value)
@@ -309,11 +309,11 @@
                 html = html & "</td>"
                 html = html & "</tr>"
        
-		
+        
                 rsWK.MoveNext()
             End While
             rsWK.close()
-		
+        
             Dim subtotalNoAddCharged : subtotalNoAddCharged = Subtotal
      
             html = html & "<input type='hidden' name='Items' value='" & pos & "' id='Hidden5'>"
@@ -321,15 +321,15 @@
             Dim KG As Double : KG = getWeightOfBasket(sid)
             Dim PostCosts As Double : PostCosts = 0
             Dim PostExpensesMWST As Double : PostExpensesMWST = 0
- 	  
+       
             Dim payModeExpenses As Double : payModeExpenses = 0
             Dim payModeExpensesMWST : payModeExpensesMWST = 0
- 	  
+       
             Dim gutscheinSumme As Double : gutscheinSumme = 0
             Dim gutscheinSummeMWST As Double : gutscheinSummeMWST = 0
- 	 
+      
             Dim messageNoCosts As String : messageNoCosts = ""
- 	  
+       
             'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
             'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
             If (1 * Subtotal < 1 * getFreiHausLieferungUmsatz()) Or getFreiHausLieferungUmsatz() = -1 Then  'CALCULATE COSTS 
@@ -340,7 +340,7 @@
                     PostExpensesMWST = CDbl(calculateBruttoPreis(PostCosts, postSpendsArtNr, IDNR))
                     'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
                 End If
- 	  
+       
                 If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
                     Dim payModeArtNr : payModeArtNr = getPaymentModeSpendsArtNr(PayMode, Land)
                     If PayMode <> "" Then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotalNoAddCharged)
@@ -352,14 +352,14 @@
             Else
                 messageNoCosts = "<br><font color=""red"" class=""error"">Yeeep: Es werden keine Transport- und Zahlungskosten kalkuliert!</font>"
             End If
- 	  
- 	  
+       
+       
             If gutscheinNummer <> "" Then
                 gutscheinSumme = getPreisForGutschein(gutscheinNummer)
                 gutscheinSummeMWST = makeBruttoPreis(gutscheinSumme, 2, Land)
             End If
- 	  
- 	  
+       
+       
             Subtotal = Subtotal + payModeExpenses + PostCosts - gutscheinSumme
             SubtotalMWST = SubtotalMWST + PostExpensesMWST + payModeExpensesMWST - gutscheinSummeMWST
    
@@ -501,18 +501,18 @@
             If VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_1") <> "true" Or VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_1") <> "false" Then
                 Call SETVARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_1", "true")
             End If
-	
+    
             If VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_2") <> "true" Or VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_2") <> "false" Then
                 Call SETVARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true")
             End If
-	
+    
             If (VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_1") = "true" And StepN = "1") _
             Or (VARVALUE("SHOP_SHOW_BASKET_VAT_ON_STEP_2") = "true" And StepN = "2") _
             Or (StepN <> "1" And StepN <> "2") Then 'show TOTAL only when user already registered!
-	
+    
                 Dim MWSTPercent : MWSTPercent = 0
                 MWSTPercent = Math.Round(100 * (SubtotalMWST - Subtotal) / Subtotal, 0)
-	
+    
       
                 html = html & "<tr>"
                 html = html & "   <td align='right'>"
@@ -591,21 +591,21 @@
             Dim Pos As Double : Pos = 0
             Dim Subtotal As Double : Subtotal = 0
             Dim SubtotalMWST As Double : SubtotalMWST = 0
-		
+        
             Dim ArtNr
             Dim Stk As Double
             Dim Einzelpreis As Double
-		
+        
             While Not rsWK.EOF
                 ArtNr = rsWK("ArtNR").Value
                 pos = pos + 1
                 stk = rsWK("Quantity").Value
                 einzelpreis = makeNettoPreis(ArtNr, stk, sid)
-			
+            
                 Subtotal = Subtotal + einzelpreis * stk
                 'SubtotalMWST =  SubtotalMWST + makeBruttoPreis(rsWK("PreisATS"),rsWK("MWST"))  * rsWK("Quantity") 
                 SubtotalMWST = SubtotalMWST + makeBruttoPreis2(rsWK("ArtNR").Value, Stk, Session("Land")) * Stk
-	        
+            
                 rsWK.MoveNext()
             End While
             rsWK.close()
@@ -616,24 +616,24 @@
             Dim payModeExpenses As Double : payModeExpenses = 0
             Dim payModeExpensesMWST As Double : payModeExpensesMWST = 0
             Dim PostExpensesMWST As Double : PostExpensesMWST = 0
- 	  
- 	  
+       
+       
             If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then
                 PostCosts = calculatePostSpends(Land, KG, postmode)
                 PostExpensesMWST = makeBruttoPreis2(getPostSpendsArtNr(Land, KG, postmode), 1, Session("Land"))
             End If
- 	  
+       
             If VARVALUE(CALCULATE_PAYMODECOSTS) = "TRUE" Then
                 If paymode <> "" Then payModeExpenses = calculatePaymentModeSpends(paymode, Land, KG, Subtotal)
                 payModeExpensesMWST = makeBruttoPreis2(getPaymentModeSpendsArtNr(paymode, Land), 1, Session("Land"))
             End If
             'END POST AND MODE COSTS 
- 	  
- 	  
- 	  
+       
+       
+       
             Subtotal = Subtotal + payModeExpenses + PostCosts
             SubtotalMWST = SubtotalMWST + PostExpensesMWST + payModeExpensesMWST
- 	  
+       
   
             html = html & "<table border='1' cellspacing='0' id='Table3'>"
             html = html & " <tr>"

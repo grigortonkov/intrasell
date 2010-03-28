@@ -18,7 +18,7 @@
         " (priceCompareHaendler.LieferantNr = lieferantenAdressen.IDNR) " & _
         " AND (lieferantenAdressen.IDNR = priceCompareHaendler.LieferantNr) " & _
         " WHERE LieferantNr = " & merchantId
-        'Response.Write sql	 	 
+        'Response.Write sql          
         rs = objConnectionExecute(SQL)
         If rs.EOF Then
             makeMerchantView = "N/A"
@@ -33,7 +33,7 @@
         Dim html '<td width=50>" & starshtml & "</td>" & _ 
         html = "<table border=0><tr><td>"
         html = html & "<a href=""default.aspx?pageToShow=LieferantenInformationen&MERCHANT_HOME=" & rs("web").Value & "&merchantId=" & merchantId & """ target=""_new"">"
-	
+    
         'LOGO VIEW 
         'click on logo goes directly to the merchant homepage
         If LCase(rs("PaymentMode")) = "top" Then
@@ -41,11 +41,11 @@
         End If
         'BOLD VIEW 
         If LCase(rs("PaymentMode")) = "middle" Then html = html & "<b>" & rs("Firma").Value & "</b>"
-	
+    
         'ONLY COMPANY NAME
         If LCase(rs("PaymentMode")) = "base" Then html = html & rs("Firma").Value
 
-	
+    
         html = html & "</a>"
         'html = html & " <a href=""cgi/priceCompare/merchantPage.aspx?merchantId=" & merchantID & """>info</a>" 
         html = html & " <a href=""default.aspx?pageToShow=LieferantenInformationen&merchantId=" & merchantId & """>info</a>"
@@ -58,11 +58,11 @@
         rs.close()
         'write log for statistics 
         '   sql = "INSERT INTO login(PATH_TRANSLATED,REMOTE_ADDR,REMOTE_HOST,REMOTE_USER)  VALUES " & _
-        '		 "('showMerchantAsFeaturedMerchant?merchantId=" & merchantID & "','" & _ 
+        '         "('showMerchantAsFeaturedMerchant?merchantId=" & merchantID & "','" & _ 
         '          Request.ServerVariables("REMOTE_ADDR ") & " ','" & _
-        '		  Request.ServerVariables("REMOTE_HOST") & "','" & _
-        '		  Request.ServerVariables("REMOTE_USER") & "')"
-        '	objConnectionExecute(sql)	   
+        '          Request.ServerVariables("REMOTE_HOST") & "','" & _
+        '          Request.ServerVariables("REMOTE_USER") & "')"
+        '    objConnectionExecute(sql)       
     End Function
 
 
@@ -84,7 +84,7 @@
         " (priceCompareHaendler.LieferantNr = lieferantenAdressen.IDNR) " & _
         " AND (lieferantenAdressen.IDNR = priceCompareHaendler.LieferantNr) " & _
         " WHERE LieferantNr = " & merchantId
-        'Response.Write sql	 	 
+        'Response.Write sql          
         rs = objConnectionExecute(sql)
         If rs.EOF Then
             makeMerchantViewBewertung = "N/A"
@@ -144,7 +144,7 @@
         " (priceCompareHaendler.LieferantNr = lieferantenAdressen.IDNR) " & _
         " AND (lieferantenAdressen.IDNR = priceCompareHaendler.LieferantNr) " & _
         " WHERE LieferantNr = " & merchantId
-        ' Response.Write sql	 	 
+        ' Response.Write sql          
   
         rs = objConnectionExecute(sql)
         If rs.EOF Then
@@ -283,11 +283,11 @@
                 'Response.Write sql
                 rs = objConnectionExecute(sql)
                 alreadyUsed = True
-		
+        
             End If
-		
-		
-		
+        
+        
+        
         End While
         rs.close()
         showFeaturedMerchants = html
@@ -383,29 +383,29 @@
               " LEFT JOIN priceCompareNextPLZ ON grPLZ.IdNr = priceCompareNextPLZ.PLZID) " & _
               " LEFT JOIN grPLZ AS grPLZ_1 ON priceCompareNextPLZ.NextPLZID = grPLZ_1.IdNr " & _
               " WHERE 1=1 "
-		      
+              
         If plz <> "" Then
             sql = sql & " AND (grPLZ.PLZ=" & plz & " OR grPLZ_1.PLZ=" & plz & ")"
         End If
-		
+        
         If bundesland <> "" Then
             sql = sql & " AND grPLZ.PLZ In (Select PLZ from grPLZ where BLand Like '" & bundesland & "')"
         End If
-		
+        
         If ort <> "" Then
             sql = sql & "AND grPLZ.PLZ In (Select PLZ from grPLZ where Ort Like '" & ort & "')"
         End If
-		    
-        'Response.Write "sql=" & sql		 
+            
+        'Response.Write "sql=" & sql         
         Dim rs : rs = objConnectionExecute(sql)
         If rs.eof Then
             Call drawErrorBox("Fehler", "Es sind uns leider keine Zulieferer in diesem Gebiet bekannt.", "", "")
             Exit Function
         End If
-		 
+         
         Dim butArr(0, 0)
         Call drawWindowPart1("Liste Zulieferer in PLZ [" & plz & "] und Umgebung:", " ", "", butArr)
-        '%>				
+        '%>                
         '<table border="0" cellspacing="0">
         '<tr>
         '<th width="177" align="center">Name</th>
@@ -415,50 +415,50 @@
         '<%
         '      Dim i : i = 0
         '      While Not rs.EOF
-        '		%><tr><td width="177"> <%=makeMerchantView(rs("IDNR")).Value %> 
-        '		</td><td width="166"><% 
+        '        %><tr><td width="177"> <%=makeMerchantView(rs("IDNR")).Value %> 
+        '        </td><td width="166"><% 
         '          Call printAddressLieferanten(rs("IDNR").Value)
-        '		%>
-        '		</td><td>
+        '        %>
+        '        </td><td>
 
-        '		<!-- WEB.DE Routenplanung Beginn -->
-        '		<!--
-        '		<FORM TARGET="_blank" ACTION="http://route.web.de/Europa/" METHOD="GET">
-        '		<INPUT TYPE=HIDDEN NAME="tocity" VALUE="Linz (A)">
-        '		<INPUT TYPE=HIDDEN NAME="tostreet" VALUE="Urfahr">
-        '		<INPUT TYPE=HIDDEN NAME="tolat" VALUE="483132">
-        '		<INPUT TYPE=HIDDEN NAME="tolon" VALUE="142806">
-        '		<TABLE BORDER="1" CELLPADDING="4" CELLSPACING="0">
-        '		<TR BGCOLOR="#CC510A">
-        '		<TD><FONT FACE="Arial, Helvetica" SIZE="-1" COLOR="#FFFFFF"><B> <B>Routenplanung:</B><BR>
-        '		 Ihr Weg nach <B>Linz (A), Urfahr</B></FONT></TD>
-        '		</TR>
-        '		<TR>
-        '		<TD ALIGN="CENTER">
-        '		<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="1" WIDTH="100%">
-        '		<TR>
-        '		<TD BGCOLOR="#FFD8BF"><FONT FACE="Arial, Helvetica" SIZE="-2"> <B>Ort:</B> </FONT></TD>
-        '		<TD BGCOLOR="#EFEFEF"><FONT FACE="Arial, Helvetica" SIZE="-1"> <INPUT TYPE="text" NAME="fromcity" VALUE=""></FONT></TD>
-        '		<TD ALIGN="CENTER" ROWSPAN="2" VALIGN="MIDDLE" BGCOLOR="#EFEFEF">
-        '		<INPUT TYPE="IMAGE" SRC="http://img.web.de/web/img/v4/route/napping.gif" WIDTH="144" HEIGHT="40" BORDER="0" ALT="Routenplanung starten">
-        '		</TD>
-        '		</TR><TR>
-        '		<TD ALIGN="LEFT" BGCOLOR="#FFD8BF"><FONT FACE="Arial, Helvetica" SIZE="-2"> <B>Stadtteil:</B> </FONT></TD>
-        '		<TD BGCOLOR="#EFEFEF"><FONT FACE="Arial, Helvetica" SIZE="-1"> <INPUT TYPE="text" NAME="fromstreet" VALUE=""></FONT></TD>
-        '		</TR>
-        '		</TABLE>
-        '		</TD>
-        '		</TR>
-        '		</TABLE>
-        '		</FORM>
-        '		-->
-        '		<!-- WEB.DE Routenplanung Ende -->
-        '		</td></tr>
-        '		<%
+        '        <!-- WEB.DE Routenplanung Beginn -->
+        '        <!--
+        '        <FORM TARGET="_blank" ACTION="http://route.web.de/Europa/" METHOD="GET">
+        '        <INPUT TYPE=HIDDEN NAME="tocity" VALUE="Linz (A)">
+        '        <INPUT TYPE=HIDDEN NAME="tostreet" VALUE="Urfahr">
+        '        <INPUT TYPE=HIDDEN NAME="tolat" VALUE="483132">
+        '        <INPUT TYPE=HIDDEN NAME="tolon" VALUE="142806">
+        '        <TABLE BORDER="1" CELLPADDING="4" CELLSPACING="0">
+        '        <TR BGCOLOR="#CC510A">
+        '        <TD><FONT FACE="Arial, Helvetica" SIZE="-1" COLOR="#FFFFFF"><B> <B>Routenplanung:</B><BR>
+        '         Ihr Weg nach <B>Linz (A), Urfahr</B></FONT></TD>
+        '        </TR>
+        '        <TR>
+        '        <TD ALIGN="CENTER">
+        '        <TABLE BORDER="0" CELLPADDING="2" CELLSPACING="1" WIDTH="100%">
+        '        <TR>
+        '        <TD BGCOLOR="#FFD8BF"><FONT FACE="Arial, Helvetica" SIZE="-2"> <B>Ort:</B> </FONT></TD>
+        '        <TD BGCOLOR="#EFEFEF"><FONT FACE="Arial, Helvetica" SIZE="-1"> <INPUT TYPE="text" NAME="fromcity" VALUE=""></FONT></TD>
+        '        <TD ALIGN="CENTER" ROWSPAN="2" VALIGN="MIDDLE" BGCOLOR="#EFEFEF">
+        '        <INPUT TYPE="IMAGE" SRC="http://img.web.de/web/img/v4/route/napping.gif" WIDTH="144" HEIGHT="40" BORDER="0" ALT="Routenplanung starten">
+        '        </TD>
+        '        </TR><TR>
+        '        <TD ALIGN="LEFT" BGCOLOR="#FFD8BF"><FONT FACE="Arial, Helvetica" SIZE="-2"> <B>Stadtteil:</B> </FONT></TD>
+        '        <TD BGCOLOR="#EFEFEF"><FONT FACE="Arial, Helvetica" SIZE="-1"> <INPUT TYPE="text" NAME="fromstreet" VALUE=""></FONT></TD>
+        '        </TR>
+        '        </TABLE>
+        '        </TD>
+        '        </TR>
+        '        </TABLE>
+        '        </FORM>
+        '        -->
+        '        <!-- WEB.DE Routenplanung Ende -->
+        '        </td></tr>
+        '        <%
         '          rs.movenext()
         '          i = i + 1
         '      End While
-        '	%></table><%
+        '    %></table><%
         '      rs.close()
         Call drawWindowPart2("Liste Zulieferer in PLZ [" & plz & "] und Umgebung:", " ", "", butArr)
     End Function
