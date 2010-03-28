@@ -19,15 +19,15 @@
         'increment clicks
         sql = "UPDATE webBanners set ClicksCount = " & rsBan("ClicksCount").Value + 1 & " WHERE bannerId = " & banId
         objConnectionExecute(sql)
-	
+    
         Dim remoteAddress : remoteAddress = Request.ServerVariables("REMOTE_ADDR")
         Dim localURL : localURL = "'http://" & Request.ServerVariables("SERVER_NAME") & Request.ServerVariables("URL")
         sql = "INSERT INTO webBannersLogs (BannerId, FromIP , ReferingURL, [Type]) " & _
            " Values( " & banId & ",'" & remoteAddress & "'," & localURL & "'," & "'Click')"
         'response.write sql1
         objConnectionExecute(sql)
-	
-	
+    
+    
         bannerLink = rsBan("BannerLink").Value
         rsBan.close()
         rsBan = Nothing

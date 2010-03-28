@@ -54,9 +54,9 @@
   
      
     Response.Write("<center>SENDING... ")
-     	
+         
 
-     	
+         
     FromEmail = VARVALUE("Email")
     On Error Resume Next
     sendMailFromWithSending(ToEmail, "e-card fuer " + ToName, MailText, FromEmail)

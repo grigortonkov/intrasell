@@ -24,21 +24,21 @@ function FillBL(){
  //delete all old 
  selectElem = document.GeoSelect.BL; 
  for (i = 2; i<=selectElem.length; i++)
- 	selectElem.options[i-1] = null;
- 	  var addedItems = '';
+     selectElem.options[i-1] = null;
+       var addedItems = '';
  //add new 
  for (i = 0; i<LandOrtPLZArray.length; i++) {
-	 		ortName = LandOrtPLZArray[i][0];
-   			//check if added 
-    		added = false;
- 	 		if (addedItems.indexOf(ortName)>=0) 
- 	 				   added = true;
- 	 		
-  			if (!added) {//add 
-				NeuerEintrag = new Option(ortName,ortName,false,false);
-		 		selectElem.options[selectElem.length] = NeuerEintrag;
-		 		addedItems = addedItems + "," + ortName;
-   			}//end add
+             ortName = LandOrtPLZArray[i][0];
+               //check if added 
+            added = false;
+              if (addedItems.indexOf(ortName)>=0) 
+                         added = true;
+              
+              if (!added) {//add 
+                NeuerEintrag = new Option(ortName,ortName,false,false);
+                 selectElem.options[selectElem.length] = NeuerEintrag;
+                 addedItems = addedItems + "," + ortName;
+               }//end add
  }
 }
     </script>
@@ -52,26 +52,26 @@ function FillOrt(){
  selectElem = document.GeoSelect.Ort;
  size = selectElem.length;
  for (i = 2; i<=size ; i++)
- 	selectElem.options[1] = null;
+     selectElem.options[1] = null;
   
   var addedItems = '';
  //add new 
  for (i = 1; i<=LandOrtPLZArray.length; i++) {
-	 		ortName = LandOrtPLZArray[i-1][1];
-   			//check if added 
-    		addedOrt = false;
-    		
-    		if (document.GeoSelect.BL.value==LandOrtPLZArray[i-1][0]){ //same BL   
-    			    			
- 	 				if (addedItems.indexOf(ortName)>=0) 
- 	 				   addedOrt = true;
- 	 					
-  					if (addedOrt==false) {//add 
-						NeuerEintrag = new Option(ortName,ortName,false,false);
-		 				selectElem.options[selectElem.length] = NeuerEintrag;
-		 				addedItems = addedItems + "," + ortName;
-   					}//end add
-   			}//if		
+             ortName = LandOrtPLZArray[i-1][1];
+               //check if added 
+            addedOrt = false;
+            
+            if (document.GeoSelect.BL.value==LandOrtPLZArray[i-1][0]){ //same BL   
+                                
+                      if (addedItems.indexOf(ortName)>=0) 
+                         addedOrt = true;
+                          
+                      if (addedOrt==false) {//add 
+                        NeuerEintrag = new Option(ortName,ortName,false,false);
+                         selectElem.options[selectElem.length] = NeuerEintrag;
+                         addedItems = addedItems + "," + ortName;
+                       }//end add
+               }//if        
  }//for
  
 }
@@ -86,38 +86,38 @@ function FillPLZ(){
  selectElem = document.GeoSelect.PLZ; 
  size = selectElem.length;
  for (i = 2; i<=selectElem.length; i++) {
- 	selectElem.options[1] = null;
+     selectElem.options[1] = null;
  }
  
  //add 
  for (i = 1; i<=LandOrtPLZArray.length; i++) {
-	 		ortName = LandOrtPLZArray[i-1][2];
-   			//check if added 
-    		added = false;
-    		
-    		if (document.GeoSelect.Ort.value!=LandOrtPLZArray[i-1][1])//other Ort 
-    		  added = true;
+             ortName = LandOrtPLZArray[i-1][2];
+               //check if added 
+            added = false;
+            
+            if (document.GeoSelect.Ort.value!=LandOrtPLZArray[i-1][1])//other Ort 
+              added = true;
 
-    		for (k = 1; k<=selectElem.length; k++) 			
- 	 			if (selectElem.options[k-1].value == ortName){
- 	 			      added = true;  
+            for (k = 1; k<=selectElem.length; k++)             
+                  if (selectElem.options[k-1].value == ortName){
+                        added = true;  
           }
- 	 	 
-  			if (!added) {//add 
-				NeuerEintrag = new Option(ortName,ortName,false,true);
-		 		selectElem.options[selectElem.length] = NeuerEintrag;
-   			}
- 	}
+           
+              if (!added) {//add 
+                NeuerEintrag = new Option(ortName,ortName,false,true);
+                 selectElem.options[selectElem.length] = NeuerEintrag;
+               }
+     }
 }
     </script>
 
     <script language="JavaScript">
-	<!-- 
+    <!-- 
 function applyPLZ(toElementName){
-		opener.document.all('BL').value = document.GeoSelect.BL.value; 
-		opener.document.all('Ort').value = document.GeoSelect.Ort.value; 
-   		opener.document.all('PLZ').value = document.GeoSelect.PLZ.value; 
-   		window.close();		    
+        opener.document.all('BL').value = document.GeoSelect.BL.value; 
+        opener.document.all('Ort').value = document.GeoSelect.Ort.value; 
+           opener.document.all('PLZ').value = document.GeoSelect.PLZ.value; 
+           window.close();            
 
 }
 // -->

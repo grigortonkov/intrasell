@@ -15,7 +15,7 @@
     ' 08.05.2001   First Release
     ' 10.05.2001   Generic Database Support
     ' 10.01.2007   small changes
-    ' ...........
+    '         ...
     '**Start Encode**
 
     BASENAME = Session("BASENAME")
@@ -45,7 +45,7 @@
         'Response.write "Trying to resume it..."  & Session ("MyDSN") 
         objConnection = Server.CreateObject("adodb.connection")
         objConnection.open(Session("MyDSN"))
-        'Set Session("objConnection") = 	objConnection
+        'Set Session("objConnection") =     objConnection
         'Response.Write "DB connection created!"
     Else 'DB connection is okay!!!! 
         'Response.Write "DB connection is Okay!" 
@@ -553,7 +553,7 @@
                 Response.Write("The error was: " & Mailer.Response)
                 sendMailFromWithSendingSVG = False
             End If
-	
+    
         Else
             Response.Write("The recipient is invalid!")
             sendMailFromWithSendingSVG = False
@@ -662,7 +662,7 @@
         filesystem = CreateObject("Scripting.FileSystemObject")
         Dim PARTFOLDER, FULLPARTFOLDER
         FULLPARTFOLDER = ""
-	
+    
         For Each PARTFOLDER In Split(FULLFOLDER, "\")
             FULLPARTFOLDER = FULLPARTFOLDER & PARTFOLDER & "\"
             'Response.Write "<BR>FULLPARTFOLDER=" & FULLPARTFOLDER
@@ -671,7 +671,7 @@
                 filesystem.createFolder(FULLPARTFOLDER) 'for files 
             End If
         Next
-	
+    
     End Function
 
 
@@ -692,15 +692,15 @@
         FileSystem = CreateObject("Scripting.FileSystemObject")
         Folder = FileSystem.GetFolder(Server.MapPath(mypath))
         FileCollection = Folder.Files
-	
+    
         For Each File In FileCollection
             fn = File.name
-	 
+     
             If (fn = sfilename) Then
                 found = True
             End If
         Next
-	 	
+         
         FileSystem = Nothing
         Folder = Nothing
         FileCollection = Nothing
@@ -802,16 +802,16 @@
     Function cleanUserInput(ByVal userInput)
         Dim cleaned
         Dim errorFound : errorFound = False
-		
+        
         cleaned = Replace(userInput, "*", "")
         cleaned = Replace(cleaned, "%", "")
         cleaned = Replace(cleaned, "'", "")
         'cleaned = replace(cleaned,"""","")
-	
+    
         If InStr(UCase(userInput), "DELETE") > 0 Then
             errorFound = True
         End If
-		
+        
         If InStr(UCase(userInput), "DROP") > 0 Then
             errorFound = True
         End If
@@ -823,12 +823,12 @@
         If InStr(UCase(userInput), "EXEC") > 0 Then
             errorFound = True
         End If
-		
-        'shitched off because of EAN Numbers with -- 		
+        
+        'shitched off because of EAN Numbers with --         
         'if inStr(ucase(userInput),"--")>0 then
         '  errorFound = true 
         'end if  
-		
+        
         If errorFound Then
             Response.Write("<font color=red>Do not play games with with us!")
             cleanUserInput = ""
@@ -1004,7 +1004,7 @@
                                         EMailCheck = True
                                         Exit Function
                                     Else
-	
+    
                                         Response.Write("Dot in starting<br>")
                                     End If
                                 Else
@@ -1028,7 +1028,7 @@
         Else
             Response.Write("Email cannot be less than 6 characters<br> ")
         End If
-	
+    
         EMailCheck = False
     End Function
 

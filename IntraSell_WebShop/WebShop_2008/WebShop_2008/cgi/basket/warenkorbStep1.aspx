@@ -12,12 +12,12 @@
     &nbsp;</div>
 
 <script language="JavaScript">
-			function WaitForCalculation() {    
-			   //alert("Warten Sie bis die Berechnung l&auml;uft!");
-			  if(document.all) //IEXplorer 
-			   document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung abgeschlossen ist!") & getTranslation(" Tipp: Der Browser Symbol dreht sich nicht mehr sobald die Berechnung abgeschlossen wurde.")%>";
-			   //document.write("Warten Sie bis die Berechnung l&auml;uft!");
-			 }; 	 
+            function WaitForCalculation() {    
+               //alert("Warten Sie bis die Berechnung l&auml;uft!");
+              if(document.all) //IEXplorer 
+               document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung abgeschlossen ist!") & getTranslation(" Tipp: Der Browser Symbol dreht sich nicht mehr sobald die Berechnung abgeschlossen wurde.")%>";
+               //document.write("Warten Sie bis die Berechnung l&auml;uft!");
+             };      
 </script>
 
 <form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
@@ -29,7 +29,7 @@
     If Not isPurchasingAllowed() Then
         Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden erlaubt!"))
     Else 'allowed  
-       	 
+            
         paymode = Request("PayMode") : If paymode & "" = "" Then paymode = Session("PayMode") : If paymode & "" = "" Then paymode = DEFAULT_PAYMODE
         postmode = Request("postMode") : If postmode & "" = "" Then postmode = Session("posIMode") : If postmode & "" = "" Then postmode = DEFAULT_POSTMODE
         destination = Request("destination") : If destination & "" = "" Then destination = Session("destination") : If destination & "" = "" Then destination = DEFAULT_POSTMODE_DESTINATION
@@ -77,7 +77,7 @@
                     sql = sql & " AND SID=" & getSID()
                     rsWK = objConnectionExecute(sql)
                 End If
-			
+            
             Next
         End If
 
@@ -136,9 +136,9 @@
                     </th>
                     <td valign="middle" width="490" align="left">
                         <!--
-							 <select name="destination" onClick="document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination='+document('destination');">
-							 <option class="submit" value="<%=destination%>"> <%=destination%>
-							 -->
+                             <select name="destination" onClick="document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination='+document('destination');">
+                             <option class="submit" value="<%=destination%>"> <%=destination%>
+                             -->
                         <%
                             Dim rsZM, selected
                             sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' and Methode = '" & postmode & "' group by destination  order by destination"
@@ -148,7 +148,7 @@
                                 'Response.Write selected
                         %>
                         <!--<option class="submit" value="<%=rsZM("destination")%>"> <%=rsZM("destination")%>
-								-->
+                                -->
                         <input type="radio" class="submit" value="<%=rsZM("destination").Value%>" name="destination"
                             <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination").Value%>';">
                         <%=rsZM("destination").Value%>

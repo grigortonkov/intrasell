@@ -88,7 +88,7 @@
                                 rs = objConnectionExecute(sql)
                                 curr_id = newCurrent
                             Else
-                                message = "You can not delete a non-empty Bookmark	folder!"
+                                message = "You can not delete a non-empty Bookmark    folder!"
                             End If
                             action = ""
                             my_name = ""
@@ -117,7 +117,7 @@
                         my_url = Trim(Request("Url"))
                         sql = "Select Url as prid FROM UserBookmarks WHERE BookmarkID = " & curr_id
                         rs = objConnectionExecute(sql)
-                        If rs.EOF Then preid = "" Else preid = rs("prid") 'a check for adding main folder	
+                        If rs.EOF Then preid = "" Else preid = rs("prid") 'a check for adding main folder    
                         If preid <> "" Then ' the current is file and the parent for our new bookmark will be it's parent
                             sql = "Select PreBookmarkId as prid FROM UserBookmarks WHERE BookmarkID = " & curr_id
                             rs = objConnectionExecute(sql)
@@ -130,12 +130,12 @@
                         Else
                             sql = "SELECT * FROM UserBookmarks WHERE PreBookmarkID = " & preid ' select all nodes at same level
                             rs = objConnectionExecute(sql)
-			
+            
                             Do While Not rs.EOF
                                 If rs("Name").Value = my_name And rs("Url").Value = my_url Then Exit Do
                                 rs.moveNext()
                             Loop
-			
+            
                             If rs.EOF Then
                                 sql = "Insert into userBookmarks(BookMarkId, Url, UserId, PreBookmarkId, Name, Description) values ("
                                 sql = sql & newid & ", "
@@ -152,14 +152,14 @@
                                 message = "Sie haben schon ein Bookmark mit diesen Namen!"
                             End If
                         End If
-		
-		
+        
+        
                         action = ""
                         'added special for priceCompare
                         'Response.Clear
                         Response.Write(drawMsgBox("Bookmarks", message, "", ""))
                         'response.end 
-					
+                    
                     Case "update"
                         Dim turl
                         sql = "Select * FROM UserBookmarks WHERE BookmarkID = " & curr_id
@@ -185,8 +185,8 @@
                             Else
                                 'message = " There is nothing to edit ! "
                             End If
-					
-			
+                    
+            
                         End If
                         action = ""
                     Case "send"
@@ -205,7 +205,7 @@
                                     strTo = rs("EMail").Value 'Request.Form("users")
                                 End If
                             End If
-			
+            
                             If IsEmail(strTo) = "" Then
                                 Dim myCDONTSMail
                                 Dim strFrom
@@ -280,7 +280,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
 
                
 
-		 
+         
                 'call drawWindowPart1("Bookmarks"," ","", butArr)
             %>
 
@@ -292,7 +292,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
                 function doSubmit(i) {
                     var truefalse
                     //if ( ( i == 'update' ) )//&& 
-                    //		     truefalse = window.confirm(' You can not do that !');
+                    //             truefalse = window.confirm(' You can not do that !');
                     var str = i.toString();
 
                     truefalse = true; //message not wished from BENE 
@@ -301,7 +301,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
                         document.forms("bookmark").item("action").value = i;
                         document.forms("bookmark").submit();
                     }
-                }	
+                }    
             </script>
 
             <form name="bookmark" action="default.aspx" method="POST">
@@ -323,16 +323,16 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
                             <hr>
                             <%
                                 ' Select all the parents.
-		SQL = "Select * From UserBookmarks where (PreBookmarkId=0 or PreBookmarkId=" & Uid & ")" & userQuery
-		RSParents = Server.CreateObject("ADODB.Recordset")
-		RSParents.Open SQL, ObjConnection, 2, 3, 1
+        SQL = "Select * From UserBookmarks where (PreBookmarkId=0 or PreBookmarkId=" & Uid & ")" & userQuery
+        RSParents = Server.CreateObject("ADODB.Recordset")
+        RSParents.Open SQL, ObjConnection, 2, 3, 1
 
                                 'The main parent loop
-		Do While Not RSParents.EOF
-			Display RSParents("Name").Value, Level, RSParents("BookmarkId").Value, RSParents("URL").Value, RSParents("Description").Value
-			OutputChildren RSParents("BookmarkId").Value, Level + 1
-			RSParents.MoveNext
-		Loop
+        Do While Not RSParents.EOF
+            Display RSParents("Name").Value, Level, RSParents("BookmarkId").Value, RSParents("URL").Value, RSParents("Description").Value
+            OutputChildren RSParents("BookmarkId").Value, Level + 1
+            RSParents.MoveNext
+        Loop
                             %>
                         </table>
                     </td>
@@ -376,8 +376,8 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
                                 </div>
                             </td>
                             <td width="28%">
-                                <!--		
-		<input type="Button" class="SubmitButton" Value = "anlegen" OnClick="doSubmit('add');">-->
+                                <!--        
+        <input type="Button" class="SubmitButton" Value = "anlegen" OnClick="doSubmit('add');">-->
                             </td>
                         </table>
                     </td>
@@ -402,9 +402,9 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
         'SQL = "Select * FROM Users WHERE UserId <>" & Uid ' all other users
         'Set rs = objConnectionExecute (SQL)
         'while not rs.EOF%>
-			<option value="<%'=rs("email")%>"><%'=rs("UserName")%></option>
-			<%'rs.MoveNext
-		'wend%>				
+            <option value="<%'=rs("email")%>"><%'=rs("UserName")%></option>
+            <%'rs.MoveNext
+        'wend%>                
       </select>
       <br>
       oder 

@@ -785,11 +785,11 @@ function fnCreateStyleSheets()
   goStyle['WholeCalendar'] = StyleInfo.rules[StyleInfo.rules.length - 1].style
 
   StyleInfo.addRule(   '.Title_' + uniqueID,
-      'color            : #00009F  ;'+	// cal--title-color 
-      'font-family      : Arial    ;'+	// cal--title-font-family 
-      'font-size        : 10pt     ;'+	// cal--title-font-size 
-      'font-weight      : bold     ;'+	// cal--title-font-weight 
-      'text-align       : center   ;'+	// cal--title-text-align 
+      'color            : #00009F  ;'+    // cal--title-color 
+      'font-family      : Arial    ;'+    // cal--title-font-family 
+      'font-size        : 10pt     ;'+    // cal--title-font-size 
+      'font-weight      : bold     ;'+    // cal--title-font-weight 
+      'text-align       : center   ;'+    // cal--title-text-align 
       'height           : 1        ;'+
       'width            : 100%     ;'+
       'background-color : lightgrey;'
@@ -816,12 +816,12 @@ function fnCreateStyleSheets()
   goStyle['CalTable'] = StyleInfo.rules[StyleInfo.rules.length - 1].style
 
   StyleInfo.addRule(   '.DayTitle_' + uniqueID,
-      'background-color    : lightgrey ;'+	// dayTitle-background-color 
-      'color               : black     ;'+	// dayTitle-color 
-      'font-family         : Arial     ;'+	// dayTitle-font-family 
-      'font-size           : 8pt       ;'+	// dayTitle-font-size 
-      'font-weight         : bold      ;'+	// dayTitle-font-weight 
-      'text-align          : center    ;'+	// dayTitle-text-align 
+      'background-color    : lightgrey ;'+    // dayTitle-background-color 
+      'color               : black     ;'+    // dayTitle-color 
+      'font-family         : Arial     ;'+    // dayTitle-font-family 
+      'font-size           : 8pt       ;'+    // dayTitle-font-size 
+      'font-weight         : bold      ;'+    // dayTitle-font-weight 
+      'text-align          : center    ;'+    // dayTitle-text-align 
       'border-width        : 1px       ;'+
       'border-style        : solid     ;'+
       'border-left-color   : white     ;'+
@@ -841,13 +841,13 @@ function fnCreateStyleSheets()
   fnLoadCSSDefault('cal--dayTitle-text-align',       'calDayTitleTextAlign',       goStyle['DayTitle'], 'textAlign')
 
   StyleInfo.addRule(   '.OffDay_' + uniqueID,
-      'background-color    : lightgrey ;'+	// cal--offMonth-background-color 
-      'color               : #7F7F7F   ;'+	// cal--offMonth-color 
-      'font-family         : Arial     ;'+	// cal--offMonth-font-family
-      'font-size           : 8pt       ;'+	// cal--offMonth-font-size 
-      'font-weight         : normal    ;'+	// cal--offMonth-font-weight 
-      'text-align          : right     ;'+	// cal--offMonth-text-align 
-      'vertical-align      : text-top  ;'+	// cal--offMonth-vertical-align 
+      'background-color    : lightgrey ;'+    // cal--offMonth-background-color 
+      'color               : #7F7F7F   ;'+    // cal--offMonth-color 
+      'font-family         : Arial     ;'+    // cal--offMonth-font-family
+      'font-size           : 8pt       ;'+    // cal--offMonth-font-size 
+      'font-weight         : normal    ;'+    // cal--offMonth-font-weight 
+      'text-align          : right     ;'+    // cal--offMonth-text-align 
+      'vertical-align      : text-top  ;'+    // cal--offMonth-vertical-align 
       'border-width        : 1px       ;'+
       'border-style        : solid     ;'+
       'border-left-color   : white     ;'+
@@ -868,13 +868,13 @@ function fnCreateStyleSheets()
   fnLoadCSSDefault('cal--offMonth-vertical-align',   'calOffMonthVerticalAlign',   goStyle['OffDay'], 'verticalAlign')
 
   StyleInfo.addRule(   '.Day_' + uniqueID,
-      'background-color    : lightgrey ;'+	// cal--currentMonth-background-color 
-      'color               : #00009F   ;'+	// cal--currentMonth-color 
-      'font-family         : Arial     ;'+	// cal--currentMonth-font-family 
-      'font-size           : 8pt       ;'+	// cal--currentMonth-font-size 
-      'font-weight         : normal    ;'+	// cal--currentMonth-font-weight 
-      'text-align          : right     ;'+ 	// cal--currentMonth-text-align 
-      'vertical-align      : text-top  ;'+	// cal--currentMonth-vertical-align 
+      'background-color    : lightgrey ;'+    // cal--currentMonth-background-color 
+      'color               : #00009F   ;'+    // cal--currentMonth-color 
+      'font-family         : Arial     ;'+    // cal--currentMonth-font-family 
+      'font-size           : 8pt       ;'+    // cal--currentMonth-font-size 
+      'font-weight         : normal    ;'+    // cal--currentMonth-font-weight 
+      'text-align          : right     ;'+     // cal--currentMonth-text-align 
+      'vertical-align      : text-top  ;'+    // cal--currentMonth-vertical-align 
       'border-width        : 1px       ;'+
       'border-style        : solid     ;'+
       'border-left-color   : white     ;'+
@@ -896,13 +896,13 @@ function fnCreateStyleSheets()
 
 
   StyleInfo.addRule(   '.DaySelected_' + uniqueID,
-      'background-color    : #7F7F7F  ;'+	// cal--selectedDay-background-color 
-      'color               : yellow   ;'+	// cal--selectedDay-color 
-      'font-family         : Arial    ;'+	// cal--selectedDay-font-family 
-      'font-size           : 8pt      ;'+	// cal--selectedDay-font-size 
-      'font-weight         : normal   ;'+	// cal--selectedDay-font-weight 
-      'text-align          : right    ;'+ 	// cal--selectedMonth-text-align 
-      'vertical-align      : text-top ;'+	// cal--selectedMonth-vertical-align 
+      'background-color    : #7F7F7F  ;'+    // cal--selectedDay-background-color 
+      'color               : yellow   ;'+    // cal--selectedDay-color 
+      'font-family         : Arial    ;'+    // cal--selectedDay-font-family 
+      'font-size           : 8pt      ;'+    // cal--selectedDay-font-size 
+      'font-weight         : normal   ;'+    // cal--selectedDay-font-weight 
+      'text-align          : right    ;'+     // cal--selectedMonth-text-align 
+      'vertical-align      : text-top ;'+    // cal--selectedMonth-vertical-align 
       'border-width        : 1px      ;'+
       'border-style        : solid    ;'+
       'border-left-color   : black    ;'+

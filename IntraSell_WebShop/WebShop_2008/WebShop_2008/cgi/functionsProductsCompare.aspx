@@ -158,16 +158,16 @@
                 kwCurrent = getKeyWord(keywordId, artNr)
                 kwHTML = kwHTML & kwCurrent
                 kwHTML = kwHTML & "</td>"
-						
+                        
                 If Len(kwCurrent) > 1 Then allCompareFeaturesAreEmpty = False ' somthing to show 
             Next
-				
+                
             kwHTML = kwHTML & "</tr>"
-		
+        
             If Not allCompareFeaturesAreEmpty Then
                 Response.Write(kwHTML)
             End If
-		    
+            
             rs.moveNext()
         End While
  

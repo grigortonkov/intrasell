@@ -38,8 +38,8 @@
                 RSParents.MoveNext()
             Loop
             RSParents.Close()
-		
-        End If ' logged	
+        
+        End If ' logged    
     End Sub
 </script>
 

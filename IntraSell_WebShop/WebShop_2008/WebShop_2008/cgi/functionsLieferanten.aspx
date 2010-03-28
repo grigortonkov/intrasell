@@ -69,8 +69,8 @@
             " AND " & DEFAULT_PRODUCT_SEARCH_WHERE
 
         End If
-		
-		
+        
+        
         If IsNumeric(branche & "") Then
             If showHersteller Then
                 sql = sql & " AND herstellerNr in (select idnr from ofAdressen where branche=" & branche & ")"
@@ -78,12 +78,12 @@
                 sql = sql & " AND lieferantenNr in (select idnr from ofAdressen where branche=" & branche & ")"
             End If
         End If
-		
-		
+        
+        
         sql = sql & " GROUP BY IDNR, Firma, Web " & _
         " HAVING (Count(ArtNr))>0 " & _
         " ORDER BY Firma"
-		
+        
         rs = objConnectionExecute(sql)
         
         html = html & "<table width='100%' border='0' cellspacing='0' cellpadding='3' ID='Table1'>"

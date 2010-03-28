@@ -19,7 +19,7 @@
 </html>
 
 <script>
-			window.setTimeout('window.close();',30000);
+            window.setTimeout('window.close();',30000);
 </script>
 
 <%
@@ -47,7 +47,7 @@ Dim subject : subject = "Request for help " & typeToSave
 
 Body = html
 
-'Dim body: body = MAKE_EMAIL_TELL_A_FRIEND(request("ProductURL"), Request ("BodyMail"))		 
+'Dim body: body = MAKE_EMAIL_TELL_A_FRIEND(request("ProductURL"), Request ("BodyMail"))         
 If sendMailFromWithSending(tomail, subject, Body, fromMail) Then
     'call addUserPoints(getLOGIN(), COUNT_POINTS_SEND_TO_FRIEND, REASON_SEND_TO_FRIEND) 
     'Response.write (body)

@@ -12,15 +12,15 @@
             Dim fs, exportFile
             Dim loglineHeader
             loglineHeader = Now() & "; " & Request.ServerVariables("REMOTE_ADDR") & "; "
-   		
+           
             fs = CreateObject("Scripting.FileSystemObject")
             filename = Server.MapPath("\logfiles") + "\" & filename
-   		
+           
             If Request("debug") = "true" Then
                 Response.Write("Export to: " & filename)
                 Response.Flush()
             End If
-   		
+           
             If FileExists(filename) Then
                 exportFile = fs.OpenTextFile(filename, 8) ' For appending
             Else
@@ -53,14 +53,14 @@
         fs = CreateObject("Scripting.FileSystemObject")
         filename = Server.MapPath("\logfiles") + "\" & filename
         If showDebug() Then Response.Write("Export to: " & filename) : Response.Flush()
-   		
+           
         If FileExists(filename) Then
             DeleteFile(filename)
         End If
 
         exportFile = fs.CreateTextFile(filename, False)
 
-   		
+           
         exportFile.Write(content)
         exportFile.Close()
  

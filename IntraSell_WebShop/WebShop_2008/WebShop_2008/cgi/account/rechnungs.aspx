@@ -8,18 +8,19 @@
     Else 'logged in
 
 
-        Dim orderType : orderType = Request("orderType")
-        Dim tableOrders, tableOrdersProducts
+        Dim orderType as String: orderType = Request("orderType")
+        Dim tableOrders, tableOrdersProducts As String
+        
         tableOrders = getNameForTable(orderType)
         tableOrdersProducts = "[" & getNameForTableProducts(orderType) & "]"
 
         Dim rsRech
-        Dim orderNR
-	
+        Dim orderNr As Double = 0
+    
 
         Dim MCHAR : MCHAR = "*"
         If Session("dbType") = "SQL" Or Session("dbType") = "MySQL" Then MCHAR = "%"
-	
+    
         SQL = " SELECT " & tableOrders & ".Datum, Status,  " & tableOrdersProducts & ".* " & _
            " FROM grArtikel, " & tableOrdersProducts & ", " & tableOrders & _
            " WHERE " & tableOrdersProducts & ".RechNr = " & tableOrders & ".Nummer" & _
@@ -29,7 +30,7 @@
            " ORDER BY (" & tableOrdersProducts & ".RechNr) DESC "
    
         'if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  
-		  
+          
         'response.write SQL
         'Response.Flush
         rsRech = objConnectionExecute(SQL)
@@ -81,9 +82,9 @@
         </th>
     </tr>
     <%
-        orderNR = ""
-        Dim count : count = 0
-		
+        
+        Dim count as Integer: count = 0
+        
         While Not rsRech.EOF
     %>
     <tr>

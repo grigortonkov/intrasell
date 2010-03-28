@@ -44,7 +44,7 @@
         If (IdNr) Is Nothing Or IdNr & "" = "" Then IdNr = 0
   
         'on error resume next
-        getPreis = IntraSellPreise().getPreis(IdNr, ArtNr, Stk)
+        getPreis = IntraSellPreise().getPreis(IdNr.ToString, ArtNr, Stk.ToString)
         'exit function 
     End Function
 
@@ -116,7 +116,7 @@
 ''' <param name="ArtNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getBestLieferant(ByVal ArtNr As Long)
+    Public Function getBestLieferant(ByVal ArtNr As String)
         getBestLieferant = IntraSellPreise().getBestLieferant(ArtNr)
     End Function
 

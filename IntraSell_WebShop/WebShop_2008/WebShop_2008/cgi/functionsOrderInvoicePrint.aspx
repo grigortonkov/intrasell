@@ -173,7 +173,7 @@
         'read RTF content
         Dim fileText As String, fileContent As String, fileLine As String
         fileText = readTextFile(Dateiname)
-	
+    
         'convert fileText to fileContent
         For Each fileLine In Split(fileText, Chr(13) & Chr(10))
             If fileContent = "" Then
@@ -209,7 +209,7 @@
         If rs("kundnr2").Value & "" <> "" Then
             Dim addressType As String : addressType = "LI"
             Dim sqlLI As String
-            sqlLI = "Select a.*, p.* from [ofAdressen-Weitere] a, grPLZ p where a.PLZ=p.IDNR and a.typ= '" & addressType & "' and a.ID=" & rs("kundnr2")
+            sqlLI = "Select a.*, p.* from [ofAdressen-Weitere] a, grPLZ p where a.PLZ=p.IDNR and a.typ= '" & addressType & "' and a.ID=" & rs("kundnr2").Value
             Dim rsLI
             'Response.Write sqlLI 
             rsLI = objConnectionExecute(sqlLI)

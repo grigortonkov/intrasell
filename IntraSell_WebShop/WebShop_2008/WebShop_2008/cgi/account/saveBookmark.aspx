@@ -15,7 +15,7 @@
             message = getTranslation("Sie sind nicht angemeldet!")
             Response.Write("<font color=red>" & message & "</font><br>")
             'load login page
-	
+    
             accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
             Response.Write(accountLoginPageHTML)
         Else

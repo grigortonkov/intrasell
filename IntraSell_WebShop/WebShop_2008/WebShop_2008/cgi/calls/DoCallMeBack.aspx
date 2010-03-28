@@ -6,12 +6,12 @@
 </head>
 <body bgcolor="#FFFFFF">
     <%
-		
+        
         'Request("FromName")
         'Request("FromTel")
         'Request("BodyMail")
-        'Request ("ToMail")	
-		
+        'Request ("ToMail")    
+        
         Dim mailtext
         mailtext = "Call me back request from:" & Request("FromName") & " Tel:" & Request("FromTel") & _
              "Mail: " & Request("FromMail") & _

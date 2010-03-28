@@ -19,15 +19,15 @@
                    " From: " & Request("FromName") & Chr(13) & Chr(10) & _
                    " Tel: " & Request("FromTel") & Chr(13) & Chr(10) & _
              " Mail: " & Request("FromMail")
-		   
+           
         subject = Replace(subject, """", "") : subject = Replace(subject, "'", "")
         mailtext = Replace(mailtext, """", "") : mailtext = Replace(mailtext, "'", "")
-		   
+           
         Dim idnr : idnr = getLOGIN() : If Trim(idnr) = "" Or (idnr) Is Nothing Then idnr = "0"
         Dim sql
         sql = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text], Datum) " & _
               "VALUES (" & idnr & ",'" & subject & "','" & mailtext & "', " & SQLNOW(0) & ")"
-        'Response.Write sql		   
+        'Response.Write sql           
         objConnectionExecute(sql)
         Response.Write(getTranslation("Ihre Anfrage wurde erfolgreich gespiechert!"))
     %>

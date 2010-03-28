@@ -44,7 +44,7 @@
                 'Response.Write "Password/Name is wrong!"
                 accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
                 Response.Write(accountLoginPageHTML)
-	       
+           
                 If Session(BACKTOPAGE_AFTER_ERROR) <> "" Then 'another page than myAccount.htm is requested after error on login or anmelden 
                     Dim pp : pp = Session(BACKTOPAGE_AFTER_ERROR)
                     Response.Write("Wrong login, we will redirect you to the proper page now!" & pp)
@@ -52,10 +52,10 @@
                     Dim backToPage : backToPage = "default.aspx?pageToShow=" & pp
                     'add params 
                     If Request("ArtNr") <> "" Then backToPage = backToPage & "&ArtNr=" & Request("ArtNr")
-		 
+         
                     Response.Redirect(backToPage)
                 End If
-	        
+            
             End If
         Else
             accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
@@ -72,15 +72,15 @@
         If Len(Request("B2")) Then 'user info update 
             Call saveBothAddresses()
         End If
-	 
+     
         If Session(BACKTOPAGE_AFTER_LOGIN_ANMELDEN) <> "" Then 'another page than myAccount.htm is requested after login or anmelden 
             Dim p : p = Session(BACKTOPAGE_AFTER_LOGIN_ANMELDEN)
             Session(BACKTOPAGE_AFTER_LOGIN_ANMELDEN) = "" 'delete the session 
             Response.Redirect("default.aspx?pageToShow=" & p & "&ArtNr=" & Request("ArtNr"))
         End If
-	 
-	 
-	 
+     
+     
+     
         'call addUserPoints(getLOGIN(),COUNT_POINTS_ACCOUNT_USAGE,REASON_SEND_ACCOUNT_USAGE)
         'show user page 
         Dim goToPage : goToPage = "skins/skin" & SkinNumber & "/pages/" & "account/myAccount.htm"
@@ -103,7 +103,7 @@
             Response.Write(getTranslation("Ihre Accountseite existiert nicht!"))
             Response.Write("<br>Fehlende Seite: " & goToPage)
         End If
-	 
+     
         accountPageHTML = readTextFile(Server.MapPath(goToPage))
         Response.Write(parseTemplate(parseTemplateUser(accountPageHTML), 0))
 %>

@@ -100,7 +100,7 @@
         terms(78) = "|"
         terms(79) = "|"
         terms(80) = "|"
-	
+    
 
 
         Dim techTerm, foreignTerm

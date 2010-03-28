@@ -154,11 +154,11 @@ Dim ArtNrToRedirekt : ArtNrToRedirekt = Request("ArtNr")
 If ArtNrToRedirekt = "" Then 
     ArtNrToRedirekt = Request("ProduktId")
 end if
-   	 
+        
 If Request("NextPageToShow") <> "" Then
     Response.Redirect("default.aspx?pageToShow=" & Request("NextPageToShow") & "&ArtNR=" & ArtNrToRedirekt & "&message=" & message)
 End If
- 		
+         
 %>
 <%=body_part2%>
 <!--BODY END-->

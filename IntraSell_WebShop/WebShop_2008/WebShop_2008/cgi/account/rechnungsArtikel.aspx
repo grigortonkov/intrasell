@@ -24,7 +24,7 @@
          " and grArtikel.ArtNR>=1 and grArtikel.bezeichnung not like '" & MC & "CALCULATE" & MC & "' " & _
          " ORDER BY (" & tableOrdersProductsArtikel & ".RechNr) DESC "
 
-        ' if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  		  
+        ' if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")            
         ' response.write SQL
         ' Response.Flush
         rsRechArtikel = objConnectionExecute(SQL)
@@ -77,7 +77,7 @@
     <%
         Dim orderNRArtikel, countArtikel
         Dim prevOrderNRArtikel : prevOrderNRArtikel = -1 'die alte rechnungszeile 
-			
+            
         orderNRArtikel = ""
         countArtikel = 0
         While Not rsRechArtikel.EOF
@@ -132,7 +132,7 @@
         </td>
         <!-- 
                 <td align="middle" width="153"><%=getPaketnummer(OrderTypeArtikel, OrderNRArtikel)%>&nbsp;</td>
-    			-->
+                -->
         <td align="left" width="185">
             <img border="0" src='<%=imageFullName("data_information.png")%>'>&nbsp; <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
@@ -141,9 +141,9 @@
             <br>
             <img border="0" src='<%=imageFullName("question.gif")%>'>&nbsp;
             <!--<a href="cgi/calls/requestJob.aspx?Job=RMARequest&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>" 
-				    target="JOB" OnClick="window.open ('JOB', 'JOB', 'height=400,width=400,status=yes,toolbar=no,menubar=no,location=no');">
-				    <%=getTranslation("RMA")%>
-		            </a>-->
+                    target="JOB" OnClick="window.open ('JOB', 'JOB', 'height=400,width=400,status=yes,toolbar=no,menubar=no,location=no');">
+                    <%=getTranslation("RMA")%>
+                    </a>-->
             <a href="cgi/calls/RMARequest.aspx?Job=RMARequest&ArtNr=<%=rsRechArtikel("ArtNr").Value%>&Nummer=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
                 <%=getTranslation("RMA")%>

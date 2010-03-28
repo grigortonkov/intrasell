@@ -6,7 +6,7 @@ Dim ENGLISH: ENGLISH = true
 GERMAN = varvalue("LANGUAGE") <> "ENG"  
 ENGLISH = NOT GERMAN
 
-Dim CardName, FromName, FromEmail, ToName, ToEmail, LoveText	
+Dim CardName, FromName, FromEmail, ToName, ToEmail, LoveText    
 
 
 CardName   = request("CardName")

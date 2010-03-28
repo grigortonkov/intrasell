@@ -78,16 +78,16 @@
         If rsTop.BOF And rsTop.EOF Then
         Else
             inRow = 0
-	
+    
             html = "<table width=100% align=center>"
-	
+    
             While Not rsTop.EOF
                 If inRow = 0 Then html = html & "<tr>"
         
                 html = html & "<td>"
                 html = html & makeProductPageSmallWithTemplate(rsTop("ProductID").Value, "default.aspx", "skins/skin" & SkinNumber & "/pages/productPageSmall_" & Typ & ".htm", 100)
                 html = html & "</td>"
-	
+    
                 inRow = inRow + 1
                 If inRow >= PRODUCTS_IN_ROW Then '======================================== 1 => 2 in ROW
                     inRow = 0
@@ -117,7 +117,7 @@
         'if rsTop.EOF then 'get products from clicks 
         '  set rsTop = ObjConnectionexecute(makeSQLTopClick(artKatNr))
         'end if 
-				
+                
         If rsTop.EOF Then
             html = "keine Produkte angeklickt"
         Else
@@ -125,20 +125,20 @@
             html = html & "<table align=center cellspacing=""10"">"
             Dim i : i = 0
             Dim alreadyShownProducts
-		
+        
             While (Not rsTop.EOF) And i < MAXPRODUCTSTOSHOW
                 i = i + 1
                 If InStr(alreadyShownProducts, rsTop("ArtNr").Value) < 1 Then 'not shown  
                     alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr").Value
-				 
+                 
                     If inRow = 0 Then html = html & "<tr>"
-					
+                    
                     inRow = inRow + 1
                     html = html & "<td>"
                     html = html & makeProductPageSmall(rsTop("ArtNr").Value, "default.aspx")
                     html = html & "</td>"
-		        
-		         
+                
+                 
                     If inRow > 1 Then '======================================== 1 => 2 in ROW
                         inRow = 0
                         html = html & "</tr>"
@@ -184,7 +184,7 @@
         'if rsTop.EOF then 'get products from clicks 
         '  set rsTop = ObjConnectionexecute(makeSQLTopClick(artKatNr))
         'end if 
-				
+                
         If rsTop.EOF Then
             html = getTranslation("keine Produkte ausgewählt (v)")
         Else
@@ -192,20 +192,20 @@
             html = html & "<table align=center cellspacing=""10"">"
             Dim i : i = 0
             Dim alreadyShownProducts
-		
+        
             While (Not rsTop.EOF) And i < MAXPRODUCTSTOSHOW
                 i = i + 1
                 If InStr(alreadyShownProducts, rsTop("ArtNr").Value) < 1 Then 'not shown  
                     alreadyShownProducts = alreadyShownProducts & "," & rsTop("ArtNr").Value
-				 
+                 
                     If inRow = 0 Then html = html & "<tr>"
-					
+                    
                     inRow = inRow + 1
                     html = html & "<td>"
                     html = html & makeProductPageSmall(rsTop("ArtNr").Value, "default.aspx")
                     html = html & "</td>"
-		        
-		         
+                
+                 
                     If inRow >= 1 Then '======================================== 1 => 2 in ROW
                         inRow = 0
                         html = html & "</tr>"
@@ -259,8 +259,8 @@
              " GROUP BY ArtNr " & _
              " ORDER BY Count(webWarenkorb.ArtNr) DESC"
         End If
-	  
-	  
+      
+      
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
 
@@ -313,7 +313,7 @@
                " GROUP BY ArtNr " & _
                " ORDER BY Count(ArtNr) DESC"
         End If
-	  
+      
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
 
@@ -322,7 +322,7 @@
             rs.movenext()
             i = i + 1
         End While
-	
+    
         rs.close()
         statisticBestsellers = html
     End Function
@@ -462,8 +462,8 @@
             " GROUP BY grArtikel.ArtKatNr, grArtikel.ArtNr, grArtikel.Bezeichnung " & _
             " ORDER BY Max(PreisDatum) DESC"
         End If
-		
-        'Response.Write sql	  :Response.Flush
+        
+        'Response.Write sql      :Response.Flush
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
         Dim Bezeichnung As String
@@ -584,13 +584,13 @@
         " AND a.produktAktiv<>0 and " & _
           makeArtKatNrInPart("ArtKatNr", ArtKAtNR, SUBCATEGORIES_TO_SEARCH_INTO) & _
         " GROUP BY a.ArtNr, a.Bezeichnung, a.MWST "
-	 
+     
         If Session("dbType") = "MySQL" Then
             sqlOnEKPreis = sqlOnEKPreis & " ORDER BY difference DESC"
         Else
             sqlOnEKPreis = sqlOnEKPreis & " ORDER BY Min(arch.VKPreis) - Min(lp.VKPreis) DESC"
         End If
-	 
+     
         'response.write "<font color=red>" & sqlOnEKPreis : response.flush        
         makeSQLPriceDrops = sqlOnEKPreis
     End Function
@@ -606,7 +606,7 @@
         Dim sql As String
         Dim html As String
         sql = makeSQLPriceDrops(ArtKatNr)
-        'Response.Write sql	  
+        'Response.Write sql      
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
         Dim bruttoPreis As Double
@@ -625,11 +625,11 @@
             i = i + 1
         End While
         html = html & "</table>"
-	
+    
         If Not rs.eof Then 'more products 
             html = html & "<center><a href='default.aspx?pagetoShow=PriceDowns'> " & getTranslation("weiter") & "... </a></center>"
         End If
-	
+    
         rs.close()
         statisticPriceDrops = html
     End Function
@@ -667,8 +667,8 @@
             " AND ProduktAktiv<>0 and ArtNr>=1000 AND " & _
             " [EKpreis]>0 and [LEKPreis]>=[EKpreis] and ([LEKPreis]-[EKPreis])*100/[EKpreis]>" & MARGIN_PERCENT_PRICE_DROPS & " and " & _
                       makeArtKatNrInPart("ArtKatNr", ArtKatNr, SUBCATEGORIES_TO_SEARCH_INTO)
-	             
-	             
+                 
+                 
         sqlPD = "SELECT a.ArtNr, a.Bezeichnung, la.Firma, Min(arch.VKPreis) - Min(lp.VKPreis) AS difference, a.MWST, " & _
                 " a.Bezeichnung, a.EAN, a.Picture, a.Bezeichnung1, a.PreisATS, a.MWST, a.Beschreibung " & _
           " FROM grArtikel a, lieferantenAdressen la, [lieferantenArtikel-Preise] lp, priceCompareLieferantenArtikelPreiseArchive arch  " & _
@@ -683,8 +683,8 @@
           " AND a.produktAktiv<>0 and " & _
             makeArtKatNrInPart("ArtKatNr", ArtKatNr, SUBCATEGORIES_TO_SEARCH_INTO) & _
           " GROUP BY a.ArtNr, a.Bezeichnung, a.MWST, a.Bezeichnung, a.EAN, a.Picture, a.Bezeichnung1, a.PreisATS, a.MWST, a.Beschreibung, la.Firma "
-	 
-	 
+     
+     
 
         'Response.Write sqlPD
         'sqlPD = makeSQLPriceDrops(ArtKatNr)
@@ -710,7 +710,7 @@
                " reserviertStk<lagerBestand and LagerOrt =  '" & DEFAULT_LAGER_NR & "')" & _
                " and ArtNR in (select ArtNr from  [grArtikel-Lagerbestand] where LagerOrt =  '" & CLEARANCE_LAGER_NR & "')" & _
                " ORDER BY PreisATS Desc"
-        'Response.Write sql	  
+        'Response.Write sql      
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
         
@@ -721,7 +721,7 @@
             i = i + 1
         End While
         html = html & "</table>"
-	
+    
         html = html & "<center><a href='default.aspx?pagetoShow=ClearanceCenter'> " & getTranslation("weiter") & "... </a></center>"
         rs.close()
         statisticClearanceCenter = html
@@ -887,7 +887,7 @@
         Else
             While Not rsTop.EOF And i < MAX_LINES
                 i = i + 1
-                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)	
+                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)    
                 html = html & drawWindowForum("Beitrag von " & rsTop("Autor").Value, "Datum:" & rsTop("DateCreation").Value, rsTop("Review").Value, "")
                 rsTop.moveNext()
             End While
@@ -1084,7 +1084,7 @@
         Dim i
 
         For i = 1 To COUNT_VISITED_PRODUCTS
-	
+    
             If Session("SESSION_NAME_VISITED_PRODUCT" & i) & "" = "" Then
                 Session("SESSION_NAME_VISITED_PRODUCT" & i) = artNr
                 'Response.Write "VISITED: " & i & ":" & artNR
@@ -1094,7 +1094,7 @@
             If CStr(Session("SESSION_NAME_VISITED_PRODUCT" & i)) = CStr(artNr) Then
                 Exit Function
             End If
-		
+        
             'if max achieved then offcet all old 
             If Session("SESSION_NAME_VISITED_PRODUCT" & COUNT_VISITED_PRODUCTS) & "" <> "" And _
                i = COUNT_VISITED_PRODUCTS Then
@@ -1107,7 +1107,7 @@
                 'the last is now the current 
                 Session("SESSION_NAME_VISITED_PRODUCT" & COUNT_VISITED_PRODUCTS) = CStr(artNr)
             End If
-	
+    
         Next
         addToUserVisitedProducts = True
     End Function
@@ -1169,7 +1169,7 @@
           makeArtKatNrInPart("ArtKatNr", ArtKatNr, SUBCATEGORIES_TO_SEARCH_INTO) & _
         " ORDER BY AngelegtAm DESC"
 
-        'Response.Write sql	  :Response.Flush
+        'Response.Write sql      :Response.Flush
         Dim rs : rs = ObjConnectionexecute(sql)
         Dim i As Integer : i = 0
         Dim Bezeichnung As String

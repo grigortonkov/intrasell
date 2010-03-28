@@ -278,23 +278,23 @@
         If EAN <> "" Then sql = sql + "AND [EAN] like '" & MC & EAN & MC & "'"
         If Bezeichnung <> "" Then sql = sql + "AND [Bezeichnung] like '" & MC & Bezeichnung & MC & "'"
         If Hersteller <> "" Then sql = sql + "AND HerstellerNr in (select Idnr from lieferantenAdressen where Firma like '" & Hersteller & "')"
-		
+        
         If Lieferant <> "" Then
             sql = sql + " AND ArtNr in (select ArtikelNr from [lieferantenArtikel-Preise] " & _
             " where LieferantNr in (select idnr from lieferantenAdressen where Firma like '" & Lieferant & "'))"
         End If
-		
+        
         If MinPreis <> "" Then sql = sql + "AND PreisATS >= " & MinPreis & " "
         If MaxPreis <> "" Then sql = sql + "AND PreisATS <= " & MaxPreis & " "
 
-			
+            
         sql = "SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung " & _
           " FROM grArtikel, lieferantenAdressen  " & _
           " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
           " AND " & DEFAULT_PRODUCT_SEARCH_WHERE & " AND " & _
           "(" & sql & ")"
 
-	      
+          
         'Response.write sql 
         'Response.Flush 
         'Response.end     
@@ -313,7 +313,7 @@
         Response.Write(DisplayCatListOnSeach(Bezeichnung))
         Response.Write(makeProductListOnQuery(sql, "", "", Trim(searchDescription)))
         'showProductQueryResult(sql)
-		
+        
     End Sub
 
     '****************************************************************************
@@ -359,7 +359,7 @@
 
     '****************************************************************************
     ' runs an SQL stametemnt and show the result 
-    ' the sql must be something like select * grom grArtikel where .... 
+    ' the sql must be something like select * grom grArtikel where      
     '****************************************************************************
     Function showProductQueryResult(ByVal sql)
         Response.Write(makeProductListOnQuery(sql, Request("filterBy"), Request("orderby"), ""))
@@ -384,20 +384,20 @@
         End If
 
         'sql = "SELECT  IDNR, Branche, Firma, Adresse, [grArtikel-Kategorien].Name AS CaT, grArtikel.* " & _ 
-        '	" FROM [grArtikel-Kategorien], grArtikel, lieferantenAdressen  " & _ 
-        '	" Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _ 
-        '	" AND [grArtikel-Kategorien].ArtKatNr = grArtikel.ArtKatNr " & _ 
-        '	" AND ProduktAktiv<>0 and grArtikel.ArtKatNr=" & artKatNr 
-		
+        '    " FROM [grArtikel-Kategorien], grArtikel, lieferantenAdressen  " & _ 
+        '    " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _ 
+        '    " AND [grArtikel-Kategorien].ArtKatNr = grArtikel.ArtKatNr " & _ 
+        '    " AND ProduktAktiv<>0 and grArtikel.ArtKatNr=" & artKatNr 
+        
         Sql = "SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung " & _
          " FROM grArtikel, lieferantenAdressen  " & _
          " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
          " and " & DEFAULT_PRODUCT_SEARCH_WHERE & " and grArtikel.ArtKatNr=" & artKatNr
-		
+        
         'Response.Write sql: Response.Flush   
         makeProductList = makeProductListOnQuery(Sql, filterBy, orderBy, "")
     End Function
-	
+    
 
     ''' <summary>
     ''' requery SQL 
@@ -418,11 +418,11 @@
         'response.write orderby 
         Response.Write(makeProductListOnQuery(sql, filterBySQL, orderBy, ""))
     End Sub
-	
+    
     '****************************************************************************
     ' htmlForSaveUserQuery - 
     ' makes an image link for saving this query
-    '****************************************************************************	
+    '****************************************************************************    
     Function htmlForSaveUserQuery(ByVal Sql, ByVal FilterBySQL, ByVal OrderBy, ByVal SearchDescription)
         'response.Write sql & SearchDescription
         Dim html
@@ -448,7 +448,7 @@
             Exit Function
         Else
 
-				
+                
             html = html & "<table border=""0"" width=""100%""  cellpadding=""2"" cellspacing=""0"" style=""border-collapse: collapse"" bordercolor=""#111111"">"
             html = html & "<tr bgcolor=#6b8eb5>"
             html = html & "<td width=""417"" align=""left"" bgcolor=""#CCCCCC"" bordercolor=""#CECFCE"" style=""border-bottom: 1 solid #42598C"">"
@@ -462,7 +462,7 @@
             html = html & "<td align=""center"" bgcolor=""#CCCCCC"" width=""39"" bordercolor=""#CECFCE"" style=""border-bottom: 1 solid #42598C"">Detail</td>"
             html = html & "<td align=""center"" bgcolor=""#CCCCCC"" width=""39"" bordercolor=""#CECFCE"" style=""border-bottom: 1 solid #42598C"">Vergl.</td>"
             html = html & "</tr>"
-				
+                
 
 
             Dim rowColor
@@ -471,7 +471,7 @@
                 artNr = rsArtikel("ArtNR").Value
                 VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1), rsArtikel("MWST").Value, Session("Land")), 2)
                 If rowColor = "#F7F7F7" Then rowColor = "#FFFFFF" Else rowColor = "#F7F7F7"
-				  
+                  
                 html = html & "<tr>"
                 html = html & "<td width=""300"" align=""left"" bgcolor=""" & rowColor & """><a href='default.aspx?ArtNr=" & artNr & "'>" & rsArtikel("Bezeichnung").Value & "</a></td>"
                 html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """><p align=""right"">" & VKPreis & "</td>"
@@ -486,7 +486,7 @@
                 rsArtikel.moveNext()
                 Response.Flush()
             End While
-		
+        
             html = html & "</table>"
 
         End If
@@ -515,7 +515,7 @@
         Dim filenameForTemplate
         If pagePart = "" Then pagePart = 1
         'filenameForTemplate =  "skins/skin" & SkinNumber & "/pages/productPage_part" &  pagePart  & ".htm"
-	
+    
         'New Feature from Immo / 26-08-2004 
         'check if the category of the product has another template file defined and use it if so ! 
         Dim possibleFilename_ProductTemplate : possibleFilename_ProductTemplate = findTemplateForProductFromCache(tablevalue("grArtikel", "ArtNr", ArtNr, "ArtKatNr"))
@@ -524,13 +524,13 @@
            possibleFilename_ProductTemplate = NOT_DEFINED Then
             possibleFilename_ProductTemplate = "" 'clean because of function error 
         End If
-	 
+     
         filenameForTemplate = "skins/skin" & SkinNumber & "/pages/productPage_part" & pagePart & possibleFilename_ProductTemplate & ".htm"
         If showDebug() Then Response.Write("<br>filenameForTemplate=" & filenameForTemplate)
         'Response.Write filenameForTemplate & Server.MapPath(filenameForTemplate) : Response.Flush
         Dim template
         Dim ArtKatNR
-	
+    
         template = makeProductPageWithTemplate(ArtNr, readTextFile(Server.MapPath(filenameForTemplate)))
         ArtKatNR = tablevalue("grArtikel", "artNR", ArtNr, "ArtKatNR")
         makeProductPage = parseTemplate(template, ArtKatNR)
@@ -910,7 +910,7 @@
             splitterPos = InStr(TIPair, "=")
             parameter = Left(TIPair, splitterPos - 1)
             value = Mid(TIPair, splitterPos + 1)
-		
+        
             html = html & "<tr><td border='0' width='100'>" & parameter & "</td>"
             html = html & "<td border='0' width='300'>" & value & "</td></tr>"
         Next
@@ -939,12 +939,12 @@
             'end if
             hiRS.moveNext()
         End While
-	
+    
         html = fixRelativeImageLinks(html)
         getHTMLInfo = html
     End Function
  
-	
+    
 
     ''' <summary>
     ''' 
@@ -965,7 +965,7 @@
         rs.Close()
     End Function
 
-	
+    
     '****************************************************************************
     ' Create Secial Choice 
     ' takes the SpecialChoice information from product description and makes combos for the user to select from 
@@ -1086,7 +1086,7 @@
             Dim Bezeichnung : Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
             Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung & "", Language)
             Bezeichnung = Server.HtmlEncode(Bezeichnung)
-	
+    
             Dim Bezeichnung1 : Bezeichnung1 = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "") 'rsArtikel("Bezeichnung1").Value
             Dim Picture : Picture = rsArtikel("Picture").Value
             Dim ArtKatNr : ArtKatNr = rsArtikel("ArtKatNr").Value
@@ -1115,7 +1115,7 @@
             End If
 
             'On Error GoTo 0
-		
+        
             productTemplate = Replace(productTemplate, "[ArtNr]", ArtNr & "")
             productTemplate = Replace(productTemplate, "[EAN]", rsArtikel("EAN").Value & "")
             productTemplate = Replace(productTemplate, TAG_BEZEICHNUNG, Bezeichnung & "")
@@ -1129,10 +1129,10 @@
             productTemplate = Replace(productTemplate, "[makeBruttoPreis]", bruttoPreis & "")
             productTemplate = Replace(productTemplate, "[HerstellerRabatt]", herstellerRabatt & "")
             productTemplate = Replace(productTemplate, "[HerstellerRabattText]", herstellerRabattText & "")
-		
+        
             'added at 20.01.2007
             productTemplate = Replace(productTemplate, "[Picture]", Picture & "")
-		
+        
             If InStr(productTemplate, TAG_CREATEPRODUCTSPECIALCHOICE) > 0 Then
                 productTemplate = Replace(productTemplate, TAG_CREATEPRODUCTSPECIALCHOICE, createProductSpecialChoice(Modifikationen) & "")
             End If
@@ -1141,7 +1141,7 @@
             End If
 
             Call replaceEigenschaftenAndMore(ArtNr, productTemplate)
-		 
+         
             makeProductPageSmallWithTemplate = productTemplate
         End If
         rsArtikel.close()
@@ -1302,7 +1302,7 @@
             Exit Function
         Else
             While Not rsTop.EOF
-                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)	
+                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)    
                 html = html & drawWindowForum(getTranslation("Beitrag von ") & rsTop("Autor").Value, _
                                                getTranslation("Datum:") & rsTop("DateCreation").Value, _
                                                rsTop("Review").Value, "")

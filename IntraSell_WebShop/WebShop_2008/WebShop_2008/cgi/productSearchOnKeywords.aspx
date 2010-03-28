@@ -19,14 +19,14 @@
     'Draw search form again
     Dim formName : formName = getTranslation("Suche in Kategorie ") & "'" & TableValue("[grArtikel-Kategorien]", "artKatNr", ArtKatNr, "Name") & "'"
 
-    'QUERY CREATION 		
+    'QUERY CREATION         
     If orderBy = "" Then
         orderBy = "ArtKatNr"
         whereClause = makeWherePart()
         wherePartDescription = makeWherePartDescription()
         searchSql = "SELECT ArtNr, EAN, Bezeichnung, Bezeichnung1, LieferantNr, ArtKatNr, " & _
           " PreisEuro, PreisATS, MWST, AngelegtAm, grArtikel.Picture, Firma FROM grArtikel, lieferantenAdressen " & _
-           " Where grArtikel.herstellerNr = lieferantenAdressen.idnr and " & whereClause '& " ORDER BY " & OrderBy						 	 						 
+           " Where grArtikel.herstellerNr = lieferantenAdressen.idnr and " & whereClause '& " ORDER BY " & OrderBy                                                       
         'save user query 
         'Response.Write "Login=" &  getLOGIN()
         Dim loggedIn : loggedIn = getLOGIN() & ""
@@ -34,11 +34,11 @@
             If getLOGIN() > 0 Then
                 Dim USER_FRIENDLY_QUERY
                 USER_FRIENDLY_QUERY = Request.Form
-                'call saveUserQuery(getLOGIN(), "LastProductSearch " & USER_FRIENDLY_QUERY, searchSql, "no-email")	
-                'response.write  " Ihre Abfrage wurde gespeichert f&uuml;r sp&auml;tere Verwendung. Diese finden Sie im My Account!<BR>"	  
+                'call saveUserQuery(getLOGIN(), "LastProductSearch " & USER_FRIENDLY_QUERY, searchSql, "no-email")    
+                'response.write  " Ihre Abfrage wurde gespeichert f&uuml;r sp&auml;tere Verwendung. Diese finden Sie im My Account!<BR>"      
             End If
         End If
-		
+        
     Else  ' the user requested order by 
         searchSql = Session("LAST_QUERY")
         'remove old order by 
@@ -57,8 +57,8 @@
         'Session("LAST_QUERY") = searchSql
         If showDebug() Then Response.Write("Ihre Suche: sql=" & searchSql)
         Response.Write(getTranslation("Suchergebnis... moment, bitte..."))
-        'Response.Flush	
+        'Response.Flush    
         Response.Write(makeProductListOnQuery(searchSql, "", "", wherePartDescription))
     End If
-		
+        
 %>

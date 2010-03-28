@@ -40,7 +40,7 @@
             Errors = True
         End If
     End If
-	
+    
 
 %>
 <%
@@ -165,7 +165,7 @@ End If
 
 
     If Not CheckEmail(ToEmail) Then
-	
+    
 %>
 <br>
 <font color="red">Your email address is not correct! </font>
@@ -180,7 +180,7 @@ If Len(ToName) < 1 Then
 <% 
     Errors = True
 End If
-	 
+     
 If Len(FromName) < 1 Then
 %>
 <br>
@@ -188,7 +188,7 @@ If Len(FromName) < 1 Then
 <% 
     Errors = True
 End If
-	 
+     
 If Len(LoveText) = 0 Then
 %>
 <br>

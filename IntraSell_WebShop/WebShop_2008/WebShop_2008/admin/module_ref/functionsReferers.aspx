@@ -34,14 +34,14 @@
     ' creates an entry in the database when the user buys something
     '****************************************************************
     Function createReference(ByVal OrderType, ByVal OrderNummer, ByVal RefererId)
-        If RefererId = "" Or RefererId <= 0 Then Exit Function
+        If RefererId <= 0 Then Exit Function
    
         Dim sql
         sql = "INSERT INTO webOrderReferenz (RefererId, OrderNummer, OrderType, Bezahlt) " & _
          "Values (" & RefererId & "," & OrderNummer & ",'" & OrderType & "',-1)"
-		  
+          
         ObjConnectionExecute(sql)
-		  
+          
     End Function
 
     '****************************************************************
@@ -89,7 +89,7 @@
          " grArtikel.ArtNr = [" & tableName & "].ArtNR) ON [grArtikel-Kategorien].ArtKatNr = grArtikel.ArtKatNr " & _
          " WHERE RefererID= " & RefererId & _
          " GROUP BY webOrderReferenz.RefererId, " & tableNameOrder & ".Datum, " & tableNameOrder & ".Nummer"
-        'Response.Write "<br>sql=" & sql	
+        'Response.Write "<br>sql=" & sql    
         rs = ObjConnectionExecute(sql)
 
  
@@ -160,7 +160,7 @@
         If rsTop.BOF And rsTop.EOF Then
         Else
             inRow = 0
-	 
+     
             html = html & "<center>"
             html = html & "<table  border=1 width=100% cellspacing=10 cellpadding=0 bordercolor=#F7F7F7>"
   
@@ -168,21 +168,21 @@
                 If inRow = 0 Then html = html & "<tr>"
                 
                 html = html & "<td>"
-	  
+      
                 inRow = inRow + 1
                 Call makeProductPageSmall(rsTop("ArtNr").Value, "")
                 rsTop.moveNext()
-		 
+         
                 html = html & "</td>"
-	   
+       
                 If inRow > 2 Then ' 3 in a ROW
                     inRow = 0
-		 
+         
                     html = html & "</tr>"
-		 
+         
                 End If
             End While
- 	
+     
             html = html & "</tr>"
             html = html & "</table></center>"
  

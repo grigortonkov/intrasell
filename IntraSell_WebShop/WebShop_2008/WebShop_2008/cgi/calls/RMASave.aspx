@@ -14,15 +14,15 @@ dim RMANumber: RMANumber = nextId("ofKorespondenz","ID")
 Dim subject, mailtext
 subject ="RMA Request #" & RMANumber
 mailtext = "RMA Request # " & RMANumber & " From:" & Request("FromName") & " Tel:" & Request("FromTel") & _ 
-		   "Mail: " & Request("FromMail")
-		   
+           "Mail: " & Request("FromMail")
+           
 subject = replace(subject,"""",""):subject = replace(subject,"'","")
 mailtext = replace(mailtext,"""",""):mailtext = replace(mailtext,"'","")
-		   
-dim idnr: idnr = session("Log_IN")	: if trim(idnr) = "" or  (idnr) is nothing then idnr = "0"	   
+           
+dim idnr: idnr = session("Log_IN")    : if trim(idnr) = "" or  (idnr) is nothing then idnr = "0"       
 dim sql 
 sql = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text]) values(" & idnr & ",'" & subject & "','" & mailtext  & "')"
-'Response.Write sql		   
+'Response.Write sql           
 objConnection.execute(sql)
 if  sendMailFromWithSending (Request ("ToMail"), subject, mailtext , Request("FromMail")) then 
     %>

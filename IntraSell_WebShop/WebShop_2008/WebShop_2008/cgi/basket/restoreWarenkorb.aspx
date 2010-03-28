@@ -27,7 +27,7 @@
             iwk = iwk + 1
             sqlRestoreWK = "INSERT INTO webWarenkorb (SID, ArtNr,Quantity) Values(" & _
                             getSID() & "," & rsRestoreWK("ArtNr").Value & "," & rsRestoreWK("quantity").Value & ")"
-            'Response.Write sqlRestoreWK : response.flush	 	                
+            'Response.Write sqlRestoreWK : response.flush                         
             objConnectionExecute(sqlRestoreWK)
             rsRestoreWK.moveNExt()
         End While

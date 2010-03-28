@@ -58,13 +58,13 @@ Function createSearchFormNoCache(ByVal categoryId)
       
         'html = html & "<td>" 
         'make keywords 
-        If rs("MaxSizeForComboBox") > 0 And Not rsSub.EOF Then ' comboBox is needed			
+        If rs("MaxSizeForComboBox") > 0 And Not rsSub.EOF Then ' comboBox is needed            
             html = html & "<SELECT Name=""" & kwName & """ style=""width: 70%; position: relative;"">"
             'response.write "rs(Name)=" & kwName 
             If kwName <> "" And Request(kwName) <> "" Then html = html & "<OPTION></OPTION>" 'Empty choice for reducing the search criterias
-			
+            
             html = html & "<OPTION SELECTED>" & Request(kwName).Value & "</OPTION>"
-			
+            
             While Not rsSub.EOF
                 html = html & "<OPTION>" & rsSub("Value").Value & "</OPTION>"
                 rsSub.MoveNext()
@@ -125,10 +125,10 @@ Function makeBanner(ByVal ArtKatNr, ByVal Nr)
            " AND MaxImpressionsCount >= ImpresionsCount " & _
            " ORDER BY ImpresionsCount" ' this way we will show alwas the banner with smallest impressions
     rsBan = objConnectionExecute(sql1)
-	
-	
+    
+    
     'Response.Write sql1
-	
+    
     If rsBan.BOF And rsBan.EOF Then ' no such banner
         'bannerString = "Banner not found"
         Exit Function
@@ -170,12 +170,12 @@ Function findTemplate(ByVal artKatNr)
         Exit Function
     End If
     findTemplate = catTemplate
-	
+    
     findTemplate = Replace(findTemplate, "&lt;", "<")
     findTemplate = Replace(findTemplate, "&gt;", ">")
     findTemplate = Replace(findTemplate, "&quot;", """")
     findTemplate = Replace(findTemplate, "&amp;nbsp;", "&nbsp;")
-	  
+      
 End Function
 
 

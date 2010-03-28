@@ -36,12 +36,12 @@ Dim toElementName: toElementName = "'" & Request("toElementName") & "'"
     </style>
 
     <script language="JavaScript">
-	<!-- 
+    <!-- 
 function applyDate(toElementName){
  if (cal!=null  && cal.value!=null) {
-   		//alert('Heute ist:' + cal.value);
-   		opener.document.all(toElementName).value = cal.value; 
-   		window.close();		    
+           //alert('Heute ist:' + cal.value);
+           opener.document.all(toElementName).value = cal.value; 
+           window.close();            
    }
 }
 // -->

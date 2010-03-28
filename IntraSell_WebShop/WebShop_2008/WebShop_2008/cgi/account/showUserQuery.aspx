@@ -14,7 +14,7 @@
  
         QueryId = cleanUserInput(Request("QueryId"))
         ActionQuery = cleanUserInput(Request("Action"))
-	
+    
         Session("USERID") = getLOGIN()
 
 
@@ -58,10 +58,10 @@
                 Dim wherePart : wherePart = Replace(rsQ("SQLString").Value, "~", "'")
                 Dim whereDesc : whereDesc = Replace(rsQ("SQLDescription").Value, "~", "'")
                 Response.Write("Erfolgreich gezeigt wurde QueryId=" & QueryId & "!")
-				
+                
                 Response.Write(makeProductListOnQuery(wherePart, "", "", whereDesc))
             End If
-			
+            
         End If
 
 
@@ -103,7 +103,7 @@
              " <font color=red>Abfrage löschen</font></a>' as DelAktion " & _
              "from userQueries where IntervalInDays=0 and UserId=" & getLOGIN()
         'objConnectionExecute (SQL)
-				
+                
         ListUserQueries = sqlToHTML(SQL, True, True)
     End Function
 </script>

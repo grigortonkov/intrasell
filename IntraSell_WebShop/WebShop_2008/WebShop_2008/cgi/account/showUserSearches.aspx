@@ -45,8 +45,8 @@
             'Response.Write "Erfolgreich gezeigt wurde QueryId=" & sidQueryId& "!"
             Response.Write(makeProductListOnQuery(wherePart_sid, "", "", whereDesc_sid))
         End If
-			
+            
     End If
-		
+        
  
 %>

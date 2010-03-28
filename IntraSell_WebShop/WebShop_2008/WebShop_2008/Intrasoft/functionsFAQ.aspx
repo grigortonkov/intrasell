@@ -26,7 +26,7 @@
         SQLString = "SELECT * FROM webFAQ WHERE Page Like 'ALL%' or Page Like '" & Seite & "'"
         'Response.Write sqlString 
         rs = objConnectionExecute(SQLString)
-		
+        
         If rs.eof Then
             Exit Function
      
@@ -37,7 +37,7 @@
         'html = html &   "<hr>"
         html = "Fragen und Antworten zur Seite [" & Seite & "]"
         html = html & "<br>"
-       		
+               
         Dim frage, count
         count = 0
         While Not rs.EOF
@@ -53,7 +53,7 @@
         End While
         rs.close()
         showFAQList = html
-        ' END CONTENT	
+        ' END CONTENT    
     End Function
 
 
@@ -84,12 +84,12 @@
  
             rs.movenext()
         End While
-        ' END CONTENT	 	
+        ' END CONTENT         
  
         html = html & "<hr>"
         html = html & "<h2>Antworten</h2>"
- 	 	
-        ' DIE TEXTE ZEIGEN	   
+          
+        ' DIE TEXTE ZEIGEN       
         rs = objConnectionExecute(SQLString)
         count = 0
         While Not rs.EOF

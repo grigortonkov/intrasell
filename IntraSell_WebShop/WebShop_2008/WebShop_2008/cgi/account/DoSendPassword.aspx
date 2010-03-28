@@ -9,9 +9,9 @@
     <br>
     <br>
     <%
-		
-        'ONLY EMAIL IS NEEDED FOR SEND PASS FUNCTIONS		
-		
+        
+        'ONLY EMAIL IS NEEDED FOR SEND PASS FUNCTIONS        
+        
         Dim ParamsOK, Name, Email
         ParamsOK = False
         Name = Trim(Request("Name"))
@@ -48,14 +48,14 @@
         <%=getTranslation("Es wurde leider kein Passwort für die angegebene Name und Email gefunden!")%></h2>
     <%  Else
             Dim email_text, subject, recipient
-	
+    
             'email_text = "Hallo " & rsF("Name")   & " !" & CHR13CHR10 & CHR13CHR10& _ 
-            '			"Da sind die angeforderten Daten. " & _ 
-            '			"Fur den Einstieg in " & varvalue("DOMAIN") & " ben&ouml;tigen Sie Ihr Email " & CHR13CHR10& _ 
-            '			"und Passwort.  " & CHR13CHR10& _ 
-            '			"Ihr Passwort ist: " & rsF("Passwort")  & CHR13CHR10 & CHR13CHR10 & _ 
-            '			"Viel Spass dabei!!! " & CHR13CHR10 
-				 
+            '            "Da sind die angeforderten Daten. " & _ 
+            '            "Fur den Einstieg in " & varvalue("DOMAIN") & " ben&ouml;tigen Sie Ihr Email " & CHR13CHR10& _ 
+            '            "und Passwort.  " & CHR13CHR10& _ 
+            '            "Ihr Passwort ist: " & rsF("Passwort")  & CHR13CHR10 & CHR13CHR10 & _ 
+            '            "Viel Spass dabei!!! " & CHR13CHR10 
+                 
             email_text = MAKE_EMAIL_SEND_PASSWORD(rsF("idnr").Value)
 
             subject = getTranslation("Ihr Passwort")

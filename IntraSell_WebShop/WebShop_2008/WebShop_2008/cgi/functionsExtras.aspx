@@ -93,7 +93,7 @@
       
 
             'According max size we can have check box, combo box and text search  
-            If maxSize > 1 And Not rsSub.EOF Then ' comboBox is needed	
+            If maxSize > 1 And Not rsSub.EOF Then ' comboBox is needed    
                 html = html & "<br>" & kwName
                 html = html & "<SELECT Name=""" & kwName & """ style=""width: 70%; position: relative;"">"
                 'response.write "rs(Name).Value=" & kwName 
@@ -161,10 +161,10 @@
                        "group by Firma order by Firma"
             End If
         End If
-			    
+                
         'Response.Write "sqlF="& sqlF: Response.flush
         rsF = objConnectionExecute(sqlF)
-			    
+                
         html = html & "<select name=""Hersteller"">"
         'set default
         If Request("FilterBy") <> "" Then
@@ -174,7 +174,7 @@
         If defaultHersteller <> "" Then
             html = html & "<option value=""" & defaultHersteller & """>" & defaultHersteller
         End If
-			    
+                
         html = html & "<option value=""ALLE"">" & getTranslation("ALLE")
         Dim firma
         While Not rsF.EOF
@@ -186,9 +186,9 @@
         End While
         rsF.close()
         html = html & "</select>"
-	
+    
         makeSelectForHersteller = html
-			           
+                       
     End Function
 
     '===============================================================
@@ -231,11 +231,11 @@
             whereClause = whereClause & " AND (Beschreibung Like '" & fullText & "'" & _
                                         " or Bezeichnung Like '" & fullText & "' " & _
                                         " or EAN Like '" & fullText & "' )" '& _ 
-				                            
+                                            
             ' Dim fullText: fullText =  replace(trim(searchFreeText)," "," or ") 
-            '	whereClause = whereClause & " AND (contains(Beschreibung,'" & fullText & "') " & _ 
-            '	                            " or contains(Bezeichnung,'" & fullText  & "') " & _ 
-            '	                            " or contains(EAN, '" & fullText  & "'))"  
+            '    whereClause = whereClause & " AND (contains(Beschreibung,'" & fullText & "') " & _ 
+            '                                " or contains(Bezeichnung,'" & fullText  & "') " & _ 
+            '                                " or contains(EAN, '" & fullText  & "'))"  
             '                                   " or ArtNr in (Select ArtikelNr from [lieferantenArtikel-Preise] where Bezeichnung Like '" & fullText & "'))"
         End If 'request("searchFreeText")
 
@@ -244,17 +244,17 @@
             'whereClause = whereClause & " AND ArtNr in (Select ArtikelNR from [lieferantenArtikel-Preise] WHERE VKPreis<= " & request("MaxPreis") & " ) "  
             whereClause = whereClause & " AND (ArtNr=" & Request("ArtNr") & " or EAN=" & Request("ArtNr") & ") "
         End If
-		
+        
         'ArtNr or EAN search 
         Dim ArtNrSearch : ArtNrSearch = Request("ArtNrSearch")
         If ArtNrSearch & "" <> "" Then
             whereClause = whereClause & " AND (ArtNr='" & ArtNrSearch & "' or EAN='" & ArtNrSearch & "') "
         End If
-		
+        
         If Request("EAN") <> "" Then
             whereClause = whereClause & " AND EAN= '" & Request("EAN") & "' "
         End If
-		
+        
         If IsNumeric(Request("MinPreis")) And Request("MinPreis") <> "" Then
             'whereClause = whereClause & " AND ArtNr in (Select ArtikelNR from [lieferantenArtikel-Preise] WHERE VKPreis>= " & request("MinPreis") & " ) "  
             whereClause = whereClause & " AND PreisATS>= " & Request("MinPreis") & " "
@@ -264,12 +264,12 @@
             'whereClause = whereClause & " AND ArtNr in (Select ArtikelNR from [lieferantenArtikel-Preise] WHERE VKPreis<= " & request("MaxPreis") & " ) "  
             whereClause = whereClause & " AND PreisATS<= " & Request("MaxPreis") & " "
         End If
-		
+        
         If Hersteller <> "" And Left(Hersteller, 3) <> "ALL" Then
             whereClause = whereClause & " AND herstellerNr in (select IDNR from lieferantenAdressen where [Name] Like  '" & _
             META_CHAR & Hersteller & META_CHAR & "' or [Firma] Like  '" & META_CHAR & Hersteller & META_CHAR & "') "
         End If
-		
+        
         'Response.Write "Global:" & request("GlobalSearch")
         If UCase(Request("GlobalSearch")) <> "ON" Then
             If IsNumeric(ArtKatNr) And ArtKatNr >= 0 Then 'is not global search
@@ -287,11 +287,11 @@
         For Each keyword In Request.Form
             Call subpartForEachQueryAndForm(whereClause, LCase(keyword), LCase(Request(keyword)))
         Next
-		
+        
         For Each keyword In Request.QueryString
             Call subpartForEachQueryAndForm(whereClause, LCase(keyword), LCase(Request(keyword)))
         Next
-		
+        
         makeWherePart = whereClause
     End Function
 
@@ -330,12 +330,12 @@
                 keywordName = Mid(keywordName, 4)
                 whereClause = whereClause & " AND ArtNr In (Select ArtNr From [grArtikel-KeyWords] kw, [grArtikel-KeyWordsToProducts] kwp " & _
                    " Where kw.keywordId=kwp.keywordId and kw.Name ='" & keywordName & "' and [Value] <= " & keywordValue & ")"
-					  
+                      
             Else
                 If dbType <> "MySQL" Then
                     whereClause = whereClause & " AND ArtNr In (Select ArtNr From [grArtikel-KeyWords] kw, [grArtikel-KeyWordsToProducts] kwp " & _
                                  " Where kw.keywordId=kwp.keywordId and kw.Name ='" & keywordName & "' and [Value] = '" & keywordValue & "')"
-                Else ' MySQL 	            
+                Else ' MySQL                 
                     whereClause = whereClause & " AND exists (Select kw.* From [grArtikel-KeyWords] kw, [grArtikel-KeyWordsToProducts] kwp " & _
                              " Where kwp.ArtNR = grArtikel.ArtNr and kw.keywordId=kwp.keywordId and kw.Name ='" & keywordName & "' and [Value] = '" & keywordValue & "')"
                 End If
@@ -353,7 +353,7 @@
         For Each keyword In Request.QueryString
             Call wherePartForEachFormAndQueryString(WherePartDescription, keyword)
         Next
-				
+                
         makeWherePartDescription = Trim(WherePartDescription)
     End Function
 
@@ -376,11 +376,11 @@
             keywordValue = retainUmlaute(keywordValue)
             whereClauseDescription = whereClauseDescription & " " & getTranslation(keywordName) & " " & getTranslation("ist") & " " & keywordValue & ", "
         End If
-		   
+           
         If keywordName = "artnrsearch" Then
             whereClauseDescription = whereClauseDescription & " " & getTranslation("ObjektNr") & ": " & keywordValue & ", "
         End If
-		   
+           
         If keywordName = "artkatnr" Then
             Dim catDesc : catDesc = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", keywordValue, "[Desc]")
             Dim catName : catName = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", keywordValue, "Name")
@@ -390,18 +390,18 @@
             Else
                 show = getTranslation("Kategorie") & " " & catName
             End If
-		     
+             
             On Error Resume Next
-            ' only in immo	kategory beschreibung
+            ' only in immo    kategory beschreibung
             Dim catBeschreibung : catBeschreibung = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", keywordValue, "Beschreibung")
             If catBeschreibung & "" <> "" Then show = catBeschreibung
             On Error GoTo 0
-		      
+              
             whereClauseDescription = whereClauseDescription & " " & show & ", "
         End If
-		   
+           
 
-		   
+           
     End Sub
 
 </script>

@@ -207,12 +207,12 @@
     <tr>
     <td align="right" width="138"><span style="font-weight: 400">
     <font size="1" >* <%=getTranslation("Bundesland")%>&nbsp;&nbsp; </font></span></td>
-	<td>
-		<select name="BundesLand<%=typeOfAddress%>">
+    <td>
+        <select name="BundesLand<%=typeOfAddress%>">
          <%call selectBundesLand(fill, bundesland)%> 
          </select> 
          <%if withCheck and len(bundesland)<1 then %><font color=red>(!)</font><%end if%>       
-	</td>
+    </td>
   </tr>
   -->
             <tr>

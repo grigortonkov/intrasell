@@ -46,7 +46,7 @@
 
         Call replaceUserTags(KDNR, html)
         MAKE_EMAIL_REGISTRATION_SIMPLE = html
-	 									
+                                         
     End Function
 
 
@@ -84,10 +84,10 @@
     Function MAKE_EMAIL_ORDER(ByVal KDNR, ByVal AuftragNr)
         Const TAG_EMBED_ORDER As String = "[EMBED_ORDER]"
         Dim html As String
-		
+        
         'reads from root folder 
         html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_order_confirmation.htm"))
-		
+        
         html = Replace(html, "[AuftragNr]", AuftragNr)
         html = Replace(html, "[LINK_ORDER]", Session("BASENAME") & "/default.aspx?pageToShow=MyAccount")
         html = Replace(html, "[FIRMA_EMAIL_SALE]", VARVALUE("EMAIL_SALE"))
@@ -128,7 +128,7 @@
         Else
             html = Replace(html, TAG_EMBED_ORDER, realOrderLink)
         End If
-		 
+         
         Call replaceUserTags(KDNR, html)
         MAKE_EMAIL_ORDER = html
     End Function
@@ -146,7 +146,7 @@
         Dim artNr : artNr = Request("ArtNr")
 
         html = BodyMail 'readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/emails/email_send_a_friend.htm"))
-	
+    
         html = Replace(html, "[Name]", name)
         html = Replace(html, "[User text]", BodyMail)
         html = Replace(html, "[ProductURL]", ProductURL)
@@ -154,7 +154,7 @@
         html = Replace(html, "[UserText]", Request("UserText"))
     
         html = makeProductPageWithTemplate(artNr, html)
-	
+    
         MAKE_EMAIL_TELL_A_FRIEND = html
 
         Exit Function
@@ -167,11 +167,11 @@
            Chr(10) & Chr(13) & _
            Chr(10) & Chr(13) & _
            BodyMail
-			 
+             
         MAKE_EMAIL_TELL_A_FRIEND = BodyMail
-		 
+         
     End Function
-		 
+         
     ''' <summary>
     ''' MAKE_EMAIL_NEWSLETTER
     ''' </summary>
@@ -188,7 +188,7 @@
         " Viel Spass w&uuml;nscht Ihnen" & Chr(10) & Chr(13) & Chr(10) & Chr(13) & _
         " Ihr Team"
     End Function
-	 
+     
     '
     ''' <summary>
     ''' replaces user tags as [Name] [Email] in the emailtext 
@@ -210,16 +210,16 @@
 
         html = Replace(html, "[Email]", Email & "")
         html = Replace(html, "[Passwort]", Passwort & "")
-		
+        
         html = Replace(html, "[Firma]", Firma & "")
         html = Replace(html, "[Name]", Name & "")
         html = Replace(html, "[Nachname]", Name & "")
         html = Replace(html, "[Vorname]", Vorname & "")
-		
+        
         html = Replace(html, "[Begruessung]", Begruessung & "")
         html = Replace(html, "[Anrede]", Anrede & "")
         html = Replace(html, "[Titel]", Titel & "")
-		
+        
         html = parseTemplateUserIDNR(idnr, html)
     End Sub
 
@@ -234,11 +234,11 @@
         Dim EmailAnbieter : EmailAnbieter = firstValue("select Email from ofAdressen where idnr = " & idnr)
         Dim addFormElements, singleFormElement
         addFormElements = ""
-		  
+          
         For Each singleFormElement In Request.Form
             If Request.Form(singleFormElement) <> "" Then
                 addFormElements = addFormElements & singleFormElement & " = " & Request.Form(singleFormElement) & "<br>"
-		       
+               
             End If
             mailtext = Replace(mailtext, "[" & singleFormElement & "]", Request.Form(singleFormElement))
         Next
@@ -249,8 +249,8 @@
             End If
             mailtext = Replace(mailtext, "[" & singleFormElement & "]", Request.QueryString(singleFormElement))
         Next
-		  
-        'mailtext = mailtext + "<hr>" & addFormElements	   
+          
+        'mailtext = mailtext + "<hr>" & addFormElements       
      
         Call replaceUserTags(idnr, mailtext)
 
@@ -266,7 +266,7 @@
          idnr & ",'" & subject & "','" & Replace(mailtext, "'", "") & "')"
 
         objConnectionExecute(sqlK)
-			   
+               
         If sendMailFromWithSending(EmailAnbieter, subject, mailtext, varvalue("EMAIL")) Then
             Response.Write("<font color=""green"">Ihre Anfrage wurde erfolgreich abgesendet!</font>")
         Else

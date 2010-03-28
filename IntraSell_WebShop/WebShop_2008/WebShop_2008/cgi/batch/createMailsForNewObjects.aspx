@@ -6,7 +6,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
 
     Const mailname = "email_new_products.htm"
     Dim mailtext : mailtext = readTextFile(Server.MapPath("../../skins/skin" & SkinNumber & "/emails/" & mailname))
- 	  	   
+              
     'Response.Write "mailtext:" & mailtext & Server.MapPath("../../skins/skin" & SkinNumber & "/emails/" & mailname) : Response.Flush
     Dim addFormElements, singleFormElement
     addFormElements = ""
@@ -36,7 +36,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
         sqlNewObjects = Replace(sqlNewObjects, "~", "'")
         sqlNewObjects = sqlNewObjects & " AND angelegtAm > " & SQLNOW(-1 * (rsBatch("IntervalInDays").Value))
         rsNewObjects = objConnectionExecute(sqlNewObjects)
-		 
+         
         Dim htmlListNewObjects : htmlListNewObjects = ""
         Dim counterI : counterI = 0
         While Not rsNewObjects.eof
@@ -46,18 +46,18 @@ Important: This job only creates mails, please use the mail tool to send the ema
                                  counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
                                  rsNewObjects("Bezeichnung").Value & "</a><br>"
             rsNewObjects.moveNext()
-		    
+            
         End While
         rsNewObjects.close()
         rsNewObjects = Nothing
-		 
+         
         'prepare mail 
         If objectFound Then
             userMailtext = Replace(userMailtext, "[NAME]", rsBatch("Name").Value)
             userMailtext = Replace(userMailtext, "[VORNAME]", rsBatch("Vorname").Value)
             userMailtext = Replace(userMailtext, "[EMAIL]", rsBatch("Email").Value)
             userMailtext = Replace(userMailtext, "[PRODUCTLIST]", htmlListNewObjects)
-					 
+                     
             If LCase(Request("debug")) = "true" Then
                 Response.Write("sqlNewObjects=" & sqlNewObjects)
                 Response.Write("Emailtext:<hr/>" & userMailtext & "<hr/>")
@@ -65,7 +65,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
 
             userMailtext = Replace(userMailtext, """", "~")
             userMailtext = Replace(userMailtext, "'", "~")
-	   
+       
             'send to webmaster too 
             Call sendMailFrom(EmailAnbieter, subject, userMailtext, varvalue("EMAIL"))
             If True Then
@@ -73,15 +73,15 @@ Important: This job only creates mails, please use the mail tool to send the ema
                 sqlK = "INSERT INTO ofKorespondenz(idnr, [subjekt], [text]) values(" & _
                      rsBatch("idnr").Value & ",'" & subject & "','" & userMailtext & "')"
                 objConnectionExecute(sqlK)
-						
+                        
                 'TODO: save this for the statistics 
                 sqlK = "Update UserQueries set NextRun =" & SQLNOW(rsBatch("IntervalInDays").Value) & " where queryId=" & rsBatch("QueryId").Value
                 objConnectionExecute(sqlK)
-						
+                        
             Else
                 Response.Write("Cannot send/save Email!<br>")
             End If
-					
+                    
         Else ' no object found 
             Response.Write("<br>No Objects found for QueryId=" & rsBatch("QueryId").Value & " and Email: " & rsBatch("Email").Value)
         End If

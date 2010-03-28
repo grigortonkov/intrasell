@@ -3,15 +3,19 @@
     ' Autor: Written and edited by Grigor Tonkov 2001 (R)
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
-    Const ACCOUNT = 1
-    Const INVOICE = 3
-    Const SHIPPING = 2
-    Const PASSWORD_LENGTH = 6
-    Const STATE_NOT_CONFIRMED_CLIENT = "Neu"
-    Const IDNR_TAG = "IDNR"
+    
+    Const ACCOUNT As Integer = 1
+    Const INVOICE As Integer = 3
+    Const SHIPPING As Integer = 2
+    Const PASSWORD_LENGTH  As Integer= 6
+    Const STATE_NOT_CONFIRMED_CLIENT As String = "Neu"
+    Const IDNR_TAG as String = "IDNR"
 
-
-
+     ''' <summary>
+     ''' isLoggedIn
+     ''' </summary>
+     ''' <returns></returns>
+     ''' <remarks></remarks>
     Function isLoggedIn()
         isLoggedIn = False
         If IsNumeric(getLOGIN()) Then
@@ -41,13 +45,13 @@
         'response.write "<br>" & sql
         Dim rsP : rsP = objConnectionExecute(SQL)
         If rsP.EOF Then
-		
+        
             'check if user has an unlocked account 
             SQL = "SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
-		
+        
             rsP = objConnectionExecute(SQL)
             Dim LoginError As String
-		
+        
             If rsP.EOF Then
                 LoginError = getTranslation("Das Passwort oder der Name stimmt nicht!")
             Else 'has unlocked account 
@@ -68,9 +72,9 @@
             Response.Write("Sorry! <font color=""#FF0000"">" & LoginError & "</font>" & _
          "<br><font color=black>" & getTranslation("Benutzen Sie unbedingt die Zurueck Schaltflaeche um Ihre Eingaben nicht zu verlieren!") & "</font>" & _
          "<br> <a href='javascript:window.back()'>" & getTranslation("Zurueck") & "</a>")
-			    
+                
             Exit Function
-				
+                
         End If
         authenticate = rsP("IDNR").Value
         Session("LOG_IN") = authenticate
@@ -84,13 +88,19 @@
     End Function
 
 
+
+
+''' <summary>
     '**********************************************************************************
     ' Save User Profile to the DB 
     ' returns the number of the saved ofaddressen
     ' typeOfAddress - (1)main adress, (2)shipping address, (3)invoice address
     ' showForm - the requester can accuire form or not 
     '**********************************************************************************
-
+''' </summary>
+''' <param name="typeOfAddress"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function saveProfile(ByVal typeOfAddress)
         Dim showForm As Boolean : If LCase(Request("showForm") = "false") Then showForm = False Else showForm = True
         'response.write "Saving address...type:" & typeOfAddress
@@ -163,7 +173,7 @@
               (Name <> "" And (typeOfAddress = SHIPPING Or typeOfAddress = INVOICE)) Then ' only for the first address
             
                 html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br></font>"
-			 
+             
                 'if showForm then 
                 If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
             End If
@@ -176,7 +186,7 @@
         If typeOfAddress = ACCOUNT Then
             If Not checkTELNR(Tel) Then
                 html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige TelNr!?!") & "</b><br></font>"
-	   
+       
                 If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                 Exit Function
             End If
@@ -187,7 +197,7 @@
             'check email 
             If Not EMailCheck(Email) Then
                 html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige Email Adresse!?!") & "</b><br></font>"
-	    
+        
                 If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                 Exit Function
             End If
@@ -196,9 +206,9 @@
             If getLOGIN() = "" Then 'NEW ACCOUNT 
                 'check passwort 
                 If Passwort <> PasswortII Then
-						   
+                           
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbestaetigung stimmt nicht!") & "</b><br></font>"
-						  
+                          
                     If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                     Exit Function
                 End If
@@ -206,12 +216,12 @@
                 'check passwort length
                 If Len(Passwort) < PASSWORD_LENGTH Then
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br></font>"
-						  
+                          
                     If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                     Exit Function
                 End If
-	
-	
+    
+    
                 'check is password was used already 
                 Dim accountUsed : accountUsed = False
 
@@ -226,11 +236,11 @@
                 If accountUsed Then
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Diese von Ihnen angegebe Emailadresse ist bereits vorhanden!") & "</b><br></font>"
                     '=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br>
-								 
+                                 
                     If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                     Exit Function
                 End If
-            End If 'NEW ACCOUNT 				  
+            End If 'NEW ACCOUNT                   
         End If
 
         'create newsletter registration
@@ -248,15 +258,15 @@
             'if typeOfAddress = 2 then ' take the next idnr 
             '   idnrToUpdate = TABLEVALUE("ofAdressen","idnr", idnrToUpdate , "nextIDNR")      
             'end if
-			   
+               
             'check if the second address is existing 
                   
             Dim additionalWhere As String
-				  
+                  
             If typeOfAddress <> ACCOUNT Then
                 additionalWhere = " AND typ= '" & typ & "'"
             End If
-				  		
+                          
             sql = "SELECT * FROM " & tableName & " where IDNR=" & idnrToUpdate & additionalWhere
             Dim rsUPDT
             rsUPDT = objConnectionExecute(sql)
@@ -269,7 +279,7 @@
                 saveProfile = NextIDNR
                 'add LI or AR
                 'response.write sql 
-						
+                        
                 'SQL = "SELECT * FROM " & tableName & " WHERE Name like '" & Name & "' and Vorname like '" & Vorname & "' and  Adresse like '" & Strasse & "'"
                 'response.write sql 
                 'dim rsID: rsID = objConnectionExecute(SQL) 
@@ -278,8 +288,8 @@
                 'sql = "UPDATE " & tableName & " SET typ = '" & typ & "' WHERE Id =" & newMax
                 'response.write sql 
                 'objConnectionExecute(SQL)
-						
-						
+                        
+                        
                 Exit Function
             End If
             'end check  
@@ -310,8 +320,8 @@
                 html = html & "<p align=center>"
                 html = html & "<a href='default.aspx?pageToShow=MyAccount'>" & getTranslation("Weiter zum Konto") & "</a>"
                 html = html & "</p>"
-					  
-					    
+                      
+                        
             End If
         Else ' NEW ACCOUNT
             saveProfile = createNewAdress(typeOfAddress, NextID("ofAdressen", "IDNR"), Firma, Anrede, Name, Vorname, Strasse, NextIDNRPLZ, Email, _
@@ -322,7 +332,12 @@
     End Function
 
 
-
+    ''' <summary>
+    ''' saveProfileSimple
+    ''' </summary>
+    ''' <param name="typeOfAddress"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function saveProfileSimple(ByVal typeOfAddress)
         'response.write "Saving address...type:" & typeOfAddress
         saveProfileSimple = 0
@@ -361,9 +376,9 @@
            Or Email = "" Or Tel = "" Or Passwort = "" Then
             If typeOfAddress = ACCOUNT Or _
               (Name <> "" And (typeOfAddress = SHIPPING Or typeOfAddress = INVOICE)) Then ' only for the first address
-				
+                
                 html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte füllen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br></font>"
-			 
+             
                 Call drawEmptyProfileFormSimple(typeOfAddress, True)
             End If
             Exit Function
@@ -383,9 +398,9 @@
             If getLOGIN() = "" Then 'NEW ACCOUNT 
                 'check passwort 
                 If Passwort <> PasswortII Then
-						   
+                           
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbest&auml;tigung stimmt nicht!") & "</b><br></font>"
-						 
+                         
                     Call drawEmptyProfileFormSimple(typeOfAddress, True)
                     Exit Function
                 End If
@@ -393,12 +408,12 @@
                 'check passwort length
                 If Len(Passwort) < PASSWORD_LENGTH Then
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br></font>"
-						 
+                         
                     Call drawEmptyProfileFormSimple(typeOfAddress, True)
                     Exit Function
                 End If
-	
-	
+    
+    
                 'check is password was used already 
                 Dim accountUsed : accountUsed = False
 
@@ -412,11 +427,11 @@
  
                 If accountUsed Then
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die von Ihnen angegebene Emailadresse wurde bereits verwendet!") & "</b><br></font>"
-								  
+                                  
                     Call drawEmptyProfileFormSimple(typeOfAddress, True)
                     Exit Function
                 End If
-            End If 'NEW ACCOUNT 			
+            End If 'NEW ACCOUNT             
         End If 'ACCOUNT
 
 
@@ -428,11 +443,11 @@
         If getLOGIN() <> "" Then ' WE HAVE UPDATE 
             Dim idnrToUpdate : idnrToUpdate = getLOGIN()
             Dim additionalWhere
-				  
+                  
             If typeOfAddress <> ACCOUNT Then
                 additionalWhere = " AND typ= '" & typ & "'"
             End If
-				  		
+                          
             sql = "SELECT * FROM " & tableName & " where IDNR=" & idnrToUpdate & additionalWhere
             Dim rsUPDT
             rsUPDT = objConnectionExecute(sql)
@@ -466,8 +481,8 @@
                 html = html & getTranslation("Vielen Dank! Ihre Daten wurden erfolgreich ge&auml;ndert.")
                 html = html & "</h2>"
                 html = html & "<p align=center> <a href='default.aspx?pageToShow=MyAccount'>" & getTranslation("Weiter zum Konto") & "</a></p>"
-					   
-					    
+                       
+                        
             End If
         Else ' NEW ACCOUNT
             saveProfileSimple = createNewAdress(typeOfAddress & "_simple", NextID("ofAdressen", "IDNR"), Firma, Anrede, Name, Vorname, Strasse, NextIDNRPLZ, Email, _
@@ -501,19 +516,19 @@
             TelII & "','" & Passwort & "', " & Land & "," & BrancheNr & "," & SQLNOW(0) & ",'" & Mobil & "','" & Fax & "','" & Web & "','" & UID & "')"
         Call writeLog("createNewAdress.log", sql)
         objConnectionExecute(sql)
-			    
+                
         'set Burthday in separate query to be sure that the rest data is saved 
         sql = " UPDATE " & tableName & " SET Geburtstag = " & makeSQLDate(Geburtstag) & " WHERE IDNR=" & NextIDNR
         Call writeLog("createNewAdress.log", sql)
         objConnectionExecute(sql)
-				
+                
         'Adressen Settings einfügen 
         sql = " INSERT INTO  [ofadressen-settings] (IDNR, Kundengruppe, Preisliste, language_code ) " & _
          "Values (" & NextIDNR & ",'" & VARVALUE_DEFAULT("SHOP_DEFAULT_KUNDENGRUPPE", "Online") & "','" & VARVALUE_DEFAULT("SHOP_DEFAULT_PREISLISTE", "1-Letztverbraucher") & "', 'DEU')"
         Call writeLog("createNewAdress.log", sql)
         objConnectionExecute(sql)
-			 		   
-			   	
+                        
+                   
         If typeOfAddress = ACCOUNT And Session("SEND_REGISTRATION_MAIL") <> "FALSE" Then
             'SEND REGISTRATION EMAIL 
             Response.Write("SENDING... ")
@@ -522,18 +537,18 @@
             sendMailFromWithSending(VARVALUE_DEFAULT("EMAIL_REGISTER", "register@domain.com"), VARVALUE_DEFAULT("FAX_REGISTER", "480-393-4348"), MAKE_EMAIL_REGISTRATION(NextIDNR), VARVALUE_DEFAULT("EMAIL_FAX_GATEWAY", "faxout@faxthruemail.com"))
             Response.Write(" OK!")
         End If
-				
+                
         createNewAdress = NextIDNR
-			   
+               
         Dim html As String
-			   
+               
         If typeOfAddress = ACCOUNT Then
             'bitte html comment nicht ändert da das XML es als function result ausgelesen wird
             html = html & "<!--<USERACCOUNTCREATE_OK><IDNR>" & NextIDNR & "</IDNR></USERACCOUNTCREATE_OK>-->"
             html = html & "<!--"
             html = html & " <h2 align='center'>" & getTranslation("Vielen Dank! Ihre Daten wurden erfolgreich gespeichert.") & "</h2>"
             html = html & " -->"
-            html = html & "  <br>					"
+            html = html & "  <br>                    "
             html = html & getTranslation("Herzlich willkommen bei") & "&nbsp;" & VARVALUE_DEFAULT("DOMAIN", "www.yourdomain.com") & "!"
             html = html & " <br>"
             html = html & getTranslation("Sie sind neu angemeldet als:") & "&nbsp;" & Email & "<br>"
@@ -543,7 +558,7 @@
             html = html & " <br><br><br>"
             html = html & "<a href='default.aspx?pageToShow=MyAccount'>" & getTranslation("Weiter zum Konto") & "</a>"
             html = html & " <br><br><br>"
-					    
+                        
         End If
     End Function
 
@@ -557,12 +572,12 @@
         If Request("refererId") <> "" Then Session("SEND_REGISTRATION_MAIL") = "FALSE"
 
         'response.write "save both addresses.."
- 	
+     
         'make form if error in saving 
         '% >
         '</form>
-        '			<form method="POST" action="default.aspx">
-        '			<input type="hidden" name="pageToShow" value="ProfileSave">
+        '            <form method="POST" action="default.aspx">
+        '            <input type="hidden" name="pageToShow" value="ProfileSave">
         '< %
         idnr1 = saveProfile(ACCOUNT)
         If idnr1 <= 0 Then 'not saved then 
@@ -575,13 +590,13 @@
         Else
             Response.Write("</form>") ' eliminate form for any case 
         End If
- 	
+     
         Session("LOG_IN") = idnr1
         idnr2 = saveProfile(SHIPPING)
         idnr3 = saveProfile(INVOICE)
         'call connectAddresses (idnr1 , idnr2 )
         saveBothAddresses = idnr1
-	
+    
         'create newsletter insert
         If LCase(Request("IchWillNewsletter1")) = "on" Then
             Call registerForNewsletter(Request("Email1"), "Standart")
@@ -594,20 +609,24 @@
             objConnectionExecute(sql)
             Response.Write("<br>Referer #" & Request("refererId") & " was created!")
         End If
-	
+    
         'redirect to warencorb    
         If calculateWarenkorbSum() > 0 Then
             Response.Write("<a href=""default.aspx?PageToShow=Warenkorb"">zum Warenkorb</a>")
             Response.Redirect("default.aspx?pageToShow=warenkorbStep2")
         End If
-					
+                    
     End Function
 
 
-    '**********************************************************************************
-    ' connect addresses
-    ' typeOfAddress - (1)main adress, (2)shipping address
-    '**********************************************************************************
+''' <summary>
+''' connect addresses
+''' typeOfAddress - (1)main adress, (2)shipping address
+''' </summary>
+''' <param name="idnr1"></param>
+''' <param name="idnr2"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function connectAddresses(ByVal idnr1, ByVal idnr2)
         Dim sql
         If idnr1 = "" Or idnr2 = "" Then Exit Function
@@ -616,31 +635,34 @@
    
     End Function
 
-    '**********************************************************************************
+ 
+    ''' <summary>
     ' drawEmptyProfileForm
     ' typeOfAddress - (1)main adress, (2)shipping address, (3) invoice address
     'withCheck - Boolean, if TRUE then the oblig. fields are checked
-    '**********************************************************************************
+    ''' </summary>
+    ''' <param name="typeOfAddress"></param>
+    ''' <param name="withCheck"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawEmptyProfileForm(ByVal typeOfAddress, ByVal withCheck)
         Dim rsR
         Dim rsC
-        Dim fill : fill = False
+        Dim fill As Boolean : fill = False
         Dim sql As String
-        Dim tableName : tableName = "ofAdressen"
-        
+        Dim tableName As String  : tableName = "ofAdressen"
         Dim html As String
         
         If typeOfAddress = INVOICE Or typeOfAddress = SHIPPING Then tableName = "[ofAdressen-Weitere]"
-
-	
+        
         If getLOGIN() <> "" Then
             fill = True
             Dim idnrToDraw : idnrToDraw = getLOGIN()
-		
+        
             sql = "SELECT " & tableName & ".*, grPLZ.Ort AS PLZORT, grPLZ.PLZ as PLZPLZ , grLand.Name AS CNTRY, grPlz.BLand as Bland " & _
                "FROM " & tableName & " INNER JOIN (grPLZ INNER JOIN grLand ON grPLZ.Land = grLand.IdNr) " & _
                "ON " & tableName & ".PLZ=grPLZ.IDNR WHERE " & tableName & ".IDNR= " & idnrToDraw
-			
+            
             If typeOfAddress = INVOICE Or typeOfAddress = SHIPPING Then
                 sql = sql & " and Typ ='" & getTyp(typeOfAddress) & "'"
             End If
@@ -648,17 +670,17 @@
             rsR = objConnectionExecute(sql)
             If rsR.EOF Then fill = False
         End If
-	
-	
-        Dim firma, name, vorname, strasse, plz, ort, tel, telII, passwort, passwortII, Email
-        Dim Geburtstag, Anrede, Land, Titel, Emailwiederholung, Fax, Mobil, Web
-        Dim Bundesland
-        Dim UID
+    
+    
+        Dim firma, name, vorname, strasse, plz, ort, tel, telII, passwort, passwortII, Email As String
+        Dim Geburtstag, Anrede, Land, Titel, Emailwiederholung, Fax, Mobil, Web As String 
+        Dim Bundesland As String 
+        Dim UID As String 
 
         If fill Then firma = rsR("Firma").Value Else firma = Request("Firma" & typeOfAddress)
         If fill Then UID = rsR("UID").Value Else UID = Request("UID" & typeOfAddress)
 
-        If fill Then name = rsR("name").Value Else name = Request("Name" & typeOfAddress)
+        If fill Then name = rsR("Name").Value Else name = Request("Name" & typeOfAddress)
         If fill Then vorname = rsR("Vorname").Value Else vorname = Request("Vorname" & typeOfAddress)
         If fill Then Anrede = rsR("Anrede").Value Else Anrede = Request("Anrede" & typeOfAddress)
     
@@ -669,7 +691,7 @@
         If fill Then ort = rsR("plzort").Value Else ort = Request("ort" & typeOfAddress)
         If fill Then Bundesland = rsR("BLAND").Value Else Bundesland = Request("BundesLand" & typeOfAddress)
         If fill Then Land = rsR("Land").Value Else Land = Request("Land" & typeOfAddress)
-	
+    
         If fill Then tel = rsR("tel").Value Else tel = Request("tel" & typeOfAddress)
         If fill Then telII = rsR("tel2").Value Else telII = Request("telII" & typeOfAddress)
     
@@ -683,10 +705,10 @@
     
         If fill Then passwort = rsR("passwort").Value Else passwort = Request("passwort" & typeOfAddress)
         If fill Then passwortII = rsR("passwort").Value Else passwortII = Request("passwortII" & typeOfAddress)
-	
+    
         If fill Then Geburtstag = rsR("Geburtstag").Value Else Geburtstag = Request("Geburtstag" & typeOfAddress)
         Geburtstag = makeStringDate(Geburtstag)
-	
+    
         If name = "" And strasse = "" And plz = "" And ort = "" Or Land = "" And _
           (typeOfAddress = 2 Or typeOfAddress = 3) Then
             withCheck = False
@@ -701,7 +723,6 @@
 
         If typeOfAddress = ACCOUNT Then
             
-    
             html = html & "<tr><th colspan=3 align=center width='100%' bgcolor='#FFCF00' height='18'>&nbsp; "
             html = html & getTranslation("Anmeldeinformation")
             html = html & "</th></tr>"
@@ -881,7 +902,7 @@
         html = html & "<font size='1' >* " & getTranslation("Land") & "&nbsp;&nbsp; </font></span></td>"
         html = html & "<td>"
         html = html & "<select name='Land" & typeOfAddress & "'>"
-        Call selectLand(fill, Land)
+        html = html &  selectLand(fill, Land)
         html = html & "</select> "
         If withCheck And Len(Land) < 1 Then
             html = html & "<font color=red>(!)</font>     "
@@ -989,32 +1010,31 @@
     ''' <param name="fill"></param>
     ''' <param name="Land"></param>
     ''' <remarks></remarks>
-    Sub selectLand(ByVal fill, ByVal Land)
+    Function selectLand(ByVal fill, ByVal Land) as String 
         Dim html As String
         Dim DEFAULT_LAND_NR As String : DEFAULT_LAND_NR = varvalue("DEFAULT_LAND_NR")
 
-		 
         html = html & "<option value='" & DEFAULT_LAND_NR & "'>" & tablevalue("grLand", "idnr", DEFAULT_LAND_NR, "Name") & "</option>"
-		     
+             
         Dim sql As String, rsC
         sql = "SELECT * FROM grLand ORDER BY [NAME]"
         rsC = objConnectionExecute(sql)
         While Not rsC.EOF
-				 
+                 
             html = html & "<option value='" & rsC("IdNr").Value & "'"
             'if fill then  
             If CStr(Land) = CStr(rsC("IdNr").Value) Then
-                Response.Write("SELECTED")
+                html = html &  "SELECTED" 
             End If
             'end if
             html = html & ">" & rsC("Name").Value & "</option>"
-					     
+                         
             rsC.MoveNext()
         End While
-				
-        Response.Write(html)
         
-    End Sub
+        'Response.Write(html)
+        Return html
+    End Function
 
 
     ''' <summary>
@@ -1030,12 +1050,12 @@
 
       
         html = html & "<option value='" & DEFAULT_BUNDESLAND & "'>" & DEFAULT_BUNDESLAND & "</option>"
-		 
+         
         Dim sql, rsC
         sql = "SELECT distinct BLAND FROM grPLZ where BLAND is not null ORDER BY [BLand]"
         rsC = objConnectionExecute(sql)
         While Not rsC.EOF
-					 
+                     
             html = html & "<option value='" & rsC("BLAND").Value & "'"
             'if fill then  
             If CStr(land) = CStr(rsC("BLAND").Value) Then
@@ -1043,10 +1063,10 @@
             End If
             'end if
             html = html & ">" & rsC("BLAND").Value & "</option>"
-				 
+                 
             rsC.MoveNext()
         End While
-				
+                
         Response.Write(html)
     End Sub
 
@@ -1066,15 +1086,15 @@
         Dim tableName : tableName = "ofAdressen"
         If typeOfAddress = INVOICE Or typeOfAddress = SHIPPING Then tableName = "[ofAdressen-Weitere]"
 
-	
+    
         If getLOGIN() <> "" Then
             fill = True
             Dim idnrToDraw : idnrToDraw = getLOGIN()
-		
+        
             sql = "SELECT " & tableName & ".*, grPLZ.Ort AS PLZORT, grPLZ.PLZ as PLZPLZ , grLand.Name AS CNTRY " & _
                "FROM " & tableName & " INNER JOIN (grPLZ INNER JOIN grLand ON grPLZ.Land = grLand.IdNr) " & _
                "ON " & tableName & ".PLZ=grPLZ.IDNR WHERE " & tableName & ".IDNR= " & idnrToDraw
-			
+            
             If typeOfAddress = INVOICE Or typeOfAddress = SHIPPING Then
                 sql = sql & " and Typ ='" & getTyp(typeOfAddress) & "'"
             End If
@@ -1082,20 +1102,20 @@
             rsR = objConnectionExecute(sql)
             If rsR.EOF Then fill = False
         End If
-	
-	
+    
+    
         Dim passwort, passwortII, Email, Emailwiederholung
-	
+    
 
     
         If fill Then Email = rsR("Email").Value Else Email = Request("Email" & typeOfAddress)
         If fill Then Emailwiederholung = rsR("Email").Value Else Emailwiederholung = Request("Emailwiederholung" & typeOfAddress)
         If fill Then passwort = rsR("passwort").Value Else passwort = Request("passwort" & typeOfAddress)
         If fill Then passwortII = rsR("passwort").Value Else passwortII = Request("passwortII" & typeOfAddress)
-	
+    
         'if fill then Geburtstag=rsR("Geburtstag") else Geburtstag=request("Geburtstag" & typeOfAddress)
         'Geburtstag  = makeStringDate(Geburtstag)
-	
+    
         
         html = html & "<br>"
         html = html & "<center>"
@@ -1215,7 +1235,7 @@
                 'update 07.03.2006 because PLZ 10000 is bigger than PLz 9999 but the text search is not sorting after number 
                 sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & "')"
             End If
- 	 
+      
             'Response.write SQL : Response.Flush
             objConnectionExecute(sql)
             NextIDNRPLZ = getPLZ(Land, Ort, PLZ)
@@ -1298,9 +1318,9 @@
         Else
             sql = " UPDATE ofAdressen Set Email = '" & newP & "' WHERE IDNR = " & CLng(getLOGIN())
             rsP = objConnectionExecute(sql)
-		 
+         
             Response.Write("<P align=center>Ihre Emailadresse wurde ge&auml;ndert!")
-		 
+         
         End If
 
 
@@ -1403,7 +1423,7 @@
         rs.close()
     End Function
 
-	        
+            
 
 
 
@@ -1427,7 +1447,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function parseTemplateUserIDNR(ByVal idnr, ByVal accountPageHTML)
-	 
+     
         If InStr(accountPageHTML, "[IDNR]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[IDNR]", getLOGIN())
 
         If InStr(accountPageHTML, "[USER_COUNT_POINTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS]", getSumPoints(getLOGIN(), ""))
@@ -1435,16 +1455,16 @@
         If InStr(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]", getCountPoints(getLOGIN(), REASON_PRODUCT_RATING))
         If InStr(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]", getCountPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
         If InStr(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]", getCountPoints(getLOGIN(), REASON_ORDERS))
-	 
+     
         If InStr(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]", getSumPoints(getLOGIN(), REASON_WRITE_REVIEW))
         If InStr(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]", getSumPoints(getLOGIN(), REASON_PRODUCT_RATING))
         If InStr(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]", getSumPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
         If InStr(accountPageHTML, "[USER_SUM_POINTS_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_ORDERS]", getSumPoints(getLOGIN(), REASON_ORDERS))
-	 
+     
         If InStr(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Produkte"))
         If InStr(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Warenkorb"))
-	 
-	 	
+     
+         
         If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
         If InStr(accountPageHTML, "[USER_NAME]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_NAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Name"))
         If InStr(accountPageHTML, "[USER_FIRMA]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_FIRMA]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Firma"))
@@ -1453,10 +1473,10 @@
         If InStr(accountPageHTML, "[USER_VORNAME]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_VORNAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Vorname"))
         If InStr(accountPageHTML, "[USER_TEL]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_TEL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Tel"))
         If InStr(accountPageHTML, "[USER_MOBIL]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_MOBIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Mobil"))
-	
+    
         If InStr(accountPageHTML, "[USER_UID]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_UID]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "UID") & "")
-	
-		
+    
+        
         If InStr(accountPageHTML, "[USER_EMAIL]") > 0 Then
             If getLOGIN() > 0 Then
                 accountPageHTML = Replace(accountPageHTML, "[USER_EMAIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Email"))
@@ -1464,7 +1484,7 @@
                 accountPageHTML = Replace(accountPageHTML, "[USER_EMAIL]", "")
             End If
         End If
-	
+    
         If InStr(accountPageHTML, "[USER_PASSWORD]") > 0 Then
             If getLOGIN() > 0 Then
                 accountPageHTML = Replace(accountPageHTML, "[USER_PASSWORD]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Passwort"))
@@ -1474,25 +1494,25 @@
         End If
 
         If InStr(accountPageHTML, "[USER_DATE_REGISTRATION]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_DATE_REGISTRATION]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "AngelegtAn"))
-	 
+     
         If InStr(accountPageHTML, "[COUNT_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_ORDERS]", getCountOrders(getLOGIN(), "AU"))
         If InStr(accountPageHTML, "[COUNT_DELIVERIES]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_DELIVERIES]", getCountOrders(getLOGIN(), "LI"))
         If InStr(accountPageHTML, "[COUNT_INVOICES]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_INVOICES]", getCountOrders(getLOGIN(), "AR"))
-	 
+     
         If InStr(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AU"))
         If InStr(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AR"))
  
         If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
         If InStr(accountPageHTML, "[USER_ADDRESS_SHIPPING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS_SHIPPING]", printAddress(getLOGIN(), "LI", True))
         If InStr(accountPageHTML, "[USER_ADDRESS_INOVICE]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS_INOVICE]", printAddress(getLOGIN(), "AR", True))
-	 
+     
         If InStr(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]", getNewsletterCount(getLOGIN(), True))
         If InStr(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]", getNewsletterCount(getLOGIN(), False))
 
         accountPageHTML = replaceTagsForStatistics(accountPageHTML, idnr)
-	 	 
+          
         parseTemplateUserIDNR = accountPageHTML
-	 
+     
     End Function
 </script>
 
