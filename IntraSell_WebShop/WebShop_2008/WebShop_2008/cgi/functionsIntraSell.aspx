@@ -220,7 +220,7 @@
 ''' </summary>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getMinOrderValue()
+    Function getMinOrderValue() As Double
         getMinOrderValue = VARVALUE_DEFAULT(CALCULATE_MIN_ORDER_VALUE, "100") '100 Euro ist mindestbestellwert
     End Function
 
@@ -229,7 +229,7 @@
 ''' </summary>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getMinOrderValue_charge_artnr()
+    Function getMinOrderValue_charge_artnr() As String
         getMinOrderValue_charge_artnr = tablevalue("grArtikel", "EAN", "'" & CALCULATE_MIN_ORDER_VALUE & "'", "ArtNr")
     End Function
 
@@ -238,7 +238,7 @@
 ''' </summary>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getMinOrderValue_charge()
+    Function getMinOrderValue_charge() As Double
         'wrong getMinOrderValue_charge = tablevalue("grArtikel","EAN", "'" & CALCULATE_MIN_ORDER_VALUE & "'", "PreisATS")
         getMinOrderValue_charge = makeNettoPreis(getMinOrderValue_charge_artnr(), "1", 0)
     End Function
@@ -249,7 +249,7 @@
     ' Added at 18.04.2005 for xscorpion 
     ' returns -1 if no discount calculation is set
     '*************************************************************************    
-    Function getBasketDiscount_artnr()
+    Function getBasketDiscount_artnr() As String
         Dim discArt
         discArt = tablevalue("grArtikel", "EAN", "'" & CALCULATE_BASKET_DISCOUNT & "'", "ArtNr")
         If IsNumeric(discArt) Then
@@ -263,7 +263,7 @@
     ' kalkuliert rabatt für eine Bestellung 
     ' Added at 18.04.2005 for xscorpion 
     '*************************************************************************    
-    Function getBasketDiscount_Value(ByVal totalValueOfBasket)
+    Function getBasketDiscount_Value(ByVal totalValueOfBasket As Double) As Double
 
         getBasketDiscount_Value = 0
         Dim sql, rs
@@ -280,7 +280,7 @@
     ' function deleteOrder(OrderType, Nummer)
     '*************************************************************************
 
-    Function deleteOrder(ByVal OrderType, ByVal Nummer)
+    Function deleteOrder(ByVal OrderType, ByVal Nummer) As Boolean
         Dim tableNameOrders
         tableNameOrders = getNameForTable(OrderType)
         Dim sql : sql = "DELETE FROM " & tableNameOrders & " WHERE Nummer=" & Nummer
@@ -291,7 +291,7 @@
     '*************************************************************************
     ' function createEmptyOrder(KDNR, SID)
     '*************************************************************************
-    Function createEmptyOrder(ByVal OrderType)
+    Function createEmptyOrder(ByVal OrderType) As String
         Dim AuftragNr, Notiz, sql, kdnr
         Dim rsK
         Dim tableNameOrders As String
@@ -323,7 +323,7 @@
     ''' <param name="IdNr"></param>
     ''' <returns>returns the destination land for this customer </returns>
     ''' <remarks></remarks>
-    Function getClientDestinationLand(ByVal IdNr)
+    Function getClientDestinationLand(ByVal IdNr As Long) As String
         Dim plzLAND As Long, clientPLZ
         plzLAND = TABLEVALUE("[ofAdressen-Weitere]", "IDNR", IdNr, "LAND")
         'response.write "<br>PLZLand =" & PLZLand
@@ -344,11 +344,11 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function showCurrentUser()
+    Sub showCurrentUser()
         If getLOGIN() <> "" Then
             Response.Write("User: " & TABLEVALUE("ofAdressen", "IDNR", getLOGIN(), "Email"))
         End If
-    End Function
+    End Sub
 
     ''' <summary>
     ''' GetClientEmail
@@ -356,10 +356,10 @@
     ''' <param name="CID"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function GetClientEmail(ByVal CID)
+    Function GetClientEmail(ByVal CID As Object) As String
         Dim sql
         Dim rsC
-        If CID <> "" Then
+        If not CID is Nothing Then
             sql = "Select Email from ofAdressen where IDNR=" & CID
             rsC = objConnectionExecute(sql)
             If rsC.EOF = True Then

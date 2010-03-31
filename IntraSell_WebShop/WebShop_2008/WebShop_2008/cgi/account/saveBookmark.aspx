@@ -1,4 +1,8 @@
 <script language="VB" runat="server"> 
+    ''' <summary>
+    ''' SaveBookmark
+    ''' </summary>
+    ''' <remarks></remarks>
     Sub SaveBookmark()
         
     
@@ -6,7 +10,7 @@
         Url = cleanUserInput(Request("Url"))
         Folder = cleanUserInput(Request("folder"))
         Title = cleanUserInput(Request("Title"))
-        Session("USERID") = curr_id
+        Session("USERID") = getLOGIN() 'curr_id
     
         'Response.Redirect "../../default.aspx?pagetoShow=Bookmarks&curr_id=" & curr_id & "&action=add&Description=" & Folder & "&Title=" & Title & "&Url="  & Url
         'Response.Redirect "userBookmarks.aspx?curr_id=" & curr_id & "&action=add&Description=" & Folder & "&Title=" & Title & "&Url="  & Url
@@ -16,7 +20,7 @@
             Response.Write("<font color=red>" & message & "</font><br>")
             'load login page
     
-            accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
+            Dim accountLoginPageHTML As String = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
             Response.Write(accountLoginPageHTML)
         Else
 

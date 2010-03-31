@@ -1,41 +1,19 @@
 <script language="VB" runat="server"> 
-'===========================================================================
-' General ASP Functions
-' This is collection of usefull ASP functions and procedures.
-' Written and edited by Grigor Tonkov 2001 (R)
-' See intrasoft.soft-ware.de for last changes. 
-'
-'
-'============================================================================
-' History
-'____________________________________________________________________________
-' DATE         WHAT
-'____________________________________________________________________________
+    '===========================================================================
+    ' General ASP Functions
+    ' This is collection of usefull ASP functions and procedures.
+    ' Written and edited by Grigor Tonkov 2001 (R)
+    ' See intrasoft.soft-ware.de for last changes. 
+    '
+    '
+    '============================================================================
+    ' History
+    '____________________________________________________________________________
+    ' DATE         WHAT
+    '____________________________________________________________________________
     '**Start Encode**
     
-    ''' <summary>
-    ''' readTextFile
-    ''' </summary>
-    ''' <param name="filename"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
-    Function readTextFile(ByVal filename As String) As String
-        'Response.Write "Filename:" & filename: Response.Flush
-        Dim content, fs, file
-        fs = CreateObject("Scripting.FileSystemObject")
-        On Error Resume Next
-        file = fs.OpenTextFile(filename, 1, False, False)
-        content = file.readAll
-        file.Close()
-        If Err.Number > 0 Then
-            If LCase(Request("debug")) = "true" Then
-                Response.Write("File is missing:[" & filename & "]<br>")
-                Response.Write(Err.Description)
-            End If
-        End If
-        On Error GoTo 0
-        readTextFile = content
-    End Function
+  
     
     ''' <summary>
     ''' ' State: free string representing state of window
@@ -212,15 +190,15 @@
         drawAreaHTMLOval = html
     End Function
 
- 
-    '********************************************************************************
-    'Name:
-    'Description:
-    'Important:
-    'Autor:
-    'Changes:
-    'Usage:
-    '********************************************************************************
+    ''' <summary>
+    ''' drawMsgBox
+    ''' </summary>
+    ''' <param name="Title"></param>
+    ''' <param name="Body"></param>
+    ''' <param name="UrlYes"></param>
+    ''' <param name="UrlNo"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawMsgBox(ByVal Title, ByVal Body, ByVal UrlYes, ByVal UrlNo) As String
         
         Dim html As String : html = ""
@@ -252,14 +230,15 @@
     End Function
 
  
-    '********************************************************************************
-    'Name:
-    'Description:
-    'Important:
-    'Autor:
-    'Changes:
-    'Usage:
-    '********************************************************************************
+    ''' <summary>
+    ''' drawErrorBox
+    ''' </summary>
+    ''' <param name="Title"></param>
+    ''' <param name="Body"></param>
+    ''' <param name="UrlYes"></param>
+    ''' <param name="UrlNo"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function drawErrorBox(ByVal Title, ByVal Body, ByVal UrlYes, ByVal UrlNo) As String
         Dim html As String : html = ""
 
@@ -271,8 +250,8 @@
         html = html & "<p align=""center""><b><font color=""#FF0000"">!</font></b></td>"
         html = html & "</tr>"
         html = html & "<tr>"
-        html = html & "<td width=""194"" colspan=""2"" bordercolor=""#FF0000""><%=Body%>"
-        html = html & "<p align=""center"">&nbsp;</p>"
+        html = html & "<td width=""194"" colspan=""2"" bordercolor=""#FF0000"">"
+        html = html & "<p align=""center"">" & Body & "</p>"
         html = html & "</td>"
         html = html & "</tr>"
         html = html & "<tr>"
@@ -280,7 +259,7 @@
         html = html & "<p align=""center""><b>"
         If UrlYes <> """" Then
             html = html & "<a href=""" & UrlYes & """>" & getTranslation("YES") & "</a></b>"
-       end if 
+        End If
         html = html & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
         If UrlNo <> """" Then
             html = html & "<a href=""" & UrlNo & """><b>" & getTranslation("NO") & "</b></a>"
@@ -289,7 +268,7 @@
         html = html & "</tr>"
         html = html & "</table>"
         drawErrorBox = html
- end function 
+    End Function
 
  
     ''' <summary>
@@ -319,7 +298,7 @@
         html = html & "     </TBODY>"
         html = html & "</TABLE>"
         DrawButton = html
- end function 
+    End Function
  
  
 
@@ -397,6 +376,4 @@
     
 
 </script>
-
-
 

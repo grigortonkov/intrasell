@@ -1,4 +1,4 @@
-<!--#include virtual="/cgi/defaulthead.inc"-->
+<!--#include virtual="/cgi/defaultHead.inc.aspx"-->
 <html>
 <head>
     <title>Mail Sent!</title>

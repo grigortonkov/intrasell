@@ -1,4 +1,4 @@
-<!--#include virtual="/cgi/defaulthead.inc"-->
+<!--#include virtual="/cgi/defaultHead.inc.aspx"-->
 <html>
 <head>
     <link rel='stylesheet' href='../style.css' type='text/css'>

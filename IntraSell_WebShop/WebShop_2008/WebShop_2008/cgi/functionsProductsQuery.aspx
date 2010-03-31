@@ -2,16 +2,23 @@
     'moved functions from functionsProducts
     '
     '****************************************************************************
-    ' makeProductListOnQuery - lists all products depending on the SQL query
-    ' FilterBy
-    ' SearchDescription - what the user searches for 
-    ' 
     ' new feature 14-09-2004: Header of the Table with Template: if no template standard header 
     ' new feature 11-11-2004: Ausgewählte Liste ausdrucken in HTML oder PDF Format!
     ' new feature : request("showOnlyResultCount") = true
     ' new feature 03-12-2004: Line Highlight and Fixed Sorting on Product Keywords 
     '****************************************************************************
 
+Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult lines 
+
+''' <summary>
+''' makeProductListOnQuery - lists all products depending on the SQL query
+''' </summary>
+''' <param name="Sql"></param>
+''' <param name="FilterBySQL">SearchDescription - what the user searches for </param>
+''' <param name="OrderBy"></param>
+''' <param name="SearchDescription"></param>
+''' <returns></returns>
+''' <remarks></remarks>
     Function makeProductListOnQuery(ByVal Sql, ByVal FilterBySQL, ByVal OrderBy, ByVal SearchDescription) As String
         Dim showOnlyResultCount : showOnlyResultCount = Request("showOnlyResultCount") 'true
 
@@ -145,7 +152,9 @@
         Sql = Sql & OrderBy
         
         Dim generalLinkParameters as String : generalLinkParameters = "preKatNr=" & artKatNR
-        Dim hideCheckedUnchecked  As Boolean: hideCheckedUnchecked = Request("hideCheckedUnchecked")
+        
+        Dim hideCheckedUnchecked As String: hideCheckedUnchecked = Request("hideCheckedUnchecked")
+ 
 
         'DEFAULT from SESSION
         If hideCheckedUnchecked & "" = "" Then
@@ -206,9 +215,9 @@
     
             rsArtikel.MoveFirst()
 
-            subPage = Request("pp")
-            If subPage = "" Then
-                subPage = 1
+            subPage = 1
+            If not Request("pp") is Nothing Then
+                subPage = Request("pp")
             Else
                 subPage = CInt(subPage)
             End If
@@ -254,7 +263,7 @@
             Dim htmlSearchDescription, htmlSearchDescriptionSaveButton As String 
             Dim htmlButtonProductImages As String 
             Dim htmlSortBy, htmlFilterBy As String 
-            Dim htmlProductCount, htmlPages As Integer 
+            Dim htmlProductCount As String, htmlPages As String 
                 
             If SearchDescription <> "" Then
                 htmlHeader = htmlHeader & getTranslation("Sie haben gesucht nach:") & "<b>" & SearchDescription & "</b> "
@@ -395,7 +404,7 @@
             'PRODUCT COUNT
             htmlHeader = htmlHeader & "<tr>"
             htmlHeader = htmlHeader & " <td align=left colspan=2>"
-            htmlProductCount = getTranslation("Produktanzahl") & ": " & "<" & COUNT_RESULT_LINES & ">" & rscnt & "</" & COUNT_RESULT_LINES & ">" & " " & getTranslation("Anzeige Produkte von") & " " & product_from & " " & getTranslation("bis") & " " & product_til
+            htmlProductCount = getTranslation("Produktanzahl") & ": " & "<" & COUNT_RESULT_LINES & ">" & rscnt.ToString & "</" & COUNT_RESULT_LINES & ">" & " " & getTranslation("Anzeige Produkte von") & " " & product_from & " " & getTranslation("bis") & " " & product_til.ToString
             htmlHeader = htmlHeader & htmlProductCount
             htmlHeader = htmlHeader & "</td>"
             htmlHeader = htmlHeader & "</tr>"

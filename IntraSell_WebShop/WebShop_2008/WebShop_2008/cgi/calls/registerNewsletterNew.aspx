@@ -1,4 +1,4 @@
-<!--#include virtual="/cgi/defaulthead.inc"-->
+<!--#include virtual="/cgi/defaultHead.inc.aspx"-->
 <body>
     <%
         Dim artKatNr : artKatNr = Session("CURRENT_ARTKATNR")

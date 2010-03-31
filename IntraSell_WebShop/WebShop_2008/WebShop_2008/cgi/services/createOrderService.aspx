@@ -1,4 +1,4 @@
-<!--#include file="../defaulthead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <%
     'Description: creates an order from product ID's and returns the created order Numer back
     '<Nummer>123456</Nummer>

@@ -16,6 +16,11 @@
     Const KEY_LENGTH = 16
 
 
+    ''' <summary>
+    ''' CreateRandomKey
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function CreateRandomKey()
         Dim key
         Randomize()
@@ -27,7 +32,13 @@
 
 
 
-    'reverts simply a string
+    
+    ''' <summary>
+    ''' reverts simply a string
+    ''' </summary>
+    ''' <param name="key"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function revertString(ByVal key)
         Dim revertKey
         Dim i

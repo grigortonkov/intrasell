@@ -1,4 +1,4 @@
-<!--#include file="../defaulthead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <html>
 <head>
     <link rel='stylesheet' href='<%=BASENAME%>'>

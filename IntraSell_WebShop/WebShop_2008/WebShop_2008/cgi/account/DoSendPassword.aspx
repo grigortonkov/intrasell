@@ -1,4 +1,4 @@
-<!--#include file="../defaultHead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <html>
 <head>
     <title>Lost Password</title>

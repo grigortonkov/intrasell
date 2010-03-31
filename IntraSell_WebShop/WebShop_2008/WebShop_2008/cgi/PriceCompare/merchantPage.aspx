@@ -12,7 +12,7 @@
                 Dim merchantId : merchantId = Request("MerchantId")
                 Dim rsM : rsM = objConnectionExecute("select * from lieferantenAdressen  where IDNR=" & merchantId)
                 If rsM.eof Then
-                    Call drawErrorBox("Error", "Dieser Lieferant ist unbekannt!", "", "")
+                    Response.Write(drawErrorBox("Error", "Dieser Lieferant ist unbekannt!", "", ""))
                     Response.End()
                 End If
 

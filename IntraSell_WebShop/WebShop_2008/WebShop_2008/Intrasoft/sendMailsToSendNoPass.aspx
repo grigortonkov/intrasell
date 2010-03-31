@@ -1,12 +1,12 @@
 <%@  Language="VBScript.Encode" %>
 <%'@ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
 <%'OPTION explicit%>
-<!--#include file="../intrasoft/connopen.asp"-->
-<!--#include file="../intrasoft/functions.asp"-->
-<!--#include file="../intrasoft/functionsDictionary.asp"-->
-<!--#include file="../intrasoft/functionsGUI.asp"-->
-<!--#include file="../intrasoft/functionsCache.asp"-->
-<!--#include file="../cgi/functionsIntraSell.asp"-->
-<!--#include file="../cgi/functionsPrices.asp"-->
-<!--#include file="../cgi/functionsOrderInvoice.asp"-->
+<!--#include file="../intrasoft/connopen.aspx"-->
+<!--#include file="../intrasoft/functions.aspx"-->
+<!--#include file="../intrasoft/functionsDictionary.aspx"-->
+<!--#include file="../intrasoft/functionsGUI.aspx"-->
+<!--#include file="../intrasoft/functionsCache.aspx"-->
+<!--#include file="../cgi/functionsIntraSell.aspx"-->
+<!--#include file="../cgi/functionsPrices.aspx"-->
+<!--#include file="../cgi/functionsOrderInvoice.aspx"-->
 <!--#include file="sendMailsToSend.inc"-->

@@ -126,11 +126,14 @@
 <%'  Case "MyBookmarks"%>
 <%'<!--#include file="account/showBookmark.aspx"-->%>
 <%'  Case "SaveBookmark"%>
-<%'<!--#include file="account/saveBookmark.aspx"-->%>
+<!--#include file="account/saveBookmark.aspx"-->
+<% call SaveBookmark() %>
 <%  Case "SaveUserQuery"%>
 <!--#include file="account/saveUserQuery.aspx"-->
+<% call SaveUserQuery() %>
 <%  Case "ShowUserQuery"%>
 <!--#include file="account/showUserQuery.aspx"-->
+<% call ShowUserQuery() %>
 <%  Case "ShowUserSearch"%>
 <!--#include file="account/showUserSearches.aspx"-->
 <%  Case "DoEmailAFriend"%>

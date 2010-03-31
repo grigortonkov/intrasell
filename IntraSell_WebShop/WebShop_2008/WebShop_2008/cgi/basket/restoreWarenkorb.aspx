@@ -20,7 +20,7 @@
     rsRestoreWK = objConnectionExecute(sqlRestoreWK)
 
     If rsRestoreWK.eOF Then
-        Call drawErrorBox("Error restoring Basket", "This Basket [" & oldWarenkorbSID & "] is unknown!", "", "")
+        Response.Write(drawErrorBox("Error restoring Basket", "This Basket [" & oldWarenkorbSID & "] is unknown!", "", ""))
     Else 'ok 
         Dim iwk : iwk = 0
         While Not rsRestoreWK.eof And iwk < 10
@@ -36,9 +36,9 @@
               
    
     
-        Call drawMsgBox("Basket restored", getTranslation("Warenkorb wurde vom Speicher geholt!") & "[" & oldWarenkorbSID & "]<br>" & _
+        Response.Write(drawMsgBox("Basket restored", getTranslation("Warenkorb wurde vom Speicher geholt!") & "[" & oldWarenkorbSID & "]<br>" & _
              "<a href='default.aspx?pageToShow=warenkorbStep1'>" & getTranslation("zum Warenkorb") & "</a>", _
-             "", "")
+             "", ""))
                
     End If
 
