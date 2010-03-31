@@ -1,0 +1,10 @@
+500100;2;"Muster";"Fernsehen in DVD-Qualität und Blockbuster-Filme ohne Werbung - der digitale Videorecorder macht Träume wahr. CHIP Online zeigt, wie Sie mit Hilfe der Freeware VDR den PC in einen digitalen Videorecorder verwandeln.";"Imorder";2;"97,2";1;1;"COM1";0;1;"asdsdadadadad";"stk";1;"no-image";0
+500102;167;"Excel 97 Visual Basic";"Schritt für Schritt/ 400 Seiten mit Diskette 3.5";"Microsoft Press";0;"17,1828";1;1;"3-86063-737-1";0;1;"auf Anfrage";"stk";1;"016z027.jpg";1
+500103;167;"Word 97";"Auf einen Blick, 200 Seiten";"Microsoft Press";0;"13,068";1;1;"3-86063-860-2";0;1;"auf Anfrage";"stk";1;"016z037.jpg";1
+500104;167;"Excel 97";"Auf einen Blick, 200 Seiten";"Microsoft Press";0;"13,068";1;1;"3-86063-861-0";0;1;"auf Anfrage";"stk";1;"016z038.jpg";1
+500105;167;"Windows NT Server 4.0";"Resource Kit";"Microsoft Press";0;"129,0816";1;1;"1-57231-344-7";0;1;"nicht verfügbar";"stk";1;"016Z042.JPG";1
+500106;167;"Windows NT Workstation 4.0 R K";"Resource Kit/ 1.400 Seiten mit CD";"Microsoft Press";0;"60,318";1;1;"1-57231-343-9";0;1;"auf Anfrage";"stk";1;"016Z043.jpg";1
+500107;167;"Outlook 98";"Schritt für Schritt/ 345 Seiten mit CD";"Microsoft Press";0;"17,1504";1;1;"3-86063-746-0";0;1;"Lagernd";"stk";1;"016z084.jpg";1
+500108;167;"Windows 98";"Schritt für Schritt/ 400 Seiten mit CD";"Microsoft Press";0;"15,2064";1;1;"3-86063-736-3";0;1;"bestellt";"stk";1;"016z092.jpg";1
+500109;167;"Original Microsoft Training";"Windows 98/ 740 Seiten mit CD";"Microsoft Press";0;"71,9712";1;1;"3-86063-247-7";0;1;"auf Anfrage";"stk";1;"016z094.jpg";1
+500110;167;"Visual Basic 6.0";"Programmierhandbuch, 1008 Seiten";"Microsoft Press";0;"34,6896";1;1;"3-86063-053-9";0;1;"Lagernd";"stk";1;"016z128.jpg";1

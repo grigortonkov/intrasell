@@ -8,7 +8,7 @@ dim days:  days  = clng(request("days"))
 Dim sql , rs
   rs = ObjConnectionexecute("Select * from grArtikel where ArtNR=" & ArtNr)
 if rs.eof then 
-    call drawErrorBox("Error", "Das Produkt ist unbekannt!", "", "")
+    Response.Write( drawErrorBox("Error", "Das Produkt ist unbekannt!", "", ""))
     Response.End     
 end if 
 
@@ -64,8 +64,8 @@ end if
         <tr>
             <td align="middle" valign="top">
                 <%if rsP.eof or countOfArt < 1 then 'or maxP < 0.1 then 'no price or less than 1 price or all prices 0  
-                            Response.Write "<br><br>"
-                            call drawErrorBox("Zu wenig Information", "Es ist leider nicht genug Information vorhanden um eine Grafik zu erstellen!","","") 
+                            Response.Write ("<br><br>")
+                            Response.Write( drawErrorBox("Zu wenig Information", "Es ist leider nicht genug Information vorhanden um eine Grafik zu erstellen!","","") )
                 else %>
                 <img src="MakeChart.aspx?DaysInPast=<%=days%>&Field=Ekpreis&ChartType=1&ArtNr=<%=CStr(ArtNr)%>">
                 <%end if %>

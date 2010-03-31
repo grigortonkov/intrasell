@@ -1,6 +1,6 @@
-<!--#include file="menu.asp"-->
+<!--#include file="menu.aspx"-->
 <%
-    SQLString = Request.QueryString("SQLString")
+    Dim SQLString as String = Request.QueryString("SQLString")
     If Len(SQLString) < 1 Then
         SQLString = Request.Form("SQLString")
     End If

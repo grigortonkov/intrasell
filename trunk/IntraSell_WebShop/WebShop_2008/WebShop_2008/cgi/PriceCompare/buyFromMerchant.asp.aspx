@@ -1,4 +1,4 @@
-<!--#include file="../defaultHead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <!--#include file="functionsMerchants.aspx"-->
 <html>
 <head>
@@ -16,9 +16,9 @@
         'take shop URL 
         Dim UrlShop : UrlShop = varValueMerchant(LieferantNr, "SHOPURL")
         If UrlShop = "" Then
-            Call drawErrorBox("Keine Shopumleitung", "Dieser Lieferant hat keine Shopumleitung aktiviert! " & _
+            Response.Write( drawErrorBox("Keine Shopumleitung", "Dieser Lieferant hat keine Shopumleitung aktiviert! " & _
                   " Möchten Sie anstatt das die Homepage diesen Lieferanten besuchen?", _
-                              " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), "")
+                              " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), ""))
         Else
             'the user will be send directly to the shop 
             Response.Write("<br>Sie werden automatisch zum Lieferantenshop weitergeleitet!")

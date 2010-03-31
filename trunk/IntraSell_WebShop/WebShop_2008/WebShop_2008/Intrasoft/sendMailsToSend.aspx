@@ -1,2 +1,2 @@
-<!--#include file="menu.asp"-->  
+<!--#include file="menu.aspx"-->  
 <!--#include file="sendMailsToSend.inc"--> 

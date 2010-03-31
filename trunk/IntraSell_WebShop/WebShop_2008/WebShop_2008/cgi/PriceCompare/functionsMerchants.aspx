@@ -374,7 +374,7 @@
     ''' <remarks></remarks>
     Function findMerchants(ByVal bundesland, ByVal ort, ByVal plz, ByVal artnr, ByVal searchWideArea)
         If bundesland = "" And ort = "" And plz = "" Then
-            Call drawErrorBox("Fehler", "Sie haben keine Kriterien eingegeben!", "", "")
+            Response.Write(drawErrorBox("Fehler", "Sie haben keine Kriterien eingegeben!", "", ""))
             Response.End()
         End If
         Dim sql
@@ -399,7 +399,7 @@
         'Response.Write "sql=" & sql         
         Dim rs : rs = objConnectionExecute(sql)
         If rs.eof Then
-            Call drawErrorBox("Fehler", "Es sind uns leider keine Zulieferer in diesem Gebiet bekannt.", "", "")
+            Response.Write(drawErrorBox("Fehler", "Es sind uns leider keine Zulieferer in diesem Gebiet bekannt.", "", ""))
             Exit Function
         End If
          

@@ -1,8 +1,9 @@
 <!--#include file="cgi/defaulthead.inc.aspx"-->
 <% 
-  Const TAG_BODY = "[BODY]"
+  Const TAG_BODY as String = "[BODY]"
   Const DEFAULT_ART_KAT_NR = 9999
-  dim defaultPageTemplate, default_part1, default_part2
+  Dim defaultPageTemplate, default_part1, default_part2 as string
+  
   defaultPageTemplate  = findTemplate(DEFAULT_ART_KAT_NR)
   'defaultPageTemplate  = readTextFile(Server.MapPath("template_default.htm"))
   defaultPageTemplate = parseTemplate(defaultPageTemplate,SESSION("CURRENT_PRODUCT_CATEGORY"))

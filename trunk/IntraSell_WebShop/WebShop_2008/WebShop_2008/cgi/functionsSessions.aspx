@@ -69,6 +69,7 @@
   
         'set last time
         If Not sid Is Nothing Then
+            If sid.ToString() = "" Then Return sid
             sql = "UPDATE webSessions SET lastregisteredTime = " & SQLNOW(0) & " WHERE SID=" & sid
             objConnectionExecute(sql)
         End If

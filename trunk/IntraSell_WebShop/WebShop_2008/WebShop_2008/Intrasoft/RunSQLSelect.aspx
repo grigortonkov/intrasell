@@ -1,7 +1,7 @@
-<!--#include file="menu.asp"-->
+<!--#include file="menu.aspx"-->
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../style.css" title="Style Sheet for DPEE">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <title>Query Tool</title>
 </head>
 <body>
@@ -9,8 +9,7 @@
         'dim objConnection
         'Set objConnection=server.createobject("adodb.connection")
         '    objConnection.Open "DSN=IPP;Uid=IPP;Pwd=sercon"
-    %>
-    <%
+ 
 
         '===========================================================================
         ' General ASP Functions
@@ -27,9 +26,9 @@
         '____________________________________________________________________________
 
         '**Start Encode**
-    %>
-    <!-- This page can handle all possible SQL queries-->
-    <%  
+ 
+        '<!-- This page can handle all possible SQL queries-->
+     
         Dim delete_query, SQLString, Export, Filename, rs, exportToFile, i, ShowSQL, PageTitle
         Dim showDelete
  
@@ -60,7 +59,7 @@
         <%End If%>
     </h1>
     <% If ShowSQL Then%>
-    <form method="POST" action="runSQLSelect.asp" enctype="application/x-www-form-urlencoded">
+    <form method="POST" action="runSQLSelect.aspx" enctype="application/x-www-form-urlencoded">
     <textarea name="SQLString" rows="6" cols="100"><% 
                                                        If SQLString <> "" Then
                                                            Response.Write(SQLString)

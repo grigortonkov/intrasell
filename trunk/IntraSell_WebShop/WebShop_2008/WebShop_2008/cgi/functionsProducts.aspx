@@ -24,7 +24,7 @@
     Const TAG_HTMLINFONAME_ = "[HTMLInfoName" 'usage [htmlInfoName:name]
     Const TAG_VERWANDTE_PRODUKTE_ = "[verwandteProdukte" 'usage [verwandteProdukte:bezeichnung]
 
-    Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult lines 
+    
 
     Const FLENAME_PRODUCT_LIST_COLUMN_DESCRIPTION = "productList_column_description.htm"
     Const FLENAME_PRODUCT_LIST_HEADER = "productList_header.htm"
@@ -91,8 +91,8 @@
 
         
         If Len(Trim(SearchKeywords)) < MIN_SEARCHABLE Then
-            Call drawErrorBox(getTranslation("Suche ungültig!"), _
-                 getTranslation("Die Suche muss mindestens " + MIN_SEARCHABLE + " Symbole enthalten!"), "", "")
+            Response.Write( drawErrorBox(getTranslation("Suche ungültig!"), _
+                 getTranslation("Die Suche muss mindestens " & MIN_SEARCHABLE & " Symbole enthalten!"), "", ""))
             Exit Sub
         End If
 
@@ -259,9 +259,9 @@
         MaxPreis = Replace(Request("PreisBisSearch"), ",", ".")
 
         If ArtNr = "" And Bezeichnung = "" And Hersteller = "" And EAN = "" And HerstellerList = "" And ArtKatNr = "" And Lieferant = "" Then
-            Call drawErrorBox("Mehr Suchkriterien!", _
+            Response.Write( drawErrorBox("Mehr Suchkriterien!", _
                             getTranslation("Sie müssen ArtNr, ArtKatNr, Bezeichnung, Hersteller oder Lieferant eingeben."), _
-                            "", "")
+                            "", ""))
             Exit Sub
         End If
 
@@ -353,7 +353,7 @@
             Call showProductQueryResult(sql)
      
         Else
-            Call drawErrorBox("Keine Nummer!", getTranslation("Sie haben keine Lieferanten/Herstellernummer angegeben!"), "", "")
+            Response.Write ( drawErrorBox("Keine Nummer!", getTranslation("Sie haben keine Lieferanten/Herstellernummer angegeben!"), "", ""))
         End If
     End Sub
 
@@ -1357,7 +1357,7 @@
 
         Else
             If Request("Points") <> "" Then ' the user pressed save without writing comment 
-                Call drawErrorBox("Error", "Sie m&uuml;ssen auch ein Kommentar verfassen!", "", "")
+                Response.Write( drawErrorBox("Error", "Sie m&uuml;ssen auch ein Kommentar verfassen!", "", ""))
             End If
         End If
 

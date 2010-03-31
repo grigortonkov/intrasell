@@ -1,4 +1,4 @@
-<!--#include file="../defaulthead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 <h1>
     Warehouse Manager</h1>
 <a href="../../default.aspx?ArtNr=<%=request("ArtNr")%>">Back to Product Page </a>

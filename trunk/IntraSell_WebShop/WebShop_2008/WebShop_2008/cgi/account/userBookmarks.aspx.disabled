@@ -24,7 +24,7 @@
 
             'error when the user is not loggin 
             If getLOGIN() = "" Then
-                Call drawErrorBox("Speichern fehlgeschlagen", "Sie sind leider noch nicht angemeldet. Wollen Sie sich einloggen bzw. registrieren?", "", "")
+                Response.Write( drawErrorBox("Speichern fehlgeschlagen", "Sie sind leider noch nicht angemeldet. Wollen Sie sich einloggen bzw. registrieren?", "", ""))
             %>
             </body> </html>
             <%

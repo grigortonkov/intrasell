@@ -1,4 +1,4 @@
-<!--#include file="defaulthead.inc"-->
+<!--#include file="defaultHead.inc.aspx"-->
 <body>
     <h1 align="center">
         Meine Produkte (Verwaltung)</h1>
@@ -17,15 +17,15 @@
         End If
 
         If CLng(idnr) <> CLng(getLOGIN()) Then 'not okay!!! 
-            Call drawErrorBox("Not logged in!", "Sie sollten sich vorher anmelden!", "", "")
+            Response.Write( drawErrorBox("Not logged in!", "Sie sollten sich vorher anmelden!", "", ""))
             Response.Write("</body>")
             Response.End()
         End If
 
 
         If idnr < 0 Then 'not okay!!! 
- call drawErrorBox("Referer not existing!","No referer for this refererId is internaly defined! " &_ 
-                   " Please, contact the administrator!","","") 
+            Response.Write( drawErrorBox("Referer not existing!","No referer for this refererId is internaly defined! " &_ 
+                   " Please, contact the administrator!","","") )
             Response.Write("</body>")
             Response.End()
         End If
@@ -51,35 +51,31 @@
                 <!--webbot BOT="GeneratedScript" PREVIEW=" " startspan -->
 
                 <script language="JavaScript"><!--
-function FrontPage_Form1_Validator(theForm)
-{
+                    function FrontPage_Form1_Validator(theForm) {
 
-  var checkOK = "0123456789-";
-  var checkStr = theForm.ArtNr.value;
-  var allValid = true;
-  var decPoints = 0;
-  var allNum = "";
-  for (i = 0;  i < checkStr.length;  i++)
-  {
-    ch = checkStr.charAt(i);
-    for (j = 0;  j < checkOK.length;  j++)
-      if (ch == checkOK.charAt(j))
-        break;
-    if (j == checkOK.length)
-    {
-      allValid = false;
-      break;
-    }
-    allNum += ch;
-  }
-  if (!allValid)
-  {
-    alert("Geben Sie nur Ziffern in das Feld \"ArtNr\" ein.");
-    theForm.ArtNr.focus();
-    return (false);
-  }
-  return (true);
-}
+                        var checkOK = "0123456789-";
+                        var checkStr = theForm.ArtNr.value;
+                        var allValid = true;
+                        var decPoints = 0;
+                        var allNum = "";
+                        for (i = 0; i < checkStr.length; i++) {
+                            ch = checkStr.charAt(i);
+                            for (j = 0; j < checkOK.length; j++)
+                                if (ch == checkOK.charAt(j))
+                                break;
+                            if (j == checkOK.length) {
+                                allValid = false;
+                                break;
+                            }
+                            allNum += ch;
+                        }
+                        if (!allValid) {
+                            alert("Geben Sie nur Ziffern in das Feld \"ArtNr\" ein.");
+                            theForm.ArtNr.focus();
+                            return (false);
+                        }
+                        return (true);
+                    }
 //--></script>
 
                 <!--webbot BOT="GeneratedScript" endspan -->

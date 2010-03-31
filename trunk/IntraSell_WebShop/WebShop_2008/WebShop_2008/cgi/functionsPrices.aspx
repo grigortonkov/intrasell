@@ -116,7 +116,7 @@
 ''' <param name="ArtNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getBestLieferant(ByVal ArtNr As String)
+    Public Function getBestLieferant(ByVal ArtNr As Object)
         getBestLieferant = IntraSellPreise().getBestLieferant(ArtNr)
     End Function
 
@@ -126,7 +126,7 @@
     ''' <param name="ArtNR"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function getLieferantLagerInfo(ByVal ArtNR As Long) As String 
+    Public Function getLieferantLagerInfo(ByVal ArtNR As Object) As String 
         Try 
             getLieferantLagerInfo = IntraSellPreise().getLieferantLagerInfo(ArtNR)
         Catch

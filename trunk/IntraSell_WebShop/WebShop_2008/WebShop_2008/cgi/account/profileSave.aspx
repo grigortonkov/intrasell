@@ -1,8 +1,8 @@
 <%
 
 
-    Dim showForm As Boolean 
-    if Request("showForm") <> Nothing then showForm = Request("showForm") 'Show Form for Save Again 
+    Dim showForm As Boolean
+    If Request("showForm") <> Nothing Then showForm = Request("showForm") 'Show Form for Save Again 
     
     If LCase(Request("action")) = "update" Then
         'login first 
@@ -27,7 +27,7 @@
 <p align="center">
     <input type="submit" class="button" value="<%=getTranslation("Speichern")%>"></p>
 <%
-    End If
+End If
 End If
 %>
 </form>

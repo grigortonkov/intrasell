@@ -785,7 +785,7 @@
     ''' <param name="folder"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function Createfolder(ByVal folder)
+    Function CreateFolder(ByVal folder)
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
         filesystem.CreateFolder(folder)
@@ -793,6 +793,31 @@
         'file_delete = True
     End Function
 
+    
+    ''' <summary>
+    ''' readTextFile
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function ReadTextFile(ByVal filename As String) As String
+        'Response.Write "Filename:" & filename: Response.Flush
+        Dim content, fs, file
+        fs = CreateObject("Scripting.FileSystemObject")
+        On Error Resume Next
+        file = fs.OpenTextFile(filename, 1, False, False)
+        content = file.readAll
+        file.Close()
+        If Err.Number > 0 Then
+            If LCase(Request("debug")) = "true" Then
+                Response.Write("File is missing:[" & filename & "]<br>")
+                Response.Write(Err.Description)
+            End If
+        End If
+        On Error GoTo 0
+        readTextFile = content
+        
+    End Function
     ''' <summary>
     ''' CLEANS THE USER INPUT FROM UNNOLLOWED CHARS 
     ''' </summary>
@@ -1315,5 +1340,28 @@
      
     End Function
  
+ 
+    ''' <summary>
+    ''' sets absolute links for google.com
+    ''' </summary>
+    ''' <param name="htmlCode"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function makeRelLinksAbsolute(ByVal htmlCode As String) As String
+        'dim absLinkToDefault: absLinkToDefault = "http://" & Request.ServerVariables("SERVER_NAME")  & "/default.aspx" 
+        Dim absLinkToDefault As String : absLinkToDefault = Session("BASENAME") & "/default.aspx"
+        makeRelLinksAbsolute = Replace(htmlCode, "default.aspx", absLinkToDefault)
+    End Function
+
+ 
+    ''' <summary>
+    ''' replaces the terms like Hersteller, Produkt, Lieferant with domain specific Terms 
+    ''' </summary>
+    ''' <param name="htmlCode"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function replaceDomainTerms(ByVal htmlCode As String) As String
+        replaceDomainTerms = htmlCode
+    End Function
 </script>
 

@@ -58,7 +58,7 @@
         Next
      
         If i = 0 Then
-            Call drawErrorBox("Keine Auswahl!", getTranslation("Bitte Produkte von der Liste waehlen!"), "", "")
+            Response.Write(drawErrorBox("Keine Auswahl!", getTranslation("Bitte Produkte von der Liste waehlen!"), "", ""))
         End If
     End Function
 

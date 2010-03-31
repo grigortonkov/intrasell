@@ -1,4 +1,4 @@
-<!--#include file="../defaulthead.inc"-->
+<!--#include file="../defaultHead.inc.aspx"-->
 Batch Job "Send Mails with new Objects to all Users"<br>
 Important: This job only creates mails, please use the mail tool to send the emails!<br>
 <%

@@ -39,8 +39,8 @@
 
         Dim rowColor
         If rsL.EOF Then
-            Call drawErrorBox("Keine Preise vorhanden", "Zur Zeit sind keine Lieferanten für deises Produkt vorhanden! " & _
-                              " Es kann sein, dass kein Händler das Produkt liefert, oder das Produkt neu in die Datenbank eingefügt wurde!", "", "")
+            Response.Write(drawErrorBox("Keine Preise vorhanden", "Zur Zeit sind keine Lieferanten für deises Produkt vorhanden! " & _
+                              " Es kann sein, dass kein Händler das Produkt liefert, oder das Produkt neu in die Datenbank eingefügt wurde!", "", ""))
         End If
 
         Dim lieferantNr

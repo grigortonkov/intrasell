@@ -7,7 +7,7 @@
         Dim sql, rs
         rs = ObjConnectionexecute("Select ArtNr, ArtKatNr, LieferantNr,Picture, Bezeichnung, preisATS, EAN from grArtikel where ArtNR=" & ArtNr)
         If rs.eof Then
-            Call drawErrorBox("Error", "Das Produkt ist unbekannt!", "", "")
+            Response.Write(drawErrorBox("Error", "Das Produkt ist unbekannt!", "", ""))
             Response.End()
         End If
         Dim artKatNr : artKatNr = rs("artKatNr").Value
