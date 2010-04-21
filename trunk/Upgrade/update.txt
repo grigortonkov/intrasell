@@ -5,4 +5,4 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Stats_20091016
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Sparkasse_PayPal_R20100125.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Nachname_R20100125.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100312_DBIndexing.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100406.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100422.zip
