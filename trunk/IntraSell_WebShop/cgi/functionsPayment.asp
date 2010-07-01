@@ -59,7 +59,7 @@
         html  = html &  "  <input type='hidden' name='business' value='" & VARVALUE_DEFAULT("SHOP_PAYPAL_BUSINESS", "office@yourdomain.com") & "'>"
         html  = html &  "  <input type='hidden' name='item_name' value='" & item_name & "'>"
         html  = html &  "  <input type='hidden' name='item_number' value='" & orderId  & "'>" 'item_number
-        html  = html &  "  <input type='hidden' name='amount' value='" & replace(amount",",",".") & "'>"
+        html  = html &  "  <input type='hidden' name='amount' value='" & replace(amount, ",",",".") & "'>"
         
         html  = html &  "  <input type='hidden' name='payer_id' value='" & client_id & "'>"
         html  = html &  "  <input type='hidden' name='first_name' value='" & client_vorname & "'>"
