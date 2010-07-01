@@ -38,7 +38,7 @@ else 'allowed
 payMode = Request("PayMode"):   if payMode&"" = "" then payMode = Session("PayMode"): if payMode&"" = "" then payMode = DEFAULT_PAYMODE
 postMode = Request("postMode"): if postMode&"" = "" then postMode = Session("postMode"): if postMode&"" = "" then postMode = DEFAULT_POSTMODE
 destination = Request("destination"): if destination&"" = "" then destination  = Session("destination"): if destination&"" = "" then destination  = DEFAULT_POSTMODE_DESTINATION
-'Session("LAND") = destination 
+if destination <> "" then Session("LAND") = destination ' Change destination 
 
 Session("PayMode") = PayMode
 Session("postMode") = postMode
