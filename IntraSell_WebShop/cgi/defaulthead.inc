@@ -57,9 +57,9 @@
  next 
  'Check form string parameters
  for each cleanedInputName in request.form
-   if trim(request(cleanedInputName)) <> trim(cleanUserInput(request(cleanedInputName))) then 
-       response.write "<font color=red>Is this form Intrusion!? pName='" & cleanedInputName & "' != '" & request(cleanedInputName) & "'</font>"   
-       response.end     
+   if len((request(cleanedInputName)) & "") <> len((cleanUserInput(request(cleanedInputName)))) & "" then 
+      ' response.write (request(cleanedInputName))  & "<font color=red>Is this form Intrusion !? pName='" & cleanedInputName & "', '" & (cleanUserInput(request(cleanedInputName))) & "' != '" & (request(cleanedInputName)) & "'</font>"   
+      ' response.end     
    end if 
  next 
  'end check for intrusion 

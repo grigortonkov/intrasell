@@ -71,7 +71,7 @@ rsV.close
 
 <%
 
-sql = "SELECT [" & TableVorgangArtikel & "].* " & _ 
+sql = "SELECT [" & TableVorgangArtikel & "].*, EAN " & _ 
 	  " FROM [" & TableVorgangArtikel & "] INNER JOIN grArtikel ON [" & TableVorgangArtikel & "].ArtNR = grArtikel.ArtNr" & _
 	  " Where RechNr=" & Nummer
 	  

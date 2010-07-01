@@ -326,7 +326,7 @@ public function showBasket()
 	Dim BasketSQL
 	Dim cntItems
 	Dim html 
-	BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0)"
+	BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0 and Auftragnr is null	)"
 	
 	dim rsBasket: set rsBasket = objConnectionExecute(BasketSQL)
 	if rsBasket.EOF and rsBasket.BOF then 
@@ -370,7 +370,7 @@ AuftragNr = NextId("buchAuftrag","Nummer")
 
 ' Issue 59:  eigene Kundengruppe und Vorgangnummernkreis für online Bestellungen  
 
-dim onlineKundNr:onlineKundNr = FIRSTVALUE("select Idnr from [ofadressen-settings] where Kundengruppe = 'Online'")
+Dim onlineKundNr:onlineKundNr = FIRSTVALUE("select Idnr from [ofadressen-settings] where Kundengruppe = 'Online'")
 if isnumeric(onlineKundNr) then 
 	AuftragNr = IntraSellPreise.getNewVorgangNummer("AU", onlineKundNr)
 else
@@ -436,17 +436,17 @@ objConnectionExecute(sql)
   
 
   
-Dim KG: KG = getWeightOfOrder("AU", AuftragNr)  
+  Dim KG: KG = getWeightOfOrder("AU", AuftragNr)  
 
   if (1*calculateWarenkorbSum() < getFreiHausLieferungUmsatz())  or (getFreiHausLieferungUmsatz()=-1) then 'CALCULATE_COSTS 
 			'POST SPENDS
-				if ucase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" then 
+				if ucase(VARVALUE_DEFAULT(CALCULATE_POSTCOSTS, "true")) = "TRUE" then 
 						
 						
 						if KG >= 0 then 
 							Dim postNr : postNr = getPostSpendsArtNr(Land, KG, PostMode)
 							Dim postSpends: postSpends = calculatePostSpends(Destination, Kg, PostMode)   
-							Dim PostExpensesMWST: PostExpensesMWST = makeBruttoPreis(postSpends,2, Land)    
+							Dim PostExpensesMWST: PostExpensesMWST = Round(calculateBruttoPreis(postSpends, postNr, KDNR), 2) 'makeBruttoPreis(postSpends,2, Land)    
 							Dim ArtBezeichnungForPostSpends
 							'ArtBezeichnungForPostSpends = CALCULATE_POSTCOSTS & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
 							 ArtBezeichnungForPostSpends = tableValue("grArtikel", "EAN", "'" & CALCULATE_POSTCOSTS & "'", "Bezeichnung") & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
@@ -469,12 +469,12 @@ Dim KG: KG = getWeightOfOrder("AU", AuftragNr)
 				 end if 
 				 
 			 'PAYMODE Expenses
-			  if ucase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" then 
+			  if ucase(VARVALUE_DEFAULT(CALCULATE_PAYMODECOSTS, "true")) = "TRUE" then 
 					if PayMode <> "" then 
 			   
 					  Dim payModeExpenses:  payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, Subtotal)	
-					  Dim paymodeNr: paymodeNr  =  getPaymentModeSpendsArtNR(PayMode, Land)	 
-					  Dim payModeExpensesMWST: payModeExpensesMWST = makeBruttoPreis(payModeExpenses,2, Land)
+					  Dim paymodeNr: paymodeNr = getPaymentModeSpendsArtNR(PayMode, Land)	 
+					  Dim payModeExpensesMWST: payModeExpensesMWST = Round(calculateBruttoPreis(payModeExpenses, paymodeNr, KDNR), 2) ' makeBruttoPreis(payModeExpenses,2, Land)
 					  Dim ArtBezeichnungForPayMode
 					      'ArtBezeichnungForPayMode = CALCULATE_PAYMODECOSTS & "," & PayMode & PayMode
 					      ArtBezeichnungForPayMode = tableValue("grArtikel", "EAN", "'" & CALCULATE_PAYMODECOSTS & "'", "Bezeichnung") & "," & PayMode & PayMode
@@ -527,7 +527,13 @@ Dim KG: KG = getWeightOfOrder("AU", AuftragNr)
   			 Response.write  "<br><font color='red'>" & getTranslation("Mindestbestellmenge wurde nicht erreicht!") & "<br> " & _
   			                          getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " netto. " & _
   			                          getTranslation("Ihre Bestellung hat einen Wert von ") & cdbl(subtotal) & " netto.</font><br/>"
-  			 exit function   
+  			                          
+  			    'delete created order 
+  			    sql = "delete from [buchAuftrag-Artikel] where RechNr = " & AuftragNr
+  			    objConnectionExecute(sql)        
+  			    sql = "delete from [buchAuftrag] where Nummer = " & AuftragNr
+  			    objConnectionExecute(sql)                  
+  			    exit function   
   			 'Response.end 
   			end if 
   			 
@@ -664,7 +670,7 @@ set rsArt = nothing
 	if not rsLI.EOF then 
 	    kundNr2 = rsLI("ID")
         sqlUpdateAuftrag = "UPDATE buchAuftrag " & _ 
-	                   " SET KundNr2 =" &  kundNr2 & _
+	                   " SET KundNr2 = " &  kundNr2 & _
 	                   " WHERE Nummer = " & AuftragNr  
 	    'Response.Write sqlUpdateAuftrag                 	    
         objConnectionExecute(sqlUpdateAuftrag)

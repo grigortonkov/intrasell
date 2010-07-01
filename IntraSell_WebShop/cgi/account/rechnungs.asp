@@ -78,7 +78,7 @@ if session("dbType") = "SQL" or session("dbType") = "MySQL" then MCHAR = "%"
 </td></tr>
 <tr><td><img border=0 src=<%=imageFullName("package.png")%>></td><td>
  <!-- Paketverfolgung --> 
-                    <% if  not getVorgangEigenschaft("AR", OrderNR, "Paketnummer") = "" then %>
+                    <% if  not getVorgangEigenschaft(orderType, OrderNR, "Paketnummer") = "" then %>
                        <a href="<%=VARVALUE_DEFAULT("SHOP_LINK_PAKETVERFOLGUNG","http://www.dhl.at?paketnummer=")%><%=getVorgangEigenschaft("AR", OrderNR, "Paketnummer")%>" 
 			               target="_Paketverfolgung">
 			               <%=getTranslation("Paketverfolgung")%>

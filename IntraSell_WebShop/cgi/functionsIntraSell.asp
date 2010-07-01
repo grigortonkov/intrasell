@@ -273,10 +273,11 @@ Function getClientDestinationLand(IdNr)
    plzLAND = TABLEVALUE("[ofAdressen-Weitere]", "IDNR", IdNr, "LAND")
    'response.write "<br>PLZLand =" & PLZLand
   If isNumeric(plzLand) then 
-		If plzLAND = 43 Then getClientDestinationLand = "AT"
-		If plzLAND = 49 Then getClientDestinationLand = "DE"
-		If plzLAND = 359 Then getClientDestinationLand = "BG"
-		If plzLAND = 1 Then getClientDestinationLand = "US"
+		'If plzLAND = 43 Then getClientDestinationLand = "AT"
+		'If plzLAND = 49 Then getClientDestinationLand = "DE"
+		'If plzLAND = 359 Then getClientDestinationLand = "BG"
+		'If plzLAND = 1 Then getClientDestinationLand = "US"
+		getClientDestinationLand = TABLEVALUE("[grLand]", "IDNR", plzLand, "ISO2")
    else 
      	getClientDestinationLand = getClientLand(idnr)
    end If 
