@@ -8,22 +8,22 @@
 <center>
 	<table border="0" align=center cellpadding="2" width="660">
 	    <tr>
-	      <th align="middle" colspan=2> Change Email </th>	  
+	      <th align="middle" colspan=2> Email ändern </th>	  
 	    </tr>
 	    <tr>
 	      <td align="right" width="204">  </td>
 	      <td width="175"> </td>
 	    </tr>
 	    <tr>
-	      <td align="right" width="204">Old Email*:</td>
+	      <td align="right" width="204">alte Email*:</td>
 	      <td width="175"><input   name="OldEmail" size="60"></td>
 	    </tr>
 	    <tr>
-	      <td align="right" width="204">New Email*:</td>
+	      <td align="right" width="204">neue Email*:</td>
 	      <td width="175"><input   name="NewEmail" size="60"></td>
 	    </tr>
 	    <tr>
-	      <td align="right" width="204">Confirm New Email*:</td>
+	      <td align="right" width="204">neue Email bestätigen*:</td>
 	      <td width="175"><input   name="CNewEmail" size="60"></td>
 	    </tr>
 	    <tr>
@@ -37,14 +37,15 @@
   </form>
 <script>
 	function checkSame () {
+ 
 		var n;
 		var cn;
-		n = document.formCPWD.item ("NewEmail").value;
-		cn = document.formCPWD.item ("CNewEmail").value;
+		n = document.getElementsByName("NewEmail").item(0).value; // geht nur in IE document.formCPWD.item ("NewEmail").value;
+		cn = document.getElementsByName("CNewEmail").item(0).value; // geht nur in IE document.formCPWD.item ("CNewEmail").value;
 			if (n != cn )
 				alert ("The Emails doesn't match");
 			else {
-				if (n.length>10)
+				if (n.length>=10)
 					document.formCPWD.submit ();
 				else
 					alert ("Email should be at least 10 chars");

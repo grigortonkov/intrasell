@@ -13,7 +13,7 @@
        KundNrStep2 = authenticate(request("EmailOld"), request("PasswordOld"))'stops processing on this page if not proper authenitification !!!
         if KundNrStep2 <> ""  then ' OK
           
-          Response.Redirect "default.asp?pageToShow=warenkorbStep3&EmailOld="&request("EmailOld")&"&PasswordOld="&request("PasswordOld")
+          Response.Redirect "default.asp?pageToShow=warenkorbStep3&EmailOld="&request("EmailOld")&"&PasswordOld="&replace(request("PasswordOld"),"#","RRAAUUTTEE")
         else 
         
           Response.Write getTranslation("Ihre Angaben sind nicht korrekt!")
@@ -62,8 +62,8 @@ If request("notiz") <> "" then Session("notiz")=request("notiz")
 <input type="hidden" name="CHECK_AUTHENTIFICATION" value="YES">
    
  <p align=right>
-                <input type="button" class="button"  value="<%=getTranslation("weiter suchen")%>" onclick="document.location='default.asp';">&nbsp;&nbsp;
-                <input type="submit" class="button"  value="<%=getTranslation("bestellen")%>">
+                <input type="button" class="button"  value="<%=getTranslation("weiter shoppen")%>" onclick="document.location='default.asp';">&nbsp;&nbsp;
+                <input type="submit" class="button"  value="<%=getTranslation("Bestellung abschliessen")%>">
  </p>
                        
 <%

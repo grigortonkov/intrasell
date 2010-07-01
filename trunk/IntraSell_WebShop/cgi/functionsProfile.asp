@@ -32,13 +32,13 @@ function authenticate(Email, Password)
 		'Find Client 
 		Email = trim(left(Email,50))
 		Password = trim(left(Password,16))
-		SQL ="SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password  & "'"
+		SQL ="SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email = '" & Email & "' AND Passwort = '" & Password  & "'"
 		'response.write "<br>" & sql
 		dim rsP : set rsP  = objConnectionExecute(sql)
 		if rsP.EOF then 
 		
 		'check if user has an unlocked account 
-		SQL ="SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password  & "'"
+		SQL ="SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email = '" & Email & "' AND Passwort = '" & Password  & "'"
 		
 		set rsP  = objConnectionExecute(sql)
 		Dim LoginError 'as string 

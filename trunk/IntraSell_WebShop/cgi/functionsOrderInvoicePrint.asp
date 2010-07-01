@@ -144,7 +144,7 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
    Set rs = openRecordset(getRecSource(VorgangTyp, Vorgang_Nummer), dbOpenDynaset)
     
     If rs.EOF Then
-        MsgBox "Die Daten sind nicht vorhanden!",  "vbCritical"
+        'MsgBox "Die Daten sind nicht vorhanden!",  "vbCritical"
         Exit function
     End If
     
@@ -172,14 +172,12 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
         End If
         
         'add lines für jede Position
-        If InStr(fileLine, "[ArtNr]") > 0 Then 'je das ist eine Positionszeile
+        If InStr(fileLine, "[ArtNr]") > 0 or InStr(fileLine, "[EAN]") > 0 Then 'je das ist eine Positionszeile
         For i = 1 To (cint(positionen) - 1)
             fileContent = fileContent & Chr(13) & Chr(10) & fileLine
         Next
         End If     
     next 
-    
-    
     
     'REPLACE CONTENT
     
@@ -238,7 +236,7 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
   
   Dim BEZ
     sql = "select [" & vonForm_Artikel & "].*, " & _
-          " Beschreibung from [" & vonForm_Artikel & "],  grArtikel where [" & vonForm_Artikel & "].artnr = grArtikel.artnr " & _
+          " Beschreibung, EAN from [" & vonForm_Artikel & "],  grArtikel where [" & vonForm_Artikel & "].artnr = grArtikel.artnr " & _
           " and rechnr=" & Vorgang_Nummer & _ 
           " order by ID"
    Const BEZEICHNUNG_LAENGE = 50
@@ -246,6 +244,7 @@ Public function OpenAusdruck_inWord_Filename_RTF(ByVal VorgangTyp, ByVal Vorgang
    While Not rsArt.EOF
       fileContent = Replace(fileContent, "[Stk]", rsArt("Stk"), 1, 1)
       fileContent = Replace(fileContent, "[ArtNr]", rsArt("ArtNR"), 1, 1)
+      fileContent = Replace(fileContent, "[EAN]", Left(rsArt("EAN"), 5) , 1, 1)
       fileContent = Replace(fileContent, TAG_BEZEICHNUNG, pad(rsArt("Bezeichnung"),BEZEICHNUNG_LAENGE) & "", 1, 1)
       fileContent = Replace(fileContent, TAG_BESCHREIBUNG, rsArt("Beschreibung") & "", 1, 1)
       'korrektur für mecom - Preis ist der Stk*VKPReis

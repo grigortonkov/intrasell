@@ -317,10 +317,10 @@ dim pagesLinks
 					if SHOP_ALLOW_DROPDOWN_SORTING = "true" then 'ORDERBYTYPE = "SELECT" then 				
 						htmlSortBy = htmlSortBy & "			<select id=""sortBy"" name=""sortBy"" onchange=""GOLink();"" >"
 						htmlSortBy = htmlSortBy & "			  <option value=""" & ordr & """>" & ordrToShow & "</option>"
-						htmlSortBy = htmlSortBy & "			  <option value=""AngelegtAm"">AngelegtAm</option>"
+						'htmlSortBy = htmlSortBy & "			  <option value=""AngelegtAm"">AngelegtAm</option>"
 						htmlSortBy = htmlSortBy & "			  <option value=""Bezeichnung"">Bezeichnung</option>"
 						htmlSortBy = htmlSortBy & "			  <option value=""PreisATS"">Preis</option>"
-						htmlSortBy = htmlSortBy & "			  <option value=""ArtNr"">ArtNr</option>"
+						'	htmlSortBy = htmlSortBy & "			  <option value=""ArtNr"">ArtNr</option>"
 						htmlSortBy = htmlSortBy & "			  <option value=""EAN"">EAN</option>"
 						if SHOP_SHOW_HERSTELLER then
 							htmlSortBy = htmlSortBy & "			  <option value=""Firma"">Hersteller</option>"

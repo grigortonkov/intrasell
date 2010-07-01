@@ -18,7 +18,7 @@ Dim landOfCalculation
  landOfCalculation = Session("Land") 
 
  EmailStep3 = request("EmailOld")
- PasswordStep3 = request("PasswordOld")
+ PasswordStep3 = replace(request("PasswordOld"),"RRAAUUTTEE","#")
 
 'response.write Email & Password
 'Find Client 
@@ -100,7 +100,7 @@ if NOT errorsFound then
 			 <p align=right>
 					<input type="button" class="button" value="<%=getTranslation("Bestellung ändern")%>" onclick ="document.location='default.asp?pageToShow=warenkorbStep1'" />
 					&nbsp; &nbsp;
-					<input type="submit" class="button" value="<%=getTranslation("bestellen")%>">
+					<input type="submit" class="button" value="<%=getTranslation("Bestellung abschliessen")%>">
 			</p>
 				 
         </td>
