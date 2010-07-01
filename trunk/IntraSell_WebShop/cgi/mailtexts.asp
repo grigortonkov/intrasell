@@ -113,6 +113,7 @@ function MAKE_EMAIL_ORDER(KDNR, AuftragNr)
 		             html = replace(html, TAG_EMBED_ORDER, orderHTML)
 		        end if 
 		 else 
+		        'Response.Write "Sie bekommen nur Link zu Ihrer Bestellung"
 		        html = replace(html, TAG_EMBED_ORDER, realOrderLink)
 		 end if
 		 
