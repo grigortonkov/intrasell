@@ -118,14 +118,14 @@ if NOT errorsFound then
     end if 
     
     
-    Dim client_name , client_address , client_postCode, client_email
-    
+    Dim client_name , client_vorname , client_address , client_postCode, client_email
+    client_vorname = tablevalue("ofAdressen","Idnr",KundNr,"Vorname") 
     client_name = tablevalue("ofAdressen","Idnr",KundNr,"Name") 
     client_address = tablevalue("ofAdressen","Idnr",KundNr,"Adresse") 
     client_postCode = tablevalue("ofAdressen","Idnr",KundNr,"PLZ") 
     client_email = tablevalue("ofAdressen","Idnr",KundNr,"Email") 
      
-    Dim OrderAmount: OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "Summe") 
+    Dim OrderAmount: OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "SummeBrutto") 
 
 
 	'coints 
@@ -183,8 +183,8 @@ if NOT errorsFound then
 <%
 
 if lcase(payMode) = "paypal" then 
-   response.Write "PayPal " & getTranslation("Zahlungsformular wird gerade gestartet!")
-   response.Write makeForm_PayPal(OrderAmount, ordID, client_name, client_address, client_postCode, client_email)
+   response.Write "PayPal " & getTranslation("Falls Sie nicht automatisch zu PayPal weitergeleitet werden, klicken Sie bitte auf das PayPal Logo.")
+   response.Write makeForm_PayPal(OrderAmount, ordID, client_name, client_vorname, client_address, client_postCode, client_email, KundNr )
 end if 
 
 if lcase(payMode) = "worldpayment" then 
