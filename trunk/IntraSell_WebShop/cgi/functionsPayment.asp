@@ -37,27 +37,35 @@
     End Function
     
     
-    Function makeForm_PayPal(ByVal amount , ByVal orderId , Byval  client_name, ByVal adress , ByVal postCode, ByVal email ) 'As String
+    Function makeForm_PayPal(ByVal amount , ByVal orderId , Byval  client_name, Byval  client_vorname, ByVal adress , ByVal postCode, ByVal email, Byval  client_id ) 'As String
 
 		Dim html: html = "" 'As String
 		
 		Dim rs
-		Set rs  = ObjConnectionexecute("select Bezeichnung, Stk from [buchAuftrag-Artikel] where RechNr=" & orderId)
-		dim item_name: item_name = ""
-		dim item_number: item_number = 0
+		Set rs  = ObjConnectionexecute("select Bezeichnung, Stk from [buchAuftrag-Artikel] where RechNr=" & orderId & " order by ID")
+		Dim item_name: item_name = ""
+		Dim item_number: item_number = 0
+		Dim i : i = 0
 		while not rs.EOF 
-		   item_name = item_name + ", " + rs("Bezeichnung")
+		   i = i + 1
+		   item_name = item_name & i & ". " & rs("Bezeichnung") & ", Kundennummer:" & client_id &  "</br>"
 		   item_number = item_number + cint(rs("Stk"))
 		   rs.MoveNext
 		wend 
 	
 	
         html  = html &  "<form action=""https://www.paypal.com/cgi-bin/webscr"" method=""post"" name='Pay' target='PayResponse'>"
-        html  = html &  "  <input type=""hidden"" name=""cmd"" value=""_xclick"">"
-        html  = html &  "  <input type='hidden' name='business' value='" & VARVALUE_DEFAULT("SHOP_PAYPAL_BUSINESS","office@yourdomain.com") & "'>"
+        html  = html &  "  <input type='hidden' name='cmd' value='_xclick'>"
+        html  = html &  "  <input type='hidden' name='business' value='" & VARVALUE_DEFAULT("SHOP_PAYPAL_BUSINESS", "office@yourdomain.com") & "'>"
         html  = html &  "  <input type='hidden' name='item_name' value='" & item_name & "'>"
-        html  = html &  "  <input type='hidden' name='item_number' value='" & item_number & "'>"
-        html  = html &  "  <input type='hidden' name='amount' value='" & amount & "'>"
+        html  = html &  "  <input type='hidden' name='item_number' value='" & orderId  & "'>" 'item_number
+        html  = html &  "  <input type='hidden' name='amount' value='" & replace(amount",",",".") & "'>"
+        
+        html  = html &  "  <input type='hidden' name='payer_id' value='" & client_id & "'>"
+        html  = html &  "  <input type='hidden' name='first_name' value='" & client_vorname & "'>"
+        html  = html &  "  <input type='hidden' name='last_name' value='" & client_name & "'>"
+        html  = html &  "  <input type='hidden' name='payer_email' value='" & email & "'>"
+        
         html  = html &  "  <input type='hidden' name='no_shipping' value='1'>"
         html  = html &  "  <input type='hidden' name='return' value='" & VARVALUE_DEFAULT("DOMAIN","www.yourdomain.com") & "'>"
         html  = html &  "  <input type='hidden' name='no_note' value='1'>"
