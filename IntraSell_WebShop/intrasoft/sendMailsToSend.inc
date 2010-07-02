@@ -1,6 +1,6 @@
 <%
 'Selects the mails from mailsToSend table and sends them over the email server
-MAX_COUNT_MAILS_TO_SEND = 250
+MAX_COUNT_MAILS_TO_SEND = 3000
 %>
 <html>
 <head>
@@ -11,7 +11,7 @@ MAX_COUNT_MAILS_TO_SEND = 250
 <h1 align="center">Sending Mails&nbsp;</h1>
 <%   
 Dim SQLString, rs_p
-     SQLString = "SELECT * FROM MailsToSend ORDER BY priority"
+     SQLString = "SELECT * FROM MailsToSend ORDER BY priority limit 3000"
      Set rs_p = objConnection.Execute(SQLString) 
      IF rs_p.EOF THEN 
      %>
@@ -36,7 +36,7 @@ Dim SQLString, rs_p
    i = 1
  	while  i <= MAX_COUNT_MAILS_TO_SEND
  	 i = i + 1 
-     SQLString = "SELECT * FROM MailsToSend ORDER BY priority"
+     SQLString = "SELECT * FROM MailsToSend ORDER BY priority limit 1"
     ' Response.write SQL
      Set rs_p = objConnection.Execute(SQLString) 
      
@@ -79,6 +79,7 @@ Dim SQLString, rs_p
   </table>
    <% 
 END IF 	  
+response.flush
  	WEND
 END IF ' NO MORE MAILS
 %>

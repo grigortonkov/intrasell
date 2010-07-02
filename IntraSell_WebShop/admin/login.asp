@@ -1,3 +1,6 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META content="text/html; charset=unicode" http-equiv=Content-Type>
 <%
 Response.Expires = -1000 'Makes the browser not cache this page
 Response.Buffer = True 'Buffers the content so our Response.Redirect will work
@@ -15,52 +18,37 @@ END IF
 Sub ShowLogin
 %>
 
-<form action=default.asp method=post>
+<form action=default.asp method=post><BODY>
 <div align="center">
   <center>
-<table width="316" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+<table width="316" style="BORDER-COLLAPSE: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
 <tr>
 <td width="152">
-<p align="center"><img hspace="0" id="IMG1" src="../company/images/company.gif"></td>
+<p align="center"><img hspace="0" id="IMG1" src="../company/images/company.gif"></P></TD>
 <td width="150">
 <p align="center"><br>
-<b><font face="Verdana" size="2">Admin Login<br>
-</font></b><br>
-&nbsp;</td>
-</tr>
+<b><font face="Verdana" size="2">Admin 
+      Login<br></FONT></B><br>&nbsp;</P></TD></TR>
 
 <tr>
 <td width="152">
-<font face="Verdana" size="2">User Name : </font> 
-</td>
+<font face="Verdana" size="2">User Name : </FONT></TD>
 <td width="150">
-<input type=text name=username size="20">
-</td>
-
-</tr>
+<input name=username size="25" style="WIDTH: 200px; HEIGHT: 22px"> </TD></TR>
 
 <tr>
-<td width="152"><font face="Verdana" size="2">Password : </font> 
-</td>
+<td width="152"><font face="Verdana" size="2">Password : </FONT></TD>
 <td width="150">
-<input type=password name=userpwd size="20">
-</td>
-
-</tr>
+<input type=password name=userpwd size="25" style="WIDTH: 200px; HEIGHT: 22px"> </TD></TR>
 <tr>
 <td>
 <input type=hidden name=login value=true>
-<input type=submit value="Login"></td>
-</tr>
-</table>
-  </center>
-</div>
-</form>
+<input type=submit value="Login"></TD></TR></TABLE></CENTER></DIV></FORM>
 <center>
 <font size=1>
-* Wenn Sie das erste mal hier sind, verwenden Sie: Name:<b>WebShop</b> und Passwort:<b>123</b>
-</font>
-</center>
+* Wenn Sie das 
+erste mal hier sind, verwenden Sie: Name:<b>WebShop</B> und 
+Passwort:<b>123</B> </FONT></CENTER>
 <%
 Response.End
 End Sub
@@ -72,8 +60,10 @@ If LCase(Request.Form("username")) = Lcase(VARVALUE("ADMIN")) And LCase(Request.
     Session("ADMIN")="TRUE" 'used to show "product bearbeiten" in normal shop
     Response.Redirect "default.asp"
 Else
-    %><font color="#FF0000">Login Failed.</font><br><% 
+    %><font color="#ff0000">Login Failed.</FONT><br>
+<% 
     ShowLogin
 End If
 End Sub
 %>
+</BODY></HTML>
