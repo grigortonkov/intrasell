@@ -18,8 +18,37 @@ Dim Body: Body = request("Body")
 		<%
 if SenderEmail<>"" and SQL_RECEIVERS<>"" and Subject<>"" and Body <>"" then ' save modus 
  Dim rsEmails: set rsEmails = ObjConnection.execute(SQL_RECEIVERS)
+dim bodySave : bodySave = Body 
 
  while not rsEmails.EOF 
+Body  = bodySave 
+
+if inStr(Body, "Field[1]") > 0 then 
+	Body = replace (Body, "Field[1]", rsEmails(1) & "")
+end if 
+
+
+if inStr(Body, "Field[2]") > 0 then 
+	Body = replace (Body, "Field[2]", rsEmails(2) & "")
+end if 
+
+
+if inStr(Body, "Field[3]") > 0 then 
+	Body = replace (Body, "Field[3]", rsEmails(3) & "")
+end if 
+
+
+if inStr(Body, "Field[4]") > 0 then 
+	Body = replace (Body, "Field[4]", rsEmails(4) & "")
+end if 
+
+
+if inStr(Body, "Field[5]") > 0 then 
+	Body = replace (Body, "Field[5]", rsEmails(5) & "")
+end if 
+
+ 
+
        call sendMailFrom(rsEmails(0), Subject , Body, SenderEmail)            
        Response.Write "."
  		rsEmails.MoveNext 

@@ -1,21 +1,23 @@
-Microsoft Visual Studio Solution File, Format Version 7.00
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebShop", "http://localhost/WebShop/WebShop.vbproj", "{40FEB225-3724-420D-8207-D004EEC8FD05}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebShop", "http://localhost/WebShop/WebShop.vbproj", "{40FEB225-3724-420D-8207-D004EEC8FD05}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		ConfigName.0 = Debug
-		ConfigName.1 = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug|Default.ActiveCfg = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug|Default.Build.0 = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release|Default.ActiveCfg = Release|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release|Default.Build.0 = Release|.NET
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug.ActiveCfg = Debug|.NET
-		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug.Build.0 = Debug|.NET
-		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release.ActiveCfg = Release|.NET
-		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release.Build.0 = Release|.NET
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
