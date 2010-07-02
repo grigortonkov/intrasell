@@ -182,8 +182,8 @@
                 fileContent = fileContent & Chr(13) & Chr(10) & fileLine
             End If
         
-            'add lines für jede Position
-            If InStr(fileLine, "[ArtNr]") > 0 Then 'je das ist eine Positionszeile
+            'add lines for every Position
+            If InStr(fileLine, "[ArtNr]") > 0 Or InStr(fileLine, "[EAN]") > 0 Then 'das ist eine Positionszeile
                 For i = 1 To (CInt(positionen) - 1)
                     fileContent = fileContent & Chr(13) & Chr(10) & fileLine
                 Next
@@ -247,7 +247,7 @@
 
         Dim Bez As String
         sql = "select [" & vonForm_Artikel & "].*, " & _
-              " Beschreibung from [" & vonForm_Artikel & "],  grArtikel where [" & vonForm_Artikel & "].artnr = grArtikel.artnr " & _
+              " Beschreibung, EAN from [" & vonForm_Artikel & "],  grArtikel where [" & vonForm_Artikel & "].artnr = grArtikel.artnr " & _
               " and rechnr=" & Vorgang_Nummer & _
               " order by ID"
         Const BEZEICHNUNG_LAENGE = 50
@@ -255,6 +255,7 @@
         While Not rsArt.EOF
             fileContent = Replace(fileContent, "[Stk]", rsArt("Stk").Value, 1, 1)
             fileContent = Replace(fileContent, "[ArtNr]", rsArt("ArtNR").Value, 1, 1)
+            fileContent = Replace(fileContent, "[EAN]", rsArt("EAN").Value, 1, 1)
             fileContent = Replace(fileContent, TAG_BEZEICHNUNG, pad(rsArt("Bezeichnung").Value, BEZEICHNUNG_LAENGE) & "", 1, 1)
             fileContent = Replace(fileContent, TAG_BESCHREIBUNG, rsArt("Beschreibung").Value & "", 1, 1)
             'korrektur für mecom - Preis ist der Stk*VKPReis

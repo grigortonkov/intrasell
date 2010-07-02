@@ -57,8 +57,8 @@
     function checkSame () {
         var n;
         var cn;
-        n = document.formCPWD.item ("NewEmail").value;
-        cn = document.formCPWD.item ("CNewEmail").value;
+        n = document.getElementsByName("NewEmail").item(0).value; // geht nur in IE document.formCPWD.item ("NewEmail").value;
+        cn = document.getElementsByName("CNewEmail").item(0).value; // geht nur in IE document.formCPWD.item ("CNewEmail").value;
             if (n != cn )
                 alert ("The Emails doesn't match");
             else {

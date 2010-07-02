@@ -333,7 +333,7 @@
         Dim cntItems As Double
         Dim html As String
         
-        BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0)"
+        BasketSQL = "SELECT * FROM webWarenkorb Where (SID=" & getSid() & " and Quantity>0 and AuftragNr is null)"
     
         Dim rsBasket : rsBasket = objConnectionExecute(BasketSQL)
         If rsBasket.EOF And rsBasket.BOF Then
@@ -451,7 +451,7 @@
                 If KG >= 0 Then
                     Dim postNr : postNr = getPostSpendsArtNr(Land, KG, PostMode)
                     Dim postSpends : postSpends = calculatePostSpends(Destination, KG, PostMode)
-                    Dim PostExpensesMWST : PostExpensesMWST = makeBruttoPreis(postSpends, 2, Land)
+                    Dim PostExpensesMWST : PostExpensesMWST = Math.Round(calculateBruttoPreis(postSpends, postNr, KDNR), 2) 'makeBruttoPreis(postSpends, 2, Land)
                     Dim ArtBezeichnungForPostSpends
                     'ArtBezeichnungForPostSpends = CALCULATE_POSTCOSTS & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
                     ArtBezeichnungForPostSpends = tableValue("grArtikel", "EAN", "'" & CALCULATE_POSTCOSTS & "'", "Bezeichnung") & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
@@ -479,7 +479,7 @@
                
                     Dim payModeExpenses : payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotal)
                     Dim paymodeNr : paymodeNr = getPaymentModeSpendsArtNR(PayMode, Land)
-                    Dim payModeExpensesMWST : payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
+                    Dim payModeExpensesMWST : payModeExpensesMWST = Math.Round(calculateBruttoPreis(payModeExpenses, paymodeNr, KDNR), 2) 'makeBruttoPreis(payModeExpenses, 2, Land)
                     Dim ArtBezeichnungForPayMode
                     'ArtBezeichnungForPayMode = CALCULATE_PAYMODECOSTS & "," & PayMode & PayMode
                     ArtBezeichnungForPayMode = tableValue("grArtikel", "EAN", "'" & CALCULATE_PAYMODECOSTS & "'", "Bezeichnung") & "," & PayMode & PayMode
@@ -532,6 +532,12 @@
                 Response.Write("<br><font color='red'>" & getTranslation("Mindestbestellmenge wurde nicht erreicht!") & "<br> " & _
                                          getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " netto. " & _
                                          getTranslation("Ihre Bestellung hat einen Wert von ") & CDbl(subtotal) & " netto.</font><br/>")
+                'delete created order 
+                SQL = "delete from [buchAuftrag-Artikel] where RechNr = " & AuftragNr
+                objConnectionExecute(SQL)
+                SQL = "delete from [buchAuftrag] where Nummer = " & AuftragNr
+                objConnectionExecute(SQL)
+                
                 Exit Function
                 'Response.end 
             End If

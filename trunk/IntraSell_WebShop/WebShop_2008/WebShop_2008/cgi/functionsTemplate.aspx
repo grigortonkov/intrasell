@@ -21,6 +21,7 @@
     Const TAG_CATEGORYPATH = "[CATEGORYPATH]"
     Const TAG_CATEGORYPATH_NOLINKS = "[CATEGORYPATH_NOLINKS]"
     Const TAG_CATEGORY_SUBLIST = "[CATEGORY_SUBLIST]"
+    Const TAG_CATEGORY_SUBLIST_WITHPARENTS = "[CATEGORY_SUBLIST_WITHPARENTS]"
     Const TAG_CATEGORY_FILTER = "[CATEGORY_FILTER]"
     Const TAG_CATEGORYNAME = "[CATEGORYNAME]"
     Const TAG_SUBCATEGORY_IMAGES = "[SUBCATEGORY_IMAGES]"
@@ -230,6 +231,13 @@
             Exit Function
         End If
   
+        'TAG_CATEGORY_SUBLIST_WITHPARENTS
+        If InStr(template, TAG_CATEGORY_SUBLIST_WITHPARENTS) > 0 Then 'TAG_CATEGORY_SUBLIST request
+            html = SimpleListCategoriesWithParentCatsFromCache(artKatNr, "default.asp")
+            parseTemplate = parseTemplate(Replace(template, TAG_CATEGORY_SUBLIST_WITHPARENTS, html), artKatNr)
+            Exit Function
+        End If
+        
         'TAG_CATEGORY_FILTER
         If InStr(template, TAG_CATEGORY_FILTER) > 0 Then 'TAG_CATEGORY_FILTER request
             html = createSearchForm(artKatNr)

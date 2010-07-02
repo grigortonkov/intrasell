@@ -78,14 +78,85 @@
         rs = Nothing
     End Function
  
- 
- 
-    ''' <summary>
-    ''' MenuCategories
-    ''' </summary>
-    ''' <param name="inPageToShow"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
+    
+    
+        '******************************************************************************
+    ' SimpleListCategories with Parent Categories
+    ' shows simple down list with categories and their parents
+    ' this is now shown on the left side in the default page 
+    '
+    ' Style can be modified with class .category for example .category    
+    ' { color: #FFFFFF; font-weight: bold; line-height: 100%; margin: 0 }
+    ' 
+    ' PrePreKatNr - if set then will be shown zurueck list entry 
+    ' new feature -> shows only categories that are not empty/contain products or some subcats contain products !!!!!
+    '******************************************************************************
+    Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr, ByVal inPageToShow) 'as string
+        Dim temp
+        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & artKatNr & "_" & inPageToShow
+        temp = getCache(CACHE_NAME)
+        If temp = "" Then 'set cache  
+            temp = setCache(CACHE_NAME, SimpleListCategoriesWithParentCats(artKatNr, artKatNr, inPageToShow))
+        End If
+        SimpleListCategoriesWithParentCatsFromCache = temp
+    End Function
+
+    
+    Function SimpleListCategoriesWithParentCats(ByVal PreKatNr, ByVal OriginalKatNr, ByVal inPageToShow)
+        Dim html
+        If Not isnumeric(PreKatNr) Then
+            SimpleListCategoriesWithParentCats = ""
+            Exit Function
+        End If
+
+        Dim sql, rs
+        sql = "SELECT ArtKatNr, Name FROM [grArtikel-Kategorien] WHERE " & _
+           " ArtKatNrParent=" & PreKatNr & " ORDER BY [Order], Name "
+        rs = ObjConnectionexecute(sql)
+	        Dim prePreKatNr : prePreKatNr = TABLEVALUE("[grArtikel-Kategorien]", "artKatNr", PreKatNr, "ArtKatNrParent")	        'show error that not subcats are existing
+        If rs.EOF Then
+            'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br>" 
+            '<a href="default.asp?PreKatNr=prePreKatNr">Zurueck??</a>
+            html = html & SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
+            SimpleListCategoriesWithParentCats = html
+            Exit Function
+        End If
+
+        Dim rsCheck
+        Dim name        Dim ShowArtKatNR        html = html & "<ul style='text-indent:0; line-height:100%; margin-left:13; margin-right:3'>"
+        While Not rs.EOF
+            ' check if the cat or the sub cat contains products 
+            ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr"),5) & ")"
+            ''not needed set rsCheck = ObjConnectionexecute(sql)
+   
+            ShowArtKatNR = rs("ArtKatNr")
+            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name"), Language) & ""
+            name = Server.HTMLEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr") & "" Then                name = "<b>" & name & "</b>"
+            End If
+            
+            html = html & "<li>"            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & chr(13) & chr(10)
+            html = html & "</li>"            ''not needed if rsCheck.eof then 'this cat has no products   
+            ''not needed 'html = html &  "[leer]"  
+            ''not needed end if 
+            ''not needed html = html &   "<br>"  
+            rs.MoveNext()
+        End While
+        html = html & "</ul>"        rs.Close()
+        rs = Nothing
+
+        'recursion !!!         Dim parentCats : parentCats = SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
+        Dim PosOfSubCats : PosOfSubCats = InStr(parentCats, "<!--" & PreKatNr & "-->")        Dim parentCatsAndSubCats
+        
+        If PosOfSubCats > 0 Then
+            html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"            parentCatsAndSubCats = left(parentCats, PosOfSubCats - 1) & html & right(parentCats, 1 + len(parentCats) - PosOfSubCats)
+        Else            parentCatsAndSubCats = parentCats & html
+        End If                SimpleListCategoriesWithParentCats = parentCatsAndSubCats
+        ''' <summary>
+        ''' MenuCategories
+        ''' </summary>
+        ''' <param name="inPageToShow"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
     Function MenuCategories(ByVal PreKatNr, ByVal inPageToShow)
         Dim sql, rs
         PreKatNr = 0

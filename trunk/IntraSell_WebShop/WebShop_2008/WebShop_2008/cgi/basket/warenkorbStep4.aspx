@@ -135,11 +135,12 @@ If payMode & "" = "" Then
     Dim client_name, client_address, client_postCode, client_email
     
     client_name = tablevalue("ofAdressen", "Idnr", KundNr, "Name")
+    client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorame")
     client_address = tablevalue("ofAdressen", "Idnr", KundNr, "Adresse")
     client_postCode = tablevalue("ofAdressen", "Idnr", KundNr, "PLZ")
     client_email = tablevalue("ofAdressen", "Idnr", KundNr, "Email")
      
-    Dim OrderAmount : OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "Summe")
+    Dim OrderAmount : OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "SummeBrutto")
 
 
     'coints 
@@ -199,7 +200,7 @@ If payMode & "" = "" Then
 
                 If LCase(payMode) = "worldpayment" Then
                     Response.Write("WorldPay " & getTranslation("Zahlungsformular wird gerade gestartet!"))
-                    Response.Write(makeForm_WorldPayment(OrderAmount, ordId, client_name, client_address, client_postCode, client_email))
+                    Response.Write(makeForm_WorldPayment(OrderAmount, ordId, KundNr, client_name, client_vorname, client_address, client_postCode, client_email))
                 End If
 
             %>
