@@ -57,8 +57,8 @@
     function checkSame () {
         var n;
         var cn;
-        n = document.formCPWD.item ("NewPasswd").value;
-        cn = document.formCPWD.item ("CNewPasswd").value;
+        n = document.getElementsByName("NewPasswd").item(0).value; // geht nur in IE document.formCPWD.item ("NewPasswd").value;
+        cn = document.getElementsByName("CNewPasswd").item(0).value; // geht nur in IEdocument.formCPWD.item ("CNewPasswd").value;
             if (n != cn )
                 alert ("The Password doesn't match");
             else {

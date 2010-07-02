@@ -37,7 +37,7 @@
     End Function
     
     
-    Function makeForm_PayPal(ByVal amount, ByVal orderId, ByVal client_name, ByVal adress, ByVal postCode, ByVal email) 'As String
+    Function makeForm_PayPal(ByVal amount, ByVal orderId, ByVal client_id, ByVal client_name, ByVal client_vorname, ByVal client_adress, ByVal postCode, ByVal client_email) 'As String
 
         Dim html As String : html = "" 'As String
         
@@ -45,8 +45,11 @@
         rs = ObjConnectionexecute("select Bezeichnung, Stk from [buchAuftrag-Artikel] where RechNr=" & orderId)
         Dim item_name : item_name = ""
         Dim item_number : item_number = 0
+        Dim i As Integer
+        i = 0
         While Not rs.EOF
-            item_name = item_name + ", " + rs("Bezeichnung").Value
+            i = i + 1
+            item_name = item_name & i & ". " & rs("Bezeichnung").Value & "Kundennr: " & client_id & "</br>"
             item_number = item_number + CInt(rs("Stk").Value)
             rs.MoveNext()
         End While
@@ -57,7 +60,13 @@
         html = html & "  <input type='hidden' name='business' value='" & VARVALUE_DEFAULT("SHOP_PAYPAL_BUSINESS", "office@yourdomain.com") & "'>"
         html = html & "  <input type='hidden' name='item_name' value='" & item_name & "'>"
         html = html & "  <input type='hidden' name='item_number' value='" & item_number & "'>"
-        html = html & "  <input type='hidden' name='amount' value='" & amount & "'>"
+        html = html & "  <input type='hidden' name='amount' value='" & Replace(amount, ",", ".") & "'>"
+        
+        html = html & "  <input type='hidden' name='payer_id' value='" & client_id & "'>"
+        html = html & "  <input type='hidden' name='first_name' value='" & client_vorname & "'>"
+        html = html & "  <input type='hidden' name='last_name' value='" & client_name & "'>"
+        html = html & "  <input type='hidden' name='payer_email' value='" & client_email & "'>"
+        
         html = html & "  <input type='hidden' name='no_shipping' value='1'>"
         html = html & "  <input type='hidden' name='return' value='" & VARVALUE_DEFAULT("DOMAIN", "www.yourdomain.com") & "'>"
         html = html & "  <input type='hidden' name='no_note' value='1'>"
