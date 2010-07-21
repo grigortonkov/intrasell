@@ -101,7 +101,7 @@ Dim Mobil, Fax, Web, Branche
 Dim IchWillNewsletter
 Dim UID 
 
-Firma    = Request("Firma"&typeOfAddress ): if trim(Firma)="" then Firma = "-"
+Firma    = Request("Firma"&typeOfAddress ): if trim(Firma)="" then Firma = " "
 Name     = Request("Name"&typeOfAddress )
 Vorname  = Request("Vorname"&typeOfAddress )
 Anrede   = Request("Anrede"&typeOfAddress )

@@ -923,17 +923,28 @@ wend
 
 makeRelatedArtikelListOtherUsersBuy = html
 end function 
-       
+ 
 function makeRelatedArtikelListForWarenkorb()
 
-sql = " select unterartNR from [grArtikel-VerwandteArtikel] where ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _ 
-       "union  select artNR from [grArtikel-VerwandteArtikel] where UnterArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _  
-        " union SELECT webWarenkorb.ArtNr FROM webWarenkorb INNER JOIN webWarenkorb AS webWarenkorb_1 ON webWarenkorb.SID = webWarenkorb_1.SID " & _ 
-        " WHERE webWarenkorb_1.ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ")" & _ 
-        " and webWarenkorb.ArtNr <>[webWarenkorb_1].[artnr] " & _ 
-        " GROUP BY webWarenkorb.ArtNr, webWarenkorb_1.ArtNr " & _ 
+sql = " select unterartNR from [grArtikel-VerwandteArtikel] where ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _
+       "union  select artNR from [grArtikel-VerwandteArtikel] where UnterArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _ 
+        " union SELECT webWarenkorb.ArtNr FROM webWarenkorb INNER JOIN webWarenkorb AS webWarenkorb_1 ON webWarenkorb.SID = webWarenkorb_1.SID " & _
+        " WHERE webWarenkorb_1.ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ")" & _
+        " and webWarenkorb.ArtNr <>[webWarenkorb_1].[artnr] " & _
+        " GROUP BY webWarenkorb.ArtNr, webWarenkorb_1.ArtNr " & _
         " HAVING  Count(webWarenkorb_1.ArtNr)>=2"
-        
+       
+sql =  " select unterartNR from [grArtikel-VerwandteArtikel] where ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _
+       " union  " & _
+       " select artNR from [grArtikel-VerwandteArtikel] where UnterArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") "
+
+sql = sql & " union select ArtNr from " & _
+		" webWarenkorb wk where " & _
+		" wk.sid  in (select sid from webWarenkorb where artnr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ")) " & _
+		" group by ArtNr " & _
+		" order by count(*) desc limit 10"
+
+       
 set rs = ObjConnectionexecute(sql)
 dim ArtList: ArtList = "-1" 
 while not rs.eof

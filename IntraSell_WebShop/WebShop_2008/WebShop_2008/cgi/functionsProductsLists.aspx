@@ -1031,6 +1031,16 @@
                 " GROUP BY webWarenkorb.ArtNr, webWarenkorb_1.ArtNr " & _
                 " HAVING  Count(webWarenkorb_1.ArtNr)>=2"
         
+        sql = " select unterartNR from [grArtikel-VerwandteArtikel] where ArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") " & _
+               " union  " & _
+               " select artNR from [grArtikel-VerwandteArtikel] where UnterArtNr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ") "
+
+        sql = sql & " union select ArtNr from " & _
+              " webWarenkorb wk where " & _
+              " wk.sid  in (select sid from webWarenkorb where artnr in (select ArtNr from webWarenkorb where Sid=" & getSID() & ")) " & _
+              " group by ArtNr " & _
+              " order by count(*) desc limit 10"
+        
         rs = ObjConnectionexecute(sql)
         Dim ArtList As String : ArtList = "-1"
         While Not rs.eof
