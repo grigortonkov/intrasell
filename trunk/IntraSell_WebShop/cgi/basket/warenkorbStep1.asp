@@ -91,6 +91,7 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 %>
 	<%if emptySet then %>
 		<input type="submit" class="button"  value="<%=getTranslation("Warenkorb aktualisieren")%>">
+		&nbsp;<a href="default.asp"><%=getTranslation("weiter shoppen")%></a>
 	<%end if%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
@@ -201,6 +202,7 @@ emptySet = visualizeWarenkorb("1", Session("LAND"), payMode, postMode, destinati
 		</table>
 	</center>
 	<p align=right>
+	        <a href="default.asp"><%=getTranslation("weiter shoppen")%></a>&nbsp;
 			<%if (not payMode& "" = "" ) and (not postMode& "" = "" ) and (not destination& "" = "" ) then %>
 				<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
 			<% else %>

@@ -118,7 +118,7 @@
         Dim IchWillNewsletter
         Dim UID As String
 
-        Firma = Request("Firma" & typeOfAddress) : If Trim(Firma) = "" Then Firma = "-"
+        Firma = Request("Firma" & typeOfAddress) : If Trim(Firma) = "" Then Firma = " "
         Name = Request("Name" & typeOfAddress)
         Vorname = Request("Vorname" & typeOfAddress)
         Anrede = Request("Anrede" & typeOfAddress)

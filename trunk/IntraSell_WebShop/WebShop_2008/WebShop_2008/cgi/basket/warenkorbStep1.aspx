@@ -84,7 +84,8 @@
         emptySet = visualizeWarenkorb("1", Session("LAND"), paymode, postmode, destination)
 %>
 <%  If emptySet Then%>
-<input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">
+<input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
+<a href="default.asp"><%=getTranslation("weiter shoppen")%></a>
 <%  End If%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
@@ -218,6 +219,8 @@
 </center>
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
+    
+<a href="default.asp"><%=getTranslation("weiter shoppen")%></a>&nbsp;
     <input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
     <%Else%>
     <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
