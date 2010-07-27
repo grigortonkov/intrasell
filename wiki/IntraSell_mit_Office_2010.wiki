@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Hier ist beschrieben wie IntraSell mit Office 2010 zu starten ist.
+Das ist nur eine vorübergehende Lösung. 
+
+= Details =
+* Installieren Sie Office 2010.
+* Starten Sie Access und setzen Sie die Sicherheitseinstellungen so dass alle Macros ausgeführt weden. Setzen Sie auch das c:\IntraSell3 oder c:\IntraSell4 Verzeichnis als vertrauenswürdig. 
+
+* Beim Starten von IntraSell wirt automatisch wird die folgende Datei heruntergeladen: IntraSell_3_office2010.zip und entpackt. 
+
+* Starten Sie die MDB Datei: IntraSell_3_office2010.mdb
+* Die IntraSell EXE Datei kann für Updates verwendet werden. 
