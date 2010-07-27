@@ -9,7 +9,8 @@ Das ist nur eine vorübergehende Lösung.
   # Installieren Sie Office 2010.
   # Starten Sie Access und setzen Sie die Sicherheitseinstellungen so dass alle Macros ausgeführt weden. Setzen Sie auch das c:\IntraSell3 oder c:\IntraSell4 Verzeichnis als vertrauenswürdig. 
 
-  # Beim Starten von IntraSell wirt automatisch wird die folgende Datei heruntergeladen: IntraSell_3_office2010.zip und entpackt. 
-
-  # Starten Sie die MDB Datei: IntraSell_3_office2010.mdb
-  # Die IntraSell EXE Datei kann für Updates verwendet werden. 
+  # Beim Starten von IntraSell werden automatisch die folgende Dateien heruntergeladen: IntraSell_3_office2010.zip und IntraSell_office2010.zip (EXE) und entpackt. 
+  # Starten Sie die NEUE EXE Datei: IntraSell_office2010.exe
+ODER
+  # Starten Sie die direkt die MDB Datei: IntraSell_3_office2010.mdb
+  # Die alte oder die neue IntraSell EXE Datei kann weiter für Updates verwendet werden. 
