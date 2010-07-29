@@ -7,4 +7,4 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100312_DBIndexin
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100422.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Sparkasse_PayPal_R20100701.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_3_office2010.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_office2010.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_0ffice2010.zip
