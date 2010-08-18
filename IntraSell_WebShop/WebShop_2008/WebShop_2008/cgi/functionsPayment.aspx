@@ -9,8 +9,7 @@
     ' Changes: 
     '******************************************************************
 
-    Function makeForm_WorldPayment(ByVal amount, ByVal cartId, _
-        ByVal name, ByVal adress, ByVal postCode, ByVal email) ' As String
+    Function makeForm_WorldPayment(ByVal amount, ByVal cartId, ByVal client_id, ByVal name, ByVal client_vorname, ByVal adress, ByVal postCode, ByVal email) ' As String
 
         Dim html 'As String
 

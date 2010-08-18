@@ -151,6 +151,8 @@
             html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"            parentCatsAndSubCats = left(parentCats, PosOfSubCats - 1) & html & right(parentCats, 1 + len(parentCats) - PosOfSubCats)
         Else            parentCatsAndSubCats = parentCats & html
         End If                SimpleListCategoriesWithParentCats = parentCatsAndSubCats
+    End Function 
+        
         ''' <summary>
         ''' MenuCategories
         ''' </summary>

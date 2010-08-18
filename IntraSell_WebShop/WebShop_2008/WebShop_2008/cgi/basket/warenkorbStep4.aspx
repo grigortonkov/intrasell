@@ -196,7 +196,7 @@ If payMode & "" = "" Then
 
                 If LCase(payMode) = "paypal" Then
                     Response.Write("PayPal " & getTranslation("Zahlungsformular wird gerade gestartet!"))
-                    Response.Write(makeForm_PayPal(OrderAmount, ordId, client_name, client_vorname, client_address, client_postCode, client_email))
+                    Response.Write(makeForm_PayPal(OrderAmount, ordId, KundNr, client_name, client_vorname, client_address, client_postCode, client_email))
                 End If
 
                 If LCase(payMode) = "worldpayment" Then
