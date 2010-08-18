@@ -324,7 +324,7 @@
     ''' <returns>returns the destination land for this customer </returns>
     ''' <remarks></remarks>
     Function getClientDestinationLand(ByVal IdNr As Long) As String
-        Dim plzLAND As Long, clientPLZ
+        Dim plzLAND As String, clientPLZ
         plzLAND = TABLEVALUE("[ofAdressen-Weitere]", "IDNR", IdNr, "LAND")
         'response.write "<br>PLZLand =" & PLZLand
         If IsNumeric(plzLAND) Then
