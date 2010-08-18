@@ -136,7 +136,7 @@ If payMode & "" = "" Then
     Dim client_vorname As String
     
     client_name = tablevalue("ofAdressen", "Idnr", KundNr, "Name")
-    client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorame")
+    client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorname")
     client_address = tablevalue("ofAdressen", "Idnr", KundNr, "Adresse")
     client_postCode = tablevalue("ofAdressen", "Idnr", KundNr, "PLZ")
     client_email = tablevalue("ofAdressen", "Idnr", KundNr, "Email")
