@@ -172,7 +172,7 @@
 ''' <param name="IdNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getClientLand(ByVal IdNr As Object)
+    Public Function getClientLand(ByVal IdNr As String) As String 
         getClientLand = IntraSellPreise().getClientLand(IdNr)
     End Function
 
