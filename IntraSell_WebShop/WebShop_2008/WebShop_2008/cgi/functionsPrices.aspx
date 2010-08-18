@@ -172,15 +172,15 @@
 ''' <param name="IdNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getClientLand(ByVal IdNr As Long)
+    Public Function getClientLand(ByVal IdNr As Object)
         getClientLand = IntraSellPreise().getClientLand(IdNr)
     End Function
 
-    Public Function getNewVorgangNummer(ByVal Typ As Object, ByVal IdNr As Long)
+    Public Function getNewVorgangNummer(ByVal Typ As Object, ByVal IdNr As Object)
         getNewVorgangNummer = IntraSellPreise().getNewVorgangNummer(Typ, IdNr)
     End Function
 
-    Public Function convertFromTo(ByVal FromOrder As String, ByVal ToOrder As String, ByVal fromNummer As String, ByVal NewKundNr As Long)
+    Public Function convertFromTo(ByVal FromOrder As String, ByVal ToOrder As String, ByVal fromNummer As String, ByVal NewKundNr As Object)
         convertFromTo = IntraSellPreise().convertFromTo(FromOrder, ToOrder, fromNummer, NewKundNr)
     End Function
 
