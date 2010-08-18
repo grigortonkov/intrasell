@@ -34,7 +34,7 @@
 <%   
     if showDebug() then 
       Response.write ( "PageToshow:" & PageToShow )
-    end if 
+    end if  
      
     Select Case pageToShow%>
 <%  Case "ProductList", "" 'we have category Browse%>
