@@ -132,7 +132,8 @@ If payMode & "" = "" Then
     End If
     
     
-    Dim client_name, client_address, client_postCode, client_email
+    Dim client_name As String, client_address As String, client_postCode As String, client_email As String
+    Dim client_vorname As String
     
     client_name = tablevalue("ofAdressen", "Idnr", KundNr, "Name")
     client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorame")
