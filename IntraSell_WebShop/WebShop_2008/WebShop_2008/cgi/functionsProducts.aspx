@@ -541,9 +541,9 @@
     ' productTemplate - HTML of the template containing the tags. 
     ' For the tags see File shop_skins_functionality.xml
     '===============================================================================
-    Public Function makeProductPageWithTemplate(ByVal ArtNr, ByRef productTemplate) As String
+    Public Function makeProductPageWithTemplate(ByVal ArtNr As String, ByRef productTemplate As String) As String
 
-        Dim Sql
+        Dim Sql As String 
         Dim rsArtikel
         If ArtNr = "" Then
             makeProductPageWithTemplate = "Es wurde keine ArtNr übergeben!" : Exit Function
