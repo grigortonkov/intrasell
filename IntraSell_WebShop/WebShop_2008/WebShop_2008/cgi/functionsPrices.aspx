@@ -161,7 +161,7 @@
 ''' <param name="Typ"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getDruckForType(ByVal Typ  As String)
+    Public Function getDruckForType(ByVal Typ As String)
         getDruckForType = IntraSellPreise().getDruckForType(Typ)
     End Function
 
@@ -176,7 +176,7 @@
         getClientLand = IntraSellPreise().getClientLand(IdNr)
     End Function
 
-    Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr As Long)
+    Public Function getNewVorgangNummer(ByVal Typ As Object, ByVal IdNr As Long)
         getNewVorgangNummer = IntraSellPreise().getNewVorgangNummer(Typ, IdNr)
     End Function
 
