@@ -359,7 +359,8 @@
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />
     <Content Include="productImages\thumbnail.aspx" />
-    <Content Include="productImages\thumbnail.aspx.vb" />
+    <Compile Include="productImages\thumbnail.aspx.vb" />
+    <Content Include="productImages\WebForm1.aspx" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation-b.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation_stk.htm" />
@@ -1194,11 +1195,18 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="productImages\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="productImages\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="cgi\functionsStatistics.aspx.resx" />
-    <EmbeddedResource Include="productImages\thumbnail.aspx.resx" />
+    <Compile Include="productImages\thumbnail.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Admin\exec\delfotos.bat" />
