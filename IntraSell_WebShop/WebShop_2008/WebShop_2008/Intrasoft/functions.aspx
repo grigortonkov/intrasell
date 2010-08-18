@@ -1350,7 +1350,8 @@
     Function makeRelLinksAbsolute(ByVal htmlCode As String) As String
         'dim absLinkToDefault: absLinkToDefault = "http://" & Request.ServerVariables("SERVER_NAME")  & "/default.aspx" 
         Dim absLinkToDefault As String : absLinkToDefault = Session("BASENAME") & "/default.aspx"
-        makeRelLinksAbsolute = Replace(htmlCode, "default.aspx", absLinkToDefault)
+        absLinkToDefault = Replace(htmlCode, "default.aspx", absLinkToDefault)
+        makeRelLinksAbsolute = Replace("default.asp?", "default.aspx?", absLinkToDefault)
     End Function
 
  
