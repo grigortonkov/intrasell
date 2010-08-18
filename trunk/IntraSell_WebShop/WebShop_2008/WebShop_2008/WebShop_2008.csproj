@@ -248,7 +248,6 @@
     <Content Include="cgi\functionsToolbar.aspx" />
     <Content Include="cgi\functionsUserPoints.aspx" />
     <Content Include="cgi\functionsUserSearches.aspx" />
-    <Content Include="cgi\Kopie von defaulthead.inc.aspx" />
     <Content Include="cgi\lager\lagerBook.aspx" />
     <Content Include="cgi\lager\warehouse_manager.htm" />
     <Content Include="cgi\lager\warehouse_manager_.htm" />
@@ -359,8 +358,6 @@
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />
     <Content Include="productImages\thumbnail.aspx" />
-    <Compile Include="productImages\thumbnail.aspx.vb" />
-    <Content Include="productImages\WebForm1.aspx" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation-b.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation_stk.htm" />
@@ -1195,18 +1192,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="productImages\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="productImages\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="cgi\functionsStatistics.aspx.resx" />
-    <Compile Include="productImages\thumbnail.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Admin\exec\delfotos.bat" />

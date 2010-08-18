@@ -5,4 +5,3 @@ Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Deb
 Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.pdb
 Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.cgi.functionsStatistics.aspx.resources
 Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.csproj.GenerateResource.Cache
-Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.productImages.thumbnail.aspx.resources
