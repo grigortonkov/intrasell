@@ -423,7 +423,7 @@
     ' htmlForSaveUserQuery - 
     ' makes an image link for saving this query
     '****************************************************************************    
-    Function htmlForSaveUserQuery(ByVal Sql, ByVal FilterBySQL, ByVal OrderBy, ByVal SearchDescription)
+    Function htmlForSaveUserQuery(ByVal Sql As String, ByVal FilterBySQL As String, ByVal OrderBy As String, ByVal SearchDescription As String)
         'response.Write sql & SearchDescription
         Dim html
         Session("SQLString") = Sql
@@ -436,7 +436,7 @@
     '****************************************************************************
     'makeProductListOnQuery - lists all products depending on the SQL query
     '****************************************************************************
-    Function makeProductListOnQuerySimple(ByVal Sql)
+    Function makeProductListOnQuerySimple(ByVal Sql As String)
         
         'Response.Write sql: Response.Flush
         Dim rsArtikel
