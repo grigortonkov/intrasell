@@ -15,7 +15,7 @@
         End If
     Else
         If showDebug() Then
-            Response.Write("No Template File was found for this page! Page=" & filenameForBodyTemplate)
+            Response.Write("No template file was found for this page! Page=" & filenameForBodyTemplate)
         End If
     End If
 
@@ -38,9 +38,9 @@
      
     Select Case pageToShow%>
 <%  Case "ProductList", "" 'we have category Browse%>
-<%  Response.Write(makeRelLinksAbsolute(parseTemplate(findTemplate(artKatNrToShow), artKatNrToShow)))%>
+<%  Response.Write (makeRelLinksAbsolute(parseTemplate(findTemplate(artKatNrToShow), artKatNrToShow)))%>
 <%  Case "ProductView"%>
-<%=makeProductPage(artNrToShow, request("pagePart"))%>
+<%  Response.Write (makeRelLinksAbsolute(makeProductPage(artNrToShow, request("pagePart"))))%>
 <%  Call addToUserVisitedProducts(artNrToShow)%>
 <%  Case "ProductQuery"       'we have searching %>
 <%  Call DisplaySearchResults(Request("qu"))%>
@@ -148,7 +148,7 @@
 <!--#include file="ecard/send.aspx"-->
 <%  Case "FirstPage", "", "WebPage"  ' default page%>
 <%  Dim webPage : If Request("WebPage") <> "" Then webPage = Request("WebPage") Else webPage = "FirstPage"%>
-<%=convertToHTML(parseTemplate(tableValue("webPages", "[Title]", "'" & webPage & "'", "html"),0)) %>
+<% Response.Write (makeRelLinksAbsolute(convertToHTML(parseTemplate(tableValue("webPages", "[Title]", "'" & webPage & "'", "html"),0)))) %>
 <%
 End Select
 
