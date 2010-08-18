@@ -50,12 +50,12 @@
 
 
 
-    Public Function makeNettoPreis(ByVal ArtNr, ByVal Stk, ByVal IdNr)
+    Public Function makeNettoPreis(ByVal ArtNr As Object, ByVal Stk As Object, ByVal IdNr As Object)
         makeNettoPreis = IntraSellPreise().makeNettoPreis(ArtNr, Stk, IdNr)
     End Function
 
 
-    Public Function makeBruttoPreis(ByVal Preis, ByVal MwstGroup, ByVal Land)
+    Public Function makeBruttoPreis(ByVal Preis As Object, ByVal MwstGroup As Object, ByVal Land As Object)
 
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
@@ -75,7 +75,7 @@
 
     End Function
 
-    Function makeBruttoPreis2(ByVal ArtNr, ByVal Stk, ByVal Land)
+    Function makeBruttoPreis2(ByVal ArtNr As Object, ByVal Stk As Object, ByVal Land As Object)
 
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
@@ -89,7 +89,7 @@
         makeBruttoPreis2 = IntraSellPreise().makeBruttoPreis2(ArtNr, Stk, Land)
     End Function
 
-    Public Function calculateBruttoPreis(ByVal VKPreis, ByVal ArtNr, ByVal IDNR)
+    Public Function calculateBruttoPreis(ByVal VKPreis As Object, ByVal ArtNr As Object, ByVal IDNR As Object)
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
             Response.Write("get calculateBruttoPreis for VKPreis = [" & VKPreis & "]")
@@ -106,7 +106,7 @@
 ''' <param name="ArtNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getEKPreis(ByVal ArtNr)
+    Function getEKPreis(ByVal ArtNr As Object)
         getEKPreis = IntraSellPreise().getEKPreis(ArtNr)
     End Function
 
@@ -151,7 +151,7 @@
 ''' <param name="Typ"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getVorgangArtikelTableForType(ByVal Typ)
+    Public Function getVorgangArtikelTableForType(ByVal Typ  As String)
         getVorgangArtikelTableForType = IntraSellPreise().getVorgangArtikelTableForType(Typ)
     End Function
 
@@ -161,7 +161,7 @@
 ''' <param name="Typ"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getDruckForType(ByVal Typ)
+    Public Function getDruckForType(ByVal Typ  As String)
         getDruckForType = IntraSellPreise().getDruckForType(Typ)
     End Function
 
@@ -172,15 +172,15 @@
 ''' <param name="IdNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getClientLand(ByVal IdNr)
+    Public Function getClientLand(ByVal IdNr As Long)
         getClientLand = IntraSellPreise().getClientLand(IdNr)
     End Function
 
-    Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr)
+    Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr As Long)
         getNewVorgangNummer = IntraSellPreise().getNewVorgangNummer(Typ, IdNr)
     End Function
 
-    Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr)
+    Public Function convertFromTo(ByVal FromOrder As String, ByVal ToOrder As String, ByVal fromNummer As String, ByVal NewKundNr As Long)
         convertFromTo = IntraSellPreise().convertFromTo(FromOrder, ToOrder, fromNummer, NewKundNr)
     End Function
 
