@@ -354,6 +354,7 @@
     <Content Include="intrasoft\windows\upleft.gif" />
     <Content Include="intrasoft\windows\upright.gif" />
     <Content Include="intrasoft\windows\Up_Title_Backgrund.gif" />
+    <Content Include="default.asp" />
     <Content Include="productImages\clock.JPG" />
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />
