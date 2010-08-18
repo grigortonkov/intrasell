@@ -85,7 +85,7 @@
 %>
 <%  If emptySet Then%>
 <input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
-<a href="default.asp"><%=getTranslation("weiter shoppen")%></a>
+<a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
 <%  End If%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
