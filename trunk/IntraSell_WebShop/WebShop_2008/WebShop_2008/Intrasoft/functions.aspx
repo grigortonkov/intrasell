@@ -1366,5 +1366,35 @@
     Function replaceDomainTerms(ByVal htmlCode As String) As String
         replaceDomainTerms = htmlCode
     End Function
+    
+    
+    
+    'downloads on server the file and retusn the physical filename
+    Function downloadURLFile(ByVal fullImageURL As String) As String 'returns loca filename 
+
+        Try
+
+            Dim cl As System.Net.WebClient = New System.Net.WebClient
+            cl.BaseAddress = "http://" & Request.ServerVariables("SERVER_NAME") & ":" & Request.ServerVariables("SERVER_PORT")
+
+            Dim myDatabuffer As Byte() = cl.DownloadData(fullImageURL)
+            ' Display the downloaded data.
+            Dim zufall As System.Random = New System.Random
+            Dim randomFilename As String = "random" & zufall.Next
+            Dim absoluteFileName As String = Server.MapPath("\productImages\" & randomFilename & ".jpg")
+            Dim newFile As System.IO.FileStream = New System.IO.FileStream(absoluteFileName, IO.FileMode.Create)
+
+            Dim b As Byte
+            For Each b In myDatabuffer
+                newFile.WriteByte(b)
+            Next
+
+            newFile.Close()
+            downloadURLFile = absoluteFileName
+        Catch ex As Exception
+            Response.Write("Error when processing URL:" & fullImageURL)
+            Response.Write(Err.Description)
+        End Try
+    End Function
 </script>
 
