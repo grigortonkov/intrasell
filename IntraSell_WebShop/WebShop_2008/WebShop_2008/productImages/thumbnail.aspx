@@ -1,4 +1,4 @@
-<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="thumbnail.aspx.vb" Inherits="WebShop.thumbnail" %>
+<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="thumbnail.aspx.vb" Inherits="WebShop_2008.thumbnail" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
