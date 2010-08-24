@@ -26,7 +26,7 @@
 
         'response.write Email & Password
         'Find Client 
-        Dim KundNr As Long
+        Dim KundNr As Object
         KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
         Dim errorsFound : errorsFound = False
@@ -119,7 +119,7 @@ If payMode & "" = "" Then
     
         Dim gutscheinNummerStep4 : gutscheinNummerStep4 = Session("gutscheinNummer")
     
-        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4)
+        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU")
     
         If ordId & "" = "" Then 'Fehler bei der Erstellung 
             Response.Write(getTranslation("Ihre Bestellung konnte nicht angenommen werden."))

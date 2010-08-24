@@ -1081,13 +1081,23 @@
             Beschreibung = makeBeschreibung(ArtNr, True)
 
             Dim Modifikationen : Modifikationen = rsArtikel("Modifikationen").Value
-            Dim Firma : Firma = rsArtikel("Firma").Value
-            Dim FirmaImage : FirmaImage = rsArtikel("FirmaImage").Value
-            Dim Bezeichnung : Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
+            Dim Firma As String : Firma = rsArtikel("Firma").Value & ""
+            Dim FirmaImage As String : FirmaImage = rsArtikel("FirmaImage").Value & ""
+            Dim Bezeichnung As String : Bezeichnung = Server.HtmlEncode(rsArtikel("Bezeichnung").Value & "")
             Bezeichnung = getTranslationDok("grArtikel", ArtNr, "Bezeichnung", Bezeichnung & "", Language)
             Bezeichnung = Server.HtmlEncode(Bezeichnung)
     
-            Dim Bezeichnung1 : Bezeichnung1 = Server.HtmlEncode(IntraSellPreise().getLieferantLagerInfo(ArtNr) & "") 'rsArtikel("Bezeichnung1").Value
+            Dim Bezeichnung1
+            If (Not IntraSellPreise() Is Nothing) Then
+                Try
+                    Dim liefLI As String = IntraSellPreise().getLieferantLagerInfo(ArtNr)
+                    Bezeichnung1 = Server.HtmlEncode(liefLI & "") 'rsArtikel("Bezeichnung1").Value
+                Catch ex As Exception
+                    Bezeichnung1 = "n.a."
+                End Try
+                
+            End If
+            
             Dim Picture : Picture = rsArtikel("Picture").Value
             Dim ArtKatNr : ArtKatNr = rsArtikel("ArtKatNr").Value
             Dim MWSTGROUP : MWSTGROUP = rsArtikel("MWST").Value
@@ -1107,12 +1117,19 @@
 
             Dim productTemplate
 
-            On Error Resume Next
-            productTemplate = "" & readTextFile(Server.MapPath(htmlTemplate))
-            If Err.Number > 0 Or productTemplate = "" Then
-                makeProductPageSmallWithTemplate = "File is missing:" & htmlTemplate
+            'On Error Resume Next
+            Try
+                productTemplate = "" & readTextFile(Server.MapPath(htmlTemplate))
+                If Err.Number > 0 Or productTemplate = "" Then
+                    makeProductPageSmallWithTemplate = "Template file is missing: " & htmlTemplate
+                    Exit Function
+                End If
+                
+            Catch ex As Exception
+                makeProductPageSmallWithTemplate = "Template file is missing: " & htmlTemplate
                 Exit Function
-            End If
+            End Try
+            
 
             'On Error GoTo 0
         
@@ -1143,8 +1160,8 @@
             Call replaceEigenschaftenAndMore(ArtNr, productTemplate)
          
             makeProductPageSmallWithTemplate = productTemplate
-        End If
-        rsArtikel.close()
+            End If
+            rsArtikel.close()
     End Function
 
     ''' <summary>

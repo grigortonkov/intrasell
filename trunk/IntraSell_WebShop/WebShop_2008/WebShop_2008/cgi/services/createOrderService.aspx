@@ -31,7 +31,7 @@
     Dim Notiz : Notiz = ""
     Dim gutscheinNummerStep4 : gutscheinNummerStep4 = ""
 
-    Dim ordId : ordId = createOrderFromBasket(IDNR, ServiceSID, payMode, postMode, destination, Notiz, gutscheinNummerStep4)
+    Dim ordId : ordId = createOrderFromBasket(IDNR, ServiceSID, payMode, postMode, destination, Notiz, gutscheinNummerStep4, "AU")
     Response.Write("<AuftragNummer>" & ordId & "</AuftragNummer>")
 %>
 <!--#include file="../../intrasoft/connclose.aspx"-->

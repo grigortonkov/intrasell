@@ -173,6 +173,7 @@
     <Content Include="cgi\account\template_login.htm" />
     <Content Include="cgi\account\testEmailOrder.aspx" />
     <None Include="cgi\account\userBookmarks.aspx.disabled" />
+    <Content Include="cgi\basket\warenkorbStepOffer.aspx" />
     <Content Include="cgi\basket\redirect_restoreWarenkorb.aspx" />
     <Content Include="cgi\basket\restoreWarenkorb.aspx" />
     <Content Include="cgi\basket\warenkorbStep1.aspx" />

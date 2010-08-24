@@ -68,12 +68,12 @@
  
         html = html & "<table border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse'  bordercolor='#C0C0C0' width='800' id='AutoNumber1' height='38'>"
         html = html & " <tr>"
-        html = html & "<th width='35' height='20' align='center' nowrap>" & getTranslation("Löschen") & "</th>"
-        html = html & "<th width='35' height='20' align='center' nowrap>" & getTranslation("Position") & "</th>"
-        html = html & "<th width='50' height='20' align='center' nowrap>" & getTranslation("ArtNR") & "</th>"
-        html = html & "<th width='244' height='20' align='center' nowrap>" & getTranslation("Bezeichnung") & "</th>"
+        html = html & "<th width='35' height='20' align='center' nowrap> " & getTranslation("Löschen") & " </th>"
+        html = html & "<th width='35' height='20' align='center' nowrap> " & getTranslation("Position") & " </th>"
+        html = html & "<th width='50' height='20' align='center' nowrap> " & getTranslation("ArtNR") & " </th>"
+        html = html & "<th width='244' height='20' align='center' nowrap> " & getTranslation("Bezeichnung") & " </th>"
         html = html & "<th width='44' height='20' align='center' nowrap> " & getTranslation("Stk") & " </th>"
-        html = html & "<th width='113' height='20' align='center' nowrap> " & getTranslation("Preis") & "</th>"
+        html = html & "<th width='113' height='20' align='center' nowrap> " & getTranslation("Preis") & " </th>"
         html = html & "<th width='113' height='20' align='center' nowrap> " & getTranslation("Bruttopreis") & " </th>"
         html = html & "</tr>"
      
@@ -195,7 +195,7 @@
         Dim sid As String : sid = getSID()
         Dim html As String
          
-        Dim IDNR As Long : IDNR = getLOGIN()
+        Dim IDNR As Object : IDNR = getLOGIN()
         sql = "SELECT webWarenkorb.SID, webWarenkorb.Quantity, webWarenkorb.Notiz, grArtikel.* " & _
            " FROM webWarenkorb INNER JOIN grArtikel ON webWarenkorb.ArtNr = grArtikel.ArtNr" & _
            " Where SID=" & sid & " AND webWarenkorb.Quantity > 0  AND (AuftragNr is null or AuftragNr=0)"
@@ -284,7 +284,7 @@
                     html = html & "<a href='default.aspx?pagetoShow=warenkorbStep1&Items=1&Art1=" & rsWK("ArtNr").Value & "&checkD1=ON'>"
                     html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' align='middle'></a>"
                     html = html & "<!-- <input type='checkbox' name='checkD'" & pos & " ' value='ON'> -->"
-                    html = html & "<input name='Stk" & pos & " ' size='3' value='" & rsWK("Quantity").Value & "' id='Text6' />"
+                    html = html & "<input name='Stk" & pos & "' size='3' value='" & rsWK("Quantity").Value & "' />"
                 Else
                     html = html & "" & rsWK("Quantity").Value & ""
                 End If

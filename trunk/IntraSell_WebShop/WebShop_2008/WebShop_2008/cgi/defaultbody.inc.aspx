@@ -60,6 +60,8 @@
 <!--#include file="basket/warenkorbStep3.aspx"-->
 <%  Case "warenkorbStep4"%>
 <!--#include file="basket/warenkorbStep4.aspx"-->
+<%  Case "warenkorbStepOffer"%>
+<!--#include file="basket/warenkorbStepOffer.aspx"-->
 <%  Case "PutInWarenkorb"%>
 <%  Call PutInWarenkorb()%>
 <%  Case "RestoreWarenkorb"%>

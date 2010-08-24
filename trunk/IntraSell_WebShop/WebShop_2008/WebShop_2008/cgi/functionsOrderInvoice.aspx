@@ -365,16 +365,21 @@
     ' added check if destination land ist the same like Session(LAND)
     ' if no then back to Warenkorb2
     '*************************************************************************
-    Function createOrderFromBasket(ByVal KDNR, ByVal SID, ByVal PayMode, ByVal PostMode, ByVal Destination, ByVal notizOrder, ByVal GutscheinNummer)
+    Function createOrderFromBasket(ByVal KDNR As String, ByVal SID As Object, ByVal PayMode As String, ByVal PostMode As String, _
+                                   ByVal Destination As String, ByVal notizOrder As String, ByVal GutscheinNummer As String, ByVal OrderType As String) As String
         Dim Land As String : Land = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
  
+        Dim tableName As String = "buchAuftrag"
+        If OrderType = "AN" Then
+            tableName = "buchAngebot"
+        End If
         'Response.Write "PostMode=" & PostMode 
         'exit function 
         'land is ok 
         'Create auftrag (Order)
         Dim AuftragNr, Notiz As String
         Dim SQL As String
-        AuftragNr = NextId("buchAuftrag", "Nummer")
+        AuftragNr = NextId(tableName, "Nummer")
 
         ' Issue 59:  eigene Kundengruppe und Vorgangnummernkreis für online Bestellungen  
 
@@ -387,8 +392,8 @@
 
         Notiz = "Internet Bestellung"
         If notizOrder = "" Then notizOrder = Notiz
-        SQL = "INSERT INTO buchAuftrag (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum)  " & _
-           "Values(" & AuftragNr & "," & KDNR & ",'" & notizOrder & "','" & PayMode & "','" & PostMode & "','" & PayMode & "', " & SQLNOW(0) & ")"
+        SQL = "INSERT INTO " & tableName & " (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum, Bezahlt, Ausgedrukt, anElba)  " & _
+           "Values(" & AuftragNr & "," & KDNR & ",'" & notizOrder & "','" & PayMode & "','" & PostMode & "','" & PayMode & "', " & SQLNOW(0) & ", 0, 0, 0)"
         objConnectionExecute(SQL)
 
         'Move Warenkorb To Auftrag, fuer jede Position die eine Seriennummer erfordert wird eigene Zeile eingefuegt 
@@ -425,12 +430,12 @@
             If needsSerialNr & "" = "true" Or needsSerialNr & "" = "-1" Or needsSerialNr & "" = "1" Then ' für jeden Eintrag eine eigene Zeile Erstellen
                 Dim ii
                 For ii = 1 To stkToOrder
-                    SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
+                    SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
                           " VALUES (" & rsWK("AuftragNr").Value & "," & rsWK("ArtNr").Value & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
                     objConnectionExecute(SQL)
                 Next
             Else
-                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
+                SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
                       " VALUES (" & rsWK("AuftragNr").Value & "," & rsWK("ArtNr").Value & "," & stkToOrder & ",'" & bezeichnung & "',0, '" & positionNotiz & "')"
                 objConnectionExecute(SQL)
             End If
@@ -460,7 +465,7 @@
                     PostExpensesMWST = Replace(PostExpensesMWST, ",", ".")
                                                             
                     If IsNumeric(postNr) Then
-                        SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                        SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                " VALUES (" & AuftragNr & ", " & postNr & ", 1," & postSpends & "," & _
                 PostExpensesMWST & ",'" & ArtBezeichnungForPostSpends & "')"
                         'response.write "<br>" & sql
@@ -489,7 +494,7 @@
                                                             
                     If IsNumeric(paymodeNr) Then
                         If CLng(paymodeNr) > 0 Then
-                            SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                            SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                                     " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & payModeExpenses & "," & payModeExpensesMWST & _
                                     ", '" & ArtBezeichnungForPayMode & "')"
                             objConnectionExecute(SQL)
@@ -513,7 +518,7 @@
                 gutscheinSumme = Replace(gutscheinSumme, ",", ".")
                 gutscheinSummeMWST = Replace(gutscheinSummeMWST, ",", ".")
                          
-                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & gutscheinArtNr & ", 1," & gutscheinSumme & "," & _
                   gutscheinSummeMWST & ",'" & ArtBezeichnungForGutschein & "')"
                 objConnectionExecute(SQL)
@@ -533,9 +538,9 @@
                                          getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " netto. " & _
                                          getTranslation("Ihre Bestellung hat einen Wert von ") & CDbl(subtotal) & " netto.</font><br/>")
                 'delete created order 
-                SQL = "delete from [buchAuftrag-Artikel] where RechNr = " & AuftragNr
+                SQL = "delete from [" & tableName & "-Artikel] where RechNr = " & AuftragNr
                 objConnectionExecute(SQL)
-                SQL = "delete from [buchAuftrag] where Nummer = " & AuftragNr
+                SQL = "delete from [" & tableName & "] where Nummer = " & AuftragNr
                 objConnectionExecute(SQL)
                 
                 Exit Function
@@ -551,7 +556,7 @@
                 mindestBestellmengeSumme = Replace(mindestBestellmengeSumme, ",", ".")
                 mindestBestellmengeMWST = Replace(mindestBestellmengeMWST, ",", ".")
                          
-                SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+                SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & mindestBestellmengeArtNr & ", 1," & mindestBestellmengeSumme & "," & _
                   mindestBestellmengeMWST & ",'" & mindestBestellmengeBez & "')"
                 objConnectionExecute(SQL)
@@ -571,7 +576,7 @@
             Dim rabatt_Value : rabatt_Value = -1 * getBasketDiscount_Value(subtotal)
                   
                   
-            SQL = " INSERT INTO [buchAuftrag-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
+            SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
                  " VALUES (" & AuftragNr & ", " & rabattArtNr & ", 1," & Replace(rabatt_Value, ",", ".") & "," & _
                   Replace(rabatt_MWST, ",", ".") & ",'" & rabattBez & "')"
             'response.Write sql              
@@ -582,7 +587,7 @@
     
          
         'UPDATE Artikel mit PREIS und BEZEICHNUNG
-        Dim sqlArt As String : sqlArt = "SELECT * from [buchAuftrag-Artikel]  WHERE RechNr=" & AuftragNr
+        Dim sqlArt As String : sqlArt = "SELECT * from [" & tableName & "-Artikel]  WHERE RechNr=" & AuftragNr
         Dim rsArt : rsArt = objConnectionExecute(sqlArt)
         Dim sqlUpdatePreis As String
         
@@ -629,7 +634,7 @@
                 ' Update preises 
                 PosBezeichnung = Replace(PosBezeichnung, "’", "%")
                 PosBezeichnung = Replace(PosBezeichnung, "'", "%")
-                sqlUpdatePreis = "UPDATE [buchAuftrag-Artikel] " & _
+                sqlUpdatePreis = "UPDATE [" & tableName & "-Artikel] " & _
                   " SET  PreisATS =  " & Replace(ArtikelPreisNetto, ",", ".") & _
                   "    , PreisEuro =  " & Replace(ArtikelPreisNetto, ",", ".") & _
                   "    , PreisATS_Brutto = " & Replace(ArtikelPreisBrutto, ",", ".") & _
@@ -651,13 +656,13 @@
         Dim sqlSumme As String : sqlSumme = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
                                     " SUM(Stk*(PreisATS_Brutto-PreisATS))  as summeMwst, " & _
                                     " SUM(Stk*PreisATS_Brutto)  as summeBrutto  " & _
-                                    " FROM [buchAuftrag-artikel] where RechNr = " & AuftragNr
+                                    " FROM [" & tableName & "-artikel] where RechNr = " & AuftragNr
         Dim rsSumme : rsSumme = objConnectionExecute(sqlSumme)
     
         Dim Summe As Double : Summe = rsSumme("summe").Value & ""
         Dim SummeMWST As Double : SummeMWST = rsSumme("SummeMWST").Value & ""
         Dim SummeBrutto As Double : SummeBrutto = rsSumme("SummeBrutto").Value & ""
-        sqlUpdateAuftrag = "UPDATE buchAuftrag " & _
+        sqlUpdateAuftrag = "UPDATE " & tableName & _
                            " SET Summe =" & Replace(Summe, ",", ".") & _
                            ", SummeMWST =" & Replace(SummeMWST, ",", ".") & _
                            ", SummeBrutto =" & Replace(SummeBrutto, ",", ".") & _
@@ -675,7 +680,7 @@
         rsLI = objConnectionExecute(sqlLI)
         If Not rsLI.EOF Then
             kundNr2 = rsLI("ID").Value
-            sqlUpdateAuftrag = "UPDATE buchAuftrag " & _
+            sqlUpdateAuftrag = "UPDATE " & tableName & _
                         " SET KundNr2 =" & kundNr2 & _
                         " WHERE Nummer = " & AuftragNr
             'Response.Write sqlUpdateAuftrag                         

@@ -1,10 +1,11 @@
+ 
 <%
     '===========================================================================
     ' Autor: Written and edited by Grigor Tonkov 2001 (R)
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 
-    Const SHOW_SELECT_POST as Boolean = False
+    Const SHOW_SELECT_POST As Boolean = False
     Const SHOW_SELECT_DESTINATION As Boolean = False
 
 %>
@@ -49,7 +50,7 @@
         If Request("notiz") <> "" Then Session("notiz") = Request("notiz")
 
 
-        'GUTSCHEIN PROBLEMATIK 
+        'GUTSCHEIN LOGIK 
         'Response.Write "gutscheinNummer: " & request("gutscheinNummer")
         If Request("gutscheinNummer") <> "" Then
             If getPreisForGutschein(Request("gutscheinNummer")) > 0 Then
@@ -59,7 +60,7 @@
             End If
         End If
 
-        'Response.Write "ITEMS:" & request("Items")
+        'Response.Write("ITEMS:" & Request("Items"))
         If Request("Items") <> "" Then ' Update is needed
             For i = 1 To CInt(Request("Items"))
                 an = "Art" & i
@@ -85,12 +86,13 @@
 %>
 <%  If emptySet Then%>
 <input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
-<a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
+<a href="default.aspx">
+    <%=getTranslation("weiter shoppen")%></a>
 <%  End If%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
 <%  If emptySet Then%>
-<form method="POST" action="default.aspx">
+<form method="POST" action="default.aspx" id="FormBasket">
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
 <center>
     <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
@@ -113,11 +115,11 @@
                         While Not rsZM.EOF
                             If UCase(Trim(postmode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
                             'Response.Write selected
-                            %>
-                            <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
-                                <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';">
-                            <%=rsZM("methode").Value%>
-                            <%
+                    %>
+                    <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
+                        <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';">
+                    <%=rsZM("methode").Value%>
+                    <%
                         rsZM.MoveNExt()
                     End While
                     %>
@@ -216,17 +218,47 @@
                             <%End If%>
                             <!-- END SELECT PLACE OF DELIVERY  -->
     </table>
+    
+    
+<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="height: 0px; width: 0px;">
+<%=getTranslation("Geben Sie hier Ihre Tel.Nr und/oder Email bekannt:")%>
+</textarea>&nbsp;
+
 </center>
+
+
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
-    
-<a href="default.asp"><%=getTranslation("weiter shoppen")%></a>&nbsp;
-    <input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
+    <a href="default.asp">
+        <%=getTranslation("weiter shoppen")%></a>
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();">
+        &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
     <%Else%>
     <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
     <%End If%>
+
+ <br />
+
 </p>
 </form>
+
+ <script language="javascript">
+
+     //Submit this basket as an offer
+
+     function submitOffer() {
+         if (!document.forms['FormBasket'].Notiz.visible) {
+             document.forms['FormBasket'].Notiz.visible = true;
+             //set visible 
+             document.forms['FormBasket'].Notiz.style.width = 300;
+             document.forms['FormBasket'].Notiz.style.height = 100;
+          } else {
+             document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOffer';
+             document.forms['FormBasket'].submit();
+         }
+     }
+ </script>
+ 
 <%  End If
 End If 'purchasing allowed 
 %>
@@ -242,8 +274,9 @@ End If 'purchasing allowed
 <script language="VB" runat="server">
     Dim rsZM
     Dim rsWK
-    Dim i As  Integer, pos As  Integer
-    Dim an, qn  As  Integer, chn
+    Dim i As Integer, pos As Integer
+    Dim an As String, chn
+    Dim qn As String
     Dim sql As String
     Dim emptySet
     Dim paymode As String, postmode As String, destination As String
