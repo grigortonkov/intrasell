@@ -1,5 +1,5 @@
 <%
-    Dim kdnr As Long : kdnr = getLOGIN()
+    Dim kdnr As Object : kdnr = getLOGIN()
 
     Dim typeOfAddress : typeOfAddress = Request("typeOfAddress")
     Dim typeOfAddressToShow

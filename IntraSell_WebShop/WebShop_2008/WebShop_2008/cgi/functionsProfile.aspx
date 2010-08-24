@@ -36,7 +36,7 @@
     ''' <param name="Password"></param>
     ''' <returns>KDNR or -1 if wrong</returns>
     ''' <remarks></remarks>
-    Function authenticate(ByVal Email, ByVal Password) As Long
+    Function authenticate(ByVal Email, ByVal Password) As Object
         Dim SQL As String
         'Find Client 
         Email = Trim(Left(Email, 50))
