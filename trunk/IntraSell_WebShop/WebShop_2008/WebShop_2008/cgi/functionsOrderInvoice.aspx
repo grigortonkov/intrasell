@@ -385,7 +385,7 @@
 
         Dim onlineKundNr : onlineKundNr = FIRSTVALUE("select Idnr from [ofadressen-settings] where Kundengruppe = 'Online'")
         If IsNumeric(onlineKundNr) Then
-            AuftragNr = IntraSellPreise.getNewVorgangNummer("AU", onlineKundNr)
+            AuftragNr = IntraSellPreise.getNewVorgangNummer(OrderType, onlineKundNr)
         Else
             Response.Write("Warnung: Bitte eine Kundengruppe namens ""Online"" mit einem eigenen Nummernkreis definieren und einem Kunden zuweisen!")
         End If
