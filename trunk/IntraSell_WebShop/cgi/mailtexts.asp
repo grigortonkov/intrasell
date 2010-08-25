@@ -7,6 +7,7 @@ Dim Email : Email = TABLEVALUE("ofAdressen","IDNR", KDNR, "Email")
 Dim Passwort : Passwort = TABLEVALUE("ofAdressen","IDNR", KDNR, "Passwort")   
 Dim html 
 
+Passwort = left(Passwort, 2) & left("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", len(Passwort) -2)  'hide password 
 
 html =  readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_registration_confirmation.htm"))
 
@@ -32,6 +33,8 @@ function MAKE_EMAIL_REGISTRATION_SIMPLE(KDNR)
 		Dim Passwort : Passwort = TABLEVALUE("ofAdressen","IDNR", KDNR, "Passwort")   
 		Dim html 
 
+
+		Passwort = left(Passwort, 2) & left("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", len(Passwort) -2)  'hide password 
 
 		html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_registration_confirmation_simple.htm"))
 
