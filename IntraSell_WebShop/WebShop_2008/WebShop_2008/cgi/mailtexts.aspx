@@ -7,6 +7,8 @@
         Dim Passwort : Passwort = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Passwort")
         Dim html
 
+        'Do not send pwd in clear text 
+        Passwort = Left(Passwort, 2) & Left("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", Len(Passwort) - 2)  'hide password 
 
         html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_registration_confirmation.htm"))
 
@@ -33,6 +35,8 @@
         Dim html
 
 
+        Passwort = Left(Passwort, 2) & Left("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", Len(Passwort) - 2)  'hide password 
+        
         html = readTextFile(Server.MapPath("/skins/skin" & SkinNumber & "/emails/email_registration_confirmation_simple.htm"))
 
         html = Replace(html, "[DOMAIN]", VARVALUE("DOMAIN"))
