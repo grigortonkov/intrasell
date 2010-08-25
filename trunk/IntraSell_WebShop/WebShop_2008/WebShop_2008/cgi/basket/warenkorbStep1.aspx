@@ -220,7 +220,7 @@
     </table>
     
     
-<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="height: 0px; width: 0px;">
+<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="height: 25px; width: 0px;">
 <%=getTranslation("Geben Sie hier Ihre Tel.Nr und/oder Email bekannt:")%>
 </textarea>&nbsp;
 
@@ -247,12 +247,13 @@
      //Submit this basket as an offer
 
      function submitOffer() {
-         if (!document.forms['FormBasket'].Notiz.visible) {
+       
+         if (!document.forms['FormBasket'].Notiz.visible || document.forms['FormBasket'].Notiz.style.height == "25px") {
              document.forms['FormBasket'].Notiz.visible = true;
              //set visible 
-             document.forms['FormBasket'].Notiz.style.width = 300;
-             document.forms['FormBasket'].Notiz.style.height = 100;
-          } else {
+             document.forms['FormBasket'].Notiz.style.width = "300px";
+             document.forms['FormBasket'].Notiz.style.height = "100px";
+         } else {
              document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOffer';
              document.forms['FormBasket'].submit();
          }
