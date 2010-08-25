@@ -138,7 +138,7 @@
     '*************************************************************************
 
     Function getWeightOfProduct(ByVal ArtNR) As Double
-        Dim weight : weight = 0
+        Dim weight As Decimal : weight = 0
         'on error resume next 
         'Response.Write TABLEVALUE("grArtikel","ArtNR", ArtNR, "gewicht")
         'Response.Flush
@@ -149,7 +149,7 @@
             Exit Function
         End If
         weight = 1 * CDbl(weightString)
-        If weight < 0 Or weight = "" Or Len(weight) = 0 Then weight = 0
+        If weight < 0 Then weight = 0
         getWeightOfProduct = weight
         If showdebug() Then Response.Write("Weight=" & weight)
     End Function
