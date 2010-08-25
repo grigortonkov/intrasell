@@ -105,7 +105,7 @@
         If Not rsLO.eof Then
             Dim filenameForTemplate : filenameForTemplate = "productPage_OrderConfirmation.htm"
             Dim maxArt : maxArt = rsLO("lo").Value
-            If (maxArt) Is Nothing Or maxArt = DBNull Then maxArt = "-1"
+            If (maxArt) Is Nothing Or IsDBNull(maxArt) Then maxArt = "-1"
             Dim objectHTML : objectHTML = makeProductPageWithTemplate(maxArt, readTextFile(Server.MapPath(filenameForTemplate)))
             html = Replace(html, "[OBJECT_VIEW]", objectHTML)
         End If
