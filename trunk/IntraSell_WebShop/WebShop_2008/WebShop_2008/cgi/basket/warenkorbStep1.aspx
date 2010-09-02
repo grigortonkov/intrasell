@@ -147,7 +147,10 @@
                             sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' and Methode = '" & postmode & "' group by destination  order by destination"
                             rsZM = objConnectionExecute(sql)
                             While Not rsZM.EOF
-                                If UCase(Trim(destination)) = UCase(Trim(rsZM("destination").Value)) Then selected = "checked" Else selected = ""
+                                If Not IsDBNull(rsZM("destination")) And Not IsDBNull(destination) Then
+                                    If UCase(Trim(destination)) = UCase(Trim(rsZM("destination").Value)) Then selected = "checked" Else selected = ""
+                                End If
+                                
                                 'Response.Write selected
                         %>
                         <!--<option class="submit" value="<%=rsZM("destination")%>"> <%=rsZM("destination")%>
