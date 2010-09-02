@@ -91,7 +91,7 @@
     ' PrePreKatNr - if set then will be shown zurueck list entry 
     ' new feature -> shows only categories that are not empty/contain products or some subcats contain products !!!!!
     '******************************************************************************
-    Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr, ByVal inPageToShow) As String
+    Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr As String, ByVal inPageToShow As String) As String
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & ArtKatNr & "_" & inPageToShow
         temp = getCache(CACHE_NAME)
@@ -102,7 +102,7 @@
     End Function
 
     
-    Function SimpleListCategoriesWithParentCats(ByVal PreKatNr, ByVal OriginalKatNr, ByVal inPageToShow) As String
+    Function SimpleListCategoriesWithParentCats(ByVal PreKatNr As String, ByVal OriginalKatNr As String, ByVal inPageToShow As String) As String
         Dim html As String
         Dim Language As String : Language = Session("Language")
         If Not IsNumeric(PreKatNr) Then
@@ -132,7 +132,7 @@
    
             ShowArtKatNR = rs("ArtKatNr").Value
             'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name").Value, Language) & ""
-            name = Server.HtmlEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr") & "" Then                name = "<b>" & name & "</b>"
+            name = Server.HtmlEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr").Value Then                name = "<b>" & name & "</b>"
             End If
             
             html = html & "<li>"            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & Chr(13) & Chr(10)
