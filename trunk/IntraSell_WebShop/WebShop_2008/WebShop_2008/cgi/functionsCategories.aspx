@@ -18,7 +18,7 @@
     ' PrePreKatNr - if set then will be shown zurueck list entry 
     ' new feature -> shows only categories that are not empty/contain products or some subcats contain products !!!!!
     '******************************************************************************
-    Function SimpleListCategoriesFromCache(ByVal ArtKatNr, ByVal inPageToShow) 'as string
+    Function SimpleListCategoriesFromCache(ByVal ArtKatNr, ByVal inPageToShow) As String
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIES_" & ArtKatNr & "_" & inPageToShow
         temp = getCache(CACHE_NAME)
@@ -91,20 +91,21 @@
     ' PrePreKatNr - if set then will be shown zurueck list entry 
     ' new feature -> shows only categories that are not empty/contain products or some subcats contain products !!!!!
     '******************************************************************************
-    Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr, ByVal inPageToShow) 'as string
+    Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr, ByVal inPageToShow) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & artKatNr & "_" & inPageToShow
+        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & ArtKatNr & "_" & inPageToShow
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
-            temp = setCache(CACHE_NAME, SimpleListCategoriesWithParentCats(artKatNr, artKatNr, inPageToShow))
+            temp = setCache(CACHE_NAME, SimpleListCategoriesWithParentCats(ArtKatNr, ArtKatNr, inPageToShow))
         End If
         SimpleListCategoriesWithParentCatsFromCache = temp
     End Function
 
     
-    Function SimpleListCategoriesWithParentCats(ByVal PreKatNr, ByVal OriginalKatNr, ByVal inPageToShow)
-        Dim html
-        If Not isnumeric(PreKatNr) Then
+    Function SimpleListCategoriesWithParentCats(ByVal PreKatNr, ByVal OriginalKatNr, ByVal inPageToShow) As String
+        Dim html As String
+        Dim Language As String : Language = Session("Language")
+        If Not IsNumeric(PreKatNr) Then
             SimpleListCategoriesWithParentCats = ""
             Exit Function
         End If
@@ -123,18 +124,18 @@
         End If
 
         Dim rsCheck
-        Dim name        Dim ShowArtKatNR        html = html & "<ul style='text-indent:0; line-height:100%; margin-left:13; margin-right:3'>"
+        Dim name As String        Dim ShowArtKatNR As String        html = html & "<ul style='text-indent:0; line-height:100%; margin-left:13; margin-right:3'>"
         While Not rs.EOF
             ' check if the cat or the sub cat contains products 
             ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr"),5) & ")"
             ''not needed set rsCheck = ObjConnectionexecute(sql)
    
             ShowArtKatNR = rs("ArtKatNr")
-            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name"), Language) & ""
-            name = Server.HTMLEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr") & "" Then                name = "<b>" & name & "</b>"
+            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name").Value, Language) & ""
+            name = Server.HtmlEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr") & "" Then                name = "<b>" & name & "</b>"
             End If
             
-            html = html & "<li>"            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & chr(13) & chr(10)
+            html = html & "<li>"            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & Chr(13) & Chr(10)
             html = html & "</li>"            ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  
             ''not needed end if 
@@ -148,10 +149,10 @@
         Dim PosOfSubCats : PosOfSubCats = InStr(parentCats, "<!--" & PreKatNr & "-->")        Dim parentCatsAndSubCats
         
         If PosOfSubCats > 0 Then
-            html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"            parentCatsAndSubCats = left(parentCats, PosOfSubCats - 1) & html & right(parentCats, 1 + len(parentCats) - PosOfSubCats)
+            html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"            parentCatsAndSubCats = Left(parentCats, PosOfSubCats - 1) & html & Right(parentCats, 1 + Len(parentCats) - PosOfSubCats)
         Else            parentCatsAndSubCats = parentCats & html
         End If                SimpleListCategoriesWithParentCats = parentCatsAndSubCats
-    End Function 
+    End Function
         
         ''' <summary>
         ''' MenuCategories
