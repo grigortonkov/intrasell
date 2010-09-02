@@ -130,7 +130,7 @@
             ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr"),5) & ")"
             ''not needed set rsCheck = ObjConnectionexecute(sql)
    
-            ShowArtKatNR = rs("ArtKatNr")
+            ShowArtKatNR = rs("ArtKatNr").Value
             'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name").Value, Language) & ""
             name = Server.HtmlEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr") & "" Then                name = "<b>" & name & "</b>"
             End If
