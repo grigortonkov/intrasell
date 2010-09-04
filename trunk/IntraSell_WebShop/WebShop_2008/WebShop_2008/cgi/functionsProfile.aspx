@@ -1447,7 +1447,9 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function parseTemplateUserIDNR(ByVal idnr, ByVal accountPageHTML)
-     
+        'Fix Links 
+        accountPageHTML = makeRelLinksAbsolute(accountPageHTML)
+        
         If InStr(accountPageHTML, "[IDNR]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[IDNR]", getLOGIN())
 
         If InStr(accountPageHTML, "[USER_COUNT_POINTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS]", getSumPoints(getLOGIN(), ""))
