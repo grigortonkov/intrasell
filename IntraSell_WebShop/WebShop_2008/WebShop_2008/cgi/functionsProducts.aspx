@@ -659,7 +659,7 @@
             PreisATSMwst = info
         End If
 
-        If KundenIDNRFuerPreise = 0 then 
+        If  getLOGIN() is Nothing then 
             Dim tooltip As String = "&nbsp;<a Title='" &  getTranslation("Login Sie sich an für Ihre eigene Preisliste.") & "'>*</a>"
             PreisATS = PreisATS & tooltip
             PreisATSNetto = PreisATSNetto & tooltip
