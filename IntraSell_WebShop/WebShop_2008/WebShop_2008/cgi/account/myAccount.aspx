@@ -106,6 +106,7 @@
         End If
      
         accountPageHTML = readTextFile(Server.MapPath(goToPage))
+        accountPageHTML = makeRelLinksAbsolute(accountPageHTML)
         Response.Write(parseTemplate(parseTemplateUser(accountPageHTML), 0))
 %>
 <%  If isRefererAllowed(getLOGIN()) Then%>
