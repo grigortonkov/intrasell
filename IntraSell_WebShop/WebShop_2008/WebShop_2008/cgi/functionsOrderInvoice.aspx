@@ -406,10 +406,11 @@
    
         While Not rsWK.EOF
     
-            Dim stkToOrder : stkToOrder = CDbl(rsWK("Quantity").Value)
+            Dim stkToOrder As Double : stkToOrder = CDbl(rsWK("Quantity").Value)
             Dim needsSerialNr : needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "Seriennummer")
-            Dim einzelpreis : einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr").Value, stkToOrder, SID))
+            Dim einzelpreis As Double : einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr").Value, stkToOrder, SID))
             einzelpreis = getPreis(KDNR, rsWK("ArtNr").Value, stkToOrder)
+            
             Dim bezeichnung : bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "bezeichnung")
             Dim positionNotiz : positionNotiz = rsWK("Notiz").Value
         

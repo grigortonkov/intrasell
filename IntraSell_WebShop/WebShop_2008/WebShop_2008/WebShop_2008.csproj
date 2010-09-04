@@ -360,6 +360,7 @@
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />
     <Content Include="productImages\thumbnail.aspx" />
+    <Content Include="shop_skins_functionality.xml" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation-b.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation.htm" />
     <Content Include="skins\skin_arfaian_2009\emails\email_order_confirmation_stk.htm" />
