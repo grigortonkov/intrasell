@@ -541,6 +541,15 @@
         makeProductPage = parseTemplate(template, ArtKatNR)
     End Function
 
+     Public Function calulateShopPreis(byval ArtNr As String, byval IDNR As String) As String 
+            Dim PreisInfo As String  
+            PreisInfo = getPreis(IDNR, ArtNr, 1)
+            'PreisATS = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land")) 'funktioniert ja nach land korrekt
+            PreisInfo = calculateBruttoPreis(PreisInfo, ArtNr, IDNR)
+            PreisInfo = FormatNumber(PreisInfo, 2)
+            calulateShopPreis = PreisInfo
+     End Function
+     
     '===============================================================================
     ' ArtNr - Integer 
     ' productTemplate - HTML of the template containing the tags. 
@@ -609,13 +618,15 @@
 
         Dim KundenIDNRFuerPreise as String = getLOGIN()
          
+        Dim shopUserForOffers = VARVALUE_DEFAULT("SHOP_DEFAULT_USER_FOR_OFFERS", "1")
+         
          If KundenIDNRFuerPreise is Nothing then 
-             KundenIDNRFuerPreise  = 0 
+             KundenIDNRFuerPreise  = shopUserForOffers
          End If 
  
         'Listenpreis 
         If InStr(productTemplate, TAG_MAKEBRUTTOPREIS_LIST) > 0 Then
-            PreisATSList = getPreis(KundenIDNRFuerPreise, ArtNr, 1)
+            PreisATSList = getPreis(shopUserForOffers, ArtNr, 1)
             PreisATSList = makeBruttoPreis(PreisATSList, MWSTGROUP, Session("Land"))
             PreisATSList = FormatNumber(PreisATSList, 2)
         End If
@@ -642,9 +653,10 @@
         End If
         
         If Not isPurchasingAllowed() Then
-            PreisATS = getTranslation("Login für Preise!")
-            PreisATSNetto = getTranslation("Login für Preise!")
-            PreisATSMwst = getTranslation("Login für Preise!")
+            Dim info As String = getTranslation("Login für Preise!")
+            PreisATS = info
+            PreisATSNetto = info
+            PreisATSMwst = info
         End If
 
         If KundenIDNRFuerPreise = 0 then 
@@ -652,7 +664,6 @@
             PreisATS = PreisATS & tooltip
             PreisATSNetto = PreisATSNetto & tooltip
         End If 
-
 
         If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString Then
             herstellerRabatt = 0
@@ -1536,7 +1547,6 @@
     
         Beschreibung = tablevalue("grArtikel", "ArtNR", artNr, "Beschreibung")
         Beschreibung = getTranslationDok("grArtikel", artNr, "Beschreibung", Beschreibung & "", Language)
-
         If InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) > 0 Then
             Beschreibung = Left(Beschreibung, InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) - 1)
         Else
