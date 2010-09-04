@@ -14,28 +14,33 @@
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 
-    Const TECHINFOCONSTANT = "TechInfo:"
-    Const SPECIALCHOICECONSTANT = "SpecialChoice:"
-    Const DAYS_TO_LOOK_BACK_CLICKS = 3
-    Const DEFAULT_PRODUCT_SEARCH_WHERE = "ProduktAktiv<>0 and ProduktAktivOnline<>0 and ArtNr>=0 and preisATS<>0"
+    Const TECHINFOCONSTANT  As String= "TechInfo:"
+    Const SPECIALCHOICECONSTANT  As String= "SpecialChoice:"
+    Const DAYS_TO_LOOK_BACK_CLICKS As integer = 3
+    Const DEFAULT_PRODUCT_SEARCH_WHERE As String = "ProduktAktiv<>0 and ProduktAktivOnline<>0 and ArtNr>=0 and preisATS<>0"
 
-    Const TAG_EIGENSCHAFT_ = "[Eigenschaft" 'usage [Eigenschaft:name]
-    Const TAG_IMAGETAGNAME_ = "[makeImgTagName" 'usage [makeImgTag:imageName]
-    Const TAG_HTMLINFONAME_ = "[HTMLInfoName" 'usage [htmlInfoName:name]
-    Const TAG_VERWANDTE_PRODUKTE_ = "[verwandteProdukte" 'usage [verwandteProdukte:bezeichnung]
+    Const TAG_EIGENSCHAFT_ As String = "[Eigenschaft" 'usage [Eigenschaft:name]
+    Const TAG_IMAGETAGNAME_  As String= "[makeImgTagName" 'usage [makeImgTag:imageName]
+    Const TAG_HTMLINFONAME_  As String= "[HTMLInfoName" 'usage [htmlInfoName:name]
+    Const TAG_VERWANDTE_PRODUKTE_  As String= "[verwandteProdukte" 'usage [verwandteProdukte:bezeichnung]
 
     
 
-    Const FLENAME_PRODUCT_LIST_COLUMN_DESCRIPTION = "productList_column_description.htm"
-    Const FLENAME_PRODUCT_LIST_HEADER = "productList_header.htm"
+    Const FLENAME_PRODUCT_LIST_COLUMN_DESCRIPTION  As String= "productList_column_description.htm"
+    Const FLENAME_PRODUCT_LIST_HEADER As String = "productList_header.htm"
 
-    Const ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS = "ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS" 'wenn TRUE dann nur Kunden können die Preise sehen und einkaufen  
+    Const ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS As String = "ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS" 'wenn TRUE dann nur Kunden können die Preise sehen und einkaufen  
 
-    Const TAG_CREATEPRODUCTSPECIALCHOICE = "[createProductSpecialChoice]"
-    Const TAG_CREATESTAFFELPREISTABLE = "[createStaffelPreiseTable]"
+    Const TAG_CREATEPRODUCTSPECIALCHOICE As String = "[createProductSpecialChoice]"
+    Const TAG_CREATESTAFFELPREISTABLE As String = "[createStaffelPreiseTable]"
 
-    Const TAG_BEZEICHNUNG = "[Bezeichnung]"
-    Const TAG_BESCHREIBUNG = "[Beschreibung]"
+    Const TAG_BEZEICHNUNG As String = "[Bezeichnung]"
+    Const TAG_BESCHREIBUNG As String = "[Beschreibung]"
+    
+    Const TAG_MAKEBRUTTOPREIS As String = "[makeBruttoPreis]"
+    Const TAG_MAKENETTOPREIS As String = "[makeNettoPreis]"
+    Const TAG_MAKEMWSTPREIS As String = "[makeMwstPreis]"
+    Const TAG_MAKEBRUTTOPREIS_LIST As String = "[makeBruttoPreisList]"
 
     Dim PRODUCT_IMAGE_BIG_MAX_SIZE ': PRODUCT_IMAGE_BIG_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_BIG_MAX_SIZE", 400)
     Dim PRODUCT_IMAGE_MIDDLE_MAX_SIZE ': PRODUCT_IMAGE_MIDDLE_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_MIDDLE_MAX_SIZE", 200)  
@@ -567,7 +572,9 @@
         'product found 
 
         Dim Firma As String = ""
-        Dim FirmaImage, HerstellerLink, Picture, PreisATS, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
+        Dim FirmaImage, HerstellerLink, Picture, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
+        Dim PreisATS As String, PreisATSNetto As String, PreisATSMwst As String , PreisATSList As String
+        
         Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ArtKatNR
         Dim ProduktAktiv As Boolean
         Dim herstellerRabatt As Double
@@ -600,16 +607,52 @@
         herstellerNr = rsArtikel("HerstellerNr").Value
         LieferantNR = rsArtikel("LieferantNR").Value
 
-        'PreisATS is going to be calculated now 
-        If InStr(productTemplate, "[makeBruttoPreis]") > 0 Then
-            PreisATS = getPreis(getLOGIN(), ArtNr, 1)
-            PreisATS = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land"))
+        Dim KundenIDNRFuerPreise as String = getLOGIN()
+         
+         If KundenIDNRFuerPreise is Nothing then 
+             KundenIDNRFuerPreise  = 0 
+         End If 
+ 
+        'Listenpreis 
+        If InStr(productTemplate, TAG_MAKEBRUTTOPREIS_LIST) > 0 Then
+            PreisATSList = getPreis(KundenIDNRFuerPreise, ArtNr, 1)
+            PreisATSList = makeBruttoPreis(PreisATSList, MWSTGROUP, Session("Land"))
+            PreisATSList = FormatNumber(PreisATSList, 2)
+        End If
+        
+        'Preis - Brutto
+        If InStr(productTemplate, TAG_MAKEBRUTTOPREIS) > 0 or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0  Then
+            PreisATS = getPreis(KundenIDNRFuerPreise, ArtNr, 1)
+            'PreisATS = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land")) 'funktioniert ja nach land korrekt
+            PreisATS = calculateBruttoPreis(PreisATS, ArtNr, KundenIDNRFuerPreise)
             PreisATS = FormatNumber(PreisATS, 2)
         End If
 
+        'Preis - Netto  
+        If InStr(productTemplate, TAG_MAKENETTOPREIS) > 0 or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0  Then
+            PreisATSNetto = makeNettoPreis( ArtNr, 1, KundenIDNRFuerPreise)
+            'PreisATSNetto = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land"))
+            PreisATSNetto = FormatNumber(PreisATSNetto, 2)
+        End If
+        
+        'Mwst 
+        If InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
+            PreisATSMwst = PreisATS - PreisATSNetto   'getPreis(getLOGIN(), ArtNr, 1) - makeNettoPreis( ArtNr, 1, getLOGIN())
+            PreisATSMwst = FormatNumber(PreisATSMwst, 2)
+        End If
+        
         If Not isPurchasingAllowed() Then
             PreisATS = getTranslation("Login für Preise!")
+            PreisATSNetto = getTranslation("Login für Preise!")
+            PreisATSMwst = getTranslation("Login für Preise!")
         End If
+
+        If KundenIDNRFuerPreise = 0 then 
+            Dim tooltip As String = "&nbsp;<a Title='" &  getTranslation("Login Sie sich an für Ihre eigene Preisliste.") & "'>*</a>"
+            PreisATS = PreisATS & tooltip
+            PreisATSNetto = PreisATSNetto & tooltip
+        End If 
+
 
         If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString Then
             herstellerRabatt = 0
@@ -671,7 +714,13 @@
         productTemplate = Replace(productTemplate, "[makeImgTag]", imgTagPicture & "", 1, replacements, 1)
         productTemplate = Replace(productTemplate, "[makeImgTagLarge]", imgTagPictureLarge & "", 1, replacements, 1)
         productTemplate = Replace(productTemplate, "[Modifikationen]", Modifikationen & "", 1, replacements, 1)
-        productTemplate = Replace(productTemplate, "[makeBruttoPreis]", PreisATS, 1, replacements, 1)
+        
+        'Preise 
+        productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS_LIST, PreisATSList, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS, PreisATS, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKENETTOPREIS, PreisATSNetto, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKEMWSTPREIS, PreisATSMwst, 1, replacements, 1)
+        
         productTemplate = Replace(productTemplate, "[HerstellerNr]", herstellerNr, 1, replacements, 1)
 
         'new 12.10.2004
