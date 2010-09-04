@@ -60,6 +60,7 @@
         Else
             accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
             accountLoginPageHTML = parseTemplate(accountLoginPageHTML, ArtKatNr)
+            accountLoginPageHTML = makeRelLinksAbsolute(accountLoginPageHTML)
             Response.Write(fixRelativeImageLinks(accountLoginPageHTML))
         End If
     End If
