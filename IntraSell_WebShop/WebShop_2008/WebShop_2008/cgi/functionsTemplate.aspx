@@ -112,8 +112,8 @@
     
     Function parseTemplate(ByVal template, ByVal artKatNr) As String
     
-     ' Fix Links 
-        template = makeRelLinksAbsolute(template)
+        ' Fix Links 
+        'template = makeRelLinksAbsolute(template)
      
         ObjConnection.close()
         ObjConnection.Open() 'FOR SQL SERVER
