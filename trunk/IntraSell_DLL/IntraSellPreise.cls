@@ -36,6 +36,11 @@ End Sub
 
 Public Sub destroy()
     functionsDB.connClose
+    vars.destroy
+    Set vars = Nothing
+    kunden.destroy
+    Set kunden = Nothing
+    
 End Sub
 
 
@@ -438,14 +443,14 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         nextRechnungNummer = getNewVorgangNummer(ToOrder, IdNr)
      
         If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
-                      " FROM " & tableNameFrom & _
+               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+                     " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         Else
-            sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
-                      " FROM " & tableNameFrom & _
+               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+                     " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         End If
         
@@ -453,13 +458,13 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
               
         'Positionen
           If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
-                          sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
-                      " SELECT " & nextRechnungNummer & ", ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
+                       " SELECT " & nextRechnungNummer & ", ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
                        " RechNr=" & fromNummer
           Else
                 sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
-                      " SELECT " & nextRechnungNummer & ", ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                       " SELECT " & nextRechnungNummer & ", ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
                        " RechNr=" & fromNummer
          End If
@@ -470,9 +475,9 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         Call openRecordset(sql, "")
         
             sql = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
-            " SELECT '" & ToOrder & "', " & nextRechnungNummer & ", Name, [Value] " & _
-            " FROM buchVorgaengeEigenschaften " & _
-            " WHERE VorgangTyp='" & FromOrder & "'  AND Nummer=" & fromNummer & ";"
+                " SELECT '" & ToOrder & "', " & nextRechnungNummer & ", Name, [Value] " & _
+                " FROM buchVorgaengeEigenschaften " & _
+                " WHERE VorgangTyp='" & FromOrder & "'  AND Nummer=" & fromNummer & ";"
          Call openRecordset(sql, "")
          
         'set where the vorgang goes to

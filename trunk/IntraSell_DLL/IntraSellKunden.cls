@@ -34,6 +34,10 @@ End Sub
 
 Public Sub destroy()
     functionsDB.connClose
+    
+    vars.destroy
+    Set vars = Nothing
+    
 End Sub
 
 

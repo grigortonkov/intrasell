@@ -11,8 +11,10 @@ Attribute VB_GlobalNameSpace = True
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
+'Option Explicit
+
 Private preise As IntraSellPreise
-Private kundengruppe As IntraSellKunden
+Private kunden As IntraSellKunden
 Private vars As IntraSellVars
  
 
@@ -37,7 +39,14 @@ Public Sub init(ByVal connString)
     dokument_in_word_oeffnen = True
     vars.init (connString)
     preise.init (connString)
-    
+    kunden.init (connString)
+End Sub
+
+Public Sub destroy()
+    functionsDB.connClose
+    vars.destroy
+    preise.destroy
+    kunden.destroy
 End Sub
 
 '=======================================================
@@ -95,7 +104,7 @@ Function getRecSource_Weitere(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer A
 End Function
 
 Public Function getLand(ByVal IdNr) As String
-  getLand = vars.TABLEVALUE("grLand", "IDNR", Var.TABLEVALUE("ofAdressen", "Idnr", IdNr, "LAND"), "Name") & ""
+  getLand = vars.TABLEVALUE("grLand", "IDNR", vars.TABLEVALUE("ofAdressen", "Idnr", IdNr, "LAND"), "Name") & ""
 End Function
 
 Public Function getUID(ByVal IdNr) As String
@@ -161,8 +170,8 @@ Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Numme
 
        'preview
         On Error Resume Next
-        DoCmd.DeleteObject acQuery, "qryBuchRechArtikel"
-        DoCmd.DeleteObject acQuery, "qryBuchRech"
+        'DoCmd.DeleteObject acQuery, "qryBuchRechArtikel"
+        'DoCmd.DeleteObject acQuery, "qryBuchRech"
         On Error GoTo 0
         
         CurrentDB.CreateQueryDef "qryBuchRechArtikel", "select * from [" & vonForm_Artikel & "] order by id"
@@ -176,25 +185,25 @@ Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Numme
         If Not rsKunden.EOF Then
                  kdnr = rsKunden("idnr")
         End If
-        Dim needs: needs = kundengruppe.needsMWST(kdnr)
+        Dim needs: needs = kunden.needsMWST(kdnr)
        
         If checkIfWeitereVorhanden(kdnr, Vorgangtyp) Then
              If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) Then
                         recSource = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer)
-                        DoCmd.DeleteObject acQuery, "qryBuchRech"
+                        'DoCmd.DeleteObject acQuery, "qryBuchRech"
                         CurrentDB.CreateQueryDef "qryBuchRech", recSource
               End If
         End If
         
         
-        DoCmd.OpenReport "buchRechnung", acViewPreview
+        'DoCmd.OpenReport "buchRechnung", acViewPreview
         'set MWST Visible or invisible according the Kundengruppe
        
         'Reports![ buchRechnung].[Title] = "Dokument"
-        Reports![buchRechnung]![mwstATS].Visible = needs
-        Reports![buchRechnung]![summeATSBrutto].Visible = needs
-        Reports![buchRechnung]![lblMWST].Visible = needs
-        Reports![buchRechnung]![lblGesamtbetrag].Visible = needs
+        'Reports![buchRechnung]![mwstATS].Visible = needs
+        'Reports![buchRechnung]![summeATSBrutto].Visible = needs
+        'Reports![buchRechnung]![lblMWST].Visible = needs
+        'Reports![buchRechnung]![lblGesamtbetrag].Visible = needs
         'end set
         
         
@@ -205,17 +214,17 @@ Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Numme
         If FormatNummer <> "SILENT" Then
                 For i = 1 To vars.varValue("AnzahlAusdruecke")
                             'preview
-                             DoCmd.OpenReport "buchRechnung", acPreview, , Filter
+                            ' DoCmd.OpenReport "buchRechnung", acPreview, , Filter
                              'für Drucken
                              If MsgBox("Jetzt Ausdrucken?", vbYesNo) = vbYes Then
-                                        DoCmd.OpenReport "buchRechnung", acNormal, , Filter
+                                      '  DoCmd.OpenReport "buchRechnung", acNormal, , Filter
                               Else
                                        Exit Sub 'leave report opened
                              End If
                 Next
        End If
        
-        DoCmd.Close acReport, "buchRechnung"
+       'DoCmd.Close acReport, "buchRechnung"
        'Forms![buchRechnung]![checkBox_ausgedruckt] = True
        'DoCmd.Close acForm, "buchRechnung"
  End If
@@ -501,7 +510,7 @@ Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As S
    Subject = preise.getDruckForType(Vorgangtyp) & " Nr. " & Vorgang_Nummer
    
    On Error Resume Next
-   DoCmd.SendObject acSendReport, "buchRechnung", , Email, , , Subject, EmailText
+   'DoCmd.SendObject acSendReport, "buchRechnung", , Email, , , Subject, EmailText
    On Error GoTo 0
    
 End Function

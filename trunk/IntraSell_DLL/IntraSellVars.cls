@@ -11,6 +11,8 @@ Attribute VB_GlobalNameSpace = True
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
+Option Explicit
+
 'SUCHT EINE VARIABLE IN DER VARS TABELLE
 Public CurrentDB As Connection
 
@@ -28,9 +30,9 @@ End Sub
 Public Function varValue(varName) As String
    Dim rs As Recordset
    Set rs = New Recordset
-   rs.Open "SELECT * FROM ofVARS WHERE Name='" & varName & "'", CurrentDB
+   rs.Open "SELECT * FROM ofVars WHERE Name='" & varName & "'", CurrentDB
    If rs.EOF Then
-        MsgBox "Die Variable " & varName & " ist nicht vorhanden!!!"
+        MsgBox "Fehler: Die Variable " & varName & " ist nicht vorhanden!"
    Else
         varValue = rs.Fields("Wert")
    End If
@@ -65,12 +67,12 @@ End Function
 'FÜGT EINE VARIABLE IN DIE VARS TABELLE EIN
 '********************************************************************
 Public Function INSERTVARVALUE(ByVal varName As String, ByVal varValue)
-   DoCmd.SetWarnings False
+   'DoCmd.SetWarnings False
    Dim SQLString As String
    SQLString = "INSERT INTO ofVars (Id, Name, Wert) VALUES (" & nextId("ofVars", "ID", , False) & ", '" & varName & "', '" & varValue & "')"
-   DoCmd.RunSQL SQLString
+   CurrentDB.Execute SQLString
    INSERTVARVALUE = varValue
-   DoCmd.SetWarnings True
+   'DoCmd.SetWarnings True
 End Function
  
 

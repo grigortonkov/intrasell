@@ -1,4 +1,3 @@
 VBGROUP 5.0
 StartupProject=IntraSell_DLL.vbp
-Project=C:\Programme\Microsoft Visual Studio\VB98\TestIntraSellDll.vbp
 Project=..\IntraSell_DLL_Test\TestDLL.vbp
