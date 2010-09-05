@@ -7,11 +7,11 @@ BEGIN
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
 Attribute VB_Name = "IntraSellDictionary"
-Attribute VB_GlobalNameSpace = False
+Attribute VB_GlobalNameSpace = True
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
- Option Compare Binary
+Option Compare Binary
 Option Explicit
 
 Public charSet_ENG As String
@@ -33,13 +33,14 @@ Public Sub init(ByVal connString)
     vars.init (connString)
     
     Set preise = New IntraSellPreise
-    preise.init (connString)
+   ' preise.init (connString)
 End Sub
 
 Public Sub destroy()
     functionsDB.connClose
-    preise.destroy
+    'preise.destroy
     vars.destroy
+    Set vars = Nothing
     
 End Sub
 

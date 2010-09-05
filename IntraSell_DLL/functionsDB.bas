@@ -9,13 +9,25 @@ Public Const dbSeeChanges = 0
 
   
 Public Sub connOpen()
-        Set CurrentDB = New Connection
-        CurrentDB.CursorLocation = adUseClient
-        CurrentDB.Open ConnStringODBC
+
+   'Prevent 2 Times open connection
+    If Not CurrentDB Is Nothing Then
+        Exit Sub
+    End If
+    
+    Set CurrentDB = New Connection
+    CurrentDB.CursorLocation = adUseClient
+    CurrentDB.Open ConnStringODBC
 End Sub
  
 Public Sub connClose()
-        CurrentDB.Close
+
+    If CurrentDB Is Nothing Then
+        Exit Sub
+    End If
+
+    CurrentDB.Close
+    Set CurrentDB = Nothing
 End Sub
  
  
