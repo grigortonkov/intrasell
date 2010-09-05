@@ -1,4 +1,7 @@
 <%
+    'Init IntraSell 
+    Call IntraSellDLL_InitOnPageLoad()
+  
     Call createSession()
  
     'check user input and stop execution if intrusion detected 
@@ -22,7 +25,7 @@
  
  
     pageToShow = cleanUserInput(Request("pageToShow"))
-    sid = "123985702397562938659238659238475601940532450239485702"
+    SID = "123985702397562938659238659238475601940532450239485702"
     artKatNrToShow = cleanUserInput(Request("PreKatNr"))
     artNrToShow = Request("artNr") : If artNrToShow = "" Then artNrToShow = Request("ProduktID")
     artOrder = cleanUserInput(Request("orderBy"))
@@ -42,9 +45,9 @@
 
     'if Session("LAND") <> cleanUserInput(request("L")) and len(cleanUserInput(request("L"))) >1 then Session("LAND") = land
     'if Session("LAND") = "" then  Session("LAND") = land
-    'für land wechsel
+    'für Land Wechsel
     If Session("LAND") <> land Then
-        If showDebug() Then Response.Write("Land Wechsel! Land ist nun " & land & ".")
+        If showDebug() Then Response.Write("Das Land wurde gewechselt. Land ist nun " & land & ".")
         Session("LAND") = land
     End If
     'END LAND 
@@ -87,18 +90,19 @@
         pageToShow = "ProductList"
         If artKatNrToShow & "" = "" Then artKatNrToShow = 0
     End If
+    Const TAG_CURRENT_PRODUCT_CATEGORY As String = "CURRENT_PRODUCT_CATEGORY"
     
     'set ARTKATNR from grArtikel of not yet set
     If artNrToShow <> "" Then
-        Session("CURRENT_PRODUCT_CATEGORY") = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
+        Session(TAG_CURRENT_PRODUCT_CATEGORY) = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
         'PAGETITLE = tablevalue("grArtikel", "ArtNR", artNrToShow, "Bezeichnung")
         PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Firma] / [Bezeichnung] / [EAN] / kaufen Sie ab [makeBruttoPreis] €")
         PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
     End If
 
-    If  Not Session("CURRENT_PRODUCT_CATEGORY") is nothing And IsNumeric(Session("CURRENT_PRODUCT_CATEGORY")) Then
-        If CLng(Session("CURRENT_PRODUCT_CATEGORY")) > 0 Then
-            PAGETITLE = PAGETITLE & " > " & tablevalue("[grArtikel-Kategorien]", "ArtKatNR", Session("CURRENT_PRODUCT_CATEGORY"), "Name")
+    If  Not Session(TAG_CURRENT_PRODUCT_CATEGORY) is nothing And IsNumeric(Session(TAG_CURRENT_PRODUCT_CATEGORY)) Then
+        If CLng(Session(TAG_CURRENT_PRODUCT_CATEGORY)) > 0 Then
+            PAGETITLE = PAGETITLE & " > " & tablevalue("[grArtikel-Kategorien]", "ArtKatNR", Session(TAG_CURRENT_PRODUCT_CATEGORY), "Name")
         End If
     End If
  
@@ -114,9 +118,10 @@
     SHOP_TITLE = PAGETITLE & Request.ServerVariables("HTTP_HOST") & " : " & Session("LAND")
 %>
 
-<script language="VB" runat="server">  
+<script language="VB" runat="server">
+    'Global verfügbare Variablen
+    Public SID As String
     Public pageToShow As String
-    Public sid As String
     Public artKatNrToShow As String
     Public artNrToShow As String
     Public artOrder As String
@@ -125,7 +130,7 @@
     Public language As String
     Public cleanedInputName As String
     Public land As String
-     
+    
     Public PAGETITLE As String, PAGEDESCRIPTION As String, PAGEKEYWORDS As String
     Public SHOP_TITLE As String
 </script>

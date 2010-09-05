@@ -4,4 +4,5 @@
     objConnection = Server.CreateObject("adodb.connection")
     objConnection.open(Session("MyDSN"))
   'Response.end
+  'Open IntraSell DLL
  %>

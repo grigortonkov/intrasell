@@ -6,6 +6,7 @@
   Const DEFAULT_ART_KAT_NR = 9999
   Dim defaultPageTemplate, default_part1, default_part2 as string
   
+  
   defaultPageTemplate = findTemplateFromCache(DEFAULT_ART_KAT_NR)
   defaultPageTemplate = parseTemplate(defaultPageTemplate, SESSION("CURRENT_PRODUCT_CATEGORY"))
   defaultPageTemplate = replace(defaultPageTemplate, TAG_SHOP_TITLE, SHOP_TITLE)
@@ -24,4 +25,5 @@
 %>
 <!--#include file="cgi/defaultbody.inc.aspx"-->
 <%  Response.Write(makeRelLinksAbsolute(default_part2))%>
+<% Call IntraSellDLL_DestroyOnPageEnd() %>
 <!--#include file="intrasoft/connClose.aspx"-->

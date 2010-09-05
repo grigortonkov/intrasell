@@ -29,8 +29,19 @@
 'sets absolute links for google.com
 function makeRelLinksAbsolute(byval htmlCode)
  'dim absLinkToDefault: absLinkToDefault = "http://" & Request.ServerVariables("SERVER_NAME")  & "/default.asp" 
- dim absLinkToDefault: absLinkToDefault = Session ("BASENAME") & "/default.asp" 
+  if showDebug() then 
+     Response.write "HTTPS=" & Request.ServerVariables("HTTPS")
+  end if 
+  
+  dim basename : basename = Session ("BASENAME")
+  if lcase(Request.ServerVariables("HTTPS")) = "on" then 
+      basename = replace(Session ("BASENAME") , "http://","https://")
+  end if 
+ 
+ dim absLinkToDefault: absLinkToDefault = basename & "/default.asp" 
  makeRelLinksAbsolute = replace(htmlCode, "default.asp", absLinkToDefault)
+
+ 
 end function 
 
 'replaces the terms like Hersteller, Produkt, Lieferant with domain specific Terms 

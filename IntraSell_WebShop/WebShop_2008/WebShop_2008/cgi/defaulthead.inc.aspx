@@ -16,16 +16,13 @@
 <!--#include file="functionsProductsQuery.aspx"-->
 <!--#include file="functionsProductsLists.aspx"-->
 <!--#include file="functionsExtras.aspx"-->
-<!--#include file="functionsPrices.aspx"-->
 <!--#include file="functionsProfile.aspx"-->
 <!--#include file="functionsSkins.aspx"-->
 <!--#include file="mailtexts.aspx"-->
-<!--#include file="functionsIntraSellDLL.aspx"-->
 <!--#include file="functionsIntraSell.aspx"-->
 <!--#include file="functionsOrderInvoice.aspx"-->
 <!--#include file="functionsOrderInvoiceDisplay.aspx"-->
 <!--#include file="functionsOrderInvoicePrintASP.aspx"-->
-<!--#include file="functionsOrderInvoicePrint.aspx"-->
 <!--#include file="functionsTemplate.aspx"-->
 <!--#include file="functionsBanners.aspx"-->
 <!--#include file="functionsToolbar.aspx"-->
@@ -41,6 +38,8 @@
 <!--#include file="functionsStatistics.aspx"-->
 <!--#include file="functionsPayment.aspx"-->
 <!--#include file="functionsUserSearches.aspx"-->
-<!--#include file="functionsDictionary.aspx"-->
-
 <!--#include file="defaultHeadVars.inc.aspx"-->
+<!--#include file="/intrasellDLL/functionsIntraSellDLL.aspx"-->
+<!--#include file="/intrasellDLL/functionsPrices.aspx"-->
+<!--#include file="/intrasellDLL/functionsOrderInvoicePrint.aspx"-->
+<!--#include file="/intrasellDLL/functionsDictionary.aspx"-->

@@ -1,39 +1,5 @@
 <script language="VB" runat="server">  
 
-    'for compatibility reasons 
-    'const dbOpenDynaset = 0 
-    Function OpenRecordset(ByVal sql, ByVal something)
-        'Response.Write sql
-        'on error resume next 
-        OpenRecordset = objConnectionExecute(sql)
-    End Function
-
-    Sub msgbox(ByVal t1, ByVal t2)
-        Response.Write(t1)
-    End Sub
-
- ''' <summary>
- ''' IntraSellDictionary
- ''' </summary>
- ''' <returns></returns>
- ''' <remarks></remarks>
-    Public Function IntraSellDictionary()
-        'get from cache 
-        If Not Session("IntraSell.IntraSellDictionary") Is Nothing Then
-            IntraSellDictionary = Session("IntraSell.IntraSellDictionary")
-            Exit Function
-        End If
-  
-        Dim isP
-  
-        isP = Server.CreateObject("IntraSell.IntraSellDictionary")
-        'Response.Write(Session ("MyDSN"))
-        isP.init(Session("MyDSN"))
-        Session("IntraSell.IntraSellDictionary") = isP
-        IntraSellDictionary = isP
-    End Function
-
-
 ''' <summary>
 ''' getTranslationDok
 ''' </summary>
@@ -60,7 +26,11 @@
         If (TextToTranslate & "" = "") Then
             getTranslationDok = ""
         Else
-            getTranslationDok = IntraSellDictionary().getTranslationDok(TableName, Key, FieldName, TextToTranslate, Language_Code)
+            Try 
+                getTranslationDok = IntraSellDictionary().getTranslationDok(TableName, Key, FieldName, TextToTranslate, Language_Code)
+            Catch ex As Exception 
+                getTranslationDok = "Error in getTranslationDok:" + ex.Message
+            End Try
         End If
     End Function
 
