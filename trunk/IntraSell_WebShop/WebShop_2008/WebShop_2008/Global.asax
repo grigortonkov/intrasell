@@ -21,7 +21,7 @@
     Sub Session_OnStart() ' user code here 
 
         'GLOBALS
-        Session("DATABASEPATH") = "c:\"
+       
         Session("SMTPSERVER") = "www.arfaian.com" ' Used for mail functionality 
         Session("SMTPSERVERSPAMM") = SMTPSERVER
         Session("BASENAME") = "http://localhost:88"
@@ -50,6 +50,7 @@
         Session("DB_PASS") = "efox2004"
       
         'NUR MSACCESS
+        Session("DATABASEPATH") = "c:\"
         Session("DATABASEPATH") = Server.MapPath("db/IntraSell_Daten_2.07.mdb")
         Session("DATABASEPATH") = "Z:\temp\IntraSell_WebShop\db\IntraSell_Daten_2.08_xscorpion.mdb"
 

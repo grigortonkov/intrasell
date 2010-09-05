@@ -11,20 +11,7 @@
     Dim USE_AUFSCHLAG_KATEGORIE
     Dim USE_STAFFELPREISE
     Dim USE_VORKALKULIERTE_VKPREISE
- 
-    'for compatibility reasons 
-    Const dbOpenDynaset = 0
-    Function OpenRecordset_(ByVal sql, ByVal something)
-        'Response.Write sql
-        'on error resume next 
-        OpenRecordset_ = objConnectionExecute(sql)
-    End Function
-
-    Sub msgbox_(ByVal t1, ByVal t2)
-        Response.Write(t1)
-    End Sub
-
- 
+  
     ' Proxy to the DLL Function 
     Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk)
         If (ArtNr) Is Nothing Or ArtNr & "" = "" Then

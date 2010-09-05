@@ -10,7 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebShop_2008</RootNamespace>
     <AssemblyName>WebShop_2008</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,9 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -220,19 +219,19 @@
     <Content Include="cgi\functionsBanners.aspx" />
     <Content Include="cgi\functionsCategories.aspx" />
     <Content Include="cgi\functionsCats.aspx" />
-    <Content Include="cgi\functionsDictionary.aspx" />
+    <Content Include="intrasellDLL\functionsDictionary.aspx" />
     <Content Include="cgi\functionsExtras.aspx" />
     <Content Include="cgi\functionsGutschein.aspx" />
     <Content Include="cgi\functionsIntraSell.aspx" />
-    <Content Include="cgi\functionsIntraSellDLL.aspx" />
+    <Content Include="intrasellDLL\functionsIntraSellDLL.aspx" />
     <Content Include="cgi\functionsLieferanten.aspx" />
     <Content Include="cgi\functionsNewsletter.aspx" />
     <Content Include="cgi\functionsOrderInvoice.aspx" />
     <Content Include="cgi\functionsOrderInvoiceDisplay.aspx" />
-    <Content Include="cgi\functionsOrderInvoicePrint.aspx" />
+    <Content Include="intrasellDLL\functionsOrderInvoicePrint.aspx" />
     <Content Include="cgi\functionsOrderInvoicePrintASP.aspx" />
     <Content Include="cgi\functionsPayment.aspx" />
-    <Content Include="cgi\functionsPrices.aspx" />
+    <Content Include="intrasellDLL\functionsPrices.aspx" />
     <Content Include="cgi\functionsProducts.aspx" />
     <Content Include="cgi\functionsProductsCompare.aspx" />
     <Content Include="cgi\functionsProductsImages.aspx" />
@@ -282,8 +281,6 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
-    <Content Include="cgi\test.aspx" />
-    <Content Include="cgi\test2.aspx" />
     <Content Include="company\images\company.gif" />
     <Content Include="company\images\company_2008.gif" />
     <Content Include="company\images\rechnung.gif" />
@@ -303,7 +300,7 @@
     <Content Include="intrasoft\createTables_sql.aspx" />
     <Content Include="intrasoft\functions.aspx" />
     <Content Include="intrasoft\functionsCache.aspx" />
-    <Content Include="intrasoft\functionsDictionary.aspx" />
+    <Compile Include="intrasoft\functionsDictionary.aspx" />
     <Content Include="intrasoft\functionsFAQ.aspx" />
     <Content Include="intrasoft\functionsGUI.aspx" />
     <Content Include="intrasoft\functionsLogs.aspx" />
@@ -1207,7 +1204,6 @@
     <None Include="Admin\impex\example_file_for_import.xls" />
     <None Include="cgi\batch\runJobNewObjects.bat" />
     <None Include="cgi\extras\Banner.class" />
-    <None Include="cgi\IntraSell_user.tmp" />
     <None Include="skins\skin_arfaian_2009\emails\Vorlage_Rechnung.rtf" />
     <None Include="skins\skin_arfaian_2009\images\efox\1.fla" />
     <None Include="skins\skin_arfaian_2009\images\efox\logo.fla" />

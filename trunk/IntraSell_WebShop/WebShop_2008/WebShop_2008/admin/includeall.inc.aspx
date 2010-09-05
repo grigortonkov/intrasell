@@ -7,8 +7,10 @@
 <!--#include virtual="/intrasoft/functionsDictionary.aspx"-->
 <!--#include virtual="/intrasoft/functionsGUI.aspx"-->
 <!--#include virtual="/intrasoft/functionsCache.aspx"-->
-<!--#include virtual="/cgi/functionsIntraSellDLL.aspx"-->
 <!--#include virtual="/cgi/functionsIntraSell.aspx"-->
-<!--#include virtual="/cgi/functionsPrices.aspx"-->
 <!--#include virtual="/cgi/functionsOrderInvoice.aspx"-->
 <!--#include virtual="/cgi/functionsOrderInvoiceDisplay.aspx"-->
+<!--#include file="/intrasellDLL/functionsIntraSellDLL.aspx"-->
+<!--#include file="/intrasellDLL/functionsPrices.aspx"-->
+<!--#include file="/intrasellDLL/functionsOrderInvoicePrint.aspx"-->
+<!--#include file="/intrasellDLL/functionsDictionary.aspx"-->
