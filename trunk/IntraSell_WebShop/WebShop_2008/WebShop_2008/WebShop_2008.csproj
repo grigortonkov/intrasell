@@ -219,6 +219,7 @@
     <Content Include="cgi\functionsBanners.aspx" />
     <Content Include="cgi\functionsCategories.aspx" />
     <Content Include="cgi\functionsCats.aspx" />
+    <Compile Include="intrasellDLL\convertToPDFTest.aspx" />
     <Content Include="intrasellDLL\functionsDictionary.aspx" />
     <Content Include="cgi\functionsExtras.aspx" />
     <Content Include="cgi\functionsGutschein.aspx" />
@@ -296,6 +297,7 @@
     <Content Include="intrasoft\callAccessServer.aspx" />
     <Content Include="intrasoft\connClose.aspx" />
     <Content Include="intrasoft\connOpen.aspx" />
+    <Compile Include="intrasoft\functionsPDF.aspx" />
     <Content Include="intrasoft\createMailsToSend.aspx" />
     <Content Include="intrasoft\createTables_sql.aspx" />
     <Content Include="intrasoft\functions.aspx" />

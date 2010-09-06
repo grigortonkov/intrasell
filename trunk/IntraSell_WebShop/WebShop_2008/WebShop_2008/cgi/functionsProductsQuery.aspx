@@ -216,7 +216,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             rsArtikel.MoveFirst()
 
             subPage = 1
-            If not Request("pp") is Nothing Then
+            If not Request("pp") is Nothing and Request("pp") <> "" Then
                 subPage = Request("pp")
             Else
                 subPage = CInt(subPage)

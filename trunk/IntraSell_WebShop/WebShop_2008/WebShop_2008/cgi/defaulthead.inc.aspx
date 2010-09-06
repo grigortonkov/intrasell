@@ -10,6 +10,7 @@
 <!--#include virtual="/intrasoft/functionsCache.aspx"-->
 <!--#include virtual="/intrasoft/functionsDictionary.aspx"-->
 <!--#include virtual="/intrasoft/functionsLogs.aspx"-->
+<!--#include virtual="/intrasoft/functionsPDF.aspx"-->
 <!--#include file="functionsSessions.aspx"-->
 <!--#include file="functionsCategories.aspx"-->
 <!--#include file="functionsProducts.aspx"-->
