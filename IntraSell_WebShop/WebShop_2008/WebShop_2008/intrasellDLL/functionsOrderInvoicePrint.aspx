@@ -4,12 +4,21 @@
     ' oeffnet den ausdruck mit ms word RTF formular
     ' Voraussetzung eine Vorlage im Folder: /skins/skin" & SkinNumber & "/emails/Vorlage_Rechnung.rtf
     '=================================================================
-    Public Sub OpenAusdruck_inWord_RTF(ByVal VorgangTyp, ByVal Vorgang_Nummer)
+    Public Sub OpenAusdruck_inWord_RTF(ByVal VorgangTyp As String, ByVal Vorgang_Nummer As String)
         Dim fname : fname = Server.MapPath("/skins/skin" & SkinNumber & "/emails/Vorlage_Rechnung.rtf")
         If showDebug() Then Response.Write("<br>Vorlage:" & fname)
         'Datei erstellen 
-        Dim newFName : newFName = OpenAusdruck_inWord_Filename_RTF(VorgangTyp, Vorgang_Nummer, fname)
+        Dim newFName As String : newFName = OpenAusdruck_inWord_Filename_RTF(VorgangTyp, Vorgang_Nummer, fname)
    
+        'Check if PDF Printer installed 
+        If VARVALUE_DEFAULT("SHOP_USE_PDF_PRINTER_LICENSE_KEY", "Request Key") = "xyzYART" Then 'this function is sold for 50 bucks 
+            If VARVALUE_DEFAULT("SHOP_USE_PDF_PRINTER", "true") = True Then
+                Dim fullRTFFilename As String = Server.MapPath("/logFiles/" & newFName)
+                Dim fullPDFFilename As String = printPDF(fullRTFFilename)
+                newFName = newFName.Replace(".rtf", ".pdf")
+            End If
+        End If
+        
         'link dem Requester geben!
         Response.Write("<br>")
         Response.Write(getTranslation("Ihr/e Angebot/Auftrag/Rechnung wurde erfolgreich erstellt!"))
