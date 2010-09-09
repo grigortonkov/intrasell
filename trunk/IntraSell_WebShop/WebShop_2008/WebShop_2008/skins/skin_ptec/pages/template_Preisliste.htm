@@ -1,0 +1,10 @@
+<h1>ptec Preisliste - immer aktuell</h1>
+<table border="0" width="57%" cellpadding="2">
+	<tr>
+		<td width="100%">[SQL:<![CDATA[
+select Name as Kategorie, artnr as ProduktNr, EAN, Bezeichnung, PreisATS
+from grArtikel a, `grArtikel-Kategorien` gr
+where a.artKatNr = gr.ArtKatNr and  produktAktiv = -1
+order by  Name, Bezeichnung;]]>]</td>
+	</tr>
+</table>
