@@ -98,9 +98,9 @@
     'germanDate = dd.mm.yyyy
     ' Warning ! this function works only at account with german language set! 
     '********************************************************************
-    Function TOSQLDATE(ByVal germanDate)
-        Dim d : d = Date.Today
-        d = germanDate
+    Function TOSQLDATE(ByVal germanDate As String) As String
+        Dim d As Date = Date.Today
+        d = System.Convert.ToDateTime(germanDate)
         If dbType = "ACCESS" Then
             TOSQLDATE = "#" & Month(d) & "/" & Day(d) & "/" & Year(d) & "#"
         Else
@@ -841,9 +841,10 @@
             errorFound = True
         End If
 
-        If InStr(UCase(userInput), "SELECT") > 0 Then
-            errorFound = True
-        End If
+        'Allow select for administration statistics 
+        'If InStr(UCase(userInput), "SELECT") > 0 Then
+        'errorFound = True
+        'End If
 
         If InStr(UCase(userInput), "EXEC") > 0 Then
             errorFound = True
@@ -1199,7 +1200,7 @@
                 If fieldnames = True Then
                     html = html & (namestart & rstemp(i).name & nameend)
                 End If
-                html = html & (fsa(i) & rstemp(i) & fea(i) & vbCrLf)
+                html = html & (fsa(i) & rstemp(i).Value & fea(i) & vbCrLf)
             Next
             html = html & (rowend & vbCrLf)
             counter = counter + 1

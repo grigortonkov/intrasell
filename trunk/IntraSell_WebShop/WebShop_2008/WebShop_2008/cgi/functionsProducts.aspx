@@ -1565,25 +1565,7 @@
         makeBeschreibung = Beschreibung
     End Function
 
-    '==============================================================================
-    ' Nur registrierte Kunden dürfen einkaufen und die preise sehen!
-    '==============================================================================
-    Function isPurchasingAllowed()
-        isPurchasingAllowed = True
-   
-        'set deault    
-        If UCase(varvalue_default("ALLOW_PURCHASING_ONLY_FOR_CUSTOMERS", "false")) = "TRUE" Then
-            If isLoggedIn() Then
-                If tableValue("ofAdressen", "IdNR", getLOGIN(), "Status") = getTranslation("Kunde") Then
-                    isPurchasingAllowed = True 'angemeldet
-                Else
-                    isPurchasingAllowed = False
-                End If
-            Else
-                isPurchasingAllowed = False 'nicht angemeldet
-            End If
-        End If
-    End Function
+ 
 
 </script>
 

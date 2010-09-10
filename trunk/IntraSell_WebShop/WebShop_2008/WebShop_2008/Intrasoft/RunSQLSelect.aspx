@@ -29,8 +29,10 @@
  
         '<!-- This page can handle all possible SQL queries-->
      
-        Dim delete_query, SQLString, Export, Filename, rs, exportToFile, i, ShowSQL, PageTitle
-        Dim showDelete
+        Dim delete_query as String
+        Dim SQLString as String 
+        dim Export, Filename, rs, exportToFile, i, ShowSQL
+        Dim showDelete as Boolean
  
         delete_query = Request("delete_query") 'is ispressed delete in the first column
         SQLString = Request("SQLString") 'the sql select query 
@@ -40,10 +42,10 @@
         ShowSQL = Request("ShowSQL") 'if toe form for export and sql to be shown
         If ShowSQL = "" Then ShowSQL = True
      
-        showDelete = Request("showDelete") 'if toe form for export and sql to be shown
-        If showDelete = "" Then showDelete = True
+        showDelete = Request("showDelete") = "true" 'if toe form for export and sql to be shown
+        'If showDelete = "" Then showDelete = True
       
-        PageTitle = Request("PageTitle") 'the page title for the result
+        Dim MyPageTitle = Request("PageTitle") 'the page title for the result
      
          
         'response.write "delete_query=" & delete_query      
@@ -53,9 +55,9 @@
         End If
     %>
     <h1 align="center">
-        <%If Len(PageTitle) <= 0 Then%>Query &amp; File Export Tool
+        <%If Len(MyPageTitle) <= 0 Then%>Query &amp; File Export Tool
         <%Else%>
-        <%=PageTitle%>
+        <%=MyPageTitle%>
         <%End If%>
     </h1>
     <% If ShowSQL Then%>
@@ -93,6 +95,8 @@
     <%End If 'show SQL%>
     <%
 
+        Dim fs, exportFile
+ 
         ' es handelt sich um SELECT Abfrage 
         If UCase(Left(SQLString, 4)) = "SELE" Then
             'CREATE EXPORT FILE 
@@ -101,7 +105,7 @@
   
             'If Creation of export filename wished 
             If exportToFile Then
-                Dim fs, exportFile
+               
                 fs = CreateObject("Scripting.FileSystemObject")
                 Filename = Server.MapPath("\") + "\" & Request("Filename")
                 'response.write  "Export to: " & filename 

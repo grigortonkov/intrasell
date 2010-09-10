@@ -48,68 +48,59 @@ Dim showClosedOrders : showClosedOrders = request("showClosedOrders"): if showCl
     </tr>
     <%
 
-function drawCheckBoxForBoolean(bool)
-   if bool then 
-    %><input type="checkbox" name="C1" value="ON" checked>
-    <%
-   else
-    %>
-    <input type="checkbox" name="C2" value="ON">
-    <%
-   end if 
-end function 
+
 
 Dim sql: sql = "SELECT * FROM " & tableNameOrders  & _ 
 		" WHERE anElba=" & showClosedOrders & _ 
 		" Order BY Datum desc, Nummer desc" 
 		
 'response.write sql
-dim rs: set rs = ObjConnectionExecute(sql)
+dim rs = ObjConnectionExecute(sql)
 while not rs.EOF 
     %>
     <tr>
         <td width="25%">
             <p align="center">
-                <a href="../jobs/convertFromTo.asp?fromNummer=<%=rs("Nummer")%>&From=<%=OrderType%>">
+                <a href="../jobs/convertFromTo.aspx?fromNummer=<%=rs("Nummer").Value%>&From=<%=OrderType%>">
                     <%=translate("Convert")%></a>
             </p>
         </td>
         <td width="25%">
             <p align="center">
-                <a href="../jobs/viewOrder.asp?nummer=<%=rs("nummer")%>&OrderType=<%=OrderType%>">
+                <a href="../jobs/viewOrder.aspx?nummer=<%=rs("nummer").Value%>&OrderType=<%=OrderType%>">
                     <%=translate("See")%></a></p>
         </td>
         <td width="25%">
-            <%=rs("Nummer")%>
+            <%=rs("Nummer").Value%>
         </td>
         <td width="25%">
-            <%=TABLEVALUE("ofAdressen","IDNR",rs("KundNR"),"Name")%>
+            <%=TABLEVALUE("ofAdressen","IDNR",rs("KundNR").Value,"Name")%>
         </td>
         <td width="25%">
-            <%=rs("Datum")%>
+            <%=rs("Datum").Value%>
         </td>
         <td width="25%">
-            <%=rs("Summe")%>
+            <%=rs("Summe").Value%>
         </td>
         <td width="25%">
-            <%=drawCheckBoxForBoolean(rs("Ausgedrukt"))%>
+            <%=drawCheckBoxForBoolean(rs("Ausgedrukt").Value)%>
         </td>
         <td width="25%">
-            <%=drawCheckBoxForBoolean(rs("Bezahlt"))%>
+            <%=drawCheckBoxForBoolean(rs("Bezahlt").Value)%>
         </td>
         <td width="25%">
-            <%=drawCheckBoxForBoolean(rs("anElba"))%>
+            <%=drawCheckBoxForBoolean(rs("anElba").Value)%>
         </td>
         <td width="25%">
-            <%=rs("Woher")%>
+            <%=rs("Woher").Value%>
         </td>
         <td width="25%">
-            <%=rs("Wohin")%>
+            <%=rs("Wohin").Value%>
         </td>
     </tr>
     <% 
   rs.moveNext 
-wend 
+end while 
 rs.close 
     %>
 </table>

@@ -368,6 +368,7 @@
     Function createOrderFromBasket(ByVal KDNR As String, ByVal SID As Object, ByVal PayMode As String, ByVal PostMode As String, _
                                    ByVal Destination As String, ByVal notizOrder As String, ByVal GutscheinNummer As String, ByVal OrderType As String) As String
         Dim Land As String : Land = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
+        Dim Language As String = Session("Language")
  
         Dim tableName As String = "buchAuftrag"
         If OrderType = "AN" Then
