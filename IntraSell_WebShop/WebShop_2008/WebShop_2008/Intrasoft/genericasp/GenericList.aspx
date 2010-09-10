@@ -17,11 +17,12 @@ On Error Resume Next
 
 ' Prevent caching
 Response.Buffer = True
-Response.ExpiresAbsolute = Now() - 1
-Response.AddHeader "cache-control", "must-revalidate"
-Response.AddHeader "cache-control", "private"
-Response.AddHeader "pragma", "no-cache"
+'Response.ExpiresAbsolute = Now() - 1 
+Response.AddHeader ("cache-control", "must-revalidate")
+Response.AddHeader ("cache-control", "private")
+Response.AddHeader ("pragma", "no-cache")
 
+Dim bgcolor
 Dim QUOTE, LT, GT
 Dim strEditor, strType, strConn, strDisplay, strSearchFields 
 Dim strFields, strTable, strWhere, strGroupBy, strOrderBy, strFieldNames, strFont
@@ -35,9 +36,9 @@ intAllowSort = 1
 bgcolor="#FFFFCC"
 
 ' Check for parameters, if we jump in another direction we need to pass them on
-strPassThru = "?"
-if Request.QueryString("START").Count > 0 Then strPassThru = strPassThru & "START=" & Request.Querystring("START") & "&"
-if Request.QueryString("ORDER").Count > 0 Then strPassThru = strPassThru & "ORDER=" & Request.Querystring("ORDER") & "&"
+Dim strPassThru = "?"
+if Request.QueryString("START").Split(",").Length > 0 Then strPassThru = strPassThru & "START=" & Request.Querystring("START") & "&"
+if Request.QueryString("ORDER").Split(",").Length > 0 Then strPassThru = strPassThru & "ORDER=" & Request.Querystring("ORDER") & "&"
 if strPassThru = "?" then 
 	strPassThru = ""
 else
@@ -49,7 +50,7 @@ end if
 ' If a Template was identified, use the CustomList screen
 if Not(Session("dbListTemplate") = "") Then
 	Response.Clear
-	Response.Redirect "GenericCustomList.aspx" & strPassthru
+	Response.Redirect ("GenericCustomList.aspx" & strPassthru)
 end If
 
 
@@ -57,7 +58,7 @@ end If
 ' Quick security check, make sure we have an active session
 If Session("dbRs") = "" Then
 	Response.Clear
-	Response.Redirect "GenericError.aspx"
+	Response.Redirect ("GenericError.aspx")
 End If
 
 
@@ -69,7 +70,7 @@ Else
 End if
 
 
-
+Dim strViewer
 ' Check which viewer to use 
 If Session("dbViewTemplate") & "x" = "x" Then
 	strViewer = "GenericView.aspx"
@@ -81,7 +82,7 @@ End if
 If Trim(Session("dbLastRs")) <> Trim(Session("dbRs")) Then 
 	Session("dbLastRs") = Session("dbRs")
 	Response.Clear
-	Response.Redirect Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'"
+	Response.Redirect (Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'")
 End If
 
 
@@ -92,20 +93,20 @@ strType = UCase(Session("dbType"))
 strConn = Session("dbConn")
 strDisplay = Session("dbDispList")
 strSearchFields = Session("dbSearchFields")
-strSearchPos = UCase(Trim(Session("dbSearchPos")))
-strTotalFields = Session("dbTotalFields")
+Dim strSearchPos = UCase(Trim(Session("dbSearchPos")))
+Dim strTotalFields = Session("dbTotalFields")
 strFields = Session("dbFields")
 strTable = Session("dbRs")
 strWhere = Session("dbWhere")
 strGroupBy = Session("dbGroupBy")
-strHaving = Session("dbHaving")
+Dim strHaving = Session("dbHaving")
 strOrderBy = Session("dbOrderBy")
 strFieldNames = Session("dbFieldNames")
 intOrderBy = Session("dbOrder")
 intPrimary = Session("dbKey")
 strFont = Session("dbFont")
 intFontSize = Session("dbFontSize")
-intHidePageNumbers = Session("dbHidePageNumbers")
+Dim intHidePageNumbers = Session("dbHidePageNumbers")
 strBorderColor = Session("dbBorderColor")
 strMenuColor = Session("dbMenuColor")
 strMenuTextColor = Session("dbMenuTextColor")
@@ -127,18 +128,22 @@ If Trim(strFields) = "" Then
 	Session("dbFields") = "*"
 End If	
 ' Is there a sub-table to display
+Dim arrSubTable
+Dim IsSubTable
 If Not (Trim(Session("dbSubTable")) = "" ) Then
 	arrSubTable = Split(Session("dbSubTable"),",")
 	IsSubTable = True
 End If
 ' Check for a limit on Records per Page
+Dim intDisplayRecs 
 If Session("dbRecsPerPage") > 0 Then
 	intDisplayRecs = Session("dbRecsPerPage")
 Else
 	intDisplayRecs = 10000
 End If
 ' Check for a START parameter
-If Request.QueryString("START").Count > 0 Then
+Dim  intStartRec
+If Request.QueryString("START").Split(",").length > 0 Then
 	intStartRec = Request.QueryString("START")
 	Session("dbStartRec") = intStartRec
 Else
@@ -150,9 +155,10 @@ Else
 	End If
 End If
 ' Check for an Order parameter
-If Request.QueryString("ORDER").Count > 0 Then
+
+If Request.QueryString("ORDER").Split(",").Length > 0 Then
 	' Check if an ASC/DESC toggle is required (- for desc, + for asc)
-	if abs(intOrderBy) = abs(Request.QueryString("ORDER")) then
+	if Math.abs(intOrderBy) = Math.abs(System.Convert.ToDecimal(Request.QueryString("ORDER"))) then
 		intOrderBy = 0 - intOrderBy
 	else
 		intOrderBy = Request.QueryString("ORDER")
@@ -160,14 +166,16 @@ If Request.QueryString("ORDER").Count > 0 Then
 	Session("dbOrder") = intOrderBy
 End If
 'Set the last record to display
-intStopRec = intStartRec + intDisplayRecs - 1
+Dim intStopRec = intStartRec + intDisplayRecs - 1
 
 ' Open Connection to the database
-set xConn = Server.CreateObject("ADODB.Connection")
-xConn.Open strConn
+
+ Dim xConn = Server.CreateObject("ADODB.Connection")
+ xConn.Open (strConn)
 
 ' Build Query
-strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
+Dim strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
+
 Select Case strType
 	Case "UDF" 
 		strsql = "SELECT " & strFields & " FROM " & strTable
@@ -187,23 +195,25 @@ If Not Trim(strGroupBy) = "" Then
 End If	
 
 ' Open recordset
-set xrs = Server.CreateObject("ADODB.Recordset")
-xrs.Open strsql, xConn
+Dim xrs = Server.CreateObject("ADODB.Recordset")
+xrs.Open (strsql, xConn)
 ' Call Error Handler if query bombs
 If Err.Number <> 0 Then
 	Session("ErrNumber") = Err.Number
 	Session("ErrDesc") = Err.Description 
 	Session("ErrSource") = Err.Source 
-	Session("ErrLine") = Err.Line 
+	'Session("ErrLine") = Err.Line 
 	Session("ErrMsg") = "Query: " & strsql
 	Response.Clear
-	Response.Redirect "GenericError.aspx"
+	Response.Redirect ("GenericError.aspx")
 End If
-intFieldCount = xrs.Fields.Count
-Dim aFields()
+Dim intFieldCount = xrs.Fields.Count
+Dim aFields(0,0)
 ReDim aFields(intFieldCount,4)
 
 ' Get field info
+Dim arrFieldNames
+Dim x as Integer
 If Trim(Session("dbFieldNames")) & "x" = "x" Then
 	ReDim arrFieldNames(intFieldCount)
 	For x = 1 to intFieldCount
@@ -224,10 +234,10 @@ Else
 End If
 
 ' Are totals required
-If Trim(strTotalFields) = "" Then strTotalFields = String(intFieldCount,"0")
+If Trim(strTotalFields) = "" Then strTotalFields = intFieldCount 'String(intFieldCount,"0")
 
 xrs.Close
-Set xrs = Nothing
+xrs = Nothing
 
 ' Reopen the Recordset, this time use the parameters passed
 strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
@@ -248,7 +258,7 @@ If intOrderBy <> 0 Then
 	if intOrderBy > 0 then 
 		strsql = strsql & " ORDER BY [" & aFields(intOrderBy, 1) & "]"
 	else
-		strsql = strsql & " ORDER BY [" & aFields(abs(intOrderBy), 1) & "] DESC"
+		strsql = strsql & " ORDER BY [" & aFields(Math.abs(intOrderBy), 1) & "] DESC"
 	end if	
 Else
 	' See if a dbOrderBy string was passed.
@@ -259,19 +269,19 @@ If strType = "SQL" Then
 	strsql = Replace(strsql,"[","")
 	strsql = Replace(strsql,"]","")
 End If
-set xrs = Server.CreateObject("ADODB.Recordset")
-xrs.Open strsql, xConn, 1, 2 
+ xrs = Server.CreateObject("ADODB.Recordset")
+xrs.Open (strsql, xConn, 1, 2) 
 ' Call Error Handler if query bombs
 If Err.Number <> 0 Then
 	Session("ErrNumber") = Err.Number
 	Session("ErrDesc") = Err.Description 
 	Session("ErrSource") = Err.Source 
-	Session("ErrLine") = Err.Line 
+	'Session("ErrLine") = Err.Line 
 	Session("ErrMsg") = "Query: " & strsql
 	Response.Clear
-	Response.Redirect "GenericError.aspx"
+	Response.Redirect ("GenericError.aspx")
 End If
-intTotalRecs = xrs.RecordCount
+Dim intTotalRecs = xrs.RecordCount
 %>
 <html>
 <head>
@@ -279,7 +289,7 @@ intTotalRecs = xrs.RecordCount
         <%= Session("dbTitle") %></title>
 </head>
 <% If Session("dbBodyTag") & "x" <> "x" Then 
-	Response.Write "<body " & Session("dbBodyTag") & ">"
+	Response.Write ("<body " & Session("dbBodyTag") & ">")
 Else %>
 <body alink="<%=strMenuTextColor%>" vlink="<%=strMenuTextColor%>" link="<%=strMenuTextColor%>">
     <% End If %>
@@ -361,8 +371,9 @@ If Session("dbHeader") = 1 Then %>
 	Next %>
                             </tr>
                             <%
-intCount = 0
-intActual = 0
+Dim intCount = 0
+Dim intActual = 0
+Dim strLink
 Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 	intCount = intCount + 1
 	If Cint(intCount) >= Cint(intStartRec) Then 
@@ -370,9 +381,10 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
                             <tr>
                                 <%
 		x = 0
+	Dim xField
 		For Each xField in xrs.Fields
 			x = x + 1
-			curVal = xField.Value
+			Dim curVal = xField.Value
 			' Every other line will have a shaded background
 			If intCount mod 2 = 0 Then
 				bgcolor="#FFFFCC"
@@ -384,13 +396,13 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 				Session("zcurTable") = strTable
 				Session("zcurDisplay") = strDisplay
 				Session("zcurKeyField") = aFields(x,1)
-				strLink = "KEY=" & xField.Value
+			    strLink = "KEY=" & xField.Value
 			End If
 			If Mid(strDisplay, x, 1) = "1" Then %>
                                 <td bgcolor="<%= bgcolor %>" align="LEFT" valign="TOP">
                                     <font size="<%=intFontSize%>" face="<%=strFont%>">
                                         <%				' Empty / Null / Blank
-				If IsNull(curVal) OR (Trim(curVal) & "x" = "x") Then 
+				If IsNothing(curVal) OR (Trim(curVal) & "x" = "x") Then 
 					curVal = "&nbsp;"
 				Else
 					If (Mid(strTotalFields, x, 1) = "1") AND IsNumeric(curVal) Then aFields(x,4) = aFields(x,4) + curVal
@@ -426,9 +438,9 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 					End If
 				End If
 				' Check for E-mail address
-				strContainsURL = "dbEMailfor" & CStr(x)
+				Dim strContainsURL = "dbEMailfor" & CStr(x)
 				If (Session(strContainsURL) > 0) Then
-					strURL = xrs(aFields(Session(strContainsURL),1))
+					Dim strURL = xrs(aFields(Session(strContainsURL),1))
 					If Trim(strURL) & "x" <> "x" Then
 						strURL = Replace(strURL,"mailto:","")
 						strURL = "mailto:" & LTrim(strURL)
@@ -438,7 +450,7 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 				' Check for hyperlink
 				strContainsURL = "dbURLfor" & CStr(x)
 				If Session(strContainsURL) > 0 Then
-					strURL = xrs(aFields(Session(strContainsURL),1))
+					Dim strURL = xrs(aFields(Session(strContainsURL),1))
 					If strURL & "x" <> "x" Then
 						curVal = "<A HREF=" & QUOTE & strURL & QUOTE & ">" & curVal & "</A>"
 						' *** Uncomment the following line to strip all #'s from hyperlink fields
@@ -451,7 +463,7 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 						' curVal = Replace(curVal,"#","")
 					End If
  				End If
-				Response.Write curVal %>&nbsp;
+				Response.Write (curVal) %>&nbsp;
                                 </td>
                                 <% 			
 			End If 
@@ -487,7 +499,8 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 Loop 
 
 ' Do we need to display a Totals row
-y = false
+Dim y = false
+Dim z
 For x = intFieldCount to 1 Step -1
 	If (Mid(strDisplay, x, 1) = "1") AND Mid(strTotalFields, x, 1) = "1" Then y = True
 	If (Mid(strDisplay, x, 1) = "1") Then z = x		' z=first field displayed
@@ -503,14 +516,15 @@ If y Then
                                 <%		else
 			If (Mid(strDisplay, x, 1) = "1") Then 
 				If Mid(strTotalFields, x, 1) = "1" Then 
-					Response.Write "<TD BGCOLOR=" & bgcolor & "><FONT SIZE=" & intFontSize & " FACE=" & QUOTE & strFont & QUOTE & "><STRONG>" & aFields(x,4) & "</FONT></STRONG></TD>"
+					Response.Write ("<TD BGCOLOR=" & bgcolor & "><FONT SIZE=" & intFontSize & " FACE=" & QUOTE & strFont & _ 
+					QUOTE & "><STRONG>" & aFields(x,4) & "</FONT></STRONG></TD>")
 				Else
-					Response.Write "<TD BGCOLOR=" & bgcolor & ">&nbsp;</TD>"
+					Response.Write ("<TD BGCOLOR=" & bgcolor & ">&nbsp;</TD>")
 				End If
 			End If
 		end if
 	Next 
-	Response.Write "</TR>"
+	Response.Write ("</TR>")
 End If %>
                         </table>
                     </td>
@@ -528,7 +542,8 @@ If (intTotalRecs = 0) AND (Session("dbState") >= 2) Then %>
                         <%
 End If
 ' Find out if there should be Backward or Forward Buttons on the table.
-intPageDisp = False
+Dim intPageDisp = False
+Dim isPrev, PrevStart
 If 	intStartRec = 1 Then
 	isPrev = False
 Else
@@ -543,7 +558,7 @@ End If
 
 ' Display Page numbers
 If (intHidePageNumbers = 0) AND (isPrev OR (NOT xrs.EOF)) Then
-	If (NOT isPrev) Then Response.Write "<HR SIZE=1>"
+	If (NOT isPrev) Then Response.Write ("<HR SIZE=1>")
 	x = 1
 	y = 1
 	While x <= intTotalrecs
@@ -556,25 +571,26 @@ If (intHidePageNumbers = 0) AND (isPrev OR (NOT xrs.EOF)) Then
             <%		End If
 		x = x + intDisplayRecs
 		y = y + 1
-	Wend
+	end while
 End If
 
 ' Next link
+Dim isMore
 If NOT xrs.EOF Then
-	NextStart = intStartRec + intDisplayRecs
-	isMore = True %>
+	Dim NextStart = intStartRec + intDisplayRecs
+	  isMore = True %>
             <strong><a href="GenericList.asp?START=<%=NextStart%>">[<%=txtNextPage%>&nbsp;&gt;&gt;]</a></strong>
             <% Else
 	isMore = False
 End If %>
             <hr size="1">
             <% If intStopRec > intCount Then intStopRec = intCount
-Response.Write txtRecords & " " & intStartRec & " " & txtTo & " " & intStopRec & " " & txtOf & " " & intTotalRecs
+Response.Write (txtRecords & " " & intStartRec & " " & txtTo & " " & intStopRec & " " & txtOf & " " & intTotalRecs)
 ' Close recordset and connection
 xrs.Close
-Set xrs = Nothing
+xrs = Nothing
 xConn.Close
-Set xConn = Nothing %>
+xConn = Nothing %>
     </font>
     <p>
         <% 	If strSearchPos = "BOTTOM" Then 
@@ -587,8 +603,10 @@ Set xConn = Nothing %>
         <% End If %>
 </body>
 </html>
-<%
+<script language="VB" runat="server">
+
 Function DispSearch
+Dim strSearchFields
 
 If strSearchFields & "x" <> "x" Then
 	' If in a search, ask for a reset before another search.
@@ -647,4 +665,4 @@ If strSearchFields & "x" <> "x" Then
     <%	End If
 End If
 End Function
-    %>
+</script>

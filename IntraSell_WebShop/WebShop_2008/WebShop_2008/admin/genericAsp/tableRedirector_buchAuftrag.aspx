@@ -1,4 +1,4 @@
-<!--#include virtual="/admin/login.aspx"-->   
+<!--#include virtual="/admin/includeAll.inc.aspx"-->   
 <%
 
 ' Query
@@ -34,5 +34,5 @@ Session("dbConfirmDelete") = 1
 ' Do Not Change
 Session("dbViewPath") = Request.ServerVariables("PATH_TRANSLATED")
 Session("dbViewPage") = Request.ServerVariables("PATH_INFO")
-Response.Redirect "../../intrasoft/genericasp/GenericList.aspx"
+Response.Redirect ("../../intrasoft/genericasp/GenericList.aspx")
 %>

@@ -1,4 +1,11 @@
 <%
+    
+    Dim txtAdd, txtAddRecord, txtAdvancedSearch, txtAnyOfTheseWords, txtBackToList, txtDelete, txtDeletePrompt, txtDontCare, txtEdit, txtEditMode, txtError
+    Dim txtErrorMsg1, txtErrorMsg2, txtErrorMsg3, txtErrorMsg4, txtErrorMsg5, txtErrorMsg6, txtErrorMsg7, txtErrorMsg8
+    Dim txtExactPhrase, txtExit, txtFalse, txtInfo, txtList, txtNextPage, txtNo, txtOf, txtPreviousPage, txtRecords, txtRefresh, txtReset
+    Dim txtSearch, txtSearchFailMsgA, txtSearchFailMsgB, txtSearchFor, txtSearchSubmit, txtTo, txtTotal, txtTrue, txtUpdate, txtView, txtYes
+
+    
     ' Generic Database - German Language File
     ' Translator - Sven Hacker and Thomas Raoul
     ' Last Updated: 06 July 1999

@@ -1,12 +1,8 @@
 <!--#include virtual="/intrasoft/menu.aspx"-->
 <p align="center">
     <%
-	dim nummer : nummer = request("nummer")
+	dim nummer as string  : nummer = request("nummer")
 	dim OrderType : OrderType = request("OrderType")
-	'sql = "Select Bezahlt from buchRechnung"
-	'set rsWK = ObjConnectionExecute(sql)
-	'Response.Write rsWk ("Bezahlt")
-	'Response.End
 	  
 	if OrderType = "" then 
     %>
@@ -18,22 +14,22 @@
 if request("exec") = "Update" then 
 	'we have form submition
 	'Update contents and show again...
-	Dim TableVorgang, TableVorgangArtikel, SQL, rsWK
+	Dim TableVorgang, TableVorgangArtikel, SQL as string, rsWK 
 	
 	TableVorgang = getNameForTable(OrderType)
 	TableVorgangArtikel = getNameForTableProducts(OrderType)
 
 	sql = "Update [" & TableVorgang & "] set Datum=" & TOSQLDATE(request("Datum")) & " WHERE (Nummer=" & Nummer & ")"
-	set rsWK = ObjConnectionExecute(sql)
+    rsWK = ObjConnectionExecute(sql)
 
 	sql = "Update [" & TableVorgang & "] set Bezahlt=" & CheckToSQL(request("C1")) & " WHERE Nummer=" & Nummer
-	set rsWK = ObjConnectionExecute(sql)
+    rsWK = ObjConnectionExecute(sql)
 	
 	sql = "Update [" & TableVorgang & "] set Ausgedrukt=" & CheckToSQL(request("C2")) & " WHERE Nummer=" & Nummer
-	set rsWK = ObjConnectionExecute(sql)
+    rsWK = ObjConnectionExecute(sql)
 
 	sql = "Update [" & TableVorgang & "] set anElba=" & CheckToSQL(request("C3")) & " WHERE Nummer=" & Nummer
-	set rsWK = ObjConnectionExecute(sql)
+    rsWK = ObjConnectionExecute(sql)
 	
 	if isNumeric (request("IDNR"))=False then 
     %>
@@ -43,10 +39,10 @@ if request("exec") = "Update" then
     <%
 	else
 		sql  = "SELECT * FROM ofAdressen WHERE IDNR=" & request("IDNR") 
-		set rsWK = ObjConnectionExecute(sql)
+	    rsWK = ObjConnectionExecute(sql)
 		if Not rsWK.EOF then 
 			sql = "Update [" & TableVorgang & "] set KundNr=" & request("IDNR")  & " WHERE Nummer=" & Nummer
-			set rsWK = ObjConnectionExecute(sql)
+		    rsWK = ObjConnectionExecute(sql)
 		else
     %>
     <p>
@@ -70,15 +66,18 @@ if request("exec") = "Update" then
 		ats_brutto = "PreisATS_Brutto" & i
 		qn = "Stk" & i
 		chn = "checkD" & i 
-		ats_brutto = "PreisATS_Brutto" & i		
-		if not (isNumeric (request(qn)) and   isNumeric (request(ats)) and isNumeric (request(ats_brutto))) then		 
+		
+		dim qnV as String = Replace(request(qn),",",".") 
+		dim atsV as String = replace(request(ats),",",".")
+		dim ats_bruttoV as String = replace(request(ats_brutto),",",".")
+		
+		if not (isNumeric (qnV) and isNumeric (atsV) and isNumeric (ats_bruttoV)) then		 
     %>
     <p>
-        <font color="red">Illegal value for product (#<%=i%>
-            in list) quantity or price</font></p>
+        <font color="red">Illegal value for product (#<%=i%> in list) quantity or price. (<%=qnV %>;<%=atsV %>;<%=ats_bruttoV %>)</font></p>
     <%
 		else 'it is okay
-			 'Response.write " qn = " & request(qn) & " checked is : " & request(chn)
+			 'Response.write " qn = " & qnV & " checked is : " & request(chn)
 			if ucase(request(chn)) = "ON" then ' delete item
 				sql = "DELETE FROM [" & TableVorgangArtikel  
 				sql = sql & "] WHERE ArtNR = " &  request(an)
@@ -87,11 +86,11 @@ if request("exec") = "Update" then
 			Else ' update quantity
 			   'not working Dim preisATS_BRUTTO_UPDATE : preisATS_BRUTTO_UPDATE =  makeBruttoPreis2(request(an), request(qn),Session("Land"))*request(qn) 	 
 				sql = "UPDATE [" & TableVorgangArtikel & "] SET " & _ 
-				" Stk=" & request(qn) & " , PreisATS =" & replace(request(ats),",",".") & " , " & _ 
-				" PreisATS_Brutto=" & replace(request(ATS_BRUTTO),",",".") & _
+				" Stk=" & qnV & " , PreisATS =" & atsV & " , " & _ 
+				" PreisATS_Brutto=" & ats_bruttoV & _
 				" WHERE ArtNR = " & request(an) & _
 				" AND RechNr=" & Nummer
-				'response.Write sql: response.flish
+				'response.Write sql: response.flush
 				call ObjConnectionExecute(sql)
 			End if	
 		end if			
@@ -103,7 +102,7 @@ if request("exec") = "Update" then
 	      
 		if IsNumeric (addNewArtNR) then 
 			sql = "SELECT ArtNr from grArtikel"
-			set rsWK = ObjConnectionExecute(sql)
+		    rsWK = ObjConnectionExecute(sql)
 			if rsWK.EOF=True and rsWK.BOF=TRUE then
     %>
     <p>
@@ -111,12 +110,12 @@ if request("exec") = "Update" then
             Doesn't Exist!</font></p>
     <%
 			else
-		        Dim Bezeichnung : Bezeichnung = TABLEVALUE("grArtikel", "ARTNR", addNewArtNr  ,"Bezeichnung")
-				Dim preisATS : preisATS = TABLEVALUE("grArtikel","ARTNR", addNewArtNr, "PreisATS")
-				Dim preisEuro : preisEuro = TABLEVALUE("grArtikel","ARTNR", addNewArtNr, "PreisEuro")
-				Dim preisATS_BRUTTO : preisATS_BRUTTO = makeBruttoPreis2(addNewArtNr, 1, Session("Land"))	
+		        Dim Bezeichnung as String: Bezeichnung = TABLEVALUE("grArtikel", "ARTNR", addNewArtNr  ,"Bezeichnung")
+				Dim preisATS as double : preisATS = TABLEVALUE("grArtikel","ARTNR", addNewArtNr, "PreisATS")
+				Dim preisEuro as double : preisEuro = TABLEVALUE("grArtikel","ARTNR", addNewArtNr, "PreisEuro")
+				Dim preisATS_BRUTTO  as double: preisATS_BRUTTO = makeBruttoPreis2(addNewArtNr, 1, Session("Land"))	
 				
-				sql = " INSERT INTO [" & TableVorgangArtikel & "] (RechNr, ArtNR, Stk, Bezeichnung) " &_ 
+				sql = " INSERT INTO [" & TableVorgangArtikel & "] (RechNr, ArtNR, Stk, Bezeichnung) " & _ 
 				" Values ( " & Nummer & ", " & addNewArtNR & ", 1, '" & Bezeichnung &"' )" 
 				ObjConnectionExecute(sql)
 

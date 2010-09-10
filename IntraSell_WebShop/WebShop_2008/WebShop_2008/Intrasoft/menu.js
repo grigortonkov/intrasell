@@ -9,7 +9,7 @@ lastMenu = null;
 rightX = 0;
 function Menu()
 {
-	this.bgColor     = "#10205a";
+    this.bgColor = "#CCCC00";
 	if (ie) this.menuFont = "bold xx-small Verdana";
 	if (n)  this.menuFont = "bold x-small Verdana";
 //	this.fontColor   = "white";

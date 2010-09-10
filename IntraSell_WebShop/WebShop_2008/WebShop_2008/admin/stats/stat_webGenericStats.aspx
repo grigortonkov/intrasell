@@ -33,17 +33,17 @@
 
     If UCase(Request("stat")) = UCase("Order") Then
         If Session("DBTYPE") = "MySQL" Then
-		SQL_STAT ="SELECT date(round(Datum)) as Datum, Count(Nummer) AS Rechnungen " &_ 
-		"FROM buchRechnung " & _ 
-		"GROUP BY date(round(Datum)) " & _ 
-		"ORDER BY date(round(Datum)) DESC"
+            sql_stat = "SELECT date(round(Datum)) as Datum, Count(Nummer) AS Rechnungen " & _
+  "FROM buchRechnung " & _
+  "GROUP BY date(round(Datum)) " & _
+  "ORDER BY date(round(Datum)) DESC"
         Else
-		SQL_STAT ="SELECT buchRechnung.Datum, Count(buchRechnung.Nummer) AS Rechnungen " &_ 
-		"FROM buchRechnung " & _ 
-		"GROUP BY buchRechnung.Datum " & _ 
-		"ORDER BY buchRechnung.Datum DESC"
+            sql_stat = "SELECT buchRechnung.Datum, Count(buchRechnung.Nummer) AS Rechnungen " & _
+  "FROM buchRechnung " & _
+  "GROUP BY buchRechnung.Datum " & _
+  "ORDER BY buchRechnung.Datum DESC"
         End If
     End If
 
-    Response.Redirect("../../intrasoft/runSQLSelect.asp?SQLString=" & sql_stat)
+    Response.Redirect("../../intrasoft/runSQLSelect.aspx?SQLString=" & sql_stat)
 %>

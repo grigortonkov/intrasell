@@ -107,7 +107,7 @@
       
             html = html & "<td>"
             'respone.write button
-            Call DrawButton("button_" & i, ActionButtons(i, 1), ActionButtons(i, 2), "white")
+            html = html & DrawButton("button_" & i, ActionButtons(i, 1), ActionButtons(i, 2), "white")
             html = html & "</td>"
         Next
     
@@ -374,6 +374,64 @@
         drawAreaHTML_WithImage = html
     End Function
     
+
+    '******************************************************************************
+    ' DisplayManu 
+    '******************************************************************************
+
+    Function DisplayMainMenu(ByVal inPageToShow As String)
+        
+        Response.Write("<script language='JavaScript' src='" & BASENAME & "/intrasoft/menu.js'></" & "script>" & Chr(10) & Chr(13))
+        Response.Write("<script language='JavaScript'>" & Chr(10) & Chr(13))
+        Response.Write("function showToolbar () { " & Chr(10) & Chr(13))
+        Response.Write("menu = new Menu ();" & Chr(10) & Chr(13))
+        Dim sql As String, rs, rsSu
+        ' Loop for initialize menu items
+        Dim PreKatNr : PreKatNr = 0
+        sql = "SELECT * FROM webAdminMenu WHERE MenuNrParent=" & PreKatNr & " ORDER BY MenuNr"
+        rs = ObjConnectionexecute(sql)
+        While Not rs.EOF
+            If rs("MenuNrParent").Value = 0 Then
+                Dim url As String = rs("URL").Value
+                url = url.Replace(".asp", ".aspx")
+                Response.Write("menu.addItem (""menu" & rs("MenuNr").Value & """, """ & getTranslation(Server.HtmlEncode(rs("Name").Value)) & _
+                 """, """ & getTranslation(rs("Name").Value) & """, """ & BASENAME & "/admin/" & Server.HtmlEncode(url) & """ , null );")
+                Response.Write(Chr(10) & Chr(13))
+                sql = "SELECT * FROM webAdminMenu WHERE MenuNrParent=" & rs("MenuNr").Value & " ORDER BY MenuNr"
+                Dim rsSub As Object : rsSub = ObjConnectionexecute(sql)
+                While Not rsSub.EOF
+                    Dim urlSub As String = rsSub("URL").Value
+                    urlSub = urlSub.Replace(".asp", ".aspx")
+                    
+                    Response.Write("menu.addSubItem (""menu" & rs("MenuNr").Value & """, """ & getTranslation(rsSub("Name").Value) & """, """ & _
+                     getTranslation(rsSub("Name").Value) & """, """ & BASENAME & "/admin/" & Server.HtmlEncode(urlSub) & """);")
+                    rsSub.MoveNext()
+                    Response.Write(Chr(10) & Chr(13))
+                End While
+                rsSub.Close()
+                rsSub = Nothing
+            End If
+            rs.MoveNext()
+	  
+        End While
+        rs.Close()
+        rs = Nothing
+        'end loop of initialization
+        Response.Write("menu.showMenu ();}" & Chr(10) & Chr(13))
+        Response.Write("showToolbar();")
+        Response.Write("</" & "script>" & Chr(10) & Chr(13))
+	
+    End Function
+    
+    
+    Function drawCheckBoxForBoolean(ByVal bool As Boolean) As String
+        If bool Then
+            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C1"" value=""ON"" checked>"
+        Else
+            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C2"" value=""ON"">"
+        End If
+    End Function
+
 
 </script>
 

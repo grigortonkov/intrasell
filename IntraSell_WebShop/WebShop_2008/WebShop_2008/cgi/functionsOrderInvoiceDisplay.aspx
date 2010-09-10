@@ -8,10 +8,10 @@
     '*************************************************************************
     ' showOrder - General Function for Shopping Basket on the Administration Side
     '*************************************************************************
-    Sub showOrder(ByVal OrderType, ByVal Nummer)
+    Sub showOrder(ByVal OrderType As String, ByVal Nummer As String)
         Dim html As String
-        
         Dim sql As String
+        
         Dim TableVorgang As String, TableVorgangArtikel As String
     
         TableVorgang = getNameForTable(OrderType)
@@ -32,12 +32,12 @@
         html = html & "<tr>"
         html = html & "<td width='220'>"
         html = html & " " & getTranslation("Datum")
-        html = html & "   <input name='Datum' size='25'" & rsV("Datum").Value & " id='Text1'>"
+        html = html & "   <input name='Datum' size='25' value='" & rsV("Datum").Value & "'>"
         html = html & "     </td>"
         html = html & "     <td width='566' colspan='2' align='center'>"
         html = html & getTranslation("bezahlt") & "<input type='checkbox' name='C1' value='ON' " & SQLToCheck(rsV("Bezahlt").Value) & " id='Checkbox1'> "
-        html = html & getTranslation("Gedruckt") & "<input type='checkbox' name='C2' value='ON' " & SQLToCheck(rsV("Ausgedrukt").Value) & " id='Checkbox2'>"
-        html = html & getTranslation("Abgeschloﬂen") & "<input type='checkbox' name='C3' value='ON' " & SQLToCheck(rsV("anElba").Value) & " id='Checkbox3'>"
+        html = html & getTranslation("ausgedruckt") & "<input type='checkbox' name='C2' value='ON' " & SQLToCheck(rsV("Ausgedrukt").Value) & " id='Checkbox2'>"
+        html = html & getTranslation("abgeschloﬂen") & "<input type='checkbox' name='C3' value='ON' " & SQLToCheck(rsV("anElba").Value) & " id='Checkbox3'>"
     
         html = html & "    </td>"
         html = html & " </tr>"
@@ -96,7 +96,7 @@
             html = html & "<tr>"
             html = html & "<td height='17'>"
             html = html & "<p align='center'>"
-            html = html & "    <input name='art' & Pos & "" type='hidden' value='" & rsWK("ArtNR").Value & "' id='Hidden2'>"
+            html = html & "    <input name='art" & pos & "' type='hidden' value='" & rsWK("ArtNR").Value & "' id='Hidden2'>"
             html = html & "    <input type='checkbox' name='checkD" & pos & "' value='ON' onclick='return checkD'" & pos & "_onclick()' id='Checkbox4'>"
             html = html & "</td>"
             html = html & "<td height='17' align='center'>" & pos & "<td height='17'>"
@@ -113,10 +113,10 @@
             html = html & "   <input name='Stk" & pos & "' size='4' value='" & rsWK("Stk").Value & "' id='Text2'>"
             html = html & "</td>"
             html = html & "<td height='17' align='right'>"
-            html = html & "<input name='PreisATS" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS").Value, 2) & "'  id='Text3'>"
+            html = html & "<input name='PreisATS" & pos & "' size='15' value='" & FormatNumber(rsWK("PreisATS").Value, 2) & "'  id='Text3'>"
             html = html & "</td>"
             html = html & "<td height='17' align='right'>"
-            html = html & "<input name='PreisATS_Brutto" & pos & " ' size='15' value='" & FormatNumber(rsWK("PreisATS_Brutto").Value, 2) & "'  id='Text4'>"
+            html = html & "<input name='PreisATS_Brutto" & pos & "' size='15' value='" & FormatNumber(rsWK("PreisATS_Brutto").Value, 2) & "'  id='Text4'>"
             html = html & "</td>"
             html = html & "</tr>"
         
@@ -150,8 +150,8 @@
           
         Dim rsCheck
         rsCheck = objConnectionExecute("Select count(*) as cc from grArtikel")
-        If CDbl(rsCheck("cc")) < 500 Then
-            Call query2list("Select ArtNR,'-',Bezeichnung from grArtikel Order BY ArtNr", "AddNew")
+        If CDbl(rsCheck("cc").Value) < 500 Then
+            Call query2list("Select ArtNR,'-',Bezeichnung from grArtikel where produktAktiv <> 0 Order BY ArtNr", "AddNew")
         Else
             html = html & " or type the #"
             html = html & "<input class='button' name='addNew' value='' size='10' id='Text5'>"
@@ -194,7 +194,7 @@
         Dim gutscheinNummer : gutscheinNummer = Session("GutscheinNummer")
         Dim sid As String : sid = getSID()
         Dim html As String
-         
+         Dim Language As String = Session("LANGUAGE")
         Dim IDNR As Object : IDNR = getLOGIN()
         sql = "SELECT webWarenkorb.SID, webWarenkorb.Quantity, webWarenkorb.Notiz, grArtikel.* " & _
            " FROM webWarenkorb INNER JOIN grArtikel ON webWarenkorb.ArtNr = grArtikel.ArtNr" & _
@@ -558,8 +558,7 @@
     '****************************************************************************
     Function visualizeWarenkorbSmall()
         Dim html As String
-        
-        Dim sid : sid = getSID()
+        Dim SID As String : sid = getSID()
  
         If InStr(LCase(pageToShow), "warenkorb") > 0 Then ' do not show 
             visualizeWarenkorbSmall = False

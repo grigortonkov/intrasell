@@ -57,7 +57,7 @@
     If language & "" = "" Then language = Session("LANGUAGE")
     If language & "" = "" Then language = varvalue("DEFAULT_SHOP_LANGUAGE")
 
-    'für Language wechsel
+    'für Language change
     If Session("LANGUAGE") <> language Then
         If showDebug() Then Response.Write("Language Wechsel! Language ist nun " & language & ".")
         Session("LANGUAGE") = language
