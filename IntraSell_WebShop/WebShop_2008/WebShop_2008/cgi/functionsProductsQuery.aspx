@@ -103,8 +103,8 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
         Dim SHOP_SHOW_HERSTELLER As Boolean : SHOP_SHOW_HERSTELLER = VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true")
         Dim ITEMPERPAGE As Integer : ITEMPERPAGE = VARVALUE_DEFAULT("SHOP_RESULT_LIST_ITEMS_PER_PAGE", "50")
         Dim SHOW_PRODUCT_DETAILS As Boolean : SHOW_PRODUCT_DETAILS = VARVALUE_DEFAULT("SHOP_SHOW_PRODUCT_DESCRIPTIONS", "true")
-        Dim SHOWLAGERINFO : SHOWLAGERINFO = VARVALUE("SHOP_SHOW_LAGERINFO")
-        Dim SHOP_SAVE_QUERY : SHOP_SAVE_QUERY = VARVALUE("SHOP_SAVE_QUERY")
+        Dim SHOWLAGERINFO As Boolean : SHOWLAGERINFO = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO", "true")
+        Dim SHOP_SAVE_QUERY As Boolean : SHOP_SAVE_QUERY = VARVALUE_DEFAULT("SHOP_SAVE_QUERY", "true")
 
         'Sorting and Highlight handling 
         Dim SHOP_USE_HIGHLIGHT As Boolean : SHOP_USE_HIGHLIGHT = VARVALUE_DEFAULT("SHOP_USE_HIGHLIGHT", "true")
@@ -112,6 +112,9 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
     
         'Switch show or not can be switched from user interface  
         Dim showThumbnails as Boolean: showThumbnails = VARVALUE_DEFAULT("SHOP_SHOW_THUMBNAILS", "true")
+    
+        Dim  BenutzeEAN As Boolean =  VARVALUE_DEFAULT("BenutzeEAN" , "true")
+    
         Dim artKatNR as Integer: artKatNR = 0
         
         If Request("preKatNr") <> "" Then artKatNR = Request("preKatNr")
@@ -122,9 +125,6 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
 
         Dim template_Header  As String 'html tempalte for table header / extra functions 
         template_Header = "" & readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/" & FLENAME_PRODUCT_LIST_HEADER))
-
-
-
 
         'START SONDERBEHANDLUNG FÜR SUCHINSRATE IMMO 
         Dim catDesc as String: catDesc = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", artKatNR, "[Desc]") 'has "Suchen" on beginning 
@@ -260,7 +260,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             
             Dim htmlHeader As String 
             'Template variables for the header description
-            Dim htmlSearchDescription, htmlSearchDescriptionSaveButton As String 
+            Dim htmlSearchDescription As String, htmlSearchDescriptionSaveButton As String
             Dim htmlButtonProductImages As String 
             Dim htmlSortBy, htmlFilterBy As String 
             Dim htmlProductCount As String, htmlPages As String 
@@ -324,13 +324,13 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 If SHOP_ALLOW_DROPDOWN_SORTING = "true" Then 'ORDERBYTYPE = "SELECT" then                 
                     htmlSortBy = htmlSortBy & "            <select id=""sortBy"" name=""sortBy"" onchange=""GOLink();"" >"
                     htmlSortBy = htmlSortBy & "              <option value=""" & ordr & """>" & ordrToShow & "</option>"
-                    htmlSortBy = htmlSortBy & "              <option value=""AngelegtAm"">AngelegtAm</option>"
-                    htmlSortBy = htmlSortBy & "              <option value=""Bezeichnung"">Bezeichnung</option>"
-                    htmlSortBy = htmlSortBy & "              <option value=""PreisATS"">Preis</option>"
-                    htmlSortBy = htmlSortBy & "              <option value=""ArtNr"">ArtNr</option>"
-                    htmlSortBy = htmlSortBy & "              <option value=""EAN"">EAN</option>"
+                    htmlSortBy = htmlSortBy & "              <option value=""AngelegtAm"">" & getTranslation("Angelegt am") & "</option>"
+                    htmlSortBy = htmlSortBy & "              <option value=""Bezeichnung"">" & getTranslation("Bezeichnung") & "</option>"
+                    htmlSortBy = htmlSortBy & "              <option value=""PreisATS"">" & getTranslation("Preis") & "</option>"
+                    htmlSortBy = htmlSortBy & "              <option value=""ArtNr"">" & getTranslation("ArtNr") & "</option>"
+                    htmlSortBy = htmlSortBy & "              <option value=""EAN"">" & getTranslation("EAN") & "</option>"
                     If SHOP_SHOW_HERSTELLER Then
-                        htmlSortBy = htmlSortBy & "              <option value=""Firma"">Hersteller</option>"
+                        htmlSortBy = htmlSortBy & "              <option value=""Firma"">" & getTranslation("Hersteller") & "</option>"
                     End If
                     htmlSortBy = htmlSortBy & "            </select>"
                 Else 'List Like Sort
@@ -446,25 +446,55 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 html = html & "<th width=""40"" height=""52"">Image</th>"
             End If
             tableColumns = tableColumns + 1
-            html = html & "<th width=""400"" height=""52""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=Bezeichnung"">" & getTranslation("Bezeichnung") & "</a></th>"
+            html = html & "<th width=""400"" height=""52""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & _ 
+            "&orderBy=" &  IIf(ordr="Bezeichnung",  "Bezeichnung DESC" ,  "Bezeichnung")  & """>" & getTranslation("Bezeichnung") & _ 
+            IIf(ordr="Bezeichnung", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+            IIf(ordr="Bezeichnung DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+            "</a></th>"
+            
             If SHOP_SHOW_PRICE Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""80"" align=right><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=PreisATS"">" & getTranslation("Preis") & "</a></th>"
+                html = html & "<th width=""80"" align=right><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
+                IIf(ordr="PreisATS", "PreisATS DESC" , "PreisATS") & """>" & getTranslation("Preis") & _
+                IIf(ordr="PreisATS", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="PreisATS DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+               "</a></th>"
             End If
+            
             If VARVALUE("SHOP_SHOW_HERSTELLER") Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=Firma"">" & getTranslation("Hersteller") & "</a></th>"
+                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
+                IIf(ordr="Firma", "Firma DESC" , "Firma") & """>" & getTranslation("Hersteller") & _
+                IIf(ordr="Firma", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                "</a></th>"
             End If
 
             If VARVALUE("SHOP_SHOW_ANGELEGTAM") Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=AngelegtAm"">" & getTranslation("AngelegtAm") & "</a></th>"
+                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
+                IIf(ordr="AngelegtAm", "AngelegtAm DESC" ,  "AngelegtAm")  & """>" & getTranslation("Angelegt am") & _ 
+                IIf(ordr="AngelegtAm", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="AngelegtAm DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                "</a></th>"
             End If
                 
             tableColumns = tableColumns + 1
                 
             'wir haben sortierung nach ArtikelNr auch: ->html = html & "<th width=""80"">" & getTranslation("Artikel Nr") & "</th>"
-            html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=ArtNr"">" & getTranslation("Artikel Nr") & "</a></th>"
+            If BenutzeEAN then 
+                 html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
+                 IIf(ordr="EAN", "EAN DESC" , "EAN")  & """>" & getTranslation("EAN") & _ 
+                 IIf(ordr="EAN", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 IIf(ordr="EAN DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 "</a></th>"
+            Else 'ArtNR 
+                 html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
+                 IIf(ordr="ArtNR", "ArtNR DESC" , "ArtNR")  & """>" & getTranslation("Artikel Nr") & _ 
+                 IIf(ordr="ArtNR", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 IIf(ordr="ArtNR DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 "</a></th>"
+             End If 
                 
             If SHOWLAGERINFO Then
                 tableColumns = tableColumns + 1
@@ -657,7 +687,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                         
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><font color='" & color_angelegt_am & "'>" & AngelegtAm & "</font></td>"
                     End If
-                    If UCase(VARVALUE("BenutzeEAN")) = "TRUE" Then  'EAN                    
+                    If BenutzeEAN Then  'EAN                    
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & EAN & "</td>"
                     Else 'ArtNR 
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ArtNr & "</td>"
