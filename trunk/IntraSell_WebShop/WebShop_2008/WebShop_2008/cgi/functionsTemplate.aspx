@@ -104,8 +104,11 @@
     'MISC TAGS
     '==============================================================================
     Const TAG_ECARD_LINK = "[ECARD_LINK]"
+    
     Const TAG_FAQ_LIST = "[FAQ_LIST]"
 
+    Const TAG_EXTRA_ADD_THIS = "[EXTRA_ADD_THIS]"
+    
     'recursive function, searches for the constants above and replaces with the output from functions 
     'returns the parsed template
     Dim priceListIsUsed As Boolean ': priceListIsUsed = false 
@@ -701,6 +704,11 @@
             Exit Function
         End If
         
+        If InStr(template, TAG_EXTRA_ADD_THIS) > 0 Then
+            'response.Write "Found TAG_ECARD_LINK"
+            parseTemplate = parseTemplate(Replace(template, TAG_EXTRA_ADD_THIS, "[EMBED:../../../cgi/extras/AddThisSnippet.htm]"), artKatNr)
+            Exit Function
+        End If
         
     
         template = fixRelativeImageLinks(template)
