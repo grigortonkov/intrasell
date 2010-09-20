@@ -659,7 +659,7 @@
             fill = True
             Dim idnrToDraw : idnrToDraw = getLOGIN()
         
-            sql = "SELECT " & tableName & ".*, grPLZ.Ort AS PLZORT, grPLZ.PLZ as PLZPLZ , grLand.Name AS CNTRY, grPlz.BLand as Bland " & _
+            sql = "SELECT " & tableName & ".*, grPLZ.Ort AS PLZORT, grPLZ.PLZ as PLZPLZ, grLand.Name AS CNTRY, grPlz.BLand as Bland " & _
                "FROM " & tableName & " INNER JOIN (grPLZ INNER JOIN grLand ON grPLZ.Land = grLand.IdNr) " & _
                "ON " & tableName & ".PLZ=grPLZ.IDNR WHERE " & tableName & ".IDNR= " & idnrToDraw
             
@@ -688,14 +688,14 @@
 
         If fill Then strasse = rsR("Adresse").Value Else strasse = Request("strasse" & typeOfAddress)
         If fill Then plz = rsR("plzplz").Value Else plz = Request("plz" & typeOfAddress)
-        If fill Then ort = rsR("plzort").Value Else ort = Request("ort" & typeOfAddress)
+        If fill Then ort = iif( isDBNull(rsR("plzort").Value), "-",  rsR("plzort").Value) Else ort = Request("ort" & typeOfAddress)
         If fill Then Bundesland = iif(isdbnull(rsR("BLAND").Value),"",  rsR("BLAND").Value) Else Bundesland = Request("BundesLand" & typeOfAddress)
         If fill Then Land = rsR("Land").Value Else Land = Request("Land" & typeOfAddress)
     
         If fill Then tel = rsR("tel").Value Else tel = Request("tel" & typeOfAddress)
         If fill Then telII = rsR("tel2").Value Else telII = Request("telII" & typeOfAddress)
     
-        If fill Then Fax = rsR("Fax").Value Else telII = Request("Fax" & typeOfAddress)
+        If fill Then Fax = iif (IsDBNull(rsR("Fax").Value), "-", rsR("Fax").Value)  Else telII = Request("Fax" & typeOfAddress)
         If fill Then Mobil = rsR("tel2").Value Else telII = Request("Mobil" & typeOfAddress)
     
         If fill Then Web = rsR("Web").Value Else telII = Request("Web" & typeOfAddress)
