@@ -226,7 +226,7 @@
                 Dim accountUsed : accountUsed = False
 
                 If getLOGIN() = "" And typeOfAddress = ACCOUNT Then ' WE HAVE NEW ACOCUNT 
-                    sql = "select * from ofAdressen where Email like '" & Email & "'" '  and Passwort like '" & Passwort & "'" 
+                    sql = "select * from ofAdressen where Email like '" & Email & "' and Passwort like '" & Passwort & "'"
                     rs = objConnectionExecute(sql)
                     If Not rs.eOF Then 'password used 
                         accountUsed = True
@@ -418,7 +418,7 @@
                 Dim accountUsed : accountUsed = False
 
                 If getLOGIN() = "" And typeOfAddress = ACCOUNT Then ' WE HAVE NEW ACOCUNT 
-                    sql = "select * from ofAdressen where Email like '" & Email & "'" '  and Passwort like '" & Passwort & "'" 
+                    sql = "select * from ofAdressen where Email like '" & Email & "' and Passwort like '" & Passwort & "'"
                     rs = objConnectionExecute(sql)
                     If Not rs.eOF Then 'password used 
                         accountUsed = True
@@ -689,7 +689,7 @@
         If fill Then strasse = rsR("Adresse").Value Else strasse = Request("strasse" & typeOfAddress)
         If fill Then plz = rsR("plzplz").Value Else plz = Request("plz" & typeOfAddress)
         If fill Then ort = rsR("plzort").Value Else ort = Request("ort" & typeOfAddress)
-        If fill Then Bundesland = rsR("BLAND").Value Else Bundesland = Request("BundesLand" & typeOfAddress)
+        If fill Then Bundesland = iif(isdbnull(rsR("BLAND").Value),"",  rsR("BLAND").Value) Else Bundesland = Request("BundesLand" & typeOfAddress)
         If fill Then Land = rsR("Land").Value Else Land = Request("Land" & typeOfAddress)
     
         If fill Then tel = rsR("tel").Value Else tel = Request("tel" & typeOfAddress)
@@ -698,9 +698,9 @@
         If fill Then Fax = rsR("Fax").Value Else telII = Request("Fax" & typeOfAddress)
         If fill Then Mobil = rsR("tel2").Value Else telII = Request("Mobil" & typeOfAddress)
     
-        If fill Then Web = rsR("Web") Else telII = Request("Web" & typeOfAddress)
+        If fill Then Web = rsR("Web").Value Else telII = Request("Web" & typeOfAddress)
     
-        If fill Then Email = rsR("Email") Else Email = Request("Email" & typeOfAddress)
+        If fill Then Email = rsR("Email").Value Else Email = Request("Email" & typeOfAddress)
         Emailwiederholung = Request("Emailwiederholung" & typeOfAddress)
     
         If fill Then passwort = rsR("passwort").Value Else passwort = Request("passwort" & typeOfAddress)
@@ -718,8 +718,7 @@
         
         html = html & "<table Id='ProfileTable' width='450'  border='1' cellspacing='3' cellpadding='3' bordercolor='#CCCCCC' style='border-collapse: collapse' bordercolorlight='#FFFFFF' bordercolordark='#FFFFFF' bgcolor='#F3F3F3'>"
 
-        html = html & "<input type='hidden' name='Branche<%=typeOfAddress "
-        html = html & " ' value='0'><!-- simple account  -->"
+        html = html & "<input type='hidden' name='Branche" & typeOfAddress  & "' value='0'><!-- simple account  -->"
 
         If typeOfAddress = ACCOUNT Then
             
@@ -743,7 +742,7 @@
             html = html & "<tr>"
             html = html & "   <td align='right' width='150'><span style='font-weight: 400'>"
             html = html & "   <font  size='1'>* " & getTranslation("Emailwiederholung") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "   <td> &nbsp;<input type='text' name='Emailwiederholung" & typeOfAddress & " ' size='20' value='" & Emailwiederholung & "'>"
+            html = html & "   <td> &nbsp;<input type='text' name='Emailwiederholung" & typeOfAddress & "' size='20' value='" & Emailwiederholung & "'>"
             If withCheck And Len(Emailwiederholung) < 5 Then
                 html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
             End If
@@ -813,14 +812,14 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >" & getTranslation("UID") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "  <td><input type='text' name='UID" & typeOfAddress & " ' size='20' value='" & UID & " '></td>"
+        html = html & "  <td><input type='text' name='UID" & typeOfAddress & "' size='20' value='" & UID & "'></td>"
         html = html & "</tr>"
 
         html = html & "<tr>"
         html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "<font size='1' >* " & getTranslation("Anrede") & "&nbsp;&nbsp; </font></span></td>"
         html = html & "<td width='281' ><font  size='1'>"
-        html = html & "<select name='Anrede " & typeOfAddress & "' size='1'>"
+        html = html & "<select name='Anrede" & typeOfAddress & "' size='1'>"
         html = html & "<Option>" & Anrede & "</option>"
         html = html & "<Option>" & getTranslation("Frau") & "</option>"
         html = html & "<Option>" & getTranslation("Herr") & "</option>"
@@ -835,7 +834,7 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >" & getTranslation("Titel") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "  <td><input type='text' name='Titel" & typeOfAddress & " ' size='20' value='" & Titel & "'>"
+        html = html & "  <td><input type='text' name='Titel" & typeOfAddress & "' size='20' value='" & Titel & "'>"
         html = html & "  </td>"
         html = html & "</tr>"
         html = html & " <tr>"
@@ -972,7 +971,7 @@
             html = html & " <tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1'>" & getTranslation("Web") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td width='281'><input type='text' name='Web" & typeOfAddress & "' size='20' value='" & Web & " '>"
+            html = html & "<td width='281'><input type='text' name='Web" & typeOfAddress & "' size='20' value='" & Web & "'>"
             html = html & "</td>"
             html = html & "</tr>"
         End If
@@ -1228,12 +1227,12 @@
         rsPLZORT = objConnectionExecute(sql)
         If rsPLZORT.EOF Then 'save PLZ ORT 
             If varvalue_default("PLZ_IDNR_AUTONUMBER", "TRUE") = "TRUE" Then
-                sql = " INSERT INTO grPLZ (PLZ ,Ort, Land) values ("" & PLZ & " ' ,'" & Ort & "', " & Land & ")"
+                sql = " INSERT INTO grPLZ (PLZ ,Ort, Land) values ('" & PLZ & "' ,'" & Ort & "', " & Land & ")"
             Else 'PLZ_IDNR Field is not autonumber 
                 'NextIDNRPLZ = NextID("grPLZ", "IDNR")
                 'update am 26.12.2005 for PLZ Text field
                 'update 07.03.2006 because PLZ 10000 is bigger than PLz 9999 but the text search is not sorting after number 
-                sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & "')"
+                sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
             End If
       
             'Response.write SQL : Response.Flush
@@ -1435,7 +1434,7 @@
     ''' <param name="accountPageHTML"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function parseTemplateUser(ByVal accountPageHTML)
+    Public Function parseTemplateUser(Byref accountPageHTML As String)
         parseTemplateUser = parseTemplateUserIDNR(getLOGIN(), accountPageHTML)
     End Function
 
@@ -1446,70 +1445,70 @@
     ''' <param name="accountPageHTML"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function parseTemplateUserIDNR(ByVal idnr, ByVal accountPageHTML)
+    Public Function parseTemplateUserIDNR(ByVal idnr As String, Byref accountPageHTML As String)
         'Fix Links 
         'accountPageHTML = makeRelLinksAbsolute(accountPageHTML)
         
-        If InStr(accountPageHTML, "[IDNR]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[IDNR]", getLOGIN())
+        If InStr(accountPageHTML, "[IDNR]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[IDNR]", getLOGIN())
 
-        If InStr(accountPageHTML, "[USER_COUNT_POINTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS]", getSumPoints(getLOGIN(), ""))
-        If InStr(accountPageHTML, "[USER_COUNT_POINTS_WRITE_REVIEW]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_WRITE_REVIEW]", getCountPoints(getLOGIN(), REASON_WRITE_REVIEW))
-        If InStr(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]", getCountPoints(getLOGIN(), REASON_PRODUCT_RATING))
-        If InStr(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]", getCountPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
-        If InStr(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]", getCountPoints(getLOGIN(), REASON_ORDERS))
+        If InStr(accountPageHTML, "[USER_COUNT_POINTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_COUNT_POINTS]", getSumPoints(getLOGIN(), ""))
+        If InStr(accountPageHTML, "[USER_COUNT_POINTS_WRITE_REVIEW]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_COUNT_POINTS_WRITE_REVIEW]", getCountPoints(getLOGIN(), REASON_WRITE_REVIEW))
+        If InStr(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_COUNT_POINTS_PRODUCT_RATING]", getCountPoints(getLOGIN(), REASON_PRODUCT_RATING))
+        If InStr(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_COUNT_POINTS_SEND_TO_FRIEND]", getCountPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
+        If InStr(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_COUNT_POINTS_ORDERS]", getCountPoints(getLOGIN(), REASON_ORDERS))
      
-        If InStr(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]", getSumPoints(getLOGIN(), REASON_WRITE_REVIEW))
-        If InStr(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]", getSumPoints(getLOGIN(), REASON_PRODUCT_RATING))
-        If InStr(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]", getSumPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
-        If InStr(accountPageHTML, "[USER_SUM_POINTS_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_SUM_POINTS_ORDERS]", getSumPoints(getLOGIN(), REASON_ORDERS))
+        If InStr(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_SUM_POINTS_WRITE_REVIEW]", getSumPoints(getLOGIN(), REASON_WRITE_REVIEW))
+        If InStr(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_SUM_POINTS_PRODUCT_RATING]", getSumPoints(getLOGIN(), REASON_PRODUCT_RATING))
+        If InStr(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_SUM_POINTS_SEND_TO_FRIEND]", getSumPoints(getLOGIN(), REASON_SEND_TO_FRIEND))
+        If InStr(accountPageHTML, "[USER_SUM_POINTS_ORDERS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_SUM_POINTS_ORDERS]", getSumPoints(getLOGIN(), REASON_ORDERS))
      
-        If InStr(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Produkte"))
-        If InStr(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Warenkorb"))
+        If InStr(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_PRODUCTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Produkte"))
+        If InStr(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_CARTS_BOOKMARKS]", getBookmarkCount(getLOGIN(), "Warenkorb"))
      
          
-        If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
-        If InStr(accountPageHTML, "[USER_NAME]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_NAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Name"))
-        If InStr(accountPageHTML, "[USER_FIRMA]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_FIRMA]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Firma"))
-        If InStr(accountPageHTML, "[USER_FIRSTNAME]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_FIRSTNAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Vorname"))
+        If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
+        If InStr(accountPageHTML, "[USER_NAME]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_NAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Name"))
+        If InStr(accountPageHTML, "[USER_FIRMA]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_FIRMA]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Firma"))
+        If InStr(accountPageHTML, "[USER_FIRSTNAME]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_FIRSTNAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Vorname"))
 
-        If InStr(accountPageHTML, "[USER_VORNAME]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_VORNAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Vorname"))
-        If InStr(accountPageHTML, "[USER_TEL]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_TEL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Tel"))
-        If InStr(accountPageHTML, "[USER_MOBIL]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_MOBIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Mobil"))
+        If InStr(accountPageHTML, "[USER_VORNAME]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_VORNAME]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Vorname"))
+        If InStr(accountPageHTML, "[USER_TEL]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_TEL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Tel"))
+        If InStr(accountPageHTML, "[USER_MOBIL]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_MOBIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Mobil"))
     
-        If InStr(accountPageHTML, "[USER_UID]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_UID]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "UID") & "")
+        If InStr(accountPageHTML, "[USER_UID]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_UID]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "UID") & "")
     
         
         If InStr(accountPageHTML, "[USER_EMAIL]") > 0 Then
             If getLOGIN() > 0 Then
-                accountPageHTML = Replace(accountPageHTML, "[USER_EMAIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Email"))
+                accountPageHTML = ReplaceAll(accountPageHTML, "[USER_EMAIL]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Email"))
             Else
-                accountPageHTML = Replace(accountPageHTML, "[USER_EMAIL]", "")
+                accountPageHTML = ReplaceAll(accountPageHTML, "[USER_EMAIL]", "")
             End If
         End If
     
         If InStr(accountPageHTML, "[USER_PASSWORD]") > 0 Then
             If getLOGIN() > 0 Then
-                accountPageHTML = Replace(accountPageHTML, "[USER_PASSWORD]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Passwort"))
+                accountPageHTML = ReplaceAll(accountPageHTML, "[USER_PASSWORD]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "Passwort"))
             Else
-                accountPageHTML = Replace(accountPageHTML, "[USER_PASSWORD]", "")
+                accountPageHTML = ReplaceAll(accountPageHTML, "[USER_PASSWORD]", "")
             End If
         End If
 
-        If InStr(accountPageHTML, "[USER_DATE_REGISTRATION]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_DATE_REGISTRATION]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "AngelegtAn"))
+        If InStr(accountPageHTML, "[USER_DATE_REGISTRATION]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_DATE_REGISTRATION]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "AngelegtAn"))
      
-        If InStr(accountPageHTML, "[COUNT_ORDERS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_ORDERS]", getCountOrders(getLOGIN(), "AU"))
-        If InStr(accountPageHTML, "[COUNT_DELIVERIES]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_DELIVERIES]", getCountOrders(getLOGIN(), "LI"))
-        If InStr(accountPageHTML, "[COUNT_INVOICES]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_INVOICES]", getCountOrders(getLOGIN(), "AR"))
+        If InStr(accountPageHTML, "[COUNT_ORDERS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_ORDERS]", getCountOrders(getLOGIN(), "AU"))
+        If InStr(accountPageHTML, "[COUNT_DELIVERIES]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_DELIVERIES]", getCountOrders(getLOGIN(), "LI"))
+        If InStr(accountPageHTML, "[COUNT_INVOICES]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_INVOICES]", getCountOrders(getLOGIN(), "AR"))
      
-        If InStr(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AU"))
-        If InStr(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AR"))
+        If InStr(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AU"))
+        If InStr(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AR"))
  
-        If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
-        If InStr(accountPageHTML, "[USER_ADDRESS_SHIPPING]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS_SHIPPING]", printAddress(getLOGIN(), "LI", True))
-        If InStr(accountPageHTML, "[USER_ADDRESS_INOVICE]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[USER_ADDRESS_INOVICE]", printAddress(getLOGIN(), "AR", True))
+        If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False))
+        If InStr(accountPageHTML, "[USER_ADDRESS_SHIPPING]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS_SHIPPING]", printAddress(getLOGIN(), "LI", True))
+        If InStr(accountPageHTML, "[USER_ADDRESS_INOVICE]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS_INOVICE]", printAddress(getLOGIN(), "AR", True))
      
-        If InStr(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]", getNewsletterCount(getLOGIN(), True))
-        If InStr(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]") > 0 Then accountPageHTML = Replace(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]", getNewsletterCount(getLOGIN(), False))
+        If InStr(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[NEWSLETTER_COUNT_ACTIVETED]", getNewsletterCount(getLOGIN(), True))
+        If InStr(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[NEWSLETTER_COUNT_DEACTIVETED]", getNewsletterCount(getLOGIN(), False))
 
         accountPageHTML = replaceTagsForStatistics(accountPageHTML, idnr)
           

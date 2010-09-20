@@ -13,7 +13,7 @@
     Dim USE_VORKALKULIERTE_VKPREISE
   
     ' Proxy to the DLL Function 
-    Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk)
+    Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk) As Decimal
         If (ArtNr) Is Nothing Or ArtNr & "" = "" Then
             getPreis = 0
             Exit Function
@@ -37,12 +37,12 @@
 
 
 
-    Public Function makeNettoPreis(ByVal ArtNr As Object, ByVal Stk As Object, ByVal IdNr As Object)
+    Public Function makeNettoPreis(ByVal ArtNr As Object, ByVal Stk As Object, ByVal IdNr As Object) As Decimal
         makeNettoPreis = IntraSellPreise().makeNettoPreis(ArtNr, Stk, IdNr)
     End Function
 
 
-    Public Function makeBruttoPreis(ByVal Preis As Object, ByVal MwstGroup As Object, ByVal Land As Object)
+    Public Function makeBruttoPreis(ByVal Preis As Object, ByVal MwstGroup As Object, ByVal Land As Object) As Decimal
 
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
@@ -62,7 +62,7 @@
 
     End Function
 
-    Function makeBruttoPreis2(ByVal ArtNr As Object, ByVal Stk As Object, ByVal Land As Object)
+    Function makeBruttoPreis2(ByVal ArtNr As Object, ByVal Stk As Object, ByVal Land As Object) As Decimal
 
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
@@ -76,7 +76,7 @@
         makeBruttoPreis2 = IntraSellPreise().makeBruttoPreis2(ArtNr, Stk, Land)
     End Function
 
-    Public Function calculateBruttoPreis(ByVal VKPreis As Object, ByVal ArtNr As Object, ByVal IDNR As Object)
+    Public Function calculateBruttoPreis(ByVal VKPreis As Object, ByVal ArtNr As Object, ByVal IDNR As Object) As Decimal
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br>" & Chr(13))
             Response.Write("get calculateBruttoPreis for VKPreis = [" & VKPreis & "]")
@@ -93,7 +93,7 @@
 ''' <param name="ArtNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getEKPreis(ByVal ArtNr As Object)
+    Function getEKPreis(ByVal ArtNr As Object) As Decimal
         getEKPreis = IntraSellPreise().getEKPreis(ArtNr)
     End Function
 
@@ -103,7 +103,7 @@
 ''' <param name="ArtNr"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getBestLieferant(ByVal ArtNr As Object)
+    Public Function getBestLieferant(ByVal ArtNr As Object) As String
         getBestLieferant = IntraSellPreise().getBestLieferant(ArtNr)
     End Function
 

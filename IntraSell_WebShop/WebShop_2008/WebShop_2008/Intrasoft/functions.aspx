@@ -867,20 +867,11 @@
     ' DIESE FUNKTION ERSETZT EIN SYMBOL MIT EINEM ANDEREN
     ' The Name is changed from replace
     '********************************************************************
-    Function replaceAll(ByVal intext, ByVal what, ByVal withsymbol)
-        Dim resulttext, i
-        i = 1
-        resulttext = ""
-        While i <= Len(intext)
-
-            If Right(Left(intext, i), 1) = what Then
-                resulttext = resulttext + withsymbol
-            Else
-                resulttext = resulttext + Right(Left(intext, i), 1)
-            End If
-            i = i + 1
+    Function ReplaceAll(ByVal intext As String, ByVal what As String, ByVal withsymbol As String) As String
+        While intext.Contains(what) 
+           intext  = intext.Replace(what, withsymbol) 
         End While
-        replaceAll = resulttext
+        ReplaceAll = intext
     End Function
 
     '********************************************************************

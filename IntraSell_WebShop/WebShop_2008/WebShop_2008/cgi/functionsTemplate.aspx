@@ -634,12 +634,11 @@
         Dim TAG_TRANSLATION_FULL
              
 
-
         'TAG_TRANSLATION
         If InStr(template, TAG_TRANSLATION) > 0 Then
             
             nextBracketPos = InStr(InStr(template, TAG_TRANSLATION), template, "]")
-            Dim textToTranslate : textToTranslate = Mid(template, InStr(template, TAG_TRANSLATION) + Len(TAG_TRANSLATION) + 1, -13 + nextBracketPos - InStr(template, TAG_TRANSLATION))
+            Dim textToTranslate As String : textToTranslate = Mid(template, InStr(template, TAG_TRANSLATION) + Len(TAG_TRANSLATION) + 1, -13 + nextBracketPos - InStr(template, TAG_TRANSLATION))
             TAG_TRANSLATION_FULL = TAG_TRANSLATION & ":" & textToTranslate & "]"
             html = getTranslation(textToTranslate)
             'Response.Write "TAG_TRANSLATION_FULL:" & TAG_TRANSLATION_FULL & "<br/>"
@@ -666,7 +665,7 @@
             parseTemplate = makeProductPageWithTemplate(Request("ArtNr"), template)
         End If
    
-        Dim embededSQL
+        Dim embededSQL As String
         'TAG_SQL
         If InStr(template, TAG_SQL) > 0 Then
             nextBracketPos = InStr(InStr(template, TAG_SQL), template, TAG_SQL_END)

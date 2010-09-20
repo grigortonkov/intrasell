@@ -5,6 +5,7 @@
     If fileExists(filenameForBodyTemplate) Then
         bodyPageTemplate = readTextFile(filenameForBodyTemplate)
         bodyPageTemplate = parseTemplate(bodyPageTemplate, Session("CURRENT_PRODUCT_CATEGORY"))
+        bodyPageTemplate = makeRelLinksAbsolute(bodyPageTemplate)
         'response.write bodyPageTemplate: response.end
         If InStr(bodyPageTemplate, TAG_BODY) > 0 Then 'BODY TAG IS OK
             body_part1 = Left(bodyPageTemplate, InStr(bodyPageTemplate, TAG_BODY) - 1)
@@ -30,8 +31,7 @@
 <%
     '<!--#include file="priceCompare/defaultBody.inc"-->
     '<!--#include file="immo/defaultBody.inc"-->
-%>
-<%   
+ 
     if showDebug() then 
       Response.write ( "PageToshow:" & PageToShow )
     end if  
@@ -149,7 +149,7 @@
 <%  Case "EcardSend"%>
 <!--#include file="ecard/send.aspx"-->
 <%  Case "FirstPage", "", "WebPage"  ' default page%>
-<%  Dim webPage : If Request("WebPage") <> "" Then webPage = Request("WebPage") Else webPage = "FirstPage"%>
+<%  Dim webPage as String : If Request("WebPage") <> "" Then webPage = Request("WebPage") Else webPage = "FirstPage"%>
 <% Response.Write (makeRelLinksAbsolute(convertToHTML(parseTemplate(tableValue("webPages", "[Title]", "'" & webPage & "'", "html"),0)))) %>
 <%
 End Select
