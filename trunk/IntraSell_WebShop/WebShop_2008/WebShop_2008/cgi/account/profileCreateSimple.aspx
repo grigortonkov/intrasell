@@ -8,15 +8,14 @@
                 </td>
             </tr>
         </table>
-        <%  If getLOGIN() <> "" Then
-                Response.Write(getTranslation("Sie sind angemeldet! Bitte zuerst abmelden!"))
+        <%  If (getLOGIN() <> "") Then
+                Response.Write(getTranslation("Sie sind angemeldet. Bitte zuerst abmelden!"))
                 Response.End()
-                ' Session("LOG_IN") = ""
             End If%>
         <form method="POST" action="default.aspx">
         <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
         <%Call drawEmptyProfileFormSimple(ACCOUNT, False)%>
-        <input type="submit" class="button" value="<%=getTranslation("Jetzt anmelden")%>">
+        <input type="submit" class='button' value="<%=getTranslation("Jetzt anmelden")%>">
         </form>
     </center>
 </div>

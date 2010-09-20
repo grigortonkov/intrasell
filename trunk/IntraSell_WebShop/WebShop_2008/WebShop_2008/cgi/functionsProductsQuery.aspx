@@ -448,16 +448,16 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             tableColumns = tableColumns + 1
             html = html & "<th width=""400"" height=""52""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & _ 
             "&orderBy=" &  IIf(ordr="Bezeichnung",  "Bezeichnung DESC" ,  "Bezeichnung")  & """>" & getTranslation("Bezeichnung") & _ 
-            IIf(ordr="Bezeichnung", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-            IIf(ordr="Bezeichnung DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+            IIf(ordr="Bezeichnung", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+            IIf(ordr="Bezeichnung DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
             "</a></th>"
             
             If SHOP_SHOW_PRICE Then
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""80"" align=right><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
                 IIf(ordr="PreisATS", "PreisATS DESC" , "PreisATS") & """>" & getTranslation("Preis") & _
-                IIf(ordr="PreisATS", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-                IIf(ordr="PreisATS DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="PreisATS", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+                IIf(ordr="PreisATS DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
                "</a></th>"
             End If
             
@@ -465,8 +465,8 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
                 IIf(ordr="Firma", "Firma DESC" , "Firma") & """>" & getTranslation("Hersteller") & _
-                IIf(ordr="Firma", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-                IIf(ordr="Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="Firma", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+                IIf(ordr="Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
                 "</a></th>"
             End If
 
@@ -474,8 +474,8 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
                 IIf(ordr="AngelegtAm", "AngelegtAm DESC" ,  "AngelegtAm")  & """>" & getTranslation("Angelegt am") & _ 
-                IIf(ordr="AngelegtAm", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-                IIf(ordr="AngelegtAm DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                IIf(ordr="AngelegtAm", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+                IIf(ordr="AngelegtAm DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
                 "</a></th>"
             End If
                 
@@ -485,14 +485,14 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             If BenutzeEAN then 
                  html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
                  IIf(ordr="EAN", "EAN DESC" , "EAN")  & """>" & getTranslation("EAN") & _ 
-                 IIf(ordr="EAN", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-                 IIf(ordr="EAN DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 IIf(ordr="EAN", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+                 IIf(ordr="EAN DESC", "<img src='/skins/skin_default/images/icons/up.gif' border=0 />" , "") & _ 
                  "</a></th>"
             Else 'ArtNR 
                  html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
                  IIf(ordr="ArtNR", "ArtNR DESC" , "ArtNR")  & """>" & getTranslation("Artikel Nr") & _ 
-                 IIf(ordr="ArtNR", "<img src='/skins/skin_default/images/icons/down.gif' widht=16 height=16 border=0 />" , "") & _ 
-                 IIf(ordr="ArtNR DESC", "<img src='/skins/skin_default/images/icons/up.gif' widht=16 height=16 border=0 />" , "") & _ 
+                 IIf(ordr="ArtNR", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
+                 IIf(ordr="ArtNR DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
                  "</a></th>"
              End If 
                 

@@ -677,4 +677,12 @@
 			<description>Pager</description>
 		</tag>
 	</productList_template>
+
+  <extras>
+    <tag>
+      <name>[TAG_EXTRA_ADD_THIS]</name>
+      <description>Links für Site Sharing, Facebook und Google</description>
+    </tag>
+    
+  </extras>
 </template_descriptions>

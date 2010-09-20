@@ -156,7 +156,7 @@
     <Compile Include="cgi\account\myProfile.aspx" />
     <Compile Include="cgi\account\myProfileSimple.aspx" />
     <Compile Include="cgi\account\passwortLost.aspx" />
-    <Compile Include="cgi\account\passwortLostSend.aspx" />
+    <Content Include="cgi\account\passwortLostSend.aspx" />
     <Compile Include="cgi\account\printPreviewOrder.aspx" />
     <Compile Include="cgi\account\profileCreate.aspx" />
     <Compile Include="cgi\account\profileCreateSimple.aspx" />
@@ -213,6 +213,7 @@
     <Content Include="cgi\eCard\index.aspx" />
     <Content Include="cgi\eCard\send.aspx" />
     <Content Include="cgi\eCard\view.aspx" />
+    <Content Include="cgi\extras\AddThisSnippet.htm" />
     <Content Include="cgi\extras\banner.aspx" />
     <Content Include="cgi\extras\Banner.java" />
     <Content Include="cgi\extras\bgapp.gif" />

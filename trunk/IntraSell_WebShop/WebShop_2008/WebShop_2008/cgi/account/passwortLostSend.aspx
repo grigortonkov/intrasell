@@ -23,7 +23,7 @@ FUNCTION MAIL_LOST_PASSWORD(Person_Id)
 
 
    EMAILTEXT = "Hallo " & rs.fields("Name").Value   & " !" & CHR13CHR10 & CHR13CHR10& _ 
-    "Da sind die angeforderten Daten. " & _ 
+    "Anbei bekommen Sie die angeforderten Daten. " & _ 
     "F&uuml;r den Einstieg in http://www.date-for-you.com  ben&ouml;tigen Sie Ihre Profil Nr. " & CHR13CHR10& _ 
     "und Passwort.  " & CHR13CHR10& _ 
     "Ihre Profil Nr. lautet: " & rs.fields("Person_Id").Value   & CHR13CHR10& _ 
@@ -56,7 +56,7 @@ End Function
         &nbsp;</h2>
     <%
 
-if Len(NAme)> 1 AND Len(NAme) < 20 AND Len(Email)>5  THEN 
+if Len(Name)> 1 AND Len(Name) < 20 AND Len(Email)>5  THEN 
  If IsEmail(Email) THEN  ParamsOK = TRUE  
 END IF 
 
