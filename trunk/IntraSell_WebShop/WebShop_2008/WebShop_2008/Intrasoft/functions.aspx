@@ -819,34 +819,34 @@
         
     End Function
     ''' <summary>
-    ''' CLEANS THE USER INPUT FROM UNNOLLOWED CHARS 
+    ''' CLEANS THE USER INPUT FROM UNALLOWED CHARS 
     ''' </summary>
     ''' <param name="userInput"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function cleanUserInput(ByVal userInput As String) As String
-        Dim cleaned
-        Dim errorFound : errorFound = False
+        Dim cleaned As String = userInput
+        Dim errorFound as Boolean = False
         
-        cleaned = Replace(userInput, "*", "")
-        cleaned = Replace(cleaned, "%", "")
-        cleaned = Replace(cleaned, "'", "")
+        'cleaned = Replace(cleaned, "*", "")
+        'cleaned = Replace(cleaned, "%", "")
+        'cleaned = Replace(cleaned, "'", "")
         'cleaned = replace(cleaned,"""","")
     
-        If InStr(UCase(userInput), "DELETE") > 0 Then
+        If InStr(UCase(userInput), "DELETE ") > 0 Then
             errorFound = True
         End If
         
-        If InStr(UCase(userInput), "DROP") > 0 Then
+        If InStr(UCase(userInput), "DROP ") > 0 Then
             errorFound = True
         End If
 
         'Allow select for administration statistics 
-        'If InStr(UCase(userInput), "SELECT") > 0 Then
-        'errorFound = True
-        'End If
+        If InStr(UCase(userInput), "SELECT ") > 0 Then
+            'errorFound = False
+        End If
 
-        If InStr(UCase(userInput), "EXEC") > 0 Then
+        If InStr(UCase(userInput), "EXEC ") > 0 Then
             errorFound = True
         End If
         
@@ -856,7 +856,7 @@
         'end if  
         
         If errorFound Then
-            Response.Write("<font color=red>Do not play games with with us!")
+            Response.Write("<font color=red>Errors in the input [" + userInput + "] found!")
             cleanUserInput = ""
         Else
             cleanUserInput = cleaned
