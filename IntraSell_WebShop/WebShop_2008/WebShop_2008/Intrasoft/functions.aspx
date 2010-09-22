@@ -585,7 +585,7 @@
     '********************************************************************
     ' sendMailFrom
     '********************************************************************
-    Function sendMailFrom(ByVal Recipient, ByVal Subject, ByVal Text, ByVal from_email) As Boolean
+    Function sendMailFrom(ByVal Recipient As String, ByVal Subject As String, ByVal Text As String, ByVal from_email As String) As Boolean
         sendMailFrom = False
         If Len(Trim(Recipient)) > 4 Then
             Dim sql
@@ -635,7 +635,7 @@
     ' example: c:\autoexec.bat
     ' return autoexec.bat
     '********************************************************************
-    Function getOnlyFilename(ByVal fullFilename)
+    Function getOnlyFilename(ByVal fullFilename As String) As String
         Dim arrayString
         If InStr(fullFilename, "\") > 0 Then
             arrayString = Split(fullFilename, "\")
@@ -650,7 +650,7 @@
     'creates recursively all folders 
     'Filename = c:\daten\test\xxxx 
     '********************************************************************
-    Function createFoldersIfNotExists(ByVal Filename)
+    Function createFoldersIfNotExists(ByVal Filename As String) As Boolean
         'CREATE DIRECTORY IF NOT EXISTS 
            
         'Response.Write "<BR>Create Directory if not exists." 
@@ -712,7 +712,7 @@
     ' FILE  EXISTS 
     ' sfilename - name to exist 
     '********************************************************************
-    Function FileExists(ByVal filename) As Boolean
+    Function FileExists(ByVal filename As String) As Boolean
         On Error Resume Next
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
@@ -724,7 +724,7 @@
     ' DELETE FILE 
     ' sfilename - name to exist 
     '********************************************************************
-    Function DeleteFile(ByVal filename) As Boolean
+    Function DeleteFile(ByVal filename As String) As Boolean
         On Error Resume Next
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
@@ -739,7 +739,7 @@
     ' DELETE FOLDER 
     ' sfilename - name to exist 
     '********************************************************************
-    Function DeleteFolder(ByVal foldername)
+    Function DeleteFolder(ByVal foldername As String)
         ' On error resume next 
         If foldername <> "" Then
             Dim filesystem
@@ -756,7 +756,7 @@
     ' COPY FILE 
     ' sfilename - name to exist 
     '********************************************************************
-    Function CopyFile(ByVal filename, ByVal toFilename)
+    Function CopyFile(ByVal filename As String, ByVal toFilename As String)
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
 
@@ -769,7 +769,7 @@
     ' COPY FILE 
     ' sfilename - name to exist 
     '********************************************************************
-    Function MoveFile(ByVal filename, ByVal toFilename)
+    Function MoveFile(ByVal filename As String, ByVal toFilename As String) As Boolean
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
 
@@ -785,7 +785,7 @@
     ''' <param name="folder"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function CreateFolder(ByVal folder)
+    Function CreateFolder(ByVal folder As String)
         Dim filesystem
         filesystem = CreateObject("Scripting.FileSystemObject")
         filesystem.CreateFolder(folder)
@@ -824,7 +824,7 @@
     ''' <param name="userInput"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function cleanUserInput(ByVal userInput)
+    Function cleanUserInput(ByVal userInput As String) As String
         Dim cleaned
         Dim errorFound : errorFound = False
         

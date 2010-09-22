@@ -13,50 +13,57 @@ Dim Body: Body = request("Body")
 	<head>
 		<link REL="stylesheet" HREF="../style.css" TYPE="text/css">
 			<title>Sending Mails</title>
+	    <style type="text/css">
+            .style1
+            {
+                width: 23%;
+            }
+        </style>
 	</head>
 	<body>
 		<%
 if SenderEmail<>"" and SQL_RECEIVERS<>"" and Subject<>"" and Body <>"" then ' save modus 
- Dim rsEmails: set rsEmails = ObjConnection.execute(SQL_RECEIVERS)
+ Dim rsEmails = ObjConnection.execute(SQL_RECEIVERS)
 
 dim bodySave : bodySave = Body 
-
+dim countMails as integer = 0 
  while not rsEmails.EOF 
+        countMails = countMails + 1 
         Body  = bodySave 
 
         if inStr(Body, "Field[1]") > 0 then 
-	        Body = replace (Body, "Field[1]", rsEmails(1) & "")
+	        Body = replace (Body, "Field[1]", rsEmails(1).Value & "")
         end if 
 
 
         if inStr(Body, "Field[2]") > 0 then 
-	        Body = replace (Body, "Field[2]", rsEmails(2) & "")
+	        Body = replace (Body, "Field[2]", rsEmails(2).Value & "")
         end if 
 
 
         if inStr(Body, "Field[3]") > 0 then 
-	        Body = replace (Body, "Field[3]", rsEmails(3) & "")
+	        Body = replace (Body, "Field[3]", rsEmails(3).Value & "")
         end if 
 
 
         if inStr(Body, "Field[4]") > 0 then 
-	        Body = replace (Body, "Field[4]", rsEmails(4) & "")
+	        Body = replace (Body, "Field[4]", rsEmails(4).Value & "")
         end if 
 
 
         if inStr(Body, "Field[5]") > 0 then 
-	        Body = replace (Body, "Field[5]", rsEmails(5) & "")
+	        Body = replace (Body, "Field[5]", rsEmails(5).Value & "")
         end if 
 
  
 
-       call sendMailFrom(rsEmails(0), Subject , Body, SenderEmail)            
-       Response.Write "."
+       call sendMailFrom(rsEmails(0).Value, Subject , Body, SenderEmail)            
+       Response.Write (".")
  		rsEmails.MoveNext 
- wend
+ end while
  rsEmails.close 
  %>
-		Ready! All mails were created!&nbsp;<br>
+		Ready! All mails (<%= countMails %>) were created!&nbsp;<br>
 		Now you can <a href="sendMailsToSend.aspx">execute</a> sending!
 		<%
 else 
@@ -65,20 +72,29 @@ else
 			<h1>Email Tool</h1>
 			<table border="1" width="47%" height="353">
 				<tr>
-					<td width="34%" height="23">Sender *</td>
-					<td width="66%" height="23"><input type="text" name="SenderEmail" size="30" value="<%=VARVALUE("EMAIL")%>"></td>
+					<td height="23" class="style1">Sender *</td>
+					<td width="66%" height="23"><input type="text" name="SenderEmail" size="30" 
+                            value="<%=VARVALUE("EMAIL")%>" style="width: 527px"></td>
 				</tr>
 				<tr>
-					<td width="34%" height="23">Receivers /SQL Syntax/ *</td>
-					<td width="66%" height="23"><input type="text" name="SQL_RECEIVERS" value="<%=SQL_RECEIVERS%>" size="50"><br>
+					<td height="23" class="style1">Receivers /SQL/ *</td>
+					<td width="66%" height="23">
+                        <textarea type="text" name="SQL_RECEIVERS" 
+                            value="" size="50" style="height: 43px; width: 528px"><%=SQL_RECEIVERS%>
+                            </textarea><br>
 						(the first column must contain the email adress this mail to be send on)</td>
 				</tr>
 				<tr>
-					<td width="34%" height="23">Subject *</td>
-					<td width="66%" height="23"><input type="text" name="Subject" size="50"></td>
+					<td height="23" class="style1">Subject *</td>
+					<td width="66%" height="23"><input type="text" name="Subject" size="50" 
+                            style="width: 527px"></td>
 				</tr>
 				<tr>
-					<td width="100%" colspan="2" height="231">Body * <textarea rows="11" name="Body" cols="80"></textarea></td>
+					<td width="100%" colspan="2" height="231">Body * <textarea rows="11" name="Body" 
+                            style="width: 714px">
+Hello Field[2]! 
+Your Email is: Field[1].
+Best regards!</textarea></td>
 				</tr>
 				<tr>
 					<td width="100%" height="23" colspan="2">
@@ -93,6 +109,7 @@ else
 			2. Press &quot;Create..&quot;<br>
 			3. Execute &quot;SendMails...&quot; at end until all messages are proceeded by 
 			Email server.
+			4. Use Field[1] - Field[5] in your mail as info that comes from the SQL Query!
 		</p>
 		<%end if'modus write %>
 	</body>

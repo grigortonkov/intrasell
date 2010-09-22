@@ -240,7 +240,7 @@
                     If showForm Then Call drawEmptyProfileForm(typeOfAddress, True)
                     Exit Function
                 End If
-            End If 'NEW ACCOUNT                   
+            End If 'NEW ACCOUNT
         End If
 
         'create newsletter registration
