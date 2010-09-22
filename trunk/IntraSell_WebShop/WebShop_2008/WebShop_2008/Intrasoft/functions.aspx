@@ -261,7 +261,7 @@
     '********************************************************************
     'SPEICHERT EINE VARIABLE IN DIE VARS TABELLE
     '********************************************************************
-    Public Function SETVARVALUE(ByVal varname, ByVal varvalue)
+    Public Function SETVARVALUE(ByVal varname As String, ByVal varvalue As String) As String
         'DoCmd.SetWarnings False
         Dim SQLString
         'try insert first 

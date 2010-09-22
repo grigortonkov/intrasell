@@ -30,7 +30,7 @@
     ''' <remarks></remarks>
     Sub CheckLogin()
         Response.Write("Check login for " & Request.Form("username") & "|" & Request.Form("userpwd"))
-        If LCase(Request.Form("username")) = LCase(VARVALUE("ADMIN")) And LCase(Request.Form("userpwd")) = LCase(VARVALUE("ADMINPASS")) Then
+        If LCase(Request.Form("username")) = LCase(VARVALUE_DEFAULT("ADMIN", "admin")) And LCase(Request.Form("userpwd")) = LCase(VARVALUE_DEFAULT("ADMINPASS", "123")) Then
             Session("UserLoggedIn") = "true"
             Session("ADMIN") = "TRUE" 'used to show "product bearbeiten" in normal shop
             Response.Redirect("default.aspx")
