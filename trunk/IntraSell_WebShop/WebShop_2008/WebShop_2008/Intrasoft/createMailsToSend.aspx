@@ -13,12 +13,6 @@ Dim Body: Body = request("Body")
 	<head>
 		<link REL="stylesheet" HREF="../style.css" TYPE="text/css">
 			<title>Sending Mails</title>
-	    <style type="text/css">
-            .style1
-            {
-                width: 23%;
-            }
-        </style>
 	</head>
 	<body>
 		<%
@@ -57,7 +51,7 @@ dim countMails as integer = 0
 
  
 
-       call sendMailFrom(rsEmails(0).Value, Subject , Body, SenderEmail)            
+       sendMailFrom(rsEmails(0).Value, Subject , Body, SenderEmail)
        Response.Write (".")
  		rsEmails.MoveNext 
  end while
@@ -67,9 +61,10 @@ dim countMails as integer = 0
 		Now you can <a href="sendMailsToSend.aspx">execute</a> sending!
 		<%
 else 
+Dim mailsInDB as String = FIRSTVALUE("select count(*) from mailstosend")
 %>
 		<form method="POST" action="createMailsToSend.aspx">
-			<h1>Email Tool</h1>
+			<h1>Email Tool. You have [<%= mailsInDB %>] mails to send.</h1>
 			<table border="1" width="47%" height="353">
 				<tr>
 					<td height="23" class="style1">Sender *</td>
@@ -105,10 +100,10 @@ Best regards!</textarea></td>
 		</form>
 		<p>Help:
 		</p>
-		<p>1. Write your Email for the Newsletter or Gewinnspiel here.<br>
-			2. Press &quot;Create..&quot;<br>
+		<p>1. Write your Email for the Newsletter or Gewinnspiel here.<br/>
+			2. Press &quot;Create..&quot;<br/>
 			3. Execute &quot;SendMails...&quot; at end until all messages are proceeded by 
-			Email server.
+			Email server.<br/>
 			4. Use Field[1] - Field[5] in your mail as info that comes from the SQL Query!
 		</p>
 		<%end if'modus write %>
