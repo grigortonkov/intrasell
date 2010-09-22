@@ -1,10 +1,10 @@
 <%
     Dim kdnr As Object : kdnr = getLOGIN()
 
-    Dim typeOfAddress : typeOfAddress = Request("typeOfAddress")
-    Dim typeOfAddressToShow
-    Dim specialTypeOfAddress
-    Dim typeOfAddressForHandling
+    Dim typeOfAddress As String: typeOfAddress = Request("typeOfAddress")
+    Dim typeOfAddressToShow As String
+    Dim specialTypeOfAddress As String
+    Dim typeOfAddressForHandling As String
 
     If typeOfAddress = "LI" Then
         typeOfAddressForHandling = SHIPPING
@@ -16,22 +16,22 @@
 
     'create new profile if not 
     If Request("action") = "saveAddresses" Then 'save action required 
-%>
-<form method="POST" action="default.aspx" id="form1" name="form1">
-<input type="hidden" name="PageToShow" value="createUpdateAddressSpecial">
-<input type="hidden" name="action" value="saveAddresses">
-<%
-    Dim savedID : savedID = saveProfile(typeOfAddressForHandling)
-    If savedID = 0 Then ' adress saving failed /missing data 
-%>
-<br>
-<br>
-<center>
-    <input type="submit" value="<%=getTranslation("Speichern")%>">
-</center>
-</form>
-<%
-Else 'redirect to proper page 
+    %>
+    <form method="POST" action="default.aspx" id="form1" name="form1">
+    <input type="hidden" name="PageToShow" value="createUpdateAddressSpecial">
+    <input type="hidden" name="action" value="saveAddresses">
+    <%
+        Dim savedID : savedID = saveProfile(typeOfAddressForHandling)
+        If savedID = 0 Then ' adress saving failed /missing data 
+    %>
+    <br>
+    <br>
+    <center>
+        <input type="submit" value="<%=getTranslation("Speichern")%>">
+    </center>
+    </form>
+    <%
+    Else 'redirect to proper page 
 
     'redirect to warenkorb step 3 oder zum Profile page 
     Dim redPage

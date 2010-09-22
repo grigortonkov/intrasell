@@ -338,7 +338,7 @@
     <Compile Include="intrasoft\RunSQLSelect.aspx" />
     <Compile Include="intrasoft\runTasks.aspx" />
     <Compile Include="intrasoft\sendMailsToSend.aspx" />
-    <Content Include="intrasoft\sendMailsToSend.inc" />
+    <Compile Include="intrasoft\sendMailsToSend.inc" />
     <Compile Include="intrasoft\sendMailsToSendNoPass.aspx" />
     <Compile Include="intrasoft\servervariables_vbscript.aspx" />
     <Content Include="intrasoft\styleButtons.css" />
