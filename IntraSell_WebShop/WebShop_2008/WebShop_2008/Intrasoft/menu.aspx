@@ -19,7 +19,7 @@ Session("dbMenuColor")   = "#99CCFF"
     <title>IntraSell - Administration</title>
 
     <script language="JavaScript">
-<!--
+       
         /* this function will display the count-up */
         function updateFrame() {
             top.status = top.status + "+";
@@ -31,12 +31,13 @@ Session("dbMenuColor")   = "#99CCFF"
             interval = document.forms[0].interval.value
             timerID = setTimeout("updateFrame()", interval * 100 * 60);
         }
-//-->
+        
     </script>
-
+ 
 </head>
 <body onload="updateFrame();" topmargin="1" leftmargin="1">
+
     <%call DisplayMainMenu("menu.aspx")%>
     <form>
-    <input type="hidden" size="3" name="interval" value="<%=VARVALUE("REFRESH_INTERVAL")%>"></form>
-
+        <input type="hidden" size="3" name="interval" value="<%=VARVALUE("REFRESH_INTERVAL")%>">
+    </form>

@@ -1,13 +1,13 @@
-<%
+<script language="VB" runat="server">
     'on error resume next
     '**********************************************************************
     ' UpdatePreises
     ' updates the selling prices with the Aufschlag from the article category
     '**********************************************************************
-function UpdatePreises(artNR)
-    Dim sql
-    Dim catNr : catNR = TABLEVALUE("grArtikel", "ArtNR", artNR, "ArtKatNR")
-    Dim aufschlag : aufschlag = TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNr", catNR, "Aufschlag")
+function UpdatePreises(artNR as string) 
+    Dim sql As String
+    Dim catNr As String = TABLEVALUE("grArtikel", "ArtNR", artNR, "ArtKatNR")
+    Dim aufschlag as Decimal = TABLEVALUE("[grArtikel-Kategorien]", "ArtKatNr", catNR, "Aufschlag")
     sql = " UPDATE [grArtikel] SET " & _
         " grArtikel.PreisATS = [EKPreis]*" & replace(Aufschlag, ",", ".") & _
        ", grArtikel.PreisEuro = [EKPreis]*" & replace(Aufschlag, ",", ".") & _
@@ -22,7 +22,7 @@ End Function
 ' imports data ot the grArtikel table
 ' uses for format the CSV file from Farbod 
 '**********************************************************************
-Function importPreiseLine(ByVal preisLine)
+Function importPreiseLine(ByVal preisLine As String)
     'On Error Resume Next 
     importPreiseLine = "ERROR"
     preisLine = Replace(preisLine, """", "")
@@ -53,7 +53,7 @@ Function importPreiseLine(ByVal preisLine)
 
     If Not IsNumeric(manufacturer) Then manufacturer = getIntraSellManufacturerNr(manufacturer) ' get by name 
 
-    Dim sql : sql = "select * from grArtikel where artNr=" & nr
+    Dim sql  As String = "select * from grArtikel where artNr=" & nr
     Dim rs : rs = ObjConnectionExecute(sql)
     Dim IsNEW : IsNEW = rs.EOF
     rs.close()
@@ -110,7 +110,7 @@ End Function
 '**************************************************************************
 'returns the manufacturer from IntraSell and creates new if not existing 
 '**************************************************************************
-Function getIntraSellManufacturerNr(ByVal foreignManufacturerName)
+Function getIntraSellManufacturerNr(ByVal foreignManufacturerName As String) As String
     If foreignManufacturerName = "" Then
         Response.Write("To select or create new company we need at least the name!")
         Exit Function
@@ -131,4 +131,4 @@ Function getIntraSellManufacturerNr(ByVal foreignManufacturerName)
     End If
 End Function
 
-%>
+</script>
