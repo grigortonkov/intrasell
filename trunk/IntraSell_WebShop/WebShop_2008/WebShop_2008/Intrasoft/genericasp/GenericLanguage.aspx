@@ -1,5 +1,14 @@
 <%
     
+    Dim bgcolor
+    Dim QUOTE, LT, GT
+    Dim strEditor, strType, strConn, strDisplay, strSearchFields
+    Dim strFields, strTable, strWhere, strGroupBy, strOrderBy, strFieldNames, strFont
+    Dim intAllowSort, intOrderBy, intPrimary, intFontSize
+    Dim strBorderColor, strMenuColor, strMenuTextColor
+    Dim strKeyField, IsSubTable, IsSearch, FormAction
+    Dim SubmitValue, CaseUpdateValue, CaseAddValue, strKey
+    
     Dim txtAdd, txtAddRecord, txtAdvancedSearch, txtAnyOfTheseWords, txtBackToList, txtDelete, txtDeletePrompt, txtDontCare, txtEdit, txtEditMode, txtError
     Dim txtErrorMsg1, txtErrorMsg2, txtErrorMsg3, txtErrorMsg4, txtErrorMsg5, txtErrorMsg6, txtErrorMsg7, txtErrorMsg8
     Dim txtExactPhrase, txtExit, txtFalse, txtInfo, txtList, txtNextPage, txtNo, txtOf, txtPreviousPage, txtRecords, txtRefresh, txtReset

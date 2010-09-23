@@ -13,7 +13,7 @@
 ' 29 Feb 2000 - Preparation for release
 '  9 Sep 1998 - First created or released
 
-On Error Resume Next
+'On Error Resume Next
 
 ' Prevent caching
 Response.Buffer = True
@@ -22,12 +22,7 @@ Response.AddHeader ("cache-control", "must-revalidate")
 Response.AddHeader ("cache-control", "private")
 Response.AddHeader ("pragma", "no-cache")
 
-Dim bgcolor
-Dim QUOTE, LT, GT
-Dim strEditor, strType, strConn, strDisplay, strSearchFields 
-Dim strFields, strTable, strWhere, strGroupBy, strOrderBy, strFieldNames, strFont
-Dim intAllowSort, intOrderBy, intPrimary, intFontSize
-Dim strBorderColor, strMenuColor, strMenuTextColor
+
 
 QUOTE = chr(34)
 LT = chr(60)
@@ -37,8 +32,8 @@ bgcolor="#FFFFCC"
 
 ' Check for parameters, if we jump in another direction we need to pass them on
 Dim strPassThru = "?"
-if Request.QueryString("START").Split(",").Length > 0 Then strPassThru = strPassThru & "START=" & Request.Querystring("START") & "&"
-if Request.QueryString("ORDER").Split(",").Length > 0 Then strPassThru = strPassThru & "ORDER=" & Request.Querystring("ORDER") & "&"
+if not IsNothing(Request.QueryString("START")) then if Request.QueryString("START").Split(",").Length > 0 Then strPassThru = strPassThru & "START=" & Request.Querystring("START") & "&"
+if not IsNothing(Request.QueryString("ORDER")) then if Request.QueryString("ORDER").Split(",").Length > 0 Then strPassThru = strPassThru & "ORDER=" & Request.Querystring("ORDER") & "&"
 if strPassThru = "?" then 
 	strPassThru = ""
 else
@@ -68,6 +63,7 @@ If Session("dbEditTemplate") & "x" = "x" Then
 Else 
 	strEditor = "GenericCustomEdit.aspx"
 End if
+
 
 
 Dim strViewer
@@ -129,7 +125,7 @@ If Trim(strFields) = "" Then
 End If	
 ' Is there a sub-table to display
 Dim arrSubTable
-Dim IsSubTable
+
 If Not (Trim(Session("dbSubTable")) = "" ) Then
 	arrSubTable = Split(Session("dbSubTable"),",")
 	IsSubTable = True
@@ -143,9 +139,11 @@ Else
 End If
 ' Check for a START parameter
 Dim  intStartRec
-If Request.QueryString("START").Split(",").length > 0 Then
-	intStartRec = Request.QueryString("START")
-	Session("dbStartRec") = intStartRec
+if not IsNothing(Request.QueryString("START")) then
+    if Request.QueryString("START").Split(",").length > 0 Then
+	    intStartRec = Request.QueryString("START")
+	    Session("dbStartRec") = intStartRec
+    end if
 Else
 	' Check for a StartRec variable in the Config File
 	If Session("dbStartRec") > 0 Then
@@ -155,16 +153,17 @@ Else
 	End If
 End If
 ' Check for an Order parameter
-
-If Request.QueryString("ORDER").Split(",").Length > 0 Then
-	' Check if an ASC/DESC toggle is required (- for desc, + for asc)
-	if Math.abs(intOrderBy) = Math.abs(System.Convert.ToDecimal(Request.QueryString("ORDER"))) then
-		intOrderBy = 0 - intOrderBy
-	else
-		intOrderBy = Request.QueryString("ORDER")
-	end if
-	Session("dbOrder") = intOrderBy
-End If
+if not IsNothing(Request.QueryString("ORDER")) then
+    If Request.QueryString("ORDER").Split(",").Length > 0 Then
+	    ' Check if an ASC/DESC toggle is required (- for desc, + for asc)
+	    if Math.abs(intOrderBy) = Math.abs(System.Convert.ToDecimal(Request.QueryString("ORDER"))) then
+		    intOrderBy = 0 - intOrderBy
+	    else
+		    intOrderBy = Request.QueryString("ORDER")
+	    end if
+	    Session("dbOrder") = intOrderBy
+    End If
+end if 
 'Set the last record to display
 Dim intStopRec = intStartRec + intDisplayRecs - 1
 
@@ -198,6 +197,8 @@ End If
 Dim xrs = Server.CreateObject("ADODB.Recordset")
 xrs.Open (strsql, xConn)
 ' Call Error Handler if query bombs
+
+ 
 If Err.Number <> 0 Then
 	Session("ErrNumber") = Err.Number
 	Session("ErrDesc") = Err.Description 
@@ -343,7 +344,7 @@ If Session("dbHeader") = 1 Then %>
         </table>
         <p>
             <% 	If strSearchPos = "TOP" Then 
-		DispSearch()
+		DispSearch(strSearchFields, strFont, txtReset, txtSearchFailMsgB, strBorderColor, txtSearchFor , txtAnyofthesewords, txtExactPhrase, txtSearchSubmit )
 	End If %>
             <table cellpadding="1" cellspacing="0" border="0" bgcolor="<%=strMenuColor%>">
                 <tr>
@@ -402,7 +403,10 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
                                 <td bgcolor="<%= bgcolor %>" align="LEFT" valign="TOP">
                                     <font size="<%=intFontSize%>" face="<%=strFont%>">
                                         <%				' Empty / Null / Blank
-				If IsNothing(curVal) OR (Trim(curVal) & "x" = "x") Then 
+                                        
+				If IsDBNull(curVal) then
+				    curVal = "&nbsp;" 
+				else if IsNothing(curVal) OR (Trim(curVal) & "x" = "x") Then 
 					curVal = "&nbsp;"
 				Else
 					If (Mid(strTotalFields, x, 1) = "1") AND IsNumeric(curVal) Then aFields(x,4) = aFields(x,4) + curVal
@@ -594,7 +598,7 @@ xConn = Nothing %>
     </font>
     <p>
         <% 	If strSearchPos = "BOTTOM" Then 
-		DispSearch()
+		DispSearch(strSearchFields, strFont, txtReset, txtSearchFailMsgB, strBorderColor, txtSearchFor , txtAnyofthesewords, txtExactPhrase, txtSearchSubmit )
 	End If %>
         <!-- Main Body End -->
         <!-- Footer -->
@@ -605,64 +609,64 @@ xConn = Nothing %>
 </html>
 <script language="VB" runat="server">
 
-Function DispSearch
-Dim strSearchFields
+Function DispSearch(strSearchFields, strFont, txtReset, txtSearchFailMsgB, strBorderColor, txtSearchFor , txtAnyofthesewords, txtExactPhrase, txtSearchSubmit  )
+ 
 
 If strSearchFields & "x" <> "x" Then
 	' If in a search, ask for a reset before another search.
-	If Session("dbState") = 3 Then %>
-<table cellpadding="1" cellspacing="0" border="0" bgcolor="#99CCCC">
-    <tr>
-        <td>
-            <table cellpadding="2" cellspacing="2" border="0" width="100%" bgcolor="#99CCCC">
-                <form action="GenericSearchResult.aspx" method="POST">
-                <tr>
-                    <td height="0" bgcolor="WHITE" align="LEFT">
-                        <font size="2" face="<%=strFont%>"><a href="<%=Session("dbGenericPath")%>GenericExit.asp?CMD='Reset'">
-                            <%=txtReset%></a>
-                            <%=txtSearchFailMsgB%>
-                    </td>
-                </tr>
-                </form>
-            </table>
-        </td>
-    </tr>
-</table>
-<% 	Else %>
-<table cellpadding="1" cellspacing="0" border="0" bgcolor="<%=strBorderColor%>">
-    <tr>
-        <td>
-            <table cellpadding="2" cellspacing="2" border="0" width="100%" bgcolor="<%=strBorderColor%>">
-                <form action="GenericSearchResult.aspx" method="POST">
-                <input type="Hidden" name="SearchAction" value="SHORT">
-                <tr>
-                    <td height="0" bgcolor="WHITE" align="LEFT">
-                        <font size="2" face="<%=strFont%>">
-                            <%=txtSearchFor%>
-                            <font size="2" face="<%=strFont%>">
-                                <input type="Text" name="strSearch" size="40">
-                                <% If Session("dbSearchEnhanced") = 1 then%>
-                    </td>
-                </tr>
-                <tr>
-                    <td height="0" bgcolor="WHITE" align="right">
-                        <font size="2" face="<%=strFont%>">
-                            <input type="Radio" name="SearchPhrase" value="OR" checked><%=txtAnyofthesewords%>
-                            <input type="Radio" name="SearchPhrase" value="EXACT"><%=txtExactPhrase%>
-                            <% Else %>
-                            <input type="Hidden" name="SearchPhrase" value="OR">
-                            <% End If %>
-                            <font size="2" face="<%=strFont%>">
-                                <input type="Submit" name="Submit" value="<%=txtSearchSubmit%>">
-                    </td>
-                </tr>
-                </form>
-            </table>
-        </td>
-    </tr>
-</table>
-<p>
-    <%	End If
+	If Session("dbState") = 3 Then  
+Response.write ("<table cellpadding=""1"" cellspacing=""0"" border=""0"" bgcolor=""#99CCCC"">")
+Response.write ("    <tr>")
+Response.write ("        <td>")
+Response.write ("            <table cellpadding=""2"" cellspacing=""2"" border=""0"" width=""100%"" bgcolor=""#99CCCC"">")
+Response.write ("                <form action=""GenericSearchResult.aspx"" method=""POST"">")
+Response.write ("                <tr>")
+Response.write ("                    <td height=""0"" bgcolor=""WHITE"" align=""LEFT"">")
+Response.write ("                        <font size=""2"" face=""" & strFont & """><a href=""" & Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'"">")
+Response.write ("                            " & txtReset & "</a>")
+Response.write ("                            " & txtSearchFailMsgB & "")
+Response.write ("                    </td>")
+Response.write ("                </tr>")
+Response.write ("                </form>")
+Response.write ("            </table>")
+Response.write ("        </td>")
+Response.write ("    </tr>")
+Response.write ("</table>")
+  	Else  
+Response.write ("<table cellpadding=""1"" cellspacing=""0"" border=""0"" bgcolor=""" & strBorderColor & """>")
+Response.write ("    <tr>")
+Response.write ("        <td>")
+Response.write ("            <table cellpadding=""2"" cellspacing=""2"" border=""0"" width=""100%"" bgcolor=""" & strBorderColor & """>")
+Response.write ("                <form action=""GenericSearchResult.aspx"" method=""POST"">")
+Response.write ("                <input type=""Hidden"" name=""SearchAction"" value=""SHORT"">")
+Response.write ("                <tr>")
+Response.write ("                    <td height=""0"" bgcolor=""WHITE"" align=""LEFT"">")
+Response.write ("                        <font size=""2"" face=""" & strFont & """>")
+Response.write ("                            " & txtSearchFor & "")
+Response.write ("                            <font size=""2"" face=""" & strFont & """>")
+Response.write ("                                <input type=""Text"" name=""strSearch"" size=""40"">")
+  If Session("dbSearchEnhanced") = 1 then
+Response.write ("                    </td>")
+Response.write ("                </tr>")
+Response.write ("                <tr>")
+Response.write ("                    <td height=""0"" bgcolor=""WHITE"" align=""right"">")
+Response.write ("                        <font size=""2"" face=""" & strFont & """>")
+Response.write ("                            <input type=""Radio"" name=""SearchPhrase"" value=""OR"" checked>" & txtAnyofthesewords)
+Response.write ("                            <input type=""Radio"" name=""SearchPhrase"" value=""EXACT"">" & txtExactPhrase)
+  Else  
+Response.write ("                            <input type=""Hidden"" name=""SearchPhrase"" value=""OR"">")
+  End If  
+Response.write ("                            <font size=""2"" face=""" & strFont & """>")
+Response.write ("                                <input type=""Submit"" name=""Submit"" value=""" & txtSearchSubmit & """>")
+Response.write ("                    </td>")
+Response.write ("                </tr>")
+Response.write ("                </form>")
+Response.write ("            </table>")
+Response.write ("        </td>")
+Response.write ("    </tr>")
+Response.write ("</table>")
+Response.write ("<p>")
+    	End If
 End If
 End Function
 </script>

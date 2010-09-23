@@ -16,6 +16,6 @@
         <a href="../upload/uploadProductImages.aspx">Bilder</a></li>
 </ol>
 <p>
-    Ready!
+    Ready? Weiter geht es mit der Order Liste <a href="/admin/lists/listOrders.aspx?OrderType=AU">hier</a>.
     <br>
-    Viel Erfolg wünscht Ihnen IntraSell Team!</p>
+    Viel Erfolg wünscht Ihnen das IntraSell Team!</p>

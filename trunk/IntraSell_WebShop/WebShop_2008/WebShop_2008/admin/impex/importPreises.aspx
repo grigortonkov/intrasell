@@ -10,7 +10,7 @@ Dim ImportData, countUpdates, countNew, countErrors
       Dim Lines, L
       Lines = split(ImportData, CHR(13))
       for each l in Lines 
-       ' response.write "<br>Now import:" & l    :Response.Flush 
+       ' response.write ("<br>Now import:" & l)    :Response.Flush 
        
 
             if len(l) > 10 then ' line is not empty
@@ -19,17 +19,17 @@ Dim ImportData, countUpdates, countNew, countErrors
      		 
      		 if importResult ="INSERT" then 
      		   countNew = countNew + 1
-     		   response.write "N"
+     		   response.write ("N")
      		 end if 
      		
      		 if importResult  = "UPDATE" then 
      		  countUpdates  = countUpdates  + 1
-     		  response.write "U"
+     		  response.write ("U")
      		 end if 
      		 
      		 if importResult = "ERROR" then  
      		    countErrors  = countErrors + 1
-     		    response.write "R"
+     		    response.write ("R")
      		 end if  
      	end if 	 
      		     		      	     		 

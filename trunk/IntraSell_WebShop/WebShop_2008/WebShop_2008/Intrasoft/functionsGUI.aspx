@@ -351,7 +351,7 @@
     ''' <param name="ImageUrl"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawAreaHTML_WithImage(ByVal Title, ByVal Body, ByVal State, ByVal Width, ByVal ImageUrl)
+    Function drawAreaHTML_WithImage(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String, ByVal ImageUrl As String)
         Dim html
         html = html & "<table align=""center"" border=""0"" width=""190"" cellspacing=""0"" cellpadding=""0"">"
         html = html & "  <tr>"
@@ -379,10 +379,10 @@
     ' DisplayManu 
     '******************************************************************************
 
-    Function DisplayMainMenu(ByVal inPageToShow As String)
+    Sub DisplayMainMenu(ByVal inPageToShow As String)
         
-        Response.Write("<script language='JavaScript' src='" & BASENAME & "/intrasoft/menu.js'></" & "script>" & Chr(10) & Chr(13))
-        Response.Write("<script language='JavaScript'>" & Chr(10) & Chr(13))
+        Response.Write("<script language=""JavaScript"" src=""" & BASENAME & "/intrasoft/menu.js""></" & "script>" & Chr(10) & Chr(13))
+        Response.Write("<script language=""JavaScript"">" & Chr(10) & Chr(13))
         Response.Write("function showToolbar () { " & Chr(10) & Chr(13))
         Response.Write("menu = new Menu ();" & Chr(10) & Chr(13))
         Dim sql As String, rs, rsSu
@@ -417,11 +417,12 @@
         rs.Close()
         rs = Nothing
         'end loop of initialization
+        
         Response.Write("menu.showMenu ();}" & Chr(10) & Chr(13))
         Response.Write("showToolbar();")
         Response.Write("</" & "script>" & Chr(10) & Chr(13))
 	
-    End Function
+    End Sub
     
     
     Function drawCheckBoxForBoolean(ByVal bool As Boolean) As String

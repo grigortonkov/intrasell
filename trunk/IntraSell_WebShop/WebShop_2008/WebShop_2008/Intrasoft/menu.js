@@ -1,3 +1,8 @@
+var ie = 1;
+var n = 0;
+var fShow = "visible";
+var fHide = "hidden";
+
 if (document.all)    {n=0;ie=1;fShow="visible";fHide="hidden";}
 if (document.layers) {n=1;ie=0;fShow="show";   fHide="hide";}
 
@@ -7,14 +12,15 @@ window.onerror=new Function("return true")
 ////////////////////////////////////////////////////////////////////////////
 lastMenu = null;
 rightX = 0;
-function Menu()
-{
+function Menu() {
+
+
     this.bgColor = "#CCCC00";
+ 
 	if (ie) this.menuFont = "bold xx-small Verdana";
 	if (n)  this.menuFont = "bold x-small Verdana";
-//	this.fontColor   = "white";
 
-	this.addItem    = addItem;
+	this.addItem = addItem;
 	this.addSubItem = addSubItem;
 	this.showMenu   = showMenu;
 	this.mainPaneBorder = 1;

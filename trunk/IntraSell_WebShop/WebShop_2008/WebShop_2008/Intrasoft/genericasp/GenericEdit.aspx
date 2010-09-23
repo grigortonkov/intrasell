@@ -15,15 +15,15 @@
 
 ' Prevent caching
 Response.Buffer = True
-Response.ExpiresAbsolute = Now() - 1
-Response.AddHeader "cache-control", "must-revalidate"
-Response.AddHeader "cache-control", "private"
-Response.AddHeader "pragma", "no-cache"
+' Response.ExpiresAbsolute = Now() - 1
+Response.AddHeader ( "cache-control", "must-revalidate")
+Response.AddHeader ( "cache-control", "private")
+Response.AddHeader ( "pragma", "no-cache")
 
 ' Check for an active session
 If Session("dbConn") = "" Then
 	Response.Clear
-	Response.Redirect "GenericError.aspx"
+	Response.Redirect ("GenericError.asp")
 End If
 
 ' Get info from Session vars (kinda like parameters)
@@ -43,7 +43,7 @@ IsSubTable = Session("dbIsSubTable")
 IsSearch = False
 QUOTE = chr(34)
 FormAction = "GenericEdit.aspx"
-Action = "GET"
+'Action = "GET"
 
 ' Language Translation
 if txtUpdate = "" Then %>
@@ -70,11 +70,11 @@ If Trim(strMenuColor) = "" Then strMenuColor = "#99CCCC"
 If Trim(strMenuTextColor) = "" Then strMenuTextColor = "Black"
 if strFields = "" then strFields = "*"
 
-If Request.QueryString("KEY").Count > 0 Then
+If Request.QueryString("KEY").Split(",").Length > 0 Then
 	' Quick security check for Edit rights
 	If Not(Session("dbCanEdit") = 1) Then
 		Response.Clear
-		Response.Redirect Session("dbViewPage")
+		Response.Redirect (Session("dbViewPage"))
 	End If
 	strKey = Request.QueryString("KEY")
 	Session("dbcurKey") = strKey
