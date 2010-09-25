@@ -4,10 +4,10 @@
 ' mails to be sent later by sendMailsToSend.asp execute 
 %>
 <%
-Dim SenderEmail: SenderEmail = request("SenderEmail")
-Dim SQL_RECEIVERS: SQL_RECEIVERS = request("SQL_RECEIVERS")
-Dim Subject: Subject = request("Subject")
-Dim Body: Body = request("Body")
+Dim SenderEmail as String: SenderEmail = request("SenderEmail")
+Dim SQL_RECEIVERS as String: SQL_RECEIVERS = request("SQL_RECEIVERS")
+Dim Subject as String: Subject = request("Subject")
+Dim Body as String: Body = request("Body")
 %>
 <html>
 	<head>
@@ -19,11 +19,14 @@ Dim Body: Body = request("Body")
 if SenderEmail<>"" and SQL_RECEIVERS<>"" and Subject<>"" and Body <>"" then ' save modus 
  Dim rsEmails = ObjConnection.execute(SQL_RECEIVERS)
 
-dim bodySave : bodySave = Body 
+dim bodySave as String = Body 
 dim countMails as integer = 0 
  while not rsEmails.EOF 
         countMails = countMails + 1 
         Body  = bodySave 
+
+        'replace special MySQL Chars 
+        Body = Body.Replace("'","""")
 
         if inStr(Body, "Field[1]") > 0 then 
 	        Body = replace (Body, "Field[1]", rsEmails(1).Value & "")

@@ -15,7 +15,21 @@
         End If
     End If
 
-
+    
+    If UCase(Request("stat")) = UCase("Sessions_Tag") Then
+        If Session("DBTYPE") = "MySQL" Then
+            sql_stat = "SELECT date(round(webSessions.CreationDate)) as CreatedOn, Count(webSessions.SID) AS Sessions, Count(distinct webSessions.IP) AS IPs " & _
+            " FROM webSessions " & _
+            " GROUP BY date(round(webSessions.CreationDate)) " & _
+            " ORDER BY date(round(webSessions.CreationDate)) DESC"
+        Else
+            sql_stat = "SELECT cdate(round(webSessions.CreationDate))  as CreatedOn, Count(webSessions.SID) AS Sessions, Count(distinct webSessions.IP) AS IPs " & _
+                " FROM webSessions " & _
+                " GROUP BY cdate(round(webSessions.CreationDate)) " & _
+                " ORDER BY cdate(round(webSessions.CreationDate)) DESC"
+        End If
+    End If
+    
     If UCase(Request("stat")) = UCase("Sales") Then
         If Session("DBTYPE") = "MySQL" Then
             sql_stat = "SELECT b.ArtNr, b.Bezeichnung, Sum(b.Stk) AS SumOfPieces " & _
