@@ -56,7 +56,9 @@ Dim sql: sql = "SELECT * FROM " & tableNameOrders  & _
 		
 'response.write sql
 dim rs = ObjConnectionExecute(sql)
-while not rs.EOF 
+dim counter as Integer = 0
+while not rs.EOF and counter <= 100
+counter = counter + 1
     %>
     <tr>
         <td width="25%">
@@ -100,8 +102,13 @@ while not rs.EOF
     </tr>
     <% 
   rs.moveNext 
+ 
 end while 
 rs.close 
+if counter >=100 then 
+    response.write ("Es sind mehr als 100 Bestellungen vorhanden!")
+end if 
+
     %>
 </table>
 <p align="center">
