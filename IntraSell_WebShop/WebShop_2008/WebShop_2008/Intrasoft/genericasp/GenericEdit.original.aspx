@@ -170,11 +170,11 @@ Select Case Action
 					aFields(x,4) = Replace(aFields(x,4),"<","&lt;")
 					aFields(x,4) = Replace(aFields(x,4),">","&gt;")
 					tFLD = Trim(aFields(x,4))
-					If tFLD & "x" = "x" Then tFLD = Null
+					If tFLD & "x" = "x" Then tFLD = Nothing
 					aFields(x,4) = tFLD
 				Case 7, 135	' Date / Time Stamp, usually created with the Now() function
 					If (aFields(x,4) & "x" = "x") OR NOT IsDate(aFields(x,4)) Then
-						aFields(x,4) = Null
+						aFields(x,4) = Nothing
 					Else
 						aFields(x,4) = CDate(aFields(x,4))
 					End If
@@ -365,7 +365,7 @@ Select Case Action
 							If IsDate(aFields(x,4)) Then
 								xrs(x-1) = CDate(aFields(x,4))
 							Else
-								xrs(x-1) = Null
+								xrs(x-1) = Nothing
 							End If
 						Case 11
 						' Boolean True/False
@@ -381,7 +381,7 @@ Select Case Action
 							tFLD = Replace(tFLD,chr(34),"&quot;")
 							tFLD = Replace(tFLD,"<","&lt;")
 							tFLD = Replace(tFLD,">","&gt;")
-							If Trim(tFLD) & "x" = "x" Then tFLD = Null
+							If Trim(tFLD) & "x" = "x" Then tFLD = Nothing
 							Response.Write aFields(x,1)
 							xrs(x-1) = tFLD
 					End Select

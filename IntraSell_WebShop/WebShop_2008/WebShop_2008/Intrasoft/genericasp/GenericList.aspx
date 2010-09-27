@@ -78,7 +78,7 @@ End if
 If Trim(Session("dbLastRs")) <> Trim(Session("dbRs")) Then 
 	Session("dbLastRs") = Session("dbRs")
 	Response.Clear
-	Response.Redirect (Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'")
+	Response.Redirect (Session("dbGenericPath") & "GenericExit.aspx?CMD='Reset'")
 End If
 
 
@@ -169,11 +169,11 @@ Dim intStopRec = intStartRec + intDisplayRecs - 1
 
 ' Open Connection to the database
 
- Dim xConn = Server.CreateObject("ADODB.Connection")
+ xConn = Server.CreateObject("ADODB.Connection")
  xConn.Open (strConn)
 
 ' Build Query
-Dim strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
+ strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
 
 Select Case strType
 	Case "UDF" 
@@ -194,7 +194,7 @@ If Not Trim(strGroupBy) = "" Then
 End If	
 
 ' Open recordset
-Dim xrs = Server.CreateObject("ADODB.Recordset")
+xrs = Server.CreateObject("ADODB.Recordset")
 xrs.Open (strsql, xConn)
 ' Call Error Handler if query bombs
 
@@ -208,7 +208,7 @@ If Err.Number <> 0 Then
 	Response.Clear
 	Response.Redirect ("GenericError.aspx")
 End If
-Dim intFieldCount = xrs.Fields.Count
+intFieldCount = xrs.Fields.Count
 Dim aFields(0,0)
 ReDim aFields(intFieldCount,4)
 
@@ -311,7 +311,7 @@ If Session("dbHeader") = 1 Then %>
                                     <a href="<%=Session("dbGenericPath")%>GenericExit.aspx">
                                         <%=txtExit%></a>
                                     <% 		End If %>
-                                    &nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=Session("dbGenericPath")%>GenericExit.asp?CMD='Reset'"><%=txtReset%></a>
+                                    &nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=Session("dbGenericPath")%>GenericExit.aspx?CMD='Reset'"><%=txtReset%></a>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=Session("dbGenericPath")%>GenericList.aspx"><%=txtRefresh%></a>
                                     <% 		If Session("dbDebug") = 1 Then %>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%=Session("dbGenericPath")%>GenericInfo.aspx">db&nbsp;Info</a>
@@ -364,7 +364,7 @@ If Session("dbHeader") = 1 Then %>
                                 </th>
                                 <% 			Else %>
                                 <th>
-                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="GenericList.asp?<%=strConn%>">
+                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="GenericList.aspx?<%=strConn%>">
                                         <%=arrFieldNames(x-1)%></a>
                                 </th>
                                 <% 			End If
@@ -425,7 +425,8 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 							curVal = txtFalse
 						End If
 					Case 7, 135 ' Date / Time: 0=General, 1=LongDate, 2=ShortDate, 3=LongTime, 4=hh:mm
-						if curVal <> "&nbsp;" then curVal = FormatDateTime(curVal, 1)
+					    'curVal = FormatDateTime(curVal, 1)
+						if curVal.ToString() <> "&nbsp;" then curVal =  FormatDateTime(curVal, 1)
 					Case 130, 201, 202, 203, 204 ' String or Memo
 						curVal = replace(curVal,"<","&lt;")
 						curVal = replace(curVal,">","&gt;")
@@ -475,7 +476,7 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 
 		If IsSubTable Then %>
                                 <td bgcolor="<%= bgcolor %>" align="CENTER">
-                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%=Session("dbGenericPath")%>GenericExit.asp?<%=strLink%>">
+                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%=Session("dbGenericPath")%>GenericExit.aspx?<%=strLink%>">
                                         <%=arrSubTable(0)%></a>
                                 </td>
                                 <%		End if
@@ -493,7 +494,7 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
                                 <% 		End If 
 		If (Session("dbCanDelete") = 1)  and Session("dbKey") > 0 Then %>
                                 <td bgcolor="<%= bgcolor %>" align="CENTER">
-                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%= Session("dbGenericPath") %>GenericDelete.asp?<%= strLink %>">
+                                    <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%= Session("dbGenericPath") %>GenericDelete.aspx?<%= strLink %>">
                                         <%=txtDelete%></a>
                                 </td>
                                 <%		End If %>
@@ -540,7 +541,7 @@ End If %>
 If (intTotalRecs = 0) AND (Session("dbState") >= 2) Then %>
                 <p>
                     <%=txtSearchFailMsgA%>
-                    <a href="<%=Session("dbGenericPath")%>GenericExit.asp?CMD='Reset'">
+                    <a href="<%=Session("dbGenericPath")%>GenericExit.aspx?CMD='Reset'">
                         <%=txtReset%></a>
                     <%=txtSearchFailMsgB%><p>
                         <%
@@ -555,7 +556,7 @@ Else
 	PrevStart = intStartRec - intDisplayRecs
 	If PrevStart < 1 Then PrevStart = 1 %>
                         <hr size="1">
-                        <strong><a href="GenericList.asp?START=<%=PrevStart%>">[&lt;&lt;&nbsp;<%=txtPreviousPage%>]</a></strong>
+                        <strong><a href="GenericList.aspx?START=<%=PrevStart%>">[&lt;&lt;&nbsp;<%=txtPreviousPage%>]</a></strong>
             </font>
             <%
 End If
@@ -570,7 +571,7 @@ If (intHidePageNumbers = 0) AND (isPrev OR (NOT xrs.EOF)) Then
             <strong><font color="Green">
                 <%=y%></font></strong>
             <% 		Else %>
-            <strong><a href="GenericList.asp?START=<%=x%>">
+            <strong><a href="GenericList.aspx?START=<%=x%>">
                 <%=y%></a></strong>
             <%		End If
 		x = x + intDisplayRecs
@@ -583,7 +584,7 @@ Dim isMore
 If NOT xrs.EOF Then
 	Dim NextStart = intStartRec + intDisplayRecs
 	  isMore = True %>
-            <strong><a href="GenericList.asp?START=<%=NextStart%>">[<%=txtNextPage%>&nbsp;&gt;&gt;]</a></strong>
+            <strong><a href="GenericList.aspx?START=<%=NextStart%>">[<%=txtNextPage%>&nbsp;&gt;&gt;]</a></strong>
             <% Else
 	isMore = False
 End If %>
@@ -622,7 +623,7 @@ Response.write ("            <table cellpadding=""2"" cellspacing=""2"" border="
 Response.write ("                <form action=""GenericSearchResult.aspx"" method=""POST"">")
 Response.write ("                <tr>")
 Response.write ("                    <td height=""0"" bgcolor=""WHITE"" align=""LEFT"">")
-Response.write ("                        <font size=""2"" face=""" & strFont & """><a href=""" & Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'"">")
+Response.write ("                        <font size=""2"" face=""" & strFont & """><a href=""" & Session("dbGenericPath") & "GenericExit.aspx?CMD='Reset'"">")
 Response.write ("                            " & txtReset & "</a>")
 Response.write ("                            " & txtSearchFailMsgB & "")
 Response.write ("                    </td>")

@@ -16,47 +16,47 @@
     ''' CALCULATE_POSTCOSTS
     ''' </summary>
     ''' <remarks></remarks>
-    Const CALCULATE_POSTCOSTS = "CALCULATE_POSTCOSTS"
+    Const CALCULATE_POSTCOSTS As String = "CALCULATE_POSTCOSTS"
     
     ''' <summary>
     ''' CALCULATE_PAYMODECOSTS
     ''' </summary>
     ''' <remarks></remarks>
-    Const CALCULATE_PAYMODECOSTS = "CALCULATE_PAYMODECOSTS"
+    Const CALCULATE_PAYMODECOSTS As String = "CALCULATE_PAYMODECOSTS"
     
     ''' <summary>
     ''' CALCULATE_GUTSCHEIN
     ''' </summary>
     ''' <remarks></remarks>
-    Const CALCULATE_GUTSCHEIN = "CALCULATE_GUTSCHEIN"
+    Const CALCULATE_GUTSCHEIN As String = "CALCULATE_GUTSCHEIN"
     
     ''' <summary>
     ''' CALCULATE_MIN_ORDER_VALUE
     ''' </summary>
     ''' <remarks></remarks>
-    Const CALCULATE_MIN_ORDER_VALUE = "CALCULATE_MIN_ORDER_VALUE" 'EAN of the Product that contains the Price when order value is less than defined
+    Const CALCULATE_MIN_ORDER_VALUE As String = "CALCULATE_MIN_ORDER_VALUE" 'EAN of the Product that contains the Price when order value is less than defined
    
    ''' <summary>
    ''' CALCULATE_BASKET_DISCOUNT
    ''' </summary>
    ''' <remarks></remarks>
-    Const CALCULATE_BASKET_DISCOUNT = "CALCULATE_BASKET_DISCOUNT"
+    Const CALCULATE_BASKET_DISCOUNT As String = "CALCULATE_BASKET_DISCOUNT"
 
-    Function getNameFor(ByVal OrderType) As String
+    Function getNameFor(ByVal OrderType As String) As String
         getNameFor = getDruckForType(OrderType)
     End Function
 
     '*****************************************************************
     'get name for the table with orders
     '*****************************************************************
-    Function getNameForTable(ByVal OrderType) As String
+    Function getNameForTable(ByVal OrderType As String) As String
         getNameForTable = getVorgangTableForType(OrderType)
     End Function
 
     '*****************************************************************
     'get name for the table with products
     '*****************************************************************
-    Function getNameForTableProducts(ByVal OrderType) As String
+    Function getNameForTableProducts(ByVal OrderType As String) As String
         getNameForTableProducts = getVorgangArtikelTableForType(OrderType)
     End Function
 
@@ -89,7 +89,7 @@
     ' NACHNAHME-DE etc. 
     ' if no payment mode artnr is found returns -1
     '******************************************************************************
-    Function getPaymentModeSpendsArtNr(ByVal PaymentMode, ByVal Country) As Double
+    Function getPaymentModeSpendsArtNr(ByVal PaymentMode As String, ByVal Country As String) As Double
         getPaymentModeSpendsArtNr = tableValue("grArtikel", "EAN", "'" & CALCULATE_PAYMODECOSTS & "'", "ArtNr")
     End Function
 
@@ -102,10 +102,9 @@
     '
     ' Express- true false 
     '******************************************************************************
-    Function calculatePostSpends(ByVal PostModeDestionation, ByVal Kg, ByVal PostMode) As Double
-        Kg = Kg + 0
-        If Kg Is Nothing Then Kg = 0
-        If (Kg) Is Nothing Then
+    Function calculatePostSpends(ByVal PostModeDestionation As String, ByVal Kg As Object, ByVal PostMode As String) As Double
+ 
+        If Kg Is Nothing Then
             Kg = 0
         Else
             Kg = Math.Round(Kg, 2)
@@ -129,7 +128,7 @@
     ' returns the number of the post expenses product nr 
     ' Express - true or false 
     '*************************************************************************
-    Function getPostSpendsArtNr(ByRef Country, ByRef Kg, ByRef PayMode) 
+    Function getPostSpendsArtNr(ByRef Country As String, ByRef Kg As Double, ByRef PayMode As String) As String
         getPostSpendsArtNr = tableValue("grArtikel", "EAN", "'" & CALCULATE_POSTCOSTS & "'", "ArtNr")
     End Function
 
@@ -137,7 +136,7 @@
     ' returns the wight of all prodcuts 
     '*************************************************************************
 
-    Function getWeightOfProduct(ByVal ArtNR) As Double
+    Function getWeightOfProduct(ByVal ArtNR As String) As Double
         Dim weight As Decimal : weight = 0
         'on error resume next 
         'Response.Write TABLEVALUE("grArtikel","ArtNR", ArtNR, "gewicht")
@@ -161,7 +160,7 @@
 ''' <param name="Nummer"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getWeightOfOrder(ByVal OrderType, ByVal Nummer) As Double
+    Function getWeightOfOrder(ByVal OrderType As String, ByVal Nummer As String) As Double
         Dim sql As String, rs
         sql = "SELECT ArtNR, Stk from [" & getVorgangArtikelTableForType(OrderType) & "] Where RechNr=" & Nummer
         rs = objConnectionExecute(sql)
@@ -181,7 +180,7 @@
 ''' <param name="Sid"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function getWeightOfBasket(ByVal Sid) As Double
+    Function getWeightOfBasket(ByVal Sid As String) As Double
         Dim sql As String, rs
         sql = "SELECT SID, ArtNr, Quantity FROM webWarenkorb " & _
            "WHERE SID=" & Sid & " AND Quantity > 0 "
@@ -206,7 +205,7 @@
 ''' <param name="SID"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function isWarenkorbEmpty(ByVal SID) as Boolean
+    Function isWarenkorbEmpty(ByVal SID As String) As Boolean
         Dim sql, rsWK
         sql = "SELECT * FROM webWarenkorb Where SID=" & SID
         rsWK = objConnectionExecute(sql)
@@ -280,9 +279,8 @@
     ' function deleteOrder(OrderType, Nummer)
     '*************************************************************************
 
-    Function deleteOrder(ByVal OrderType, ByVal Nummer) As Boolean
-        Dim tableNameOrders
-        tableNameOrders = getNameForTable(OrderType)
+    Function deleteOrder(ByVal OrderType As String, ByVal Nummer As String) As Boolean
+        Dim tableNameOrders = getNameForTable(OrderType)
         Dim sql : sql = "DELETE FROM " & tableNameOrders & " WHERE Nummer=" & Nummer
         objConnectionExecute(sql)
         deleteOrder = True
@@ -291,8 +289,9 @@
     '*************************************************************************
     ' function createEmptyOrder(KDNR, SID)
     '*************************************************************************
-    Function createEmptyOrder(ByVal OrderType) As String
-        Dim AuftragNr, Notiz, sql, kdnr
+    Function createEmptyOrder(ByVal OrderType As String) As String
+        Dim AuftragNr As String
+        Dim Notiz As String, sql As String, kdnr As String
         Dim rsK
         Dim tableNameOrders As String
         
@@ -389,10 +388,9 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getFreiHausLieferungUmsatz()
+    Function getFreiHausLieferungUmsatz() As String
 
-        Dim freiHausLieferungAbUmsatz
-        freiHausLieferungAbUmsatz = VARVALUE("MIN_UMSATZ_FREI_HAUS")
+        Dim freiHausLieferungAbUmsatz = VARVALUE("MIN_UMSATZ_FREI_HAUS")
         If Not IsNumeric(freiHausLieferungAbUmsatz) Then freiHausLieferungAbUmsatz = -1
   
         getFreiHausLieferungUmsatz = 1 * freiHausLieferungAbUmsatz
@@ -406,7 +404,7 @@
     ''' <param name="rechNR"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getPaketNummer(ByVal orderType, ByVal rechNR)
+    Function getPaketNummer(ByVal orderType, ByVal rechNR) As String
         Dim tableOrders, tableOrdersProducts As String
         tableOrders = getNameForTable(orderType)
         tableOrdersProducts = "[" & getNameForTableProducts(orderType) & "]"
@@ -434,7 +432,7 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getCurrencySymbol()
+    Function getCurrencySymbol() As String
         getCurrencySymbol = "&euro;"
         If Session("Land") = "US" Then
             getCurrencySymbol = "$"
@@ -450,8 +448,8 @@
     ''' <param name="Stk"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function createUpdateLager(ByVal ArtNr, ByVal LagerOrt, ByVal Stk)
-        Dim sql
+    Function createUpdateLager(ByVal ArtNr As String, ByVal LagerOrt As String, ByVal Stk As Double) As String
+        Dim sql As String
         sql = "select * from [grArtikel-Lagerbestand] " & _
         " where lagerOrt=" & LagerOrt & " and ArtNr=" & ArtNr
         Dim existRs
@@ -475,7 +473,7 @@
        '==============================================================================
     ' Nur registrierte Kunden dürfen einkaufen und die preise sehen!
     '==============================================================================
-    Function isPurchasingAllowed()
+    Function isPurchasingAllowed() As Boolean
         isPurchasingAllowed = True
    
         'set deault    

@@ -24,7 +24,7 @@ Response.AddHeader "cache-control", "must-revalidate"
 Response.AddHeader "cache-control", "private"
 Response.AddHeader "pragma", "no-cache"
 
-Dim QUOTE, LT, GT
+ 
 Dim strEditor, strType, strConn, strDisplay, strSearchFields 
 Dim strFields, strTable, strWhere, strGroupBy, strOrderBy, strFieldNames, strFont
 Dim intAllowSort, intOrderBy, intPrimary, intFontSize

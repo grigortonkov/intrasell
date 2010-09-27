@@ -24,9 +24,11 @@
     ''' <param name="ActionButtons"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawWindow(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons)
-        Call drawWindowPart1(Title, Body, State, ActionButtons)
-        Call drawWindowPart2(Title, Body, State, ActionButtons)
+    Function drawWindow(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal ActionButtons As String(,)) As String 
+        Dim html As String
+        html =  drawWindowPart1(Title, Body, State, ActionButtons)
+        html = html + drawWindowPart2(Title, Body, State, ActionButtons)
+        drawWindow = html 
     End Function
 
     ''' <summary>
@@ -38,7 +40,7 @@
     ''' <param name="ActionButtons"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawWindowPart1(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons) As String
+    Function drawWindowPart1(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal ActionButtons As String(,)) As String
         Dim html As String : html = ""
         html = html & "<table border=""1"" width=""750"" cellspacing=""0"" cellpadding=""3"">"""
         html = html & " <tr>"
@@ -69,7 +71,7 @@
     ''' <param name="ActionButtons"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawWindowPart2(ByVal Title, ByVal Body, ByVal State, ByVal ActionButtons) As String
+    Function drawWindowPart2(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal ActionButtons As String(,)) As String
         Dim html As String : html = ""
         
         If Body <> "" Then
@@ -96,7 +98,7 @@
     ' Parameters: 
     ' State: free string representing state of window
     '********************************************************************************
-    Function drawButtonLine(ByVal ActionButtons) As String
+    Function drawButtonLine(ByVal ActionButtons As String(,)) As String
         Dim html As String = ""
         
         html = html & "<table border=""0"" cellspacing=""1"" cellpadding=""0"">"
@@ -126,7 +128,7 @@
     'Changes:
     'Usage:
     '********************************************************************************
-    Sub drawArea(ByVal Title, ByVal Body, ByVal State, ByVal width)
+    Sub drawArea(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal width As String) 
         Response.Write(drawAreaHTML(Title, Body, State, width))
     End Sub
 
@@ -139,7 +141,7 @@
     'Changes:
     'Usage:
     '********************************************************************************
-    Function drawAreaHTML(ByVal Title, ByVal Body, ByVal State, ByVal Width)
+    Function drawAreaHTML(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String) As String
         'Response.Write "Body=[" & Body & "]"
         If Trim(Body) = "" Then
             drawAreaHTML = "" 'Title & " is empty."
@@ -148,7 +150,7 @@
         drawAreaHTML = drawAreaHTMLOval(Title, Body, State, Width)
     End Function
 
-    Function drawAreaHTMLStandard(ByVal Title, ByVal Body, ByVal State, ByVal Width)
+    Function drawAreaHTMLStandard(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String) As String
         Const QuestionMarkWidth = 20
         Dim titlewidth : titlewidth = Width - QuestionMarkWidth
         Dim html
@@ -166,7 +168,7 @@
 
 
     ' draws window with oval corners
-    Function drawAreaHTMLOval(ByVal Title, ByVal Body, ByVal State, ByVal Width)
+    Function drawAreaHTMLOval(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String) As String
         Dim imagesBase : imagesBase = Session("BASENAME") & "/intrasoft/windows/"
         Dim html
         html = html & "<table border=0 width=" & Width & " cellspacing=0 cellpadding=0>"
@@ -199,7 +201,7 @@
     ''' <param name="UrlNo"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawMsgBox(ByVal Title, ByVal Body, ByVal UrlYes, ByVal UrlNo) As String
+    Function drawMsgBox(ByVal Title As String, ByVal Body As String, ByVal UrlYes As String, ByVal UrlNo As String) As String
         
         Dim html As String : html = ""
         html = html & "<table border=""1"" width=""200"" cellspacing=""0"">"
@@ -239,7 +241,7 @@
     ''' <param name="UrlNo"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawErrorBox(ByVal Title, ByVal Body, ByVal UrlYes, ByVal UrlNo) As String
+    Function drawErrorBox(ByVal Title As String, ByVal Body As String, ByVal UrlYes As String, ByVal UrlNo As String) As String
         Dim html As String : html = ""
 
         html = html & "<table border=""1"" width=""200"" cellspacing=""0"">"
@@ -280,8 +282,8 @@
     ''' <param name="Color"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function DrawButton(ByVal ButtonId, ByVal Value, ByVal Link, ByVal Color) As String
-        Dim html As String : html = ""
+    Function DrawButton(ByVal ButtonId As String, ByVal Value As String, ByVal Link As String, ByVal Color As String) As String
+        Dim html As String  = ""
 
         html = html & "<TABLE cellSpacing=0 cellPadding=0 border=1 width=""99"">"
         html = html & "    <TBODY>"
@@ -309,8 +311,8 @@
     ''' <param name="genericDBHTML"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function convertToHTML(ByVal genericDBHTML)
-        Dim curVal
+    Function convertToHTML(ByVal genericDBHTML As String) As String
+        Dim curVal As String
         curVal = Replace(genericDBHTML, "&lt;", "<")
         curVal = Replace(curVal, "&gt;", ">")
         curVal = Replace(curVal, "&nbsp;<br>", Chr(10))
@@ -327,8 +329,8 @@
     ''' <param name="buttons"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawWindowForum(ByVal von, ByVal datum, ByVal review, ByVal buttons)
-        Dim html
+    Function drawWindowForum(ByVal von As String, ByVal datum As String, ByVal review As String, ByVal buttons As String) As String
+        Dim html  As String = "" 
         html = "<table width=""100%"">"
         html = html & "<tr><td width=""50%"" bgColor=""#f7f7f7"">"
         html = html & "<p align=""left""><font size=""1"">" & von & "</font></p></td>"
@@ -351,8 +353,8 @@
     ''' <param name="ImageUrl"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawAreaHTML_WithImage(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String, ByVal ImageUrl As String)
-        Dim html
+    Function drawAreaHTML_WithImage(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String, ByVal ImageUrl As String) As String
+        Dim html As String = ""
         html = html & "<table align=""center"" border=""0"" width=""190"" cellspacing=""0"" cellpadding=""0"">"
         html = html & "  <tr>"
         html = html & "    <td colspan=""3"" align=""center""><img border=""0"" src=""" & ImageUrl & """></td>"
