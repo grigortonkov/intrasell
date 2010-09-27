@@ -1,4 +1,4 @@
-<!--#include file="GenericLanguage.aspx" -->
+ 
 <% 
     ' Generic Database - Error Message
     ' Notice: (c) 1998, 1999 Eli Robillard, All Rights Reserved. 

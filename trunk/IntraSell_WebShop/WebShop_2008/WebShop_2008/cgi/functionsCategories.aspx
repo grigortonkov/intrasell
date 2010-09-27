@@ -4,9 +4,9 @@
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
 
-    Const SUBCATEGORIES_TO_SEARCH_INTO = 2
-    Const BASE_ARTKATNR = 0
-    Const NOT_DEFINED = "n.a."    Const TEMPLATE_ARTKATNR = 9998
+    Const SUBCATEGORIES_TO_SEARCH_INTO As Integer = 2
+    Const BASE_ARTKATNR As Integer = 0
+    Const NOT_DEFINED As String = "n.a."    Const TEMPLATE_ARTKATNR As Integer = 9998
     '******************************************************************************
     ' SimpleListCategories
     ' shows simple down list with categories 

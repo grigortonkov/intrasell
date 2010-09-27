@@ -149,11 +149,11 @@ Select Case Action
 					' Replace tag chars to secure against malicious html
 					tFLD = Replace(tFLD, "<", "&lt;")
 					tFLD = Replace(tFLD, ">", "&gt;")
-					If tFLD & "x" = "x" Then tFLD = Null
+					If tFLD & "x" = "x" Then tFLD = Nothing
 					aFields(x,4) = tFLD
 				Case 7, 135	' Date / Time 
 					If (aFields(x,4) & "x" = "x") OR NOT IsDate(aFields(x,4)) Then
-						aFields(x,4) = Null
+						aFields(x,4) = Nothing
 					Else
 						aFields(x,4) = CDate(aFields(x,4))
 					End If
@@ -299,13 +299,13 @@ Select Case Action
 						Case 129, 130, 200, 201, 202, 203 ' String types
 							aFields(x,4) = Replace(aFields(x,4),chr(34),"&quot;")
 							tFLD = Trim(aFields(x,4))
-							If tFLD & "x" = "x" Then tFLD = Null
+							If tFLD & "x" = "x" Then tFLD = Nothing
 							xrs(x-1) = tFLD
 						Case 7, 135 ' Date / Time 
 							If IsDate(aFields(x,4)) Then
 								xrs(x-1) = CDate(aFields(x,4))
 							Else
-								xrs(x-1) = Null
+								xrs(x-1) = Nothing
 							End If
 					End Select
 				Else

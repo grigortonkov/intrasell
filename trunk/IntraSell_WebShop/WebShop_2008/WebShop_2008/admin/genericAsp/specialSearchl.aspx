@@ -1,6 +1,7 @@
 <!--#include file="../../intrasoft/menu.aspx"-->
 <%
-Dim butArr(0,0)
+Dim butArr As String (,) '(0,0)
+ReDim butArr(0,0)
 'butArr(1,1) = "Set Home"
 'butArr(2,1) = "Get Home"
 'butArr(3,1) = "Go Home"
@@ -10,8 +11,8 @@ Dim butArr(0,0)
 
 '"grArtikelSearchForm.htm"
 
-dim content: content = readTextFile(Server.MapPath (Request("SearchFormFilename")))
-call drawWindow("Suche", content, "Suchen Sie hier.", butArr)
+dim content as String = readTextFile(Server.MapPath (Request("SearchFormFilename")))
+Response.write ( drawWindow("Suche", content, "Suchen Sie hier.", butArr) )
 Response.Flush
 %>     
 </body>

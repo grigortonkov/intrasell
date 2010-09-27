@@ -33,7 +33,7 @@ Response.AddHeader "cache-control", "must-revalidate"
 Response.AddHeader "cache-control", "private"
 Response.AddHeader "pragma", "no-cache"
 
-Dim QUOTE, LT, GT
+ 
 QUOTE = chr(34)
 LT = chr(60)
 GT = chr(62)

@@ -9,24 +9,26 @@
 ' 29 Feb 2000 - Preparation for release
 '				Fix to caching
 '  9 Sep 1998 - First created or released
+Dim arrSubTable
+Dim curVal as String 
 
 ' Prevent caching
 Response.Buffer = True
-Response.ExpiresAbsolute = Now() - 1
-Response.AddHeader "cache-control", "must-revalidate"
-Response.AddHeader "cache-control", "private"
-Response.AddHeader "pragma", "no-cache"
+'Response.ExpiresAbsolute = Now() - 1
+Response.AddHeader ("cache-control", "must-revalidate")
+Response.AddHeader ("cache-control", "private")
+Response.AddHeader ("pragma", "no-cache")
 
 ' Check for an active session
 If Session("dbConn") = "" Then
 	Response.Clear
-	Response.Redirect "GenericError.aspx"
+	Response.Redirect ("GenericError.aspx")
 End If
 
 ' Check user rights
 If Session("dbCanDelete") <> 1 Then
 	Response.Clear
-	Response.Redirect Session("dbViewPage")
+	Response.Redirect (Session("dbViewPage"))
 End If
 
 ' Get info from Session vars (kinda like parameters)
@@ -41,29 +43,30 @@ intFontSize = Session("dbFontSize")
 strBorderColor = Session("dbBorderColor")
 strMenuColor = Session("dbMenuColor")
 strMenuTextColor = Session("dbMenuTextColor")
-intConfirmDelete = Session("dbConfirmDelete")
+dim intConfirmDelete = Session("dbConfirmDelete")
 
 if strFields = "" Then strFields = "*"
 
 ' If we don't get passed a key to delete or there's no unique key field defined then get out.
-If (Request.QueryString("KEY").Count = 0) OR (strKeyField = "") Then
+'Response.write (strKeyField & Request.QueryString("KEY") Is Nothing) : Response.End
+If (Request.QueryString("KEY") is Nothing) OR (strKeyField = "") Then
 	Response.Clear
-	Response.Redirect Session("dbViewPage")
+	Response.Redirect  (Session("dbViewPage"))
 Else
 	strKey = Request.QueryString("KEY")
 	Session("dbcurKey") = strKey
 End If
 
-DoConfirm = True
-If Request.QueryString("CMD").Count > 0 Then
+Dim DoConfirm as Boolean = True
+If Not Request.QueryString("CMD") is Nothing Then
 	' See if we need to confirm the deletion
 	strCMD = Request.QueryString("CMD")
 	If strCMD = "'CON'" Then DoConfirm = False
 End If
 
 ' Open Connection to the database
-set xConn = Server.CreateObject("ADODB.Connection")
-xConn.Open strConn
+xConn = Server.CreateObject("ADODB.Connection")
+xConn.Open (strConn)
 
 ' Open Recordset and get the field info
 strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
@@ -77,11 +80,12 @@ Select Case strType
 		strsql = Replace(strsql,"[","`")
 		strsql = Replace(strsql,"]","`")
 End Select
-set xrs = Server.CreateObject("ADODB.Recordset")
-xrs.Open strsql, xConn, 1, 2
+xrs = Server.CreateObject("ADODB.Recordset")
+xrs.Open (strsql, xConn, 1, 2)
 intFieldCount = xrs.Fields.Count
-Dim aFields()
+Dim aFields(,)
 ReDim aFields(intFieldCount,4)
+Dim x as integer
 For x = 1 to intFieldCount
 	aFields(x, 1) = xrs.Fields(x-1).Name 
 	aFields(x, 2) = xrs.Fields(x-1).Type 
@@ -97,14 +101,14 @@ If strType = "SQL" or strType = "MYSQL" Then
  
 End If
 If strType = "SQL" or strType = "MYSQL" Then
-	xrs.Open strsql, xConn, 2, 3, 1
+	xrs.Open (strsql, xConn, 2, 3, 1)
 Else
-	xrs.Open strsql, xConn, 2, 3
+	xrs.Open (strsql, xConn, 2, 3)
 End If
 
 ' Get the field contents
 For x = 1 to intFieldCount
-	aFields(x,4) = xrs(x-1)
+	aFields(x,4) = xrs(x-1).Value
 Next 
 
 ' Check and set fonts and colours
@@ -116,9 +120,10 @@ If Trim(strMenuTextColor) = "" Then strMenuTextColor = "Black"
 
 If (intConfirmDelete > 0) AND DoConfirm Then
 ' Prevent caching
-Response.ExpiresAbsolute = Now() - 1
-Response.AddHeader "Cache-Control", "must-revalidate"
-Response.AddHeader "Cache-Control", "no-cache" %>
+Response.ExpiresAbsolute = Now().AddDays(-1)
+Response.AddHeader ("Cache-Control", "must-revalidate")
+Response.AddHeader ("Cache-Control", "no-cache")
+ %>
 <html>
 <head>
     <title>
@@ -131,7 +136,7 @@ Response.AddHeader "Cache-Control", "no-cache" %>
     <% Else %>
     <body alink="<%=strMenuTextColor%>" vlink="<%=strMenuTextColor%>" link="<%=strMenuTextColor%>">
         <% End If %>
-        <% If Session("dbBodyTag") & "x" <> "x" Then Response.Write Session("dbBodyTag")%>
+        <% If Session("dbBodyTag") & "x" <> "x" Then Response.Write (Session("dbBodyTag"))%>
         <font face="<%=strFont%>">
             <table cellpadding="1" cellspacing="0" border="0" bgcolor="<%=strBorderColor%>" width="100%">
                 <tr>
@@ -173,7 +178,7 @@ Response.AddHeader "Cache-Control", "no-cache" %>
                                 <table cellpadding="2" cellspacing="2" border="0" width="100%" bgcolor="<%=strBorderColor%>">
                                     <tr>
                                         <td bgcolor="#FFFFCC">
-                                            <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%= Session("dbGenericPath") %>GenericDelete.asp?CMD='CON'&KEY=<%= strKey %>">
+                                            <font size="<%=intFontSize%>" face="<%=strFont%>"><a href="<%= Session("dbGenericPath") %>GenericDelete.aspx?CMD='CON'&KEY=<%= strKey %>">
                                                 <%=txtYes%></a></font>
                                         </td>
                                         <td bgcolor="#FFFFCC">
@@ -196,13 +201,13 @@ Response.AddHeader "Cache-Control", "no-cache" %>
                                         <tr bgcolor="#FFFFCC" align="LEFT">
                                             <td>
                                                 <font size="<%=intFontSize%>" face="<%=strFont%>">
-                                                    <% Response.Write aFields(x,1) %>
+                                                    <% Response.Write (aFields(x,1)) %>
                                             </td>
                                             <td bgcolor="White" align="LEFT">
                                                 <font size="<%=intFontSize%>" face="<%=strFont%>">
                                                     <%			curVal = aFields(x,4)
 			' Blank or null
-			If IsNull(curVal) Then curVal = "&nbsp;"
+			If IsNothing(curVal) Then curVal = "&nbsp;"
 			If Trim(curVal) & "x" = "x" Then curVal = "&nbsp;"
 			' Password
 			If UCase(Left(aFields(x,1),8)) = "PASSWORD" Then curVal = "*****"
@@ -234,26 +239,26 @@ Response.AddHeader "Cache-Control", "no-cache" %>
 						curVal = replace(curVal,chr(10),"&nbsp;<br>")
 				End Select
 			end if
-			Response.Write curVal %>
+			Response.Write (curVal) %>
                                             </td>
                                         </tr>
                                         <% 		End If 
 	Next 
-	Set xrs = Nothing
+	xrs = Nothing
 	xConn.Close
-	Set xConn = Nothing
+    xConn = Nothing
 Else
 	If xrs.EOF Then
 		Response.Clear
-		Response.Redirect Session("dbViewPage")
+		Response.Redirect (Session("dbViewPage"))
 	End If
 	xrs.Delete
 	xrs.Close
-	Set xrs = Nothing
+	xrs = Nothing
 	xConn.Close
-	Set xConn = Nothing
+	xConn = Nothing
 	Response.Clear
-	Response.Redirect Session("dbViewPage")
+	Response.Redirect (Session("dbViewPage"))
 End If
                                         %>
                                     </table>

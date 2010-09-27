@@ -2,19 +2,30 @@
     
     Dim bgcolor
     Dim QUOTE, LT, GT
-    Dim strEditor, strType, strConn, strDisplay, strSearchFields
-    Dim strFields, strTable, strWhere, strGroupBy, strOrderBy, strFieldNames, strFont
-    Dim intAllowSort, intOrderBy, intPrimary, intFontSize
-    Dim strBorderColor, strMenuColor, strMenuTextColor
-    Dim strKeyField, IsSubTable, IsSearch, FormAction
-    Dim SubmitValue, CaseUpdateValue, CaseAddValue, strKey
+   
+    Dim strEditor As String, strType As String, strConn As String, strDisplay As String, strSearchFields As String
+    Dim strFields As String, strTable As String, strWhere As String, strGroupBy As String, strOrderBy As String, strFieldNames As String, strFont As String
+    Dim intAllowSort As Integer, intOrderBy As Integer, intPrimary As Integer, intFontSize As Integer
+    Dim strBorderColor As String, strMenuColor As String, strMenuTextColor As String
+    Dim strKey As String
+    Dim strKeyField As String, IsSubTable As Boolean, IsSearch As Boolean, FormAction
+    Dim SubmitValue, CaseUpdateValue, CaseAddValue
+    
     
     Dim txtAdd, txtAddRecord, txtAdvancedSearch, txtAnyOfTheseWords, txtBackToList, txtDelete, txtDeletePrompt, txtDontCare, txtEdit, txtEditMode, txtError
     Dim txtErrorMsg1, txtErrorMsg2, txtErrorMsg3, txtErrorMsg4, txtErrorMsg5, txtErrorMsg6, txtErrorMsg7, txtErrorMsg8
     Dim txtExactPhrase, txtExit, txtFalse, txtInfo, txtList, txtNextPage, txtNo, txtOf, txtPreviousPage, txtRecords, txtRefresh, txtReset
     Dim txtSearch, txtSearchFailMsgA, txtSearchFailMsgB, txtSearchFor, txtSearchSubmit, txtTo, txtTotal, txtTrue, txtUpdate, txtView, txtYes
 
-    
+    'Generic Exit 
+    Dim doGoSub As Boolean
+    Dim doReset As Boolean
+    Dim dbGoSub As Boolean
+    Dim subkey As String
+    Dim strCmd As String
+    Dim xConn, xrs
+    Dim strsql As String
+    Dim intFieldCount As Integer
     ' Generic Database - German Language File
     ' Translator - Sven Hacker and Thomas Raoul
     ' Last Updated: 06 July 1999

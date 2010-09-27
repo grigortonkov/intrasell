@@ -1,6 +1,14 @@
 <!--#include virtual="/intrasoft/menu.aspx"-->
 <!--#include file="GenericLanguage.aspx" -->
 <% 
+Dim Action as String 
+Dim strDefault as String 
+Dim arrSubTable 
+Dim strBodyTag as String 
+Dim strCombo as String 
+Dim arrCombo 
+Dim y 
+
 ' Generic Database - Edit Record
 ' Notice: (c) 1998, 1999 Eli Robillard, All Rights Reserved. 
 ' E-Mail: erobillard@ofifc.org
@@ -23,7 +31,7 @@ Response.AddHeader ( "pragma", "no-cache")
 ' Check for an active session
 If Session("dbConn") = "" Then
 	Response.Clear
-	Response.Redirect ("GenericError.asp")
+	Response.Redirect ("GenericError.aspx")
 End If
 
 ' Get info from Session vars (kinda like parameters)
@@ -70,7 +78,7 @@ If Trim(strMenuColor) = "" Then strMenuColor = "#99CCCC"
 If Trim(strMenuTextColor) = "" Then strMenuTextColor = "Black"
 if strFields = "" then strFields = "*"
 
-If Request.QueryString("KEY").Split(",").Length > 0 Then
+If not Request.QueryString("KEY") is nothing Then
 	' Quick security check for Edit rights
 	If Not(Session("dbCanEdit") = 1) Then
 		Response.Clear
@@ -79,7 +87,7 @@ If Request.QueryString("KEY").Split(",").Length > 0 Then
 	strKey = Request.QueryString("KEY")
 	Session("dbcurKey") = strKey
 	Action = "GET"
-ElseIf Request.QueryString("CMD").Count > 0 Then
+ElseIf not Request.QueryString("CMD") is Nothing Then
 	strCMD = Request.QueryString("CMD")
 	' Quick security check for Add rights
 	Select Case strCmd
@@ -89,7 +97,7 @@ ElseIf Request.QueryString("CMD").Count > 0 Then
 				if NOT (Session("dbDispNew") & "x" = "x") then strDisplay = Session("dbDispNew")
 			else
 				Response.Clear
-				Response.Redirect Session("dbViewPage")
+				Response.Redirect (Session("dbViewPage"))
 			end if
 		Case "SEARCH"
 			Action = "Search"
@@ -104,8 +112,8 @@ Else
 End If
 
 ' Open Connection to the database
-set xConn = Server.CreateObject("ADODB.Connection")
-xConn.Open strConn
+xConn = Server.CreateObject("ADODB.Connection")
+xConn.Open (strConn)
 
 ' Open Recordset and get the field info
 strsql = "SELECT " & strFields & " FROM [" & strTable & "]"
@@ -119,11 +127,13 @@ Select Case strType
 		strsql = Replace(strsql,"[","`")
 		strsql = Replace(strsql,"]","`")
 End Select
-set xrs = Server.CreateObject("ADODB.Recordset")
-xrs.Open strsql, xConn
+ xrs = Server.CreateObject("ADODB.Recordset")
+xrs.Open (strsql, xConn)
 intFieldCount = xrs.Fields.Count
-Dim aFields()
+Dim aFields(,)
 ReDim aFields(intFieldCount,4)
+Dim arrFieldNames 
+Dim x as Integer
 If Trim(Session("dbFieldNames")) & "x" = "x" Then
 	ReDim arrFieldNames(intFieldCount)
 	For x = 1 to intFieldCount
@@ -141,12 +151,15 @@ Else
 	arrFieldNames = Split(Session("dbFieldNames"), ",")
 End If
 xrs.Close
-Set xrs = Nothing
+xrs = Nothing
 
 ' Load the results of the last form view (GET or UPDATE)
 For x = 1 to intFieldCount
 	aFields(x,4) = Request.Form(aFields(x,1))
 Next 
+
+Dim tFLD as String = ""
+Dim xint as Integer 
 
 Select Case Action
 	Case CaseAddValue ' Insert the new record into the database
@@ -174,29 +187,29 @@ Select Case Action
 					aFields(x,4) = Replace(aFields(x,4),"<","&lt;")
 					aFields(x,4) = Replace(aFields(x,4),">","&gt;")
 					tFLD = Trim(aFields(x,4))
-					If tFLD & "x" = "x" Then tFLD = Null
+					If tFLD & "x" = "x" Then tFLD = Nothing
 					aFields(x,4) = tFLD
 				Case 7, 135	' Date / Time Stamp, usually created with the Now() function
 					If (aFields(x,4) & "x" = "x") OR NOT IsDate(aFields(x,4)) Then
-						aFields(x,4) = Null
+						aFields(x,4) = Nothing
 					Else
 						aFields(x,4) = CDate(aFields(x,4))
 					End If
 			End Select
 		Next
 		
-		Set xrs =  Server.CreateObject("ADODB.Recordset")
+		xrs =  Server.CreateObject("ADODB.Recordset")
 		if NOT((strType = "UDF") or (strType = "SQL")) then strTable = "[" & strTable & "]"
 		' 2 for Open Dynamic, 3 for Optimistic Locking, 2 for Table
-		xrs.Open strTable, xConn, 2, 3, 2
+		xrs.Open (strTable, xConn, 2, 3, 2)
 		xrs.AddNew
 
 		' Store the values to the table
 			For x = 1 to intFieldCount ' do not update key fields 
 				'TONKOV: changed because we want to edit IDs too 
 				If x <> strKeyField OR ucase(xrs.Fields(x-1).Name) = ucase(Session("dbKeyFieldToInsert"))  Then ' the allows key field to be inserted too
-					Response.Write "<br>xrs.Fields(" & x & "-1)=" & aFields(x,4) 
-					Response.Write "<br>name: " &  xrs.Fields(x-1).Name
+					Response.Write ("<br>xrs.Fields(" & x & "-1)=" & aFields(x,4) )
+					Response.Write ("<br>name: " &  xrs.Fields(x-1).Name)
 					if xrs.Fields(x-1).Name <> "rowguid" then 'TONKOV: donot update or add to replication fields  
 						xrs.Fields(x-1) = aFields(x,4)
 					end if 
@@ -211,20 +224,22 @@ Select Case Action
 			Session("ErrNumber") = 99
 			Session("ErrDesc") = Err.Description 
 			Session("ErrSource") = Err.Source 
-			Session("ErrLine") = Err.Line 
+			'Session("ErrLine") = Err.Line 
 			Session("ErrMsg") = "Query: " & strsql
 			Response.Clear
-			Response.Redirect "GenericError.aspx"
+			Response.Redirect ( "GenericError.aspx" )
 		End If
 		
 		xrs.Close
-		Set xrs = Nothing
+		xrs = Nothing
 		xConn.Close
-		Set xConn = Nothing
+		xConn = Nothing
 		Response.Clear
 					
-		if Session("dbOnlyAdd") = 1 Then Response.Redirect Session("dbExitPage")
-		Response.Redirect Session("dbViewPage")
+		if Session("dbOnlyAdd") = 1 Then Response.Redirect (Session("dbExitPage"))
+		Response.Redirect (Session("dbViewPage"))
+
+   
 
 	Case "NEW": ' Load a blank form
 		SUBMITVALUE = txtAdd
@@ -292,12 +307,12 @@ Select Case Action
 				strsql = Replace(strsql,"[","`")
 				strsql = Replace(strsql,"]","`")
 		end select
-		set xrs = Server.CreateObject("ADODB.Recordset")
-		xrs.Open strsql, xConn
+		xrs = Server.CreateObject("ADODB.Recordset")
+		xrs.Open ( strsql, xConn )
 		If xrs.EOF Then
 			Response.Clear
-			if (Session("dbOnlyAdd")=1) OR (Session("dbOnlyEdit")=1) then Response.Redirect Session("dbExitPage")
-			Response.Redirect Session("dbViewPage")
+			if (Session("dbOnlyAdd")=1) OR (Session("dbOnlyEdit")=1) then Response.Redirect (Session("dbExitPage"))
+			Response.Redirect (Session("dbViewPage"))
 		End If
 		xrs.MoveFirst
 
@@ -310,12 +325,12 @@ Select Case Action
 					aFields(x,4) = "No"
 				End If
 			Else
-				aFields(x,4) = xrs(x-1)
+				aFields(x,4) = xrs(x-1).Value
 			End If
 		Next 
 
 		xrs.Close
-		Set xrs = Nothing
+		xrs = Nothing
 
 	Case CaseUpdateValue: ' Update
 		' Open record
@@ -330,12 +345,12 @@ Select Case Action
 				strsql = Replace(strsql,"[","`")
 				strsql = Replace(strsql,"]","`")
 		end select
-		set xrs = Server.CreateObject("ADODB.Recordset")
-		xrs.Open strsql, xConn, 1, 2
+	    xrs = Server.CreateObject("ADODB.Recordset")
+		xrs.Open (strsql, xConn, 1, 2)
 
 		If xrs.EOF Then
 			Response.Clear
-			Response.Redirect Session("dbViewPage")
+			Response.Redirect (Session("dbViewPage"))
 		End If
 
 		For x = 1 to intFieldCount
@@ -383,7 +398,7 @@ Select Case Action
 							If IsDate(aFields(x,4)) Then
 								xrs(x-1) = CDate(aFields(x,4))
 							Else
-								xrs(x-1) = Null
+								xrs(x-1) = Nothing
 							End If
 						Case 11
 						' Boolean True/False
@@ -399,8 +414,8 @@ Select Case Action
 							tFLD = Replace(tFLD,chr(34),"&quot;")
 							tFLD = Replace(tFLD,"<","&lt;")
 							tFLD = Replace(tFLD,">","&gt;")
-							If Trim(tFLD) & "x" = "x" Then tFLD = Null
-							Response.Write aFields(x,1)
+							If Trim(tFLD) & "x" = "x" Then tFLD = Nothing
+							Response.Write (aFields(x,1))
 							xrs(x-1) = tFLD
 					End Select
 				Else
@@ -410,13 +425,13 @@ Select Case Action
 		Next
 		xrs.Update
 		xrs.Close
-		Set xrs = Nothing
+		 xrs = Nothing
 		xConn.Close
-		Set xConn = Nothing
+		  xConn = Nothing
 		Response.Clear
 
-		If Session("dbOnlyEdit") = 1 then Response.Redirect Session("dbExitPage")
-		Response.Redirect Session("dbViewPage")
+		If Session("dbOnlyEdit") = 1 then Response.Redirect (Session("dbExitPage"))
+		Response.Redirect ( Session("dbViewPage") )
 End Select
 %>
 <html>
@@ -431,7 +446,7 @@ End Select
     <% Else %>
     <body alink="<%=strMenuTextColor%>" vlink="<%=strMenuTextColor%>" link="<%=strMenuTextColor%>">
         <% End If %>
-        <% If strBodyTag & "x" <> "x" Then response.Write strBodyTag%>
+        <% If strBodyTag & "x" <> "x" Then response.Write (strBodyTag)%>
         <!-- Header -->
         <% If Session("dbHeader") = 1 Then %>
         <!--#include file="GenericHeader.aspx"-->
@@ -445,7 +460,7 @@ End Select
                                 <td bgcolor="<%=strMenuColor%>" align="RIGHT" width="*">
                                     <font size="3" face="<%=strFont%>" color="<%=strMenuTextColor%>">
                                         <% if (Session("dbOnlyAdd")=1) OR (Session("dbOnlyEdit")=1) then 
-		if Session("dbBackText") & "x" <> "x" then %>
+                                            if Session("dbBackText") & "x" <> "x" then %>
                                         <a href="<%=Session("dbExitPage")%>">
                                             <%=Session("dbBackText")%></a>
                                         <% Else %>
@@ -463,7 +478,11 @@ End Select
                                     <font size="5" face="<%=strFont%>"><strong><em>
                                         <%=Session("dbTitle")%>
                                         -
-                                        <%if NOT IsSearch then Response.Write txtEditMode else Response.Write txtAdvancedSearch end if %></em></strong></font>
+                                        <%if NOT IsSearch then 
+                                        Response.Write (txtEditMode) 
+                                        else 
+                                        Response.Write (txtAdvancedSearch) 
+                                        end if %></em></strong></font>
                                 </td>
                             </tr>
                         </table>
@@ -495,16 +514,16 @@ For x = 1 to intFieldCount
                                 </tr>
                                 <input type="HIDDEN" name="<%=aFields(x,1)%>" value="<%=aFields(x,4)%>">
                                 <%		Else
-			Response.Write "<INPUT TYPE=""HIDDEN"" NAME=" & QUOTE & aFields(x,1) & QUOTE & " VALUE=" & QUOTE & aFields(x,4) & QUOTE & ">"
+			Response.Write ("<INPUT TYPE=""HIDDEN"" NAME=" & QUOTE & aFields(x,1) & QUOTE & " VALUE=" & QUOTE & aFields(x,4) & QUOTE & ">")
 		End If
 	Else %>
                                 <tr bgcolor="#FFFFCC" align="LEFT">
                                     <td>
                                         <font size="<%=intFontSize%>" face="<%=strFont%>">
-                                            <% Response.Write arrFieldNames(x-1)
+                                            <% Response.Write ( arrFieldNames(x-1) )
 				' Display a red * if the field is required
 				If NOT (Session("dbRequiredFields") = "" OR Action = "SEARCH") Then
-					If Mid(Session("dbRequiredFields"), x, 1) = "1" Then Response.Write "<font color=red>*</red>"
+					If Mid(Session("dbRequiredFields"), x, 1) = "1" Then Response.Write ("<font color=red>*</red>")
 				End If %>
                                     </td>
                                     <% 		If aFields(x,1) = "Password" Then %>
@@ -537,21 +556,24 @@ For x = 1 to intFieldCount
                                                         <%=arrCombo(y+1)%>
                                                         <%
 								else %>
-                                                        <option value="<%=arrCombo(y)%>" <%if (aFields(x,4) & "x" <> "x") then if (CInt(arrCombo(y))=CInt(aFields(x,4))) then Response.Write" SELECTED" %>>
+                                                        <option value="<%=arrCombo(y)%>" <%if (aFields(x,4) & "x" <> "x") then if (CInt(arrCombo(y))=CInt(aFields(x,4))) then Response.Write (" SELECTED") %>>
                                                             <%=arrCombo(y+1)%>
                                                             <%
 								end if %>
                                                             <%							case 129, 130, 200, 201, 202, 203 %>
-                                                            <option value="<%=arrCombo(y)%>" <%if (aFields(x,4) & "x" <> "x") then if (CStr(arrCombo(y))=Cstr(aFields(x,4))) then Response.Write" SELECTED" %>>
+                                                            <option value="<%=arrCombo(y)%>" <%if (aFields(x,4) & "x" <> "x") then if (CStr(arrCombo(y))=Cstr(aFields(x,4))) then Response.Write (" SELECTED") %>>
                                                                 <%=arrCombo(y+1)%>
                                                                 <%						end select
 					next
 				end if
 				' TABLE 
 				If (Trim(UCase(arrCombo(0))) = "TABLE") OR (Trim(UCase(arrCombo(0))) = "TBL") Then
-					strComboTable = Trim(arrCombo(1))
-					strComboValueFldNo = CInt(arrCombo(2))-1
-					strComboDescFldNo = CInt(arrCombo(3))-1
+					Dim strComboTable = Trim(arrCombo(1))
+					Dim strComboValueFldNo = CInt(arrCombo(2))-1
+					Dim strComboDescFldNo = CInt(arrCombo(3))-1
+					Dim strComboValueDefault
+					Dim strComboDescDefault 
+					
 					If UBound(arrCombo) >= 5 Then
 						strComboValueDefault = Trim(arrCombo(4))
 						strComboDescDefault = Trim(arrCombo(5))
@@ -570,8 +592,8 @@ For x = 1 to intFieldCount
 						strsql = Replace(strsql,"[","")
 						strsql = Replace(strsql,"]","")
 					End If
-					set tlkpRs = Server.CreateObject("ADODB.Recordset")
-					tlkpRs.Open strsql, xConn, 2, 3 
+					Dim tlkpRs = Server.CreateObject("ADODB.Recordset")
+					tlkpRs.Open (strsql, xConn, 2, 3 )
 					if IsSearch then %>
                                                                 <option value=" ">&nbsp;
                                                                     <%					end if
@@ -580,14 +602,14 @@ For x = 1 to intFieldCount
                                                                         <%=strComboDescDefault%>
                                                                         <%					end if	
 					while NOT tlkpRs.EOF %>
-                                                                        <option value="<%=tlkpRs.Fields(strComboValueFldNo)%>" <% If tlkpRs.Fields(strComboValueFldNo)=aFields(x,4) Then Response.Write" SELECTED" %>>
+                                                                        <option value="<%=tlkpRs.Fields(strComboValueFldNo)%>" <% If tlkpRs.Fields(strComboValueFldNo)=aFields(x,4) Then Response.Write(" SELECTED") %>>
                                                                             <%=tlkpRs.Fields(strComboDescFldNo)%>
                                                                             <%							tlkpRs.MoveNext
-					wend
+					end while 
 					tlkpRs.Close
-					Set tlkpRs = Nothing
+					tlkpRs = Nothing
 				End If
-				Response.Write "</SELECT></td>"
+				Response.Write ("</SELECT></td>")
 			Else
 				Select Case aFields(x,2) 
 					Case 2 ' 2-Byte Integer %>
@@ -660,7 +682,7 @@ For x = 1 to intFieldCount
                                 <% 	End If
 Next
 xConn.Close
-Set xConn = Nothing
+xConn = Nothing
                                 %>
                             </table>
                         </td>
