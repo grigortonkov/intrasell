@@ -73,10 +73,7 @@
     Dim BASENAME As Object ': BASENAME = Session("BASENAME")
     Dim dbType ': dbType = Session("dbType")
     Dim objConnection As Object
- 
- 
- 
-    
+
     '********************************************************************
     'returns string that represents date in SQL 92 format for access or SQL server
     '********************************************************************
@@ -1349,7 +1346,7 @@
         Dim absLinkToDefault As String = basename & "/default.aspx"
         absLinkToDefault = Replace(htmlCode, "default.aspx", absLinkToDefault)
         absLinkToDefault = Replace(absLinkToDefault, "default.asp?", "default.aspx?")
-        absLinkToDefault = Replace(absLinkToDefault, "default.asp'", "default.aspx''")
+        absLinkToDefault = Replace(absLinkToDefault, "default.aspx'", "default.aspx''")
         makeRelLinksAbsolute = Replace(absLinkToDefault, "default.asp""", "default.aspx""")
     End Function
 

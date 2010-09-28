@@ -1,0 +1,4 @@
+<%
+DB.Close
+    DB = Nothing
+%>
