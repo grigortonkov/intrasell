@@ -1,7 +1,8 @@
-<%@ Language=VBScript %>
-<%Response.buffer=true
-Level=1%>
-<!--#include File ="includes/check.inc"-->
+<%@ Language="VBScript" AspCompat="true" %>
+<%
+Response.buffer=true
+Dim Level=1%>
+<!--#include File ="includes/check.inc.aspx"-->
 <HTML>
 <HEAD>
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
@@ -10,15 +11,17 @@ Level=1%>
 	</HEAD>
 
 
-<BODY><!--#include File ="includes/banner.inc"--><!--#include File ="includes/upload.inc"-->
+<BODY>
+<!--#include File ="includes/banner.inc.aspx"-->
+<!--#include File ="includes/upload.inc.aspx"-->
 		<div align="center">
 			<%
-Set fso = Server.CreateObject("Scripting.FileSystemObject")	
+dim fso = Server.CreateObject("Scripting.FileSystemObject")	
 Path=request.querystring("Path")
 If Right(Path,1)="/" AND Path<>"/" Then Path=Left(Path,Len(Path)-1)
 response.write("<font color='white'><b>" & Path & "</font></b><br>")
-Var =InstrRev(Path,"/")
-dirup=left(Path,Var)
+Dim Var =InstrRev(Path,"/")
+Dim dirup=left(Path,Var)
 response.write ("[<a href='browser.asp?path=" & dirup & "'>Directory up</a>]") 
 %>
  [<a href="browser.asp?path=/">Root Directory</a>]<br>
@@ -42,13 +45,19 @@ response.write ("[<a href='browser.asp?path=" & dirup & "'>Directory up</a>]")
 			</table>
 			<hr>
 			<% 
-aktion=request.querystring("aktion")
-Set ts=fso.GetFolder(Server.MapPath(Path))
+
+Dim x as integer 
+Dim fname as String 
+Dim SubF , WholeSubF
+Dim aktion=request.querystring("aktion")
+Dim ts=fso.GetFolder(Server.MapPath(Path))
+Dim File, FileType, WholeFile 
+
 Select Case aktion
 Case "upload"		
 	If Len(Request.TotalBytes) > 0 Then
 	Response.Write("File(s) will be uploaded onto the directory " & Path)
-	Init
+	Init (FileCount, FieldCount, Path, Dict)
 	For x=1 to int(request.querystring("NumOfUploads"))	
 		fName="fName" & x
 		Server.ScriptTimeout = 250
@@ -98,7 +107,7 @@ end if%>
 					<td colspan="3"><%="<a href='browser.asp?path=" & WholeSubF & "'>" & SubF.Name & "</a>"%></td>
 					<td width="15%">
 						<div align="right">
-							<%Response.Write SubF.DateLastModified%></div>
+							<%Response.Write (SubF.DateLastModified) %></div>
 					</td>
 					<td width="5%"></td>
 					<td width="5%">
@@ -134,11 +143,11 @@ end if
 					<td width="5%">
 						<div align="right">
 <%if File.Size <1024 Then
-    Response.Write File.Size & " B"
+    Response.Write (File.Size & " B")
 ElseIf File.Size < 1048576 Then
-    Response.Write Round(File.Size / 1024.1) & " KB"
+    Response.Write (Math.Round(File.Size / 1024.1) & " KB")
 Else
-    Response.Write Round((File.Size/1024)/1024.1) & " MB"
+    Response.Write (Math.Round((File.Size/1024)/1024.1) & " MB")
 End if
 Var=InstrRev(File.Name,".")
 FileType=Right(File.Name,Len(File.Name)-Var)
@@ -146,7 +155,7 @@ FileType=Right(File.Name,Len(File.Name)-Var)
 					</td>
 					<td width="15%">
 						<div align="right">
-							<%Response.Write File.DateLastModified%></div>
+							<%Response.Write (File.DateLastModified) %></div>
 					</td>
 					<td width="5%">
 						<div align="center">
@@ -175,6 +184,7 @@ response.write ("    <font size='-2'><a href='" & WholeFile & "' target=_blank'>
 			<hr>
 			<p><b>Upload:<br>
 <%
+Dim NumOfUploads
 If request.querystring("NumOfUploads")="" Or int(request.querystring("NumOfUploads"))<1 then NumOfUploads=1 Else NumOfUploads=int(request.querystring("NumOfUploads"))
 %>
 
@@ -191,6 +201,6 @@ Next
 	</BODY>
 </HTML>
 <%
-	Set fso = Nothing
-	Set ts = Nothing
+	 fso = Nothing
+	 ts = Nothing
 %>

@@ -1,7 +1,7 @@
-<%@ Language=VBScript %>
+<%@ Language="VBScript" AspCompat="true" %>
 <%Response.buffer=true
 Level=1%>
-<!--#include File ="includes/check.inc"-->
+<!--#include File ="includes/check.inc.aspx"-->
 <HTML>
 <HEAD>
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
@@ -12,10 +12,11 @@ Level=1%>
 
 <BODY>
 		<div align="center">
-			<!--#include File ="includes/banner.inc"-->[<a href="javascript:parent.close()">Close Window (File not saved!)</a>]
+			<!--#include File ="includes/banner.inc.aspx"-->
+			[<a href="javascript:parent.close()">Close Window (File not saved!)</a>]
 			<hr>
 			<%
-Set fso = Server.CreateObject("Scripting.FileSystemObject")	
+ fso = Server.CreateObject("Scripting.FileSystemObject")	
 File=request.querystring("File")
 response.write("<font color='white'><b>" & File & "</font></b><hr>") 
 aktion=request.querystring("aktion")
@@ -41,6 +42,6 @@ end if
 	</BODY>
 </HTML>
 <%
-	Set fso = Nothing
-	Set ts = Nothing
+	 fso = Nothing
+	 ts = Nothing
 %>

@@ -1,7 +1,7 @@
-<%@ Language=VBScript %>
+<%@ Language="VBScript" AspCompat="true" %>
 <%Response.buffer=true
 Level=1%>
-<!--#include File ="includes/check.inc"-->
+<!--#include File ="includes/check.inc.aspx"-->
 <HTML>
 <HEAD>
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
@@ -28,7 +28,7 @@ Case "ShowTables"
 End Select
 
 DB.Close
-Set DB=Nothing
+DB=Nothing
 %>In this Version of aspEdit the Database-Editor isn't fully supported. Visit my <a href="http://saxsucks.go.cc" target="_blank">WebSite</a> for the latest Version.
 	</BODY>
 </HTML>
