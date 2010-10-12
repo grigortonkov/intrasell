@@ -1,13 +1,22 @@
 #summary Hilfe: Preisverwaltung.
 
-= Introduction =
+= Einführung =
+
+
+= Preisgestalltung =
 
 Add your content here.
 
 
-= Details =
+= Vertriebskosten =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Tool für die Eingabe von Transport und Zahlungskosten:
+
+•	Typ auswählen (Payment od. TRNASPORT) 
+•	Zahl. Methode wählen
+•	Destination wählen
+•	Gewicht von bis eingeben 
+•	Fix Preis od. VK Preis nach Gewicht eingeben
+•	Gewicht beim Artikel erfassen.
+
+Ergebnis: im Warenkorb wird nun je nach Warenkorbgewicht ein anderer Preis berechnet. 
