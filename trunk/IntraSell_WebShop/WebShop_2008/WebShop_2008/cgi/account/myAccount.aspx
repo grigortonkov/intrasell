@@ -4,8 +4,8 @@
     ' - Log IN
     ' - ChangePassword
     
-    Const BACKTOPAGE_AFTER_LOGIN_ANMELDEN = "backToPageAfterLoginOrAnmelden"
-    Const BACKTOPAGE_AFTER_ERROR = "backToPageAfterError"
+    Const BACKTOPAGE_AFTER_LOGIN_ANMELDEN As String = "backToPageAfterLoginOrAnmelden"
+    Const BACKTOPAGE_AFTER_ERROR As String = "backToPageAfterError"
 
     'saves in the session backToPage in order to return to it later
     
@@ -23,10 +23,10 @@
     End If
 
     If Request("CHANGEEMAIL") <> "" Then
-        Call changeEmail()
+        Call ChangeEmail()
     End If
 
-    Dim artKatNr : artKatNr = Session("CURRENT_ARTKATNR")
+    Dim artKatNr As String = Session("CURRENT_ARTKATNR")
 
     Dim accountLoginPageHTML As String
     Dim accountPageHTML As String
@@ -71,7 +71,7 @@
     If getLOGIN() <> "" Then 'the user gets in his private area
 
         If Len(Request("B2")) Then 'user info update 
-            Call saveBothAddresses()
+            Call saveBothAddresses(False, False)
         End If
      
         If Session(BACKTOPAGE_AFTER_LOGIN_ANMELDEN) <> "" Then 'another page than myAccount.htm is requested after login or anmelden 
@@ -84,14 +84,11 @@
      
         'call addUserPoints(getLOGIN(),COUNT_POINTS_ACCOUNT_USAGE,REASON_SEND_ACCOUNT_USAGE)
         'show user page 
-        Dim goToPage : goToPage = "skins/skin" & SkinNumber & "/pages/" & "account/myAccount.htm"
+        Dim goToPage As String = "skins/skin" & SkinNumber & "/pages/" & "account/myAccount.htm"
      
         'START IMMO: Different Account pages according the branche
-        'default ofVars 
-        If VARVALUE("SHOP_USE_BRANCHE_ACCOUNT") <> "true" And VARVALUE("SHOP_USE_BRANCHE_ACCOUNT") <> "false" Then
-            Call SETVARVALUE("SHOP_USE_BRANCHE_ACCOUNT", "false")
-        End If
-        If VARVALUE("SHOP_USE_BRANCHE_ACCOUNT") = "true" Then
+
+        If VARVALUE_DEFAULT("SHOP_USE_BRANCHE_ACCOUNT", "false") = "true" Then
             Dim brSQL : brSQL = "select bezeichnung from ofAdressen a, grBranchen b where a.branche = b.brnr and a.idnr=" & getLOGIN()
             Dim brancheSuffix : brancheSuffix = firstvalue(brSQL)
             If brancheSuffix <> "N.A." Then

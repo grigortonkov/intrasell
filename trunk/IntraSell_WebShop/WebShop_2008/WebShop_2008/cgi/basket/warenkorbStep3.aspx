@@ -6,8 +6,8 @@
 %>
 <p align="left">
     <%
-        Dim EmailStep3, PasswordStep3, kdnrStep3
-        Dim landOfCalculation
+        Dim EmailStep3 As String, PasswordStep3 As String, kdnrStep3 As Long
+        Dim landOfCalculation As String
 
         payMode = Session("PayMode")
         postMode = Session("PostMode")
@@ -57,28 +57,48 @@
                 </tr>
                 <tr>
                     <td width="50%" align="left">
-                        <%=printAddress(KundNrStep3,"LI",TRUE)%>
+                        <%=printAddress(KundNrStep3,"LI",TRUE, False)%>
                     </td>
                     <td width="50%" align="left">
-                        <%=printAddress(KundNrStep3,"AR",TRUE)%>
+                        <%=printAddress(KundNrStep3,"AR",TRUE, False)%>
                     </td>
                 </tr>
                 <tr>
                     <td width="50%" colspan="1">
                         <p align="center">
-                            <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=LI">
-                                <%=getTranslation("aendern")%>
+                            <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=LI&mode=update" class='button'>
+                                <%=getTranslation("Adresse aendern")%>
                             </a>
+                            &nbsp;
+                             <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=LI&mode=new" class='button'>
+                                <%=getTranslation("neue Adresse anlegen")%>
+                            </a>
+                            
                         </p>
                     </td>
                     <td width="50%" colspan="1">
                         <p align="center">
-                            <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR">
-                                <%=getTranslation("aendern")%>
+                            <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=update" class='button'>
+                                <%=getTranslation("Adresse aendern")%>
                             </a>
+                            &nbsp;
+                            <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=new" class='button'>
+                                <%=getTranslation("neu Adresse anlegen")%>
+                            </a>
+                            
                         </p>
                     </td>
                 </tr>
+                
+                  <tr>
+                    <td width="50%" align="left">
+                        <%=printAddress(KundNrStep3, TypeOfAddress.SHIPPING2, True, True, True)%>
+                    </td>
+                    <td width="50%" align="left">
+                        <%=printAddress(KundNrStep3, TypeOfAddress.INVOICE2, True, True, True)%>
+                    </td>
+                </tr>
+                
             </table>
         </center>
     </div>

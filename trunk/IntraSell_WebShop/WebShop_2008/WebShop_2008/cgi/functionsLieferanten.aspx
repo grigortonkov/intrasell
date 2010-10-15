@@ -4,11 +4,11 @@
     ' addressType = "LI","AR", "" basis
     ' showMessages BOOLEAN
     '*************************************************************************
-    Function printAddressLieferant(ByVal idnr)
+    Function printAddressLieferant(ByVal idnr As Long) As String
         Dim rsKUND
-        Dim sql
-        Dim html
-        Dim message : message = ""
+        Dim sql As String
+        Dim html As String
+        Dim message As String = ""
 
         sql = "Select * from lieferantenAdressen where IDNR=" & idnr
         rsKUND = objConnectionExecute(sql)

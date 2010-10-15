@@ -12,8 +12,8 @@
 <input type="hidden" name="PageToShow" value="createUpdateDeliveryAddresses">
 <input type="hidden" name="action" value="saveAddresses">
 <%
-    Dim res1 : res1 = saveProfile(SHIPPING)
-    Dim res2 : res2 = saveProfile(INVOICE)
+    Dim res1 : res1 = saveProfile(TypeOfAddress.SHIPPING)
+    Dim res2 : res2 = saveProfile(TypeOfAddress.INVOICE)
     'kdnr = saveBothAddresses()    
     'Response.Write res1 & " und " &   res2
     If res1 = 0 Or res2 = 0 Then ' adress saving failed /missing data 
@@ -31,22 +31,20 @@ Else
         EmailOld = TABLEVALUE("ofAdressen", "IDNR", Session("LOG_IN"), "Email")
         PasswordOld = TABLEVALUE("ofAdressen", "IDNR", Session("LOG_IN"), "Passwort")
     End If
-             
+
 %>
 </form>
 <center>
     <a href="default.aspx?pageToShow=warenkorbStep3&emailOld=<%=EmailOld%>&passwordOld=<%=PasswordOld%>">
         WEITER ZUM WARENKORB </a>
 </center>
-<%  Response.Redirect("default.aspx?pageToShow=warenkorbStep3&emailOld=" & EmailOld & "&passwordOld=" & PasswordOld)%>
-<%
+<% 
+
+    Response.Redirect("default.aspx?pageToShow=warenkorbStep3&emailOld=" & EmailOld & "&passwordOld=" & PasswordOld)
 End If
-
-
-
+ 
 'Response.Write "Kdnr=[" & kdnr & "]"
-
-    
+ 
 Dim EmailStep3 As String
 Dim PasswordStep3 As String
 
@@ -69,10 +67,10 @@ Else 'no action requested
     </tr>
     <tr>
         <td width="50%">
-            <%=drawEmptyProfileForm(SHIPPING, true)%>
+            <%=drawEmptyProfileForm(TypeOfAddress.SHIPPING, True, getLogin())%>
         </td>
         <td width="50%">
-            <%=drawEmptyProfileForm(INVOICE, true)%>
+            <%=drawEmptyProfileForm(TypeOfAddress.INVOICE, True, getLogin())%>
         </td>
     </tr>
     <tr>

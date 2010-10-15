@@ -134,7 +134,7 @@
 		</tag>
 		<tag>
 			<name>[NEWSLETTER]</name>
-			<description>empty</description>
+			<description>Newsletter register/unregsiter Form</description>
 		</tag>
 		<tag>
 			<name>[PRODUCTLIST]</name>
@@ -580,6 +580,10 @@
 			<name>[USER_ADDRESS_SHIPPING]</name>
 			<description>Attribute</description>
 		</tag>
+    <tag>
+      <name>[USER_ADDRESS_SHIPPING_OLD]</name>
+      <description>Attribute</description>
+    </tag>
 		<tag>
 			<name>[NEWSLETTER_COUNT_AKTIVE]</name>
 			<description>Attribute</description>

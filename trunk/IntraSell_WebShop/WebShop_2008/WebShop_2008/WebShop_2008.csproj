@@ -1568,6 +1568,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cgi\calls\App_LocalResources\unregisterNewsletter.aspx.resx" />
     <EmbeddedResource Include="cgi\functionsStatistics.aspx.resx" />
   </ItemGroup>
   <ItemGroup>

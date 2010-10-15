@@ -45,11 +45,11 @@
                             
         html = html & " " & getTranslation("Lieferadresse") & ":"
         html = html & " <br>"
-        html = html & " " & printAddress(knd, "LI", False) & ""
+        html = html & " " & printAddress(knd, TypeOfAddress.SHIPPING, False, False) & ""
         html = html & " <hr>"
         html = html & " " & getTranslation("Rechnungsadresse") & ":"
         html = html & "  <br>"
-        html = html & "  " & printAddress(knd, "AR", False) & ""
+        html = html & "  " & printAddress(knd, TypeOfAddress.INVOICE, False, False) & ""
         html = html & " </font>"
         html = html & "</td>"
         html = html & "<td width='33%' style='border-style: none; border-width: medium' height='8'>"

@@ -9,7 +9,7 @@
         If authenticate(Request("Email1"), Request("Passwort1")) = -1 Then 'cannot authentificate
             Response.Write("Please provide valid creditentials!")
         Else
-            'the user will be logged in and an update will happen !     
+            'the user will be logged in and an update will happen !
         End If
     End If
 %>
@@ -18,7 +18,7 @@
 <%  
 
 
-    Dim new_kdnr : new_kdnr = saveBothAddresses()
+    Dim new_kdnr As String = saveBothAddresses(False, False)
     'response.Write "new_kdnr=" & new_kdnr
     'response.Write "LOG_IN=" & session("LOG_IN")
     If new_kdnr = "0" Then ' address saving failed /missing data 

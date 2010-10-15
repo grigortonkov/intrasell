@@ -12,8 +12,8 @@
             Response.Write("DEFAULT_PAYMODE=" + DEFAULT_PAYMODE)
         End If
 
-        Dim Email, Password, kdnr
-        Dim landOfCalculation
+        Dim Email As String, Password As String, kdnr As String
+        Dim landOfCalculation As String
 
         payMode = Session("PayMode")
         postMode = Session("postMode")
@@ -23,13 +23,21 @@
         Email = Request("EmailOld")
         Password = Request("PasswordOld")
 
+        'check usage of old addresses 
+        Dim old_SHIPPING_ID As String = Request("UseOldLI2")
+        Dim old_INVOICE_ID As String = Request("UseOldAR2")
+        Response.Write ("UseOld=" &  Request("UseOldLI2"))
+        If Request("UseOldLI2") = "" then 
+           old_SHIPPING_ID = Request("UseOldLI2")
+        End If 
+
+ 
 
         'response.write Email & Password
         'Find Client 
-        Dim KundNr As Object
-        KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
+        Dim KundNr As Object = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
-        Dim errorsFound : errorsFound = False
+        Dim errorsFound As Boolean : errorsFound = False
 
 
 
@@ -49,8 +57,8 @@
 
 
     'check Gesetz if configured for shop
-    Dim gesetzAgree : gesetzAgree = (UCase(Request("GESETZ")) = "ON")
-    If VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" Then
+    Dim gesetzAgree As Boolean : gesetzAgree = (UCase(Request("GESETZ")) = "ON")
+    If VARVALUE_DEFAULT("SHOP_USER_MUST_ACCEPT_LAW", "TRUE") = "TRUE" Then
         If Not gesetzAgree Then
     %>
     <font color="red">
@@ -117,9 +125,9 @@ If payMode & "" = "" Then
     If Not errorsFound Then
         Dim notiz : notiz = Request("notiz")
     
-        Dim gutscheinNummerStep4 : gutscheinNummerStep4 = Session("gutscheinNummer")
+        Dim gutscheinNummerStep4 = Session("gutscheinNummer")
     
-        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU")
+        Dim ordId as String = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU", old_SHIPPING_ID, old_INVOICE_ID)
     
         If ordId & "" = "" Then 'Fehler bei der Erstellung 
             Response.Write(getTranslation("Ihre Bestellung konnte nicht angenommen werden."))

@@ -12,11 +12,10 @@
 
     If getLOGIN() <> "" Then
         If Len(Request("UPDATE")) > 0 Then
-            Call saveBothAddresses()
+            Call saveBothAddresses(False, False)
         Else
 %>
-<h1>
-    Mein Konto aktualisieren</h1>
+<h1>Mein Konto aktualisieren</h1>
 <form method="POST" action="default.aspx?pageToShow=MyProfile">
 <input type="hidden" value="UPDATE" name="UPDATE">
 <%  Call drawProfileForm(True)%>
