@@ -96,8 +96,9 @@ nr;category;name;description;manufacturer;taxclass;price;weight;minorder;manufac
 
 </textarea></p>
 <p>
-    <input type="submit" value="Abschicken" name="B1"><input type="reset" value="Zurücksetzen"
-        name="B2"></p>
+    <input type="submit" value="Abschicken" name="B1">
+    <input type="reset" value="Zurücksetzen" name="B2">
+    </p>
 <p>
     Help:<br>
     1. Remove the first line in text box. It is only for information how the format

@@ -48,66 +48,15 @@
     
     
     
-    '*************************************************************************
-    ' printAddress
-    ' addressType = "LI","AR", "" basis
-    ' showMessages BOOLEAN
-    '*************************************************************************
-    Function printAddress(ByVal kdnr, ByVal addressType, ByVal showMessages) 'returns Lieferschein, Basis or Invoice address
-        Dim rsKUND
-        Dim sql
-        Dim html
-        Dim message : message = ""
-
-        If addressType = "" Then
-            sql = "Select * from ofAdressen where IDNR=" & kdnr
-        Else
-            sql = "Select * from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & kdnr
-        End If
-        rsKUND = objConnectionExecute(sql)
-
-        'Response.Write showMessages
-        If rsKUND.EOF Then
-            If showMessages Then 'show mesasge 
-                message = getTranslation("Die gleiche Adresse wie im Profil.")
-            End If
-            'printAddress = printAddress(kdnr,"",showMessages)
-            'exit function 
-            sql = "Select * from ofAdressen where IDNR=" & kdnr
-            rsKUND = objConnectionExecute(sql)
-        End If
-
-        Dim PLZ, Ort, Landname
-        PLZ = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "PLZ")
-        Ort = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "Ort")
-        Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
-
-        html = "<b>" & message & "</b><br><br>"
-
-        If Trim(rsKUND("Firma").Value & "") <> "" Then
-            html = html & rsKUND("Firma").Value & "<br>"
-        End If
-                
-        html = html & rsKUND("Anrede").Value & " " & rsKUND("Name").Value & " " & rsKUND("Vorname").Value & "<br>"
-        html = html & rsKUND("Adresse").Value & " <br>"
-        html = html & PLZ & "-" & Ort & " <br>"
-        html = html & Landname & " <br>"
-        html = html & "Tel:" & rsKUND("Tel").Value & " <br>"
-        html = html & "Email:<a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br>"
-
-        printAddress = html
-    End Function
-
-    
     '****************************************************************************
     ' Caclulate Warenkorb summe 
     '****************************************************************************
-    Function calculateWarenkorbSum()
+    Function calculateWarenkorbSum() As String
 
-        Dim Land : Land = Session("Land")
+        Dim Land As String = Session("Land")
  
-        Dim sql, rsWK
-        Dim SID : SID = getSID()
+        Dim sql As String, rsWK
+        Dim SID As String = getSID()
         sql = "SELECT webWarenkorb.SID, webWarenkorb.Quantity, grArtikel.ArtNr, grArtikel.Bezeichnung " & _
            " FROM webWarenkorb INNER JOIN grArtikel ON webWarenkorb.ArtNr = grArtikel.ArtNr" & _
            " Where SID=" & SID & " AND webWarenkorb.Quantity > 0 "
@@ -115,9 +64,9 @@
         If rsWK.EOF And rsWK.BOF Then ' empty basket
             calculateWarenkorbSum = 0
         Else
-            Dim Pos As Integer : Pos = 0
-            Dim Subtotal As Double : Subtotal = 0
-            Dim SubtotalMWST As Double : SubtotalMWST = 0
+            Dim Pos As Integer = 0
+            Dim Subtotal As Double = 0
+            Dim SubtotalMWST As Double = 0
         
             Dim ArtNr, Stk As Double
             Dim bruttoPreis As Double
@@ -361,13 +310,16 @@
     ' creates order and send directly an email 
     ' SID - Session ID
     '
-    '
+    ' old_SHIPPING_ID - ID of the ofAdressen-Weiter that the user wants to use in this order 
+    ' old_INVOICE_ID
     ' added check if destination land ist the same like Session(LAND)
     ' if no then back to Warenkorb2
     '*************************************************************************
     Function createOrderFromBasket(ByVal KDNR As String, ByVal SID As Object, ByVal PayMode As String, ByVal PostMode As String, _
-                                   ByVal Destination As String, ByVal notizOrder As String, ByVal GutscheinNummer As String, ByVal OrderType As String) As String
-        Dim Land As String : Land = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
+                                   ByVal Destination As String, ByVal notizOrder As String, ByVal GutscheinNummer As String, _ 
+                                   ByVal OrderType As String, Optional old_SHIPPING_ID As String = "" , Optional old_INVOICE_ID As String = "") As String
+        
+        Dim Land As String = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
         Dim Language As String = Session("Language")
  
         Dim tableName As String = "buchAuftrag"
@@ -402,8 +354,8 @@
          " FROM webWarenkorb " & _
          " Where SID=" & SID & " AND webWarenkorb.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
         
-        Dim rsWK : rsWK = objConnectionExecute(SQL)
-        Dim subtotal As Double : subtotal = 0
+        Dim rsWK = objConnectionExecute(SQL)
+        Dim subtotal As Double = 0
    
         While Not rsWK.EOF
     
@@ -430,7 +382,7 @@
             End If
        
             If needsSerialNr & "" = "true" Or needsSerialNr & "" = "-1" Or needsSerialNr & "" = "1" Then ' für jeden Eintrag eine eigene Zeile Erstellen
-                Dim ii
+                Dim ii As Integer
                 For ii = 1 To stkToOrder
                     SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNr, Stk, Bezeichnung, PreisATS, ArtikelIdentifikation)" & _
                           " VALUES (" & rsWK("AuftragNr").Value & "," & rsWK("ArtNr").Value & "," & 1 & ",'" & bezeichnung & "', 0, '" & positionNotiz & "')"
@@ -674,23 +626,28 @@
     
         'SET KUNDNr2 für abweichende Lieferadresse 
         Dim sqlLI As String, rsLI
-        Dim addressType As String : addressType = "LI"
-        Dim kundNr2
+        Dim addressType As String = TypeOfAddress.SHIPPING
+        Dim kundNr2 As String = old_SHIPPING_ID
+        
+        If kundNr2 = "" then 
+            sqlLI = "Select ID from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & KDNR
+            'Response.Write sqlLI 
+            rsLI = objConnectionExecute(sqlLI)
+            If Not rsLI.EOF Then
+                kundNr2 = rsLI("ID").Value
+            End If
+            rsLI.close()
+        End If 
     
-        sqlLI = "Select ID from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & KDNR
-        'Response.Write sqlLI 
-        rsLI = objConnectionExecute(sqlLI)
-        If Not rsLI.EOF Then
-            kundNr2 = rsLI("ID").Value
-            sqlUpdateAuftrag = "UPDATE " & tableName & _
-                        " SET KundNr2 =" & kundNr2 & _
-                        " WHERE Nummer = " & AuftragNr
-            'Response.Write sqlUpdateAuftrag                         
-            objConnectionExecute(sqlUpdateAuftrag)
-        End If
-        rsLI.close()
+        If kundNr2 <> "" then 
+         sqlUpdateAuftrag = "UPDATE " & tableName & _
+                            " SET KundNr2 =" & kundNr2 & _
+                            " WHERE Nummer = " & AuftragNr
+          if showDebug() then Response.Write (sqlUpdateAuftrag)
+          objConnectionExecute(sqlUpdateAuftrag)
+        End If 
     
-        'End SET kUndn22 
+        'End SET kundnr2 
 
         'send an email 
         'on error resume next 

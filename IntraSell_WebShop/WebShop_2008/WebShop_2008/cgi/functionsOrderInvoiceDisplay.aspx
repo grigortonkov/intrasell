@@ -44,7 +44,7 @@
         html = html & " <tr>"
         html = html & "    <td width='220'>" & getTranslation("Kunde") & ":"
         html = html & "        <input type='hidden' name='IDNR' size='15' value='" & rsV("KundNr").Value & "' id='Hidden1'>"
-        html = html & "    " & printAddress(rsV("KundNr").Value, OrderType, True) & ""
+        html = html & "    " & printAddress(rsV("KundNr").Value, OrderType, True, False) & ""
         html = html & "     <br>"
         html = html & "     " & getTranslation("aendern") & ":"
         html = html & query2list("Select IdNR, '-', Name FROM ofAdressen Order BY IdNR, Name", "newIDNR")
@@ -148,8 +148,7 @@
         html = html & "</th>"
         html = html & "<td colspan='3'>"
           
-        Dim rsCheck
-        rsCheck = objConnectionExecute("Select count(*) as cc from grArtikel")
+        Dim rsCheck = objConnectionExecute("Select count(*) as cc from grArtikel")
         If CDbl(rsCheck("cc").Value) < 500 Then
             Call query2list("Select ArtNR,'-',Bezeichnung from grArtikel where produktAktiv <> 0 Order BY ArtNr", "AddNew")
         Else

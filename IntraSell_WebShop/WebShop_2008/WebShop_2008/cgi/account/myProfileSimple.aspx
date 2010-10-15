@@ -2,7 +2,7 @@
 <%
     If getLOGIN() <> "" Then
         If Len(Request("UPDATE")) > 0 Then
-            Call saveProfileSimple(ACCOUNT)
+            Call saveProfileSimple(TypeOfAddress.ACCOUNT)
         Else
 %>
 <h1>

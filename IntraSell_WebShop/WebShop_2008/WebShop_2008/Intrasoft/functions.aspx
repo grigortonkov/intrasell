@@ -385,12 +385,16 @@
 ''' <returns></returns>
 ''' <remarks></remarks>
     Public Function showDebug() As Boolean
-        If UCase(Request("DEBUG")) = "TRUE" Then
+        If UCase(Request("DEBUG")) = "TRUE" or Session("DEBUG") = "TRUE" Then
             showDebug = True
+            Session("DEBUG") = "TRUE"
         Else
             showDebug = False
         End If
-         
+        'Disable degin in session again 
+        If UCase(Request("DEBUG")) = "FALSE" then 
+            Session("DEBUG") = "FALSE"
+        End If 
     End Function
 
 

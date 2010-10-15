@@ -1,6 +1,6 @@
 <form method="POST" action="default.aspx">
 <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
-<%  Dim new_kdnr_simple : new_kdnr_simple = saveProfileSimple(ACCOUNT)
+<%  Dim new_kdnr_simple : new_kdnr_simple = saveProfileSimple(TypeOfAddress.ACCOUNT)
     'response.write "new_kdnr_simple=" & new_kdnr_simple
     If new_kdnr_simple = "" Or new_kdnr_simple = "0" Then ' address saving failed /missing data 
 %>
@@ -19,8 +19,8 @@ Verwenden sie bitte den beigelegten Link um Ihren Account zu aktivieren!
        
     sendMailFromWithSending(getClientEmail(new_kdnr_simple), _
     "Ihre Registrierung bei " & VARVALUE("DOMAIN") & "!", _
- MAKE_EMAIL_REGISTRATION_SIMPLE(new_kdnr_simple), _
- VARVALUE("EMAIL_REGISTER"))
+     MAKE_EMAIL_REGISTRATION_SIMPLE(new_kdnr_simple), _
+     VARVALUE("EMAIL_REGISTER"))
     'send to webmaster too 
     sendMailFromWithSending(varvalue("EMAIL"), _
        "Eine neue Registrierung bei " & VARVALUE("DOMAIN") & "!", _

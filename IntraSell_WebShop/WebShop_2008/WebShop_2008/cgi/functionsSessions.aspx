@@ -9,13 +9,12 @@
 ''' </summary>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Function createSession()
-        Dim sid
-    
+    Function createSession() As String
+        Dim SID As String
         ''hidden because shown before html tag response.Write "<!--" 'start html kommentar um ev. getSID errors zu verstecken 
-        sid = getSID()
+        SID = getSID()
         ''hidden because shown before html tag response.Write "-->" 
-        If sid = "" Then 'generate new
+        If SID = "" Then 'generate new
             createSession = createNewSession()
         End If
     End Function
@@ -26,7 +25,7 @@
 ''' <returns></returns>
 ''' <remarks></remarks>
     Function createNewSession() As String
-        Dim sid, SQL
+        Dim sid As String, SQL As String
         sid = NextId("webSessions", "SID")
         SQL = "Insert Into webSessions (SID, IP, CreationDate, CreationTime) Values " & _
               "(" & sid & ",'" & Request.ServerVariables("REMOTE_HOST") & "'," & SQLNOW(0) & "," & SQLNOW(0) & ")"
@@ -42,7 +41,7 @@
     ''' <remarks></remarks>
     Function getSID() As String
         Dim sql As String
-        Dim sid
+        Dim sid As String
         Dim remoteHost As String = Request.ServerVariables("REMOTE_HOST")
         
         If Not Session("SID") Is Nothing Then
@@ -83,19 +82,21 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function getLOGIN() As String
+        
         Const LOG_IN = "LOG_IN"
         Dim remoteHost As String = Request.ServerVariables("REMOTE_HOST")
-        If not Session(LOG_IN) is Nothing  then 
-            If  Session(LOG_IN).ToString <> "" Then
+        
+        If Not Session(LOG_IN) Is Nothing Then
+            If Session(LOG_IN).ToString <> "" Then
                 getLOGIN = Session(LOG_IN)
-            End If 
+            End If
         Else
-            Dim sql, rs
-            sql = "Select sid, kundenIdnr, ip from webSessions where CreationTime>=(" & SQLNOW(-0.05) & ") and IP Like '" & _
+            Dim sql As String, rs
+            sql = "Select SID, kundenIdnr, IP from webSessions where CreationTime>=(" & SQLNOW(-0.05) & ") and IP Like '" & _
                   remoteHost & "' ORDER BY creationDate DESC"
             'Response.Write sql
             rs = objConnectionExecute(sql)
-            If Not rs.eOF Then
+            If Not rs.EOF Then
                 If rs("kundenIdnr").Value.ToString() <> "" Then 'do not return 0 
                     getLOGIN = rs("kundenIdnr").Value
                 End If

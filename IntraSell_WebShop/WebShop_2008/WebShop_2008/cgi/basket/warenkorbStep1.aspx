@@ -13,12 +13,26 @@
     &nbsp;</div>
 
 <script language="JavaScript">
-            function WaitForCalculation() {    
-               //alert("Warten Sie bis die Berechnung l&auml;uft!");
-              if(document.all) //IEXplorer 
-               document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung abgeschlossen ist!") & getTranslation(" Tipp: Der Browser Symbol dreht sich nicht mehr sobald die Berechnung abgeschlossen wurde.")%>";
-               //document.write("Warten Sie bis die Berechnung l&auml;uft!");
-             };      
+     function WaitForCalculation() {    
+           //alert("Warten Sie bis die Berechnung l&auml;uft!");
+          if(document.all) //IEXplorer 
+           document.getElementById("Hinweis").innerText = "<%=getTranslation("Warten Sie bis die Berechnung abgeschlossen ist!") & getTranslation(" Tipp: Der Browser Symbol dreht sich nicht mehr sobald die Berechnung abgeschlossen wurde.")%>";
+           //document.write("Warten Sie bis die Berechnung l&auml;uft!");
+         };    
+             
+    //Submit this basket as an offer
+     function submitOffer() {
+       
+         if (!document.forms['FormBasket'].Notiz.visible || document.forms['FormBasket'].Notiz.style.height == "25px") {
+             document.forms['FormBasket'].Notiz.visible = true;
+             //set visible 
+             document.forms['FormBasket'].Notiz.style.width = "300px";
+             document.forms['FormBasket'].Notiz.style.height = "100px";
+         } else {
+             document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOffer';
+             document.forms['FormBasket'].submit();
+         }
+     }  
 </script>
 
 <form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
@@ -28,20 +42,20 @@
 
  
     If Not isPurchasingAllowed() Then
-        Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden erlaubt!"))
+        Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden gestattet."))
     Else 'allowed  
             
         paymode = Request("PayMode") : If paymode & "" = "" Then paymode = Session("PayMode") : If paymode & "" = "" Then paymode = DEFAULT_PAYMODE
-        postmode = Request("postMode") : If postmode & "" = "" Then postmode = Session("posIMode") : If postmode & "" = "" Then postmode = DEFAULT_POSTMODE
-        destination = Request("destination") : If destination & "" = "" Then destination = Session("destination") : If destination & "" = "" Then destination = DEFAULT_POSTMODE_DESTINATION
+        postmode = Request("PostMode") : If postmode & "" = "" Then postmode = Session("PostMode") : If postmode & "" = "" Then postmode = DEFAULT_POSTMODE
+        destination = Request("Destination") : If destination & "" = "" Then destination = Session("Destination") : If destination & "" = "" Then destination = DEFAULT_POSTMODE_DESTINATION
         If destination <> "" Then Session("LAND") = destination
 
         Session("PayMode") = paymode
-        Session("postMode") = postmode
-        Session("destination") = destination
+        Session("PostMode") = postmode
+        Session("Destination") = destination
 
         If showDebug() Then
-            Response.Write("payMode=" & paymode)
+            Response.Write("PayMode=" & paymode)
             Response.Write("DEFAULT_PAYMODE=" & DEFAULT_PAYMODE)
         End If
 
@@ -92,16 +106,16 @@
 </form>
 <!-- END WARENKORB UPDATE FORM-->
 <%  If emptySet Then%>
-<form method="POST" action="default.aspx" id="FormBasket">
+<form method='post' action="default.aspx" id="FormBasket">
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
 <center>
     <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
         bordercolor="#111111" height="1" width="100%">
         <tr>
             <td colspan="2">
-                <hr>
+                <hr />
             </td>
-            </td>
+       </tr>
             <!-- WARENKORB POSTMODE-->
             <tr>
                 <th height="21" valign="middle">
@@ -130,7 +144,7 @@
                 <td colspan="2">
                     <hr>
                 </td>
-                </td>
+            </tr>
                 <!--SELECT PLACE OF DELIVERY -->
                 <% If varvalue("CALCULATE_CHANGE_DESTINATION") = "TRUE" Then%>
                 <tr>
@@ -169,7 +183,7 @@
                     <td colspan="2">
                         <hr>
                     </td>
-                    </td>
+                 </tr>
                     <tr>
                         <th>
                             3.
@@ -184,7 +198,7 @@
                         <td colspan="2">
                             <hr>
                         </td>
-                        </td>
+                   </tr>
                         <!-- WARENKORB PAYMODE-->
                         <tr>
                             <th height="1" valign="middle" width="257">
@@ -217,27 +231,24 @@
                             <td colspan="2">
                                 <hr />
                             </td>
-                            </td>
+                        </tr>
                             <%End If%>
                             <!-- END SELECT PLACE OF DELIVERY  -->
     </table>
-    
-    
+
 <textarea id="Notiz" name="Notiz" rows="3" visible="false" style="height: 25px; width: 0px;">
 <%=getTranslation("Geben Sie hier Ihre Tel.Nr und/oder Email bekannt:")%>
 </textarea>&nbsp;
-
 </center>
-
 
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
-    <a href="default.asp">
+    <a href="default.aspx">
         <%=getTranslation("weiter shoppen")%></a>
         &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();">
         &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
     <%Else%>
-    <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
+        <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
     <%End If%>
 
  <br />
@@ -245,29 +256,12 @@
 </p>
 </form>
 
- <script language="javascript">
-
-     //Submit this basket as an offer
-
-     function submitOffer() {
-       
-         if (!document.forms['FormBasket'].Notiz.visible || document.forms['FormBasket'].Notiz.style.height == "25px") {
-             document.forms['FormBasket'].Notiz.visible = true;
-             //set visible 
-             document.forms['FormBasket'].Notiz.style.width = "300px";
-             document.forms['FormBasket'].Notiz.style.height = "100px";
-         } else {
-             document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOffer';
-             document.forms['FormBasket'].submit();
-         }
-     }
- </script>
+ 
  
 <%  End If
 End If 'purchasing allowed 
-%>
-<%
-    Dim logHTML
+ 
+    Dim logHTML As String
     logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
     logHTML = parseTemplate(logHTML, Nothing)
     Response.Write(logHTML)
