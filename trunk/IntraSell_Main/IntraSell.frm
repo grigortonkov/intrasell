@@ -20,6 +20,9 @@ Begin VB.MDIForm IntraSell
          Caption         =   "&Schliessen"
          Shortcut        =   ^S
       End
+      Begin VB.Menu AccessRT 
+         Caption         =   "Access RT"
+      End
    End
    Begin VB.Menu Help 
       Caption         =   "&Hilfe"
@@ -107,6 +110,10 @@ If StatusCheck = True Then
 End If
 End Function
 
+Private Sub AccessRT_Click()
+  OpenRunTime
+End Sub
+
 Private Sub CheckUpdates_Click()
     ' Old code in function begin
     ' NavigateURL "http://code.google.com/p/intrasell"
@@ -178,9 +185,9 @@ Private Sub StartAccess()
         Call writeLogMain("StartAccess set low macro security")
         Call writeLogMain("oAccess.Version=" & oAccess.Version)
         
-        If oAccess.Version >= "10" Then
+        If oAccess.Version >= "12" Then
            'maybe error pri george
-           'oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
+           oAccess.AutomationSecurity = 1 ' msoAutomationSecurityLow
         End If
     
         ' hide ribbons in office 2007
@@ -188,18 +195,27 @@ Private Sub StartAccess()
         '    Dim xml As String: xml = "<customUI xmlns=""http://schemas.microsoft.com/office/2006/01/customui""><ribbon startFromScratch=""true""></ribbon></customUI>"
         '    oAccess.LoadCustomUI "HideRibbon", xml
         'End If
+        If oAccess.Version < "12" Then
+            Call writeLogMain("ShowWindowsInTaskbar")
+            oAccess.SetOption "ShowWindowsInTaskbar", False
+        End If
         
-        Call writeLogMain("ShowWindowsInTaskbar")
-        oAccess.SetOption "ShowWindowsInTaskbar", False
         ' Call oAccess.CompactRepair(isFilename, App.Path & "\..\intrasell\IntraSell_3_CompactAndRepair.mdb")
         'Sasho end
         Call writeLogMain("set Visible")
         oAccess.Visible = True
        
         Call writeLogMain("set parent")
-        Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
+        If oAccess.Version < "12" Then
+            Call SetParent(oAccess.hWndAccessApp, Me.hwnd)
+        Else
+            Call ShowWindow(Me.hwnd, SW_SHOWMINIMIZED) 'hide this mdi form when access 2007, 2010
+        End If
+        
         Call writeLogMain("show window")
+        'If oAccess.Version < "12" Then
         Call ShowWindow(oAccess.hWndAccessApp, SW_SHOWMAXIMIZED)
+        'End If
         Call writeLogMain("StartAccess start")
 End Sub
 

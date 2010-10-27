@@ -46,12 +46,11 @@ Begin VB.Form frmSplash
       Top             =   60
       Width           =   7080
       Begin VB.Image imgLogo 
-         Height          =   1560
+         Height          =   1365
          Left            =   240
          Picture         =   "frmSplash.frx":000C
-         Stretch         =   -1  'True
          Top             =   360
-         Width           =   1920
+         Width           =   1500
       End
       Begin VB.Label lblCopyright 
          Caption         =   "Copyright GRION.EU"

@@ -8,6 +8,7 @@ Form=frmSplash.frm
 Class=UnzipFiles; UnzipFiles.cls
 Module=UnzipModule; UnzipModule.bas
 Module=functionsLog; functionsLog.bas
+Module=AccessRintime; functionsAccessRuntime.bas
 IconForm="IntraSell"
 Startup="frmSplash"
 HelpFile=""
