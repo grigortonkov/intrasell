@@ -13,9 +13,9 @@
         Dim FilePath
         FilePath = imageFileName 'Type the path of your image file.
         CImage.SetPath(FilePath)
-        'Response.Write "Image Type : " & CImage.TypeOfImage & "<BR>"
-        'Response.Write "Image Height : " & CImage.GetHeight & "<BR>"
-        'Response.Write "Image Width : " & CImage.GetWidth & "<BR>"
+        'Response.Write "Image Type : " & CImage.TypeOfImage & "<br />"
+        'Response.Write "Image Height : " & CImage.GetHeight & "<br />"
+        'Response.Write "Image Width : " & CImage.GetWidth & "<br />"
         If CImage.GetWidth > 10 And CImage.GetHeight > 0 Then
             isImageOK = True
         Else
@@ -38,11 +38,11 @@
         FilePath = Server.MapPath(imageFileName) 'Type the path of your image file.
         CImage.SetPath(FilePath)
         If False Then
-            Response.Write("Image Type : " & CImage.TypeOfImage & "<BR>")
-            Response.Write("Image Height : " & CImage.GetHeight & "<BR>")
-            Response.Write("Image Width : " & CImage.GetWidth & "<BR>")
-            Response.Write("Image Depth : " & CImage.GetDepth & "<BR>")
-            Response.Write("Image Path : " & CImage.GetPath & "<BR><BR>")
+            Response.Write("Image Type : " & CImage.TypeOfImage & "<br />")
+            Response.Write("Image Height : " & CImage.GetHeight & "<br />")
+            Response.Write("Image Width : " & CImage.GetWidth & "<br />")
+            Response.Write("Image Depth : " & CImage.GetDepth & "<br />")
+            Response.Write("Image Path : " & CImage.GetPath & "<br /><br />")
             Response.Write("<b>About : -</b> " & CImage.About)
         End If
     
@@ -90,7 +90,10 @@
     
         Dim image As String = ""
         
-        If Not imageRelativeURL.Equals(DBNull.Value) Then image = imageRelativeURL
+        Try 
+         image = imageRelativeURL
+        Catch 
+        End Try
         bezeichnung = Server.HtmlEncode(bezeichnung & "")
 
   

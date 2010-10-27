@@ -42,7 +42,7 @@ Function createSearchFormNoCache(ByVal categoryId)
     html = html & "<form action=""productSearch.aspx"" method=""POST"">"
     html = html & "<td>"
     html = html & "Suche " '"</td><td>" 
-    If Not rs.EOF Then html = html & "<br>"
+    If Not rs.EOF Then html = html & "<br />"
     'free text search 
     html = html & "<input name=""searchFreeText"" value=""" & searchFreeText & """ size=""7"" style=""width: 70%; position: relative;""></td></tr>"
    
@@ -51,7 +51,7 @@ Function createSearchFormNoCache(ByVal categoryId)
     While Not rs.EOF And i < MAX_KEYWORDS_TO_SHOW
         i = i + 1
         Dim kwName : kwName = Server.HtmlEncode(rs("Name").Value)
-        html = html & "<tr><td>" & kwName & "<br>"
+        html = html & "<tr><td>" & kwName & "<br />"
         'html = html &  "</td>"
         sql = "Select distinct [value] from priceCompareKeyWordsToProducts Where KeywordId=" & rs("KeywordId").Value & " ORDER BY [VALUE]"
         rsSub = objConnectionExecute(sql)

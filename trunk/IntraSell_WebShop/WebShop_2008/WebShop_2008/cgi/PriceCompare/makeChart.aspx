@@ -97,7 +97,7 @@ private function getPriceAt(byval artnr, byval dateAt)
 'Opens a connection to the AllUSA.mdb database
 'Retrieves records in the field specified by the input argument
 'If no error occurs we return a recordset, otherwise returns nothing        
-  'Response.write "<br>Get price for:"  & dateAt
+  'Response.write "<br />Get price for:"  & dateAt
     dim sql as string, rs        'SQL statement
     sql = "SELECT Min(EKPreis) AS EKPreisMin, AVG(EKPreis) AS EKPreisAVG, Max(EKPreis) AS EKPreisMax, PreisDatum FROM " + _
                    " (Select EKPreis, PreisDatum FROM priceCompareLieferantenArtikelPreiseArchive " + _
@@ -108,7 +108,7 @@ private function getPriceAt(byval artnr, byval dateAt)
                    " ) pp " & _
                    " GROUP BY PreisDatum " & _ 
                    " ORDER BY PreisDatum DESC" 
-  ' Response.Write "<br>" & sql: Response.flush   
+  ' Response.Write "<br />" & sql: Response.flush   
    set rs = ObjConnectionexecute(sql) 
    if rs.EOF then
      getPriceAt = 0

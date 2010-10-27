@@ -1,7 +1,7 @@
 Path:<%Response.Write(Server.MapPath(".."))%>
-<br>
+<br />
 PATH_TRANSLATED:
 <%=Request.ServerVariables("PATH_TRANSLATED")%>
-<br>
+<br />
 URL:<%=Request.ServerVariables("SERVER_NAME")%>
 <%=Request.ServerVariables("URL")%>

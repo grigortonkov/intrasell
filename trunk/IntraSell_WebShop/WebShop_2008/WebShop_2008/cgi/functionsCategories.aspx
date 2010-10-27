@@ -6,7 +6,8 @@
 
     Const SUBCATEGORIES_TO_SEARCH_INTO As Integer = 2
     Const BASE_ARTKATNR As Integer = 0
-    Const NOT_DEFINED As String = "n.a."    Const TEMPLATE_ARTKATNR As Integer = 9998
+    Const NOT_DEFINED As String = "n.a."
+    Const TEMPLATE_ARTKATNR As Integer = 9998
     '******************************************************************************
     ' SimpleListCategories
     ' shows simple down list with categories 
@@ -50,7 +51,7 @@
         'show error that not subcats are set
         If rs.EOF Then
             Dim prePreKatNr : prePreKatNr = TABLEVALUE("[grArtikel-Kategorien]", "artKatNr", PreKatNr, "ArtKatNrParent")
-            'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br>" 
+            'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br />" 
             '<a href="default.aspx?PreKatNr=prePreKatNr">Zurueck??</a>
             html = html & SimpleListCategories(prePreKatNr, inPageToShow)
             SimpleListCategories = html
@@ -65,12 +66,14 @@
             ''not needed set rsCheck = ObjConnectionexecute(sql)
             Dim name
             Dim ShowArtKatNR : ShowArtKatNR = rs("ArtKatNr").Value
-            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR.ToString(), "Name", rs("Name").Value, Language) & ""
-            name = Server.HtmlEncode(name)            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>:: " & name & "</div></a>"
+            'Response.Write "Language=" &  Language 
+            name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR.ToString(), "Name", rs("Name").Value, Language) & ""
+            name = Server.HtmlEncode(name)
+            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>:: " & name & "</div></a>"
             ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  
             ''not needed end if 
-            ''not needed html = html &   "<br>"  
+            ''not needed html = html &   "<br />"  
             rs.MoveNext()
         End While
         SimpleListCategories = html
@@ -80,7 +83,8 @@
  
     
     
-        '******************************************************************************
+    
+    '******************************************************************************
     ' SimpleListCategories with Parent Categories
     ' shows simple down list with categories and their parents
     ' this is now shown on the left side in the default page 
@@ -114,9 +118,12 @@
         sql = "SELECT ArtKatNr, Name FROM [grArtikel-Kategorien] WHERE " & _
            " ArtKatNrParent=" & PreKatNr & " ORDER BY [Order], Name "
         rs = ObjConnectionexecute(sql)
-	        Dim prePreKatNr : prePreKatNr = TABLEVALUE("[grArtikel-Kategorien]", "artKatNr", PreKatNr, "ArtKatNrParent")	        'show error that not subcats are existing
+	
+        Dim prePreKatNr : prePreKatNr = TABLEVALUE("[grArtikel-Kategorien]", "artKatNr", PreKatNr, "ArtKatNrParent")
+	
+        'show error that not subcats are existing
         If rs.EOF Then
-            'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br>" 
+            'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br />" 
             '<a href="default.asp?PreKatNr=prePreKatNr">Zurueck??</a>
             html = html & SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
             SimpleListCategoriesWithParentCats = html
@@ -124,34 +131,48 @@
         End If
 
         Dim rsCheck
-        Dim name As String        Dim ShowArtKatNR As String        html = html & "<ul style='text-indent:0; line-height:100%; margin-left:13; margin-right:3'>"
+        Dim name As String
+        Dim ShowArtKatNR As String
+        html = html & "<ul style='text-indent:0; line-height:100%; margin-left:13; margin-right:3'>"
         While Not rs.EOF
             ' check if the cat or the sub cat contains products 
             ''not needed sql = "select ArtNr, ArtKatNr from grArtikel where ArtKatNr In (" & makeSubcategoriesList( rs("ArtKatNr"),5) & ")"
             ''not needed set rsCheck = ObjConnectionexecute(sql)
    
             ShowArtKatNR = rs("ArtKatNr").Value
-            'Response.Write "Language=" &  Language             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name").Value, Language) & ""
-            name = Server.HtmlEncode(name)            If OriginalKatNr & "" = rs("ArtKatNr").Value Then                name = "<b>" & name & "</b>"
+            'Response.Write "Language=" &  Language 
+            name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR, "Name", rs("Name").Value, Language) & ""
+            name = Server.HtmlEncode(name)
+            If OriginalKatNr & "" = rs("ArtKatNr").Value Then
+                name = "<b>" & name & "</b>"
             End If
             
-            html = html & "<li>"            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & Chr(13) & Chr(10)
-            html = html & "</li>"            ''not needed if rsCheck.eof then 'this cat has no products   
+            html = html & "<li>"
+            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & Chr(13) & Chr(10)
+            html = html & "</li>"
+            ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  
             ''not needed end if 
-            ''not needed html = html &   "<br>"  
+            ''not needed html = html &   "<br />"  
             rs.MoveNext()
         End While
-        html = html & "</ul>"        rs.Close()
+        html = html & "</ul>"
+        rs.Close()
         rs = Nothing
 
-        'recursion !!!         Dim parentCats : parentCats = SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
-        Dim PosOfSubCats : PosOfSubCats = InStr(parentCats, "<!--" & PreKatNr & "-->")        Dim parentCatsAndSubCats
+        'recursion !!! 
+        Dim parentCats : parentCats = SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
+        Dim PosOfSubCats : PosOfSubCats = InStr(parentCats, "<!--" & PreKatNr & "-->")
+        Dim parentCatsAndSubCats
         
         If PosOfSubCats > 0 Then
-            html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"            parentCatsAndSubCats = Left(parentCats, PosOfSubCats - 1) & html & Right(parentCats, 1 + Len(parentCats) - PosOfSubCats)
-        Else            parentCatsAndSubCats = parentCats & html
-        End If                SimpleListCategoriesWithParentCats = parentCatsAndSubCats
+            html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"
+            parentCatsAndSubCats = Left(parentCats, PosOfSubCats - 1) & html & Right(parentCats, 1 + Len(parentCats) - PosOfSubCats)
+        Else
+            parentCatsAndSubCats = parentCats & html
+        End If
+        
+        SimpleListCategoriesWithParentCats = parentCatsAndSubCats
     End Function
         
         ''' <summary>
@@ -284,7 +305,7 @@
         Dim catToShow
         Dim path
         catToShow = Request("PreKatNr")
-        'Response.Write "<br>PreKatNr1 = '" & catToShow & "'<br>"
+        'Response.Write "<br />PreKatNr1 = '" & catToShow & "'<br />"
         Response.Write("<a href=""default.aspx?pageToShow="">Home</a>")
 
         If InStr(pageToShow, "Product") <= 0 Then ' show only the requested page 
@@ -296,9 +317,9 @@
             catToShow = Request("ArtNr")
             If catToShow = "" Then
                 catToShow = Session("CURRENT_PRODUCT_CATEGORY")
-                'Response.Write "<br>PreKatNr2 = '" & catToShow & "'<br>"
+                'Response.Write "<br />PreKatNr2 = '" & catToShow & "'<br />"
             Else
-                'Response.Write "<br>PreKatNr3 = '" & catToShow & "'<br>"
+                'Response.Write "<br />PreKatNr3 = '" & catToShow & "'<br />"
                 catToShow = getProductCat(catToShow)
                 Session("CURRENT_PRODUCT_CATEGORY") = catToShow
             End If
@@ -307,8 +328,8 @@
             Session("CURRENT_PRODUCT_CATEGORY") = catToShow
         End If
         If catToShow = "" Then catToShow = "0"
-        path = "" & showCategoryPath(catToShow, inPageToShow) & "<br>"
-        'response.write path & " the fuck ! <br>"
+        path = "" & showCategoryPath(catToShow, inPageToShow) & "<br />"
+        'response.write path & " the fuck ! <br />"
         Response.Write(path)
 
     End Sub
@@ -330,8 +351,8 @@
         If catToShow = "" Then catToShow = "0"
         Dim path
     
-        path = "Categories: " & showCategoryPath(catToShow, inPageToShow) & "<br>"
-        'response.write path & " the fuck ! <br>"
+        path = "Categories: " & showCategoryPath(catToShow, inPageToShow) & "<br />"
+        'response.write path & " the fuck ! <br />"
         Response.Write(SimpleListCategoriesFromCache(catToShow, inPageToShow))
     End Sub
     'end copy 
@@ -473,7 +494,7 @@
               " ORDER BY [grArtikel-Kategorien].ArtKatNrParent"
         End If
         '" HAVING Count(grArtikel.ArtNr)>0 " & _     
-        'Response.write "<BR>" & sql : Response.Flush
+        'Response.write "<br />" & sql : Response.Flush
 
 
         rs = ObjConnectionexecute(sql)
@@ -583,7 +604,7 @@
                 End If
             End If
             
-            If Levels = 2 Then html = html & "</b><br>"
+            If Levels = 2 Then html = html & "</b><br />"
             If Levels = 1 Then
                 If i < MAX_CATS_OF_LEVEL_1 Then html = html & ", " Else html = html & " "
             End If
@@ -765,7 +786,7 @@
             html = "keine Webpages definiert!"
         End If
         While Not rsS.EOF
-            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & rsS("Title").Value & "</a><br>"
+            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & rsS("Title").Value & "</a><br />"
                     
             rsS.moveNext()
         End While
@@ -1010,7 +1031,7 @@
         While Not rs_.eof
             subCats = makeSubcategoriesList(rs_("ArtKatNr").Value, 10)
             sql_ = "insert into webCatsIndex (ArtKatNrPArent, ArtKatNr) select " & rs_("ArtKatNr").Value & ", ArtKatNr from [grArtikel-Kategorien] where ArtKatNr in (" & subCats & ")"
-            Response.Write(sql_ & "<br>") : Response.Flush()
+            Response.Write(sql_ & "<br />") : Response.Flush()
             objConnectionExecute(sql_)
             
             rs_.moveNext()

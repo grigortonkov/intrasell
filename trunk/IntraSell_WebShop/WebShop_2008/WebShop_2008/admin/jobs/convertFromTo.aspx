@@ -42,8 +42,8 @@ Dim newNumber as String = convertFromTo (OrderTypeFrom, OrderTypeTo, orderNummer
 objConnectionExecute( "Update " & getNameForTable(OrderTypeFrom) & " Set anElba=-1 WHERE Nummer=" & orderNummer)
  
 Dim text: text = getNameFor(OrderTypeTo) &  " wurde erstellt!"
-    text = text & "<BR>" & getNameFor(OrderTypeFrom) & " # " & orderNummer & " " & lcase(getTranslation("closed")) & "." 
-    text = text & "<BR>" & getTranslation("Ansehen") & " " &  getNameFor(OrderTypeTo) & "?" 
+    text = text & "<br />" & getNameFor(OrderTypeFrom) & " # " & orderNummer & " " & lcase(getTranslation("closed")) & "." 
+    text = text & "<br />" & getTranslation("Ansehen") & " " &  getNameFor(OrderTypeTo) & "?" 
 Dim urlYes: urlYes = "viewOrder.aspx?nummer=" & newNumber & "&OrderType=" & OrderTypeTo
 Response.Write( drawMsgBox("Ready", text, urlYes, "../default.aspx"))%>
 </body> 

@@ -189,10 +189,10 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
 
         If rsArtikel.EOF Then 'nothing found 
             'html = ""
-            makeProductListOnQuery = "<center>" & getTranslation("Ihre Suche hat leider keine Ergebnisse gebracht!") & "<br>" & _
+            makeProductListOnQuery = "<center>" & getTranslation("Ihre Suche hat leider keine Ergebnisse gebracht!") & "<br />" & _
                    getTranslation("Sie haben gesucht nach:") & SearchDescription & _
-                   "<br><a href='javascript:history.back();' _OnClick='history.back();'>" & getTranslation("Zurück") & "</a>" & _
-                   "<!--<" & COUNT_RESULT_LINES & ">0</" & COUNT_RESULT_LINES & ">--><br></center>"
+                   "<br /><a href='javascript:history.back();' _OnClick='history.back();'>" & getTranslation("Zurück") & "</a>" & _
+                   "<!--<" & COUNT_RESULT_LINES & ">0</" & COUNT_RESULT_LINES & ">--><br /></center>"
                                
             'mail this event to the Shop Administration 
             Dim sendVar as Boolean 'set default 
@@ -270,7 +270,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 If SHOP_SAVE_QUERY Then
                     htmlHeader = htmlHeader & htmlForSaveUserQuery(Sql, FilterBySQL, OrderBy, SearchDescription)
                 End If
-                htmlHeader = htmlHeader & "<br>"
+                htmlHeader = htmlHeader & "<br />"
                     
                 htmlSearchDescription = getTranslation("Sie haben gesucht nach:") & "<b>" & SearchDescription & "</b> "
                 If SHOP_SAVE_QUERY Then
@@ -659,8 +659,8 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                             'beschreibung =  tablevalue("grArtikel", "ArtNR", ArtNR, "Beschreibung")
                             'beschreibung = getTranslationDok("grArtikel" , ArtNr, "Beschreibung", Beschreibung, Language)
                             beschreibung = makeBeschreibung(ArtNr, True)
-                            htmlProductRow = htmlProductRow & "<br>" & beschreibung
-                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
+                            htmlProductRow = htmlProductRow & "<br />" & beschreibung
+                            htmlProductRow = htmlProductRow & "<br />" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
                         End If
                     End If
                     htmlProductRow = htmlProductRow & "</td>"
@@ -668,7 +668,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     If SHOP_SHOW_PRICE Then
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><p align=""right"">" & VKPreis
                         If HerstellerRabatt <> "" Then
-                            htmlProductRow = htmlProductRow & "<br>" & getTranslation("Rabatt") & ":" & HerstellerRabatt
+                            htmlProductRow = htmlProductRow & "<br />" & getTranslation("Rabatt") & ":" & HerstellerRabatt
                         End If
                         htmlProductRow = htmlProductRow & "</td>"
                     End If
@@ -734,7 +734,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             html = html & "</tr>"
             html = html & "</table>"
             html = html & "<p align=""left"">" & getTranslation("Seite") & ":" & linkBack & pagesLinks & linkForward
-            html = html & "<br><a href=""#top"">" & getTranslation("Zum Seitenanfang") & "</a>"
+            html = html & "<br /><a href=""#top"">" & getTranslation("Zum Seitenanfang") & "</a>"
             html = html & "</form>"
  
         End If

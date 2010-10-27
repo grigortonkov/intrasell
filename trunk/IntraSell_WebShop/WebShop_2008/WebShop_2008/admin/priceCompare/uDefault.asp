@@ -4,9 +4,9 @@
 <title>Administration</title>
 </head>
 <body>
-<br><br><br>	
+<br /><br /><br />	
 <h1><B>Welcome Mr. Administrator</b></h1>
-<br><br><br>	
+<br /><br /><br />	
 </body>
 
 </html>

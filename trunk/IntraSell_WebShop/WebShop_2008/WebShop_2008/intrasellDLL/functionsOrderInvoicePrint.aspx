@@ -6,7 +6,7 @@
     '=================================================================
     Public Sub OpenAusdruck_inWord_RTF(ByVal VorgangTyp As String, ByVal Vorgang_Nummer As String)
         Dim fname : fname = Server.MapPath("/skins/skin" & SkinNumber & "/emails/Vorlage_Rechnung.rtf")
-        If showDebug() Then Response.Write("<br>Vorlage:" & fname)
+        If showDebug() Then Response.Write("<br />Vorlage:" & fname)
         'Datei erstellen 
         Dim newFName As String : newFName = OpenAusdruck_inWord_Filename_RTF(VorgangTyp, Vorgang_Nummer, fname)
    
@@ -20,9 +20,9 @@
         End If
         
         'link dem Requester geben!
-        Response.Write("<br>")
+        Response.Write("<br />")
         Response.Write(getTranslation("Ihr/e Angebot/Auftrag/Rechnung wurde erfolgreich erstellt!"))
-        Response.Write("<br>")
+        Response.Write("<br />")
         Response.Write("<a target=_new href='/logFiles/" & newFName & "'> ANSEHEN & DRUCKEN</a>")
         Response.Redirect("/logFiles/" & newFName)
    

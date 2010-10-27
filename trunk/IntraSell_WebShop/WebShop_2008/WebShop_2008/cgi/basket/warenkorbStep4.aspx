@@ -26,7 +26,7 @@
         'check usage of old addresses 
         Dim old_SHIPPING_ID As String = Request("UseOldLI2")
         Dim old_INVOICE_ID As String = Request("UseOldAR2")
-        Response.Write ("UseOld=" &  Request("UseOldLI2"))
+        'Response.Write ("UseOld=" &  Request("UseOldLI2"))
         If Request("UseOldLI2") = "" then 
            old_SHIPPING_ID = Request("UseOldLI2")
         End If 
@@ -75,7 +75,7 @@ If payMode & "" = "" Then
     %>
     <font color="red">
         <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Zahlungskosten kalkulieren!")%></font>
-    <br>
+    <br />
     <a href="default.aspx?pageToShow=warenkorbStep1">
         <%=getTranslation("zum Warenkorb Step 1")%></a>
     <hr>
@@ -87,7 +87,7 @@ If payMode & "" = "" Then
     %>
     <font color="red">
         <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Versandkosten kalkulieren.")%></font>
-    <br>
+    <br />
     <a href="default.aspx?pageToShow=warenkorbStep1">
         <%=getTranslation("zum Warenkorb Step 1")%></a>
     <hr>
@@ -112,9 +112,9 @@ If payMode & "" = "" Then
     If landOfCalculation <> getClientDestinationLand(KundNr) Then
 
         Response.Write("<font color=red>Ihre Landauswahl [" & landOfCalculation & "] ist derzeit nicht korrekt. " & _
-                       "<br>Sollte [" & getClientDestinationLand(KundNr) & "] sein. " & _
-                       "<br>Es erfolgt eine neue Kalkulation! Danke f&uuml;r Ihr Verst&auml;ndnis!")
-        Response.Write("<br><a href=""default.aspx?pageToShow=warenkorbStep2&L=" & getClientDestinationLand(KundNr) & """> NEU KALKULIEREN</a></font>")
+                       "<br />Sollte [" & getClientDestinationLand(KundNr) & "] sein. " & _
+                       "<br />Es erfolgt eine neue Kalkulation! Danke f&uuml;r Ihr Verst&auml;ndnis!")
+        Response.Write("<br /><a href=""default.aspx?pageToShow=warenkorbStep2&L=" & getClientDestinationLand(KundNr) & """> NEU KALKULIEREN</a></font>")
         Response.Write("<hr>")
         errorsFound = True
     End If
@@ -166,7 +166,7 @@ If payMode & "" = "" Then
     %>
     <p align="left">
         <%=getTranslation("Vielen Dank für Ihren Einkauf.")%>
-        <br>
+        <br />
         <%=getTranslation("Ihre Bestellung wurde erfolgreich gespeichert!")%>
         <p align="left">
             <%=getTranslation("In Kuerze erhalten Sie eine Bestaetigung per E-Mail.")%><br />

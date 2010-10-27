@@ -11,7 +11,7 @@ Backup von date-for-you.com
   Executor.Application = "e:\inetpub\date-for-you.com\xcopy_ed.bat"
   Executor.Parameters = ""
   Executor.ShowWindow = True
-  Response.Write "Attempting to execute " & Executor.Application & "<br>"
+  Response.Write "Attempting to execute " & Executor.Application & "<br />"
   strResult = Executor.ExecuteWinApp
   Response.Write "The result of this call was: " & strResult
 

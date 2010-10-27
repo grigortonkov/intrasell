@@ -15,7 +15,7 @@
         <form method="POST" action="default.aspx">
         <input type="hidden" name="pageToShow" value="ProfileSaveSimple">
         <%Call drawEmptyProfileFormSimple(TypeOfAddress.ACCOUNT, False)%>
-        <input type="submit" class='button' value="<%=getTranslation("Jetzt anmelden")%>">
+        <input type="submit" class="button" value="<%=getTranslation("Jetzt anmelden")%>" />
         </form>
     </center>
 </div>

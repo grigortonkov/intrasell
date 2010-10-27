@@ -17,11 +17,11 @@
                              ByVal TextToTranslate As String , _
                              ByVal Language_Code As String)
         If showDebug() Then
-            Response.Write("<br>" & Chr(13) & " TableName = [" & TableName & "]")
-            Response.Write("<br>" & Chr(13) & " Key = [" & Key & "]")
-            Response.Write("<br>" & Chr(13) & " FieldName = [" & FieldName & "]")
-            Response.Write("<br>" & Chr(13) & " TextToTranslate = [" & TextToTranslate & "]")
-            Response.Write("<br>" & Chr(13) & " Language_Code = [" & Language_Code & "]")
+            Response.Write("<br />" & Chr(13) & " TableName = [" & TableName & "]")
+            Response.Write("<br />" & Chr(13) & " Key = [" & Key & "]")
+            Response.Write("<br />" & Chr(13) & " FieldName = [" & FieldName & "]")
+            Response.Write("<br />" & Chr(13) & " TextToTranslate = [" & TextToTranslate & "]")
+            Response.Write("<br />" & Chr(13) & " Language_Code = [" & Language_Code & "]")
         End If
         If (TextToTranslate & "" = "") Then
             getTranslationDok = ""

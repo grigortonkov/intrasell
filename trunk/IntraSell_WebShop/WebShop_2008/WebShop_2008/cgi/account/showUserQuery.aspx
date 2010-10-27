@@ -19,7 +19,7 @@
 
 
         message = getTranslation("Ihre gespeicherte Abfragen")
-        Response.Write(message & "<br>")
+        Response.Write(message & "<br />")
                 
                 
                     
@@ -67,7 +67,7 @@
 
         'LIST QUERIES  
         If getLOGIN() & "" = "" Then
-            Response.Write("<font color=red>" & getTranslation("Sie sind nicht angemeldet!") & "</font><br>")
+            Response.Write("<font color=red>" & getTranslation("Sie sind nicht angemeldet!") & "</font><br />")
             'load login page
             accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
             Response.Write(accountLoginPageHTML)

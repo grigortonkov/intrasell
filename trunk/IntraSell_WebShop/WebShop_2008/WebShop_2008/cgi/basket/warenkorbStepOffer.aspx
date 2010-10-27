@@ -39,7 +39,7 @@
     %>
     <font color="red">
         <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Zahlungskosten kalkulieren!")%></font>
-    <br>
+    <br />
     <a href="default.aspx?pageToShow=warenkorbStep1">
         <%=getTranslation("zum Warenkorb Step 1")%></a>
     <hr>
@@ -51,7 +51,7 @@
     %>
     <font color="red">
         <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Versandkosten kalkulieren.")%></font>
-    <br>
+    <br />
     <a href="default.aspx?pageToShow=warenkorbStep1">
         <%=getTranslation("zum Warenkorb Step 1")%></a>
     <hr>
@@ -112,7 +112,7 @@
     %>
     <p align="left">
         <%=getTranslation("Vielen Dank für Ihre Anfrage.")%>
-        <br>
+        <br />
         <%=getTranslation("Ihre Anfrage wurde erfolgreich gespeichert!")%>
         <p align="left">
             <br />

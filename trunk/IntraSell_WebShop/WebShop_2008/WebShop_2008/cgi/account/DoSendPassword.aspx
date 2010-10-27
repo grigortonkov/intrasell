@@ -4,10 +4,10 @@
     <title>Lost Password</title>
 </head>
 <body width="300">
-    <br>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
+    <br />
     <%
         
         'ONLY EMAIL IS NEEDED FOR SEND PASS FUNCTIONS        

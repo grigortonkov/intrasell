@@ -60,7 +60,7 @@ dim countMails as integer = 0
  end while
  rsEmails.close 
  %>
-		Ready! All mails (<%= countMails %>) were created!&nbsp;<br>
+		Ready! All mails (<%= countMails %>) were created!&nbsp;<br />
 		Now you can <a href="sendMailsToSend.aspx">execute</a> sending!
 		<%
 else 
@@ -79,7 +79,7 @@ Dim mailsInDB as String = FIRSTVALUE("select count(*) from mailstosend")
 					<td width="66%" height="23">
                         <textarea type="text" name="SQL_RECEIVERS" 
                             value="" size="50" style="height: 43px; width: 528px"><%=SQL_RECEIVERS%>
-                            </textarea><br>
+                            </textarea><br />
 						(the first column must contain the email adress this mail to be send on)</td>
 				</tr>
 				<tr>

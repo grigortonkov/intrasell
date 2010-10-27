@@ -13,7 +13,7 @@ function UpdatePreises(artNR as string)
        ", grArtikel.PreisEuro = [EKPreis]*" & replace(Aufschlag, ",", ".") & _
           " WHERE ArtNR = " & artNR
   	
-    'Response.Write "<BR>sql=" & sql
+    'Response.Write "<br />sql=" & sql
     ObjConnectionExecute(sql)
 End Function
 
@@ -26,7 +26,7 @@ Function importPreiseLine(ByVal preisLine As String)
     'On Error Resume Next 
     importPreiseLine = "ERROR"
     preisLine = Replace(preisLine, """", "")
-    'response.write "<br>PreisLine:" & PreisLine
+    'response.write "<br />PreisLine:" & PreisLine
     'Response.Flush
     'exit function 
     Dim fields, nr, name, description, manufacturer, taxclass, price, weight, minorder
@@ -88,11 +88,11 @@ Function importPreiseLine(ByVal preisLine As String)
     End If
 
     On Error Resume Next
-    'response.write "<br><font color=red>Error occured</font> on sql=" & sql:Response.Flush
+    'response.write "<br /><font color=red>Error occured</font> on sql=" & sql:Response.Flush
     'Response.end
     ObjConnectionExecute(sql)
     If Err.Number > 0 Then
-        Response.Write("<br><font color=red>Error occured</font> on sql=" & sql) : Response.Flush()
+        Response.Write("<br /><font color=red>Error occured</font> on sql=" & sql) : Response.Flush()
         Err.Clear()
     End If
     ' on error goto 0 
@@ -101,7 +101,7 @@ Function importPreiseLine(ByVal preisLine As String)
     Response.Flush()
     If Err.Number > 0 Then
         importPreiseLine = "ERROR"
-        Response.Write("<br>Error: " & Err.Description)
+        Response.Write("<br />Error: " & Err.Description)
     End If
  
 End Function

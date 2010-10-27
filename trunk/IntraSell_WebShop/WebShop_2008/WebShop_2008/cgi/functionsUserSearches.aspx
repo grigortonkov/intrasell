@@ -24,7 +24,7 @@
         Else
     
             If sid = "" Then
-                Response.Write("<font color=red>" & getTranslation("Ihre Session ist abgelaufen!") & "</font><br>")
+                Response.Write("<font color=red>" & getTranslation("Ihre Session ist abgelaufen!") & "</font><br />")
             Else 'sid ok
                 'Prüfung ob die Abfrage bereits gibt 
                 SQL = "SELECT * FROM userSearches where SQLDescription='" & SQLDescription & "' and SID=" & sid

@@ -40,12 +40,12 @@
         </th>
         <th width="100" style="border-bottom: 2 solid #C0C0C0">
             <a href="default.aspx?ArtNr=<%=ArtNr%>&amp;OrderBy=[lieferantenArtikel-Preise].VKPreis">
-                Preis</a>&nbsp;&nbsp;<br>
-            /inkl. MWST/<br>
+                Preis</a>&nbsp;&nbsp;<br />
+            /inkl. MWST/<br />
             <th width="300" style="border-bottom: 2 solid #C0C0C0">
                 Zahlungs- &amp; Lieferungsmethoden
             </th>
-            <!--<th width="100" style="border-bottom: 2 solid #C0C0C0"><a href="merchantCompare.aspx?ArtNr=<%=ArtNr%>&amp;OrderBy=ArtikelNrLieferant"> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
+            <!--<th width="100" style="border-bottom: 2 solid #C0C0C0"><a href="merchantCompare.aspx?ArtNr=<%=ArtNr%>&amp;OrderBy=ArtikelNrLieferant"> Nummer</a>&nbsp;<br />des Lieferantes</th>-->
             <th width="100" style="border-bottom: 2 solid #C0C0C0">
                 Zum Shop
             </th>

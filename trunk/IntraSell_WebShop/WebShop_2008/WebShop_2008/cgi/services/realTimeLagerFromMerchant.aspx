@@ -25,8 +25,8 @@
                 ArtikelNrLieferant = tableValue("[lieferantenArtikel-Preise]", "ArtikelNr", ArtNr, "ArtikelNrLieferant")
                 LieferantNr = tableValue("[lieferantenArtikel-Preise]", "ArtikelNr", ArtNr, "LieferantNr")
 
-                'response.Write "<br>ArtikelNrLieferant=" & ArtikelNrLieferant
-                'response.Write "<br>LieferantNr=" & LieferantNr
+                'response.Write "<br />ArtikelNrLieferant=" & ArtikelNrLieferant
+                'response.Write "<br />LieferantNr=" & LieferantNr
                 'example Call cgi/services/realTimeLagerFromMerchant.aspx?ArtikelNrLieferant=[ArtNrLieferant]&ArtNr=[ArtNr]&LieferantNr=1
 
 
@@ -63,7 +63,7 @@
 
                 'response.Write "REAL TIME LAGER ABFRAGE"
                 Response.Write("Lagerstand: <b>" & responseLager & "</b>")
-                'response.write "<br> <a href='/default.aspx?ArtNR=" & ArtNr & "'> zum Artikelansicht </a>"
+                'response.write "<br /> <a href='/default.aspx?ArtNR=" & ArtNr & "'> zum Artikelansicht </a>"
                 Response.End()
                 'response.Redirect "default.aspx?ArtNR=" & ArtNr
                 'END DUMMY implementation 
@@ -77,14 +77,14 @@
                                       " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), ""))
                 Else
                     'the user will be send directly to the shop 
-                    Response.Write("<br>Sie werden automatisch zum Lieferantenshop weitergeleitet!")
+                    Response.Write("<br />Sie werden automatisch zum Lieferantenshop weitergeleitet!")
                     'dim merchantURL:merchantURL = TABLEVALUE("lieferantenAdressen","IDNR",LieferantNr,"WEB")
                     Dim buyDirektURL
                     buyDirektURL = Replace(UrlShop, "HAENDLER_NUMBER", ArtikelNrLieferant)
                     buyDirektURL = Replace(buyDirektURL, "[PRODUKTNR]", ArtikelNrLieferant)
                     buyDirektURL = Replace(buyDirektURL, "[ProduktNr]", ArtikelNrLieferant)
                     buyDirektURL = Replace(buyDirektURL, "PRODUKTNR", ArtikelNrLieferant)
-                    Response.Write("<br><a href=""" & buyDirektURL & """> WEITER ZUM HAENDLER SHOP</A>")
+                    Response.Write("<br /><a href=""" & buyDirektURL & """> WEITER ZUM HAENDLER SHOP</A>")
    
                     'check if deepLink exists 
                     Dim sqlDL : sqlDL = "select deepLink from [lieferantenArtikel-Preise] where LieferantNr= " & LieferantNr & " and ArtikelNrLieferant='" & ArtikelNrLieferant & "'"

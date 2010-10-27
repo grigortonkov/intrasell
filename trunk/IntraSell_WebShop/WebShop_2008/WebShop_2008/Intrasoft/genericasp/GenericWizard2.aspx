@@ -125,13 +125,13 @@
                                 <font size="<%=FontSize%>" face="<%=Font%>">Field
                             </th>
                             <th bgcolor="White">
-                                <font size="<%=FontSize%>" face="<%=Font%>">Display<br>As
+                                <font size="<%=FontSize%>" face="<%=Font%>">Display<br />As
                             </th>
                             <th bgcolor="White">
                                 <font size="<%=FontSize%>" face="<%=Font%>">Default Value
                             </th>
                             <th bgcolor="White">
-                                <font size="<%=FontSize%>" face="<%=Font%>">Primary<br>Key
+                                <font size="<%=FontSize%>" face="<%=Font%>">Primary<br />Key
                             </th>
                             <th bgcolor="White">
                                 <font size="<%=FontSize%>" face="<%=Font%>">Lister

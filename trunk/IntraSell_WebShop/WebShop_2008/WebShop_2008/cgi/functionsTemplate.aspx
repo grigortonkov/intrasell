@@ -1,76 +1,76 @@
 <script language="VB" runat="server">   
     'Dim CACHE_EXPIRE_TIME_IN_MINUTES : CACHE_EXPIRE_TIME_IN_MINUTES = Application("CACHE_EXPIRE_TIME_IN_MINUTES") 'in 60 minutes the cache will expire and new cache will be created 
 
-    Const TAG_MODE = "[MODE]" 'mode can be CATEGORY, PRODUCT or NONE
+    Const TAG_MODE As String = "[MODE]" 'mode can be CATEGORY, PRODUCT or NONE
 
     '==============================================================================
     ' BANNERS
     '==============================================================================
-    Const TAG_BANNER1 = "[BANNER1]"
-    Const TAG_BANNER2 = "[BANNER2]"
-    Const TAG_BANNER3 = "[BANNER3]"
-    Const TAG_BANNER4 = "[BANNER4]"
-    Const TAG_BANNER5 = "[BANNER5]"
+    Const TAG_BANNER1 As String = "[BANNER1]"
+    Const TAG_BANNER2 As String = "[BANNER2]"
+    Const TAG_BANNER3 As String = "[BANNER3]"
+    Const TAG_BANNER4 As String = "[BANNER4]"
+    Const TAG_BANNER5 As String = "[BANNER5]"
 
     '==============================================================================
     'CATEGORY TAGS 
     '==============================================================================
-    Const TAG_CATEGORYNR = "[CATEGORYNR]"
-    Const TAG_SUBCATEGORIES = "[SUBCATEGORIES]" 'Yahoo like 
-    Const TAG_SUBCATEGORIESTREE = "[SUBCATEGORIESTREE]"
-    Const TAG_CATEGORYPATH = "[CATEGORYPATH]"
-    Const TAG_CATEGORYPATH_NOLINKS = "[CATEGORYPATH_NOLINKS]"
-    Const TAG_CATEGORY_SUBLIST = "[CATEGORY_SUBLIST]"
-    Const TAG_CATEGORY_SUBLIST_WITHPARENTS = "[CATEGORY_SUBLIST_WITHPARENTS]"
-    Const TAG_CATEGORY_FILTER = "[CATEGORY_FILTER]"
-    Const TAG_CATEGORYNAME = "[CATEGORYNAME]"
-    Const TAG_SUBCATEGORY_IMAGES = "[SUBCATEGORY_IMAGES]"
+    Const TAG_CATEGORYNR As String = "[CATEGORYNR]"
+    Const TAG_SUBCATEGORIES As String = "[SUBCATEGORIES]" 'Yahoo like 
+    Const TAG_SUBCATEGORIESTREE As String = "[SUBCATEGORIESTREE]"
+    Const TAG_CATEGORYPATH As String = "[CATEGORYPATH]"
+    Const TAG_CATEGORYPATH_NOLINKS As String = "[CATEGORYPATH_NOLINKS]"
+    Const TAG_CATEGORY_SUBLIST As String = "[CATEGORY_SUBLIST]"
+    Const TAG_CATEGORY_SUBLIST_WITHPARENTS As String = "[CATEGORY_SUBLIST_WITHPARENTS]"
+    Const TAG_CATEGORY_FILTER As String = "[CATEGORY_FILTER]"
+    Const TAG_CATEGORYNAME As String = "[CATEGORYNAME]"
+    Const TAG_SUBCATEGORY_IMAGES As String = "[SUBCATEGORY_IMAGES]"
     '==============================================================================
     'PRODUCT TAGS 
     '==============================================================================
-    Const TAG_TOPPRODUCTS = "[TOPPRODUCTS]"
-    Const TAG_TOPPRODUCTS_VERTICAL = "[TOPPRODUCTS_VERTICAL]" 'new 30-09-2004
-    Const TAG_TOPPRODUCTS_SELECTED = "[TOPPRODUCTS_SELECTED]"
-    Const TAG_TOPPRODUCTS_TYPE = "[TOPPRODUCTS_TYPE" 'usage [TOPPRODUCTS_TYPE:Top5]
-    Const TAG_BESTSELLERS = "[BESTSELLERS]"
-    Const TAG_VISITED_PRODUCTS = "[VISITED_PRODUCTS]"
-    Const TAG_VISITED_PRODUCTS_HORIZONTAL = "[VISITED_PRODUCTS_HORIZONTAL]" 'new 30-09-2004
-    Const TAG_MOSTCLICKEDPRODUCTS = "[MOSTCLICKEDPRODUCTS]"
-    Const TAG_MOSTCLICKEDCATEGORIES = "[MOSTCLICKEDCATEGORIES]"
-    Const TAG_NEW_PRODUCTS = "[NEW_PRODUCTS]"
-    Const TAG_FEATUREDMERCHANTS = "[FEATUREDMERCHANTS]"
-    Const TAG_REVIEWS = "[REVIEWS]"
-    Const TAG_NEWPRICES = "[NEWPRICES]"
-    Const TAG_NEWSLETTER = "[NEWSLETTER]"
-    Const TAG_PRODUCTLIST = "[PRODUCTLIST]"
-    Const TAG_TOOLBAR = "[TOOLBAR]"
-    Const TAG_TOPDEAL = "[TOPDEAL]"
-    Const TAG_CHEAPPRODUCTS = "[CHEAPPRODUCTS]"
+    Const TAG_TOPPRODUCTS As String = "[TOPPRODUCTS]"
+    Const TAG_TOPPRODUCTS_VERTICAL As String = "[TOPPRODUCTS_VERTICAL]" 'new 30-09-2004
+    Const TAG_TOPPRODUCTS_SELECTED As String = "[TOPPRODUCTS_SELECTED]"
+    Const TAG_TOPPRODUCTS_TYPE As String = "[TOPPRODUCTS_TYPE" 'usage [TOPPRODUCTS_TYPE:Top5]
+    Const TAG_BESTSELLERS As String = "[BESTSELLERS]"
+    Const TAG_VISITED_PRODUCTS As String = "[VISITED_PRODUCTS]"
+    Const TAG_VISITED_PRODUCTS_HORIZONTAL As String = "[VISITED_PRODUCTS_HORIZONTAL]" 'new 30-09-2004
+    Const TAG_MOSTCLICKEDPRODUCTS As String = "[MOSTCLICKEDPRODUCTS]"
+    Const TAG_MOSTCLICKEDCATEGORIES As String = "[MOSTCLICKEDCATEGORIES]"
+    Const TAG_NEW_PRODUCTS As String = "[NEW_PRODUCTS]"
+    Const TAG_FEATUREDMERCHANTS As String = "[FEATUREDMERCHANTS]"
+    Const TAG_REVIEWS As String = "[REVIEWS]"
+    Const TAG_NEWPRICES As String = "[NEWPRICES]"
+    Const TAG_NEWSLETTER As String = "[NEWSLETTER]"
+    Const TAG_PRODUCTLIST As String = "[PRODUCTLIST]"
+    Const TAG_TOOLBAR As String = "[TOOLBAR]"
+    Const TAG_TOPDEAL As String = "[TOPDEAL]"
+    Const TAG_CHEAPPRODUCTS As String = "[CHEAPPRODUCTS]"
 
     '==============================================================================
     'PRODUCT 
     '==============================================================================
 
-    Const TAG_SEARCHFORM = "[SEARCHFORM]"
-    Const TAG_SIMPLE_SEARCH_FORM = "[SIMPLE_SEARCH_FORM]"
-    Const TAG_PRODUCT_CLEARANCE_LIST = "[PRODUCT_CLEARANCE_LIST]"
-    Const TAG_PRODUCT_CLEARANCE_ALL = "[PRODUCT_CLEARANCE_ALL]"
-    Const TAG_PRODUCT_PRICE_DROPS = "[PRODUCT_PRICE_DROPS]"
-    Const TAG_PRODUCT_PRICE_DROPS_ALL = "[PRODUCT_PRICE_DROPS_ALL]"
-    Const TAG_PRODUCT_MANUFACTURER_DISCOUNT_ALL = "[PRODUCT_MANUFACTURER_DISCOUNT_ALL]"
+    Const TAG_SEARCHFORM As String = "[SEARCHFORM]"
+    Const TAG_SIMPLE_SEARCH_FORM As String = "[SIMPLE_SEARCH_FORM]"
+    Const TAG_PRODUCT_CLEARANCE_LIST As String = "[PRODUCT_CLEARANCE_LIST]"
+    Const TAG_PRODUCT_CLEARANCE_ALL As String = "[PRODUCT_CLEARANCE_ALL]"
+    Const TAG_PRODUCT_PRICE_DROPS As String = "[PRODUCT_PRICE_DROPS]"
+    Const TAG_PRODUCT_PRICE_DROPS_ALL As String = "[PRODUCT_PRICE_DROPS_ALL]"
+    Const TAG_PRODUCT_MANUFACTURER_DISCOUNT_ALL As String = "[PRODUCT_MANUFACTURER_DISCOUNT_ALL]"
 
     '==============================================================================
     'FUNCTION BLOCKS 
     '==============================================================================
-    Const TAG_FUNCTION1 = "[FUNCTION1]"
-    Const TAG_FUNCTION2 = "[FUNCTION2]"
-    Const TAG_FUNCTION3 = "[FUNCTION3]"
+    Const TAG_FUNCTION1 As String = "[FUNCTION1]"
+    Const TAG_FUNCTION2 As String = "[FUNCTION2]"
+    Const TAG_FUNCTION3 As String = "[FUNCTION3]"
 
     '==============================================================================
     'BASKET 
     '==============================================================================
-    Const TAG_BASKET_STATE = "[BASKET_STATE]"
-    Const TAG_BASKET_RELATED_PRODUCTS = "[BASKET_RELATED_PRODUCTS]"
+    Const TAG_BASKET_STATE As String = "[BASKET_STATE]"
+    Const TAG_BASKET_RELATED_PRODUCTS As String = "[BASKET_RELATED_PRODUCTS]"
 
 
     '==============================================================================
@@ -94,33 +94,33 @@
     '==============================================================================
     'TECHNICAL 
     '==============================================================================
-    Const TAG_EMBED = "[EMBED" 'usage: [EMBED:test/function1.htm]
-    Const TAG_SQL = "[SQL:<![CDATA[" '[SQL:<![CDATA[select count(*) anz from pricecomparehaendler;]]>]
-    Const TAG_SQL_END = "]]>]"
-    Const TAG_SQL_SIMPLE = "[SQL_SIMPLE:<![CDATA["
-    Const TAG_TRANSLATION = "[TRANSLATION" 'usage: [TRANSLATION:mein Account ist hier zu finden]
-
+    Const TAG_EMBED As String = "[EMBED" 'usage: [EMBED:test/function1.htm]
+    Const TAG_SQL As String = "[SQL:<![CDATA[" '[SQL:<![CDATA[select count(*) anz from pricecomparehaendler;]]>]
+    Const TAG_SQL_END As String = "]]>]"
+    Const TAG_SQL_SIMPLE As String = "[SQL_SIMPLE:<![CDATA["
+    Const TAG_TRANSLATION As String = "[TRANSLATION" 'usage: [TRANSLATION:mein Account ist hier zu finden]
+    Const TAG_TRANSLATE As String = "[TRANSLATE" 'usage: [TRANSLATE:mein Account ist hier zu finden]
     '==============================================================================
     'MISC TAGS
     '==============================================================================
-    Const TAG_ECARD_LINK = "[ECARD_LINK]"
+    Const TAG_ECARD_LINK As String = "[ECARD_LINK]"
     
-    Const TAG_FAQ_LIST = "[FAQ_LIST]"
+    Const TAG_FAQ_LIST As String = "[FAQ_LIST]"
 
-    Const TAG_EXTRA_ADD_THIS = "[EXTRA_ADD_THIS]"
+    Const TAG_EXTRA_ADD_THIS As String = "[EXTRA_ADD_THIS]"
     
     'recursive function, searches for the constants above and replaces with the output from functions 
     'returns the parsed template
     Dim priceListIsUsed As Boolean ': priceListIsUsed = false 
     
-    Function parseTemplate(ByVal template, ByVal artKatNr) As String
+    Function parseTemplate(ByVal template As String, ByVal artKatNr As String) As String
     
         ' Fix Links 
         'template = makeRelLinksAbsolute(template)
      
         ObjConnection.close()
         ObjConnection.Open() 'FOR SQL SERVER
-        'Response.Write "<br>call " & template
+        'Response.Write "<br />call " & template
         'Response.Flush
         Dim html As String
   
@@ -631,14 +631,15 @@
         End If
    
         'TRANSLATION 
-        Dim TAG_TRANSLATION_FULL
+        Dim TAG_TRANSLATION_FULL As String
              
-
+        'Replace Synonyms 
+        template = Replace(template, TAG_TRANSLATE, TAG_TRANSLATION)
         'TAG_TRANSLATION
         If InStr(template, TAG_TRANSLATION) > 0 Then
             
             nextBracketPos = InStr(InStr(template, TAG_TRANSLATION), template, "]")
-            Dim textToTranslate As String : textToTranslate = Mid(template, InStr(template, TAG_TRANSLATION) + Len(TAG_TRANSLATION) + 1, -13 + nextBracketPos - InStr(template, TAG_TRANSLATION))
+            Dim textToTranslate As String = Mid(template, InStr(template, TAG_TRANSLATION) + Len(TAG_TRANSLATION) + 1, -13 + nextBracketPos - InStr(template, TAG_TRANSLATION))
             TAG_TRANSLATION_FULL = TAG_TRANSLATION & ":" & textToTranslate & "]"
             html = getTranslation(textToTranslate)
             'Response.Write "TAG_TRANSLATION_FULL:" & TAG_TRANSLATION_FULL & "<br/>"
@@ -658,7 +659,6 @@
      
         'ADD TAGS FROM USER TEMPLATE 
         parseTemplate = parseTemplateUser(template)
-   
    
         'ADD TAGS FROM PRODUCT TEMPLATES 
         If Request("ArtNr") <> "" Then
@@ -716,19 +716,18 @@
     End Function
 
     'replace the '../images tag with the fill images link 
-    Function fixRelativeImageLinks(ByVal template)
-        Const IMAGES_RELATIVE_LINK = "../images"
-        Const PRODUCTIMAGES_RELATIVE_LINK = "../productImages"
+    Function fixRelativeImageLinks(ByVal template As String)
+        Const IMAGES_RELATIVE_LINK As String = "../images"
+        Const PRODUCTIMAGES_RELATIVE_LINK As String = "../productImages"
      
-        Dim images_full_link : images_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/images"
-        Dim productimages_full_link : productimages_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/productImages"
+        Dim images_full_link As String : images_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/images"
+        Dim productimages_full_link As String : productimages_full_link = "skins/skin" & varvalue("SKINNUMBER") & "/productImages"
      
-        Dim full
+        Dim full As String
         full = Replace(template, IMAGES_RELATIVE_LINK, images_full_link)
         full = Replace(full, PRODUCTIMAGES_RELATIVE_LINK, productimages_full_link)
      
-     
-        fixRelativeImageLinks = full
+        Return full
     End Function
 
 </script>

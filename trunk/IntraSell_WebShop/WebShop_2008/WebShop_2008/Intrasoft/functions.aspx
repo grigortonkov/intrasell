@@ -199,7 +199,7 @@
         End If
     
         If showDebug() Then
-            Response.Write("<br>" & sql) : Response.Flush()
+            Response.Write("<br />" & sql) : Response.Flush()
         End If
    
         On Error GoTo 0
@@ -222,7 +222,7 @@
         If Request("showSQLSlowerThan") & "" <> "" Then 'specified 
             Dim execTime : execTime = (endTime - startTime) * 24 * 60 * 60 * 100
             If execTime > CLng(Request("showSQLSlowerThan")) Then
-                Response.Write("<br><font color=red>Slow SQL:" & sql & "</font>") : Response.Flush()
+                Response.Write("<br /><font color=red>Slow SQL:" & sql & "</font>") : Response.Flush()
                 Response.Write("ExecTime was: " & execTime)
             End If
         End If
@@ -421,12 +421,12 @@
  
         'Basic checks 
         If Recipient & "" = "" Then
-            Response.Write("<br><b><p class='error'><font color=red>Function sendMailFromWithSending: Recipient is empty</font></p></b><br>")
+            Response.Write("<br /><b><p class='error'><font color=red>Function sendMailFromWithSending: Recipient is empty</font></p></b><br />")
         End If
  
         'Basic checks 
         If From_Email & "" = "" Then
-            Response.Write("<br><b><p class='error'><font color=red>Function sendMailFromWithSending: From_Email is empty</font></p></b><br>")
+            Response.Write("<br /><b><p class='error'><font color=red>Function sendMailFromWithSending: From_Email is empty</font></p></b><br />")
         End If
  
 
@@ -452,7 +452,7 @@
         If Err.Number = 0 Then
             'Response.write "OK"   
         Else
-            Response.Write("<br><font color=red>Error Number= #<b>" & Err.Number & "</font></b><br>")
+            Response.Write("<br /><font color=red>Error Number= #<b>" & Err.Number & "</font></b><br />")
             Response.Write(Err.Description)
             sendMailFromWithSending = False
         End If 'END ERROR HANDLING
@@ -654,7 +654,7 @@
     Function createFoldersIfNotExists(ByVal Filename As String) As Boolean
         'CREATE DIRECTORY IF NOT EXISTS 
            
-        'Response.Write "<BR>Create Directory if not exists." 
+        'Response.Write "<br />Create Directory if not exists." 
         Dim FULLFOLDER
         FULLFOLDER = Left(Filename, InStr(Filename, getOnlyFilename(Filename)) - 2)
         'Response.Write "Foder to crate is : " & FULLFOLDER
@@ -666,7 +666,7 @@
     
         For Each PARTFOLDER In Split(FULLFOLDER, "\")
             FULLPARTFOLDER = FULLPARTFOLDER & PARTFOLDER & "\"
-            'Response.Write "<BR>FULLPARTFOLDER=" & FULLPARTFOLDER
+            'Response.Write "<br />FULLPARTFOLDER=" & FULLPARTFOLDER
             'Response.Flush
             If Not filesystem.FolderExists(FULLPARTFOLDER) Then
                 filesystem.createFolder(FULLPARTFOLDER) 'for files 
@@ -811,7 +811,7 @@
         file.Close()
         If Err.Number > 0 Then
             If LCase(Request("debug")) = "true" Then
-                Response.Write("File is missing:[" & filename & "]<br>")
+                Response.Write("File is missing:[" & filename & "]<br />")
                 Response.Write(Err.Description)
             End If
         End If
@@ -972,7 +972,7 @@
         Dim WaitObj
         WaitObj = Server.CreateObject("WaitFor.Comp")
 
-        'Response.Write "Beginning to wait at: " & Time & "<br>"
+        'Response.Write "Beginning to wait at: " & Time & "<br />"
         Response.Flush()
 
         REM ******************************************************
@@ -1023,28 +1023,28 @@
                                         Exit Function
                                     Else
     
-                                        Response.Write("Dot in starting<br>")
+                                        Response.Write("Dot in starting<br />")
                                     End If
                                 Else
-                                    Response.Write("@ Not between first and last<br>")
+                                    Response.Write("@ Not between first and last<br />")
                                 End If
                             Else
-                                Response.Write(". before last two chars<br>")
+                                Response.Write(". before last two chars<br />")
                             End If
                         Else
-                            Response.Write("Last Dot after @ missing or @ and . are not seperated by a Char<br>")
+                            Response.Write("Last Dot after @ missing or @ and . are not seperated by a Char<br />")
                         End If
                     Else
-                        Response.Write("Space Not Allowed<br>")
+                        Response.Write("Space Not Allowed<br />")
                     End If
                 Else
-                    Response.Write("A Dot Just before or after @ not allowed<br>")
+                    Response.Write("A Dot Just before or after @ not allowed<br />")
                 End If
             Else
-                Response.Write("A required Character Missing<br> ")
+                Response.Write("A required Character Missing<br /> ")
             End If
         Else
-            Response.Write("Email cannot be less than 6 characters<br> ")
+            Response.Write("Email cannot be less than 6 characters<br /> ")
         End If
     
         EMailCheck = False
@@ -1129,7 +1129,7 @@
         rowstart = ""
         rowend = "<hr>"
         fieldstart = ""
-        fieldend = "<br>"
+        fieldend = "<br />"
         fieldnames = True
         namestart = ""
         nameend = "&nbsp;=&nbsp;"
@@ -1148,7 +1148,7 @@
         rowstart = ""
         rowend = ""
         fieldstart = "%name%&nbsp;=&nbsp;<input type='text name='%name%' value='"
-        fieldend = "' size='%size%'><br>"
+        fieldend = "' size='%size%'><br />"
         fieldnames = False
         namestart = ""
         nameend = "&nbsp;&nbsp;="

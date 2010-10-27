@@ -99,7 +99,7 @@
      
         If Not FileExists(Server.MapPath(goToPage)) Then
             Response.Write(getTranslation("Ihre Accountseite existiert nicht!"))
-            Response.Write("<br>Fehlende Seite: " & goToPage)
+            Response.Write("<br />Fehlende Seite: " & goToPage)
         End If
      
         accountPageHTML = readTextFile(Server.MapPath(goToPage))
@@ -122,10 +122,10 @@
             <a href="default.aspx?pageToShow=MyReferedSells&amp;orderType=AU">Bestellungen</a>&nbsp;&amp;
             <a href="default.aspx?pageToShow=MyReferedSells&amp;orderType=RE">Verkaeufe </a>
             nach Ihrer Empfehlung
-            <br>
+            <br />
             <img border="0" src="<%=imageFullName("arrow.gif")%>" alt="&gt;" />
             <a href="module_ref_ShowMyProducts.aspx?idnr=<%=getLOGIN()%>">Meine sechs Produkte</a>
-            <br>
+            <br />
             <img border="0" src="<%=imageFullName("arrow.gif")%>" alt="&gt;" />
             <a href="module_ref_ShowMyProductsAdmin.aspx?idnr=<%=getLOGIN()%>">Meine 6 Produkte (Administration)!</a>
         </td>

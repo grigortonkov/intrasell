@@ -89,17 +89,17 @@ if Trim(strFields) = "" then strFields = "*"
             </table>
             Connection: <strong>
                 <%= strConn %></strong><p>
-                    Query:<br>
+                    Query:<br />
                     SELECT
-                    <%= strFields %><br>
+                    <%= strFields %><br />
                     FROM
-                    <%= Session("dbRs") %><br>
+                    <%= Session("dbRs") %><br />
                     WHERE
-                    <%= Session("dbWhere") %><br>
+                    <%= Session("dbWhere") %><br />
                     GROUP BY
-                    <%= strGroupBy %><br>
+                    <%= strGroupBy %><br />
                     HAVING
-                    <%= Session("dbHaving") %><br>
+                    <%= Session("dbHaving") %><br />
                     ORDER BY
                     <%= Session("dbOrderBy") %><p>
                         <%
@@ -217,7 +217,7 @@ ReDim aFields(intFieldCount,4) %>
                                 </tr>
                             </table>
                             <p>
-                                Current Order set by:<br>
+                                Current Order set by:<br />
                                 <% If Session("dbOrder") > 0 Then %>
                                 Session("dbOrder") = <strong>
                                     <%= Session("dbOrder") %></strong>
@@ -226,7 +226,7 @@ ReDim aFields(intFieldCount,4) %>
                                     <%= Session("dbOrderBy") %></strong>
                                 <% End If %>
                                 <p>
-                                    Cut and Paste the following to build a custom list of field names:<br>
+                                    Cut and Paste the following to build a custom list of field names:<br />
                                     Session("dbFieldNames") = "<%
 For x = 1 to intFieldCount - 1
 	Response.Write aFields(x, 1) & ", "

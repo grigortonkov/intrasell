@@ -55,7 +55,7 @@
         'response.Write "Check " & FromEmail & CheckEmail(FromEmail): response.end ' 
         If Not CheckEmail(FromEmail) Then
 %>
-<br>
+<br />
 <font color="red">Ihre Emailadresse ist keine gültige Emailadresse! </font>
 <% 
     Errors = True
@@ -63,7 +63,7 @@ End If
 
 If Len(ToName) < 1 Then
 %>
-<br>
+<br />
 <font color="red">Sie haben keinen Empfänger eingegeben! </font>
 <% 
     Errors = True
@@ -71,7 +71,7 @@ End If
  
 If Len(FromName) < 1 Then
 %>
-<br>
+<br />
 <font color="red">Ihr Name wurde nicht eingegeben! </font>
 <% 
     Errors = True
@@ -79,7 +79,7 @@ End If
  
 If Len(LoveText) = 0 Then
 %>
-<br>
+<br />
 <font color="red">Sie haben keinen Text verfasst! </font>
 <% 
     Errors = True
@@ -90,7 +90,7 @@ End If
 
 If Not CheckEmail(ToEmail) Then
 %>
-<br>
+<br />
 <font color="red">Die Emailadresse des Empfängers ist keine gültige Emailadresse!
 </font>
 <% 
@@ -167,7 +167,7 @@ End If
     If Not CheckEmail(ToEmail) Then
     
 %>
-<br>
+<br />
 <font color="red">Your email address is not correct! </font>
 <% 
     Errors = True
@@ -175,7 +175,7 @@ End If
 
 If Len(ToName) < 1 Then
 %>
-<br>
+<br />
 <font color="red">The receiving person name is missing! </font>
 <% 
     Errors = True
@@ -183,7 +183,7 @@ End If
      
 If Len(FromName) < 1 Then
 %>
-<br>
+<br />
 <font color="red">Your name is missing! </font>
 <% 
     Errors = True
@@ -191,7 +191,7 @@ End If
      
 If Len(LoveText) = 0 Then
 %>
-<br>
+<br />
 <font color="red">You have to type some text! </font>
 <% 
     Errors = True
@@ -202,7 +202,7 @@ End If
 
 If Not CheckEmail(ToEmail) Then
 %>
-<br>
+<br />
 <font color="red">The receiver's email address is not correct! </font>
 <% 
     Errors = True

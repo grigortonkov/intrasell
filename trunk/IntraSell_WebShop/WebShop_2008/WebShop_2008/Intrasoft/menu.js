@@ -153,8 +153,8 @@ function addSubItem(idParent, text, hint, location)
 	}
 
 	Lookup = "<!-- NEXT ITEM OF SUB MENU "+ idParent +" -->\n";
-	if (n)  MENUitem = "<tr><td><a class=clsMenuItemNS title='"+hint+"' href='"+location+"'>"+text+"</a><br></td></tr>\n";
-	if (ie) MENUitem = "<tr><td><a class=clsMenuItemIE title='"+hint+"' href='"+location+"'>"+text+"</a><br></td></tr>\n";
+	if (n)  MENUitem = "<tr><td><a class=clsMenuItemNS title='"+hint+"' href='"+location+"'>"+text+"</a><br /></td></tr>\n";
+	if (ie) MENUitem = "<tr><td><a class=clsMenuItemIE title='"+hint+"' href='"+location+"'>"+text+"</a><br /></td></tr>\n";
 	MENUitem += Lookup;
 	HTMLstr = HTMLstr.replace(Lookup, MENUitem);
 

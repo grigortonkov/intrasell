@@ -151,7 +151,7 @@
     End Function
 
     Function drawAreaHTMLStandard(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String) As String
-        Const QuestionMarkWidth = 20
+        Const QuestionMarkWidth As Integer = 20
         Dim titlewidth : titlewidth = Width - QuestionMarkWidth
         Dim html
         html = " <table border=""1"" width=""" & Width & """ cellspacing=""0"">"
@@ -169,8 +169,8 @@
 
     ' draws window with oval corners
     Function drawAreaHTMLOval(ByVal Title As String, ByVal Body As String, ByVal State As String, ByVal Width As String) As String
-        Dim imagesBase : imagesBase = Session("BASENAME") & "/intrasoft/windows/"
-        Dim html
+        Dim imagesBase As String = Session("BASENAME") & "/intrasoft/windows/"
+        Dim html As String
         html = html & "<table border=0 width=" & Width & " cellspacing=0 cellpadding=0>"
         html = html & "  <tr>"
         html = html & "    <td width=16 height=16><img border=0 src=""" & imagesBase & "upleft.gif"" width=16 height=16></td>"
@@ -315,7 +315,7 @@
         Dim curVal As String
         curVal = Replace(genericDBHTML, "&lt;", "<")
         curVal = Replace(curVal, "&gt;", ">")
-        curVal = Replace(curVal, "&nbsp;<br>", Chr(10))
+        curVal = Replace(curVal, "&nbsp;<br />", Chr(10))
         convertToHTML = curVal
     End Function
 

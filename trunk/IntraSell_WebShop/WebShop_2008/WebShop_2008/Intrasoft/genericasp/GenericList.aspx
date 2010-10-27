@@ -430,7 +430,7 @@ Do While (NOT xrs.EOF) AND (intCount < intStopRec)
 					Case 130, 201, 202, 203, 204 ' String or Memo
 						curVal = replace(curVal,"<","&lt;")
 						curVal = replace(curVal,">","&gt;")
-						curVal = replace(curVal,chr(10),"&nbsp;<br>")
+						curVal = replace(curVal,chr(10),"&nbsp;<br />")
 				End Select
 				' Password
 				If UCase(Left(aFields(x,1),8)) = "PASSWORD" Then curVal = "*****"

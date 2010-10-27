@@ -89,9 +89,9 @@ if merch = "" then
 		sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 		      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
 		set rs = ObjConnectionExecute(sql)
-		Response.Write "<b> Select a merchant from the list : <b><br> "
+		Response.Write "<b> Select a merchant from the list : <b><br /> "
 		While not rs.EOF
-			Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchants.aspx" & qString & "&merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
+			Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchants.aspx" & qString & "&merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
 			rs.MoveNext
 		wend
 	else ' edit = stars
@@ -178,7 +178,7 @@ else ' merch <> ""
 						sql = sql & " WHERE IDNR = " & merch
 						ObjConnectionExecute(sql)
 					else ' No name
-						Response.Write " Name field can not be empty !<br> "
+						Response.Write " Name field can not be empty !<br /> "
 					end if		
 				end if
 				if request("CreateFilialeButton") <> "" then
@@ -254,7 +254,7 @@ else ' merch <> ""
 							  " Values ( " & NextId("priceCompareHaendlerFilialen","ID") & "," & merch & "," & count & ")"
 						ObjConnectionExecute(sql)
 					else ' No name
-						Response.Write " Name field can not be empty !<br> "
+						Response.Write " Name field can not be empty !<br /> "
 					end if		
 				end if
 				sql = "SELECT * FROM lieferantenAdressen WHERE IDNR = " & merch 
@@ -322,7 +322,7 @@ else ' merch <> ""
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-					<td colspan='4' align='center'><br><input type="submit" value="Create" id="Submit2" name="CreateFilialeButton"></td>
+					<td colspan='4' align='center'><br /><input type="submit" value="Create" id="Submit2" name="CreateFilialeButton"></td>
 					<td colspan='2' align='center'><input type="submit" value="Cancel" id="Submit3" name="CancelButton"></td>
 					</tr>
 					</table>
@@ -466,7 +466,7 @@ else ' merch <> ""
 						rsFil.MoveNext
 					wend
 				end if
-				Response.Write "<tr><td><br>&nbsp;</td>"
+				Response.Write "<tr><td><br />&nbsp;</td>"
 				Response.Write "<td align='center'><input type=""submit"" value=""Add New From List"" id=""Submit2"" name=""ChooseButton""></td>"
 				Response.Write "<td align='center'><input type=""submit"" value=""Create New"" id=""Submit3"" name=""CreateButton""></td>"
 				Response.Write "</table>"	
@@ -475,7 +475,7 @@ else ' merch <> ""
 			%>
 				
 				
-				<br>
+				<br />
 				<p align=center>Store URL: <a href="http://store.shop">http://store.shop</a></p>
 				</td>
 				</tr>
@@ -619,7 +619,7 @@ else ' merch <> ""
 			Response.Write ">top</option></td></tr>"%>
 			
 			</table>
-			<BR>
+			<br />
 			<p align=center>
 			<input type="submit" value="Update" id="Submit1" name="UpdateButton">
 			</p>

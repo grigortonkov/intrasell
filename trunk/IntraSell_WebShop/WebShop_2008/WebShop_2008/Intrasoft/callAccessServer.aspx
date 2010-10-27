@@ -37,7 +37,7 @@ end function
 
 for i = 1 to 10 
    Response.Write "Eval="&i: Response.Flush
-   Response.write  " " & eval("1000+" & i ) & "<br>"
+   Response.write  " " & eval("1000+" & i ) & "<br />"
    Response.Flush 
 next
 

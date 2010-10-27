@@ -59,13 +59,13 @@
             html = html & getTranslation("Suche")
         End If
    
-        If Not rs.EOF Then html = html & "<br>"
+        If Not rs.EOF Then html = html & "<br />"
         'free text search 
         html = html & "<input name=""searchFreeText"" value=""" & searchFreeText & """ size=""7"" style=""width: 70%; position: relative;""></td></tr>"
    
    
         'Hesrteller
-        html = html & "<tr><td>" & getTranslation("Hersteller") & "<br>" & makeSelectForHersteller(categoryId, currentSQL, Request("Hersteller")) & "</td></tr>"
+        html = html & "<tr><td>" & getTranslation("Hersteller") & "<br />" & makeSelectForHersteller(categoryId, currentSQL, Request("Hersteller")) & "</td></tr>"
    
         html = html & "<tr><td>"
         'Min Preis
@@ -94,7 +94,7 @@
 
             'According max size we can have check box, combo box and text search  
             If maxSize > 1 And Not rsSub.EOF Then ' comboBox is needed    
-                html = html & "<br>" & kwName
+                html = html & "<br />" & kwName
                 html = html & "<SELECT Name=""" & kwName & """ style=""width: 70%; position: relative;"">"
                 'response.write "rs(Name).Value=" & kwName 
                 If kwName <> "" And Request(kwName) <> "" Then html = html & "<OPTION></OPTION>" 'Empty choice for reducing the search criterias
@@ -113,7 +113,7 @@
                         html = html & "&nbsp;" & kwName
                     End If
                 Else   ' text Box is needed 
-                    html = html & "<br>" & kwName & ":"
+                    html = html & "<br />" & kwName & ":"
                     html = html & "<Input Name=""" & kwName & """  value=""" & Request(kwName) & """  size=""7"" style=""width: 70%; position: relative;"">"
                 End If
             End If
@@ -300,7 +300,7 @@
         Dim META_CHAR : META_CHAR = "%"
         If Session("DBTYPE") = "Access" Then META_CHAR = "*"
   
-        'response.write "<br>keyword=" & keyword & "=" & Request.Form(keyword)
+        'response.write "<br />keyword=" & keyword & "=" & Request.Form(keyword)
         'keywordName =  lcase(keyword)
         'keywordValue =   lcase(Request(keyword))
         If keywordValue <> "" _

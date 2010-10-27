@@ -60,13 +60,13 @@
         <p>
             <hr noshade>
             <font size="-1">
-                <!-- Error Number: <%= Session("ErrNumber") %><BR> -->
+                <!-- Error Number: <%= Session("ErrNumber") %><br /> -->
                 Error:
-                <%= Session("ErrDesc") %><br>
-                <!-- Source: <%= Session("ErrSource") %><BR> -->
+                <%= Session("ErrDesc") %><br />
+                <!-- Source: <%= Session("ErrSource") %><br /> -->
                 Line:
-                <%= Session("ErrLine") %><br>
-                <%= Session("ErrMsg") %><br>
+                <%= Session("ErrLine") %><br />
+                <%= Session("ErrMsg") %><br />
             </font>
             <%  Session("ErrorNumber") = 0
             End If%>

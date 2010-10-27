@@ -102,11 +102,11 @@
             </table>
         </center>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
     <%Call visualizeWarenkorb("3", Session("LAND"), PayMode, PostMode, destination)%>
-    <br>
-    <br>
+    <br />
+    <br />
     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"
         bordercolor="#111111" width="100%" id="AutoNumber15">
         <tr>
@@ -117,7 +117,7 @@
                     <a name="agb"></a>&nbsp;<%=getTranslation("Ich habe die AGB gelesen und akzeptiert!")%>
                     <a href="default.aspx?PageToShow=AGB">
                         <%=getTranslation("AGB lesen ...")%></a>
-                    <br>
+                    <br />
                     <% If VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" Then%>
                     <input type="checkbox" name="GESETZ" value="ON" class="submit">
                     <a name="agb"></a>&nbsp;<%=getTranslation("Informationen zum Fernabsatzgesetz gelesen!")%>

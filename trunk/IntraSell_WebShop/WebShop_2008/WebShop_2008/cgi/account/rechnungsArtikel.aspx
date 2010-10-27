@@ -98,7 +98,7 @@
         <td width="169" align="middle">
             <a href="cgi/account/printPreviewOrder.aspx?nummer=<%=OrderNRArtikel%>&amp;OrderType=<%=OrderTypeArtikel%>"
                 target="blank">
-                <%=getTranslation("ausdrucken")%><br>
+                <%=getTranslation("ausdrucken")%><br />
                 <%=OrderTypeArtikel%>-<%=OrderNRArtikel%>&nbsp;<img border="0" src='<%=imageFullName("printer.png")%>'>
             </a>
         </td>
@@ -138,7 +138,7 @@
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
                 <%=getTranslation("Bestellinfo")%>
             </a>
-            <br>
+            <br />
             <img border="0" src='<%=imageFullName("question.gif")%>'>&nbsp;
             <!--<a href="cgi/calls/requestJob.aspx?Job=RMARequest&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>" 
                     target="JOB" OnClick="window.open ('JOB', 'JOB', 'height=400,width=400,status=yes,toolbar=no,menubar=no,location=no');">

@@ -12,7 +12,7 @@
                       " WHERE UserId=" & getLOGIN() & " and BookmarkId=" & Request("BookmarkId")
                 ObjConnectionExecute(SQL)
                 Response.Write(getTranslation("Bookmark wurde erfolgreich gelöscht!"))
-                Response.Write("<br>")
+                Response.Write("<br />")
 
             End If
 

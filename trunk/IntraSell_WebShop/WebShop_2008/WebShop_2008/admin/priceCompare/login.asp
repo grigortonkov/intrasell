@@ -23,9 +23,9 @@ Sub ShowLogin
 <td width="152">
 <p align="center"><img hspace="0" id="IMG1" src="../company/images/company.gif"></td>
 <td width="150">
-<p align="center"><br>
-<b><font face="Verdana" size="2">Admin Login<br>
-</font></b><br>
+<p align="center"><br />
+<b><font face="Verdana" size="2">Admin Login<br />
+</font></b><br />
 &nbsp;</td>
 
 </tr>
@@ -68,7 +68,7 @@ If LCase(Request.Form("username")) = Lcase(VARVALUE("ADMIN")) And LCase(Request.
     Session("ADMIN")="TRUE" 'used to show "product bearbeiten" in normal shop
     Response.Redirect "default.aspx"
 Else
-    %><font color="#FF0000">Login Failed.</font><br><% 
+    %><font color="#FF0000">Login Failed.</font><br /><% 
     ShowLogin
 End If
 End Sub

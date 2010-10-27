@@ -54,7 +54,7 @@
      		 end if           
 			Response.Flush
 		wend 
-	Response.Write "<br>Total " & countlines & " lines converted!"			 
+	Response.Write "<br />Total " & countlines & " lines converted!"			 
  objStream.close 
 
 

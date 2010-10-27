@@ -36,7 +36,7 @@
               
    
     
-        Response.Write(drawMsgBox("Basket restored", getTranslation("Warenkorb wurde vom Speicher geholt!") & "[" & oldWarenkorbSID & "]<br>" & _
+        Response.Write(drawMsgBox("Basket restored", getTranslation("Warenkorb wurde vom Speicher geholt!") & "[" & oldWarenkorbSID & "]<br />" & _
              "<a href='default.aspx?pageToShow=warenkorbStep1'>" & getTranslation("zum Warenkorb") & "</a>", _
              "", ""))
                

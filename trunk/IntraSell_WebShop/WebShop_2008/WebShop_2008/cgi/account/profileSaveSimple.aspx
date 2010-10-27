@@ -13,7 +13,7 @@ Else 'anmelden
     'send aktivation Email 
 %>
 Sie werden in einige Minuten das Registrierungsemail bekommen!
-<br>
+<br />
 Verwenden sie bitte den beigelegten Link um Ihren Account zu aktivieren!
 <%
        

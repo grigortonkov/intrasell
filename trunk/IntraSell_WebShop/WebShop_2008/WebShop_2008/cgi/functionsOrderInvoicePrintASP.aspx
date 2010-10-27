@@ -1,4 +1,5 @@
-<script language="VB" runat="server">   
+<script language="VB" runat="server"> 
+    
 
     '*************************************************************************
     'function printOrder
@@ -44,11 +45,11 @@
         rsKUND.close()
                             
         html = html & " " & getTranslation("Lieferadresse") & ":"
-        html = html & " <br>"
+        html = html & " <br />"
         html = html & " " & printAddress(knd, TypeOfAddress.SHIPPING, False, False) & ""
         html = html & " <hr>"
         html = html & " " & getTranslation("Rechnungsadresse") & ":"
-        html = html & "  <br>"
+        html = html & "  <br />"
         html = html & "  " & printAddress(knd, TypeOfAddress.INVOICE, False, False) & ""
         html = html & " </font>"
         html = html & "</td>"
@@ -62,7 +63,7 @@
         html = html & "                  " & Nummer & ""
         html = html & "                  /"
         html = html & "                   " & orderDate & ""
-        html = html & "                   <br>"
+        html = html & "                   <br />"
         html = html & "                    " & getTranslation("Kunden Nr.") & ":"
         html = html & "                    " & knd & ""
         html = html & "                </font>"
@@ -220,7 +221,7 @@
                 html = html & "                   align='right'>"
                 html = html & "                   <p align='right'>"
                 html = html & "                        <font size='1'>"
-                html = html & "                            <br>"
+                html = html & "                            <br />"
                 html = html & "                           " & getTranslation("MWST") & ""
                 html = html & "                            (" & MWSTARRAY(1, i) & "):</font>"
                 html = html & "                </td>"
@@ -284,7 +285,7 @@
         html = html & "    <td colspan='4' style='border-bottom-style: solid; border-bottom-width: 1'>"
         html = html & "       <font size='1'>"
         html = html & "           " & VARVALUE("RECHNUNG_FREIER_TEXT_AGB") & ""
-        html = html & "       <br>"
+        html = html & "       <br />"
         html = html & "    </font>"
         html = html & "  </td>"
         html = html & "</tr>"
@@ -301,4 +302,3 @@
         
     End Function
 </script>
-

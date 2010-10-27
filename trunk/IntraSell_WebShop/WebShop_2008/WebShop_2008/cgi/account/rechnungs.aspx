@@ -2,13 +2,15 @@
     <%=getTranslation("Ihre Auftr&auml;ge/Lieferscheine/Rechnungen")%></h2>
 <%
 
- 
+    Dim sql As String
+    
     If Not isLoggedIn() Then
         Response.Write(getTranslation("Bitte vorher anmelden!"))
-    Else 'logged in
+    Else
+        'logged in
 
 
-        Dim orderType as String: orderType = Request("orderType")
+        Dim orderType As String = Request("orderType")
         Dim tableOrders, tableOrdersProducts As String
         
         tableOrders = getNameForTable(orderType)
@@ -18,7 +20,7 @@
         Dim orderNr As Double = 0
     
 
-        Dim MCHAR : MCHAR = "*"
+        Dim MCHAR As String : MCHAR = "*"
         If Session("dbType") = "SQL" Or Session("dbType") = "MySQL" Then MCHAR = "%"
     
         SQL = " SELECT " & tableOrders & ".Datum, Status,  " & tableOrdersProducts & ".* " & _
@@ -30,7 +32,6 @@
            " ORDER BY (" & tableOrdersProducts & ".RechNr) DESC "
    
         'if Session("dbType")  = "SQL" then sql = replace(sql,"*","%")  
-          
         'response.write SQL
         'Response.Flush
         rsRech = objConnectionExecute(SQL)

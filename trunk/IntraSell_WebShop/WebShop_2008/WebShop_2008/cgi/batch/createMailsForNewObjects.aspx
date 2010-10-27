@@ -1,6 +1,6 @@
 <!--#include file="../defaultHead.inc.aspx"-->
-Batch Job "Send Mails with new Objects to all Users"<br>
-Important: This job only creates mails, please use the mail tool to send the emails!<br>
+Batch Job "Send Mails with new Objects to all Users"<br />
+Important: This job only creates mails, please use the mail tool to send the emails!<br />
 <%
     'Sends once a day mails with new Product to all registered users 
 
@@ -32,7 +32,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
         sqlNewObjects = rsBatch("SQLString").Value
         subject = getTranslation("Neue Objekte eingetroffen! Ihre Suche:") & rsBatch("SQLDescription").Value
          
-        'Response.Write "<br>sqlBatch('SQLString')=" & sqlNewObjects:Response.Flush
+        'Response.Write "<br />sqlBatch('SQLString')=" & sqlNewObjects:Response.Flush
         sqlNewObjects = Replace(sqlNewObjects, "~", "'")
         sqlNewObjects = sqlNewObjects & " AND angelegtAm > " & SQLNOW(-1 * (rsBatch("IntervalInDays").Value))
         rsNewObjects = objConnectionExecute(sqlNewObjects)
@@ -44,7 +44,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
             objectFound = True
             htmlListNewObjects = htmlListNewObjects & _
                                  counterI & ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
-                                 rsNewObjects("Bezeichnung").Value & "</a><br>"
+                                 rsNewObjects("Bezeichnung").Value & "</a><br />"
             rsNewObjects.moveNext()
             
         End While
@@ -79,11 +79,11 @@ Important: This job only creates mails, please use the mail tool to send the ema
                 objConnectionExecute(sqlK)
                         
             Else
-                Response.Write("Cannot send/save Email!<br>")
+                Response.Write("Cannot send/save Email!<br />")
             End If
                     
         Else ' no object found 
-            Response.Write("<br>No Objects found for QueryId=" & rsBatch("QueryId").Value & " and Email: " & rsBatch("Email").Value)
+            Response.Write("<br />No Objects found for QueryId=" & rsBatch("QueryId").Value & " and Email: " & rsBatch("Email").Value)
         End If
         rsBatch.MoveNext()
     End While
@@ -91,5 +91,5 @@ Important: This job only creates mails, please use the mail tool to send the ema
     'send mail to the administrator 
     Dim mailToAdmin : mailToAdmin = "totalMailsCreated=" & totalMailsCreated & ", totalQueriesChecked=" & totalQueriesChecked
     Call sendMailFromWithSending(varvalue("EMAIL"), "Batch Job New Objects", mailToAdmin, varvalue("EMAIL"))
-    Response.Write("<br>Please do not forget to send all Emails from this batch!")
+    Response.Write("<br />Please do not forget to send all Emails from this batch!")
 %>

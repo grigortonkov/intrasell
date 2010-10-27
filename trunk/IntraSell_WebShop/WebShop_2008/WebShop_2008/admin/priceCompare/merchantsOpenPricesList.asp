@@ -74,7 +74,7 @@ if IDtoImport <> "" then
 		sql = "INSERT INTO [lieferantenArtikel-Preise] (PreisId, LieferantNr, ArtikelNr, EKPreis, PreisDatum ) " & _
 		      " Values(" & NextId("[lieferantenArtikel-Preise]","PreisId") & ", " & liefID & _
 		      "," & NextId("grArtikel","ArtNr") & "," & csValues(1) & ",'" & GermanSQLDate( rsImp("FromDate")) & "' )"	
-		Response.Write " <br> SQL : " & sql
+		Response.Write " <br /> SQL : " & sql
 		ObjConnectionExecute(sql) 
 		sql = "DELETE FROM priceComparePricesToImport WHERE ID = " & IDtoDelete
 		ObjConnectionExecute(SQL) 

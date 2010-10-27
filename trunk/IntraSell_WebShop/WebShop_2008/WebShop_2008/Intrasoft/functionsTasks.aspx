@@ -42,7 +42,7 @@ call executeAllOpenTasks()
         sql = "SELECT * FROM TASKS WHERE StartTime <= " & SQLNOW(0) & " AND LatestTime >=" & SQLNOW(0)
         rs = objConnection.execute(sql)
         If rs.eOF Then
-            Response.Write("<br><font color=""red""> No more tasks to execute!")
+            Response.Write("<br /><font color=""red""> No more tasks to execute!")
         End If
         While Not rs.EOF
             Call executeOneTask(rs("ID"))
@@ -60,7 +60,7 @@ call executeAllOpenTasks()
         sql = "SELECT * FROM TASKS WHERE id=" & ID
         rs = objConnection.execute(sql)
         If Not rsEOF Then
-            Response.Write("<br>Execute task " & rs("TaskName") & " on " & rs("URLToCall")) : Response.Flush()
+            Response.Write("<br />Execute task " & rs("TaskName") & " on " & rs("URLToCall")) : Response.Flush()
             Dim aspHttp : aspHttp = Server.CreateObject("Tonkov.ASPHttp")
      
      
@@ -81,7 +81,7 @@ call executeAllOpenTasks()
             aspHttp = Nothing
      
         Else
-            Response.Write("<br>Task not known. Id=" & ID)
+            Response.Write("<br />Task not known. Id=" & ID)
         End If
  
     End Function

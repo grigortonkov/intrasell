@@ -23,15 +23,15 @@ if getData("UploadButton") <> "" then
 		myfilename = "export.txt"  'getFileName("fName")
 		Server.ScriptTimeout = 250
 		If myfilename <> "" then
-		    response.write  "<br>myfilename=" & myfilename
+		    response.write  "<br />myfilename=" & myfilename
 		    response.Flush 
 		    'response.end
 			If saveAs("fName",myfilename ) THEN
-				response.write ("<br><font color='green'>Upload of File '" & myfilename & "' as file '" & myfilename &  "' was successfull.</font>")
+				response.write ("<br /><font color='green'>Upload of File '" & myfilename & "' as file '" & myfilename &  "' was successfull.</font>")
 				'set proper name in office vars 
 				'objConnectionExecute("UPDATE ofVars SET Wert= '" & myfilename & "' Where Name = 'COMPANY_LOGO_IMAGE'" )
 			else
- 				response.write("<br><font color='red'>An Error occured with Upload of file '" & myfilename & "' !</font>")
+ 				response.write("<br /><font color='red'>An Error occured with Upload of file '" & myfilename & "' !</font>")
 			end if
 		End if
 		Response.Write("<hr>")

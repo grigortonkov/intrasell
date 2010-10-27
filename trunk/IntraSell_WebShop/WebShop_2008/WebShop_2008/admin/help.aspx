@@ -6,12 +6,12 @@
     finden und diesen direkt bearbeiten.
 </p>
 <p>
-    2.Wie soll die Beschreibung des Produktes ausschauen? '****************************************************************************&nbsp;&nbsp;<br>
+    2.Wie soll die Beschreibung des Produktes ausschauen? '****************************************************************************&nbsp;&nbsp;<br />
     Product Page Detail
-    <br>
-    Gramatik&nbsp;des Feldes <b>Beschreibung</b>&nbsp; in grArtikel Tabelle<br>
+    <br />
+    Gramatik&nbsp;des Feldes <b>Beschreibung</b>&nbsp; in grArtikel Tabelle<br />
     [CommonDescription]#[TechInfo:![ParamterName=ParamereterValue]]#[SpecialChoice:![CHOICENAME=![OPTION,]]]
-    <br>
+    <br />
     Bsp: "Some text.TechInfo:Prozessor=AMD,RAM=128;SpecialChoice:Color=Red,Green,Blue;Size=S,L,XXL"
     ****************************************************************************&nbsp;
 </p>

@@ -171,7 +171,7 @@ Response.AddHeader ("Cache-Control", "no-cache")
             <p>
                 <center>
                     <font size="4" face="<%=strFont%>"><strong><em>
-                        <%=txtDeletePrompt%></em></strong></font><br>
+                        <%=txtDeletePrompt%></em></strong></font><br />
                     <table cellpadding="1" cellspacing="0" border="0" bgcolor="<%=strBorderColor%>">
                         <tr>
                             <td>
@@ -236,7 +236,7 @@ Response.AddHeader ("Cache-Control", "no-cache")
 					case 129, 130, 200, 201, 202, 203 ' String or Memo
 						curVal = replace(curVal,"<","&lt;")
 						curVal = replace(curVal,">","&gt;")
-						curVal = replace(curVal,chr(10),"&nbsp;<br>")
+						curVal = replace(curVal,chr(10),"&nbsp;<br />")
 				End Select
 			end if
 			Response.Write (curVal) %>

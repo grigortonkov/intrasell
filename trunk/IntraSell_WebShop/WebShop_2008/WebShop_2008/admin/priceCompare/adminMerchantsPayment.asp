@@ -20,9 +20,9 @@ if merch = "" then
 	sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
 	set rs = ObjConnectionExecute(sql)
-	Response.Write "<b> Select a merchant from the list : <b><br> "
+	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsPayment.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
+		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsPayment.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
 		rs.MoveNext
 	wend
 else ' merch <> ""
@@ -186,7 +186,7 @@ else ' merch <> ""
 	if rs("PaymentMode") = "top" then 
 		Response.Write " SELECTED"
 	end if
-	Response.Write ">top</option></select></td></tr></table><br>"
+	Response.Write ">top</option></select></td></tr></table><br />"
 	Response.Write "<table align='center' border='0' cellspacing='0' cellpadding='0' width='90%'>"
 	Response.Write "<tr><td valign='top' width='50%'>"
 	%>
@@ -309,7 +309,7 @@ else ' merch <> ""
 	wend
 	rsZ.close
 	set rsZ = nothing
-	%></table></td></tr></table><BR><%
+	%></table></td></tr></table><br /><%
 	Response.Write "<p align='center'>"
 	Response.Write "<input type='submit' value='Update' id='Submit1' name='UpdateButton'></p>"
 	sql = "SELECT Web FROM lieferantenAdressen WHERE IDNR = " & merch

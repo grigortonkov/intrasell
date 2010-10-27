@@ -17,7 +17,7 @@
 
         If getLOGIN() & "" = "" Or Trim(Url & "") = "" Then
             message = getTranslation("Sie sind nicht angemeldet!")
-            Response.Write("<font color=red>" & message & "</font><br>")
+            Response.Write("<font color=red>" & message & "</font><br />")
             'load login page
     
             Dim accountLoginPageHTML As String = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))

@@ -20,7 +20,7 @@
 <input type="hidden" value="UPDATE" name="UPDATE">
 <%  Call drawProfileForm(True)%>
 <p align="center">
-    <input type="submit" class="button" value="<%=getTranslation("aktualisieren")%>"><br>
+    <input type="submit" class="button" value="<%=getTranslation("aktualisieren")%>"><br />
 </p>
 </form>
 <%

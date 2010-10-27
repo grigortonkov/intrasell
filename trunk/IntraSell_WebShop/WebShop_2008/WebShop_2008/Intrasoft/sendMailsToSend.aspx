@@ -86,7 +86,7 @@ Dim i as Integer
            Response.write ("<font color=red>Max errors reached.</font>")
            objConnection.Execute( "DELETE FROM MailsToSend WHERE ID = " & Id)
        else
-           Response.write ("<font color=red>Error Description: <b>" & err.Description & "</font></b><br>")
+           Response.write ("<font color=red>Error Description: <b>" & err.Description & "</font></b><br />")
            objConnection.Execute( "UPDATE MailsToSend SET Priority = Priority + 1 WHERE ID = " & Id)
            errosFound = errosFound + 1 
        END IF 'END ERROR HANDLING

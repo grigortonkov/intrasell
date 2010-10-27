@@ -21,14 +21,14 @@
                               " merchantPage.aspx?merchantId=" & LieferantNr & "&MERCHANT_HOME=" & TABLEVALUE("lieferantenAdressen", "IDNR", LieferantNr, "Web"), ""))
         Else
             'the user will be send directly to the shop 
-            Response.Write("<br>Sie werden automatisch zum Lieferantenshop weitergeleitet!")
+            Response.Write("<br />Sie werden automatisch zum Lieferantenshop weitergeleitet!")
             'dim merchantURL:merchantURL = TABLEVALUE("lieferantenAdressen","IDNR",LieferantNr,"WEB")
             Dim buyDirektURL
             buyDirektURL = Replace(UrlShop, "HAENDLER_NUMBER", ArtikelNrLieferant)
             buyDirektURL = Replace(buyDirektURL, "[PRODUKTNR]", ArtikelNrLieferant)
             buyDirektURL = Replace(buyDirektURL, "[ProduktNr]", ArtikelNrLieferant)
             buyDirektURL = Replace(buyDirektURL, "PRODUKTNR", ArtikelNrLieferant)
-            Response.Write("<br><a href=""" & buyDirektURL & """> WEITER ZUM HAENDLER SHOP</A>")
+            Response.Write("<br /><a href=""" & buyDirektURL & """> WEITER ZUM HAENDLER SHOP</A>")
    
             Call makeLogEntry(ArtNr, LieferantNr)
             Response.Redirect(buyDirektURL)

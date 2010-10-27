@@ -60,7 +60,7 @@ if txtUpdate = "" Then %>
     <title>Error</title>
 </head>
 <body>
-    GenericDB Language File Missing.<br>
+    GenericDB Language File Missing.<br />
     Find it at: <a href="http://www.ofific.org/Eli/ASP/"></a>
 </body>
 </html>
@@ -208,8 +208,8 @@ Select Case Action
 			For x = 1 to intFieldCount ' do not update key fields 
 				'TONKOV: changed because we want to edit IDs too 
 				If x <> strKeyField OR ucase(xrs.Fields(x-1).Name) = ucase(Session("dbKeyFieldToInsert"))  Then ' the allows key field to be inserted too
-					Response.Write ("<br>xrs.Fields(" & x & "-1)=" & aFields(x,4) )
-					Response.Write ("<br>name: " &  xrs.Fields(x-1).Name)
+					Response.Write ("<br />xrs.Fields(" & x & "-1)=" & aFields(x,4) )
+					Response.Write ("<br />name: " &  xrs.Fields(x-1).Name)
 					if xrs.Fields(x-1).Name <> "rowguid" then 'TONKOV: donot update or add to replication fields  
 						xrs.Fields(x-1) = aFields(x,4)
 					end if 

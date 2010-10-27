@@ -13,7 +13,7 @@
     Dim ReserviertBis : ReserviertBis = Request("ReserviertBis")
     Dim sql
 
-    Response.Write("<br>Requested Action=" & Action & "<br>") : Response.Flush()
+    Response.Write("<br />Requested Action=" & Action & "<br />") : Response.Flush()
 
     If Action = "reserve" Then
         sql = "insert into lagerLagerBuchung (Email, ArtNr, LagerOrt, Stk, Datum) " & _

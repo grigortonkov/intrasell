@@ -74,7 +74,7 @@
                                                        End If%>
   
   </textarea>
-    <br>
+    <br />
     <%
         ''
         '' diese funktion erlaubt löschen von allen ausgew. sätze

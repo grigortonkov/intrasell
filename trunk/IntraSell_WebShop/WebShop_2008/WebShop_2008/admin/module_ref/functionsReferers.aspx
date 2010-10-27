@@ -89,7 +89,7 @@
          " grArtikel.ArtNr = [" & tableName & "].ArtNR) ON [grArtikel-Kategorien].ArtKatNr = grArtikel.ArtKatNr " & _
          " WHERE RefererID= " & RefererId & _
          " GROUP BY webOrderReferenz.RefererId, " & tableNameOrder & ".Datum, " & tableNameOrder & ".Nummer"
-        'Response.Write "<br>sql=" & sql    
+        'Response.Write "<br />sql=" & sql    
         rs = ObjConnectionExecute(sql)
 
  
@@ -151,8 +151,8 @@
         Dim html As String
         
         html = html & "<h1 align='center'>Meine sechs Produkte</h1>"
-        html = html & "Hallo! Hier sind meine sechs lieblings Produkte! Ich kann Dir diese Produkte heiss empfehlen! <br>"
-        html = html & "Liebe Grüsse! <br>"
+        html = html & "Hallo! Hier sind meine sechs lieblings Produkte! Ich kann Dir diese Produkte heiss empfehlen! <br />"
+        html = html & "Liebe Grüsse! <br />"
         html = html & TABLEVALUE("ofAdressen", "idnr", idnr, "Name")
 
  

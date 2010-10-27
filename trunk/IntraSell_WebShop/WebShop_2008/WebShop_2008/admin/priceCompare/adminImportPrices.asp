@@ -36,7 +36,7 @@ if merch = "" then
 	  <h1>Import open Prices ... </h1><%
 		while not rs.EOF
 			Response.Write "<a href=""adminImportPrices.asp?merch=" & rs("IDNR") & """><b>[Merchant: " & rs("Firma") & "]</b></a> " & _ 
-			               "[Last Import: " & varValueMerchant(rs("IDNR"), "LAST_SUCCESSFULL_IMPORT") & "]<br>"
+			               "[Last Import: " & varValueMerchant(rs("IDNR"), "LAST_SUCCESSFULL_IMPORT") & "]<br />"
 			rs.MoveNext
 		wend
 	end if	
@@ -162,7 +162,7 @@ else
 				Response.Write "<td align='right'>Picture:</td><td><input name='Picture' style='width:150' value='" & csValues(15) & "'></td></tr>"
 				Response.Write "<tr><td align='center' colspan='4'>&nbsp;</td></tr><tr>"
 				Response.Write "<td align='center' colspan='2'><input type='submit' value='Add Produkt' id='AddProductButton' name='AddButton'></td>"
-				Response.Write "<td align='right' colspan='2'>&nbsp;</td></tr></table><br>"
+				Response.Write "<td align='right' colspan='2'>&nbsp;</td></tr></table><br />"
 				rsImp.close
 				set rsImp = nothing
 			end if	
@@ -244,7 +244,7 @@ else
 				end if	
 				rsImp.MoveNext
 			wend
-			Response.Write "<h4><b><font color='green'>All Prices were imported successfuly !</font></b></h4><BR>"
+			Response.Write "<h4><b><font color='green'>All Prices were imported successfuly !</font></b></h4><br />"
 		else ' import only one 
 		  
 		   Response.Write "Import One!" 
@@ -277,7 +277,7 @@ else
 						  csValues(12) & "'," & csValues(8) & ")"	
 			'Response.Write sql
 			ObjConnectionExecute(sql) 
-			Response.Write "<h4><b><font color='green'>Price for produkt <i>" & csValues(2) & " was imported successfuly !</font></b></h4><BR>"			
+			Response.Write "<h4><b><font color='green'>Price for produkt <i>" & csValues(2) & " was imported successfuly !</font></b></h4><br />"			
 			sql = "DELETE FROM priceComparePricesToImport WHERE ID = " & rsImp("ID") 
 			ObjConnectionExecute(SQL) 
 		end if
@@ -339,7 +339,7 @@ else
 				Response.Write "<td><a href=""adminImportPrices.asp?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"
 				Response.Write "<td>&nbsp;</td>"
 			end if	
-			'Response.Write "FUCK :" & csValues(6) & "<BR>"
+			'Response.Write "FUCK :" & csValues(6) & "<br />"
 			Response.Write "<td>" &  line& "</td>"
 			'Response.Write "<td>" & csValues(2) & "</td>"
 			Response.Write "<td align=""right"">" & FormatNumber(csValues(6),2) & "</td>"

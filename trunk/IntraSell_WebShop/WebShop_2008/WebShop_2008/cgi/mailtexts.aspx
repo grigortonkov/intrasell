@@ -1,6 +1,6 @@
 <script language="VB" runat="server">  
  
-    Function MAKE_EMAIL_REGISTRATION(ByVal KDNR)
+    Function MAKE_EMAIL_REGISTRATION(ByVal KDNR) As String
 
         Dim Name : Name = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Name")
         Dim Email : Email = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Email")
@@ -27,7 +27,7 @@
     End Function
 
 
-    Function MAKE_EMAIL_REGISTRATION_SIMPLE(ByVal KDNR)
+    Function MAKE_EMAIL_REGISTRATION_SIMPLE(ByVal KDNR) As String
 
         Dim Name : Name = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Name")
         Dim Email : Email = TABLEVALUE("ofAdressen", "IDNR", KDNR, "Email")
@@ -60,7 +60,7 @@
     ''' <param name="KDNR"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function MAKE_EMAIL_SEND_PASSWORD(ByVal KDNR)
+    Function MAKE_EMAIL_SEND_PASSWORD(ByVal KDNR) As String
  
         Dim html As String
         Dim Passwort As String
@@ -85,7 +85,7 @@
     ''' <param name="AuftragNr"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function MAKE_EMAIL_ORDER(ByVal KDNR, ByVal AuftragNr)
+    Function MAKE_EMAIL_ORDER(ByVal KDNR, ByVal AuftragNr) As String
         Const TAG_EMBED_ORDER As String = "[EMBED_ORDER]"
         Dim html As String
         
@@ -144,7 +144,7 @@
     ''' <param name="BodyMail"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function MAKE_EMAIL_TELL_A_FRIEND(ByVal ProductURL, ByVal BodyMail)
+    Function MAKE_EMAIL_TELL_A_FRIEND(ByVal ProductURL As String, ByVal BodyMail As String) As String
         Dim html
         Dim name : name = Request("ToName")
         Dim artNr : artNr = Request("ArtNr")
@@ -182,7 +182,7 @@
     ''' <param name="Email"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function MAKE_EMAIL_NEWSLETTER(ByVal Email)
+    Function MAKE_EMAIL_NEWSLETTER(ByVal Email As String) As String
         MAKE_EMAIL_NEWSLETTER = " Liebe(r)  Benutzer(in)!" & Chr(10) & Chr(13) & _
         " Vielen Dank f&uuml;r Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters." & Chr(10) & Chr(13) & _
         " Sie haben sich am " & Now & " von der IP Adresse " & Request.ServerVariables("REMOTE_HOST") & Chr(10) & Chr(13) & _
@@ -200,8 +200,8 @@
     ''' <param name="idnr"></param>
     ''' <param name="html"></param>
     ''' <remarks></remarks>
-    Sub replaceUserTags(ByVal idnr, ByRef html)
-        Dim kdnr : kdnr = idnr
+    Sub replaceUserTags(ByVal idnr As String, ByRef html As String)
+        Dim kdnr As String = idnr
         Dim Firma As String : Firma = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Firma")
         Dim Name As String : Name = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Name")
         Dim Vorname As String : Vorname = TABLEVALUE("ofAdressen", "IDNR", kdnr, "Vorname")
@@ -233,7 +233,7 @@
     'mailname - filename of file in scins 
     'optional - idnr - if provided the mailtext will be saved in ofKorrespondenz
     '==============================================================================
-    Public Function prepareAndSendEmail(ByVal mailname, ByVal subject, ByVal idnr)
+    Public Function prepareAndSendEmail(ByVal mailname As String, ByVal subject As String, ByVal idnr As String) As String
         Dim mailtext : mailtext = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/emails/" & mailname))
         Dim EmailAnbieter : EmailAnbieter = firstValue("select Email from ofAdressen where idnr = " & idnr)
         Dim addFormElements, singleFormElement
@@ -241,7 +241,7 @@
           
         For Each singleFormElement In Request.Form
             If Request.Form(singleFormElement) <> "" Then
-                addFormElements = addFormElements & singleFormElement & " = " & Request.Form(singleFormElement) & "<br>"
+                addFormElements = addFormElements & singleFormElement & " = " & Request.Form(singleFormElement) & "<br />"
                
             End If
             mailtext = Replace(mailtext, "[" & singleFormElement & "]", Request.Form(singleFormElement))
@@ -249,7 +249,7 @@
 
         For Each singleFormElement In Request.QueryString
             If Request(Request.QueryString(singleFormElement)) Then
-                addFormElements = addFormElements & singleFormElement & " = " & Request.QueryString(singleFormElement) & "<br>"
+                addFormElements = addFormElements & singleFormElement & " = " & Request.QueryString(singleFormElement) & "<br />"
             End If
             mailtext = Replace(mailtext, "[" & singleFormElement & "]", Request.QueryString(singleFormElement))
         Next
@@ -261,7 +261,7 @@
         'response.Write "artNrAnfrage=" & artNrAnfrage
         If LCase(Request("debug")) = "true" Then
             Response.Write("Emailtext:<hr/>" & mailtext & "<hr/>")
-            Response.Write("All Form elements<br>" & addFormElements)
+            Response.Write("All Form elements<br />" & addFormElements)
         End If
 
         'TODO: save this for the statistics 
