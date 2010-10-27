@@ -1,10 +1,10 @@
-functionsDB = 198, 198, 807, 731, C
-IntraSellVars = 176, 176, 1004, 813, 
-IntraSellPreise = 110, 115, 938, 747, 
-IntraSellDB = 0, 0, 771, 637, C
-IntraSellVorgaengeAusdruck = 66, 66, 732, 607, 
+functionsDB = 498, 116, 1107, 649, Z
+IntraSellVars = 176, 176, 1004, 813, C
+IntraSellPreise = 110, 115, 938, 747, C
+IntraSellDB = 0, 0, 771, 637, 
+IntraSellVorgaengeAusdruck = 66, 66, 732, 607, C
 IntraSellBarcode = 220, 220, 1069, 960, C
 IntraSellConst = 220, 220, 1069, 960, C
 IntraSellKunden = 176, 176, 1176, 717, C
-functionsLog = 200, 200, 1483, 917, C
-IntraSellDictionary = 264, 264, 1113, 1004, 
+functionsLog = 200, 200, 1483, 917, 
+IntraSellDictionary = 386, 74, 1235, 814, C
