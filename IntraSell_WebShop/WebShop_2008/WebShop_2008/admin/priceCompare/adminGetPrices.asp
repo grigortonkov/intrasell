@@ -55,7 +55,7 @@ if merch <> "" then
 	if rs.EOF and rs.BOF then Response.Write " No such merchant ! "
 
 
-     Response.Write "<br> Delete old open prices ...<br>": Response.Flush
+     Response.Write "<br /> Delete old open prices ...<br />": Response.Flush
      ObjConnectionExecute("DELETE FROM priceComparePricesToImport WHERE LieferantNr="& rs("lieferantNr"))
         
         
@@ -70,7 +70,7 @@ if merch <> "" then
 	'localFile = "c:\example_file_for_import.csv"
 	Dim ftpConn: Set FtpConn = Server.CreateObject("AspInet.FTP")
 	Dim ftpDownloadresult : ftpDownloadresult = false 
-	Response.Write "<br> Going to take file " & rs("filename") & " from ftp to " & localFile & "... please wait!<br>"
+	Response.Write "<br /> Going to take file " & rs("filename") & " from ftp to " & localFile & "... please wait!<br />"
 	Response.Flush
 	
 	ftpDownloadresult = FtpConn.FTPGetFile(rs("ftpserver"), rs("ftpusername"), rs("ftppassword"), _
@@ -87,7 +87,7 @@ if merch <> "" then
 		set objStream = objFile.OpenTextFile( localFileTransformed )
 		objStream.ReadLine ' Only if first line is with field titles !
 		Dim countlines: countlines=0
-		Response.Write "<br>Start importing of file " & localFileTransformed & "<br>"
+		Response.Write "<br />Start importing of file " & localFileTransformed & "<br />"
 	
 		Dim strLine
 		Dim HAS_RIGHT_TO_CREATE_PRODUCTS
@@ -154,11 +154,11 @@ if merch <> "" then
 				 
 		wend
 		objStream.close 
-		Response.Write "<br>Total " & countlines & " lines processed!"		
+		Response.Write "<br />Total " & countlines & " lines processed!"		
 		'objFile.DeleteFile (localFile) 
 		
 				'delete old unused prices 
-				Response.Write "<br>CategoriesUpdated=" & categoriesUpdated 
+				Response.Write "<br />CategoriesUpdated=" & categoriesUpdated 
 				sql = "DELETE FROM [lieferantenArtikel-preise] " & _ 
 				       " where ArtikelNr in (select ArtNr from grArtikel where ArtKatNr in (-100" & categoriesUpdated &  "))" &  _ 
 				      " AND lieferantNr= " & merch  & " AND (preisDatum+1)<" & TOSQLDATE(date()) 
@@ -170,7 +170,7 @@ if merch <> "" then
 				
 		set rsImp = nothing
 		'print statistics 
-		Response.Write "<h4><b><FONT color='green'>Successfuly downloaded and imported Prices for lieferant: " & merchname & " ! </FONT></b></h3><BR>"
+		Response.Write "<h4><b><FONT color='green'>Successfuly downloaded and imported Prices for lieferant: " & merchname & " ! </FONT></b></h3><br />"
 		Response.Write "<table border='1' width='50%'><tr><td colspan='2' align='center'><b>Import result:</b></td></tr>"
 		Response.Write "<tr><td><b>New products:</b></td><td>" & counterNewProducts & "</td></tr>"
 		Response.Write "<tr><td><b>Updated prices:</b></td><td>" & counterUdatedPrices & "</td></tr>"
@@ -181,7 +181,7 @@ if merch <> "" then
 
         call setVarValueMerchant(merch,"LAST_SUCCESSFULL_IMPORT", Date())
 	else 'ERROR SITUATION
-		Response.Write "<BR><h4><b><FONT color='red'>FTP download Failed for <i>" & merchname & " </i>!<BR>"
+		Response.Write "<br /><h4><b><FONT color='red'>FTP download Failed for <i>" & merchname & " </i>!<br />"
 		Response.Write "ASPInet Component error was: " & FtpConn.Lasterror & "</FONT></b></h4>"
 	end if
 

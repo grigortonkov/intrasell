@@ -13,7 +13,7 @@
   defaultPageTemplate = replace(defaultPageTemplate, TAG_PAGEDESCRIPTION, PAGEDESCRIPTION & "")
   
   if InStr(defaultPageTemplate,TAG_BODY) <= 0 then 'missing 
-      Response.Write("<br>Error: BODY Tag is missing in the template!")
+      Response.Write("<br />Error: BODY Tag is missing in the template!")
       response.End
   end if 
   

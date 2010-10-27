@@ -121,7 +121,7 @@ if Request("EditButton") <> "" then
 	
 	sql = "UPDATE [grArtikel-Kategorien] set Name='" & Request.Form("Name") & "', ArtKatNrParent= " & _
 		  Request.Form("ParentId") & sqlString1 & " WHERE ArtKatNr = " & idKat
- 	'Response.Write "SQL : " & SQL & "<BR>"
+ 	'Response.Write "SQL : " & SQL & "<br />"
 	ObjConnectionExecute(sql) 	  	
 end if	
 
@@ -156,7 +156,7 @@ if Request("AddSubButton") <> "" then
 	sql = "INSERT INTO [grArtikel-Kategorien] ( ArtKatNr, Name, ArtKatNrParent" 
 	sql = sql & sqlString1 & ") Values(" & NextId("[grArtikel-Kategorien]","ArtKatNr") & ",'" & Request.Form("sName")
 	sql = sql & "'," & request("sParentId") & sqlString2 & ")"
-'	Response.Write "SQL : " & SQL & "<BR>"
+'	Response.Write "SQL : " & SQL & "<br />"
 	ObjConnectionExecute(sql) 	  	
 	if request("From") = "Keywords" then 
 		Response.Redirect("adminCategoriesKeywords.aspx")
@@ -179,7 +179,7 @@ if idKat <> ""  then
 		set rs = ObjConnectionExecute(sql)%>
 		<table width="100%" height="80%" border="0" cellspacing="2" cellpadding="0">
 		<tr><td colspan="4" align="center" valign ="center">
-			<br><h4><b>Category  <i><%=rs("Name")%></i></b></h4></td>
+			<br /><h4><b>Category  <i><%=rs("Name")%></i></b></h4></td>
 		</tr>
 		<tr>	
 			<td align="right">Name*:</td>
@@ -222,7 +222,7 @@ if idKat <> ""  then
 		
 		<tr>
 		<%if rs("ArtKatNrParent") = -1 then ' no parent category
-			Response.Write "<td align='center' colspan='4'><br><br><input type='submit' value='Apply' name='EditButton' style='width:150' onClick=""return Validator('')""></td>" &  CHR(13) & CHR(10)
+			Response.Write "<td align='center' colspan='4'><br /><br /><input type='submit' value='Apply' name='EditButton' style='width:150' onClick=""return Validator('')""></td>" &  CHR(13) & CHR(10)
 		else
 			Response.Write "<td align='center' colspan='3'><input type='submit' value='Apply' name='EditButton' style='width:150' onClick=""return Validator('')""></td>" &  CHR(13) & CHR(10)
 			Response.Write "<td align='center' colspan='1'><input type='submit' value='Delete' name='DeleteButton' style='width:150'></td>" &  CHR(13) & CHR(10)
@@ -234,9 +234,9 @@ if idKat <> ""  then
 			      " WHERE ArtKatNrParent = " & idKat
 			set rsKat = ObjConnectionExecute(sql)
 			if rsKat.BOF and rsKat.EOF then
-				Response.Write "<center><br><h4><b>Category <I>" & catname & "</i> doesn't have SubCategories </b></h4><br>" &  CHR(13) & CHR(10)
+				Response.Write "<center><br /><h4><b>Category <I>" & catname & "</i> doesn't have SubCategories </b></h4><br />" &  CHR(13) & CHR(10)
 			else
-				Response.Write "<center><br><h4 color='#000080'><b>SubCategories List for category <I>" & catname & "</i></b></h4>" &  CHR(13) & CHR(10)
+				Response.Write "<center><br /><h4 color='#000080'><b>SubCategories List for category <I>" & catname & "</i></b></h4>" &  CHR(13) & CHR(10)
 				Response.Write "<table width='80%' height='40%' border='1' bordercolor='#000080' cellspacing='2' cellpadding='0'>" &  CHR(13) & CHR(10)
 				While not rsKat.EOF
 					DisplayCategoryInTab rsKat("Name"), 0, rsKat("ArtKatNr"), "", "adminCategories.aspx", idKat
@@ -307,7 +307,7 @@ Sub DisplayCategory (txtDisplay, intLevel, idKat , qustr, page )
 	For LevelCounter = 0 to intLevel 
 		Response.Write "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
 	Next
-	Response.Write "<a href = """ & page & "?KatNr=" & idKat & qustr & """>" & (Trim(txtDisplay)) & "</a><BR>"  & CHR(13) & CHR(10)
+	Response.Write "<a href = """ & page & "?KatNr=" & idKat & qustr & """>" & (Trim(txtDisplay)) & "</a><br />"  & CHR(13) & CHR(10)
 End Sub
 
 Sub GetSubCategories( idParent, intLevel, qustr, page )

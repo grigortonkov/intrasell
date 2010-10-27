@@ -13,16 +13,16 @@
     <h1>
         Welcome to the IntraSell.Net administration pages!</h1>
     <%
-if VARVALUE("ADMINPASS")="123" then 'new setup
-    %>
-    Sie sind das erste Mal hier!?<br>
-    Herzliche Gratulation für das Erwerben dieses Produkts!<br>
-    Sie sollten jetzt die <a href="setup/wizzard.aspx">Grundeinstellungen vornehmen!</a><br>
-    Viel Erfolg!
-    <%
-else 
-   response.redirect ("lists/listOrders.aspx?OrderType=AU")
-end if 
+    if VARVALUE_DEFAULT("ADMINPASS", "123")="123" then 'new setup
+        %>
+        Sie sind das erste Mal hier!?<br />
+        Herzliche Gratulation für das Erwerben dieses Produkts!<br />
+        Sie sollten jetzt die <a href="setup/wizzard.aspx">Grundeinstellungen vornehmen!</a><br />
+        Viel Erfolg!
+        <%
+    else 
+       response.redirect ("lists/listOrders.aspx?OrderType=AU")
+    end if 
     %>
 </body>
 </html>

@@ -82,11 +82,11 @@ if getData("UploadButton") <> "" then
 				sql = "SELECT ArtNr, Bezeichnung FROM [grArtikel] WHERE ArtNr=" & pId
 				set rs = ObjConnectionExecute(sql)		
 				If saveAs(fName,"") = true then
-					response.write ("<br><font color='green'>Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' was successfull.</font>")
+					response.write ("<br /><font color='green'>Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' was successfull.</font>")
 					sql = "UPDATE [grArtikel] SET picture='" & myfilename & "' WHERE ArtNr=" & pId
 					ObjConnectionExecute(sql)							
 				else
- 					response.write("<br><font color='red'>An Error occured with Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' !</font>")
+ 					response.write("<br /><font color='red'>An Error occured with Upload of picture of product '" & rs("Bezeichnung") & "' in File '" & myfilename & "' !</font>")
 				end if
 			End if
 		Next

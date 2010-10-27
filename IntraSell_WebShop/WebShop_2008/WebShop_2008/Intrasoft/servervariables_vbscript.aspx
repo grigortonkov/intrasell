@@ -1,4 +1,4 @@
-<%@  Language="JScript" %>
+<%@Page  Language="JScript" %>
 <!************************* This sample is provided for educational purposes only.
 It is not intended to be used in a production environment, has not been tested in
 a production environment, and Microsoft will not provide technical support for it.
@@ -9,7 +9,7 @@ a production environment, and Microsoft will not provide technical support for i
 </head>
 <body bgcolor="White" topmargin="10" leftmargin="10">
     <!-- Display header. -->
-    <font size="4" face="ARIAL, HELVETICA"><b>HTTP Server Variables</b></font><br>
+    <font size="4" face="ARIAL, HELVETICA"><b>HTTP Server Variables</b></font><br />
     <hr size="1" color="#000000">
     <!-- Use a HTML table to format the server variables -->
     <!-- and respective values. -->

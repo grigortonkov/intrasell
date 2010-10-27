@@ -18,8 +18,8 @@
     'Response.Write res1 & " und " &   res2
     If res1 = 0 Or res2 = 0 Then ' adress saving failed /missing data 
 %>
-<br>
-<br>
+<br />
+<br />
 <center>
     <input type="submit" value="Adressen Speichern" name="B1" style="float: left">
 </center>
@@ -75,8 +75,8 @@ Else 'no action requested
     </tr>
     <tr>
         <td colspan="2">
-            <br>
-            <br>
+            <br />
+            <br />
             <center>
                 <input type="submit" class="button" value="Adressen speichern" name="B1" style="float: left">
             </center>

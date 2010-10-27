@@ -1,8 +1,5 @@
-<%@ Page AspCompat="true" Language="VB" %>
-<%'@ LANGUAGE = "VBScript.Encode"%>
-<%'@ LANGUAGE = VBScript.Encode  TRANSACTION = Required %>
-<%'OPTION explicit%>
-<%'ON ERROR RESUME NEXT%>
+<%@ Page AspCompat="True" Language="VB" %> 
+
 <!--#include virtual="/intrasoft/connOpen.aspx"-->
 <!--#include virtual="/intrasoft/functions.aspx"-->
 <!--#include virtual="/intrasoft/functionsGUI.aspx"-->

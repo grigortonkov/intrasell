@@ -96,9 +96,9 @@ if merch = "" then
 	sql = "SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
 	set rs = ObjConnectionExecute(sql)
-	Response.Write "<b> Select a merchant from the list : <b><br> "
+	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsProfile.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
+		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsProfile.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
 		rs.MoveNext
 	wend
 else ' merch <> "" %>
@@ -278,7 +278,7 @@ else ' merch <> "" %>
 			<td align="right">Web URL*:</td><td><input name="fWeb" style="width:150" value="<%=request("fWeb")%>"></td>
 		</tr>
 		<tr>
-		<td colspan='4' align='center'><br><input type="submit" value="Create" id="Submit2" name="CreateFilialeButton" onClick="return Validator( 'f')"></td>
+		<td colspan='4' align='center'><br /><input type="submit" value="Create" id="Submit2" name="CreateFilialeButton" onClick="return Validator( 'f')"></td>
 		<td colspan='2' align='center'><input type="submit" value="Cancel" id="Submit3" name="CancelButton"></td>
 		</tr>
 		</table>
@@ -416,8 +416,8 @@ else ' merch <> "" %>
 					count = count + 1
 				wend
 			end if
-			Response.Write "</table><br><table width='90%' align=center border='0'>"
-			Response.Write "<tr><td width='10%'><br>&nbsp;</td>"
+			Response.Write "</table><br /><table width='90%' align=center border='0'>"
+			Response.Write "<tr><td width='10%'><br />&nbsp;</td>"
 			Response.Write "<td align='center' width='30%'><input type=""submit"" value=""Add New From List"" id=""Submit2"" name=""ChooseButton""></td>"
 			Response.Write "<td align='center' width='40%'><input type=""submit"" value=""Create New"" id=""Submit3"" name=""CreateButton""></td><td width='20%'>&nbsp;</td></tr>"
 			Response.Write "</table>"	

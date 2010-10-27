@@ -234,7 +234,7 @@ if trim(strFormatDate) = "" then strFormatDate = String(intFieldCount,"0") %>
                                                     Case 129, 130, 200, 201, 202, 203 ' String or Memo
                                                         curVal = Replace(curVal, "<", "&lt;")
                                                         curVal = Replace(curVal, ">", "&gt;")
-                                                        curVal = Replace(curVal, Chr(10), "&nbsp;<br>")
+                                                        curVal = Replace(curVal, Chr(10), "&nbsp;<br />")
                                                 End Select
                                                 ' Image
                                                 If (UCase(Left(aFields(x, 1), 3)) = "IMG") Then curVal = LT & "IMG SRC=" & QUOTE & curVal & QUOTE & GT

@@ -50,7 +50,7 @@
         Email = Trim(Left(Email, 50))
         Password = Trim(Left(Password, 16))
         SQL = "SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
-        'response.write "<br>" & sql
+        'response.write "<br />" & sql
         Dim rsP = objConnectionExecute(SQL)
         If rsP.EOF Then
             'check if user has an unlocked account 
@@ -62,9 +62,9 @@
             If rsP.EOF Then
                 LoginError = getTranslation("Das Passwort oder der Name stimmt nicht!")
             Else 'has unlocked account 
-                LoginError = getTranslation("Ihr Account ist noch NICHT nicht freigeschalten!") & "<br>" & _
-                             getTranslation("Bitte zuerst den Link (in Ihrem Emailprogramm) anklicken fuer Account Aktivierung und dann Anmelden probieren!") & "<br>" & _
-                             getTranslation("Wir haben Ihnen gerade Email für Accountaktivierung gesendet!") & "<br>" & _
+                LoginError = getTranslation("Ihr Account ist noch NICHT nicht freigeschalten!") & "<br />" & _
+                             getTranslation("Bitte zuerst den Link (in Ihrem Emailprogramm) anklicken fuer Account Aktivierung und dann Anmelden probieren!") & "<br />" & _
+                             getTranslation("Wir haben Ihnen gerade Email für Accountaktivierung gesendet!") & "<br />" & _
                              getTranslation("Die Email wurde an: ") & getClientEmail(rsP("idnr").Value) & " " & getTranslation("gesendet!")
                 'resend Email with confirmation 
                             
@@ -77,8 +77,8 @@
             authenticate = -1
             Response.Write("<LoginError>" & LoginError & "</LoginError>")
             Response.Write("Sorry! <font color=""#FF0000"">" & LoginError & "</font>" & _
-         "<br><font color=black>" & getTranslation("Benutzen Sie unbedingt die 'Zurueck' Schaltflaeche um Ihre Eingaben nicht zu verlieren!") & "</font>" & _
-         "<br> <a href='javascript:window.back()'>" & getTranslation("Zurueck") & "</a>")
+         "<br /><font color=black>" & getTranslation("Benutzen Sie unbedingt die 'Zurueck' Schaltflaeche um Ihre Eingaben nicht zu verlieren!") & "</font>" & _
+         "<br /> <a href='javascript:window.back()'>" & getTranslation("Zurueck") & "</a>")
                 
             Exit Function
                 
@@ -172,7 +172,7 @@
   
         'check data 
         If Name = "" Or Vorname = "" Or Strasse = "" Or PLZ = "" Or Ort = "" Or Land = "" Or Anrede = "" Then
-            html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br></font>"
+            html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br /></font>"
             'if showForm then 
             If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
             Exit Function
@@ -182,7 +182,7 @@
         'check emal and pwd for account 
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             If Email = "" Or Tel = "" Or Passwort = "" Then
-                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br></font>"
+                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br /></font>"
              
                 'if showForm then 
                 If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
@@ -194,7 +194,7 @@
         'check tel nr 
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             If Not checkTELNR(Tel) Then
-                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige TelNr!?!") & "</b><br></font>"
+                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige TelNr!?!") & "</b><br /></font>"
        
                 If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                 Exit Function
@@ -205,7 +205,7 @@
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             'check email 
             If Not EMailCheck(Email) Then
-                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige Email Adresse!?!") & "</b><br></font>"
+                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige Email Adresse!?!") & "</b><br /></font>"
         
                 If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                 Exit Function
@@ -216,7 +216,7 @@
                 'check passwort 
                 If Passwort <> PasswortII Then
                            
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbestaetigung stimmt nicht!") & "</b><br></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbestaetigung stimmt nicht!") & "</b><br /></font>"
                           
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                     Exit Function
@@ -224,7 +224,7 @@
 
                 'check passwort length
                 If Len(Passwort) < PASSWORD_LENGTH Then
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br /></font>"
                           
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                     Exit Function
@@ -243,8 +243,8 @@
                 End If
  
                 If accountUsed Then
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Diese von Ihnen angegebe Emailadresse ist bereits vorhanden!") & "</b><br></font>"
-                    '=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br>
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Diese von Ihnen angegebe Emailadresse ist bereits vorhanden!") & "</b><br /></font>"
+                    '=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br />
                                  
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                     Exit Function
@@ -388,7 +388,7 @@
             If typeOfAddr = TypeOfAddress.ACCOUNT Or _
               (Name <> "" And (typeOfAddr = TypeOfAddress.SHIPPING Or typeOfAddr = TypeOfAddress.INVOICE)) Then ' only for the first address
                 
-                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte füllen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br></font>"
+                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte füllen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br /></font>"
              
                 Call drawEmptyProfileFormSimple(typeOfAddr, True)
             End If
@@ -399,7 +399,7 @@
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             'check email 
             If Not EMailCheck(Email) Then
-                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ung&uuml;ltige Email Adresse!?!") & "</b><br></font>"
+                html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ung&uuml;ltige Email Adresse!?!") & "</b><br /></font>"
  
                 Call drawEmptyProfileFormSimple(typeOfAddr, True)
                 Exit Function
@@ -410,7 +410,7 @@
                 'check passwort 
                 If Passwort <> PasswortII Then
                            
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbest&auml;tigung stimmt nicht!") & "</b><br></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbest&auml;tigung stimmt nicht!") & "</b><br /></font>"
                          
                     Call drawEmptyProfileFormSimple(typeOfAddr, True)
                     Exit Function
@@ -418,7 +418,7 @@
 
                 'check passwort length
                 If Len(Passwort) < PASSWORD_LENGTH Then
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br /></font>"
                          
                     Call drawEmptyProfileFormSimple(typeOfAddr, True)
                     Exit Function
@@ -437,7 +437,7 @@
                 End If
  
                 If accountUsed Then
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die von Ihnen angegebene Emailadresse wurde bereits verwendet!") & "</b><br></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die von Ihnen angegebene Emailadresse wurde bereits verwendet!") & "</b><br /></font>"
                                   
                     Call drawEmptyProfileFormSimple(typeOfAddr, True)
                     Exit Function
@@ -576,16 +576,16 @@
             html = html & "<!--"
             html = html & " <h2 align='center'>" & getTranslation("Vielen Dank! Ihre Daten wurden erfolgreich gespeichert.") & "</h2>"
             html = html & " -->"
-            html = html & "  <br>                    "
+            html = html & "  <br />                    "
             html = html & getTranslation("Herzlich willkommen bei") & "&nbsp;" & VARVALUE_DEFAULT("DOMAIN", "www.yourdomain.com") & "!"
-            html = html & " <br>"
-            html = html & getTranslation("Sie sind neu angemeldet als:") & "&nbsp;" & Email & "<br>"
+            html = html & " <br />"
+            html = html & getTranslation("Sie sind neu angemeldet als:") & "&nbsp;" & Email & "<br />"
             html = html & getTranslation("In Kürze werden Sie eine Anmeldebestätigung per E-Mail erhalten!")
-            html = html & " <br><br><br>"
+            html = html & " <br /><br /><br />"
             html = html & fixRelativeImageLinks(readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/newsletterForm.htm")))
-            html = html & " <br><br><br>"
+            html = html & " <br /><br /><br />"
             html = html & "<a href='default.aspx?pageToShow=MyAccount'>" & getTranslation("Weiter zum Konto") & "</a>"
-            html = html & " <br><br><br>"
+            html = html & " <br /><br /><br />"
             Response.Write(html)
         End If
     End Function
@@ -637,9 +637,9 @@
         'added for the module module_ref
         If Request("refererId") <> "" Then
             Dim sql : sql = "Insert into webReferers (IDNR, refererId) Values (" & idnr1 & "," & Request("refererId") & ")"
-            'Response.Write "<br>sql=" & sql
+            'Response.Write "<br />sql=" & sql
             objConnectionExecute(sql)
-            Response.Write("<br>Referer #" & Request("refererId") & " was created!")
+            Response.Write("<br />Referer #" & Request("refererId") & " was created!")
         End If
     
         'redirect to warencorb    
@@ -745,7 +745,7 @@
             withCheck = False
         End If
         
-        html = html & "<br><br><center>"
+        html = html & "<br /><br /><center>"
         
         html = html & "<table Id='ProfileTable' width='450'  border='1' cellspacing='3' cellpadding='3' bordercolor='#CCCCCC' style='border-collapse: collapse' bordercolorlight='#FFFFFF' bordercolordark='#FFFFFF' bgcolor='#F3F3F3'>"
 
@@ -1137,7 +1137,7 @@
         'Geburtstag  = makeStringDate(Geburtstag)
     
         
-        html = html & "<br>"
+        html = html & "<br />"
         html = html & "<center>"
         html = html & "<table border='1' cellspacing='0' bordercolor='#CCCCCC' style='border-collapse: collapse'" & _
                       " cellpadding='0' width='450' bordercolorlight='#FFFFFF' bordercolordark='#FFFFFF' bgcolor='#F3F3F3' ID='Table1'>"
@@ -1221,7 +1221,7 @@
         html = html & "<input type='hidden' name='Redirection' value='" & Request("Redirection") & "'>"
         html = html & "<input type='hidden' name='Branche" & typeOfAddr & "' value='4'>"
         html = html & "<!-- simple account  -->"
-        html = html & "&nbsp; <br>"
+        html = html & "&nbsp; <br />"
         html = html & "</center>"
         Response.Write(html)
     End Function
@@ -1582,15 +1582,15 @@
             
 
             If Trim(rsKUND("Firma").Value & "") <> "" Then
-                html = html & rsKUND("Firma").Value & "<br>"
+                html = html & rsKUND("Firma").Value & "<br />"
             End If
                     
-            html = html & rsKUND("Anrede").Value & " " & rsKUND("Name").Value & " " & rsKUND("Vorname").Value & "<br>"
-            html = html & rsKUND("Adresse").Value & " <br>"
-            html = html & PLZ & "-" & Ort & " <br>"
-            html = html & Landname & " <br>"
-            html = html & "Tel: <a href='call:" & rsKUND("Tel").Value & "'>" & rsKUND("Tel").Value & "</a> <br>"
-            html = html & "Email: <a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br>"
+            html = html & rsKUND("Anrede").Value & " " & rsKUND("Name").Value & " " & rsKUND("Vorname").Value & "<br />"
+            html = html & rsKUND("Adresse").Value & " <br />"
+            html = html & PLZ & "-" & Ort & " <br />"
+            html = html & Landname & " <br />"
+            html = html & "Tel: <a href='call:" & rsKUND("Tel").Value & "'>" & rsKUND("Tel").Value & "</a> <br />"
+            html = html & "Email: <a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br />"
             
             If showSelectBox then 
                 html = html & "<input type='checkbox' Name='UseOld"& addressType &"' Value='" & rsKUND("ID").Value & "'> ich möchte diese Adresse verwenden"

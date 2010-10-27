@@ -28,7 +28,7 @@
       strItem = Subst(strItem, ">", "&gt;")
       FixUpItems = strItem
     else
-      FixUpItems = "<br>"
+      FixUpItems = "<br />"
     end if
   end function
 

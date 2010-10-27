@@ -47,7 +47,7 @@
                     <%=getTranslation("Text")%>:</b>
             </td>
             <td>
-                <br>
+                <br />
                 <textarea name='BodyMail' cols="59" rows="7">
 <%=getTranslation("Produktempfehlung")%>
 <%=getTranslation("Dieses E-Mail wurde an Sie via nachfolgender gesendet.")%> <%=VARVALUE ("EMAIL")%> 

@@ -10,30 +10,30 @@
     ''' CLEARANCE_LAGER_NR
     ''' </summary>
     ''' <remarks></remarks>
-    Const CLEARANCE_LAGER_NR = 4
+    Const CLEARANCE_LAGER_NR As Integer = 4
     ''' <summary>
     ''' DEFAULT_LAGER_NR
     ''' </summary>
     ''' <remarks></remarks>
-    Const DEFAULT_LAGER_NR = 1
+    Const DEFAULT_LAGER_NR As Integer = 1
     
     ''' <summary>
     ''' MARGIN_PERCENT_PRICE_DROPS
     ''' </summary>
     ''' <remarks></remarks>
-    Const MARGIN_PERCENT_PRICE_DROPS = 5
+    Const MARGIN_PERCENT_PRICE_DROPS As Integer = 5
     
     ''' <summary>
     ''' TOP_MARGIN_PERCENT_PRICE_DROPS
     ''' </summary>
     ''' <remarks></remarks>
-    Const TOP_MARGIN_PERCENT_PRICE_DROPS = 25
+    Const TOP_MARGIN_PERCENT_PRICE_DROPS As Integer = 25
     
     
     Const SESSION_NAME_VISITED_PRODUCT = "VISITED_PRODUCT_"
     
     
-    Const COUNT_VISITED_PRODUCTS = 5
+    Const COUNT_VISITED_PRODUCTS As Integer = 5
     
     
     '****************************************************************************
@@ -370,7 +370,7 @@
              " ORDER BY sum(countClicks) DESC"
         End If
   
-        'Response.Write "<br>" & sql: Response.flush
+        'Response.Write "<br />" & sql: Response.flush
         makeSQLTopClick = sql
     End Function
 
@@ -887,7 +887,7 @@
         Else
             While Not rsTop.EOF And i < MAX_LINES
                 i = i + 1
-                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)    
+                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<br />" & rsTop("Review"),"",butArrEmpty)    
                 html = html & drawWindowForum("Beitrag von " & rsTop("Autor").Value, "Datum:" & rsTop("DateCreation").Value, rsTop("Review").Value, "")
                 rsTop.moveNext()
             End While

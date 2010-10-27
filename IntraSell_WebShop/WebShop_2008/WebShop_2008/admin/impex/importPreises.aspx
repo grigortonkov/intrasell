@@ -10,7 +10,7 @@ Dim ImportData, countUpdates, countNew, countErrors
       Dim Lines, L
       Lines = split(ImportData, CHR(13))
       for each l in Lines 
-       ' response.write ("<br>Now import:" & l)    :Response.Flush 
+       ' response.write ("<br />Now import:" & l)    :Response.Flush 
        
 
             if len(l) > 10 then ' line is not empty
@@ -39,11 +39,11 @@ Dim ImportData, countUpdates, countNew, countErrors
     
 %>
 <font color="#008080">
-    <br>
+    <br />
     Der Verkaufspreis wurde mit dem Aufschlag der dazugehörige Kategorie aktualisiert.</font>
 <% 
 %>
-&nbsp;<br>
+&nbsp;<br />
 <font color="#008080">Fertig! Die Produkte / Preise wurden aktualisiert. </font>
 &nbsp;
 <table border="1" width="26%" cellspacing="0">
@@ -100,16 +100,16 @@ nr;category;name;description;manufacturer;taxclass;price;weight;minorder;manufac
     <input type="reset" value="Zurücksetzen" name="B2">
     </p>
 <p>
-    Help:<br>
+    Help:<br />
     1. Remove the first line in text box. It is only for information how the format
-    should be!&nbsp;<br>
-    2. Enter in CSV Form the my EStore price list in the text box. Press ENTER!<br>
+    should be!&nbsp;<br />
+    2. Enter in CSV Form the my EStore price list in the text box. Press ENTER!<br />
     3. Legend: &quot;N&quot; - Insert (New); &quot;U&quot; - Update; &quot;E&quot; -
     Error</p>
 <p>
     <a href="example_file_for_import.xls">Excel Vorlage herunterladen</a>
-    <br>
+    <br />
     1. Geben Sie in der Excel Date Ihre Produkte und Preise ein
-    <br>
+    <br />
     2. in CSV format exportieren und über diesem Tool importieren.</p>
 </form>

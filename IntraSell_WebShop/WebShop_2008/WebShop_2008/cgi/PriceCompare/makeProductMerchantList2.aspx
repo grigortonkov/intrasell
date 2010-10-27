@@ -30,10 +30,10 @@
         html = html & "<tr>"
         html = html & "<th width='220'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=Firma'>Shop</a></th>"
         html = html & "<th width='250'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=Stars'>Shop-Bewertung</a></th>"
-        html = html & "<th width='100'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=VKPreis'>Preis</a>&nbsp;&nbsp;<br>/inkl. MWST/<br>"
+        html = html & "<th width='100'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=VKPreis'>Preis</a>&nbsp;&nbsp;<br />/inkl. MWST/<br />"
         html = html & "<th width='100'><a href='default.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=LagerInfo'>Verfügbarkeit</a></th>"
         html = html & "<th width='300'>Zahlungs- &amp; Lieferungsmethoden</th>"
-        '<!--<th width='100' style='border-bottom: 2 solid #C0C0C0'><a href='merchantCompare.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=ArtikelNrLieferant'> Nummer</a>&nbsp;<br>des Lieferantes</th>-->
+        '<!--<th width='100' style='border-bottom: 2 solid #C0C0C0'><a href='merchantCompare.aspx?ArtNr=" & ArtNr & "&amp;OrderBy=ArtikelNrLieferant'> Nummer</a>&nbsp;<br />des Lieferantes</th>-->
         html = html & "<th width='100'>Zum Shop</th>"
         html = html & "</tr>"
 
@@ -71,8 +71,8 @@
                         
             html = html & "<td bgcolor=""" & rowColor & """>"
             html = html & listPaymentMethods(lieferantNr)
-            html = html & "<br>" & listDeliveryMethods(lieferantNr)
-            html = html & "<br>" & rsL("deliveryPrice").Value
+            html = html & "<br />" & listDeliveryMethods(lieferantNr)
+            html = html & "<br />" & rsL("deliveryPrice").Value
             html = html & "</td>"
                 
             '<!--<td width="144" bgcolor="" & rowColor & "">

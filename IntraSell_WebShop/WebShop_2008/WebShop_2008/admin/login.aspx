@@ -35,7 +35,7 @@
             Session("ADMIN") = "TRUE" 'used to show "product bearbeiten" in normal shop
             Response.Redirect("default.aspx")
         Else
-            Response.Write("<font color='#FF0000#>Login Failed.</font><br>")
+            Response.Write("<font color='#FF0000#>Login Failed.</font><br />")
             ShowLogin()
         End If
     End Sub

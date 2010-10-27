@@ -14,15 +14,15 @@ butArr(3,1) = "FTP Settings"
 butArr(3,2) = "adminMerchantsFtp.aspx"
 
 call drawWindowPart1("Admin Lieferanten imported prices","","state",butArr)	
-'Response.Write "<h3><B>MERCH = " & merch & "</b></h3><br>"
+'Response.Write "<h3><B>MERCH = " & merch & "</b></h3><br />"
 if merch = "" then		
 	sql = " SELECT  lieferantenAdressen.* FROM lieferantenAdressen " & _
 	      " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR = priceCompareHaendler.lieferantNr "
 	set rs = ObjConnectionExecute(sql)
-	Response.Write "<b> Select a merchant from the list : <b><br> "
+	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-'		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminImportedPrices.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br>"
-		%>&nbsp;&nbsp;&nbsp;<A href="adminImportedPrices.asp?merch=<%=rs("IDNR")%>"><b><%=rs("Firma")%></b></a><br><%
+'		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminImportedPrices.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
+		%>&nbsp;&nbsp;&nbsp;<A href="adminImportedPrices.asp?merch=<%=rs("IDNR")%>"><b><%=rs("Firma")%></b></a><br /><%
 		rs.MoveNext
 	wend
 else ' merch <> ""

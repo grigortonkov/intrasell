@@ -104,8 +104,8 @@ name="FrontPage_Form1" language="JavaScript">
             <tr>
                 <td height="225" width="522">
                     <p>
-                        Wenn Sie jemandem eine Überraschung machen möchten, dann sind Sie hier richtig!<br>
-                        Ihre Emailpostkarte wird sicherlich Ihrem lieben Menschen Freude mitbringen.<br>
+                        Wenn Sie jemandem eine Überraschung machen möchten, dann sind Sie hier richtig!<br />
+                        Ihre Emailpostkarte wird sicherlich Ihrem lieben Menschen Freude mitbringen.<br />
                         <font size="3"></font>
                     </p>
                     <p>
@@ -151,7 +151,7 @@ name="FrontPage_Form1" language="JavaScript">
                         </table>
                     </div>
                     <p>
-                        <br>
+                        <br />
                         Ihr Love Text<textarea cols="55" name="LoveText" rows="3"></textarea>
                     </p>
                     <p align="center">
@@ -293,11 +293,11 @@ name="FrontPage_Form2" language="JavaScript">
                 <td height="225" width="522">
                     <p>
                         If you want to make an surprise,
-                        <br>
+                        <br />
                         then this is the right place !!!
-                        <br>
+                        <br />
                         Your Ecard will bring joy and happiness.&nbsp;<font color="#cc0099" size="3">
-                            <br>
+                            <br />
                         </font>
                     </p>
                     <p>
@@ -343,7 +343,7 @@ name="FrontPage_Form2" language="JavaScript">
                         </table>
                     </div>
                     <p>
-                        <br>
+                        <br />
                         Your Love Text<textarea cols="55" name="LoveText" rows="3"></textarea>
                     </p>
                     <p align="center">

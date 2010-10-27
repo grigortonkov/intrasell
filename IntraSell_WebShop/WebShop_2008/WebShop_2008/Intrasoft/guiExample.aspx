@@ -1,3 +1,4 @@
+<%@Page Language="VB" AspCompat = "true"%>
 <!--#include file="functionsGUI.aspx"-->
 <head>
     <link rel="stylesheet" href="styleButtons.css" type="text/css">
@@ -8,7 +9,7 @@
     <p>
         Author: Grigor Tonkov</p>
     <p>
-        Example: Window With Actions</p>
+        Example: Window with Actions</p>
     <p>
         Example: Error Message</p>
     <%

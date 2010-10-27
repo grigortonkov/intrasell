@@ -45,7 +45,7 @@
         html = html & "    <td width='220'>" & getTranslation("Kunde") & ":"
         html = html & "        <input type='hidden' name='IDNR' size='15' value='" & rsV("KundNr").Value & "' id='Hidden1'>"
         html = html & "    " & printAddress(rsV("KundNr").Value, OrderType, True, False) & ""
-        html = html & "     <br>"
+        html = html & "     <br />"
         html = html & "     " & getTranslation("aendern") & ":"
         html = html & query2list("Select IdNR, '-', Name FROM ofAdressen Order BY IdNR, Name", "newIDNR")
         html = html & "  </td>"
@@ -318,8 +318,8 @@
             html = html & "<input type='hidden' name='Items' value='" & pos & "' id='Hidden5'>"
             'POST and MODE COSTS 
             Dim KG As Double : KG = getWeightOfBasket(sid)
-            Dim PostCosts As Double : PostCosts = 0
-            Dim PostExpensesMWST As Double : PostExpensesMWST = 0
+            Dim PostCosts As Decimal : PostCosts = 0
+            Dim PostExpensesMWST As Decimal : PostExpensesMWST = 0
        
             Dim payModeExpenses As Double : payModeExpenses = 0
             Dim payModeExpensesMWST : payModeExpensesMWST = 0
@@ -334,7 +334,7 @@
             If (1 * Subtotal < 1 * getFreiHausLieferungUmsatz()) Or getFreiHausLieferungUmsatz() = -1 Then  'CALCULATE COSTS 
                 If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
                     Dim postSpendsArtNr : postSpendsArtNr = getPostSpendsArtNr(Land, KG, PostMode)
-                    PostCosts = calculatePostSpends(PostModeDestination, KG, PostMode)
+                    PostCosts = calculatePostSpendsForWK(PostModeDestination, KG, PostMode)
                     PostExpensesMWST = makeBruttoPreis(PostCosts, 2, Land)
                     PostExpensesMWST = CDbl(calculateBruttoPreis(PostCosts, postSpendsArtNr, IDNR))
                     'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
@@ -349,7 +349,7 @@
                 End If
                 'END POST AND MODE COSTS 
             Else
-                messageNoCosts = "<br><font color=""red"" class=""error"">Yeeep: Es werden keine Transport- und Zahlungskosten kalkuliert!</font>"
+                messageNoCosts = "<br /><font color=""red"" class=""error"">Yeeep: Es werden keine Transport- und Zahlungskosten kalkuliert!</font>"
             End If
        
        
@@ -616,12 +616,12 @@
             Dim PostExpensesMWST As Double : PostExpensesMWST = 0
        
        
-            If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then
-                PostCosts = calculatePostSpends(Land, KG, postmode)
+            If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
+                PostCosts = calculatePostSpendsForWK(Land, KG, postmode)
                 PostExpensesMWST = makeBruttoPreis2(getPostSpendsArtNr(Land, KG, postmode), 1, Session("Land"))
             End If
        
-            If VARVALUE(CALCULATE_PAYMODECOSTS) = "TRUE" Then
+            If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
                 If paymode <> "" Then payModeExpenses = calculatePaymentModeSpends(paymode, Land, KG, Subtotal)
                 payModeExpensesMWST = makeBruttoPreis2(getPaymentModeSpendsArtNr(paymode, Land), 1, Session("Land"))
             End If

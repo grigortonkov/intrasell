@@ -1,6 +1,6 @@
  
-<br>
-<br>
+<br />
+<br />
 <center>
     <table id="ProfileTable" width="450" border="1" cellspacing="3" cellpadding="3" bordercolor="#CCCCCC"
         style="border-collapse: collapse" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF"

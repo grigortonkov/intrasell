@@ -1,5 +1,5 @@
 <% 
-    CACHE_EXPIRE_TIME_IN_MINUTES = -600 'Application("CACHE_EXPIRE_TIME_IN_MINUTES") 'in 60 minutes the cache will expire and new cache will be created  
+    CACHE_EXPIRE_TIME_IN_MINUTES = VARVALUE_DEFAULT("CACHE_EXPIRE_TIME_IN_MINUTES","600") 'Application("CACHE_EXPIRE_TIME_IN_MINUTES") 'in 60 minutes the cache will expire and new cache will be created  
  %>
 <script language="VB" runat="server"> 
 
@@ -9,23 +9,23 @@
 '    cache expires in CACHE_EXPIRE_TIME_IN_MINUTES seconds 
 '=========================================================
 
-Dim CACHE_EXPIRE_TIME_IN_MINUTES   
+    Dim CACHE_EXPIRE_TIME_IN_MINUTES As Integer
 '=========================================================
 'returns "" when cache expired or empty 
 '=========================================================
-    Function getCache(ByVal HASHNAME)
+    Function getCache(ByVal HASHNAME) As Object
         getCache = Application(HASHNAME)
         Dim expiresOn : expiresOn = Application(HASHNAME & "_EXPIRESON")
-        If showDebug() Then Response.Write("<br>Cache for " & HASHNAME & " expires on " & expiresOn)
+        If showDebug() Then Response.Write("<br />Cache for " & HASHNAME & " expires on " & expiresOn)
 
         If Not getCache Is Nothing Then
-            If showDebug() Then Response.Write("<br>Cache for " & HASHNAME & " is full!")
+            If showDebug() Then Response.Write("<br />Cache for " & HASHNAME & " is full!")
         Else
-            If showDebug() Then Response.Write("<br>Cache for " & HASHNAME & " is empty!")
+            If showDebug() Then Response.Write("<br />Cache for " & HASHNAME & " is empty!")
         End If
 
         If expiresOn < Now() Or CACHE_EXPIRE_TIME_IN_MINUTES <= 0 Then 'expired return null 
-            If showDebug() Then Response.Write("<br>Cache for " & HASHNAME & " expired on " & expiresOn)
+            If showDebug() Then Response.Write("<br />Cache for " & HASHNAME & " expired on " & expiresOn)
             getCache = ""
         End If
     End Function
@@ -33,8 +33,8 @@ Dim CACHE_EXPIRE_TIME_IN_MINUTES
 '=========================================================
 ' SET Cache function 
 '=========================================================
-    Function setCache(ByVal HASHNAME, ByVal stringValue)
-        If showDebug() Then Response.Write("<br>Set Cache for " & HASHNAME & " with Value " & stringValue)
+    Function setCache(ByVal HASHNAME, ByVal stringValue) As Object
+        If showDebug() Then Response.Write("<br />Set Cache for " & HASHNAME & " with Value " & stringValue)
         Application(HASHNAME) = stringValue
         Application(HASHNAME & "_EXPIRESON") = Now().AddMinutes(CACHE_EXPIRE_TIME_IN_MINUTES) ' + CACHE_EXPIRE_TIME_IN_MINUTES * 1 / (24 * 60)   'in 5 minutes will expire serverside
         setCache = stringValue
@@ -47,7 +47,7 @@ Dim CACHE_EXPIRE_TIME_IN_MINUTES
     '    caching strategy
     '    cache expires in 30 seconds 
     '=========================================================
-    Function getCache_(ByVal HASHNAME)
+    Function getCache_(ByVal HASHNAME As String) As Object
         getCache_ = Application(HASHNAME)
         Dim expiresOn : expiresOn = Application(HASHNAME & "_EXPIRESON")
         'response.write "Cache expires on "& expiresOn
@@ -64,9 +64,9 @@ Dim CACHE_EXPIRE_TIME_IN_MINUTES
         End If
     End Function
 
-    Sub setCache_(ByVal HASHNAME, ByVal stringValue)
+    Sub setCache_(ByVal HASHNAME As String,  ByVal stringValue As Object)
         Application(HASHNAME) = stringValue
-        Application(HASHNAME & "_EXPIRESON") = Now() + CACHE_EXPIRE_TIME_IN_MINUTES * 1 / (24 * 60)   'in 5 minutes will expire serverside
+        Application(HASHNAME & "_EXPIRESON") = Now().AddMinutes( CACHE_EXPIRE_TIME_IN_MINUTES)   
     End Sub
 
     

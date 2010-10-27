@@ -208,7 +208,7 @@ While Not ts.AtEndOfStream
 			' Find the end of the tag
 			position = Instr(1, strLine, ">")
 			If position = 0 Then ' the tag isn't properly terminated
-				Response.Write "Error: " & strLine & "<BR>"
+				Response.Write "Error: " & strLine & "<br />"
 			Else ' display the field
 				If position < Len(RTrim(strLine)) Then ' get everything to the right
 					strRight = Mid(strLine, position + 1)
@@ -234,7 +234,7 @@ While Not ts.AtEndOfStream
 							strLine = Mid(strLine, position + 1)
 						end if
 					else ' there's only NAME to check, if it's not there then something's wrong
-						Response.Write "Error: |" & strLine & "|<BR>"
+						Response.Write "Error: |" & strLine & "|<br />"
 						strLine = ""
 					end if
 				Wend
@@ -277,7 +277,7 @@ While Not ts.AtEndOfStream
 									if NOT(curVal = "&nbsp;") then 
 										curVal = replace(curVal,"<","&lt;")
 										curVal = replace(curVal,">","&gt;")
-										curVal = replace(curVal,chr(10),"&nbsp;<br>")
+										curVal = replace(curVal,chr(10),"&nbsp;<br />")
 									end if
 								End Select
 							' Image

@@ -20,11 +20,11 @@
         End If
   
         If Request.QueryString("debug") = "true" Then
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for IdNr = [" & IdNr & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for ArtNr = [" & ArtNr & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Stk = [" & Stk & "]")
         End If
   
@@ -42,21 +42,27 @@
     End Function
 
 
-    Public Function makeBruttoPreis(ByVal Preis As Object, ByVal MwstGroup As Object, ByVal Land As Object) As Decimal
+    Public Function makeBruttoPreis(ByVal Preis As Double, ByVal MwstGroup As Integer, ByVal Land As String) As Decimal
 
         If Request.QueryString("debug") = "true" Then
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Preis = [" & Preis & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for MwstGroup = [" & MwstGroup & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Land = [" & Land & "]")
         End If
-        Dim returnPreis : returnPreis = IntraSellPreise().makeBruttoPreis(Preis, MwstGroup, Land)
+        Dim returnPreis As Double
+        Try
+            returnPreis = IntraSellPreise().makeBruttoPreis(Preis, MwstGroup, Land)
+        Catch ex As Exception
+
+        End Try
+
         If IsNumeric(Replace(returnPreis, ",", ".")) Then
             makeBruttoPreis = returnPreis
         Else
-            Response.Write("<br><font color=red>Fehler in der Preisberechung: makeBruttoPreis=" & +returnPreis & "</font>")
+            Response.Write("<br /><font color=red>Fehler in der Preisberechung: makeBruttoPreis=" & +returnPreis & "</font>")
             makeBruttoPreis = 0
         End If
 
@@ -65,11 +71,11 @@
     Function makeBruttoPreis2(ByVal ArtNr As Object, ByVal Stk As Object, ByVal Land As Object) As Decimal
 
         If Request.QueryString("debug") = "true" Then
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for ArtNR = [" & ArtNr & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Stk = [" & Stk & "]")
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Land = [" & Land & "]")
         End If
   
@@ -78,10 +84,10 @@
 
     Public Function calculateBruttoPreis(ByVal VKPreis As Object, ByVal ArtNr As Object, ByVal IDNR As Object) As Decimal
         If Request.QueryString("debug") = "true" Then
-            Response.Write("<br>" & Chr(13))
+            Response.Write("<br />" & Chr(13))
             Response.Write("get calculateBruttoPreis for VKPreis = [" & VKPreis & "]")
-            Response.Write("<br>" & Chr(13) & " ArtNr = [" & ArtNr & "]")
-            Response.Write("<br>" & Chr(13) & " IDNR = [" & IDNR & "]")
+            Response.Write("<br />" & Chr(13) & " ArtNr = [" & ArtNr & "]")
+            Response.Write("<br />" & Chr(13) & " IDNR = [" & IDNR & "]")
         End If
   
         calculateBruttoPreis = IntraSellPreise().calculateBruttoPreis(CDbl(VKPreis), CStr(ArtNr), CStr(IDNR))
@@ -138,7 +144,7 @@
 ''' <param name="Typ"></param>
 ''' <returns></returns>
 ''' <remarks></remarks>
-    Public Function getVorgangArtikelTableForType(ByVal Typ  As String)
+    Public Function getVorgangArtikelTableForType(ByVal Typ As String)
         getVorgangArtikelTableForType = IntraSellPreise().getVorgangArtikelTableForType(Typ)
     End Function
 

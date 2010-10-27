@@ -206,9 +206,9 @@
         sql = "select ArtKAtNR, Name from [grArtikel-Kategorien] where Name like '" & MC & partOfCatName & MC & "'"
         rsKat = ObjConnectionExecute(sql)
         If Not rsKat.eof Then 'ok the user searches maybe products in these cats 
-            html = html & "<br>" & getTranslation("M&ouml;chten Sie die Produkte in den folgenden Kategorien auch ansehen?") & "<br>"
+            html = html & "<br />" & getTranslation("M&ouml;chten Sie die Produkte in den folgenden Kategorien auch ansehen?") & "<br />"
             While Not rsKat.eof
-                html = html & showCategoryPath(rsKat("ArtKatNr").Value, "default.aspx") & "<br>"
+                html = html & showCategoryPath(rsKat("ArtKatNr").Value, "default.aspx") & "<br />"
                 rsKat.moveNext()
             End While
             rsKat.close()
@@ -531,7 +531,7 @@
         End If
      
         filenameForTemplate = "skins/skin" & SkinNumber & "/pages/productPage_part" & pagePart & possibleFilename_ProductTemplate & ".htm"
-        If showDebug() Then Response.Write("<br>filenameForTemplate=" & filenameForTemplate)
+        If showDebug() Then Response.Write("<br />filenameForTemplate=" & filenameForTemplate)
         'Response.Write filenameForTemplate & Server.MapPath(filenameForTemplate) : Response.Flush
         Dim template
         Dim ArtKatNR
@@ -1379,7 +1379,7 @@
             Exit Function
         Else
             While Not rsTop.EOF
-                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<BR>" & rsTop("Review"),"",butArrEmpty)    
+                'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<br />" & rsTop("Review"),"",butArrEmpty)    
                 html = html & drawWindowForum(getTranslation("Beitrag von ") & rsTop("Autor").Value, _
                                                getTranslation("Datum:") & rsTop("DateCreation").Value, _
                                                rsTop("Review").Value, "")

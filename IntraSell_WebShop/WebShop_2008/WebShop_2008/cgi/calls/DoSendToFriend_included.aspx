@@ -13,7 +13,7 @@
     <%=Request ("ToMail")%></h3>
 <%  End If
 End If%>
-<br>
-<br>
+<br />
+<br />
 <a href="<%=request("ProductURL")%>">
     <%=getTranslation("Zurück zur Produktseite")%></a> 

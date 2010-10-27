@@ -1,6 +1,6 @@
 <!--#include file="../defaultHead.inc.aspx"-->
-Batch Job "Send Mails for diabled objects to all Users"<br>
-Important: This job only creates mails, please use the mail tool to send the emails!<br>
+Batch Job "Send Mails for diabled objects to all Users"<br />
+Important: This job only creates mails, please use the mail tool to send the emails!<br />
 <%
     'Sends once a day mails with disabled user products to their owners 
     Const PRODUCTS_DISABLED_AFTER_DAYS = 30 '-1 for test
@@ -48,7 +48,7 @@ Important: This job only creates mails, please use the mail tool to send the ema
             'Link für Objekt aktivieren!
             htmlListNewObjects = htmlListNewObjects & _
                                  ".&nbsp;<a href='http://" & varvalue("DOMAIN") & "/cgi/immo/jobs/immoAktivieren.aspx?produktAktiv=-1&anbieter=" & rsBatch("HerstellerNr").Value & "&ArtNr=" & rsNewObjects("ArtNr").Value & "'>" & _
-                                 getTranslation("Objekt aktivieren") & "</a><br>"
+                                 getTranslation("Objekt aktivieren") & "</a><br />"
                                                          
             'TODO: Link so dass der User direkt von Email aktivieren kann 
             rsNewObjects.moveNext()
@@ -88,11 +88,11 @@ Important: This job only creates mails, please use the mail tool to send the ema
                 objConnectionExecute(sqlK)
                         
             Else
-                Response.Write("Cannot send/save Email!<br>")
+                Response.Write("Cannot send/save Email!<br />")
             End If
                     
         Else ' no object found 
-            Response.Write("<br>No Objects found for Lieferant=" & rsBatch("HerstellerNr").Value & " and Email: " & rsBatch("Email").Value)
+            Response.Write("<br />No Objects found for Lieferant=" & rsBatch("HerstellerNr").Value & " and Email: " & rsBatch("Email").Value)
         End If
         rsBatch.MoveNext()
     End While
@@ -100,5 +100,5 @@ Important: This job only creates mails, please use the mail tool to send the ema
     'send mail to the administrator 
     Dim mailToAdmin : mailToAdmin = "totalMailsCreated=" & totalMailsCreated & ", totalProductsDisabled=" & totalProductsDisabled
     Call sendMailFromWithSending(varvalue("EMAIL"), "Batch Job Disabled Objects", mailToAdmin, varvalue("EMAIL"))
-    Response.Write("<br>Please do not forget to send all Emails from this batch!")
+    Response.Write("<br />Please do not forget to send all Emails from this batch!")
 %>

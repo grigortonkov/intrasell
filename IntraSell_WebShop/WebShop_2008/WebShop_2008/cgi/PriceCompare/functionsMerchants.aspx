@@ -100,7 +100,7 @@
    
         starshtml = makeBewertungStarsMerchant(CDbl(stars))
     
-        makeMerchantViewBewertung = starshtml & "<br><font color='gray'>Bewertungen</font>"
+        makeMerchantViewBewertung = starshtml & "<br /><font color='gray'>Bewertungen</font>"
     End Function
 
 
@@ -351,13 +351,13 @@
         Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
  
         If Trim(rsKUND("Firma").Value) <> "" Then
-            Response.Write("Fa. " & rsKUND("Firma").Value & " <br>")
+            Response.Write("Fa. " & rsKUND("Firma").Value & " <br />")
         End If
-        '=rsKUND ("Anrede")%> <%'=rsKUND ("Name")<br>%> 
-        Response.Write(rsKUND("Adresse").Value & "<br>")
-        Response.Write(PLZ & "-" & Ort & "<br>")
-        Response.Write(Landname & "<br>")
-        Response.Write("Tel:" & rsKUND("Tel").Value & "<br>")
+        '=rsKUND ("Anrede")%> <%'=rsKUND ("Name")<br />%> 
+        Response.Write(rsKUND("Adresse").Value & "<br />")
+        Response.Write(PLZ & "-" & Ort & "<br />")
+        Response.Write(Landname & "<br />")
+        Response.Write("Tel:" & rsKUND("Tel").Value & "<br />")
 
     End Function
 
@@ -430,7 +430,7 @@
         '        <INPUT TYPE=HIDDEN NAME="tolon" VALUE="142806">
         '        <TABLE BORDER="1" CELLPADDING="4" CELLSPACING="0">
         '        <TR BGCOLOR="#CC510A">
-        '        <TD><FONT FACE="Arial, Helvetica" SIZE="-1" COLOR="#FFFFFF"><B> <B>Routenplanung:</B><BR>
+        '        <TD><FONT FACE="Arial, Helvetica" SIZE="-1" COLOR="#FFFFFF"><B> <B>Routenplanung:</B><br />
         '         Ihr Weg nach <B>Linz (A), Urfahr</B></FONT></TD>
         '        </TR>
         '        <TR>

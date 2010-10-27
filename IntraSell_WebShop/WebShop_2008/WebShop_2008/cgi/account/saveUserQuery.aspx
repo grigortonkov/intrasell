@@ -15,7 +15,7 @@
         Else
     
             If getLOGIN() & "" = "" Then
-                Response.Write("<font color=red>" & getTranslation("Sie sind nicht angemeldet!") & "</font><br>")
+                Response.Write("<font color=red>" & getTranslation("Sie sind nicht angemeldet!") & "</font><br />")
                 'load login page
                 accountLoginPageHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/account/myAccountLogin.htm"))
                 Response.Write(accountLoginPageHTML)
@@ -36,7 +36,7 @@
                     message = getTranslation("Ihre Abfrage wurde erfolgreich gespeichert!")
                 End If
                 rsPruef.close()
-                Response.Write(message & "<br><br><br>")
+                Response.Write(message & "<br /><br /><br />")
                 Response.Write(ListUserQueries())
             End If
         End If

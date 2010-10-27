@@ -46,7 +46,7 @@
 ' print an array of ArtNrToCompare Parameters
 '===============================================================================
     Function printManyProducts()
-        'Response.Write request("artNrToCompare") & "<br>"
+        'Response.Write request("artNrToCompare") & "<br />"
         Dim arraySize : arraySize = UBound(Split(Request("artNrToCompare"), ","))
         Dim prodArray()
         ReDim prodArray(CInt(arraySize))

@@ -269,7 +269,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
                     <%Next%>
                     <img src="<%=PAGE_BASE_URL%>img/icon_closedFolder.gif" border="0" width="27" height="15">
                     <b>
-                        <%Response.Write(Trim(txtDisplay) & "<BR>")%></a></b>
+                        <%Response.Write(Trim(txtDisplay) & "<br />")%></a></b>
                 </td>
                 <td width="52%">
                     <%=descr%>
@@ -316,7 +316,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
     OnClick="document.location='main.aspx';">
     -->
                 </tr>
-                <%'Response.Write " CID=" & curr_id & " <br> "%>
+                <%'Response.Write " CID=" & curr_id & " <br /> "%>
                 <tr>
                     <td colspan="21">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -406,7 +406,7 @@ Sub Display (txtDisplay, intLevel, ID, url, descr)
             <%'rs.MoveNext
         'wend%>                
       </select>
-      <br>
+      <br />
       oder 
       <input type="text" name="other">
     </td>

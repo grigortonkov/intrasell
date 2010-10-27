@@ -36,7 +36,7 @@
      
         'html = html &   "<hr>"
         html = "Fragen und Antworten zur Seite [" & Seite & "]"
-        html = html & "<br>"
+        html = html & "<br />"
                
         Dim frage, count
         count = 0
@@ -47,7 +47,7 @@
             html = html & "<a href=""default.aspx?PageToShow=FAQ&FAQPage=" & Seite & "#" & Left(frage, 10) & """>"
             html = html & "<li>"
             html = html & frage
-            'html = html &  "<br>"
+            'html = html &  "<br />"
             html = html & "</a>"
             rs.movenext()
         End While
@@ -79,7 +79,7 @@
             html = html & "<a href=""#" & Left(Frage, 10) & """>"
             html = html & "<li>"
             html = html & Left(Frage, 60)
-            html = html & "<br>"
+            html = html & "<br />"
             html = html & "</a> "
  
             rs.movenext()
@@ -98,7 +98,7 @@
 
             html = html & "<li> "
             html = html & "<a name=""" & Left(Frage, 10) & """>"
-            html = html & "Frage: <font color=""blue"">" & Frage & "</font><br>"
+            html = html & "Frage: <font color=""blue"">" & Frage & "</font><br />"
             html = html & "Antwort:<font color=""green"">"
             html = html & rs("Antwort").Value
             html = html & "</font> "

@@ -25,17 +25,17 @@
 
         html = ""
         If Trim(rsKUND("Firma").Value) <> "" Then
-            html = html & rsKUND("Firma").Value & "<br>"
+            html = html & rsKUND("Firma").Value & "<br />"
         End If
-        html = html & rsKUND("Anrede").Value & " " & rsKUND("Name1").Value & " " & rsKUND("Name").Value & "<br>"
-        html = html & rsKUND("Adresse").Value & " <br>"
-        html = html & PLZ & "-" & Ort & " <br>"
-        html = html & Landname & " <br>"
-        html = html & "Mobil:" & rsKUND("Mobil").Value & " <br>"
-        html = html & "Tel:" & rsKUND("Tel").Value & " <br>"
-        html = html & "Fax:" & rsKUND("Fax").Value & " <br>"
-        html = html & "Email:<a href='mailto:" & rsKUND("Email") & "'>" & rsKUND("Email").Value & "</a><br>"
-        html = html & "Web:<a href='" & rsKUND("Web").Value & "'>" & rsKUND("Web").Value & "</a><br>"
+        html = html & rsKUND("Anrede").Value & " " & rsKUND("Name1").Value & " " & rsKUND("Name").Value & "<br />"
+        html = html & rsKUND("Adresse").Value & " <br />"
+        html = html & PLZ & "-" & Ort & " <br />"
+        html = html & Landname & " <br />"
+        html = html & "Mobil:" & rsKUND("Mobil").Value & " <br />"
+        html = html & "Tel:" & rsKUND("Tel").Value & " <br />"
+        html = html & "Fax:" & rsKUND("Fax").Value & " <br />"
+        html = html & "Email:<a href='mailto:" & rsKUND("Email") & "'>" & rsKUND("Email").Value & "</a><br />"
+        html = html & "Web:<a href='" & rsKUND("Web").Value & "'>" & rsKUND("Web").Value & "</a><br />"
 
         printAddressLieferant = html
     End Function
@@ -121,7 +121,7 @@
             html = html & "<td bgcolor='" & rowColor & "'><p align='right'>" & rs("Produktanzahl").Value & "</td>"
             html = html & "<td bgcolor='" & rowColor & "'><a href='default.aspx?pageToShow=" & iff(showHersteller, "Manufacturer", "Merchant") & "Products&idnr=" & rs("IdNR").Value & _
             ">[" & getTranslation("als Ergebnisliste") & "]</a> oder"
-            html = html & "<br><a href='default.aspx?pageToShow=ProductMap&" & iff(showHersteller, "Manufacturer", "Merchant") & "=" & rs("Firma").Value & _
+            html = html & "<br /><a href='default.aspx?pageToShow=ProductMap&" & iff(showHersteller, "Manufacturer", "Merchant") & "=" & rs("Firma").Value & _
             ">[" & getTranslation("in Kategoriebaum") & "]</a></p></td>"
             html = html & "<td bgcolor='" & rowColor & "'><p align='center'><a href='" & rs("Web").Value & "'>" & rs("Web").Value & "</p></td>"
             html = html & "</tr>"

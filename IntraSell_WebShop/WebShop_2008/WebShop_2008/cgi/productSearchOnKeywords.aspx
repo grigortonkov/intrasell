@@ -1,10 +1,10 @@
 <%     
-    Dim searchFreeText : searchFreeText = Request("searchFreeText")
+    Dim searchFreeText As String = Request("searchFreeText")
     Dim keyword, keywordName, keywordValue
-    Dim searchSql, whereClause
-    Dim orderBy : orderBy = Request("OrderBy")
+    Dim searchSql As String, whereClause As String
+    Dim orderBy As String = Request("OrderBy")
     Dim ArtKatNr : ArtKatNr = Request("ArtKatNr")
-    Dim wherePartDescription
+    Dim wherePartDescription As String
 
     
     'display possible category result
@@ -35,7 +35,7 @@
                 Dim USER_FRIENDLY_QUERY
                 USER_FRIENDLY_QUERY = Request.Form
                 'call saveUserQuery(getLOGIN(), "LastProductSearch " & USER_FRIENDLY_QUERY, searchSql, "no-email")    
-                'response.write  " Ihre Abfrage wurde gespeichert f&uuml;r sp&auml;tere Verwendung. Diese finden Sie im My Account!<BR>"      
+                'response.write  " Ihre Abfrage wurde gespeichert f&uuml;r sp&auml;tere Verwendung. Diese finden Sie im My Account!<br />"      
             End If
         End If
         

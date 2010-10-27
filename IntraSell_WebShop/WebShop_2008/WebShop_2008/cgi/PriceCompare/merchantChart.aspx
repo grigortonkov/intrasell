@@ -64,7 +64,7 @@ end if
         <tr>
             <td align="middle" valign="top">
                 <%if rsP.eof or countOfArt < 1 then 'or maxP < 0.1 then 'no price or less than 1 price or all prices 0  
-                            Response.Write ("<br><br>")
+                            Response.Write ("<br /><br />")
                             Response.Write( drawErrorBox("Zu wenig Information", "Es ist leider nicht genug Information vorhanden um eine Grafik zu erstellen!","","") )
                 else %>
                 <img src="MakeChart.aspx?DaysInPast=<%=days%>&Field=Ekpreis&ChartType=1&ArtNr=<%=CStr(ArtNr)%>">

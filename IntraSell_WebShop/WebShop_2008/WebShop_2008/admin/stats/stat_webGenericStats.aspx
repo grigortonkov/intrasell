@@ -1,5 +1,5 @@
 <%
-    Dim stat, sql_stat
+    Dim stat, sql_stat As String
     
     If UCase(Request("stat")) = UCase("Sessions") Then
         If Session("DBTYPE") = "MySQL" Then

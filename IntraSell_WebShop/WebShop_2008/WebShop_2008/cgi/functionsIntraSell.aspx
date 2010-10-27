@@ -99,10 +99,11 @@
     ' POST-AT-2
     ' EXPRESSPOST-AT-2 usw.
     ' POST-DE-1 etc. 
-    '
+    ' 
     ' Express- true false 
+    ' ArtNr - wenn gesetz wird nur nach Art berechnet 
     '******************************************************************************
-    Function calculatePostSpends(ByVal PostModeDestionation As String, ByVal Kg As Object, ByVal PostMode As String) As Double
+    Function calculatePostSpends(ByVal PostModeDestionation As String, ByVal Kg As Object, ByVal PostMode As String, Optional ByVal ArtNr As String = "") As Double
  
         If Kg Is Nothing Then
             Kg = 0
@@ -110,10 +111,15 @@
             Kg = Math.Round(Kg, 2)
         End If
     
-        Dim sql, rsP
-        sql = "SELECT destination, Fixekosten, VariableKostenNachGewicht " & _
+        Dim sql As String, rsP
+        sql = "SELECT Destination, Fixekosten, VariableKostenNachGewicht " & _
               " FROM [grArtikel-Vertriebskosten] Where destination like '" & PostModeDestionation & "'" & _
-              " and Methode Like '" & PostMode & "' AND GewichtVon<=" & Replace(Kg, ",", ".") & " AND GewichtBis> " & Replace(Kg, ",", ".")
+              " AND Methode Like '" & PostMode & "' AND GewichtVon<=" & Replace(Kg, ",", ".") & " AND GewichtBis> " & Replace(Kg, ",", ".")
+        If ArtNr <> "" Then
+            sql = sql & " AND ArtNr = '" & ArtNr & "'"
+        Else
+            sql = sql & " AND ArtNr Is Null"
+        End If
         'Response.Write sql
         rsP = objConnectionExecute(sql)
         If rsP.EOF Then
@@ -124,6 +130,31 @@
         rsP.close()
     End Function
 
+    'Postkosten für den gesamten Warenkorb berechnen 
+    Function calculatePostSpendsForWK(ByVal PostModeDestionation As String, ByVal Kg As Object, ByVal PostMode As String) As Double
+        Dim sql As String
+        Dim rsWK
+        sql = " SELECT ArtNr, Quantity, Notiz, (select a.Gewicht from grArtikel a where a.ArtNr=wk.ArtNr) as Gewicht " & _
+       " FROM webWarenkorb wk " & _
+       " Where SID=" & getSID() & " AND wk.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
+        
+        rsWK = objConnectionExecute(sql)
+        
+        Dim allSpends As Decimal = calculatePostSpends(PostModeDestionation, Kg, PostMode)
+        While Not rsWK.EOF
+            Dim gewicht As Decimal = 0
+            If IsNumeric(rsWK("Gewicht").Value) Then gewicht = rsWK("Gewicht").Value
+            allSpends = allSpends + calculatePostSpends(PostModeDestionation, rsWK("Quantity").Value * gewicht, PostMode, rsWK("ArtNr").Value)
+            rsWK.MoveNext()
+
+        End While
+
+       
+        Return allSpends
+        
+    End Function
+    
+        
     '*************************************************************************
     ' returns the number of the post expenses product nr 
     ' Express - true or false 
@@ -153,13 +184,13 @@
         If showdebug() Then Response.Write("Weight=" & weight)
     End Function
 
-''' <summary>
-''' getWeightOfOrder
-''' </summary>
-''' <param name="OrderType"></param>
-''' <param name="Nummer"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' getWeightOfOrder
+    ''' </summary>
+    ''' <param name="OrderType"></param>
+    ''' <param name="Nummer"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getWeightOfOrder(ByVal OrderType As String, ByVal Nummer As String) As Double
         Dim sql As String, rs
         sql = "SELECT ArtNR, Stk from [" & getVorgangArtikelTableForType(OrderType) & "] Where RechNr=" & Nummer
@@ -174,12 +205,12 @@
         getWeightOfOrder = totalKG
     End Function
 
-''' <summary>
-''' getWeightOfOrder
-''' </summary>
-''' <param name="Sid"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' getWeightOfOrder
+    ''' </summary>
+    ''' <param name="Sid"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getWeightOfBasket(ByVal Sid As String) As Double
         Dim sql As String, rs
         sql = "SELECT SID, ArtNr, Quantity FROM webWarenkorb " & _
@@ -198,15 +229,15 @@
 
 
 
-''' <summary>
-''' isWarenkorbEmpty
-''' SID - Session ID
-''' </summary>
-''' <param name="SID"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' isWarenkorbEmpty
+    ''' SID - Session ID
+    ''' </summary>
+    ''' <param name="SID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function isWarenkorbEmpty(ByVal SID As String) As Boolean
-        Dim sql, rsWK
+        Dim sql As String, rsWK
         sql = "SELECT * FROM webWarenkorb Where SID=" & SID
         rsWK = objConnectionExecute(sql)
         isWarenkorbEmpty = rsWK.EOF
@@ -214,29 +245,29 @@
 
 
 
-''' <summary>
-''' liefert mindestbestellmenge für eine Bestellung 
-''' </summary>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' liefert mindestbestellmenge für eine Bestellung 
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMinOrderValue() As Double
         getMinOrderValue = VARVALUE_DEFAULT(CALCULATE_MIN_ORDER_VALUE, "100") '100 Euro ist mindestbestellwert
     End Function
 
-''' <summary>
-''' getMinOrderValue_charge_artnr
-''' </summary>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' getMinOrderValue_charge_artnr
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMinOrderValue_charge_artnr() As String
         getMinOrderValue_charge_artnr = tablevalue("grArtikel", "EAN", "'" & CALCULATE_MIN_ORDER_VALUE & "'", "ArtNr")
     End Function
 
-''' <summary>
-''' getMinOrderValue_charge
-''' </summary>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' getMinOrderValue_charge
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMinOrderValue_charge() As Double
         'wrong getMinOrderValue_charge = tablevalue("grArtikel","EAN", "'" & CALCULATE_MIN_ORDER_VALUE & "'", "PreisATS")
         getMinOrderValue_charge = makeNettoPreis(getMinOrderValue_charge_artnr(), "1", 0)
@@ -325,7 +356,7 @@
     Function getClientDestinationLand(ByVal IdNr As Long) As String
         Dim plzLAND As String, clientPLZ
         plzLAND = TABLEVALUE("[ofAdressen-Weitere]", "IDNR", IdNr, "LAND")
-        'response.write "<br>PLZLand =" & PLZLand
+        'response.write "<br />PLZLand =" & PLZLand
         If IsNumeric(plzLAND) Then
             'If plzLAND = 43 Then getClientDestinationLand = "AT"
             'If plzLAND = 49 Then getClientDestinationLand = "DE"
@@ -358,7 +389,7 @@
     Function GetClientEmail(ByVal CID As Object) As String
         Dim sql
         Dim rsC
-        If not CID is Nothing Then
+        If Not CID Is Nothing Then
             sql = "Select Email from ofAdressen where IDNR=" & CID
             rsC = objConnectionExecute(sql)
             If rsC.EOF = True Then
@@ -388,9 +419,9 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getFreiHausLieferungUmsatz() As String
+    Function getFreiHausLieferungUmsatz() As Decimal
 
-        Dim freiHausLieferungAbUmsatz = VARVALUE("MIN_UMSATZ_FREI_HAUS")
+        Dim freiHausLieferungAbUmsatz As String = VARVALUE("MIN_UMSATZ_FREI_HAUS")
         If Not IsNumeric(freiHausLieferungAbUmsatz) Then freiHausLieferungAbUmsatz = -1
   
         getFreiHausLieferungUmsatz = 1 * freiHausLieferungAbUmsatz
@@ -470,7 +501,7 @@
     End Function
     
     
-       '==============================================================================
+    '==============================================================================
     ' Nur registrierte Kunden dürfen einkaufen und die preise sehen!
     '==============================================================================
     Function isPurchasingAllowed() As Boolean

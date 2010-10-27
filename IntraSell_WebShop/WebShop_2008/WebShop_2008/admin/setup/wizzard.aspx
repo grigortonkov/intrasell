@@ -17,5 +17,5 @@
 </ol>
 <p>
     Ready? Weiter geht es mit der Order Liste <a href="/admin/lists/listOrders.aspx?OrderType=AU">hier</a>.
-    <br>
+    <br />
     Viel Erfolg wünscht Ihnen das IntraSell Team!</p>

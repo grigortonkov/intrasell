@@ -63,7 +63,7 @@
 <%  Case "warenkorbStepOffer"%>
 <!--#include file="basket/warenkorbStepOffer.aspx"-->
 <%  Case "PutInWarenkorb"%>
-<%  Call PutInWarenkorb()%>
+<%  cannotRedirectBecauseSomeMessage = NOT PutInWarenkorb(message)%>
 <%  Case "RestoreWarenkorb"%>
 <!--#include file="basket/restoreWarenkorb.aspx"-->
 <%  Case "FAQ"%>
@@ -159,11 +159,11 @@ Dim ArtNrToRedirekt : ArtNrToRedirekt = Request("ArtNr")
 If ArtNrToRedirekt = "" Then 
     ArtNrToRedirekt = Request("ProduktId")
 end if
-        
-If Request("NextPageToShow") <> "" Then
+ 
+If Request("NextPageToShow") <> "" and not cannotRedirectBecauseSomeMessage Then
     Response.Redirect("default.aspx?pageToShow=" & Request("NextPageToShow") & "&ArtNR=" & ArtNrToRedirekt & "&message=" & message)
 End If
-         
+ 
 %>
 <%=body_part2%>
 <!--BODY END-->
@@ -171,5 +171,6 @@ End If
 <script language="VB" runat="server">
     Dim bodyPageTemplate as String, body_part1 as String, body_part2 as String
     Dim filenameForBodyTemplate as String 
+    Dim cannotRedirectBecauseSomeMessage as Boolean = false 
 </script>
 

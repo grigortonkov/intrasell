@@ -51,7 +51,7 @@ if txtUpdate = "" Then %>
     <title>Error</title>
 </head>
 <body>
-    GenericDB Language File Missing.<br>
+    GenericDB Language File Missing.<br />
     Find it at: <a href="http://www.ofific.org/Eli/ASP/"></a>
 </body>
 </html>

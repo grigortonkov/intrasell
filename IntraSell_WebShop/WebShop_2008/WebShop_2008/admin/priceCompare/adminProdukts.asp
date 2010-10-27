@@ -108,7 +108,7 @@ if ArtNr <> "" and ArtKatNr <> "" then
 	Response.Write "<input type=""hidden"" name=""fKatNr"" value=""" & ArtKatNr & """>"
 	Response.Write "<center><table width=""70%"" height=""50%"" border=""0"" cellspacing=""0"" cellpadding=""2"">"
 		
-	Response.Write "<tr><td align=""center"" colspan=""3""><h3><b>Keywords values for produkt:<br>" & ArtName & "</b><h3></td></tr>"
+	Response.Write "<tr><td align=""center"" colspan=""3""><h3><b>Keywords values for produkt:<br />" & ArtName & "</b><h3></td></tr>"
 	
 	while not rsKat.EOF 
 		Response.Write "<tr><td align=""right"">" & rsKat("Name") & ":</td>"
@@ -140,7 +140,7 @@ else
 	set rsArt = ObjConnectionExecute(sql)	  
 	count = 0 
 	if rsArt.BOF and rsArt.EOF then ' no produkts
-		Response.Write "<br><h3><b>No produkts to display ! </b><h3><br>"
+		Response.Write "<br /><h3><b>No produkts to display ! </b><h3><br />"
 	else
 		while not rsArt.EOF
 			count = count + 1
@@ -186,8 +186,8 @@ else
 		next
 		%>
 		</table>
-		<br>
-		<%Response.Write "<b>Records " & start & " to " & final & " of " & count & "<b><br>"
+		<br />
+		<%Response.Write "<b>Records " & start & " to " & final & " of " & count & "<b><br />"
 		if final < ( count + 20 ) then
 			if sortby <> "" then quString= quString & "&order=" & sortby
 			if desc <> "" then quString= quString & "&desc=" & desc
@@ -200,7 +200,7 @@ else
 			i=1
 			j = 1
 			while i < start
-				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG><br>"
+				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG><br />"
 				i = i + 20
 				j= j + 1
 			wend 
@@ -219,14 +219,14 @@ else
 			end if	
 		end if	
 		%>
-		<br>
-		<br>
+		<br />
+		<br />
 		<table width="80%" border="1" cellspacing="0" cellpadding="5">
 		<tr><td>Search for:</td>
 		<td><input name="SearchStr" style="width=200"></td>
 		<td><input type="submit" value="Search Now" name="SearchButton"></td>
 		</td></tr></table>
-		<br>
+		<br />
 	</form>
 	<%
 		end if

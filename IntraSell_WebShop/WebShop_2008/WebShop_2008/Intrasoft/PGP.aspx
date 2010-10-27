@@ -155,17 +155,17 @@
         pubK = CreateRandomKey()
         privateK = convertKey(pubK, True)
 
-        Response.Write("<br>Public Key: " + pubK)
-        Response.Write("<br>Private Key (derived from public): " + privateK)
-        Response.Write("<br>Public Key (derived from private): " + convertKey(privateK, False))
+        Response.Write("<br />Public Key: " + pubK)
+        Response.Write("<br />Private Key (derived from public): " + privateK)
+        Response.Write("<br />Public Key (derived from private): " + convertKey(privateK, False))
 
 
         ' Debug.Print convertKey("1234561234561234")
         em = Encrypt(pubK, "Schardone Han Krum")
-        Response.Write("<br>Encrypted Message: " + em)
+        Response.Write("<br />Encrypted Message: " + em)
 
         dm = Decrypt(privateK, em)
-        Response.Write("<br>Decrypted Message: " + dm)
+        Response.Write("<br />Decrypted Message: " + dm)
     End Sub
 
 </script>
