@@ -43,6 +43,18 @@
 
 
     Public Function makeBruttoPreis(ByVal Preis As Double, ByVal MwstGroup As Integer, ByVal Land As String) As Decimal
+        Dim CACHE_NAME As String = "CACHE_PRICE_" & Preis & MwstGroup & Land
+        Dim temp As Object
+ 
+        temp = getCache(CACHE_NAME)
+        If Not IsNumeric(temp) Then 'set cache  
+            temp = setCache(CACHE_NAME, makeBruttoPreisNoCache(Preis, MwstGroup, Land))
+        End If
+        Return temp
+        
+    End Function
+    
+    Public Function makeBruttoPreisNoCache(ByVal Preis As Double, ByVal MwstGroup As Integer, ByVal Land As String) As Decimal
 
         If Request.QueryString("debug") = "true" Then
             Response.Write("<br />" & Chr(13))
@@ -60,10 +72,10 @@
         End Try
 
         If IsNumeric(Replace(returnPreis, ",", ".")) Then
-            makeBruttoPreis = returnPreis
+            Return returnPreis
         Else
-            Response.Write("<br /><font color=red>Fehler in der Preisberechung: makeBruttoPreis=" & +returnPreis & "</font>")
-            makeBruttoPreis = 0
+            Response.Write("<br /><font color=red>Fehler in der Preisberechnung: makeBruttoPreis=" & +returnPreis & "</font>")
+            Return 0
         End If
 
     End Function
