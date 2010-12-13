@@ -8,4 +8,4 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_Sparkasse_PayP
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_3_office2010.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_0ffice2010.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100923_mailstosendindexing.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20101012.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20101212.zip
