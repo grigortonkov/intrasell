@@ -841,7 +841,14 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >" & getTranslation("UID") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' size='20' value='" & UID & "'></td>"
+        If (UID <> "") Then 'update is not allowed 
+            html = html & "  <td><input type='hidden' name='UID" & typeOfAddr & "' size='20' value='" & UID & "'> " & UID & "&nbsp;"
+            'change UID per Email 
+            html = html & "<a target=_new href='mailto:" & VARVALUE("EMAIL_REGISTER") & "'>" & getTranslation("UID ändern") & "</a></td>"
+        Else
+            html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' size='20' value='" & UID & "'></td>"
+        End If
+        
         html = html & "</tr>"
 
         html = html & "<tr>"
