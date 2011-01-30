@@ -125,7 +125,7 @@ end if
 					" OR [EAN] like '" & MC & key & MC & "' " &  _
 					" OR [Beschreibung] like '" & MC & key & MC & "' " &  _
 					" OR [Firma] like '" & MC & key & MC & "' " & _ 
-                    " OR ft.key = ArtNr)"
+                    " OR EXISTS (SELECT 1 FROM  translations t where t.key= ArtNr and t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ))"
                else 'Fast
 					sql = sql + "AND ([Bezeichnung] like '" & MC & key & MC & "'" & _ 
 					" OR [EAN] like '" & MC & key & MC & "' " &  _
@@ -137,7 +137,7 @@ end if
 		if mid(sql,1,2)="AND" then sql = mid(sql,4)
 		catPathOld = ""
 		sql =   "SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung " & _ 
-				" FROM grArtikel, lieferantenAdressen, (SELECT t.key FROM  translations t where t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ) ft  " & _ 
+				" FROM grArtikel, lieferantenAdressen  " & _ 
 				" Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _ 
 				" AND " & DEFAULT_PRODUCT_SEARCH_WHERE & " AND " & _ 
 				"(" & sql & ")" 
