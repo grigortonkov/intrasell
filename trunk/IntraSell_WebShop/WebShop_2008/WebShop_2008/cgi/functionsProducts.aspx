@@ -153,8 +153,7 @@
                         sql = sql + "AND ([Bezeichnung] like '" & MC & key & MC & "'" & _
                         " OR [EAN] like '" & MC & key & MC & "' " & _
                         " OR [Beschreibung] like '" & MC & key & MC & "' " & _
-                        " OR [Firma] like '" & MC & key & MC & "' " & _
-                        " OR EXISTS (SELECT 1 FROM  translations t where t.key= ArtNr and t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ))"
+                        " OR [Firma] like '" & MC & key & MC & "' )"
                     Else 'Fast
                         sql = sql + "AND ([Bezeichnung] like '" & MC & key & MC & "'" & _
                         " OR [EAN] like '" & MC & key & MC & "' " & _
@@ -165,13 +164,19 @@
             Next
             If Mid(sql, 1, 2) = "AND" Then sql = Mid(sql, 4)
             catPathOld = ""
-            sql = "SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung " & _
+            sql = "SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung, ArtKatNr " & _
               " FROM grArtikel, lieferantenAdressen  " & _
               " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
               " AND " & DEFAULT_PRODUCT_SEARCH_WHERE & " AND " & _
               "(" & sql & ")"
+            sql = sql & " UNION " & _
+              " SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung, ArtKatNr " & _
+              " FROM grArtikel, lieferantenAdressen, (SELECT t.key FROM  translations t where t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ) ft " & _
+              " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
+              " AND " & DEFAULT_PRODUCT_SEARCH_WHERE & _
+              " AND ft.key= ArtNr"
         Else 'product seach by ArtNR
-            sql = "SELECT  IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung " & _
+            sql = "SELECT  IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung, ArtKatNr " & _
               " FROM grArtikel, lieferantenAdressen  " & _
               " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
               " AND " & DEFAULT_PRODUCT_SEARCH_WHERE & " AND ([ArtNr] =" & SearchKeywords & " OR [EAN] like '" & SearchKeywords & "')"
