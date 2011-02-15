@@ -874,11 +874,19 @@
         Dim sql As String, rs
         sql = " select count(*) as countProds from grArtikel  " & _
               " Where ProduktAktiv <> 0 "
-     
-        If optArtKatNR <> "" Then sql = sql & " and ArtKatNr=" & optArtKatNR
-        If optLieferantNr <> "" Then sql = sql & " and artNr in (select artikelnr from [lieferantenArtikel-Preise] where LieferantNr=" & optLieferantNr & ")"
-        If optHerstellerNr <> "" Then sql = sql & " and HerstellerNr=" & optHerstellerNr
-    
+        Try
+            If optArtKatNR <> "" Then sql = sql & " and ArtKatNr=" & optArtKatNR
+        Catch
+        End Try
+        Try
+            If optLieferantNr <> "" Then sql = sql & " and artNr in (select artikelnr from [lieferantenArtikel-Preise] where LieferantNr=" & optLieferantNr & ")"
+        Catch
+        End Try
+        Try
+            If optHerstellerNr <> "" Then sql = sql & " and HerstellerNr=" & optHerstellerNr
+        Catch
+        End Try
+        
         ' response.Write sql   
         rs = ObjConnectionexecute(sql)
         If rs.EOf Then
