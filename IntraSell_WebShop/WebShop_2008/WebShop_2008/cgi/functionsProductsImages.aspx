@@ -26,18 +26,23 @@
 
 
 
-    'returns html string with image proportional width and height
+    'returns html string with image proportional width and height attributes
     Function makeImageSizeAttributes(ByVal imageFileName, ByVal maxWidth, ByVal maxHeight) As String
         'Response.Write "makeImageSizeAttributes start "
         'Response.Write "maxWidth = " & maxWidth
         'Response.Write "maxHeight = " & maxHeight
     
         Dim CImage
-        CImage = Server.CreateObject("CImageInfo.GetInfo")
+        Try
+            CImage = Server.CreateObject("CImageInfo.GetInfo")
+        Catch
+            Return ""
+        End Try
+        
         Dim FilePath
         FilePath = Server.MapPath(imageFileName) 'Type the path of your image file.
         CImage.SetPath(FilePath)
-        If False Then
+        If showDebug() Then
             Response.Write("Image Type : " & CImage.TypeOfImage & "<br />")
             Response.Write("Image Height : " & CImage.GetHeight & "<br />")
             Response.Write("Image Width : " & CImage.GetWidth & "<br />")
