@@ -76,9 +76,10 @@
 
     '********************************************************************
     'returns string that represents date in SQL 92 format for access or SQL server
+    ' abstand - in Days
     '********************************************************************
-    Function SQLDATE(ByVal abstand) As String
-        Dim d : d = Date.Today + abstand
+    Function SQLDATE(ByVal abstand As Integer) As String
+        Dim d As Date  = Date.Today.AddDays ( abstand )
         If dbType = "ACCESS" Then
             SQLDATE = "#" & Month(d) & "/" & Day(d) & "/" & Year(d) & "#"
         Else 'SQL server
