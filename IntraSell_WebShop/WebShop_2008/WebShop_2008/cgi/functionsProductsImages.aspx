@@ -39,8 +39,7 @@
             Return ""
         End Try
         
-        Dim FilePath
-        FilePath = Server.MapPath(imageFileName) 'Type the path of your image file.
+        Dim FilePath As String = Server.MapPath(imageFileName) 'Type the path of your image file.
         CImage.SetPath(FilePath)
         If showDebug() Then
             Response.Write("Image Type : " & CImage.TypeOfImage & "<br />")
