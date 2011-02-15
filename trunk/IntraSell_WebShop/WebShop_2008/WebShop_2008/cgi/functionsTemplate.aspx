@@ -186,8 +186,7 @@
   
         'TAG_SUBCATEGORIES 
         If InStr(template, TAG_SUBCATEGORIES) > 0 Then 'TAG_SUBCATEGORIES request
-            Dim title
-            title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
+            Dim title As String = "Categories:<font color='white'>" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
             'html =  drawAreaHTML(title, makeSubcategories(artKatNr,2),"", 600)
             html = makeSubcategoriesFromCache(artKatNr, 2)
             parseTemplate = parseTemplate(Replace(template, TAG_SUBCATEGORIES, html), artKatNr)
@@ -196,7 +195,7 @@
   
         'TAG_SUBCATEGORIESTREE 
         If InStr(template, TAG_SUBCATEGORIESTREE) > 0 Then 'TAG_SUBCATEGORIES request    
-            Title = "Categories:<font color=""white"">" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
+            Dim title As String = "Categories:<font color='white'>" & Mid(showCategoryPath(artKatNr, "default.aspx"), 1) & "</font>"
             'html =  drawAreaHTML(title, makeSubcategories(artKatNr,2),"", 600)
             html = makeCategoriesTreeFromCache(artKatNr, 2, "", "")
             parseTemplate = parseTemplate(Replace(template, TAG_SUBCATEGORIESTREE, html), artKatNr)
