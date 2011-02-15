@@ -137,7 +137,7 @@
         End If
 
         If Not IsNumeric(Trim(SearchKeywords)) Then '
-            Dim key
+            Dim key As String = ""
             For Each key In AllKeywords
 
                 If key <> "" Then
@@ -171,7 +171,7 @@
               "(" & sql & ")"
             sql = sql & " UNION " & _
               " SELECT IDNR, Branche, Firma, Adresse, ArtNr, Bezeichnung, EAN, grArtikel.Picture, Bezeichnung1, PreisATS, MWST, AngelegtAm, Beschreibung, ArtKatNr " & _
-              " FROM grArtikel, lieferantenAdressen, (SELECT t.key FROM  translations t where t.tablename = 'grArtikel' and t.translation like '" & MC & key & MC & "' ) ft " & _
+              " FROM grArtikel, lieferantenAdressen, (SELECT t.key FROM  translations t where t.tablename = 'grArtikel' and t.translation like '" & MC & SearchKeywords & MC & "' ) ft " & _
               " Where  grArtikel.HerstellerNR = lieferantenAdressen.IDNR " & _
               " AND " & DEFAULT_PRODUCT_SEARCH_WHERE & _
               " AND ft.key= ArtNr"
