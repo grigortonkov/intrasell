@@ -1544,6 +1544,7 @@
     <Content Include="skins\skin_ptec\pages\basket\warenkorb_functions.htm" />
     <Content Include="skins\skin_ptec\pages\basket\warenkorb_login.htm" />
     <Content Include="skins\skin_ptec\pages\contentLinks.htm" />
+    <Content Include="skins\skin_ptec\pages\landSelection.htm" />
     <Content Include="skins\skin_ptec\pages\flash-loader.swf" />
     <Content Include="skins\skin_ptec\pages\function1.htm" />
     <Content Include="skins\skin_ptec\pages\function2.htm" />
