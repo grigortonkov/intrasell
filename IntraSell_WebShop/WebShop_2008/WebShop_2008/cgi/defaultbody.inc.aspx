@@ -150,7 +150,14 @@
 <!--#include file="ecard/send.aspx"-->
 <%  Case "FirstPage", "", "WebPage"  ' default page%>
 <%  Dim webPage as String : If Request("WebPage") <> "" Then webPage = Request("WebPage") Else webPage = "FirstPage"%>
-<% Response.Write (makeRelLinksAbsolute(convertToHTML(parseTemplate(tableValue("webPages", "[Title]", "'" & webPage & "'", "html"),0)))) %>
+<% 
+
+Dim webPageText as String 
+Dim pageId  = tableValue("webPages", "[Title]", "'" & webPage & "'", "pageId")
+webPageText = tableValue("webPages", "[Title]", "'" & webPage & "'", "html")
+webPageText = getTranslationDok("webPages", pageId, "HTML", webPageText, Language)
+webPageText = makeRelLinksAbsolute(convertToHTML(parseTemplate(webPageText,0)))
+Response.Write (webPageText) %>
 <%
 End Select
 

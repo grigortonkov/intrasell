@@ -41,7 +41,7 @@
     'LAND 
     land = cleanUserInput(Request("L"))
     If land & "" = "" Then land = Session("LAND")
-    If land & "" = "" Then land = varvalue("DEFAULT_SHOP_LAND")
+    If land & "" = "" Then land = varvalue_default("DEFAULT_SHOP_LAND", "AT")
 
     'if Session("LAND") <> cleanUserInput(request("L")) and len(cleanUserInput(request("L"))) >1 then Session("LAND") = land
     'if Session("LAND") = "" then  Session("LAND") = land
@@ -55,7 +55,7 @@
     'LANGUAGE 
     language = cleanUserInput(Request("language"))
     If language & "" = "" Then language = Session("LANGUAGE")
-    If language & "" = "" Then language = varvalue("DEFAULT_SHOP_LANGUAGE")
+    If language & "" = "" Then language = varvalue_default("DEFAULT_SHOP_LANGUAGE","DEU")
 
     'für Language change
     If Session("LANGUAGE") <> language Then

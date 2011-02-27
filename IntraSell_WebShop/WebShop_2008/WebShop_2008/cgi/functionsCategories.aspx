@@ -766,8 +766,9 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function listWebPagesLinksFromCache() As String
+        Dim Language As String : Language = Session("Language")
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "WEBPAGES_LIST"
+        Dim CACHE_NAME : CACHE_NAME = "WEBPAGES_LIST_" & Language
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, listWebPagesLinks())
@@ -777,22 +778,27 @@
 
 
     'lists the links on  hte left of the shop
-    Function listWebPagesLinks()
-
-        Dim rsS, sqlS, html
-        sqlS = "select Title from webPages order by Title"
+    Function listWebPagesLinks() As String
+        Dim Language As String : Language = Session("Language")
+        Dim rsS
+        Dim sqlS As String
+        Dim html As String
+        
+        sqlS = "select PageId, Title, HTML from webPages order by Title"
         rsS = ObjConnectionexecute(sqlS)
         If rsS.eof Then
             html = "keine Webpages definiert!"
         End If
         While Not rsS.EOF
-            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & rsS("Title").Value & "</a><br />"
-                    
+            Dim title As String = rsS("Title").Value
+            Dim pageId = rsS("pageID").Value
+            title = getTranslationDok("webPages", pageID, "TITLE", title, Language)
+            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & title & "</a><br />"
             rsS.moveNext()
         End While
         rsS.close()
         rsS = Nothing
-        listWebPagesLinks = html
+        Return html
                   
     End Function
 

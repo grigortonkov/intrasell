@@ -176,6 +176,12 @@
 			<name>[LANGUAGE_SELECTION]</name>
 			<description>empty</description>
 		</tag>
+
+    <tag>
+      <name>[LAND_SELECTION]</name>
+      <description>empty</description>
+    </tag>
+    
 		<tag>
 			<name>[CONTENT_LINKS]</name>
 			<description>empty</description>
