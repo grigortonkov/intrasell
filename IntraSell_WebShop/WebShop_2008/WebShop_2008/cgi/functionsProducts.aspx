@@ -562,13 +562,18 @@
     '===============================================================================
     Public Function makeProductPageWithTemplate(ByVal ArtNr As String, ByRef productTemplate As String) As String
 
-        Dim Sql As String 
+       
         Dim rsArtikel
+        
         If ArtNr = "" Then
             makeProductPageWithTemplate = "Es wurde keine ArtNr übergeben!" : Exit Function
         End If
 
-        Sql = " SELECT Firma, lieferantenAdressen.Picture as FirmaImage, lieferantenAdressen.web as HerstellerLink, " & _
+        If IsNothing(productTemplate) Then
+            Return "Es wurde keine Template übergeben!"
+        End If
+        
+         Dim Sql As String = " SELECT Firma, lieferantenAdressen.Picture as FirmaImage, lieferantenAdressen.web as HerstellerLink, " & _
               " ArtNr , EAN, ArtKatNR, grArtikel.Picture , PreisATS , Bezeichnung1, Bezeichnung , MWST, HErstellerRabatt, HerstellerRabattText, " & _
               " ProduktAktiv, Beschreibung, Modifikationen, herstellerNr, LieferantNr, Gewicht " & _
               " FROM grArtikel, lieferantenAdressen " & _
@@ -587,7 +592,7 @@
 
         Dim Firma As String = ""
         Dim FirmaImage, HerstellerLink, Picture, Bezeichnung1, Bezeichnung, Beschreibung, MWSTGROUP
-        Dim PreisATS As String, PreisATSNetto As String, PreisATSMwst As String , PreisATSList As String
+        Dim PreisATS As String, PreisATSNetto As String, PreisATSMwst As String, PreisATSList As String
         
         Dim BeschreibungWithoutTechInfo, Modifikationen, EAN, ArtKatNR
         Dim ProduktAktiv As Boolean
@@ -621,13 +626,13 @@
         herstellerNr = rsArtikel("HerstellerNr").Value
         LieferantNR = rsArtikel("LieferantNR").Value
 
-        Dim KundenIDNRFuerPreise as String = getLOGIN()
+        Dim KundenIDNRFuerPreise As String = getLOGIN()
          
         Dim shopUserForOffers = VARVALUE_DEFAULT("SHOP_DEFAULT_USER_FOR_OFFERS", "1")
          
-         If KundenIDNRFuerPreise is Nothing then 
-             KundenIDNRFuerPreise  = shopUserForOffers
-         End If 
+        If KundenIDNRFuerPreise Is Nothing Then
+            KundenIDNRFuerPreise = shopUserForOffers
+        End If
  
         'Listenpreis 
         
@@ -641,217 +646,217 @@
             End If
         End If
         
-            'Preis - Brutto
-            If InStr(productTemplate, TAG_MAKEBRUTTOPREIS) > 0 Or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
-                PreisATS = getPreis(KundenIDNRFuerPreise, ArtNr, 1)
-                'PreisATS = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land")) 'funktioniert ja nach land korrekt
-                PreisATS = calculateBruttoPreis(PreisATS, ArtNr, KundenIDNRFuerPreise)
-                PreisATS = FormatNumber(PreisATS, 2)
-            End If
+        'Preis - Brutto
+        If InStr(productTemplate, TAG_MAKEBRUTTOPREIS) > 0 Or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
+            PreisATS = getPreis(KundenIDNRFuerPreise, ArtNr, 1)
+            'PreisATS = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land")) 'funktioniert ja nach land korrekt
+            PreisATS = calculateBruttoPreis(PreisATS, ArtNr, KundenIDNRFuerPreise)
+            PreisATS = FormatNumber(PreisATS, 2)
+        End If
 
-            'Preis - Netto  
-            If InStr(productTemplate, TAG_MAKENETTOPREIS) > 0 Or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
-                PreisATSNetto = makeNettoPreis(ArtNr, 1, KundenIDNRFuerPreise)
-                'PreisATSNetto = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land"))
-                PreisATSNetto = FormatNumber(PreisATSNetto, 2)
-            End If
+        'Preis - Netto  
+        If InStr(productTemplate, TAG_MAKENETTOPREIS) > 0 Or InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
+            PreisATSNetto = makeNettoPreis(ArtNr, 1, KundenIDNRFuerPreise)
+            'PreisATSNetto = makeBruttoPreis(PreisATS, MWSTGROUP, Session("Land"))
+            PreisATSNetto = FormatNumber(PreisATSNetto, 2)
+        End If
         
-            'Mwst 
-            If InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
-                PreisATSMwst = PreisATS - PreisATSNetto   'getPreis(getLOGIN(), ArtNr, 1) - makeNettoPreis( ArtNr, 1, getLOGIN())
-                PreisATSMwst = FormatNumber(PreisATSMwst, 2)
-            End If
+        'Mwst 
+        If InStr(productTemplate, TAG_MAKEMWSTPREIS) > 0 Then
+            PreisATSMwst = PreisATS - PreisATSNetto   'getPreis(getLOGIN(), ArtNr, 1) - makeNettoPreis( ArtNr, 1, getLOGIN())
+            PreisATSMwst = FormatNumber(PreisATSMwst, 2)
+        End If
         
-            If Not isPurchasingAllowed() Then
-                Dim info As String = getTranslation("Login für Preise!")
-                PreisATS = info
-                PreisATSNetto = info
-                PreisATSMwst = info
-            End If
+        If Not isPurchasingAllowed() Then
+            Dim info As String = getTranslation("Login für Preise!")
+            PreisATS = info
+            PreisATSNetto = info
+            PreisATSMwst = info
+        End If
 
-            If getLOGIN() Is Nothing Then
-                Dim tooltip As String = "&nbsp;<a Title='" & getTranslation("Login Sie sich an für Ihre eigene Preisliste.") & "'>*</a>"
-                PreisATS = PreisATS & tooltip
-                PreisATSNetto = PreisATSNetto & tooltip
-            End If
+        If getLOGIN() Is Nothing Then
+            Dim tooltip As String = "&nbsp;<a Title='" & getTranslation("Login Sie sich an für Ihre eigene Preisliste.") & "'>*</a>"
+            PreisATS = PreisATS & tooltip
+            PreisATSNetto = PreisATSNetto & tooltip
+        End If
 
-            If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString Then
-                herstellerRabatt = 0
-            Else
-                herstellerRabatt = rsArtikel("herstellerRabatt").Value
-            End If
+        If rsArtikel("herstellerRabatt").Value.ToString = DBNull.Value.ToString Then
+            herstellerRabatt = 0
+        Else
+            herstellerRabatt = rsArtikel("herstellerRabatt").Value
+        End If
          
-            herstellerRabattText = rsArtikel("herstellerRabattText").Value.ToString
-            ProduktAktiv = rsArtikel("produktAktiv").Value.ToString
-            herstellerNr = rsArtikel("herstellerNr").Value.ToString
-            If rsArtikel("Gewicht").Value.ToString <> DBNull.Value.ToString Then
-                Gewicht = rsArtikel("Gewicht").Value
+        herstellerRabattText = rsArtikel("herstellerRabattText").Value.ToString
+        ProduktAktiv = rsArtikel("produktAktiv").Value.ToString
+        herstellerNr = rsArtikel("herstellerNr").Value.ToString
+        If rsArtikel("Gewicht").Value.ToString <> DBNull.Value.ToString Then
+            Gewicht = rsArtikel("Gewicht").Value
+        End If
+
+        Beschreibung = rsArtikel("Beschreibung").Value & ""
+        Beschreibung = getTranslationDok("grArtikel", ArtNr, "Beschreibung", Beschreibung & "", Language)
+        Modifikationen = rsArtikel("Modifikationen").Value
+
+        'GT: always parse the product 
+        If herstellerNr = getLOGIN() Or ((Not DBNull.Value.Equals(LieferantNR)) And LieferantNR.Equals(getLOGIN())) Then 'Das ist der inserat anbieter und er darf die seite sehen!
+            'response.Write "Dieses Objekt ist nicht aktiv!"
+        Else 'do not allow to see this page 
+            If ProduktAktiv = 0 Then
+                makeProductPageWithTemplate = getTranslation("Produkt ist deaktiviert und wird nicht mehr ausgeliefert!")
+                rsArtikel.close()
+                rsArtikel = Nothing
+                Exit Function
             End If
-
-            Beschreibung = rsArtikel("Beschreibung").Value & ""
-            Beschreibung = getTranslationDok("grArtikel", ArtNr, "Beschreibung", Beschreibung & "", Language)
-            Modifikationen = rsArtikel("Modifikationen").Value
-
-            'GT: always parse the product 
-            If herstellerNr = getLOGIN() Or ((Not DBNull.Value.Equals(LieferantNR)) And LieferantNR.Equals(getLOGIN())) Then 'Das ist der inserat anbieter und er darf die seite sehen!
-                'response.Write "Dieses Objekt ist nicht aktiv!"
-            Else 'do not allow to see this page 
-                If ProduktAktiv = 0 Then
-                    makeProductPageWithTemplate = getTranslation("Produkt ist deaktiviert und wird nicht mehr ausgeliefert!")
-                    rsArtikel.close()
-                    rsArtikel = Nothing
-                    Exit Function
-                End If
-            End If
+        End If
 
 
-            If InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) > 0 Then
-                BeschreibungWithoutTechInfo = Left(Beschreibung, InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) - 1)
-            Else
-                BeschreibungWithoutTechInfo = Beschreibung
-            End If
+        If InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) > 0 Then
+            BeschreibungWithoutTechInfo = Left(Beschreibung, InStr(UCase(Beschreibung), UCase(TECHINFOCONSTANT)) - 1)
+        Else
+            BeschreibungWithoutTechInfo = Beschreibung
+        End If
 
-            If InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) > 0 Then
-                BeschreibungWithoutTechInfo = Left(BeschreibungWithoutTechInfo, InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) - 1)
-            End If
+        If InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) > 0 Then
+            BeschreibungWithoutTechInfo = Left(BeschreibungWithoutTechInfo, InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) - 1)
+        End If
 
-            Const replacements = 999
+        Const replacements = 999
 
-            Dim imgTagPicture, imgTagPictureLarge
-            'imgTagPicture = "<a href=""default.aspx?artNr=" & artNr & """>"& makeImgTag(Picture,Bezeichnung,200) & "</a>"
-            imgTagPicture = makeImgTag(Picture, Bezeichnung, PRODUCT_IMAGE_MIDDLE_MAX_SIZE)
-            imgTagPictureLarge = "<a href=""default.aspx?artNr=" & ArtNr & """>" & makeImgTag(Picture, Bezeichnung, PRODUCT_IMAGE_BIG_MAX_SIZE) & "</a>"
+        Dim imgTagPicture, imgTagPictureLarge
+        'imgTagPicture = "<a href=""default.aspx?artNr=" & artNr & """>"& makeImgTag(Picture,Bezeichnung,200) & "</a>"
+        imgTagPicture = makeImgTag(Picture, Bezeichnung, PRODUCT_IMAGE_MIDDLE_MAX_SIZE)
+        imgTagPictureLarge = "<a href=""default.aspx?artNr=" & ArtNr & """>" & makeImgTag(Picture, Bezeichnung, PRODUCT_IMAGE_BIG_MAX_SIZE) & "</a>"
 
-            productTemplate = Replace(productTemplate, "[ArtNr]", ArtNr & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[ProduktAktiv]", ProduktAktiv & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[EAN]", EAN & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, TAG_BEZEICHNUNG, Bezeichnung & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[Bezeichnung1]", Bezeichnung1 & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[ArtNr]", ArtNr & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[ProduktAktiv]", ProduktAktiv & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[EAN]", EAN & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_BEZEICHNUNG, Bezeichnung & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[Bezeichnung1]", Bezeichnung1 & "", 1, replacements, 1)
       
-            If productTemplate.Contains("[LagerInfoIcon]") Then
-                productTemplate = Replace(productTemplate, "[LagerInfoIcon]", getLagerInfoIcon(ArtNr) & "", 1, replacements, 1)
-            End If
+        If productTemplate.Contains("[LagerInfoIcon]") Then
+            productTemplate = Replace(productTemplate, "[LagerInfoIcon]", getLagerInfoIcon(ArtNr) & "", 1, replacements, 1)
+        End If
        
 
        
-            productTemplate = Replace(productTemplate, "[MWSTGROUP]", MWSTGROUP & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, TAG_BESCHREIBUNG, BeschreibungWithoutTechInfo & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[Firma]", Firma & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[HerstellerLink]", HerstellerLink & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[makeImgTagFirma]", makeImgTag(FirmaImage, Firma, 60) & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[makeImgTag]", imgTagPicture & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[makeImgTagLarge]", imgTagPictureLarge & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[Modifikationen]", Modifikationen & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[MWSTGROUP]", MWSTGROUP & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_BESCHREIBUNG, BeschreibungWithoutTechInfo & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[Firma]", Firma & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[HerstellerLink]", HerstellerLink & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[makeImgTagFirma]", makeImgTag(FirmaImage, Firma, 60) & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[makeImgTag]", imgTagPicture & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[makeImgTagLarge]", imgTagPictureLarge & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[Modifikationen]", Modifikationen & "", 1, replacements, 1)
         
-            'Preise 
-            productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS_LIST, PreisATSList, 1, replacements, 1)
-            productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS, PreisATS, 1, replacements, 1)
-            productTemplate = Replace(productTemplate, TAG_MAKENETTOPREIS, PreisATSNetto, 1, replacements, 1)
-            productTemplate = Replace(productTemplate, TAG_MAKEMWSTPREIS, PreisATSMwst, 1, replacements, 1)
+        'Preise 
+        productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS_LIST, PreisATSList, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKEBRUTTOPREIS, PreisATS, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKENETTOPREIS, PreisATSNetto, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_MAKEMWSTPREIS, PreisATSMwst, 1, replacements, 1)
         
-            productTemplate = Replace(productTemplate, "[HerstellerNr]", herstellerNr, 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[HerstellerNr]", herstellerNr, 1, replacements, 1)
 
-            'new 12.10.2004
-            productTemplate = Replace(productTemplate, "[Picture]", Picture & "", 1, replacements, 1)
+        'new 12.10.2004
+        productTemplate = Replace(productTemplate, "[Picture]", Picture & "", 1, replacements, 1)
 
-            'new 12.10.2004
-            productTemplate = Replace(productTemplate, "[Gewicht]", Gewicht & "", 1, replacements, 1)
+        'new 12.10.2004
+        productTemplate = Replace(productTemplate, "[Gewicht]", Gewicht & "", 1, replacements, 1)
 
-            Call replaceEigenschaftenAndMore(ArtNr, productTemplate)
+        Call replaceEigenschaftenAndMore(ArtNr, productTemplate)
     
       
-            If InStr(productTemplate, "[minLieferantVKPreis]") > 0 Then
-                Dim p : p = 0 'TODO FormatNumber(getLieferantPreis(ArtNr, True, True), 2)
-                productTemplate = Replace(productTemplate, "[minLieferantVKPreis]", p)
-            End If
+        If InStr(productTemplate, "[minLieferantVKPreis]") > 0 Then
+            Dim p : p = 0 'TODO FormatNumber(getLieferantPreis(ArtNr, True, True), 2)
+            productTemplate = Replace(productTemplate, "[minLieferantVKPreis]", p)
+        End If
 
 
-            productTemplate = Replace(productTemplate, "[herstellerRabatt]", herstellerRabatt & "", 1, replacements, 1)
-            productTemplate = Replace(productTemplate, "[herstellerRabattText]", herstellerRabattText & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[herstellerRabatt]", herstellerRabatt & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[herstellerRabattText]", herstellerRabattText & "", 1, replacements, 1)
  
-            If InStr(productTemplate, "[compareProductsSelectForm]") > 0 Then
-                productTemplate = Replace(productTemplate, "[compareProductsSelectForm]", compareProductsSelectForm(ArtNr) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[compareProductsSelectForm]") > 0 Then
+            productTemplate = Replace(productTemplate, "[compareProductsSelectForm]", compareProductsSelectForm(ArtNr) & "", 1, replacements, 1)
+        End If
 
-            productTemplate = Replace(productTemplate, "[HTMLInfo]", getHTMLInfo(ArtNr) & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[HTMLInfo]", getHTMLInfo(ArtNr) & "", 1, replacements, 1)
 
-            productTemplate = Replace(productTemplate, "[makeListKeywords]", makeListKeywords(ArtNr) & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, "[makeListKeywords]", makeListKeywords(ArtNr) & "", 1, replacements, 1)
 
-            productTemplate = Replace(productTemplate, TAG_CREATEPRODUCTSPECIALCHOICE, createProductSpecialChoice(Modifikationen) & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_CREATEPRODUCTSPECIALCHOICE, createProductSpecialChoice(Modifikationen) & "", 1, replacements, 1)
 
-            If InStr(productTemplate, "[createTechnicalInfo]") > 0 Then
-                productTemplate = Replace(productTemplate, "[createTechnicalInfo]", createTechnicalInfo(Beschreibung) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[createTechnicalInfo]") > 0 Then
+            productTemplate = Replace(productTemplate, "[createTechnicalInfo]", createTechnicalInfo(Beschreibung) & "", 1, replacements, 1)
+        End If
 
-            If InStr(productTemplate, TAG_CREATESTAFFELPREISTABLE) > 0 Then
-                productTemplate = Replace(productTemplate, TAG_CREATESTAFFELPREISTABLE, createStaffelPreiseTable(ArtNr) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, TAG_CREATESTAFFELPREISTABLE) > 0 Then
+            productTemplate = Replace(productTemplate, TAG_CREATESTAFFELPREISTABLE, createStaffelPreiseTable(ArtNr) & "", 1, replacements, 1)
+        End If
 
-            If InStr(productTemplate, "[makeReviewStars]") > 0 Then
-                productTemplate = Replace(productTemplate, "[makeReviewStars]", makeBewertungStars(ArtNr) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[makeReviewStars]") > 0 Then
+            productTemplate = Replace(productTemplate, "[makeReviewStars]", makeBewertungStars(ArtNr) & "", 1, replacements, 1)
+        End If
 
-            If InStr(productTemplate, "[count_product_reviews]") > 0 Then
-                productTemplate = Replace(productTemplate, "[count_product_reviews]", makeBewertungAnzahl(ArtNr) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[count_product_reviews]") > 0 Then
+            productTemplate = Replace(productTemplate, "[count_product_reviews]", makeBewertungAnzahl(ArtNr) & "", 1, replacements, 1)
+        End If
 
-            If InStr(productTemplate, "[makeReviewsPage]") > 0 Then
-                productTemplate = Replace(productTemplate, "[makeReviewsPage]", makeReviewsPage(ArtNr) & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[makeReviewsPage]") > 0 Then
+            productTemplate = Replace(productTemplate, "[makeReviewsPage]", makeReviewsPage(ArtNr) & "", 1, replacements, 1)
+        End If
 
-            If getLOGIN() <> "" Or True Then
-                productTemplate = Replace(productTemplate, "[makeWriteReviewForm]", makeWriteReviewForm(ArtNr) & "", 1, replacements, 1)
-            Else
-                productTemplate = Replace(productTemplate, "[makeWriteReviewForm]", getTranslation("Nur registrierte Benutzer k&ouml;nnen Bewertungen abgeben!"), 1, replacements, 1)
-            End If
+        If getLOGIN() <> "" Or True Then
+            productTemplate = Replace(productTemplate, "[makeWriteReviewForm]", makeWriteReviewForm(ArtNr) & "", 1, replacements, 1)
+        Else
+            productTemplate = Replace(productTemplate, "[makeWriteReviewForm]", getTranslation("Nur registrierte Benutzer k&ouml;nnen Bewertungen abgeben!"), 1, replacements, 1)
+        End If
 
-            If InStr(productTemplate, "[verwandteProdukte]") > 0 Then
-                productTemplate = Replace(productTemplate, "[verwandteProdukte]", makeRelatedArtikelList(ArtNr, "ALLE") & "", 1, replacements, 1)
-            End If
+        If InStr(productTemplate, "[verwandteProdukte]") > 0 Then
+            productTemplate = Replace(productTemplate, "[verwandteProdukte]", makeRelatedArtikelList(ArtNr, "ALLE") & "", 1, replacements, 1)
+        End If
 
-            'erweiterte Ersetzung mit Typ 
+        'erweiterte Ersetzung mit Typ 
 
-            Call replaceRelatedProductsTag(ArtNr, productTemplate)
-
-
-            If InStr(productTemplate, "[DieAnderenKaufenAuch]") > 0 Then
-                productTemplate = Replace(productTemplate, "[DieAnderenKaufenAuch]", makeRelatedArtikelListOtherUsersBuy(ArtNr) & "", 1, replacements, 1)
-            End If
-
-            If InStr(productTemplate, "[priceCompare].[makeProductMechantList]") > 0 Then
-                productTemplate = Replace(productTemplate, "[priceCompare].[makeProductMechantList]", makeProductMechantList(ArtNr) & "", 1, replacements, 1)
-            End If
-
-            If InStr(productTemplate, "[HerstellerAdresse]") > 0 Then
-                productTemplate = Replace(productTemplate, "[HerstellerAdresse]", printAddressLieferant(herstellerNr), 1, replacements, 1)
-            End If
-
-            'Hersteller INFOS 
-            Dim sqlHerstLogo : sqlHerstLogo = "select la.Picture from grArtikel a, LieferantenAdressen la where a.herstellerNr=la.idnr and a.artnr=" & ArtNr
-            Dim herstellerPicture : herstellerPicture = FirstValue(sqlHerstLogo)
-
-            If InStr(productTemplate, "[HerstellerLogo]") > 0 Then
-                Dim htmlPicture : htmlPicture = ""
-                If Len(herstellerPicture & "") > 4 Then htmlPicture = "<img src='" & herstellerPicture & "' border='0'>"
-                productTemplate = Replace(productTemplate, "[HerstellerLogo]", htmlPicture, 1, replacements, 1)
-            End If
-
-            If InStr(productTemplate, "[HerstellerLogoURL]") > 0 Then
-                sqlHerstLogo = "select la.Picture from grArtikel a, LieferantenAdressen la where a.herstellerNr=la.idnr and a.artnr=" & ArtNr
-                productTemplate = Replace(productTemplate, "[HerstellerLogoURL]", herstellerPicture & "", 1, replacements, 1)
-            End If
-
-            If InStr(productTemplate, "[LieferantAdresse]") > 0 Then
-                productTemplate = Replace(productTemplate, "[LieferantAdresse]", printAddressLieferant(LieferantNR), 1, replacements, 1)
-            End If
-            rsArtikel.close()
-
-            'SQL and SQL_SIMPLE ? 
-            Call replaceEmbededSQL(productTemplate)
+        Call replaceRelatedProductsTag(ArtNr, productTemplate)
 
 
-            'productTemplate  = parseTemplate(productTemplate, null)
-            makeProductPageWithTemplate = productTemplate
+        If InStr(productTemplate, "[DieAnderenKaufenAuch]") > 0 Then
+            productTemplate = Replace(productTemplate, "[DieAnderenKaufenAuch]", makeRelatedArtikelListOtherUsersBuy(ArtNr) & "", 1, replacements, 1)
+        End If
+
+        If InStr(productTemplate, "[priceCompare].[makeProductMechantList]") > 0 Then
+            productTemplate = Replace(productTemplate, "[priceCompare].[makeProductMechantList]", makeProductMechantList(ArtNr) & "", 1, replacements, 1)
+        End If
+
+        If InStr(productTemplate, "[HerstellerAdresse]") > 0 Then
+            productTemplate = Replace(productTemplate, "[HerstellerAdresse]", printAddressLieferant(herstellerNr), 1, replacements, 1)
+        End If
+
+        'Hersteller INFOS 
+        Dim sqlHerstLogo : sqlHerstLogo = "select la.Picture from grArtikel a, LieferantenAdressen la where a.herstellerNr=la.idnr and a.artnr=" & ArtNr
+        Dim herstellerPicture : herstellerPicture = FirstValue(sqlHerstLogo)
+
+        If InStr(productTemplate, "[HerstellerLogo]") > 0 Then
+            Dim htmlPicture : htmlPicture = ""
+            If Len(herstellerPicture & "") > 4 Then htmlPicture = "<img src='" & herstellerPicture & "' border='0'>"
+            productTemplate = Replace(productTemplate, "[HerstellerLogo]", htmlPicture, 1, replacements, 1)
+        End If
+
+        If InStr(productTemplate, "[HerstellerLogoURL]") > 0 Then
+            sqlHerstLogo = "select la.Picture from grArtikel a, LieferantenAdressen la where a.herstellerNr=la.idnr and a.artnr=" & ArtNr
+            productTemplate = Replace(productTemplate, "[HerstellerLogoURL]", herstellerPicture & "", 1, replacements, 1)
+        End If
+
+        If InStr(productTemplate, "[LieferantAdresse]") > 0 Then
+            productTemplate = Replace(productTemplate, "[LieferantAdresse]", printAddressLieferant(LieferantNR), 1, replacements, 1)
+        End If
+        rsArtikel.close()
+
+        'SQL and SQL_SIMPLE ? 
+        Call replaceEmbededSQL(productTemplate)
+
+
+        'productTemplate  = parseTemplate(productTemplate, null)
+        makeProductPageWithTemplate = productTemplate
 
     End Function
 
