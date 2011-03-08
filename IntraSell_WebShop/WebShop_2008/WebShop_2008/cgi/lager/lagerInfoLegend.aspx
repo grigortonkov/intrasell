@@ -5,7 +5,7 @@
 <%
     'Description:  
     Dim ArtNr : ArtNr = Request("ArtNr")
-    Dim sql as String = "select bezeichnung1 as Info from grArtikel group by bezeichnung1 having count(*) > 3"
+    Dim sql as String = "select bezeichnung1 as Info from grArtikel where bezeichnung1 is not null group by bezeichnung1 having count(*) > 3"
     Dim rs = ObjConnectionExecute(sql) 
     Dim html as String 
 
