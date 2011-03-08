@@ -104,6 +104,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
         Dim ITEMPERPAGE As Integer : ITEMPERPAGE = VARVALUE_DEFAULT("SHOP_RESULT_LIST_ITEMS_PER_PAGE", "50")
         Dim SHOW_PRODUCT_DETAILS As Boolean : SHOW_PRODUCT_DETAILS = VARVALUE_DEFAULT("SHOP_SHOW_PRODUCT_DESCRIPTIONS", "true")
         Dim SHOWLAGERINFO As Boolean : SHOWLAGERINFO = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO", "true")
+        Dim SHOWLAGERINFOICON As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO_ICON", "true")
         Dim SHOP_SAVE_QUERY As Boolean : SHOP_SAVE_QUERY = VARVALUE_DEFAULT("SHOP_SAVE_QUERY", "true")
 
         'Sorting and Highlight handling 
@@ -501,6 +502,11 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 html = html & "<th width=""80"">" & getTranslation("Lagerinfo") & "</th>"
             End If
             
+            If SHOWLAGERINFOICON Then
+                tableColumns = tableColumns + 1
+                html = html & "<th width=""16"">" & getTranslation("Lagerinfo") & "</th>"
+            End If
+            
             tableColumns = tableColumns + 1
             html = html & "<th width=""40"">" & getTranslation("Kaufen") & "</th>"
             'html = html & "<th width=""40"">Detail</th>"
@@ -695,6 +701,10 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     
                     If SHOWLAGERINFO Then
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & LagerInfo & "</td>"
+                    End If
+                    
+                    If SHOWLAGERINFOICON Then
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & getLagerInfoIcon(ArtNr) & "</td>"
                     End If
                     
                     htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Kaufen") & " " & Bezeichnung & "'></a></td>"
