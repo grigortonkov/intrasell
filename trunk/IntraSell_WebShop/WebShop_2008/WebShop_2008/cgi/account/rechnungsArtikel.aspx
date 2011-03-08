@@ -134,7 +134,8 @@
                 <td align="middle" width="153"><%=getPaketnummer(OrderTypeArtikel, OrderNRArtikel)%>&nbsp;</td>
                 -->
         <td align="left" width="185">
-            <img border="0" src='<%=imageFullName("data_information.png")%>'>&nbsp; <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
+            <img border="0" src='<%=imageFullName("data_information.png")%>'>&nbsp; 
+                <a href="cgi/calls/requestJob.aspx?Job=RequestOrderInfo&ProductId=<%=rsRechArtikel("ArtNr").Value%>&OrderId=<%=OrderTypeArtikel%><%=OrderNRArtikel%>"
                 target="JOB" onclick="window.open ('JOB', 'JOB', 'height=500,width=600,status=yes,toolbar=no,menubar=no,location=no');">
                 <%=getTranslation("Bestellinfo")%>
             </a>

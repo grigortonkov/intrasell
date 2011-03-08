@@ -1520,13 +1520,16 @@
 
         If InStr(accountPageHTML, "[USER_DATE_REGISTRATION]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_DATE_REGISTRATION]", tablevalue("ofAdressen", "IDNR", getLOGIN(), "AngelegtAn"))
      
+        If InStr(accountPageHTML, "[COUNT_OFFERS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_OFFERS]", getCountOrders(getLOGIN(), "AN"))
         If InStr(accountPageHTML, "[COUNT_ORDERS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_ORDERS]", getCountOrders(getLOGIN(), "AU"))
         If InStr(accountPageHTML, "[COUNT_DELIVERIES]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_DELIVERIES]", getCountOrders(getLOGIN(), "LI"))
         If InStr(accountPageHTML, "[COUNT_INVOICES]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_INVOICES]", getCountOrders(getLOGIN(), "AR"))
      
+        If InStr(accountPageHTML, "[COUNT_OFFERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_OFFERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AN"))
         If InStr(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_ORDERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AU"))
-        If InStr(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AR"))
- 
+        If InStr(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_DELIVERED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "LI"))
+        If InStr(accountPageHTML, "[COUNT_INVOICED_PRODUCTS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[COUNT_INVOICED_PRODUCTS]", getCountOrdersProducts(getLOGIN(), "AR"))
+        
         If InStr(accountPageHTML, "[USER_ADDRESS]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS]", printAddress(getLOGIN(), "", False, False))
         If InStr(accountPageHTML, "[USER_ADDRESS_SHIPPING]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS_SHIPPING]", printAddress(getLOGIN(), TypeOfAddress.SHIPPING, True, False))
         If InStr(accountPageHTML, "[USER_ADDRESS_SHIPPING_OLD]") > 0 Then accountPageHTML = ReplaceAll(accountPageHTML, "[USER_ADDRESS_SHIPPING_OLD]", printAddress(getLOGIN(), TypeOfAddress.SHIPPING2, True, True))
