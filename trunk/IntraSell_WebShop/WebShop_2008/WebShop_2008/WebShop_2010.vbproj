@@ -346,6 +346,7 @@
     <Content Include="cgi\functionsToolbar.aspx" />
     <Content Include="cgi\functionsUserPoints.aspx" />
     <Content Include="cgi\functionsUserSearches.aspx" />
+    <Content Include="cgi\lager\lagerInfoLegend.aspx" />
     <Content Include="cgi\lager\lagerBook.aspx" />
     <Content Include="cgi\lager\warehouse_manager.htm" />
     <Content Include="cgi\lager\warehouse_manager_.htm" />
@@ -1295,7 +1296,10 @@
     <Content Include="skins\skin_arfaian_2009\pages\userMenu.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\writeProductReviewForm.htm" />
     <Content Include="skins\skin_arfaian_2009\productImages\challenger_I.gif" />
+    <Content Include="skins\skin_default\images\icons\ausverkauft.gif" />
     <Content Include="skins\skin_default\images\icons\down.gif" />
+    <Content Include="skins\skin_default\images\icons\lagernd.gif" />
+    <Content Include="skins\skin_default\images\icons\nicht lagernd.gif" />
     <Content Include="skins\skin_default\images\icons\up.gif" />
     <Content Include="skins\skin_ptec\emails\email_order_confirmation.htm" />
     <Content Include="skins\skin_ptec\emails\email_registration_confirmation.htm" />
@@ -1446,6 +1450,7 @@
     <Content Include="skins\skin_ptec\images\icons\3box.gif" />
     <Content Include="skins\skin_ptec\images\icons\arrow.gif" />
     <Content Include="skins\skin_ptec\images\icons\arrow_up.gif" />
+    <Content Include="skins\skin_ptec\images\icons\ausverkauft.gif" />
     <Content Include="skins\skin_ptec\images\icons\bookmarks.png" />
     <Content Include="skins\skin_ptec\images\icons\bookmark_add.png" />
     <Content Include="skins\skin_ptec\images\icons\bookmark_delete.png" />
@@ -1456,6 +1461,8 @@
     <Content Include="skins\skin_ptec\images\icons\flag_austria.png" />
     <Content Include="skins\skin_ptec\images\icons\flag_germany.png" />
     <Content Include="skins\skin_ptec\images\icons\flag_usa.png" />
+    <Content Include="skins\skin_ptec\images\icons\lagernd.gif" />
+    <Content Include="skins\skin_ptec\images\icons\nicht lagernd.gif" />
     <Content Include="skins\skin_ptec\images\icons\package.png" />
     <Content Include="skins\skin_ptec\images\icons\package_find.png" />
     <Content Include="skins\skin_ptec\images\icons\printer.png" />

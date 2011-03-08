@@ -13,7 +13,7 @@
 <!--BODY-->
 <!--#include file="cgi/defaultbody.inc.aspx"-->
 <!--BODY-->
-<!--#include file="intrasoft/connClose.asp.aspx"-->
+<!--#include file="intrasoft/connClose.aspx"-->
 
 
 

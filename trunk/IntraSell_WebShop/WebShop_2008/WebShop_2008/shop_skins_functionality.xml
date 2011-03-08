@@ -297,9 +297,14 @@
 			<description>Lagerinformation vom Lieferanten</description>
 		</tag>
 
-		
-		
-		<tag>
+    <tag>
+      <name>[LagerInfoIcon]</name>
+      <description>Lagerinformation als Icon</description>
+    </tag>
+
+
+
+    <tag>
 			<name>[MWSTGROUP]</name>
 			<description>Attribute</description>
 		</tag>

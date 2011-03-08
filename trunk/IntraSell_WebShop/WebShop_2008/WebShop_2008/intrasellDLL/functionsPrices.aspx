@@ -8,9 +8,9 @@
 
 <script language="VB" runat="server">  
 
-    Dim USE_AUFSCHLAG_KATEGORIE
-    Dim USE_STAFFELPREISE
-    Dim USE_VORKALKULIERTE_VKPREISE
+    Dim USE_AUFSCHLAG_KATEGORIE As Boolean
+    Dim USE_STAFFELPREISE As Boolean
+    Dim USE_VORKALKULIERTE_VKPREISE As Boolean
   
     ' Proxy to the DLL Function 
     Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk) As Decimal
@@ -133,13 +133,14 @@
     ''' <remarks></remarks>
     Public Function getLieferantLagerInfo(ByVal ArtNR As Object) As String 
         Try 
-            getLieferantLagerInfo = IntraSellPreise().getLieferantLagerInfo(ArtNR)
+            'getLieferantLagerInfo = IntraSellPreise().getLieferantLagerInfo(ArtNR)
+            getLieferantLagerInfo = tablevalue("grArtikel", "ArtNr", ArtNr, "Bezeichnung1")
         Catch
             getLieferantLagerInfo =  Err.Description
         End Try
-        
     End Function
 
+    
 ''' <summary>
 ''' getVorgangTableForType
 ''' </summary>
