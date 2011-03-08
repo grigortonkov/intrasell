@@ -7,6 +7,9 @@
     Dim specialTypeOfAddress As String
     Dim typeOfAddressForHandling As String
 
+    Dim SHOP_ALLOW_CHANGE_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_CHANGE_AR_ADDRESS", "false")
+        
+    
     If typeOfAddr = TypeOfAddress.SHIPPING Then
         typeOfAddressForHandling = TypeOfAddress.SHIPPING
         typeOfAddressToShow = "Lieferschein"
@@ -21,8 +24,14 @@
         typeOfAddressToShow = "alte Rechnung"
     End If
 
+    Dim allowSave As Boolean = True
+    If Not SHOP_ALLOW_CHANGE_AR_ADDRESS Then
+        If typeOfAddr = TypeOfAddress.INVOICE Or typeOfAddr = TypeOfAddress.INVOICE2 Then
+            allowSave = False
+        End If
+    End If
     'create new profile if not 
-    If Action = "saveAddresses" Then 'save action required 
+    If action = "saveAddresses" Then 'save action required 
     %>
     <form method='post'  action='default.aspx' id="formAddress" name="formAddress">
     <input type="hidden" name="PageToShow" value="createUpdateAddressSpecial">
@@ -79,7 +88,9 @@ Else 'no action requested
     <tr>
         <td colspan="2">
             <center>
+                <% If allowSave Then%>
                 <input type="submit" class='button' value="<%=getTranslation("Speichern")%>">
+                <% End If%>
             </center>
         </td>
     </tr>

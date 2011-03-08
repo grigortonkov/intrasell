@@ -8,7 +8,8 @@
     <%
         Dim EmailStep3 As String, PasswordStep3 As String, kdnrStep3 As Long
         Dim landOfCalculation As String
-
+        Dim SHOP_ALLOW_CHANGE_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_CHANGE_AR_ADDRESS", "false")
+        
         payMode = Session("PayMode")
         postMode = Session("PostMode")
         destination = Session("Destination")
@@ -78,6 +79,7 @@
                     </td>
                     <td width="50%" colspan="1">
                         <p align="center">
+                            <% If SHOP_ALLOW_CHANGE_AR_ADDRESS Then%>
                             <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=update" class='button'>
                                 <%=getTranslation("Adresse aendern")%>
                             </a>
@@ -85,7 +87,7 @@
                             <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=new" class='button'>
                                 <%=getTranslation("neu Adresse anlegen")%>
                             </a>
-                            
+                            <% End If%>
                         </p>
                     </td>
                 </tr>
