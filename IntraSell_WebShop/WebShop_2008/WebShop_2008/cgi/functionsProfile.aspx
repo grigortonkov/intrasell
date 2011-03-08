@@ -1251,7 +1251,7 @@
     'returns the idnr of the combiation PLZ/ORT/LAND
     Function getPLZ(ByVal Land As String, ByVal Ort As String, ByVal PLZ As String) As String
         Dim NextIDNRPLZ, sql As String, rsPLZORT
-        sql = "SELECT * FROM grPLZ where PLZ='" & PLZ & "' AND Land =" & Land '& " AND Ort = '" & Ort & "'"
+        sql = "SELECT * FROM grPLZ where PLZ='" & PLZ & "' AND Land =" & Land & " AND Ort Like '" & Left(Ort,5) & "%'"
         rsPLZORT = objConnectionExecute(sql)
         If rsPLZORT.EOF Then 'save PLZ ORT 
             If varvalue_default("PLZ_IDNR_AUTONUMBER", "TRUE") = "TRUE" Then
