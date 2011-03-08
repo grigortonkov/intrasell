@@ -121,7 +121,7 @@
 
 
 'With Caching functionality 
-    Public Function getTranslation(ByVal german) As String
+    Public Function getTranslation(ByVal german As String) As String
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "TRANSLATION_" & german
         temp = getCache(CACHE_NAME)
@@ -135,11 +135,10 @@
         
         'On Error Resume Next
         Dim rs
-        Dim currentLanguage : currentLanguage = varvalue("LANGUAGE")
+        Dim currentLanguage As String = varvalue_DEFAULT("LANGUAGE", "DEU")
         getTranslation_NoCache = german
 
-        Dim sql
-        sql = "select * from ofDictionary where DEU Like '" & german & "'"
+        Dim sql As String = "select * from ofDictionary where DEU Like '" & Left(german, 255) & "'"
         rs = ObjConnectionExecute(sql)
    
         If Not rs.EOF Then
