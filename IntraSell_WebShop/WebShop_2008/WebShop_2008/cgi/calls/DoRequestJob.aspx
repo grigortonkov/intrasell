@@ -10,6 +10,7 @@
 
         Dim subject, mailtext as String 
         Dim JobDescription as String = Request("JobDescription")
+        Dim BodyMail as String = Request("BodyMail")
 
         subject = "Request #" & RMANumber & " about " &  Request("JobDescription")
 
@@ -17,7 +18,9 @@
                    " JobDescription: " & JobDescription & Chr(13) & Chr(10) & _
                    " From: " & Request("FromName") & Chr(13) & Chr(10) & _
                    " Tel: " & Request("FromTel") & Chr(13) & Chr(10) & _
-                   " Mail: " & Request("FromMail")
+                   " Mail: " & Request("FromMail") & _ 
+                   " Text: " & BodyMail
+
            
         subject = Replace(subject, """", "") : subject = Replace(subject, "'", "")
         mailtext = Replace(mailtext, """", "") : mailtext = Replace(mailtext, "'", "")
