@@ -259,13 +259,13 @@
               " Beschreibung, EAN from [" & vonForm_Artikel & "],  grArtikel where [" & vonForm_Artikel & "].artnr = grArtikel.artnr " & _
               " and rechnr=" & Vorgang_Nummer & _
               " order by ID"
-        Const BEZEICHNUNG_LAENGE = 50
+        Dim BEZEICHNUNG_LAENGE = VARVALUE_DEFAULT("PRINT_ARTIKEL_MAX_LAENGE", 50)
         rsArt = openRecordset(sql, dbOpenDynaset)
         While Not rsArt.EOF
             fileContent = Replace(fileContent, "[Stk]", rsArt("Stk").Value, 1, 1)
             fileContent = Replace(fileContent, "[ArtNr]", rsArt("ArtNR").Value, 1, 1)
-            fileContent = Replace(fileContent, "[EAN]", rsArt("EAN").Value, 1, 1)
-            fileContent = Replace(fileContent, TAG_BEZEICHNUNG, pad(rsArt("Bezeichnung").Value, BEZEICHNUNG_LAENGE) & "", 1, 1)
+            fileContent = Replace(fileContent, "[EAN]", Left(rsArt("EAN").Value,6), 1, 1)
+            fileContent = Replace(fileContent, TAG_BEZEICHNUNG, Left(pad(rsArt("Bezeichnung").Value, BEZEICHNUNG_LAENGE) & "",BEZEICHNUNG_LAENGE), 1, 1)
             fileContent = Replace(fileContent, TAG_BESCHREIBUNG, rsArt("Beschreibung").Value & "", 1, 1)
             'korrektur für mecom - Preis ist der Stk*VKPReis
             fileContent = Replace(fileContent, "[Preis]", FormatNumber(CDbl(rsArt("PreisATS").Value) * CDbl(rsArt("Stk").Value), 2), 1, 1)
