@@ -293,12 +293,12 @@
     <Content Include="cgi\calls\DoSendToFriend_included.aspx" />
     <Content Include="cgi\calls\registerNewsletter.aspx" />
     <Content Include="cgi\calls\registerNewsletterNew.aspx" />
-    <Content Include="cgi\calls\requestJob.aspx" />
-    <Content Include="cgi\calls\requestOrderInfo.aspx" />
+    <Content Include="cgi\calls\RequestJob.aspx" />
+    <Content Include="cgi\calls\RequestOrderInfo.aspx" />
     <Content Include="cgi\calls\RMARequest.aspx" />
     <Content Include="cgi\calls\RMASave.aspx" />
-    <Content Include="cgi\calls\sendToFriend.aspx" />
-    <Content Include="cgi\calls\unregisterNewsletter.aspx" />
+    <Content Include="cgi\calls\SendToFriend.aspx" />
+    <Content Include="cgi\calls\UnregisterNewsletter.aspx" />
     <Content Include="cgi\createTables_sql.aspx" />
     <Content Include="cgi\default.aspx" />
     <Content Include="cgi\defaultbody.inc.aspx" />
