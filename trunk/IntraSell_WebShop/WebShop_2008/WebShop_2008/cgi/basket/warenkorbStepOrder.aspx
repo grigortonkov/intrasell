@@ -11,9 +11,13 @@
         If showDebug() Then
             Response.Write("DEFAULT_PAYMODE=" + DEFAULT_PAYMODE)
         End If
+        
+
+        Dim errorsFound As Boolean : errorsFound = False
 
         Dim Email, Password, kdnr
         Dim landOfCalculation
+        Dim KundNr As Object
 
         payMode = Session("PayMode")
         postMode = Session("PostMode")
@@ -22,17 +26,21 @@
 
         'User is the user set by varvalue SHOP_DEFAULT_USER_FOR_OFFERS
         kdnr = saveProfile(TypeOfAddress.ACCOUNT, false)
+      
+        If kdnr < 0 Then
+            Response.Write(getTranslation("Fehler beim Profilanlegen."))
+            errorsFound = True
+        Else
         
-        Email = tablevalue("ofAdressen", "Idnr", kdnr, "Email") 'Request("EmailOld")
-        Password = tablevalue("ofAdressen", "Idnr", kdnr, "Passwort") 'Request("PasswordOld")
+            Email = tablevalue("ofAdressen", "Idnr", kdnr, "Email") 'Request("EmailOld")
+            Password = tablevalue("ofAdressen", "Idnr", kdnr, "Passwort") 'Request("PasswordOld")
+            'response.write Email & Password
+            'Find Client 
+            KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
-
-        'response.write Email & Password
-        'Find Client 
-        Dim KundNr As Object
-        KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
-
-        Dim errorsFound As Boolean : errorsFound = False
+        End If
+        
+       
 
  
         If payMode & "" = "" Then
