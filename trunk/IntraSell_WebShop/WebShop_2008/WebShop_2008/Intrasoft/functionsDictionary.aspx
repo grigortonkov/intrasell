@@ -122,8 +122,8 @@
 
 'With Caching functionality 
     Public Function getTranslation(ByVal german As String) As String
-        Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "TRANSLATION_" & german
+        Dim temp As String
+        Dim CACHE_NAME As String : CACHE_NAME = "TRANSLATION_" & german
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, getTranslation_NoCache(german))
@@ -131,14 +131,15 @@
         getTranslation = temp
     End Function
 
-    Public Function getTranslation_NoCache(ByVal german) As String
-        
+    Public Function getTranslation_NoCache(ByVal german As String) As String
+        Dim token As String = Left(german, 255).Replace("'", "")
         'On Error Resume Next
         Dim rs
-        Dim currentLanguage As String = varvalue_DEFAULT("LANGUAGE", "DEU")
+        Dim currentLanguage As String = VARVALUE_DEFAULT("LANGUAGE", "DEU")
         getTranslation_NoCache = german
-
-        Dim sql As String = "select * from ofDictionary where DEU Like '" & Left(german, 255) & "'"
+        
+        
+        Dim sql As String = "select * from ofDictionary where DEU Like '" & token & "'"
         rs = ObjConnectionExecute(sql)
    
         If Not rs.EOF Then
@@ -149,14 +150,12 @@
                 If Len(tmpCurLang) > 0 Then
                     getTranslation_NoCache = tmpCurLang 'TODO Funktion NOT FOUND  stringToCyr(tmpCurLang)
                 End If
-                
             End If
-      
         Else
             'If currentLanguage = "DEU" Then
             'DoCmd.SetWarnings False
-            sql = "Insert into ofDictionary (DEU) values('" & german & "')"
-            ObjConnection.execute(sql)
+            sql = "Insert into ofDictionary (DEU) values('" & token & "')"
+            ObjConnectionExecute(sql)
             'DoCmd.SetWarnings True
         End If
         'End If
