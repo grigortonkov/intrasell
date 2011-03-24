@@ -27,7 +27,7 @@
         'User is the user set by varvalue SHOP_DEFAULT_USER_FOR_OFFERS
         kdnr = saveProfile(TypeOfAddress.ACCOUNT, false)
       
-        If kdnr < 0 Then
+        If kdnr <= 0 Then
             Response.Write(getTranslation("Fehler beim Profilanlegen."))
             errorsFound = True
         Else
