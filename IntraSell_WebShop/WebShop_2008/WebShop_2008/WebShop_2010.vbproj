@@ -114,6 +114,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cgi\basket\warenkorbStepOrder.aspx" />
     <Content Include="cgi\calls\App_LocalResources\unregisterNewsletter.aspx.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

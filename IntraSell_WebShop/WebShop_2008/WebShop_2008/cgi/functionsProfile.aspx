@@ -145,7 +145,7 @@
         Passwort = Request("Passwort" & typeOfAddr)
         PasswortII = Request("PasswortII" & typeOfAddr)
 
-        Land = Request("land" & typeOfAddr) : If Len(Land) = 0 Then Land = varvalue("DEFAULT_LAND_NR")
+        Land = Request("land" & typeOfAddr) : If Len(Land) = 0 Then Land = VARVALUE_DEFAULT("DEFAULT_LAND_NR", "43")
         Geburtstag = Request("Geburtstag" & typeOfAddr) : If Len(Geburtstag) <> 10 Then Geburtstag = "01.01.1900"
         Branche = Request("Branche" & typeOfAddr) : If Not IsNumeric(Branche) Then Branche = 0
         IchWillNewsletter = Request("IchWillNewsletter" & typeOfAddr)
@@ -175,6 +175,7 @@
             html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Bitte fuellen Sie alle mit * gekennzeichneten Felder aus!") & "</b><br /></font>"
             'if showForm then 
             If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+            Response.Write(html)
             Exit Function
         End If
         'check data  
@@ -186,6 +187,7 @@
              
                 'if showForm then 
                 If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+                Response.Write(html)
                 Exit Function
             End If
         End If
@@ -197,6 +199,7 @@
                 html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Ungueltige TelNr!?!") & "</b><br /></font>"
        
                 If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+                Response.Write(html)
                 Exit Function
             End If
         End If
@@ -219,6 +222,7 @@
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die Passwortbestaetigung stimmt nicht!") & "</b><br /></font>"
                           
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+                    Response.Write(html)
                     Exit Function
                 End If
 
@@ -227,6 +231,7 @@
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Das Passwort muss " & PASSWORD_LENGTH & " Zeichen lang sein!") & "</b><br /></font>"
                           
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+                    Response.Write(html)
                     Exit Function
                 End If
     
@@ -247,6 +252,7 @@
                     '=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br />
                                  
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
+                    Response.Write(html)
                     Exit Function
                 End If
             End If 'NEW ACCOUNT
@@ -676,8 +682,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function drawEmptyProfileForm(ByVal typeOfAddr As String, ByVal withCheck As Boolean, ByVal idnrToDraw As Long) As String
-        Dim rsR
-        Dim rsC
+        Dim rsR,  rsC
         Dim fill As Boolean = False
         Dim sql As String
         Dim tableName As String = "ofAdressen"
@@ -690,8 +695,8 @@
             'Dim idnrToDraw : idnrToDraw = getLOGIN()
         
             sql = "SELECT " & tableName & ".*, grPLZ.Ort AS PLZORT, grPLZ.PLZ as PLZPLZ, grLand.Name AS CNTRY, grPlz.BLand as Bland " & _
-               "FROM " & tableName & " INNER JOIN (grPLZ INNER JOIN grLand ON grPLZ.Land = grLand.IdNr) " & _
-               "ON " & tableName & ".PLZ=grPLZ.IDNR WHERE " & tableName & ".IDNR= " & idnrToDraw
+                  " FROM " & tableName & " INNER JOIN (grPLZ INNER JOIN grLand ON grPLZ.Land = grLand.IdNr) " & _
+                  " ON " & tableName & ".PLZ=grPLZ.IDNR WHERE " & tableName & ".IDNR= " & idnrToDraw
             
             If typeOfAddr <> TypeOfAddress.ACCOUNT Then
                 sql = sql & " and Typ ='" & getTyp(typeOfAddr) & "'"
@@ -787,7 +792,7 @@
                 html = html & "  <td> &nbsp;</td>"
                 html = html & "</tr>"
 
-                html = html & "<tr>"
+                html = html & "<tr id='RowPasswort'>"
                 html = html & "<td align='right'><span style='font-weight: 400'>"
                 html = html & "<font size='1'>* " & getTranslation("Passwort") & "&nbsp;&nbsp; </font></span></td>"
                 html = html & "<td>&nbsp;<input type='password' name='Passwort" & typeOfAddr & "' size='20'>"
@@ -798,7 +803,7 @@
                 html = html & "</td>"
                 html = html & "</tr>"
 
-                html = html & "<tr>"
+                html = html & "<tr id='RowPasswortII'>"
                 html = html & "<td align='right'><span style='font-weight: 400'>"
                 html = html & "<font  size='1'>* " & getTranslation("Passwortbest&auml;tigung") & "&nbsp;&nbsp; </font></span></td>"
                 html = html & "<td>&nbsp;<input type='password' name='PasswortII" & typeOfAddr & "' size='20'>"
@@ -1259,8 +1264,15 @@
             Else 'PLZ_IDNR Field is not autonumber 
                 'NextIDNRPLZ = NextID("grPLZ", "IDNR")
                 'update am 26.12.2005 for PLZ Text field
-                'update 07.03.2006 because PLZ 10000 is bigger than PLz 9999 but the text search is not sorting after number 
-                sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
+                'update 07.03.2006 because PLZ 10000 is bigger than PLz 9999 but the text search is not sorting after number
+                
+                Dim sameKeyCnt = FIRSTVALUE("select count(*) as cnt FROM grPLZ where PLZ='" & PLZ & "' AND Land =" & Land )
+                If IsNumeric(sameKeyCnt) Then
+                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & sameKeyCnt & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
+                Else
+                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & "_" & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
+                End If
+                
             End If
       
             'Response.write SQL : Response.Flush

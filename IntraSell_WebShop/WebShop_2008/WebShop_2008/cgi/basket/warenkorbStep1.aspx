@@ -22,17 +22,94 @@
              
     //Submit this basket as an offer
      function submitOffer() {
-       
-         if (!document.forms['FormBasket'].Notiz.visible || document.forms['FormBasket'].Notiz.style.height == "25px") {
-             document.forms['FormBasket'].Notiz.visible = true;
+       var note = document.forms['FormBasket'].Notiz; 
+
+         if (note.style.display == "none") {
+          
+             note.value = "<%=getTranslation("Geben Sie hier Ihre Tel.Nr und/oder Email bekannt:")%>";
              //set visible 
-             document.forms['FormBasket'].Notiz.style.width = "300px";
-             document.forms['FormBasket'].Notiz.style.height = "100px";
+             note.style.display = "block"; 
          } else {
              document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOffer';
              document.forms['FormBasket'].submit();
          }
      }  
+
+                  
+    //Submit this basket as an order
+     function submitOrder() {
+       
+          var myProfile = document.getElementById("ProfileForm"); //document.forms['FormBasket'].ProfileForm; //
+          //alert(myProfile.style.display);
+
+         if (myProfile.style.display == "none") {
+             myProfile.style.display = "block";
+             document.forms['FormBasket'].Notiz.style.display = "block";
+             
+
+             //document.getElementById("EmailwiederholungAD").style.display = "none"; 
+             document.getElementById("PasswortAD").value = "asdfasdf"; //something else josef ? 
+             document.getElementById("PasswortAD").style.display = "none"; 
+             document.getElementById("RowPasswort").style.display = "none"; 
+
+             document.getElementById("PasswortIIAD").value = "asdfasdf"; //something else josef ? 
+             document.getElementById("PasswortIIAD").style.display = "none";          
+             document.getElementById("RowPasswortII").style.display = "none";    
+
+         } else {
+         //check if all fields are filled in 
+         var Firma = document.getElementById("FirmaAD").value;
+         var Anrede = document.getElementById("AnredeAD").value;
+         var Titel = document.getElementById("TitelAD").value;
+
+         // ab hier pflichtige 
+         var Vorname = document.getElementById("VornameAD").value;
+         var Name = document.getElementById("NameAD").value;
+         var Strasse = document.getElementById("StrasseAD").value;
+         var Ort = document.getElementById("OrtAD").value;
+         
+         var Tel = document.getElementById("TelAD").value;
+         var Email = document.getElementById("EmailAD").value;
+  
+        // alert(firma);  
+         var errors = null; 
+            //alert(Vorname);
+         
+         if (Vorname == "" || Vorname == null)   
+            errors = "Vorname"; 
+         if (Name == "" || Name == null)   
+            errors = errors + " Name"; 
+         if (Strasse == "" || Strasse == null)   
+            errors = errors + " Strasse"; 
+         if (Ort == "" || Ort == null)   
+            errors = errors + " Ort"; 
+         if (Tel == "" || Tel == null)   
+            errors = errors + " Tel"; 
+         if (Email == "" || Email == null) 
+            errors = errors + " Email"; 
+
+         if (errors != null) { 
+              alert ("Bitte alle Felder ausfüllen!" + errors); 
+              return; 
+         }
+         //else 
+
+             document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOrder';
+             document.forms['FormBasket'].submit();
+         }
+     }  
+
+      function cancel() {
+       
+        var myProfile = document.getElementById("ProfileForm"); 
+        
+        myProfile.style.display = "none"; 
+        document.forms['FormBasket'].Notiz.style.display = "none";
+        document.forms['FormBasket'].Notiz.value = "";
+        document.forms['FormBasket'].PageToShow.value = 'warenkorbStep1';
+
+      }
+
 </script>
 
 <form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
@@ -236,16 +313,21 @@
                             <!-- END SELECT PLACE OF DELIVERY  -->
     </table>
 
-<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="height: 25px; width: 0px;">
-<%=getTranslation("Geben Sie hier Ihre Tel.Nr und/oder Email bekannt:")%>
-</textarea>&nbsp;
+<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="display: none;" cols="80">
+</textarea> 
+
+<div id="ProfileForm" name="ProfileForm" style="display: none;">
+ <%= drawEmptyProfileForm(TypeOfAddress.ACCOUNT, False,-1)%>
+</div>
+
 </center>
 
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
-    <a href="default.aspx">
-        <%=getTranslation("weiter shoppen")%></a>
+        <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();">
         &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();">
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen ohne Registrierung")%>" onclick="submitOrder();">
         &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
     <%Else%>
         <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">

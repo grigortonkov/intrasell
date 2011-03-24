@@ -5,7 +5,7 @@
     '===========================================================================
 %>
 <h1 align="left">
-    <%=getTranslation("Ihr Angebot")%></h1>
+    <%=getTranslation("Ihr Auftrag")%></h1>
 <p align="left">
     <%
         If showDebug() Then
@@ -21,10 +21,10 @@
         landOfCalculation = Session("Land")
 
         'User is the user set by varvalue SHOP_DEFAULT_USER_FOR_OFFERS
-        Dim defaultKundNr As Object : defaultKundNr = VARVALUE_DEFAULT("SHOP_DEFAULT_USER_FOR_OFFERS", "1")
+        kdnr = saveProfile(TypeOfAddress.ACCOUNT, false)
         
-        Email = tablevalue("ofAdressen", "Idnr", defaultKundNr, "Email") 'Request("EmailOld")
-        Password = tablevalue("ofAdressen", "Idnr", defaultKundNr, "Passwort") 'Request("PasswordOld")
+        Email = tablevalue("ofAdressen", "Idnr", kdnr, "Email") 'Request("EmailOld")
+        Password = tablevalue("ofAdressen", "Idnr", kdnr, "Passwort") 'Request("PasswordOld")
 
 
         'response.write Email & Password
@@ -32,7 +32,7 @@
         Dim KundNr As Object
         KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
 
-        Dim errorsFound : errorsFound = False
+        Dim errorsFound As Boolean : errorsFound = False
 
  
         If payMode & "" = "" Then
@@ -70,10 +70,10 @@
 
 
     If Not errorsFound Then
-        Dim notiz : notiz = Request("notiz")
+        Dim notiz As String : notiz = Request("notiz")
         Dim gutscheinNummerStep4 : gutscheinNummerStep4 = Session("gutscheinNummer")
     
-        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AN")
+        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU")
     
         If ordId & "" = "" Then 'Fehler bei der Erstellung 
             Response.Write(getTranslation("Ihre Bestellung konnte nicht angenommen werden."))
@@ -95,7 +95,7 @@
     client_postCode = tablevalue("ofAdressen", "Idnr", KundNr, "PLZ")
     client_email = tablevalue("ofAdressen", "Idnr", KundNr, "Email")
      
-    Dim OrderAmount As Double : OrderAmount = tablevalue("buchAngebot", "Nummer", ordId, "SummeBrutto")
+    Dim OrderAmount : OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "SummeBrutto")
 
 
  

@@ -62,6 +62,8 @@
 <!--#include file="basket/warenkorbStep4.aspx"-->
 <%  Case "warenkorbStepOffer"%>
 <!--#include file="basket/warenkorbStepOffer.aspx"-->
+<%  Case "warenkorbStepOrder"%>
+<!--#include file="basket/warenkorbStepOrder.aspx"-->
 <%  Case "PutInWarenkorb"%>
 <%  cannotRedirectBecauseSomeMessage = NOT PutInWarenkorb(message)%>
 <%  Case "RestoreWarenkorb"%>
