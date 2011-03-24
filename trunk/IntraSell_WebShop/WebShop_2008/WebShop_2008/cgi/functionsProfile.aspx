@@ -237,7 +237,7 @@
     
     
                 'check is password was used already 
-                Dim accountUsed : accountUsed = False
+                Dim accountUsed As Boolean : accountUsed = False
 
                 If getLOGIN() = "" And typeOfAddr = TypeOfAddress.ACCOUNT Then ' WE HAVE NEW ACOCUNT 
                     sql = "select * from ofAdressen where Email like '" & Email & "' and Passwort like '" & Passwort & "'"
@@ -253,6 +253,7 @@
                                  
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
                     Response.Write(html)
+                    saveProfile = rs("idnr").Value
                     Exit Function
                 End If
             End If 'NEW ACCOUNT
@@ -446,6 +447,7 @@
                     html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Die von Ihnen angegebene Emailadresse wurde bereits verwendet!") & "</b><br /></font>"
                                   
                     Call drawEmptyProfileFormSimple(typeOfAddr, True)
+                    saveProfileSimple = rs("idnr").Value
                     Exit Function
                 End If
             End If 'NEW ACCOUNT             
