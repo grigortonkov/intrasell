@@ -70,6 +70,8 @@
 
          } else 
          {
+         
+         
              //check if all fields are filled in 
              var Firma = document.getElementById("FirmaAD").value;
              var Anrede = document.getElementById("AnredeAD").value;
@@ -86,8 +88,9 @@
             // alert(firma);  
              var errors = ""; 
                 //alert(Vorname);
-             if (Anrede == "" || Anrede == null) 
-                errors = errors + " Anrede"; 
+             if (document.getElementById("AnredeAD").selectedIndex == 0)
+                 if (Anrede == "" || Anrede == null) 
+                    errors = errors + " Anrede"; 
              if (Vorname == "" || Vorname == null)   
                 errors = " Vorname"; 
              if (Name == "" || Name == null)   
