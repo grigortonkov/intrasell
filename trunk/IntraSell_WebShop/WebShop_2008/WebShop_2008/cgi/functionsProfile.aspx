@@ -853,7 +853,7 @@
             'change UID per Email 
             html = html & "<a target=_new href='mailto:" & VARVALUE("EMAIL_REGISTER") & "'>" & getTranslation("UID ändern") & "</a></td>"
         Else
-            html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' size='20' value='" & UID & "'></td>"
+            html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' id='UID" & typeOfAddr & "' size='20' value='" & UID & "'></td>"
         End If
         
         html = html & "</tr>"
@@ -862,7 +862,7 @@
         html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "<font size='1' >* " & getTranslation("Anrede") & "&nbsp;&nbsp; </font></span></td>"
         html = html & "<td width='281' ><font  size='1'>"
-        html = html & "<select name='Anrede" & typeOfAddr & "'  id='Anrede" & typeOfAddr & "' size='1'>"
+        html = html & "<select name='Anrede" & typeOfAddr & "' id='Anrede" & typeOfAddr & "' size='1'>"
         html = html & "<Option>" & Anrede & "</option>"
         html = html & "<Option>" & getTranslation("Frau") & "</option>"
         html = html & "<Option>" & getTranslation("Herr") & "</option>"

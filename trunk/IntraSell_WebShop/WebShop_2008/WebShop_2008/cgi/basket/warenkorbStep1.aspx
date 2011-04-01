@@ -56,44 +56,59 @@
              document.getElementById("PasswortIIAD").style.display = "none";          
              document.getElementById("RowPasswortII").style.display = "none";    
 
-         } else {
-         //check if all fields are filled in 
-         var Firma = document.getElementById("FirmaAD").value;
-         var Anrede = document.getElementById("AnredeAD").value;
-         var Titel = document.getElementById("TitelAD").value;
+             document.getElementById("IchWillNewsletterAD").checked = false;
+             
+             //hide fields 
+             document.getElementById("FirmaAD").style.display = "none"; 
+             document.getElementById("UIDAD").style.display = "none"; 
+             document.getElementById("GeburtstagAD").style.display = "none";    
+             document.getElementById("MobilAD").style.display = "none"; 
+             document.getElementById("FaxAD").style.display = "none"; 
+             document.getElementById("WebAD").style.display = "none"; 
+             document.getElementById("TelIIAD").style.display = "none"; 
+             
 
-         // ab hier pflichtige 
-         var Vorname = document.getElementById("VornameAD").value;
-         var Name = document.getElementById("NameAD").value;
-         var Strasse = document.getElementById("StrasseAD").value;
-         var Ort = document.getElementById("OrtAD").value;
-         
-         var Tel = document.getElementById("TelAD").value;
-         var Email = document.getElementById("EmailAD").value;
+         } else 
+         {
+             //check if all fields are filled in 
+             var Firma = document.getElementById("FirmaAD").value;
+             var Anrede = document.getElementById("AnredeAD").value;
+             var Titel = document.getElementById("TitelAD").value;
+
+             // ab hier pflichtige 
+             var Vorname = document.getElementById("VornameAD").value;
+             var Name = document.getElementById("NameAD").value;
+             var Strasse = document.getElementById("StrasseAD").value;
+             var Ort = document.getElementById("OrtAD").value;
+             var Tel = document.getElementById("TelAD").value;
+             var Email = document.getElementById("EmailAD").value;
   
-        // alert(firma);  
-         var errors = null; 
-            //alert(Vorname);
-         
-         if (Vorname == "" || Vorname == null)   
-            errors = "Vorname"; 
-         if (Name == "" || Name == null)   
-            errors = errors + " Name"; 
-         if (Strasse == "" || Strasse == null)   
-            errors = errors + " Strasse"; 
-         if (Ort == "" || Ort == null)   
-            errors = errors + " Ort"; 
-         if (Tel == "" || Tel == null)   
-            errors = errors + " Tel"; 
-         if (Email == "" || Email == null) 
-            errors = errors + " Email"; 
+            // alert(firma);  
+             var errors = ""; 
+                //alert(Vorname);
+             if (Anrede == "" || Anrede == null) 
+                errors = errors + " Anrede"; 
+             if (Vorname == "" || Vorname == null)   
+                errors = " Vorname"; 
+             if (Name == "" || Name == null)   
+                errors = errors + " Name"; 
+             if (Strasse == "" || Strasse == null)   
+                errors = errors + " Strasse"; 
+             if (Ort == "" || Ort == null)   
+                errors = errors + " Ort"; 
+             if (Tel == "" || Tel == null)   
+                errors = errors + " Tel"; 
+             if (Email == "" || Email == null) 
+                errors = errors + " Email"; 
 
-         if (errors != null) { 
-              alert ("Bitte alle Felder ausfüllen!" + errors); 
-              return; 
+
+             if (errors != "") { 
+                  alert ("Bitte alle Felder ausfüllen! Es fehlen folgende Angaben: " + errors); 
+                  return; 
          }
          //else 
 
+             document.getElementById("Hinweis").innerText = '<%=getTranslation("Bestellvorgang läuft. Warten Sie bis die Bestellung abgeschlossen ist!")%>';
              document.forms['FormBasket'].PageToShow.value = 'warenkorbStepOrder';
              document.forms['FormBasket'].submit();
          }
@@ -114,6 +129,7 @@
 
 <form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
 <input type='hidden' name='pageToShow' value='warenkorbStep1'>
+<input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
 <!-- WARENKORB -->
 <%
 
@@ -185,6 +201,7 @@
 <%  If emptySet Then%>
 <form method='post' action="default.aspx" id="FormBasket">
 <input type="hidden" name="PageToShow" value="warenkorbStep2">
+<input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
 <center>
     <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
         bordercolor="#111111" height="1" width="100%">
