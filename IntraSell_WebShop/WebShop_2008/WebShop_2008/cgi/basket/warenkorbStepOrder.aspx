@@ -12,8 +12,7 @@
             Response.Write("DEFAULT_PAYMODE=" + DEFAULT_PAYMODE)
         End If
         
-
-        Dim errorsFound As Boolean : errorsFound = False
+        Dim errorsFound As Boolean = False
 
         Dim Email, Password, kdnr
         Dim landOfCalculation
@@ -31,29 +30,23 @@
             Response.Write(getTranslation("Fehler beim Profilanlegen."))
             errorsFound = True
         Else
-        
             Email = tablevalue("ofAdressen", "Idnr", kdnr, "Email") 'Request("EmailOld")
             Password = tablevalue("ofAdressen", "Idnr", kdnr, "Passwort") 'Request("PasswordOld")
-            'response.write Email & Password
             'Find Client 
             KundNr = authenticate(Email, Password) 'stops processing on this page if not proper authenitification !!!
-
         End If
         
-       
-
- 
         If payMode & "" = "" Then
-    %>
-    <font color="red">
-        <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Zahlungskosten kalkulieren!")%></font>
-    <br />
-    <a href="default.aspx?pageToShow=warenkorbStep1">
-        <%=getTranslation("zum Warenkorb Step 1")%></a>
-    <hr>
-    <%
-        errorsFound = True
-    End If
+        %>
+        <font color="red">
+            <%=getTranslation("Ihre Session ist abgelaufen. Bitte erneut die Zahlungskosten kalkulieren!")%></font>
+        <br />
+        <a href="default.aspx?pageToShow=warenkorbStep1">
+            <%=getTranslation("zum Warenkorb Step 1")%></a>
+        <hr>
+        <%
+            errorsFound = True
+        End If
 
     If postMode & "" = "" Then
     %>
@@ -77,51 +70,53 @@
     End If
 
 
-    If Not errorsFound Then
-        Dim notiz As String : notiz = Request("notiz")
-        Dim gutscheinNummerStep4 : gutscheinNummerStep4 = Session("gutscheinNummer")
+    If errorsFound Then
+        Response.Write("<br />")
+        Response.Write("<a href='javascript:history.back();'>" & getTranslation("Zur&uuml;ck (Adressdaten korrigieren)") & "</a>!")
+        Response.End()
+    Else
+        
+        Dim notiz As String = Request("notiz")
+        Dim gutscheinNummerStep4 As String = Session("gutscheinNummer")
     
-        Dim ordId : ordId = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU")
+        Dim ordId As String = createOrderFromBasket(KundNr, getSID(), payMode, postMode, destination, notiz, gutscheinNummerStep4, "AU")
     
         If ordId & "" = "" Then 'Fehler bei der Erstellung 
             Response.Write(getTranslation("Ihre Bestellung konnte nicht angenommen werden."))
-    %>
-    &nbsp;<a href="javascript:history.back();" _href="default.aspx?pageToShow=warenkorbStep1"><%=getTranslation("zur&uuml;ck")%>
-        ...</a>!
-    <%
-        errorsFound = True
-        Response.End()
-    End If
+            Response.Write("<br />")
+            Response.Write("<a href='javascript:history.back();'>" & getTranslation("Zur&uuml;ck") & "</a>!")
+        
+            errorsFound = True
+            Response.End()
+        End If
     
     
-    Dim client_name As String, client_address As String, client_postCode As String, client_email As String
-    Dim client_vorname As String
+        Dim client_name As String, client_address As String, client_postCode As String, client_email As String
+        Dim client_vorname As String
     
-    client_name = tablevalue("ofAdressen", "Idnr", KundNr, "Name")
-    client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorname")
-    client_address = tablevalue("ofAdressen", "Idnr", KundNr, "Adresse")
-    client_postCode = tablevalue("ofAdressen", "Idnr", KundNr, "PLZ")
-    client_email = tablevalue("ofAdressen", "Idnr", KundNr, "Email")
+        client_name = tablevalue("ofAdressen", "Idnr", KundNr, "Name")
+        client_vorname = tablevalue("ofAdressen", "Idnr", KundNr, "Vorname")
+        client_address = tablevalue("ofAdressen", "Idnr", KundNr, "Adresse")
+        client_postCode = tablevalue("ofAdressen", "Idnr", KundNr, "PLZ")
+        client_email = tablevalue("ofAdressen", "Idnr", KundNr, "Email")
      
-    Dim OrderAmount : OrderAmount = tablevalue("buchAuftrag", "Nummer", ordId, "SummeBrutto")
+        Dim OrderAmount As Double = tablevalue("buchAuftrag", "Nummer", ordId, "SummeBrutto")
 
-
- 
-    'Remove SID in order to get new one 
-    'Session("SID")="" 'remove SID
-    'call logOut()
-    Session("gutscheinNummer") = "" ' remove used gutschein
-    Session("Notiz") = ""
-    'createNewSession()
-    ObjConnectionExecute("Update webWarenkorb set AuftragNr=" & ordId & " where SID=" & getSID())
+        'Remove SID in order to get new one 
+        'Session("SID")="" 'remove SID
+        'call logOut()
+        Session("gutscheinNummer") = "" ' remove used gutschein
+        Session("Notiz") = ""
+        'createNewSession()
+        ObjConnectionExecute("Update webWarenkorb set AuftragNr=" & ordId & " where SID=" & getSID())
     
-    Call logOut()
+        Call logOut()
     
     %>
     <p align="left">
-        <%=getTranslation("Vielen Dank für Ihre Anfrage.")%>
+        <%= getTranslation("Vielen Dank für Ihre Bestellung.")%>
         <br />
-        <%=getTranslation("Ihre Anfrage wurde erfolgreich gespeichert!")%>
+        <%=getTranslation("Ihre Bstellung wurde erfolgreich gespeichert!")%>
         <p align="left">
             <br />
             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"
@@ -145,4 +140,4 @@
                     </td>
                 </tr>
             </table>
-            <%End If ' errors found%>
+<%End If ' errors found%>
