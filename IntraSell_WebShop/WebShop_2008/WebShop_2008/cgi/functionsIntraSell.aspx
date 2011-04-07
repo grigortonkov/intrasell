@@ -132,24 +132,31 @@
 
     'Postkosten für den gesamten Warenkorb berechnen 
     Function calculatePostSpendsForWK(ByVal PostModeDestionation As String, ByVal Kg As Object, ByVal PostMode As String) As Double
-        Dim sql As String
-        Dim rsWK
-        sql = " SELECT ArtNr, Quantity, Notiz, (select a.Gewicht from grArtikel a where a.ArtNr=wk.ArtNr) as Gewicht " & _
-       " FROM webWarenkorb wk " & _
-       " Where SID=" & getSID() & " AND wk.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
+        Dim sql As String = " SELECT ArtNr, Quantity, Notiz, (select a.Gewicht from grArtikel a where a.ArtNr=wk.ArtNr) as Gewicht " & _
+                            " FROM webWarenkorb wk " & _
+                            " Where SID=" & getSID() & " AND wk.Quantity>0  AND (AuftragNr is null or AuftragNr=0)"
         
-        rsWK = objConnectionExecute(sql)
+        Dim rsWK = objConnectionExecute(sql)
         
-        Dim allSpends As Decimal = calculatePostSpends(PostModeDestionation, Kg, PostMode)
+        Dim allSpends As Decimal = 0
+        Dim gewicht As Decimal = 0
+        Dim addGeneralBasketPostExpenses As Boolean = False
+        Dim specialExpenses As Decimal = 0
         While Not rsWK.EOF
-            Dim gewicht As Decimal = 0
+            gewicht = 0
             If IsNumeric(rsWK("Gewicht").Value) Then gewicht = rsWK("Gewicht").Value
-            allSpends = allSpends + calculatePostSpends(PostModeDestionation, rsWK("Quantity").Value * gewicht, PostMode, rsWK("ArtNr").Value)
+            specialExpenses = calculatePostSpends(PostModeDestionation, rsWK("Quantity").Value * gewicht, PostMode, rsWK("ArtNr").Value)
+            If specialExpenses = 0 Then
+                addGeneralBasketPostExpenses = True
+            End If
+            allSpends = allSpends + specialExpenses
             rsWK.MoveNext()
-
         End While
-
-       
+        
+        If addGeneralBasketPostExpenses Then
+            allSpends = allSpends + calculatePostSpends(PostModeDestionation, Kg, PostMode)
+        End If
+        
         Return allSpends
         
     End Function
