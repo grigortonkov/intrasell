@@ -190,7 +190,7 @@
     ''' <remarks></remarks>
     Function visualizeWarenkorb(ByVal StepN, ByVal Land, ByVal PayMode, ByVal PostMode, ByVal PostModeDestination)
         Dim sql As String, rsWK
-        Dim gutscheinNummer : gutscheinNummer = Session("GutscheinNummer")
+        Dim gutscheinNummer As String = Session("GutscheinNummer")
         Dim sid As String : sid = getSID()
         Dim html As String
         Dim Language As String = Session("LANGUAGE")
@@ -231,109 +231,111 @@
             html = html & "</th>"
          
             
-        html = html & "<th width='71' align='center'>"
-        html = html & "   " & getTranslation("KatalogNr.") & ""
-        html = html & "</th>"
-        html = html & "<th width='322' align='center'>"
-        html = html & "   " & getTranslation("Bezeichnung") & ""
-        html = html & "</th>"
-        html = html & "<th width='50' align='center'>"
-        html = html & "   " & getTranslation("Lieferung") & ""
-        html = html & "</th>"
-        html = html & "<th width='100' align='center'>"
-        html = html & "   " & getTranslation("Preis") & ""
-        html = html & "</th>"
-        html = html & "<th width='100' align='center'>"
-        html = html & "   " & getTranslation("Total") & ""
-        html = html & "</th>"
-        html = html & "</tr>"
-        html = html & "<tr>"
-        html = html & "<td colspan='8'>"
-        html = html & "&nbsp;"
-        html = html & "</td>"
-        html = html & "</tr>"
-    
-        Dim pos As Integer : pos = 0
-        Dim Subtotal As Double : Subtotal = 0
-        Dim SubtotalMWST As Double : SubtotalMWST = 0
-        Dim ArtNr
-        Dim Stk As Integer
-            
-        While Not rsWK.EOF
-        
-            pos = pos + 1
-            ArtNr = rsWK("ArtNR").Value
-            Stk = CInt(rsWK("Quantity").Value)
-            Dim Einzelpreis As Double = 0
-            'Einzelpreis = makeNettoPreis(ArtNR, Stk, sid) 'old way to calculate prices
-            Einzelpreis = getPreis(getLOGIN(), ArtNr, Stk)
-            'call Response.Write ("Stk:[" &  stk & "]")
-            'call Response.Write ("Einzelpreis:[" & einzelpreis & "]")
-            Subtotal = CDbl(Subtotal) + CDbl(Einzelpreis) * CInt(Stk)
-            'SubtotalMWST = cdbl(SubtotalMWST) + cdbl(makeBruttoPreis2(ArtNr, Stk, Land)) * Stk 'Old Way 
-                
-            If IDNR & "" = "" Then 'der user ist noch nicht angemeldet 
-                IDNR = 0
-            End If
-            SubtotalMWST = CDbl(SubtotalMWST) + CDbl(calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)) * Stk
-            'Response.Write "SubtotalMWST = " & SubtotalMWST
-    
-            html = html & "<tr bgcolor='white' id='BasketRow'>"
-            html = html & "<td width='58' height='17'>"
-            html = html & "<p align='center'>"
-            html = html & " " & pos & ""
-            html = html & "</td>"
-            html = html & "<td align='center' height='17'>"
-            html = html & "<input type='hidden' name='Art" & pos & "' size='9' value='" & rsWK("ArtNr").Value & "' id='Hidden4' />"
-            If StepN = "1" Then
-                html = html & "<a href='default.aspx?pagetoShow=warenkorbStep1&Items=1&Art1=" & rsWK("ArtNr").Value & "&checkD1=ON'>"
-                html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' align='middle'></a>"
-                html = html & "<!-- <input type='checkbox' name='checkD'" & pos & " ' value='ON'> -->"
-                html = html & "<input name='Stk" & pos & "' size='3' value='" & rsWK("Quantity").Value & "' />"
-            Else
-                html = html & "" & rsWK("Quantity").Value & ""
-            End If
-            html = html & "</td>"
-            html = html & "<td height='17'>"
-            html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
-                If USE_EAN Then html = html & "" & rsWK("ArtNR").Value & "</a>"
-            html = html & "</td>"
-            html = html & "<td height='17'>"
-            html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("EAN").Value & "</a>"
-            html = html & "</td>"
-            html = html & "<td height='17'><a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
-            html = html & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b></td>"
-            html = html & "<td height='17'>"
-            html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("Bezeichnung1").Value & "</a>"
-            html = html & "</td>"
-            html = html & "<td align='right' height='17'>"
-            html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
-            html = html & "</td>"
-            html = html & "<td align='right' height='17'>"
-            html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis) * CInt(Stk), 2) & "</p>"
+            html = html & "<th width='71' align='center'>"
+            html = html & "   " & getTranslation("KatalogNr.") & ""
+            html = html & "</th>"
+            html = html & "<th width='322' align='center'>"
+            html = html & "   " & getTranslation("Bezeichnung") & ""
+            html = html & "</th>"
+            html = html & "<th width='50' align='center'>"
+            html = html & "   " & getTranslation("Lieferung") & ""
+            html = html & "</th>"
+            html = html & "<th width='100' align='center'>"
+            html = html & "   " & getTranslation("Preis") & ""
+            html = html & "</th>"
+            html = html & "<th width='100' align='center'>"
+            html = html & "   " & getTranslation("Total") & ""
+            html = html & "</th>"
+            html = html & "</tr>"
+            html = html & "<tr>"
+            html = html & "<td colspan='8'>"
+            html = html & "&nbsp;"
             html = html & "</td>"
             html = html & "</tr>"
+    
+            Dim pos As Integer = 0
+            Dim Subtotal As Double = 0
+            Dim SubtotalMWST As Double = 0
+            Dim ArtNr
+            Dim Stk As Integer
+            
+            While Not rsWK.EOF
+                pos = pos + 1
+                ArtNr = rsWK("ArtNR").Value
+                Stk = CInt(rsWK("Quantity").Value)
+                Dim Einzelpreis As Double = 0
+                'Einzelpreis = makeNettoPreis(ArtNR, Stk, sid) 'old way to calculate prices
+                Einzelpreis = getPreis(getLOGIN(), ArtNr, Stk)
+                'call Response.Write ("Stk:[" &  stk & "]")
+                'call Response.Write ("Einzelpreis:[" & einzelpreis & "]")
+                Subtotal = CDbl(Subtotal) + CDbl(Einzelpreis) * CInt(Stk)
+                'SubtotalMWST = cdbl(SubtotalMWST) + cdbl(makeBruttoPreis2(ArtNr, Stk, Land)) * Stk 'Old Way 
+                
+                If IDNR & "" = "" Then 'der user ist noch nicht angemeldet 
+                    IDNR = 0
+                End If
+                SubtotalMWST = CDbl(SubtotalMWST) + CDbl(calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)) * Stk
+                'Response.Write "SubtotalMWST = " & SubtotalMWST
+    
+                html = html & "<tr bgcolor='white' id='BasketRow'>"
+                html = html & "<td width='58' height='17'>"
+                html = html & "<p align='center'>"
+                html = html & " " & pos & ""
+                html = html & "</td>"
+                html = html & "<td align='center' height='17'>"
+                html = html & "<input type='hidden' name='Art" & pos & "' size='9' value='" & rsWK("ArtNr").Value & "' id='Hidden4' />"
+                If StepN = "1" Then
+                    html = html & "<a href='default.aspx?pagetoShow=warenkorbStep1&Items=1&Art1=" & rsWK("ArtNr").Value & "&checkD1=ON'>"
+                    html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' align='middle'></a>"
+                    html = html & "<!-- <input type='checkbox' name='checkD'" & pos & " ' value='ON'> -->"
+                    html = html & "<input name='Stk" & pos & "' size='3' value='" & rsWK("Quantity").Value & "' />"
+                Else
+                    html = html & "" & rsWK("Quantity").Value & ""
+                End If
+                html = html & "</td>"
+                html = html & "<td height='17'>"
+                html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
+                If USE_EAN Then html = html & "" & rsWK("ArtNR").Value & "</a>"
+                html = html & "</td>"
+                html = html & "<td height='17'>"
+                html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("EAN").Value & "</a>"
+                html = html & "</td>"
+                html = html & "<td height='17'><a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
+                html = html & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b></td>"
+                html = html & "<td height='17'>"
+                html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("Bezeichnung1").Value & "</a>"
+                html = html & "</td>"
+                html = html & "<td align='right' height='17'>"
+                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
+                html = html & "</td>"
+                html = html & "<td align='right' height='17'>"
+                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis) * CInt(Stk), 2) & "</p>"
+                html = html & "</td>"
+                html = html & "</tr>"
        
         
-            rsWK.MoveNext()
-        End While
-        rsWK.close()
-        
-        Dim subtotalNoAddCharged : subtotalNoAddCharged = Subtotal
+                rsWK.MoveNext()
+            End While
+            
+            rsWK.close()
+            
+            html = html & "<input type='hidden' name='Items' value='" & pos & "' id='Hidden5'>"
+            
+            Dim subtotalNoAddCharged = Subtotal
      
-        html = html & "<input type='hidden' name='Items' value='" & pos & "' id='Hidden5'>"
+       
         'POST and MODE COSTS 
-        Dim KG As Double : KG = getWeightOfBasket(sid)
-        Dim PostCosts As Decimal : PostCosts = 0
-        Dim PostExpensesMWST As Decimal : PostExpensesMWST = 0
+            Dim KG As Double = getWeightOfBasket(sid)
+            Dim postCosts As Decimal = 0
+            Dim postExpensesMWST As Decimal = 0
        
-        Dim payModeExpenses As Double : payModeExpenses = 0
-        Dim payModeExpensesMWST : payModeExpensesMWST = 0
+            Dim payModeExpenses As Double = 0
+            Dim payModeExpensesMWST = 0
        
-        Dim gutscheinSumme As Double : gutscheinSumme = 0
-        Dim gutscheinSummeMWST As Double : gutscheinSummeMWST = 0
+            Dim gutscheinSumme As Double = 0
+            Dim gutscheinSummeMWST As Double = 0
       
-        Dim messageNoCosts As String : messageNoCosts = ""
+            Dim messageNoCosts As String = ""
        
         'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
         'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
