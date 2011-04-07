@@ -1617,7 +1617,7 @@
             html = html & "Email: <a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br />"
             
             If showSelectBox then 
-                html = html & "<input type='checkbox' Name='UseOld"& addressType &"' Value='" & rsKUND("ID").Value & "'> ich möchte diese Adresse verwenden"
+                html = html & "<input type='radio' Name='UseOld"& addressType &"' Value='" & rsKUND("ID").Value & "'> ich möchte diese Adresse verwenden"
             End If 
             
             If printAll then 

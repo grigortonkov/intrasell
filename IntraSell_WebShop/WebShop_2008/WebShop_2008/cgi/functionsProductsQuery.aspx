@@ -92,29 +92,29 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
         End If
         'end set 
 
-        Dim SHOP_SHOW_PRICE As Boolean : SHOP_SHOW_PRICE = VARVALUE_DEFAULT("SHOP_SHOW_PRICE", "true")
-        Dim SHOP_SHOW_COMPARE As Boolean : SHOP_SHOW_COMPARE = VARVALUE_DEFAULT("SHOP_SHOW_COMPARE", "true")
-        Dim SHOP_SHOW_DRUCKEN As Boolean : SHOP_SHOW_DRUCKEN = VARVALUE_DEFAULT("SHOP_SHOW_DRUCKEN", "true")
-        Dim SHOP_SHOW_ANGELEGTAM As Boolean : SHOP_SHOW_ANGELEGTAM = VARVALUE_DEFAULT("SHOP_SHOW_ANGELEGTAM", "true")
+        Dim SHOP_SHOW_PRICE As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_PRICE", "true")
+        Dim SHOP_SHOW_COMPARE As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_COMPARE", "true")
+        Dim SHOP_SHOW_DRUCKEN As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_DRUCKEN", "true")
+        Dim SHOP_SHOW_ANGELEGTAM As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_ANGELEGTAM", "true")
  
      
-        Dim SHOP_ALLOW_SORTING As Boolean : SHOP_ALLOW_SORTING = VARVALUE_DEFAULT("SHOP_ALLOW_SORTING", "true")
-        Dim SHOP_ALLOW_DROPDOWN_SORTING As Boolean : SHOP_ALLOW_DROPDOWN_SORTING = VARVALUE_DEFAULT("SHOP_ALLOW_DROPDOWN_SORTING", "true")
-        Dim SHOP_SHOW_HERSTELLER As Boolean : SHOP_SHOW_HERSTELLER = VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true")
-        Dim ITEMPERPAGE As Integer : ITEMPERPAGE = VARVALUE_DEFAULT("SHOP_RESULT_LIST_ITEMS_PER_PAGE", "50")
-        Dim SHOW_PRODUCT_DETAILS As Boolean : SHOW_PRODUCT_DETAILS = VARVALUE_DEFAULT("SHOP_SHOW_PRODUCT_DESCRIPTIONS", "true")
-        Dim SHOWLAGERINFO As Boolean : SHOWLAGERINFO = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO", "true")
+        Dim SHOP_ALLOW_SORTING As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_SORTING", "true")
+        Dim SHOP_ALLOW_DROPDOWN_SORTING As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_DROPDOWN_SORTING", "true")
+        Dim SHOP_SHOW_HERSTELLER As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true")
+        Dim ITEMPERPAGE As Integer = VARVALUE_DEFAULT("SHOP_RESULT_LIST_ITEMS_PER_PAGE", "50")
+        Dim SHOW_PRODUCT_DETAILS As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_PRODUCT_DESCRIPTIONS", "true")
+        Dim SHOWLAGERINFO As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO", "true")
         Dim SHOWLAGERINFOICON As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_LAGERINFO_ICON", "true")
-        Dim SHOP_SAVE_QUERY As Boolean : SHOP_SAVE_QUERY = VARVALUE_DEFAULT("SHOP_SAVE_QUERY", "true")
+        Dim SHOP_SAVE_QUERY As Boolean = VARVALUE_DEFAULT("SHOP_SAVE_QUERY", "true")
 
         'Sorting and Highlight handling 
-        Dim SHOP_USE_HIGHLIGHT As Boolean : SHOP_USE_HIGHLIGHT = VARVALUE_DEFAULT("SHOP_USE_HIGHLIGHT", "true")
-        Dim SHOP_USE_SORT_IMPORTANCY As Boolean : SHOP_USE_SORT_IMPORTANCY = VARVALUE_DEFAULT("SHOP_USE_SORT_IMPORTANCY", "true")
+        Dim SHOP_USE_HIGHLIGHT As Boolean = VARVALUE_DEFAULT("SHOP_USE_HIGHLIGHT", "true")
+        Dim SHOP_USE_SORT_IMPORTANCY As Boolean = VARVALUE_DEFAULT("SHOP_USE_SORT_IMPORTANCY", "true")
     
         'Switch show or not can be switched from user interface  
-        Dim showThumbnails as Boolean: showThumbnails = VARVALUE_DEFAULT("SHOP_SHOW_THUMBNAILS", "true")
+        Dim showThumbnails As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_THUMBNAILS", "true")
     
-        Dim  BenutzeEAN As Boolean =  VARVALUE_DEFAULT("BenutzeEAN" , "true")
+        Dim BenutzeEAN As Boolean = VARVALUE_DEFAULT("BenutzeEAN", "true")
     
         Dim artKatNR as Integer: artKatNR = 0
         
@@ -462,16 +462,16 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                "</a></th>"
             End If
             
-            If VARVALUE("SHOP_SHOW_HERSTELLER") Then
+            If VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true") Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
-                IIf(ordr="Firma", "Firma DESC" , "Firma") & """>" & getTranslation("Hersteller") & _
-                IIf(ordr="Firma", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-                IIf(ordr="Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
+                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+                IIf(ordr = "Firma", "Firma DESC", "Firma") & """>" & getTranslation("Hersteller") & _
+                IIf(ordr = "Firma", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+                IIf(ordr = "Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
                 "</a></th>"
             End If
 
-            If VARVALUE("SHOP_SHOW_ANGELEGTAM") Then
+            If VARVALUE_DEFAULT("SHOP_SHOW_ANGELEGTAM", "true") Then
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
                 IIf(ordr="AngelegtAm", "AngelegtAm DESC" ,  "AngelegtAm")  & """>" & getTranslation("Angelegt am") & _ 
@@ -540,15 +540,15 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             End If
     
             Dim rowColor As String
-            Dim ArtNr, VKPreis As Double, Bezeichnung As String, Picture, Firma, EAN, MWSt, HerstellerRabatt, LagerInfo As String, ArtKatNrProdukt
+            Dim ArtNr, VKPreis As String, Bezeichnung As String, Picture, Firma, EAN, MWSt, HerstellerRabatt, LagerInfo As String, ArtKatNrProdukt
             Dim AngelegtAm As Date
             Dim lastGroupValue As String  'keeps the last value from grouping on artkatnr 
             Dim htmlProductRow As String  ' html for the product table row 
-            Dim htmlAllRows As String : htmlAllRows = ""
+            Dim htmlAllRows As String = ""
             swnItems = 0
           
-            Dim SHOP_PRODUCTLIST_ROW_COLOR As String : SHOP_PRODUCTLIST_ROW_COLOR = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR", "#F7F7F7")
-            Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT as String: SHOP_PRODUCTLIST_ROW_COLOR_ALT = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR_ALT", "#FFFFFF")
+            Dim SHOP_PRODUCTLIST_ROW_COLOR As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR", "#F7F7F7")
+            Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR_ALT", "#FFFFFF")
  
             While (Not rsArtikel.EOF) And (CDbl(swnItems) < CDbl(ITEMPERPAGE))
                 swnItems = swnItems + 1
@@ -672,7 +672,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     htmlProductRow = htmlProductRow & "</td>"
 
                     If SHOP_SHOW_PRICE Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><p align=""right"">" & VKPreis
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """> <p align=""right"">€ " & VKPreis
                         If HerstellerRabatt <> "" Then
                             htmlProductRow = htmlProductRow & "<br />" & getTranslation("Rabatt") & ":" & HerstellerRabatt
                         End If
