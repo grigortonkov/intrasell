@@ -345,10 +345,14 @@
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
         <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();">
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();">
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen ohne Registrierung")%>" onclick="submitOrder();">
-        &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>">
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
+        <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_OFFERS", "true") = "true" then %>
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();" />
+        <%  End If%>
+        <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER_WITHOUT_REGISTRATION", "true") = "true" then %>
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen ohne Registrierung")%>" onclick="submitOrder();" />
+        <%End If%>
+        &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>" />
     <%Else%>
         <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
     <%End If%>
