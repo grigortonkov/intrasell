@@ -1592,7 +1592,7 @@
     Public Function getLagerInfoIcon(ByVal ArtNR As Object) As String
         Dim info As String = tablevalue("grArtikel", "ArtNr", ArtNR, "Bezeichnung1")
         Dim img As String = SKIN & "/images/icons/" + info + ".gif"
-        Return "<a href='cgi/lager/lagerInfoLegend.aspx' target='_new'><img src='" & img & "' alt='" + getTranslation(info) + "' /></a>"
+        Return "<a href='cgi/lager/lagerInfoLegend.aspx' target='_new'><img src='" & img & "' alt='" + getTranslation(info) + "' alt='" & info  & "' /></a>"
     End Function
     
  
