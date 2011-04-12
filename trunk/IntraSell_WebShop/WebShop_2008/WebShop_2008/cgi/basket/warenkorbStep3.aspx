@@ -8,8 +8,11 @@
     <%
         Dim EmailStep3 As String, PasswordStep3 As String, kdnrStep3 As Long
         Dim landOfCalculation As String
-        Dim SHOP_ALLOW_CHANGE_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_CHANGE_AR_ADDRESS", "false")
         
+        Dim SHOP_ALLOW_CHANGE_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_CHANGE_AR_ADDRESS", "true")
+        Dim SHOP_ALLOW_CREATE_NEW_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_CREATE_NEW_AR_ADDRESS", "true")
+        Dim SHOP_ALLOW_SELECT_OLD_AR_ADDRESS As Boolean = VARVALUE_DEFAULT("SHOP_ALLOW_SELECT_OLD_AR_ADDRESS", "true")
+      
         payMode = Session("PayMode")
         postMode = Session("PostMode")
         destination = Session("Destination")
@@ -83,7 +86,10 @@
                             <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=update" class='button'>
                                 <%=getTranslation("Adresse aendern")%>
                             </a>
+                             <% End If%>
                             &nbsp;
+                            
+                            <% If SHOP_ALLOW_CREATE_NEW_AR_ADDRESS Then%>
                             <a href="default.aspx?pageToShow=createUpdateAddressSpecial&typeOfAddress=AR&mode=new" class='button'>
                                 <%=getTranslation("neu Adresse anlegen")%>
                             </a>
@@ -97,7 +103,9 @@
                         <%=printAddress(KundNrStep3, TypeOfAddress.SHIPPING2, True, True, True)%>
                     </td>
                     <td width="50%" align="left">
+                     <% If SHOP_ALLOW_SELECT_OLD_AR_ADDRESS Then%>
                         <%=printAddress(KundNrStep3, TypeOfAddress.INVOICE2, True, True, True)%>
+                     <% End If%>
                     </td>
                 </tr>
                 

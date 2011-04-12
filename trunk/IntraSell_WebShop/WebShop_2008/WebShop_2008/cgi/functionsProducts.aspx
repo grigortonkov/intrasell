@@ -674,7 +674,7 @@
             PreisATSMwst = info
         End If
 
-        If getLOGIN() Is Nothing Then
+        If getLOGIN() Is Nothing And VARVALUE_DEFAULT("SHOP_SHOW_PRICE_TOOLTIP", "true") = "true" Then
             Dim tooltip As String = "&nbsp;<a Title='" & getTranslation("Login Sie sich an für Ihre eigene Preisliste.") & "'>*</a>"
             PreisATS = PreisATS & tooltip
             PreisATSNetto = PreisATSNetto & tooltip
@@ -1189,7 +1189,7 @@
             Dim imgTagPicture
             imgTagPicture = "<a href=""default.aspx?artNr=" & ArtNr & """>" & makeImgTag(Picture, Bezeichnung, maxImageSize) & "</a>"
 
-            Dim bruttoPreis : bruttoPreis = getPreis(getLOGIN(), ArtNr, 1)
+            Dim bruttoPreis As String = getPreis(getLOGIN(), ArtNr, 1)
             bruttoPreis = FormatNumber(makeBruttoPreis(bruttoPreis, MWSTGROUP, Session("Land")), 2)
 
 
