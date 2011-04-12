@@ -428,7 +428,7 @@
 
     Function makeCategoriesTreeFromCache(ByVal ArtKatNr, ByVal Levels, ByVal manufacturer, ByVal merchantName) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_MAKECATEGORIESTREE_" & ArtKatNr & "_" & Levels
+        Dim CACHE_NAME As String = "SUB_MAKECATEGORIESTREE_" & ArtKatNr & "_" & Levels & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, makeCategoriesTree(ArtKatNr, Levels, manufacturer, merchantName))
@@ -634,7 +634,7 @@
     '****************************************************************************
     Function makeSubcategoriesFromCache(ByVal artKatNr, ByVal Levels) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_CATEGORIES_LIST_" & artKatNr & "_" & Levels
+        Dim CACHE_NAME As String = "SUB_CATEGORIES_LIST_" & artKatNr & "_" & Levels & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, makeSubcategories(artKatNr, Levels))
@@ -651,7 +651,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function findTemplateFromCache(ByVal ArtKatNr) As String
-        Dim CACHE_NAME : CACHE_NAME = "CATEGORY_TEMPLATE_" & ArtKatNr
+        Dim CACHE_NAME As String = "CATEGORY_TEMPLATE_" & ArtKatNr & "_" & Session("language")
         Dim temp : temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, findTemplate(ArtKatNr))
@@ -711,7 +711,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function findTemplateForProductFromCache(ByVal ArtKatNr)
-        Dim CACHE_NAME : CACHE_NAME = "CATEGORY_PRODUCT_TEMPLATE_" & ArtKatNr
+        Dim CACHE_NAME As String = "CATEGORY_PRODUCT_TEMPLATE_" & ArtKatNr & "_" & Session("language")
         Dim temp : temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, findTemplateForProduct(ArtKatNr))
@@ -768,7 +768,7 @@
     Function listWebPagesLinksFromCache() As String
         Dim Language As String = Session("Language")
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "WEBPAGES_LIST_" & Language
+        Dim CACHE_NAME As String = "WEBPAGES_LIST_" & Language
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, listWebPagesLinks())

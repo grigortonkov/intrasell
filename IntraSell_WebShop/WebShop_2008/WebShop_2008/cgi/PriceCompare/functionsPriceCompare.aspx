@@ -7,7 +7,7 @@
     '******************************************************************
 function createSearchForm(categoryId)
     Dim temp
-    Dim CACHE_NAME : CACHE_NAME = "SUB_CAT_SEARCHFORM_" & categoryId
+    Dim CACHE_NAME As String = "SUB_CAT_SEARCHFORM_" & categoryId & "_" & Session("language")
     temp = getDBCache(CACHE_NAME)
     If temp = "" Then 'set cache  
         temp = setDBCache(CACHE_NAME, createSearchFormNoCache(ArtKatNr))
