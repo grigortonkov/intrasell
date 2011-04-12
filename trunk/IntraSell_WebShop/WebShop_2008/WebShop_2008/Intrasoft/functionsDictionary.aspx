@@ -123,7 +123,7 @@
 'With Caching functionality 
     Public Function getTranslation(ByVal german As String) As String
         Dim temp As String
-        Dim CACHE_NAME As String : CACHE_NAME = "TRANSLATION_" & german
+        Dim CACHE_NAME As String = "TRANSLATION_" & german & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, getTranslation_NoCache(german))

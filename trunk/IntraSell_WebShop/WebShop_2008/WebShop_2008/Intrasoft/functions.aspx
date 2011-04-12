@@ -235,7 +235,7 @@
     '********************************************************************
     Function VARVALUE(ByVal varname As String) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "VARVALUE_" & varname
+        Dim CACHE_NAME As String = "VARVALUE_" & varname & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, VARVALUE_NO_CHACHE(varname))

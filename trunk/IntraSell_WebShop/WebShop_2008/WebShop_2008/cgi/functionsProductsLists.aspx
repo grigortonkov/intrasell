@@ -42,7 +42,7 @@
 
     Function TopCatProductsFromCache(ByVal artKatNr, ByVal Typ)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPCATPRODUCTS_" & artKatNr & Typ
+        Dim CACHE_NAME As String = "SUB_TOPCATPRODUCTS_" & artKatNr & Typ & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, TopCatProducts(artKatNr, Typ))
@@ -160,7 +160,7 @@
     '****************************************************************************
     Function TopCatProductsTwoInRowFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPCLICKS_TWOINROW_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_TOPCLICKS_TWOINROW_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, TopCatProductsTwoInRow(artKatNr))
@@ -227,7 +227,7 @@
     '****************************************************************************
     Function TopCatProductsVerticalFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPCLICKS_VERTICAL_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_TOPCLICKS_VERTICAL_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, TopCatProductsVertical(artKatNr))
@@ -277,9 +277,9 @@
     ' statistics for the most clicked products from caches
     '****************************************************************************
     Function statisticTopClicksFromCache()
-        Dim categoryId : categoryId = 0
+        Dim categoryId As Integer = 0
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPCLICKS_" & categoryId
+        Dim CACHE_NAME As String = "SUB_TOPCLICKS_" & categoryId & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticTopClicks(categoryId))
@@ -331,9 +331,9 @@
     ' statistics for the best sellers  from caches
     '****************************************************************************
     Function statisticBestsellersFromCache(ByVal ArtKatNr)
-        Dim categoryId : categoryId = 0
+        Dim categoryId As Integer = 0
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPSALES_" & categoryId
+        Dim CACHE_NAME As String = "SUB_TOPSALES_" & categoryId & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticBestsellers(ArtKatNr))
@@ -426,7 +426,7 @@
     '****************************************************************************
     Function statisticTopClicksListFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPPRODUCTCLICKSLIST_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_TOPPRODUCTCLICKSLIST_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticTopClicksList(artKatNr))
@@ -488,7 +488,7 @@
     '****************************************************************************
     Function statisticLatestPricesCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_LATESTPRICES_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_LATESTPRICES_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticLatestPrices(artKatNr))
@@ -542,7 +542,7 @@
     ''' <remarks></remarks>
     Function makeTopDealFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_TOPDEAL_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_TOPDEAL_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, makeTopDeal(artKatNr))
@@ -643,7 +643,7 @@
     ''' <remarks></remarks>
     Function statisticPriceDropsFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_PRICEDROPS_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_PRICEDROPS_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticPriceDrops(artKatNr))
@@ -736,7 +736,7 @@
     ''' <remarks></remarks>
     Function statisticClearanceCenterFromCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_CLEARANCE_CENTER_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_CLEARANCE_CENTER_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticTopClicksList(artKatNr))
@@ -848,7 +848,7 @@
     ''' <remarks></remarks>
     Function printNewReviewsCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_PRINTNEWREVIEWS_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_PRINTNEWREVIEWS_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, printNewReviews(artKatNr))
@@ -1206,7 +1206,7 @@
     '****************************************************************************
     Function statisticNewProductsCache(ByVal artKatNr)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_NEW_PRODUCTS_" & artKatNr
+        Dim CACHE_NAME As String = "SUB_NEW_PRODUCTS_" & artKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         'response.Write "temp='" & temp & "'"
         If temp = "" Then 'set cache  
