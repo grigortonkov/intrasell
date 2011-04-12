@@ -21,7 +21,7 @@
     '******************************************************************************
     Function SimpleListCategoriesFromCache(ByVal ArtKatNr, ByVal inPageToShow) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIES_" & ArtKatNr & "_" & inPageToShow
+        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIES_" & ArtKatNr & "_" & inPageToShow & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, SimpleListCategories(ArtKatNr, inPageToShow))
@@ -38,7 +38,7 @@
     ''' <remarks></remarks>
     Function SimpleListCategories(ByVal PreKatNr, ByVal inPageToShow) As String
         Dim html As String
-        Dim Language As String : Language = Session("Language")
+        Dim Language As String = Session("Language")
         If Not IsNumeric(PreKatNr) Then
             SimpleListCategories = ""
             Exit Function
@@ -97,7 +97,7 @@
     '******************************************************************************
     Function SimpleListCategoriesWithParentCatsFromCache(ByVal ArtKatNr As String, ByVal inPageToShow As String) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & ArtKatNr & "_" & inPageToShow
+        Dim CACHE_NAME As String = "SUB_SIMPLELISTCATEGORIESWITHPARENTCATS_" & ArtKatNr & "_" & inPageToShow & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, SimpleListCategoriesWithParentCats(ArtKatNr, ArtKatNr, inPageToShow))
@@ -108,7 +108,7 @@
     
     Function SimpleListCategoriesWithParentCats(ByVal PreKatNr As String, ByVal OriginalKatNr As String, ByVal inPageToShow As String) As String
         Dim html As String
-        Dim Language As String : Language = Session("Language")
+        Dim Language As String = Session("Language")
         If Not IsNumeric(PreKatNr) Then
             SimpleListCategoriesWithParentCats = ""
             Exit Function
@@ -161,9 +161,9 @@
         rs = Nothing
 
         'recursion !!! 
-        Dim parentCats : parentCats = SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
-        Dim PosOfSubCats : PosOfSubCats = InStr(parentCats, "<!--" & PreKatNr & "-->")
-        Dim parentCatsAndSubCats
+        Dim parentCats As String = SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
+        Dim PosOfSubCats As Integer = InStr(parentCats, "<!--" & PreKatNr & "-->")
+        Dim parentCatsAndSubCats As String
         
         If PosOfSubCats > 0 Then
             html = "<table border='0' cellspacing='5'><tr><td>" & html & "</td></tr></table>"
@@ -221,7 +221,7 @@
     Function showCategoryPathFromCache(ByVal ArtKatNr, ByVal inPageToShow) As String
         'response.Write "call showCategoryPathFromCache"
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_SHOWCATEGORYPATH_" & ArtKatNr & "_" & inPageToShow
+        Dim CACHE_NAME As String = "SUB_SHOWCATEGORYPATH_" & ArtKatNr & "_" & inPageToShow & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, showCategoryPath(ArtKatNr, inPageToShow))
@@ -237,7 +237,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function showCategoryPath(ByVal ArtKatNr, ByVal inPageToShow) As String
-
+        Dim Language As String = Session("language")
         If Not IsNumeric(ArtKatNr) Then
             showCategoryPath = getTranslation("Fehler: ArtKatNr ist keine Zahl!") & "[" & ArtKatNr & "]"
         End If
@@ -250,9 +250,9 @@
             showCategoryPath = ""
             Exit Function
         End If
-   
+        Dim name As String  = getTranslationDok("grArtikel-Kategorien", rs("ArtKatNr").Value, "Name", rs("Name").Value, Language)
         showCategoryPath = showCategoryPath(rs("ArtKatNrParent").Value, inPageToShow) & " > " & _
-          "<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr").Value & """>" & Server.HtmlEncode(rs("Name").Value) & "</a>"
+          "<a href=""" & inPageToShow & "?PreKatNr=" & rs("ArtKatNr").Value & """>" & Server.HtmlEncode(name) & "</a>"
   
     End Function
 
@@ -303,7 +303,7 @@
     '***************************************************************************
     Sub interactionCategoriesPath(ByVal inPageToShow, ByVal pageToShow)
         Dim catToShow
-        Dim path
+        Dim path As String
         catToShow = Request("PreKatNr")
         'Response.Write "<br />PreKatNr1 = '" & catToShow & "'<br />"
         Response.Write("<a href=""default.aspx?pageToShow="">Home</a>")
@@ -512,11 +512,11 @@
             '    html = html & TABLEVALUE("[grArtikel-kategorien]","ArtKatNR",rs("ArtKatNRParent"),"Name") & "->" 
             'end if 
      
-            Dim LINK_KAT : LINK_KAT = "default.aspx?preKatNr=" & rs("ArtKatNr").Value
-            Dim LINK_PRODUCTS : LINK_PRODUCTS = "default.aspx?pageToShow=DetailSearchResult&artKatNrSearch=" & rs("ArtKatNr").Value & _
+            Dim LINK_KAT As String = "default.aspx?preKatNr=" & rs("ArtKatNr").Value
+            Dim LINK_PRODUCTS As String = "default.aspx?pageToShow=DetailSearchResult&artKatNrSearch=" & rs("ArtKatNr").Value & _
                                                 "&HerstellerSearch=" & manufacturer & "&LieferantSearch=" & merchantName
 
-            Dim produktAnzahl : produktAnzahl = getCountOfProductsOpt(rs("ArtKatNr").Value, lieferantNr, herstellerNr)
+            Dim produktAnzahl As Integer = getCountOfProductsOpt(rs("ArtKatNr").Value, lieferantNr, herstellerNr)
 
 
             If useHerstellerOderLieferant And CLng(produktAnzahl) <= 0 Then
@@ -766,7 +766,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function listWebPagesLinksFromCache() As String
-        Dim Language As String : Language = Session("Language")
+        Dim Language As String = Session("Language")
         Dim temp
         Dim CACHE_NAME : CACHE_NAME = "WEBPAGES_LIST_" & Language
         temp = getCache(CACHE_NAME)
@@ -779,7 +779,7 @@
 
     'lists the links on  hte left of the shop
     Function listWebPagesLinks() As String
-        Dim Language As String : Language = Session("Language")
+        Dim Language As String = Session("Language")
         Dim rsS
         Dim sqlS As String
         Dim html As String
@@ -815,7 +815,7 @@
     '******************************************************************************
     Function makeSubcategoriesList(ByVal ArtKatNr, ByVal Levels) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUBCATEGORIES_LIST_" & ArtKatNr & "_" & Levels
+        Dim CACHE_NAME : CACHE_NAME = "SUBCATEGORIES_LIST_" & ArtKatNr & "_" & Levels & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, makeSubcategoriesList_NoCache(ArtKatNr, Levels))
@@ -911,7 +911,7 @@
 
     Function statisticTopClicksOnCategoryCache(ByVal ArtKatNr) As String
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUB_CAT_TOPCLICKS_" & ArtKatNr
+        Dim CACHE_NAME As String = "SUB_CAT_TOPCLICKS_" & ArtKatNr & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, statisticTopClicksOnCategory(ArtKatNr))
@@ -983,7 +983,7 @@
     '******************************************************************************
     Function makeSubcategoriesPicturePages(ByVal ArtKatNr, ByVal Levels)
         Dim temp
-        Dim CACHE_NAME : CACHE_NAME = "SUBCATEGORIES_PICTURE_" & ArtKatNr & "_" & Levels
+        Dim CACHE_NAME As String = "SUBCATEGORIES_PICTURE_" & ArtKatNr & "_" & Levels & "_" & Session("language")
         temp = getCache(CACHE_NAME)
         If temp = "" Then 'set cache  
             temp = setCache(CACHE_NAME, makeSubcategoriesPicturePages_NoCache(ArtKatNr, Levels))
