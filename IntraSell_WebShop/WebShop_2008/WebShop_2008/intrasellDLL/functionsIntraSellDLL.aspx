@@ -14,9 +14,9 @@
       
     'gibt die DB Verbindung wieder frei für alle module beim ende der session 
     Public Sub IntraSellDLL_DestroyOnPageEnd() 
-        IntraSellPreise().destroy()
-        IntraSellVorgaengeAusdruck().destroy()
-        IntraSellDictionary().destroy()
+        'IntraSellPreise().destroy()
+        'IntraSellVorgaengeAusdruck().destroy()
+        'IntraSellDictionary().destroy()
     End Sub 
    
    
