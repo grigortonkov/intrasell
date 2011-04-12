@@ -15,6 +15,7 @@
         Dim sql As String, rs
         sql = "Select artNr, Bezeichnung from grArtikel where ArtNr <> " & ArtNr1 & _
               " AND produktAktiv<>0 and ArtKatNR in (Select  ArtKatNR from grArtikel where ArtNr = " & ArtNr1 & ") " & _
+              " AND Bezeichnung is not null " & _
               " ORDER BY Bezeichnung"
         rs = objConnectionExecute(sql)
  
