@@ -581,7 +581,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 End If
                 'end GROUP ROW 
 
-                Dim productRowCacheName As String = "PROD_ROW_" & ArtNr
+                Dim productRowCacheName As String = "PROD_ROW_" & ArtNr & "_" & Session("language") & "_" & getLOGIN
                 htmlProductRow = getCache(productRowCacheName)
                 If htmlProductRow = "" Then
 
