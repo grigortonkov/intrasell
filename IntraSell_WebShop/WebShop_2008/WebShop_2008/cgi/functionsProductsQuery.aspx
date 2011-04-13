@@ -587,7 +587,14 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
 
                     MWSt = rsArtikel("MWST").Value
                     Picture = rsArtikel("Picture").Value.ToString()
-                    VKPreis = FormatNumber(makeBruttoPreis(getPreis(getLOGIN(), ArtNr, 1), MWSt, Session("Land")), 2)
+                    
+                    VKPreis = getPreis(getLOGIN(), ArtNr, 1)
+                    If getLOGIN() <= 0 Then
+                        VKPreis = makeBruttoPreis(VKPreis, MWSt, Session("Land"))
+                    Else 'user is logged in 
+                        VKPreis = calculateBruttoPreis(VKPreis, ArtNr, getLOGIN())
+                    End If
+                    VKPreis = FormatNumber(VKPreis, 2)
 
                     If IsNumeric(VKPreis) Then
                         'If VKPreis <= 0 Then VKPreis = "n.a." 'remove VKPreis for -1 and so on 
@@ -718,20 +725,20 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     Call setCache(productRowCacheName, htmlProductRow)
                 End If 'read product row from cache 
                 
-                If SHOP_USE_SORT_IMPORTANCY Then
-                    Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(ArtNr, "Wichtigkeit") & ""
-                    If productHasBetterSorting <> "" Then 'put on the top 
-                        htmlAllRows = htmlProductRow & _
-                        "<tr colspan=" & (tableColumns - 1) & "><td></td></tr>" & _
-                        htmlAllRows
+                    If SHOP_USE_SORT_IMPORTANCY Then
+                        Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(ArtNr, "Wichtigkeit") & ""
+                        If productHasBetterSorting <> "" Then 'put on the top 
+                            htmlAllRows = htmlProductRow & _
+                            "<tr colspan=" & (tableColumns - 1) & "><td></td></tr>" & _
+                            htmlAllRows
+                        Else
+                            htmlAllRows = htmlAllRows & htmlProductRow
+                        End If
                     Else
                         htmlAllRows = htmlAllRows & htmlProductRow
                     End If
-                Else
-                    htmlAllRows = htmlAllRows & htmlProductRow
-                End If
-                htmlProductRow = ""
-                rsArtikel.moveNext()
+                    htmlProductRow = ""
+                    rsArtikel.moveNext()
             End While
             
             html = html & htmlAllRows
