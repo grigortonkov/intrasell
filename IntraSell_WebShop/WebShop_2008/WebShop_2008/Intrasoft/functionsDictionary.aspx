@@ -135,7 +135,10 @@
         Dim token As String = Left(german, 255).Replace("'", "")
         'On Error Resume Next
         Dim rs
-        Dim currentLanguage As String = VARVALUE_DEFAULT("LANGUAGE", "DEU")
+        Dim currentLanguage As String = Session("language") '
+        If IsNothing(currentLanguage) or Len( currentLanguage) <> 3 Then
+            currentLanguage = VARVALUE_DEFAULT("LANGUAGE", "DEU")
+        End If
         getTranslation_NoCache = german
         
         
@@ -143,7 +146,12 @@
         rs = ObjConnectionExecute(sql)
    
         If Not rs.EOF Then
-            Dim tmpCurLang : tmpCurLang = rs(currentLanguage).Value
+            Dim tmpCurLang As String
+            If Not IsDBNull(rs(currentLanguage).Value) Then
+                tmpCurLang = rs(currentLanguage).Value
+            Else
+                tmpCurLang = ""
+            End If
             If Len(tmpCurLang) > 0 Then getTranslation_NoCache = tmpCurLang
             'decoding for bulgarian
             If currentLanguage = "BUL" Then
