@@ -201,7 +201,8 @@
     ''' <param name="UrlNo"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function drawMsgBox(ByVal Title As String, ByVal Body As String, ByVal UrlYes As String, ByVal UrlNo As String) As String
+    Function drawMsgBox(ByVal Title As String, ByVal Body As String, ByVal UrlYes As String, ByVal UrlNo As String, _
+                        Optional ByVal yes As String = "JA", Optional ByVal no As String = "NEIN") As String
         
         Dim html As String : html = ""
         html = html & "<table border=""1"" width=""200"" cellspacing=""0"">"
@@ -217,12 +218,12 @@
         html = html & "<tr>"
         html = html & "<td width=""194"" colspan=""2"">"
         html = html & "<p align=""center""><b>"
-        If UrlYes <> """" Then
-            html = html & "<a href=""" & UrlYes & """>" & getTranslation("YES") & "</a></b>"
+        If UrlYes <> "" Then
+            html = html & "<a href=""" & UrlYes & """>" & getTranslation(yes) & "</a></b>"
         End If
         html = html & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-        If UrlNo <> """" Then
-            html = html & "<a href=""" & UrlNo & """><b>" & getTranslation("NO") & "</b></a>"
+        If UrlNo <> "" Then
+            html = html & "<a href=""" & UrlNo & """><b>" & getTranslation(no) & "</b></a>"
         End If
         html = html & "</td>"
         html = html & "</tr>"
@@ -259,12 +260,12 @@
         html = html & "<tr>"
         html = html & "<td width=""194"" colspan=""2"">"
         html = html & "<p align=""center""><b>"
-        If UrlYes <> """" Then
-            html = html & "<a href=""" & UrlYes & """>" & getTranslation("YES") & "</a></b>"
+        If UrlYes <> "" Then
+            html = html & "<a href=""" & UrlYes & """>" & getTranslation("JA") & "</a></b>"
         End If
         html = html & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-        If UrlNo <> """" Then
-            html = html & "<a href=""" & UrlNo & """><b>" & getTranslation("NO") & "</b></a>"
+        If UrlNo <> "" Then
+            html = html & "<a href=""" & UrlNo & """><b>" & getTranslation("NEIN") & "</b></a>"
         End If
         html = html & "</td>"
         html = html & "</tr>"

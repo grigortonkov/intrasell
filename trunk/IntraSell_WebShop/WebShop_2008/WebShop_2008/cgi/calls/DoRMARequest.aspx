@@ -6,7 +6,7 @@
 </head>
 <body bgcolor="#FFFFFF">
     <%
-        Dim RMANumber : RMANumber = nextId("ofKorespondenz", "ID")
+        Dim RMANumber as String = nextId("ofKorespondenz", "ID")
 
         Dim subject, mailtext
         subject = "RMA Request #" & RMANumber

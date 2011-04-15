@@ -183,7 +183,7 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function MAKE_EMAIL_NEWSLETTER(ByVal Email As String) As String
-        MAKE_EMAIL_NEWSLETTER = " Liebe(r)  Benutzer(in)!" & Chr(10) & Chr(13) & _
+        Dim html As String = " Liebe(r)  Benutzer(in)!" & Chr(10) & Chr(13) & _
         " Vielen Dank f&uuml;r Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters." & Chr(10) & Chr(13) & _
         " Sie haben sich am " & Now & " von der IP Adresse " & Request.ServerVariables("REMOTE_HOST") & Chr(10) & Chr(13) & _
         " f&uuml;r unseren Newsletter angemeldet." & Chr(10) & Chr(13) & Chr(10) & Chr(13) & _
@@ -191,6 +191,8 @@
         " " & Chr(10) & Chr(13) & _
         " Viel Spass w&uuml;nscht Ihnen" & Chr(10) & Chr(13) & Chr(10) & Chr(13) & _
         " Ihr Team"
+        html = Replace(html, Chr(10) & Chr(13), "</br>")
+        Return html 
     End Function
      
     '

@@ -415,8 +415,8 @@
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function GetShopEMail()
-        GetShopEMail = VARVALUE("Email")
+    Function GetShopEMail() As String
+        GetShopEMail = VARVALUE_DEFAULT("Email", "office@IhreFirma.at")
     End Function
 
 
@@ -442,7 +442,7 @@
     ''' <param name="rechNR"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getPaketNummer(ByVal orderType, ByVal rechNR) As String
+    Function getPaketNummer(ByVal orderType As String, ByVal rechNR As String) As String
         Dim tableOrders, tableOrdersProducts As String
         tableOrders = getNameForTable(orderType)
         tableOrdersProducts = "[" & getNameForTableProducts(orderType) & "]"

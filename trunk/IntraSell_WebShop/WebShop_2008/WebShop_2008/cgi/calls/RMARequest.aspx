@@ -1,14 +1,7 @@
 <!--#include file="../defaultHead.inc.aspx"-->
 <head>
     <link href="<%=BASENAME%>/Style.css" type="text/css" rel="stylesheet">
-    <style type="text/css">
-        .style1
-        {
-            font-weight: bold;
-            text-align: left;
-            width: 168px;
-        }
-    </style>
+ 
     <title>RMA / Rücksendung</title>
 </head>
 <body>
@@ -19,40 +12,41 @@
             <form action='doRMARequest.aspx' method='post'>
             <table border="0" bordercolor="green" cellpadding="3" cellspacing="0">
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         Von Email:
                     </td>
                     <td>
-                        <input type='input' name='FromMail' value='<%=GetClientEMail (Session ("LOG_IN"))%>'>
+                        <input type='input' name='FromMail' 
+                            value='<%=GetClientEMail (Session ("LOG_IN"))%>' style="width: 250px">
                     </td>
                 </tr>
                 <tr>
-                    <th class="style1">
+                    <th >
                         Name:
                     </th>
                     <td>
-                        <input type='input' name='FromName' value=''>
+                        <input type='input' name='FromName' value=''  style="width: 250px">
                     </td>
                 </tr>
                 <tr>
-                    <th class="style1">
+                    <th >
                         Tel:
                     </th>
                     <td>
-                        <input type='input' name='FromTel' value=''>
+                        <input type='input' name='FromTel' value=''  style="width: 250px">
                     </td>
                 </tr>
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         An:
                     </td>
                     <td>
                         <%=GetShopEMail%>
                     </td>
                 </tr>
-                <input type='hidden' name='ToMail' value='<%=GetShopEMail%>'>
+                <input type='hidden' name='ToMail' value='<%=GetShopEMail()%>'>
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         Rücksendegrund:
                     </td>
                     <td>
@@ -65,7 +59,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         Bestellnummer:
                     </td>
                     <td>
@@ -73,7 +67,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         Produktnummer:
                     </td>
                     <td>
@@ -81,7 +75,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td border="0" class="style1">
+                    <td border="0" >
                         Betreff:
                     </td>
                     <td>
@@ -89,11 +83,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td border="0" class="style1" title="RMA Request">
+                    <td border="0"  title="RMA Request">
                         Text/Fehlerbeschreibung:
                     </td>
                     <td>
-                        <textarea name='FromMail' cols="30" rows="10">Bitte erledigen Sie das folgende Problem mit Produkt #<%=request("ArtNr")%>:</textarea>
+                        <textarea name='FromMail' cols="60" rows="10">Bitte erledigen Sie das folgende Problem mit Produkt #<%=request("ArtNr")%>:</textarea>
                     </td>
                 </tr>
                 <tr>

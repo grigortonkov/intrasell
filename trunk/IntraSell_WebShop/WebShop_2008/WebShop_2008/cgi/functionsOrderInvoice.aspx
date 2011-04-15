@@ -158,7 +158,9 @@
             If IsDebug() Then Response.Write(rsW("NichtBestellbar").Value)
             nichtBestellbar = Not (CInt(rsW("NichtBestellbar").Value) = 0)
             If nichtBestellbar Then 'add even the product is not active 
-                message = getTranslation("Artikel ist derzeit nicht bestellbar! Wir bitten um Ihr Verständnis! ") & " Nr=[" & ArtNr & "]!"
+                message = getTranslation("Artikel ist derzeit nicht bestellbar! Wir bitten um Ihr Verständnis! ")
+                message = message & "<br/> Nr=[" & ArtNr & "]"
+                message = message & "<br/> <a href=""?ArtNr=" & ArtNr & """> zur Artikelseite </a>"
                 errorFound = True
             End If
         End If
@@ -186,13 +188,15 @@
         'check if Preis > 0 then do not show 
         Dim preisATS As Double = getPreis(getLOGIN(), ArtNr, q)
         If CDbl(preisATS) <= 0 Then
-            message = getTranslation("Wir bieten derzeit Produkt mit dieser Nummer nicht!") & " Nr=[" & ArtNr & "]"
+            message = getTranslation("Wir bieten derzeit Produkt mit dieser Nummer nicht!")
+            message = message & "<br/> Nr=[" & ArtNr & "]"
+            message = message & "<br/> <a href=""?ArtNr=" & ArtNr & """> zur Artikelseite </a>"
             errorFound = True
         End If
         'end check preis 
         
         If errorFound then 
-            Response.Write(drawMsgBox("Fehler", message, "default.aspx?ArtNr=" & ArtNr, ""))
+            Response.Write(drawMsgBox("Fehler", message, "default.aspx?ArtNr=" & ArtNr, "", "ZURÜCK"))
             Return False 
         End If 
 
