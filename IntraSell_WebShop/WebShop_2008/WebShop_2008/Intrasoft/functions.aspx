@@ -413,26 +413,26 @@
  
         If showDebug() Then
             Response.Write("<br/>Start sendMailFromWithSending")
-            Response.Write("<br/>Recipient: " & Recipient)
+            Response.Write("<br/>To: " & Recipient)
             Response.Write("<br/>Subject: " & Subject)
-            Response.Write("<br/>From_Email: " & From_Email)
+            Response.Write("<br/>From: " & From_Email)
             Response.Write("<br/>MAILER_COMPONENT_NAME: " & VARVALUE("MAILER_COMPONENT_NAME"))
             Response.Write("<br/>")
         End If
  
         'Basic checks 
-        If Recipient & "" = "" Then
+        If IsNothing(Recipient) Or Recipient & "" = "" Then
             Response.Write("<br /><b><p class='error'><font color=red>Function sendMailFromWithSending: Recipient is empty</font></p></b><br />")
         End If
  
         'Basic checks 
-        If From_Email & "" = "" Then
+        If IsNothing(From_Email) Or From_Email & "" = "" Then
             Response.Write("<br /><b><p class='error'><font color=red>Function sendMailFromWithSending: From_Email is empty</font></p></b><br />")
         End If
  
 
         'SET THE MAILER COMPONENT HERE!!!
-        Dim MailerComponentName : MailerComponentName = VARVALUE("MAILER_COMPONENT_NAME")
+        Dim MailerComponentName As String = VARVALUE("MAILER_COMPONENT_NAME")
  
         If MailerComponentName = "PERSISTS" Then
             sendMailFromWithSending = sendMailFromWithSendingPersists(Recipient, Subject, MailText, From_Email)
