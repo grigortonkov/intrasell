@@ -34,7 +34,7 @@
          
         
                 Response.Write("SENDING... ")
-                sendMailFromWithSending(EmailForNewsletter, "Ihre Newsletter registrierung bei " & VARVALUE("DOMAIN") & "!", _
+                sendMailFromWithSending(EmailForNewsletter, "Ihre Newsletter registrierung bei " & VARVALUE("DOMAIN"), _
                       MAKE_EMAIL_NEWSLETTER(EmailForNewsletter), VARVALUE("EMAIL_REGISTER"))
                 Response.Write(" OK!")
             Else 'keine Registrierung 
