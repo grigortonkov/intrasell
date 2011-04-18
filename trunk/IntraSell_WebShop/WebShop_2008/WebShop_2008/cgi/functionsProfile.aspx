@@ -136,7 +136,6 @@
         Ort = Request("Ort" & typeOfAddr)
         Email = Request("Email" & typeOfAddr)
         Tel = Request("Tel" & typeOfAddr)
-
         Mobil = Request("Mobil" & typeOfAddr)
         Fax = Request("Fax" & typeOfAddr)
         Web = Request("Web" & typeOfAddr)
@@ -236,13 +235,13 @@
                 End If
     
     
-                'check is password was used already 
-                Dim accountUsed As Boolean : accountUsed = False
+                'check if Email was used already 
+                Dim accountUsed As Boolean = False
 
                 If getLOGIN() = "" And typeOfAddr = TypeOfAddress.ACCOUNT Then ' WE HAVE NEW ACOCUNT 
-                    sql = "select * from ofAdressen where Email like '" & Email & "' and Passwort like '" & Passwort & "'"
+                    sql = "select * from ofAdressen where Email like '" & Email & "'" ' and Passwort like '" & Passwort & "'"
                     rs = objConnectionExecute(sql)
-                    If Not rs.eOF Then 'password used 
+                    If Not rs.eOF Then 'Email used 
                         accountUsed = True
                     End If
                 End If
