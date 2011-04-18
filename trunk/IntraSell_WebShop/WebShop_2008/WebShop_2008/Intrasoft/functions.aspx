@@ -1350,7 +1350,7 @@
         
         Dim absLinkToDefault As String = basename & "/default.aspx"
         absLinkToDefault = Replace(htmlCode, "default.aspx", absLinkToDefault)
-        absLinkToDefault = Replace(absLinkToDefault, "default.asp?", "default.aspx?")
+        absLinkToDefault = Replace(absLinkToDefault, "default.aspx?", "default.aspx?")
         absLinkToDefault = Replace(absLinkToDefault, "default.aspx'", "default.aspx''")
         makeRelLinksAbsolute = Replace(absLinkToDefault, "default.asp""", "default.aspx""")
     End Function

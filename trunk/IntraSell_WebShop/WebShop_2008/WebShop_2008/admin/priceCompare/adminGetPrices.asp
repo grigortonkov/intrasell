@@ -209,7 +209,7 @@ while not rs.EOF
  	Response.Write"<td>" & getFirstField("select count(*) from [lieferantenArtikel-Preise] where lieferantNr=" & rs("LieferantNr") ) & "</td>" 
                
  	Response.Write "<td>" 
-	call DrawButton( "GetButton", "Get Prices", "adminGetPrices.asp?merch=" & rs("LieferantNr"), "white" )
+	call DrawButton( "GetButton", "Get Prices", "adminGetPrices.aspx?merch=" & rs("LieferantNr"), "white" )
 	Response.Write "</td><td>"
 	call DrawButton( "ConfigButton", "Config", "adminMerchantsFtp.aspx", "white" )
 	Response.Write "</td></tr>"

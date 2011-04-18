@@ -7,9 +7,9 @@ Dim count
 Dim merch
 merch = request("merch")
 butArr(1,1) = "Profile"
-butArr(1,2) = "adminMerchantsProfile.asp?merch=" & merch
+butArr(1,2) = "adminMerchantsProfile.aspx?merch=" & merch
 butArr(2,1) = "FTP settings"
-butArr(2,2) = "adminMerchantsFtp.asp?merch=" & merch
+butArr(2,2) = "adminMerchantsFtp.aspx?merch=" & merch
 butArr(3,1) = "Stars"
 butArr(3,2) = "adminMerchantsStars.aspx"
 butArr(4,1) = "Merchant's List"
@@ -22,7 +22,7 @@ if merch = "" then
 	set rs = ObjConnectionExecute(sql)
 	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsPayment.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
+		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsPayment.aspx?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
 		rs.MoveNext
 	wend
 else ' merch <> ""
@@ -155,7 +155,7 @@ else ' merch <> ""
 			rs.MoveNext
 		wend 
 	end if	%>
-	<form action="adminMerchantsPayment.asp?merch=<%=merch%>" method=post id=form2 name=form2>      
+	<form action="adminMerchantsPayment.aspx?merch=<%=merch%>" method=post id=form2 name=form2>      
 	<h3><b><center>Payment & Delivery settings for <%=merchname%></b></h3></center>
 	<table align=center border=1 cellspacing=0 cellpadding=0 width="50%">
 	<tr><td colspan=2 align=middle bgcolor=#d0d0d0> Current settings</td></tr>

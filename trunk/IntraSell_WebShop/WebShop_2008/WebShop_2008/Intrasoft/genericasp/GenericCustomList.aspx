@@ -76,7 +76,7 @@ End if
 If Trim(Session("dbLastRs")) <> Trim(Session("dbRs")) Then 
 	Session("dbLastRs") = Session("dbRs")
 	Response.Clear
-	Response.Redirect Session("dbGenericPath") & "GenericExit.asp?CMD='Reset'"
+	Response.Redirect Session("dbGenericPath") & "GenericExit.aspx?CMD='Reset'"
 End If
 
 ' Get the settings from the Config File
@@ -266,7 +266,7 @@ word(s) just before the </A> tag.
 EXIT LINK:
 <A HREF="<%=Session("dbGenericPath")%>GenericExit.aspx">Exit</A>
 RESET LINK:
-<A HREF="<%=Session("dbGenericPath")%>GenericExit.asp?CMD='Reset'">Reset</A>
+<A HREF="<%=Session("dbGenericPath")%>GenericExit.aspx?CMD='Reset'">Reset</A>
 REFRESH LINK:
 <A HREF="<%=Session("dbGenericPath")%>GenericList.aspx">Refresh</A>
 DBINFO (This page is designed for administrators, please use with care):
@@ -312,7 +312,7 @@ VIEW:
 EDIT:
 <A HREF="<%=Session("dbGenericPath")%><%=strEditor%>?<%=strLink%>">Edit</A>
 DELETE:
-<A HREF="<%= Session("dbGenericPath") %>GenericDelete.asp?<%= strLink %>">Delete</A>
+<A HREF="<%= Session("dbGenericPath") %>GenericDelete.aspx?<%= strLink %>">Delete</A>
 -->
             SAMPLE Field
             <%=xrs("FieldName")%>
@@ -334,7 +334,7 @@ Else
 	PrevStart = intStartRec - intDisplayRecs
 	If PrevStart < 1 Then PrevStart = 1 %>
             <hr size="1">
-            <strong><a href="GenericList.asp?START=<%=PrevStart%>">[&lt;&lt;&nbsp;<%=txtPreviousPage%>]</a></strong></FONT>
+            <strong><a href="GenericList.aspx?START=<%=PrevStart%>">[&lt;&lt;&nbsp;<%=txtPreviousPage%>]</a></strong></FONT>
             <%
 End If
 
@@ -348,7 +348,7 @@ If (intHidePageNumbers = 0) AND (isPrev OR (NOT xrs.EOF)) Then
             <strong><font color="Green">
                 <%=y%></font></strong>
             <% 		Else %>
-            <strong><a href="GenericList.asp?START=<%=x%>">
+            <strong><a href="GenericList.aspx?START=<%=x%>">
                 <%=y%></a></strong>
             <%		End If
 		x = x + intDisplayRecs
@@ -360,7 +360,7 @@ End If
 If NOT xrs.EOF Then
 	NextStart = intStartRec + intDisplayRecs
 	isMore = True %>
-            <strong><a href="GenericList.asp?START=<%=NextStart%>">[<%=txtNextPage%>&nbsp;&gt;&gt;]</a></strong>
+            <strong><a href="GenericList.aspx?START=<%=NextStart%>">[<%=txtNextPage%>&nbsp;&gt;&gt;]</a></strong>
             <% Else
 	isMore = False
 End If %>
@@ -396,7 +396,7 @@ If strSearchFields & "x" <> "x" Then
                 <form action="GenericSearchResult.aspx" method="POST">
                 <tr>
                     <td height="0" bgcolor="WHITE" align="LEFT">
-                        <font size="2" face="<%=strFont%>"><a href="<%=Session("dbGenericPath")%>GenericExit.asp?CMD='Reset'">
+                        <font size="2" face="<%=strFont%>"><a href="<%=Session("dbGenericPath")%>GenericExit.aspx?CMD='Reset'">
                             <%=txtReset%></a>
                             <%=txtSearchFailMsgB%>
                     </td>

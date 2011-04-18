@@ -124,7 +124,7 @@
         'show error that not subcats are existing
         If rs.EOF Then
             'html = getTranslation("Es sind keine weitere Unterkategorien vorhanden.") & "<br />" 
-            '<a href="default.asp?PreKatNr=prePreKatNr">Zurueck??</a>
+            '<a href="default.aspx?PreKatNr=prePreKatNr">Zurueck??</a>
             html = html & SimpleListCategoriesWithParentCats(prePreKatNr, OriginalKatNr, inPageToShow)
             SimpleListCategoriesWithParentCats = html
             Exit Function

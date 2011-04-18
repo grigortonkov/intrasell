@@ -68,21 +68,21 @@ if merch <> "" then
 		butArr(5,1) = "Merchant's List"
 		butArr(5,2) = "adminMerchantsProfile.aspx"
 		butArr(6,1) = "CANCEL"
-		butArr(6,2) = "adminMerchantsProfile.asp?merch=" & merch
+		butArr(6,2) = "adminMerchantsProfile.aspx?merch=" & merch
 	else
 		ReDim butArr(6,2)
 		butArr(5,1) = "Merchant's List"
 		butArr(5,2) = "adminMerchantsProfile.aspx"
 		butArr(6,1) = "Cat Mapping"
-		butArr(6,2) = "genericAsp/tableRedirector_priceCompareImpExCategoryMapping.asp?lieferantNr=" & merch
+		butArr(6,2) = "genericAsp/tableRedirector_priceCompareImpExCategoryMapping.aspx?lieferantNr=" & merch
 	end if	
 else
 	ReDim butArr(4,2)
 end if		
 butArr(1,1) = "Einstellungen"
-butArr(1,2) = "adminMerchantsPayment.asp?merch=" & merch
+butArr(1,2) = "adminMerchantsPayment.aspx?merch=" & merch
 butArr(2,1) = "FTP settings"
-butArr(2,2) = "adminMerchantsFtp.asp?merch=" & merch
+butArr(2,2) = "adminMerchantsFtp.aspx?merch=" & merch
 butArr(3,1) = "Stars"
 butArr(3,2) = "adminMerchantsStars.aspx"
 butArr(4,1) = "New Profile"
@@ -98,11 +98,11 @@ if merch = "" then
 	set rs = ObjConnectionExecute(sql)
 	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsProfile.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
+		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminMerchantsProfile.aspx?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
 		rs.MoveNext
 	wend
 else ' merch <> "" %>
-	<form action="adminMerchantsProfile.asp?merch=<%=merch%>" method="POST" name="ProfileForm" >
+	<form action="adminMerchantsProfile.aspx?merch=<%=merch%>" method="POST" name="ProfileForm" >
 	<%sql = "SELECT  Firma FROM lieferantenAdressen WHERE IDNR = " & merch 
 	set rs = ObjConnectionExecute(sql)
 	merchname = rs("Firma")
@@ -291,7 +291,7 @@ else ' merch <> "" %>
 			Response.Write "<h1><center>Choose a Filiale for " & merchname & "</h1></center>"
 			Response.Write "<table width='80%' align=center cellspacing=0 cellpadding=1 border=1><tr>"
 			while not rsFil.EOF 
-				Response.Write "<tr><td><b><a href=""adminMerchantsProfile.asp?merch=" & merch & "&filiale=" & rsFil("IDNR") & """>" & rsFil("Name") & "</b></a></td>"
+				Response.Write "<tr><td><b><a href=""adminMerchantsProfile.aspx?merch=" & merch & "&filiale=" & rsFil("IDNR") & """>" & rsFil("Name") & "</b></a></td>"
 				Response.Write "<td>" & rsFil("Country") & "</td>"
 				Response.Write "<td>" & rsFil("plz") & "</td>"
 				Response.Write "<td>" & rsFil("Ort") & "</td></tr>"
@@ -403,14 +403,14 @@ else ' merch <> "" %>
 				Response.Write "<tr><td rowspan='" & count & "' valign='top' width='10%' bgcolor=""#6699FF"" ><b>Filialen:</b></td>"
 				Response.Write "<td width='4%'>1.</td><td  width='26%'>" & rsFil("name")& "</td><td width='20%'>"
 				Response.Write rsFil("Country") & "</td><td width='5%'>" & rsFil("plz") & "</td><td width='20%'>" & rsFil("Ort") & "</td><td width='15%'>"
-				call DrawButton( "DeleteFiliale", "Delete", "adminMerchantsProfile.asp?merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
+				call DrawButton( "DeleteFiliale", "Delete", "adminMerchantsProfile.aspx?merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
 				Response.Write "</td></tr>"
 				rsFil.MoveNext
 				count = 2
 				while not rsFil.EOF 
 					Response.Write "<tr><td>" & count & ".</td><td>" & rsFil("name")& "</td><td>" 
 					Response.Write rsFil("Country") & "</td><td>" & rsFil("plz") & "</td><td>" & rsFil("Ort") & "</td><td>"
-					call DrawButton( "DeleteFiliale", "Delete", "adminMerchantsProfile.asp?merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
+					call DrawButton( "DeleteFiliale", "Delete", "adminMerchantsProfile.aspx?merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
 					Response.Write "</td></tr>"
 					rsFil.MoveNext
 					count = count + 1

@@ -6,7 +6,7 @@ Dim showClosedOrders : showClosedOrders = request("showClosedOrders"): if showCl
 %>
 <h3>
     <%=getNameFor(OrderType)%>
-    [<a href="../jobs/newOrder.asp?OrderType=<%=OrderType%>"><%=translate("NEW")%></a>]</h3>
+    [<a href="../jobs/newOrder.aspx?OrderType=<%=OrderType%>"><%=translate("NEW")%></a>]</h3>
 <table border="1" width="800" cellspacing="0">
     <tr>
         <th width="25%" align="center" nowrap>

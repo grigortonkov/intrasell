@@ -91,8 +91,8 @@ if merch <> "" then
 <h2>Not imported Prices of&nbsp; <%=merch%></h2>
 
 <p>Aktionen: 
-<a href="merchantsOpenPricesList.asp?impID=all&merch=<%=merch%>">Import All&nbsp;</a>&nbsp;&nbsp; 
-<a href="merchantsOpenPricesList.asp?delID=all&merch=<%=merch%>">Delete All</a></p>
+<a href="merchantsOpenPricesList.aspx?impID=all&merch=<%=merch%>">Import All&nbsp;</a>&nbsp;&nbsp; 
+<a href="merchantsOpenPricesList.aspx?delID=all&merch=<%=merch%>">Delete All</a></p>
 <table border="1" width="100%" height="21">
   <tr>
     <td width="20%" height="19">Id</td>
@@ -104,8 +104,8 @@ if merch <> "" then
 	csValues = Split( rsImp("Line" ), ";" )%>
   <tr>
     <td width="20%" height="1">
-    <a href="merchantsOpenPricesList.asp?impID=<%=rsImp("ID")%>&merch=<%=merch%>">Import</a>&nbsp; 
-    <a href="merchantsOpenPricesList.asp?delID=<%=rsImp("ID")%>&merch=<%=merch%>">Del</a></td>
+    <a href="merchantsOpenPricesList.aspx?impID=<%=rsImp("ID")%>&merch=<%=merch%>">Import</a>&nbsp; 
+    <a href="merchantsOpenPricesList.aspx?delID=<%=rsImp("ID")%>&merch=<%=merch%>">Del</a></td>
     <td width="40%" height="1"><%=csValues(0)%></td>
     <td width="20%" height="1" align="right"><%=FormatNumber(csValues(1),2)%></td>
     <td width="20%" height="1"><%=rsImp("FromDate")%></td>

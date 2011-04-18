@@ -141,17 +141,17 @@ if request("exec") = "Update" then
 		end if
 	end if
 end if
-    %>
-    <%
-Dim butArr(4,2)
+ 
+Dim butArr as String(,)
+Redim butArr (4,2)
 butArr(1,1) = getTranslation("Konvertieren")
 butArr(2,1) = getTranslation("Druck")
 butArr(3,1) = getTranslation("Neu")
 butArr(4,1) = getTranslation("Löschen")
-butArr(1,2) = "convertFromTo.asp?fromNummer=" & Nummer & "&From=" & OrderType
-butArr(2,2) = "printPreviewOrder.asp?nummer=" & nummer & "&OrderType=" & OrderType & """ target=""_new"
-butArr(3,2) = "newOrder.asp?OrderType=" & OrderType
-butArr(4,2) = "deleteOrder.asp?OrderNummer=" & nummer  & "&OrderType=" & OrderType
+butArr(1,2) = "convertFromTo.aspx?fromNummer=" & Nummer & "&From=" & OrderType
+butArr(2,2) = "printPreviewOrder.aspx?nummer=" & nummer & "&OrderType=" & OrderType & """ target=""_new"
+butArr(3,2) = "newOrder.aspx?OrderType=" & OrderType
+butArr(4,2) = "deleteOrder.aspx?OrderNummer=" & nummer  & "&OrderType=" & OrderType
     %>
-    <%call drawButtonLine(butArr)%>
+    <%= drawButtonLine(butArr)%>
     <%call showOrder(OrderType, nummer)%>

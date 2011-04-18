@@ -13,5 +13,5 @@
     Export="ON"
     Filename="Preise.txt"
     
-    response.redirect "../../intrasoft/runSqlSelect.asp?Export=ON&Filename=" & Filename & "&SQLString="&sql
+    response.redirect "../../intrasoft/runSqlSelect.aspx?Export=ON&Filename=" & Filename & "&SQLString="&sql
 %>
