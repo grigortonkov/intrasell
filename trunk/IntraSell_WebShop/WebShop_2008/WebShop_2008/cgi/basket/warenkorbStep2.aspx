@@ -12,7 +12,7 @@
         Dim KundNrStep2 As Long 
         KundNrStep2 = authenticate(Request("EmailOld"), Request("PasswordOld")) 'stops processing on this page if not proper authenitification !!!
         If KundNrStep2 <> -1 Then ' OK
-            Response.Redirect("default.aspx?pageToShow=warenkorbStep3&EmailOld=" & Request("EmailOld") & "&PasswordOld=" & Request("PasswordOld"))
+            Response.Redirect("default.aspx?pageToShow=warenkorbStep3&EmailOld=" & Request("EmailOld") & "&PasswordOld=" & Replace(Request("PasswordOld"), "#", "RRAAUUTTEE"))
         Else
             Response.Write(getTranslation("Ihre Angaben sind nicht korrekt!"))
         End If
