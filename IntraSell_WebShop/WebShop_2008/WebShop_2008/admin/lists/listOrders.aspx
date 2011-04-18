@@ -1,8 +1,9 @@
 <!--#include virtual="/intrasoft/menu.aspx"-->
 <%
-Dim OrderType: OrderType = Request("OrderType")
-Dim tableNameOrders: tableNameOrders = getNameForTable(OrderType)
-Dim showClosedOrders : showClosedOrders = request("showClosedOrders"): if showClosedOrders ="" then showClosedOrders = "0"
+Dim OrderType as String = Request("OrderType")
+Dim tableNameOrders as String = getNameForTable(OrderType)
+Dim showClosedOrders as String = request("showClosedOrders"): if showClosedOrders ="" then showClosedOrders = "0"
+if showClosedOrders ="1" then showClosedOrders = "-1" 'For MySQL 
 %>
 <h3>
     <%=getNameFor(OrderType)%>
@@ -52,7 +53,7 @@ Dim showClosedOrders : showClosedOrders = request("showClosedOrders"): if showCl
 
 Dim sql: sql = "SELECT * FROM " & tableNameOrders  & _ 
 		" WHERE anElba=" & showClosedOrders & _ 
-		" Order BY Datum desc, Nummer desc" 
+		" Order BY Datum desc, Nummer desc Limit 100" 
 		
 'response.write sql
 dim rs = ObjConnectionExecute(sql)
