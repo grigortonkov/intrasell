@@ -21,12 +21,12 @@ if merch = "" then
 	set rs = ObjConnectionExecute(sql)
 	Response.Write "<b> Select a merchant from the list : <b><br /> "
 	While not rs.EOF
-'		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminImportedPrices.asp?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
-		%>&nbsp;&nbsp;&nbsp;<A href="adminImportedPrices.asp?merch=<%=rs("IDNR")%>"><b><%=rs("Firma")%></b></a><br /><%
+'		Response.Write "&nbsp;&nbsp;&nbsp;<A href=""adminImportedPrices.aspx?merch=" & rs("IDNR") & """><b>" & rs("Firma") & "</b></a><br />"
+		%>&nbsp;&nbsp;&nbsp;<A href="adminImportedPrices.aspx?merch=<%=rs("IDNR")%>"><b><%=rs("Firma")%></b></a><br /><%
 		rs.MoveNext
 	wend
 else ' merch <> ""
-	Response.Redirect "genericasp/tableRedirector_lieferantenArtikel_Preise.asp?LieferantNr=" & merch
+	Response.Redirect "genericasp/tableRedirector_lieferantenArtikel_Preise.aspx?LieferantNr=" & merch
 end if
 rs.close
 set rs = nothing

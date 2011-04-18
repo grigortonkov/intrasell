@@ -147,11 +147,11 @@ Response.AddHeader ("Cache-Control", "no-cache")
                                     <font size="3" face="<%=strFont%>" color="<%=strMenuTextColor%>"><a href="<%=Session("dbViewPage")%>">
                                         <%=txtBackToList%></a>
                                         <% 		If (Session("dbCanEdit") = 1)  and Session("dbKey") > 0 Then %>
-                                        &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=Session("dbGenericPath")%>GenericEdit.asp?KEY=<%=aFields(Session("dbKey"),4)%>">
+                                        &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=Session("dbGenericPath")%>GenericEdit.aspx?KEY=<%=aFields(Session("dbKey"),4)%>">
                                             <%=txtEdit%></a>
                                         <% 		End If %>
                                         <% 		If IsSubTable Then %>
-                                        &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=Session("dbGenericPath")%>GenericExit.asp?KEY=<%=aFields(Session("dbKey"),4)%>">
+                                        &nbsp;&nbsp;|&nbsp;&nbsp; <a href="<%=Session("dbGenericPath")%>GenericExit.aspx?KEY=<%=aFields(Session("dbKey"),4)%>">
                                             <%=arrSubTable(0)%></a>
                                         <% 		End If %>
                                 </td>

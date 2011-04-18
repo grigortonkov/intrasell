@@ -1,7 +1,7 @@
 <!--#include file="../client/intrasoft/menu.aspx"-->
 <%Dim butArr(3,2)
 butArr(3,1) = "more Product functions"
-butArr(3,2) = "genericAsp/tableRedirector_grArtikel.asp?KatNr=" & Request("KatNr")
+butArr(3,2) = "genericAsp/tableRedirector_grArtikel.aspx?KatNr=" & Request("KatNr")
 butArr(2,1) = "Edit Category"
 butArr(2,2) = "adminCategories.aspx"
 butArr(1,1) = "Keywords"
@@ -195,12 +195,12 @@ else
 
 			'quString="&order=" & sortBy & "&desc=" & desc & "&searchStr=" & searchStr				
 			if start > 1 then
-				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & start - 20 & quString & "'>[&lt;&lt;&nbsp;Previous&nbsp;]</A></STRONG>"
+				Response.Write "<STRONG><A HREF='adminProdukts.aspx?start=" & start - 20 & quString & "'>[&lt;&lt;&nbsp;Previous&nbsp;]</A></STRONG>"
 			end if	
 			i=1
 			j = 1
 			while i < start
-				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG><br />"
+				Response.Write "<STRONG><A HREF='adminProdukts.aspx?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG><br />"
 				i = i + 20
 				j= j + 1
 			wend 
@@ -210,12 +210,12 @@ else
 			i = i + 20
 			j = j + 1
 			while i < count
-				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG>"
+				Response.Write "<STRONG><A HREF='adminProdukts.aspx?start=" & i & quString & "'>" & j & "</A>&nbsp;</STRONG>"
 				i = i + 20
 				j= j + 1
 			wend 
 			if ( start + 20 ) < count then
-				Response.Write "<STRONG><A HREF='adminProdukts.asp?start=" & start + 20 & quString & "'>[&nbsp;Next&nbsp;&gt;&gt;]</A></STRONG>"
+				Response.Write "<STRONG><A HREF='adminProdukts.aspx?start=" & start + 20 & quString & "'>[&nbsp;Next&nbsp;&gt;&gt;]</A></STRONG>"
 			end if	
 		end if	
 		%>

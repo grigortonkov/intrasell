@@ -93,7 +93,7 @@ ElseIf Request.QueryString("CMD").Count > 0 Then
 		Case "SEARCH"
 			Action = "Search"
 			strDisplay = Session("dbSearchFields")	
-			FormAction = "GenericSearchResult.asp?SearchAction=FULL"
+			FormAction = "GenericSearchResult.aspx?SearchAction=FULL"
 			SubmitValue = txtSearch
 			strKeyField = ""
 			IsSearch = True

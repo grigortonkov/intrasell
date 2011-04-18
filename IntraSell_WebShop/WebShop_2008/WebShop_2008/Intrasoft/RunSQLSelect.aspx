@@ -81,7 +81,7 @@
         ''
         If InStr(UCase(SQLString), "FROM") > 0 And showDelete Then%>
     <%Dim deleteAllSQL : deleteAllSQL = "DELETE " & Mid(SQLString, InStr(UCase(SQLString), "FROM"))%>
-    <font color="red"><a href="runSQlSelect.asp?SQLString=<%=deleteAllSQL%>">DELETE ALL
+    <font color="red"><a href="runSQlSelect.aspx?SQLString=<%=deleteAllSQL%>">DELETE ALL
         SELECTED ROWS!</a> </font>
     <%End If%>
     <p>
@@ -146,7 +146,7 @@
                                 Trim(rs.fields(0).name) & "=" & Trim(rs.fields(0).value)
                 htmlline = htmlline & "<TD>"
                 If showDelete Then
-                    htmlline = htmlline & "<A HREF=admin.asp?delete_query=" & delete_query & "> DELETE </A>"
+                    htmlline = htmlline & "<A HREF=admin.aspx?delete_query=" & delete_query & "> DELETE </A>"
                 End If
                 htmlline = htmlline & "</TD>"
                 fileLine = ""

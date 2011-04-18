@@ -17,7 +17,8 @@ if OrderTypeTo  = "" then
         <h2>
             <%=getTranslation(OrderTypeFrom)%>&nbsp;<%=getTranslation("Convert")%></h2>
         <%
-Dim butArr(5,2)
+Dim butArr as String(,) 
+ReDim butArr(5,2)
 butArr(1,1) = getTranslation("Angebot")
 butArr(2,1) = getTranslation("Auftrag")
 butArr(3,1) = getTranslation("Lieferschein")

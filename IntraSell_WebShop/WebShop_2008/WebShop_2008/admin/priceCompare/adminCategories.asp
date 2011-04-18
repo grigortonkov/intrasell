@@ -53,25 +53,25 @@ if idKat <> "" then
 	ReDim butArr(5,2)
 	if edit = "" then 
 		butArr(5,1) = "SubCategories"
-		butArr(5,2) = "adminCategories.asp?KatNr=" & idKat & "&edit=Sub"
+		butArr(5,2) = "adminCategories.aspx?KatNr=" & idKat & "&edit=Sub"
 		butArr(4,1) = "Create New SubCategory"
-		butArr(4,2) = "adminCategories.asp?KatNr=" & idKat & "&edit=New"
+		butArr(4,2) = "adminCategories.aspx?KatNr=" & idKat & "&edit=New"
 	else	
 		butArr(5,1) = "Edit Category"
-		butArr(5,2) = "adminCategories.asp?KatNr=" & idKat
+		butArr(5,2) = "adminCategories.aspx?KatNr=" & idKat
 		butArr(4,1) = "Create New SubCategory"
-		butArr(4,2) = "adminCategories.asp?KatNr=" & idKat & "&edit=New&From=Sub"
+		butArr(4,2) = "adminCategories.aspx?KatNr=" & idKat & "&edit=New&From=Sub"
 	end if	
 	butArr(3,1) = "Categories List"
 	butArr(3,2) = "adminCategories.aspx"
 	butArr(1,1) = "Keywords"
-	butArr(1,2) = "adminCategoriesKeywords.asp?KatNr=" & idKat
+	butArr(1,2) = "adminCategoriesKeywords.aspx?KatNr=" & idKat
 	butArr(2,1) = "Show Products"
-	butArr(2,2) = "adminProdukts.asp?KatNr=" & idKat
+	butArr(2,2) = "adminProdukts.aspx?KatNr=" & idKat
 else
 	ReDim butArr(3,2)
 	butArr(3,1) = "Create New"
-	butArr(3,2) = "adminCategories.asp?Edit=New"
+	butArr(3,2) = "adminCategories.aspx?Edit=New"
 	butArr(2,1) = "Show Products"
 	butArr(2,2) = "adminProdukts.aspx"
 	butArr(1,1) = "Keywords"
@@ -162,14 +162,14 @@ if Request("AddSubButton") <> "" then
 		Response.Redirect("adminCategoriesKeywords.aspx")
 	end if
 	if request("From") = "Sub" then 
-		Response.Redirect("adminCategories.asp?KatNr=" & idKat & "&Edit=Sub" )
+		Response.Redirect("adminCategories.aspx?KatNr=" & idKat & "&Edit=Sub" )
 	end if		
 end if	
 
 if request("CancelButton") <> "" then
 	idKat = ""
 end if	
-Response.Write "<form name=""CategoriesForm"" action=""adminCategories.asp?KatNr=" & idKat & "&edit=" & edit & """ method=""POST"">" &  CHR(13) & CHR(10)
+Response.Write "<form name=""CategoriesForm"" action=""adminCategories.aspx?KatNr=" & idKat & "&edit=" & edit & """ method=""POST"">" &  CHR(13) & CHR(10)
 if idKat <> ""  then
 	sql = "SELECT  Name FROM [grArtikel-Kategorien] WHERE ArtKatNr = " & idKat	
 	set rsKat = ObjConnectionExecute(sql)
@@ -332,7 +332,7 @@ Sub DisplayCategoryInTab (txtDisplay, intLevel, idKat , qustr, page, grParent )
 	Next
 	Response.Write "<a href = """ & page & "?KatNr=" & idKat & qustr & """>" & (Trim(txtDisplay)) & "</a>"
 	Response.Write "</td>"  & CHR(13) & CHR(10) & "<td align='center'>"
-	call DrawButton( "DelSubButton", "Delete", "adminCategories.asp?KatNr=" & grParent & "&edit=Sub&DeleteButton=" & idKat, "white" )
+	call DrawButton( "DelSubButton", "Delete", "adminCategories.aspx?KatNr=" & grParent & "&edit=Sub&DeleteButton=" & idKat, "white" )
 	Response.Write "</td></tr>"  & CHR(13) & CHR(10)
 End Sub
 

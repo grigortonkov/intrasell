@@ -22,11 +22,12 @@
 <!--#include virtual="/cgi/functionsProductsQuery.aspx"-->
 <!--#include virtual="/cgi/functionsProductsLists.aspx"-->
 <!--#include virtual="/cgi/functionsProductsPrint.aspx"-->
-
+ 
 <!--#include virtual="/cgi/functionsTemplate.aspx"-->
 
 <!--#include virtual="/cgi/functionsOrderInvoice.aspx"-->
 <!--#include virtual="/cgi/functionsOrderInvoiceDisplay.aspx"-->
+<!--#include virtual="/cgi/functionsOrderInvoicePrintASP.aspx"-->
 <!--#include virtual="/cgi/functionsProfile.aspx"-->
 <!--#include virtual="/cgi/functionsGutschein.aspx"-->
 <!--#include virtual="/cgi/functionsLieferanten.aspx"-->

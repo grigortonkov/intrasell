@@ -27,40 +27,40 @@ merch = request("merch")
 Select case edit
 	case "stars"
 		butArr(1,1) = "Profile"
-		butArr(1,2) = "adminMerchants.asp?edit=Profile"
+		butArr(1,2) = "adminMerchants.aspx?edit=Profile"
 		butArr(2,1) = "Einstellungen"
-		butArr(2,2) = "adminMerchants.asp?edit=Payments"
+		butArr(2,2) = "adminMerchants.aspx?edit=Payments"
 		butArr(3,1) = "FTP settings"
-		butArr(3,2) = "adminMerchants.asp?edit=ftp"
+		butArr(3,2) = "adminMerchants.aspx?edit=ftp"
 		call drawWindowPart1("Admin Merchants Stars","","state",butArr)
 	case "Profile"
 		butArr(1,1) = "Einstellungen"
-		butArr(1,2) = "adminMerchants.asp?edit=Payments&merch=" & merch
+		butArr(1,2) = "adminMerchants.aspx?edit=Payments&merch=" & merch
 		butArr(2,1) = "FTP settings"
-		butArr(2,2) = "adminMerchants.asp?edit=ftp&merch=" & merch
+		butArr(2,2) = "adminMerchants.aspx?edit=ftp&merch=" & merch
 		butArr(3,1) = "Stars"
-		butArr(3,2) = "adminMerchants.asp?edit=stars"
+		butArr(3,2) = "adminMerchants.aspx?edit=stars"
 		butArr(4,1) = "New Profile"
 		butArr(4,2) = "adminMerchantsCreateNew.aspx"
 		call drawWindowPart1("Admin Merchants Profile","","state",butArr)	
 	case "Payments"
 		butArr(1,1) = "Profile"
-		butArr(1,2) = "adminMerchants.asp?edit=Profile&merch=" & merch
+		butArr(1,2) = "adminMerchants.aspx?edit=Profile&merch=" & merch
 		butArr(2,1) = "FTP settings"
-		butArr(2,2) = "adminMerchants.asp?edit=ftp&merch=" & merch
+		butArr(2,2) = "adminMerchants.aspx?edit=ftp&merch=" & merch
 		butArr(3,1) = "Stars"
-		butArr(3,2) = "adminMerchants.asp?edit=stars"
+		butArr(3,2) = "adminMerchants.aspx?edit=stars"
 		call drawWindowPart1("Admin Merchants Payment Settings","","state",butArr)	
 	case "ftp"
 		ReDim butArr(4,2)
 		butArr(1,1) = "Profile"
-		butArr(1,2) = "adminMerchants.asp?edit=Profile&merch=" & merch
+		butArr(1,2) = "adminMerchants.aspx?edit=Profile&merch=" & merch
 		butArr(2,1) = "Einstellungen"
-		butArr(2,2) = "adminMerchants.asp?edit=Payments&merch=" & merch
+		butArr(2,2) = "adminMerchants.aspx?edit=Payments&merch=" & merch
 		butArr(3,1) = "Stars"
-		butArr(3,2) = "adminMerchants.asp?edit=stars"
+		butArr(3,2) = "adminMerchants.aspx?edit=stars"
 		butArr(4,1) = "Get Prices"
-		butArr(4,2) = "adminGetPrices.asp?merch=" & merch
+		butArr(4,2) = "adminGetPrices.aspx?merch=" & merch
 		
 		call drawWindowPart1("Admin Merchants FTP Setting","","state",butArr)	
 	end select	
@@ -98,7 +98,7 @@ if merch = "" then
 		sql = " SELECT  lieferantenAdressen.*, priceCompareHaendler.Stars FROM lieferantenAdressen " & _
 			  " INNER JOIN priceCompareHaendler ON  lieferantenAdressen.IDNR =priceCompareHaendler.lieferantNr "
 		set rs = ObjConnectionExecute(sql)
-		Response.Write "<form action=""adminMerchants.asp?edit=stars"" method=""POST"" id='Starsform' name='Starsform'>" 
+		Response.Write "<form action=""adminMerchants.aspx?edit=stars"" method=""POST"" id='Starsform' name='Starsform'>" 
 		Response.Write "<input type='hidden' name='merch'>"
 		Response.Write "<center><table border='1' width='70%'>"
 		Response.Write "<tr><td colspan='3' align='center'><b><h3>Edit merchant's stars</h3></b></td></tr>"
@@ -259,7 +259,7 @@ else ' merch <> ""
 				end if
 				sql = "SELECT * FROM lieferantenAdressen WHERE IDNR = " & merch 
 				set rs = ObjConnectionExecute(sql)
-				Response.Write "<form action=""adminMerchants.asp?edit=Profile&merch=" & merch & """ method=POST id='form1' name='form1'>"
+				Response.Write "<form action=""adminMerchants.aspx?edit=Profile&merch=" & merch & """ method=POST id='form1' name='form1'>"
 				if request("CreateButton") <> "" then ' empty form for new filialen					
 				%>				
 					<h1><center>Create new Filiale for <%=merchname%></h1></center>
@@ -334,7 +334,7 @@ else ' merch <> ""
 					Response.Write "<table width='80%' align=center cellspacing=0 cellpadding=1 border=1><tr>"
 					Response.Write "<th>Name</th><th>Adresse</th>"
 					while not rsB.EOF 
-						Response.Write "<tr><td><b><a href=""adminMerchants.asp?edit=Profile&merch=" & merch & "&filiale=" & rsB("IDNR") & """>" & rsB("Name") & "</b></a></td>"
+						Response.Write "<tr><td><b><a href=""adminMerchants.aspx?edit=Profile&merch=" & merch & "&filiale=" & rsB("IDNR") & """>" & rsB("Name") & "</b></a></td>"
 						Response.Write "<td>" & rsB("Adresse") & "</td></tr>"
 						rsB.MoveNext
 					wend
@@ -456,12 +456,12 @@ else ' merch <> ""
 					wend
 					rsFil.MoveFirst
 					Response.Write "<tr><td rowspan='" & count & "' valign='top' width='10%'><b>Filialen:</b></td><td width='40%'>" & rsFil("name")& "</td><td width='40%'>" & rsFil("adresse") & "</td><td>"
-					call DrawButton( "DeleteFiliale", "Delete", "adminMerchants.asp?edit=Profile&merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
+					call DrawButton( "DeleteFiliale", "Delete", "adminMerchants.aspx?edit=Profile&merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
 					Response.Write "</td></tr>"
 					rsFil.MoveNext
 					while not rsFil.EOF 
 						Response.Write "<tr><td width='40%'>" & rsFil("name")& "</td><td width='40%'>" & rsFil("adresse") & "</td><td>"
-						call DrawButton( "DeleteFiliale", "Delete", "adminMerchants.asp?edit=Profile&merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
+						call DrawButton( "DeleteFiliale", "Delete", "adminMerchants.aspx?edit=Profile&merch=" & merch & "&delete=" & rsFil("ID"), "#000000" )
 						Response.Write "</td></tr>"
 						rsFil.MoveNext
 					wend
@@ -544,7 +544,7 @@ else ' merch <> ""
 				wend 
 				
 			end if	%>
-			<form action="adminMerchants.asp?edit=Payments&merch=<%=merch%>" method=post id=form2 name=form2>      
+			<form action="adminMerchants.aspx?edit=Payments&merch=<%=merch%>" method=post id=form2 name=form2>      
 			<h1><center>Payment & Delivery settings for <%=merchname%></h1></center>
 			<table align=center border=1 cellspacing=0 cellpadding=0 width="60%">
 			<tr><td colspan=2 align=middle bgcolor=#d0d0d0> Current settings</td></tr>
@@ -637,7 +637,7 @@ else ' merch <> ""
 			sql = " SELECT * FROM [priceCompareHaendler] WHERE LieferantNr = " & merch
 			set rs = ObjConnectionExecute(sql)
 		%>
-			<form action="adminMerchants.asp?edit=ftp&merch=<%=merch%>" method=post id=form3 name=form3>
+			<form action="adminMerchants.aspx?edit=ftp&merch=<%=merch%>" method=post id=form3 name=form3>
 			<h1><center>Upload settings for <%=merchname%></h1></center>
 			<table align=center cellspacing=0 cellpadding=5 border=0>
 			<tr>

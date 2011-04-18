@@ -35,7 +35,7 @@ if merch = "" then
 	  %>
 	  <h1>Import open Prices ... </h1><%
 		while not rs.EOF
-			Response.Write "<a href=""adminImportPrices.asp?merch=" & rs("IDNR") & """><b>[Merchant: " & rs("Firma") & "]</b></a> " & _ 
+			Response.Write "<a href=""adminImportPrices.aspx?merch=" & rs("IDNR") & """><b>[Merchant: " & rs("Firma") & "]</b></a> " & _ 
 			               "[Last Import: " & varValueMerchant(rs("IDNR"), "LAST_SUCCESSFULL_IMPORT") & "]<br />"
 			rs.MoveNext
 		wend
@@ -53,12 +53,12 @@ else
 		butArr(1,1) = "Get Preise"
 		butArr(1,2) = "adminGetPrices.aspx"
 		butArr(2,1) = "Cancel"
-		butArr(2,2) = "adminImportPrices.asp?merch=" & merch
+		butArr(2,2) = "adminImportPrices.aspx?merch=" & merch
 		call drawWindowPart1("Add New Produkt","","state",butArr)
 		
-		Response.Write "<form target=""_blank"" action=""adminImportPrices.asp?addId=" & IDtoAdd & "&KatNr=" & KatNr & "&merch=" & merch & """ method=""POST"" id=""AddForm"" name=""AddForm"">"
+		Response.Write "<form target=""_blank"" action=""adminImportPrices.aspx?addId=" & IDtoAdd & "&KatNr=" & KatNr & "&merch=" & merch & """ method=""POST"" id=""AddForm"" name=""AddForm"">"
 		Response.Write "<center><table border='0' width='80%'><tr><td colspan='4' align='right'>"
-		'Response.Write "<a href=""adminImportPrices.asp?merch=" & merch & """ align=""right""><b>[ Back to Import Page ]"
+		'Response.Write "<a href=""adminImportPrices.aspx?merch=" & merch & """ align=""right""><b>[ Back to Import Page ]"
 		Response.Write "&nbsp;</b></a></td></tr></center>"
 		if katNr <> "" then
 			if request("AddButton") <> "" then 	' Add Button is pressed	
@@ -108,7 +108,7 @@ else
 			    end if        
 			    Session("MANUAL_IMPORT") = ""  
 				 Response.End 
-				'Response.Redirect "adminImportPrices.asp?merch=" & merch
+				'Response.Redirect "adminImportPrices.aspx?merch=" & merch
 			else	
 				Response.Write "<tr align='center'><td colspan='4'><h2>Add new produkt/price</h2></td></tr>"
 				
@@ -189,7 +189,7 @@ else
 
 	
 	
-	Response.Write "<form target=""_blank"" action=""adminImportPrices.asp?merch=" & merch & """ method=""post"" id=""form1"" name=""form1"">"
+	Response.Write "<form target=""_blank"" action=""adminImportPrices.aspx?merch=" & merch & """ method=""post"" id=""form1"" name=""form1"">"
 
 	if IDtoDelete <> "" then
 		if IDtoDelete = "all" then  'delete all
@@ -298,11 +298,11 @@ else
 	else
 		ReDim butArr(4,2)
 		butArr(4,1) = "See Imported"
-		butArr(4,2) = "adminImportedPrices.asp?merch=" & merch
+		butArr(4,2) = "adminImportedPrices.aspx?merch=" & merch
 		butArr(1,1) = "Import All"
-		butArr(1,2) = "adminImportPrices.asp?impID=all&merch=" & merch
+		butArr(1,2) = "adminImportPrices.aspx?impID=all&merch=" & merch
 		butArr(2,1) = "Delete All"
-		butArr(2,2) = "adminImportPrices.asp?delID=all&merch=" & merch
+		butArr(2,2) = "adminImportPrices.aspx?delID=all&merch=" & merch
 		butArr(3,1) = "Merchant's List"
 		butArr(3,2) = "adminImportPrices.aspx"
 		call drawWindowPart1("Import Prices","","state",butArr)
@@ -328,15 +328,15 @@ else
 			Set rsOther = ObjConnectionExecute(sql)			
 			if rsOther.EOF and rsOther.BOF then ' Not in the database
 				Response.Write "<td>[Import]</td>"
-				Response.Write "<td><a href=""adminImportPrices.asp?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"
-				Response.Write "<td><a href=""adminImportPrices.asp?addID=" & rsImp("ID") & "&merch=" & merch 
+				Response.Write "<td><a href=""adminImportPrices.aspx?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"
+				Response.Write "<td><a href=""adminImportPrices.aspx?addID=" & rsImp("ID") & "&merch=" & merch 
 				if csValues(1) <> "" then
 					Response.Write "&KatNr=" & csValues(1)
 				end if	
 				Response.Write """><b>[Add to Database]</b></a></td>"
 			else	
-				Response.Write "<td><a href=""adminImportPrices.asp?impID=" & rsImp("ID") & "&merch=" & merch & """><b>[Import]</b></a></td>"
-				Response.Write "<td><a href=""adminImportPrices.asp?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"
+				Response.Write "<td><a href=""adminImportPrices.aspx?impID=" & rsImp("ID") & "&merch=" & merch & """><b>[Import]</b></a></td>"
+				Response.Write "<td><a href=""adminImportPrices.aspx?delID=" & rsImp("ID") & "&merch=" & merch & """><b>[Delete]</b></a></td>"
 				Response.Write "<td>&nbsp;</td>"
 			end if	
 			'Response.Write "FUCK :" & csValues(6) & "<br />"
