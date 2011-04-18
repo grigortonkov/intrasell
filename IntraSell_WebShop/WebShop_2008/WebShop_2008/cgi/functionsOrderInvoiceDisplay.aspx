@@ -47,7 +47,7 @@
         html = html & "    " & printAddress(rsV("KundNr").Value, OrderType, True, False) & ""
         html = html & "     <br />"
         html = html & "     " & getTranslation("aendern") & ":"
-        html = html & query2list("Select IdNR, '-', Name FROM ofAdressen Order BY IdNR, Name", "newIDNR")
+        html = html & query2list("Select IdNR, '-', Name FROM ofAdressen Order BY IdNR, Name limit 100", "newIDNR")
         html = html & "  </td>"
         html = html & " <td width='262'>&nbsp;</td>"
         html = html & " <td width='304'>"
