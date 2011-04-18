@@ -19,7 +19,7 @@
         landOfCalculation = Session("Land")
 
         EmailStep3 = Request("EmailOld")
-        PasswordStep3 = Request("PasswordOld")
+        PasswordStep3 = Replace(Request("PasswordOld"), "RRAAUUTTEE", "#")
 
         'response.write Email & Password
         'Find Client 
