@@ -1,4 +1,4 @@
-<%
+<% 
     '===========================================================================
     ' Autor: Written and edited by Grigor Tonkov 2001 (R)
     ' See intrasoft.soft-ware.de for last changes. 
@@ -1350,9 +1350,9 @@
         
         Dim absLinkToDefault As String = basename & "/default.aspx"
         absLinkToDefault = Replace(htmlCode, "default.aspx", absLinkToDefault)
-        absLinkToDefault = Replace(absLinkToDefault, "default.aspx?", "default.aspx?")
-        absLinkToDefault = Replace(absLinkToDefault, "default.aspx'", "default.aspx''")
-        makeRelLinksAbsolute = Replace(absLinkToDefault, "default.asp""", "default.aspx""")
+        absLinkToDefault = Replace(absLinkToDefault, "default.asp?", "default.aspx?")
+        absLinkToDefault = Replace(absLinkToDefault, "default.asp'", "default.aspx'")
+        Return Replace(absLinkToDefault, "default.asp""", "default.aspx""")
     End Function
 
  
