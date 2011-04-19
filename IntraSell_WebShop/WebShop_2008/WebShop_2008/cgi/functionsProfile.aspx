@@ -16,6 +16,7 @@
 
     
     Const PASSWORD_LENGTH As Integer = 6
+    Const PASSWORD_LENGTH_MAX As Integer = 50
     Const STATE_NOT_CONFIRMED_CLIENT As String = "Neu"
     Const IDNR_TAG As String = "IDNR"
 
@@ -801,6 +802,8 @@
                     html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
                 End If
                 html = html & getTranslation("Min " & PASSWORD_LENGTH & " Zeichen!")
+                html = html & "&nbsp;"
+                html = html & getTranslation("Max " & PASSWORD_LENGTH_MAX & " Zeichen!")
                 html = html & "</td>"
                 html = html & "</tr>"
 
