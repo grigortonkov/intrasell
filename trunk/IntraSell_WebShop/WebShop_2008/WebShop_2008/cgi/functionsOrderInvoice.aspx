@@ -352,17 +352,15 @@
    
         While Not rsWK.EOF
     
-            Dim stkToOrder As Double : stkToOrder = CDbl(rsWK("Quantity").Value)
-            Dim needsSerialNr : needsSerialNr = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "Seriennummer")
-            Dim einzelpreis As Double
-            'einzelpreis = CDbl(makeNettoPreis(rsWK("ArtNr").Value, stkToOrder, SID))
-            einzelpreis = getPreis(KDNR, rsWK("ArtNr").Value, stkToOrder)
+            Dim stkToOrder As Double = CDbl(rsWK("Quantity").Value)
+            Dim needsSerialNr As String = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "Seriennummer")
+            Dim einzelpreis As Double = getPreis(KDNR, rsWK("ArtNr").Value, stkToOrder)
+            Dim positionNotiz As String = rsWK("Notiz").Value
+            Dim bezeichnung As String = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "bezeichnung")
             
-            Dim bezeichnung : bezeichnung = tablevalue("grArtikel", "ArtNR", rsWK("ArtNr").Value, "bezeichnung")
-            Dim positionNotiz : positionNotiz = rsWK("Notiz").Value
-        
-            bezeichnung = Replace(bezeichnung, "'", "")
             bezeichnung = getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", bezeichnung, Language)
+            bezeichnung = Replace(bezeichnung, "'", "")
+            
             If Not positionNotiz & "" = "" Then
                 bezeichnung = positionNotiz & "; " & bezeichnung
             End If
@@ -370,9 +368,9 @@
             subtotal = subtotal + einzelpreis * stkToOrder
         
             If showdebug() Then
-                Response.Write("Subtotal = " & subtotal)
-                Response.Write("Einzelpreis = " & einzelpreis)
-                Response.Write("StkToOrder = " & stkToOrder)
+                Response.Write("<br/>Subtotal = " & subtotal)
+                Response.Write("<br/>Einzelpreis = " & einzelpreis)
+                Response.Write("<br/>StkToOrder = " & stkToOrder)
             End If
        
             If needsSerialNr & "" = "true" Or needsSerialNr & "" = "-1" Or needsSerialNr & "" = "1" Then ' für jeden Eintrag eine eigene Zeile Erstellen
@@ -430,10 +428,10 @@
             If UCase(VARVALUE_DEFAULT(CALCULATE_PAYMODECOSTS, "TRUE")) = "TRUE" Then
                 If PayMode <> "" Then
                
-                    Dim payModeExpenses As Decimal : payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotal)
-                    Dim paymodeNr As String : paymodeNr = getPaymentModeSpendsArtNR(PayMode, Land)
-                    Dim payModeExpensesMWST As Decimal : payModeExpensesMWST = Math.Round(calculateBruttoPreis(payModeExpenses, paymodeNr, KDNR), 2) 'makeBruttoPreis(payModeExpenses, 2, Land)
-                    Dim ArtBezeichnungForPayMode
+                    Dim payModeExpenses As Decimal = calculatePaymentModeSpends(PayMode, Land, KG, subtotal)
+                    Dim paymodeNr As String = getPaymentModeSpendsArtNR(PayMode, Land)
+                    Dim payModeExpensesMWST As Decimal = Math.Round(calculateBruttoPreis(payModeExpenses, paymodeNr, KDNR), 2) 'makeBruttoPreis(payModeExpenses, 2, Land)
+                    Dim ArtBezeichnungForPayMode As String
                     'ArtBezeichnungForPayMode = CALCULATE_PAYMODECOSTS & "," & PayMode & PayMode
                     ArtBezeichnungForPayMode = tableValue("grArtikel", "EAN", "'" & CALCULATE_PAYMODECOSTS & "'", "Bezeichnung") & "," & PayMode & PayMode
                                                             
@@ -458,10 +456,10 @@
         
         'GUTSCHEIN HANDLING
         If GutscheinNummer <> "" Then
-            Dim gutscheinSumme : gutscheinSumme = -1 * getPreisForGutschein(GutscheinNummer)
-            Dim gutscheinArtNr : gutscheinArtNr = getArtNrForGutschein()
-            Dim gutscheinSummeMWST : gutscheinSummeMWST = makeBruttoPreis(gutscheinSumme, 2, Land)
-            Dim ArtBezeichnungForGutschein : ArtBezeichnungForGutschein = CALCULATE_GUTSCHEIN & "Gutschein Nr:" & GutscheinNummer
+            Dim gutscheinSumme As Double = -1 * getPreisForGutschein(GutscheinNummer)
+            Dim gutscheinArtNr As Integer = getArtNrForGutschein()
+            Dim gutscheinSummeMWST As Double = makeBruttoPreis(gutscheinSumme, 2, Land)
+            Dim ArtBezeichnungForGutschein As String = CALCULATE_GUTSCHEIN & "Gutschein Nr:" & GutscheinNummer
             If gutscheinArtNr > 0 Then
                 gutscheinSumme = Replace(gutscheinSumme, ",", ".")
                 gutscheinSummeMWST = Replace(gutscheinSummeMWST, ",", ".")
@@ -516,9 +514,9 @@
         'WARENKORB RABATT 
         If getBasketDiscount_artnr() <> -1 Then 'rabatt is möglich
             Dim rabattArtNr : rabattArtNr = getBasketDiscount_artnr()
-            Dim rabattBez : rabattBez = tablevalue("grArtikel", "ArtNr", rabattArtNr, "Bezeichnung")
-            Dim rabatt_MWST : rabatt_MWST = -1 * getBasketDiscount_Value(subtotal)
-            Dim rabatt_Value : rabatt_Value = -1 * getBasketDiscount_Value(subtotal)
+            Dim rabattBez As String = tablevalue("grArtikel", "ArtNr", rabattArtNr, "Bezeichnung")
+            Dim rabatt_MWST As Double = -1 * getBasketDiscount_Value(subtotal)
+            Dim rabatt_Value As Double = -1 * getBasketDiscount_Value(subtotal)
                   
                   
             SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
@@ -538,11 +536,11 @@
         While Not rsArt.EOF
             Dim ArtNr : ArtNr = rsArt("ArtNr").Value
             Dim Stk As Double : Stk = rsArt("Stk").Value
-            Dim ArtikelPreisNetto As Double : ArtikelPreisNetto = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
-            Dim ArtikelPreisBrutto As Double : ArtikelPreisBrutto = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
-            Dim ArtikelPreisEK As Double : ArtikelPreisEK = getEKPreis(ArtNr)
-            Dim PosBezeichnung As String : PosBezeichnung = rsArt("Bezeichnung").Value
-            Dim ArtikelEAN As String : ArtikelEAN = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
+            Dim ArtikelPreisNetto As Double = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
+            Dim ArtikelPreisBrutto As Double = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
+            Dim ArtikelPreisEK As Double = getEKPreis(ArtNr)
+            Dim PosBezeichnung As String = rsArt("Bezeichnung").Value
+            Dim ArtikelEAN As String = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
             Dim ArtikelBezeichnung As String
             
             'ArtikelBezeichnung = tableValue("grArtikel", "ArtNR", ArtNR, "Bezeichnung")
@@ -550,7 +548,7 @@
             'ArtikelBezeichnung = getTranslationDok("grArtikel" , ArtNR, "Bezeichnung", ArtikelBezeichnung , Language)
     
             'Add LieferNr. to Bezeichung for mecom
-            Dim LieferantenArtikelNr : LieferantenArtikelNr = tableValue("[lieferantenArtikel-Preise]", "ArtikelNR", ArtNr, "ArtikelNrLieferant")
+            Dim LieferantenArtikelNr As String = tableValue("[lieferantenArtikel-Preise]", "ArtikelNR", ArtNr, "ArtikelNrLieferant")
     
             If InStr(LieferantenArtikelNr, "vorhanden") <= 0 Then 'ist vorhanden
                 ArtikelBezeichnung = ArtikelBezeichnung & " [" & LieferantenArtikelNr & "]"
@@ -597,15 +595,15 @@
 
         'UPDATE SUMME VOM AUFTRAG
         Dim sqlUpdateAuftrag As String
-        Dim sqlSumme As String : sqlSumme = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
+        Dim sqlSumme As String = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
                                     " SUM(Stk*(PreisATS_Brutto-PreisATS))  as summeMwst, " & _
                                     " SUM(Stk*PreisATS_Brutto)  as summeBrutto  " & _
                                     " FROM [" & tableName & "-artikel] where RechNr = " & AuftragNr
         Dim rsSumme : rsSumme = objConnectionExecute(sqlSumme)
     
-        Dim Summe As Double : Summe = rsSumme("summe").Value & ""
-        Dim SummeMWST As Double : SummeMWST = rsSumme("SummeMWST").Value & ""
-        Dim SummeBrutto As Double : SummeBrutto = rsSumme("SummeBrutto").Value & ""
+        Dim Summe As Double = rsSumme("summe").Value & ""
+        Dim SummeMWST As Double = rsSumme("SummeMWST").Value & ""
+        Dim SummeBrutto As Double = rsSumme("SummeBrutto").Value & ""
         sqlUpdateAuftrag = "UPDATE " & tableName & _
                            " SET Summe =" & Replace(Summe, ",", ".") & _
                            ", SummeMWST =" & Replace(SummeMWST, ",", ".") & _
