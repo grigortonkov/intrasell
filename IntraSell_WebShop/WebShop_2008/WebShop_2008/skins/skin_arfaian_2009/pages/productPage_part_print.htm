@@ -1,0 +1,120 @@
+
+
+<!-- MAIN PRODUCT FEATURES -->
+<form action="default.aspx" method="get" id=formWaren name=formWaren>
+<input type="hidden" name="pageToShow" value="PutInWarenkorb">
+<div align="left">
+<table border="1" border="1" style="border-width:0; border-collapse: collapse" width="600" id="AutoNumber1" cellspacing="1" bordercolor="#FFFFFF" height="235">
+  <tr>
+    <td width="490" height="17" align="left"  colspan="2"></td>
+  </tr>
+  <tr>
+    <input type="hidden" name="ProduktId" value="[ArtNr]">
+    <td width="490" height="17" align="left" colspan="2">Bezeichnung <b>::</b> <b><font color="#FF6900">[Bezeichnung]</font></b>
+    [makeReviewStars]
+    </td>
+  </tr>
+  <tr>
+    <td width="490" height="34" align="left" colspan="2">
+    <span style="font-weight: 400">Hersteller
+    </span><span style="font-weight: 700">:: <font color="#FF6900"> [Firma]</font> </span> Logo:[makeImgTagFirma], Web: [HerstellerLink]</td>
+  </tr>
+  <tr>
+    <td width="147" height="72" align="left" >
+  &nbsp;  
+  [makeImgTag]
+
+ 
+ </td>
+    <td width="343" height="72"  valign="top">
+      <table border="0" style="border-collapse: collapse; border-width: 0" bordercolor="#CECFCE" width="116%" id="AutoNumber2" height="64" cellspacing="1">
+        <tr>
+          <td width="60%"  height="17" align="right">
+          <p align="right"><font face="verdana,arial,helvetica" size="1">
+          <span style="font-weight: 400">Preis</span></font> <b>::</b><span style="font-weight: 700">&nbsp; </span> </td>
+ <center>
+<center>
+          <td width="67%"  height="17"><font size="2"><b>
+          <font face="Verdana" color="#10205A">€</font>
+          <font face="Verdana" color="#FF6900" size="2">[makeBruttoPreis] </font>
+          <font face="Verdana" color="#008000" size="2">[herstellerRabatt]<br />
+          </font><font face="Verdana" color="#008000" size="2">[herstellerRabattText]</font></b></font></td>
+        </tr>
+          </center></center>
+        <tr>
+          <td width="60%"  height="16" align="right">
+          <p align="right"><font face="verdana,arial,helvetica" size="1">
+          <span style="font-weight: 400">Artikel Nummer</span></font> <b>::&nbsp;</b></td>
+ <center>
+<center>
+          <td width="67%"  height="16">
+          [ArtNr]</td>
+</tr>
+          </center></center>
+        <tr>
+          <td width="60%"  height="16" align="right">
+          <p align="right"><font face="verdana,arial,helvetica" size="1">
+          <span style="font-weight: 400"> Nummer des Herstellers</span></font>
+          <b>::&nbsp;</b></td>
+ <center>
+<center>
+          <td width="67%"  height="16">
+          [EAN]</td>
+        </tr>
+          </center></center>
+        <tr>
+          <td width="60%"  height="16" align="right">
+          <p align="right"><font face="verdana,arial,helvetica" size="1">
+          <span style="font-weight: 400">Lager Info</span></font>  <b>::&nbsp;</b></td>
+ <center>
+<center>
+          <td width="67%"  height="16">[Bezeichnung1]</td>
+        </tr>
+        
+        
+        <tr>
+          <td colspan="2" width="38%"  height="17">
+        <!--ARTIKEL SPEZIAL WAHL-->
+        [createProductSpecialChoice]
+        <!--ARTIKEL SPEZIAL WAHL-->
+          </td>          
+         </tr> 
+       
+        
+          <tr>
+          <td width="60%"  height="17">
+          <p align="center"><font face="verdana,arial,helvetica" size="1">
+          <span style="font-weight: 400">Stk.</span></font>
+    <input type="text" name="QuantityText" size="2" Value = "1" style='Height=20' >
+          </td>
+          
+          
+          
+          
+          
+          <td width="67%"  height="17"> 
+          <input type="image" src="../images/buttons/buy1.gif" value="Buy" name="buy" border="0"></td>
+        </tr>
+      </table>
+</center></center>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+</form>
+
+
+<p>
+Produkt features: [makeListKeywords]</p>
+<p>
+
+Weitere Informationen: [HTMLInfo]&nbsp;</p>
+<p><font face="verdana,arial,helvetica" size="1">
+      <span style="font-weight: 400">Beschreibung:</span></font>[Beschreibung]</p>
+<p>[createStaffelPreiseTable]</p>
+<p>Reviews:[makeReviewsPage]</p>
+
+
+<p>&nbsp;</p>
