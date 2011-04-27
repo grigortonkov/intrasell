@@ -248,7 +248,7 @@
                 End If
  
                 If accountUsed Then
-                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Diese von Ihnen angegebe Emailadresse ist bereits vorhanden!") & "</b><br /></font>"
+                    html = html & "<font id=""ErrorMessage"" color=""red""><b>" & getTranslation("Diese von Ihnen angegebene Email ist bereits vorhanden!") & "</b><br /></font>"
                     '=getTranslation("Hinweis: Bitte mit Email und Passwort anmelden um &Auml;nderungen vorzunehmen!")%></b><br />
                                  
                     If showForm Then Call drawEmptyProfileForm(typeOfAddr, True, getLOGIN())
@@ -265,7 +265,7 @@
         End If
 
         'Find PLZ, ORT
-        Dim NextIDNRPLZ : NextIDNRPLZ = getPLZ(Land, Ort, PLZ)
+        Dim NextIDNRPLZ As String = getPLZ(Land, Ort, PLZ)
 
         Dim typ As String = getTyp(typeOfAddr)
         'PROFILE UPDATE
@@ -543,6 +543,14 @@
 
  
         Dim NextIDNR As Long = NextID("ofAdressen", "IDNR")
+        
+        Try
+            NextIDNR = FIRSTVALUE("SELECT max(idnr) +1 from ofAdressen a , `ofadressen-kundengruppen` g " & _
+                                " where a.idnr between g.KundenNrKreisVon and g.KundenNrKreisBis " & _
+                                " and Gruppe like 'Online'")
+        Catch
+        End Try
+        
         'Create new
         'PROFILE NEW 
         sql = " INSERT INTO " & tableName & " (IDNR, Firma, Anrede, Status, Titel, Name, Vorname, Adresse, PLZ, Email, Tel, Tel2, Passwort ,Land, Branche, AngelegtAn, Mobil, Fax, Web, UID) " & _
