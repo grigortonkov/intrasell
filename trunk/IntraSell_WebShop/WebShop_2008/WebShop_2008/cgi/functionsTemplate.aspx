@@ -239,7 +239,7 @@
   
         'TAG_CATEGORY_SUBLIST_WITHPARENTS
         If InStr(template, TAG_CATEGORY_SUBLIST_WITHPARENTS) > 0 Then 'TAG_CATEGORY_SUBLIST request
-            html = SimpleListCategoriesWithParentCatsFromCache(artKatNr, "default.asp")
+            html = SimpleListCategoriesWithParentCatsFromCache(artKatNr, "default.aspx")
             parseTemplate = parseTemplate(Replace(template, TAG_CATEGORY_SUBLIST_WITHPARENTS, html), artKatNr)
             Exit Function
         End If
