@@ -363,25 +363,29 @@
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
 
-<% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
-        <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
-        &nbsp;
-<% end if %> 
+        <% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
+                <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
+                &nbsp;
+        <% end if %> 
 
-<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
+        <input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_OFFERS", "true") = "true" then %>
         &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();" />
         <%  End If%>
         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER_WITHOUT_REGISTRATION", "true") = "true" then %>
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen ohne Registrierung")%>" onclick="submitOrder();" />
+        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen")%>" onclick="submitOrder();" />
         <%End If%>
+         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER", "true") = "true" Then%>
         &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>" />
+         <% End If%>
     <%Else%>
-        <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>">
+         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER", "true") = "true" Then%>
+        <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>" alt="<%=getTranslation("zur Kasse")%>" />
+         <% End If%>
+
     <%End If%>
 
  <br />
-
 </p>
 </form>
 
