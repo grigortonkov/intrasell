@@ -196,8 +196,10 @@
 %>
 <%  If emptySet Then%>
 <input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
+<% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
 <a href="default.aspx">
     <%=getTranslation("weiter shoppen")%></a>
+<% end if %>
 <%  End If%>
 </form>
 <!-- END WARENKORB UPDATE FORM-->
@@ -208,12 +210,17 @@
 <center>
     <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
         bordercolor="#111111" height="1" width="100%">
-        <tr>
+       
+           <!-- WARENKORB POSTMODE-->
+           <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
+
+          <tr>
             <td colspan="2">
                 <hr />
             </td>
        </tr>
-            <!-- WARENKORB POSTMODE-->
+
+            
             <tr>
                 <th height="21" valign="middle">
                     1.<%=getTranslation("Transport:")%>
@@ -236,14 +243,19 @@
                     %>
                 </td>
             </tr>
+            <%end if%>
             <!-- END WARENKORB POSTMODE-->
+
+           <!--SELECT PLACE OF DELIVERY -->
+            <% If varvalue("CALCULATE_CHANGE_DESTINATION") = "TRUE" Then%>
+
+            <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
             <tr>
                 <td colspan="2">
                     <hr>
                 </td>
             </tr>
-                <!--SELECT PLACE OF DELIVERY -->
-                <% If varvalue("CALCULATE_CHANGE_DESTINATION") = "TRUE" Then%>
+                
                 <tr>
                     <th valign="middle" width="257">
                         2.<%=getTranslation("Destination der Lieferung:")%>
@@ -276,6 +288,9 @@
                         </select>
                     </td>
                 </tr>
+                <%END IF%>
+                
+                <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
                 <tr>
                     <td colspan="2">
                         <hr>
@@ -290,8 +305,11 @@
                             <%=showPossiblePostMethodsAccordungDestination(destination, postMode, paymode)%>
                         </td>
                     </tr>
+                     
                     <!-- END OF DELIVERY -->
-                    <tr>
+                   
+                 <%end if%>
+ <tr>
                         <td colspan="2">
                             <hr>
                         </td>
@@ -344,8 +362,13 @@
 
 <p align="right">
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
+
+<% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
         <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
+        &nbsp;
+<% end if %> 
+
+<input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_OFFERS", "true") = "true" then %>
         &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();" />
         <%  End If%>
