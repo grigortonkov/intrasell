@@ -508,7 +508,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             End If
             
             tableColumns = tableColumns + 1
-            html = html & "<th width=""40"">" & getTranslation("Kaufen") & "</th>"
+            html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
             'html = html & "<th width=""40"">Detail</th>"
             If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
                 tableColumns = tableColumns + 1
@@ -714,7 +714,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & getLagerInfoIcon(ArtNr) & "</td>"
                     End If
                     
-                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Kaufen") & " " & Bezeichnung & "'></a></td>"
+                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Bestellen") & " " & Bezeichnung & "'></a></td>"
                     'html = html & "<td align=""center"" bgcolor=""" & rowColor &"""><a href='default.aspx?ArtNr=" & ArtNr & "'>detail</a></td>"
                     If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ ><input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit""></td>"
