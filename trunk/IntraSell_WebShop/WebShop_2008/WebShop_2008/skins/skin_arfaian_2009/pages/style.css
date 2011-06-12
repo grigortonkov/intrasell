@@ -263,16 +263,17 @@ A.clsMenuItemIE:hover
     PADDING-TOP: 10px;
     LEFT: 220px
 }
-A:link
-{
-}
-.ebos
-{
-}
 .category
 {
     MARGIN-TOP: 2px;
     MARGIN-BOTTOM: 5px;
-    MARGIN-LEFT: 0px;
+    MARGIN-LEFT: 1px;
     FONT-SIZE: 10pt
+}
+ 
+ 
+ul
+{
+    padding-left: 6px;
+    list-style-image: url('../favicon16x16.ico');
 }
