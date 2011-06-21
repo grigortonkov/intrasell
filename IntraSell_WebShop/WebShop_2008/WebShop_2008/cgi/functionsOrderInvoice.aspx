@@ -406,14 +406,11 @@
                     Dim ArtBezeichnungForPostSpends As String
                     'ArtBezeichnungForPostSpends = CALCULATE_POSTCOSTS & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
                     ArtBezeichnungForPostSpends = tableValue("grArtikel", "EAN", "'" & CALCULATE_POSTCOSTS & "'", "Bezeichnung") & "," & PostMode & ", Dest:" & Destination & ", Kg:" & KG
-                                                            
-                    postSpends = Replace(postSpends, ",", ".")
-                    PostExpensesMWST = Replace(PostExpensesMWST, ",", ".")
-                                                            
+                                                                                                                        
                     If IsNumeric(postNr) Then
                         SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
-                              " VALUES (" & AuftragNr & ", " & postNr & ", 1," & postSpends & "," & _
-                              PostExpensesMWST & ",'" & ArtBezeichnungForPostSpends & "')"
+                              " VALUES (" & AuftragNr & ", " & postNr & ", 1," & Replace(postSpends, ",", ".") & "," & _
+                              Replace(PostExpensesMWST, ",", ".") & ",'" & ArtBezeichnungForPostSpends & "')"
                         'response.write "<br />" & sql
                         objConnectionExecute(SQL)
                     Else
@@ -435,13 +432,11 @@
                     'ArtBezeichnungForPayMode = CALCULATE_PAYMODECOSTS & "," & PayMode & PayMode
                     ArtBezeichnungForPayMode = tableValue("grArtikel", "EAN", "'" & CALCULATE_PAYMODECOSTS & "'", "Bezeichnung") & "," & PayMode & PayMode
                                                             
-                    payModeExpenses = Replace(payModeExpenses, ",", ".")
-                    payModeExpensesMWST = Replace(payModeExpensesMWST, ",", ".")
                                                             
                     If IsNumeric(paymodeNr) Then
                         If CLng(paymodeNr) > 0 Then
                             SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
-                                    " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & payModeExpenses & "," & payModeExpensesMWST & _
+                                    " VALUES (" & AuftragNr & ", " & paymodeNr & ", 1," & Replace(payModeExpenses, ",", ".") & "," & Replace(payModeExpensesMWST, ",", ".") & _
                                     ", '" & ArtBezeichnungForPayMode & "')"
                             objConnectionExecute(SQL)
                         End If
@@ -461,12 +456,11 @@
             Dim gutscheinSummeMWST As Double = makeBruttoPreis(gutscheinSumme, 2, Land)
             Dim ArtBezeichnungForGutschein As String = CALCULATE_GUTSCHEIN & "Gutschein Nr:" & GutscheinNummer
             If gutscheinArtNr > 0 Then
-                gutscheinSumme = Replace(gutscheinSumme, ",", ".")
-                gutscheinSummeMWST = Replace(gutscheinSummeMWST, ",", ".")
+ 
                          
                 SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
-                 " VALUES (" & AuftragNr & ", " & gutscheinArtNr & ", 1," & gutscheinSumme & "," & _
-                  gutscheinSummeMWST & ",'" & ArtBezeichnungForGutschein & "')"
+                 " VALUES (" & AuftragNr & ", " & gutscheinArtNr & ", 1," & Replace(gutscheinSumme, ",", ".") & "," & _
+                  Replace(gutscheinSummeMWST, ",", ".") & ",'" & ArtBezeichnungForGutschein & "')"
                 objConnectionExecute(SQL)
             Else
                 Response.Write("<br />" & getTranslation("Gutschein konnte nicht abgerechnet werden!"))
@@ -497,12 +491,11 @@
             Dim mindestBestellmengeBez As String = tablevalue("grArtikel", "ArtNr", mindestBestellmengeArtNr, "Bezeichnung")
                        
             If mindestBestellmengeArtNr > 0 Then
-                mindestBestellmengeSumme = Replace(mindestBestellmengeSumme, ",", ".")
-                mindestBestellmengeMWST = Replace(mindestBestellmengeMWST, ",", ".")
+ 
                          
                 SQL = " INSERT INTO [" & tableName & "-Artikel] (RechNr, ArtNR, Stk, PreisATS, PreisATS_Brutto, Bezeichnung)" & _
-                 " VALUES (" & AuftragNr & ", " & mindestBestellmengeArtNr & ", 1," & mindestBestellmengeSumme & "," & _
-                  mindestBestellmengeMWST & ",'" & mindestBestellmengeBez & "')"
+                 " VALUES (" & AuftragNr & ", " & mindestBestellmengeArtNr & ", 1," & Replace(mindestBestellmengeSumme, ",", ".") & "," & _
+                  Replace(mindestBestellmengeMWST, ",", ".") & ",'" & mindestBestellmengeBez & "')"
                 objConnectionExecute(SQL)
             Else
                 Response.Write("<br />" & getTranslation("Mindestbestellmenge konnte nicht abgerechnet werden!"))
