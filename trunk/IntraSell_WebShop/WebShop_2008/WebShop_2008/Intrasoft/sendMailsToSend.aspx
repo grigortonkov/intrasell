@@ -1,7 +1,7 @@
 <!--#include file="menu.aspx"-->  
 <%
 'Selects the mails from mailsToSend table and sends them over the email server
-Dim MAX_COUNT_MAILS_TO_SEND as Integer = VARVALUE_DEFAULT("MAX_COUNT_MAILS_TO_SEND", 5000)
+Dim MAX_COUNT_MAILS_TO_SEND as Integer = VARVALUE_DEFAULT("MAX_COUNT_MAILS_TO_SEND", 500)
 Dim MAX_ERRORS_TO_STOP as Integer = VARVALUE_DEFAULT("MAX_ERRORS_TO_STOP", 3)
 %>
 <html>
@@ -15,12 +15,12 @@ Important: On 3 errors the mail will be deleted.
 <%   
 Dim SQLString as String, rs_p
 Dim i as Integer
-     SQLString = "SELECT * FROM MailsToSend ORDER BY priority"
+     SQLString = "SELECT * FROM MailsToSend ORDER BY priority, id limit " & MAX_COUNT_MAILS_TO_SEND 
      rs_p = objConnection.Execute(SQLString) 
      IF rs_p.EOF THEN 
      %>
 <font color="#FF0000">
-     Es gibt nichts mehr zu senden ! </font>      
+     Es gibt nichts mehr zu senden! </font>      
      <%
      
      ELSE    
@@ -45,8 +45,8 @@ Dim i as Integer
    Dim errosFound as Integer = 0
  	while  i <= MAX_COUNT_MAILS_TO_SEND
  	 i = i + 1 
-     SQLString = "SELECT * FROM MailsToSend ORDER BY priority"
-    ' Response.write SQL
+     'SQLString = "SELECT * FROM MailsToSend ORDER BY priority"
+     'Response.write SQL
      rs_p = objConnection.Execute(SQLString) 
      
      if not rs_p.EOF THEN 
