@@ -106,6 +106,10 @@ Dim i as Integer
     end if 
     
  	end while
+if i >= MAX_COUNT_MAILS_TO_SEND then 
+Response.Write ("<br/>You have more mails to send. Please run again.<br/>")
+end if 
+
 END IF ' NO MORE MAILS
 %>
 </body>
