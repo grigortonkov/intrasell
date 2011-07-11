@@ -15,7 +15,7 @@ Important: On 3 errors the mail will be deleted.
 <%   
 Dim SQLString as String, rs_p
 Dim i as Integer
-     SQLString = "SELECT * FROM MailsToSend ORDER BY priority, id limit " & MAX_COUNT_MAILS_TO_SEND 
+     SQLString = "SELECT id FROM MailsToSend ORDER BY priority, id limit " & MAX_COUNT_MAILS_TO_SEND 
      rs_p = objConnection.Execute(SQLString) 
      IF rs_p.EOF THEN 
      %>
@@ -39,6 +39,7 @@ Dim i as Integer
      
      <%
    i = 1
+   Dim rsDetail
    Dim mtext as string 
    Dim Recipient, Subject, From_email as String 
    Dim priority as integer
@@ -50,12 +51,15 @@ Dim i as Integer
      rs_p = objConnection.Execute(SQLString) 
      
      if not rs_p.EOF THEN 
+      
         id =  rs_p.fields("Id").Value
-        mtext = rs_p.fields("MailText").Value
-        Recipient = rs_p.fields("Recipient").Value
-        Subject = rs_p.fields("Subject").Value
-        From_email = rs_p.fields("From_email").Value
-        priority =  rs_p.fields("PRIORITY").Value
+        rsDetail = objConnection.Execute("select * from MailsToSend  where id = " & id)
+ 
+        mtext = rsDetail.fields("MailText").Value
+        Recipient = rsDetail.fields("Recipient").Value
+        Subject = rsDetail.fields("Subject").Value
+        From_email = rsDetail.fields("From_email").Value
+        priority =  rsDetail.fields("PRIORITY").Value
 
         mtext = replace(mtext,"~","'")
         Subject = replace(Subject,"~","'")
@@ -75,7 +79,8 @@ Dim i as Integer
     <td width="180">Sending... <%
 	   sendMailFromWithSending (Recipient , Subject , mtext, From_email)
 	   rs_p.movenext
-	   rs_p.close	 
+	   rs_p.close
+           rsDetail.close 
 	   
   'START ERROR HANDLING
    IF err.number=0 THEN
