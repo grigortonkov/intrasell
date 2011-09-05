@@ -530,7 +530,7 @@
             Dim ArtNr : ArtNr = rsArt("ArtNr").Value
             Dim Stk As Double : Stk = rsArt("Stk").Value
             Dim ArtikelPreisNetto As Double = getPreis(KDNR, ArtNr, Stk) ' makeNettoPreis(ArtNr, Stk, KdNR) 
-            Dim ArtikelPreisBrutto As Double = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 2) 'makeBruttoPreis2(ArtNR,Stk,Land)
+            Dim ArtikelPreisBrutto As Double = Math.Round(calculateBruttoPreis(ArtikelPreisNetto, ArtNr, KDNR), 3) 'auf 3 Nachkommastelle runden , sonst probleme mit der Gesamtrechnung 'makeBruttoPreis2(ArtNR,Stk,Land)
             Dim ArtikelPreisEK As Double = getEKPreis(ArtNr)
             Dim PosBezeichnung As String = rsArt("Bezeichnung").Value
             Dim ArtikelEAN As String = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
@@ -589,8 +589,8 @@
         'UPDATE SUMME VOM AUFTRAG
         Dim sqlUpdateAuftrag As String
         Dim sqlSumme As String = "SELECT SUM(Stk*PreisATS)  as summe ,  " & _
-                                    " SUM(Stk*(PreisATS_Brutto-PreisATS))  as summeMwst, " & _
-                                    " SUM(Stk*PreisATS_Brutto)  as summeBrutto  " & _
+                                    " SUM(Stk*(PreisATS_Brutto-PreisATS)) as summeMwst, " & _
+                                    " SUM(Stk*PreisATS_Brutto) as summeBrutto  " & _
                                     " FROM [" & tableName & "-artikel] where RechNr = " & AuftragNr
         Dim rsSumme : rsSumme = objConnectionExecute(sqlSumme)
     
