@@ -381,6 +381,7 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
+    <Content Include="images.xml" />
     <Content Include="intrasellDLL\convertToPDFTest.aspx" />
     <Content Include="intrasellDLL\functionsDictionary.aspx" />
     <Content Include="intrasellDLL\functionsIntraSellDLL.aspx" />
@@ -462,6 +463,12 @@
     <Content Include="Intrasoft\windows\upleft.gif" />
     <Content Include="Intrasoft\windows\upright.gif" />
     <Content Include="Intrasoft\windows\Up_Title_Backgrund.gif" />
+    <Content Include="index.htm" />
+    <Content Include="intro\1.jpg" />
+    <Content Include="intro\2.jpg" />
+    <Content Include="intro\3.jpg" />
+    <Content Include="intro\image-loader.swf" />
+    <Content Include="intro\images.xml" />
     <Content Include="productImages\clock.JPG" />
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />

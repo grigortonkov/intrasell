@@ -125,6 +125,8 @@
 <%  Call showMyReferedSells(getLOGIN(), Request("OrderType"), 0, 0)%>
 <%  Case "Newsletter"%>
 <%  Call registerForNewsletter(Request("EmailForNewsletter"), Request("Interest"))%>
+<%  Case "NewsletterConfirm"%>
+<%  Call registerForNewsletterStep2Confirm(Request("EmailForNewsletter"))%>
 <%  Case "Bookmarks"%>
 <%'<!--#include file="account/userBookmarks.aspx"-->%>
 <%'  Case "MyBookmarks"%>

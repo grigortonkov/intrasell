@@ -23,19 +23,22 @@
                 Dim nIdNL As Long = nextId("webNewsletter", "nlId")
                 sqlNL = "insert into webNewsletter(NLID,Email, NewsletterName, fromIP, Aktiv, [Timestamp]) values(" & _
                      nIdNL & ",'" & Left(EmailForNewsletter, 255) & "','" & _
-                     Left(newsletterItem, 1000) & "','" & Request.ServerVariables("REMOTE_HOST") & "', true, " & SQLNOW(0) & ")"
+                     Left(newsletterItem, 1000) & "','" & Request.ServerVariables("REMOTE_HOST") & "', false, " & SQLNOW(0) & ")"
                 objConnectionExecute(sqlNL)
                 newsletterRegistriert = True
             Next
    
             If newsletterRegistriert Then
+                Dim body As String = MAKE_EMAIL_NEWSLETTER(EmailForNewsletter)
+                
                 Response.Write("Vielen Dank für Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters.")
-                Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten informieren.</p>")
+                'Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten informieren.</p>")
          
+                Response.Write(body)
         
                 Response.Write("SENDING... ")
                 sendMailFromWithSending(EmailForNewsletter, "Ihre Newsletter registrierung bei " & VARVALUE("DOMAIN"), _
-                      MAKE_EMAIL_NEWSLETTER(EmailForNewsletter), VARVALUE("EMAIL_REGISTER"))
+                      body, VARVALUE("EMAIL_REGISTER"))
                 Response.Write(" OK!")
             Else 'keine Registrierung 
                 Response.Write(getTranslation("Sie haben kein Newsletter ausgewählt. Sie werden kein Newsletter bekommen!"))
@@ -44,6 +47,21 @@
     End Sub
 
 
+    '****************************************************************
+    Sub registerForNewsletterStep2Confirm(ByVal EmailForNewsletter As String)
+        If EMailCheck(EmailForNewsletter) Then
+            'update newsletter table 
+            Dim sqlNL As String = "update webNewsletter set aktiv=true where Email like '" & Left(EmailForNewsletter, 255) & "'"
+            objConnectionExecute(sqlNL)
+            
+  
+            Response.Write("Vielen Dank für Bestätigung des " & VARVALUE("DOMAIN") & " Newsletters.")
+            Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten informieren.</p>")
+        Else
+            Response.Write("<p>Die angegeben Emailadresse ist ungültig.</p>")
+        End If 'Email nicht korrekt 
+    End Sub
+    
     '****************************************************************
     ' registerForNewsletter
     '****************************************************************
