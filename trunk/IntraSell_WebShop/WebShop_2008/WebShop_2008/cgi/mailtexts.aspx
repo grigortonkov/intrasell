@@ -183,15 +183,20 @@
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function MAKE_EMAIL_NEWSLETTER(ByVal Email As String) As String
+        Dim LinkConfirm As String
+        
+        LinkConfirm = Session("BASENAME") & "/default.aspx?pageToShow=NewsletterConfirm&EmailForNewsletter=" & Email
+        
         Dim html As String = " Liebe(r)  Benutzer(in)!" & "</br>" & _
         " Vielen Dank f&uuml;r Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters." & "</br>" & _
         " Sie haben sich am " & Now & " von der IP Adresse " & Request.ServerVariables("REMOTE_HOST") & "</br>" & _
         " f&uuml;r unseren Newsletter angemeldet." & "</br> </br>" & _
         " Regelm&auml;ßig werden Sie &uuml;ber Produkte, Angebote, Gewinnspiele, Vorteile uvm informiert." & "</br> </br>" & _
-        " Viel Spass w&uuml;nscht Ihnen" & Chr(10) & Chr(13) & Chr(10) & Chr(13) & _
+        " Bitte bestättigen Sie diese Newsletter Bestellung mit dem folgenden Link: " & LinkConfirm & _ 
+        " Viel Erfolg w&uuml;nscht Ihnen" & "</br>" & "</br>" & _
         " Ihr Team"
          
-        Return html 
+        Return html
     End Function
      
     '
