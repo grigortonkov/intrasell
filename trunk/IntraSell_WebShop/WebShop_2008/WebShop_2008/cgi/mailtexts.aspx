@@ -192,7 +192,8 @@
         " Sie haben sich am " & Now & " von der IP Adresse " & Request.ServerVariables("REMOTE_HOST") & "</br>" & _
         " f&uuml;r unseren Newsletter angemeldet." & "</br> </br>" & _
         " Regelm&auml;ßig werden Sie &uuml;ber Produkte, Angebote, Gewinnspiele, Vorteile uvm informiert." & "</br> </br>" & _
-        " Bitte bestättigen Sie diese Newsletter Bestellung mit dem folgenden Link: " & LinkConfirm & _ 
+        " Sie haben sich für unseren Newsletter interessiert. Um den Vorgang abzuschließen, klicken Sie bitte auf nach nachstehenden Bestätigungslink:</br> " & _
+        " " & LinkConfirm & _ 
         " Viel Erfolg w&uuml;nscht Ihnen" & "</br>" & "</br>" & _
         " Ihr Team"
          

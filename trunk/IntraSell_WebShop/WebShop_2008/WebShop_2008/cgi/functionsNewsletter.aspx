@@ -34,7 +34,7 @@
                 Response.Write("Vielen Dank für Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters.")
                 'Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten informieren.</p>")
          
-                Response.Write(body)
+                'Response.Write(body)
         
                 Response.Write("SENDING... ")
                 sendMailFromWithSending(EmailForNewsletter, "Ihre Newsletter registrierung bei " & VARVALUE("DOMAIN"), _
