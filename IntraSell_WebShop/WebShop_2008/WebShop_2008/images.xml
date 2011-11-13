@@ -4,7 +4,8 @@ set transition number from 1 to 9
 set transition number to 0 for random effect
  -->
 <RSS PAUSE="12000">
-	<IMAGE TRANSITION="1">intro/1.jpg</IMAGE>
-	<IMAGE TRANSITION="2">intro/2.jpg</IMAGE>
-	<IMAGE TRANSITION="5">intro/3.jpg</IMAGE>
+	<IMAGE TRANSITION="1">intro/16.jpg</IMAGE>
+	<IMAGE TRANSITION="2">intro/12.jpg</IMAGE>
+        <IMAGE TRANSITION="3">intro/5.jpg</IMAGE>
+        <IMAGE TRANSITION="4">intro/2.jpg</IMAGE>
 </RSS>
