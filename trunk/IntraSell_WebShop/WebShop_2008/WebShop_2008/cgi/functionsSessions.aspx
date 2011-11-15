@@ -53,8 +53,8 @@
                   " where CreationTime>=(" & SQLNOW(-10 * 1 / (24 * 60)) & ") and IP Like '" & _
                   remoteHost & "' " & _
                   " and loggedOut=0 " & _
-                  " ORDER BY creationDate DESC"
-            'Response.Write sql:Response.Flush
+                  " ORDER BY creationDate DESC, SID DESC"
+            'Response.Write (sql) ':Response.Flush
             rs = objConnectionExecute(sql)
             If Not rs.EOF Then
                 sid = rs("SID").Value
