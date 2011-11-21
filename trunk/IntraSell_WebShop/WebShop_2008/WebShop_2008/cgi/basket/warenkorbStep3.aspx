@@ -123,13 +123,13 @@
             <td>
                 <p align="left">
                     &nbsp;
-                    <input type="checkbox" name="AGB" value="ON" class="submit">
+                    <input type="checkbox" name="AGB" value="ON">
                     <a name="agb"></a>&nbsp;<%=getTranslation("Ich habe die AGB gelesen und akzeptiert!")%>
                     <a href="default.aspx?PageToShow=AGB">
                         <%=getTranslation("AGB lesen ...")%></a>
                     <br />
                     <% If VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" Then%>
-                    <input type="checkbox" name="GESETZ" value="ON" class="submit">
+                    <input type="checkbox" name="GESETZ" value="ON">
                     <a name="agb"></a>&nbsp;<%=getTranslation("Informationen zum Fernabsatzgesetz gelesen!")%>
                     <a href="default.aspx?PageToShow=GESETZ">
                         <%=getTranslation("Informationen zum Fernabsatzgesetz lesen ...")%></a>
