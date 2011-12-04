@@ -31,7 +31,8 @@
             If newsletterRegistriert Then
                 Dim body As String = MAKE_EMAIL_NEWSLETTER(EmailForNewsletter)
                 
-                Response.Write("Vielen Dank für Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters.")
+                Response.Write("Vielen Dank für Ihre Registrierung. Zum Abschließen klicken Sie bitte auf den Bestätigungslink in der Email, die wir Ihnen gerade gesendet haben.")
+                'Response.Write("Vielen Dank für Ihre Registrierung des " & VARVALUE("DOMAIN") & " Newsletters.")
                 'Response.Write("<p>Wir werden Sie wöchentlich über unsere Neuigkeiten informieren.</p>")
          
                 'Response.Write(body)
