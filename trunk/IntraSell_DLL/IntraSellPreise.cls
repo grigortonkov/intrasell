@@ -414,13 +414,16 @@ End Function
 ' returns the nummer of the created new OrderType or 0 of failed
 '*****************************************************************
 Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr) As String
-
+ Dim benutzeTransaktion As Boolean
+ benutzeTransaktion = False
+ ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
+ 
  On Error GoTo error:
  
         Dim sql
         Dim rs
         Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
-        CurrentDB.BeginTrans
+        If benutzeTransaktion Then CurrentDB.BeginTrans
          
         tableNameFrom = getVorgangTableForType(FromOrder)
         tableNameFromProducts = getVorgangArtikelTableForType(FromOrder)
@@ -486,14 +489,14 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         'response.write SQL
         Call openRecordset(sql, "")
         'response.write "Converting was OK!"
-        CurrentDB.CommitTrans
+        If benutzeTransaktion Then CurrentDB.CommitTrans
         convertFromTo = nextRechnungNummer
         
         Exit Function
 error:
            
-           MsgBox "Die Transaktion wurde storniert!" + Err.Description, vbCritical
-           CurrentDB.Rollback
+       MsgBox "Die Transaktion wurde storniert!" + Err.Description, vbCritical
+       If benutzeTransaktion Then CurrentDB.Rollback
            
 End Function
 
