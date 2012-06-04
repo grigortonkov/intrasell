@@ -11,6 +11,13 @@ Hier ist die Eingabe von KundenNr Nummerkreisen und ob die Vorgänge MwSt enthal
 http://intrasell.googlecode.com/svn/trunk/Screenshots/Kundengruppen.jpg
 
 == Kunden ==
+Hauptmaske->Kunden
+
+Wählen Sie immer zuerst die Kundengruppe aus. 
+Nach der Auswahl werden nur die Kunden aus dieser Kundengruppe gefiltert. 
+Neue Kundne werden in dieser Kundengruppe angelegt. 
+
+http://intrasell.googlecode.com/svn/trunk/Screenshots/kundengruppen.jpg
 
 == Lieferanten ==
 
