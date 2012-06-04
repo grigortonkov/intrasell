@@ -10,9 +10,9 @@ Hier können Sie die Preise verwalten.
 
 IS bietet die Möglichkeit die Preise auf 3 Arten zu berechnen. Es entstehen s.g. Regel für die Preiskalkulation. 
 
-Preisaufschlag basiert auf EK Preis in den Artikelstammdaten. 
-Preisaufschlag basiert auf VK Preis in den Artikelstammdaten. 
-Fixer VK Preis. 
+ * Preisaufschlag basiert auf EK Preis in den Artikelstammdaten. 
+ * Preisaufschlag basiert auf VK Preis in den Artikelstammdaten. 
+ * Fixer VK Preis. 
 
 Diese Preisregel kann je nach Artikel, Artikelgruppe und Kunde.
 
