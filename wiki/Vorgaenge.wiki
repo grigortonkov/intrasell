@@ -34,7 +34,11 @@ Eine Rechnung ohne MwSt. kann nur für einen Kunden ohne MwSt. angelegt werden.
 
 Dafür gibt es drei Möglichkeiten:
 === Access Vorlage anpassen === 
-
+Das geht einfach mit ein bisschen Access Know How. 
+ * Öffnen Sie den Plug In Ihrer Firma und suchen Sie nach Access Report "buchRechung_AddOn_FIRMA". 
+ * Ändern Sie die Vorlage nach Ihrem Wunsch. 
+ * Importieren Sie den PlugIn ins Haupt Programm. 
+ 
 http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnungdruck.jpg
 
 
