@@ -7,9 +7,13 @@ Hier finden Sie Anleitungen für die Artikelverwaltung in IntraSell.
 Screenshot 1:
 <img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_Artikel.jpg">
 
+
 = Artikelanlage =
 
 = Artikeländerungen =
+
+= Set Artikel =
+Sie können Artikelsets verwalten. Bei Lagerbuchungen werden auch die Unterartikel in den angegebenen Mengen abgebucht. 
 
 = Vorbereitung fürs Web =
  
