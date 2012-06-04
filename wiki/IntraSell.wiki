@@ -1,23 +1,35 @@
 #summary Hier finden Sie einige Screenshots des IntraSell classic Programms.
 #labels Featured
 
-= Introduction =
-
-Welcome to the Intrasell classic Wiki pages.
-
+= Einführung =
+hier finden Sie einige Programm Screenshots.
 
 
+= Hauptmaske =
 
-= Details =
+== Hauptseite ==
+http://intrasell.googlecode.com/svn/trunk/Screenshots/haupt.jpg 
+== Artikelverwaltung == 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel.jpg 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel_set.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/einstellungen.jpg
 
-Hauptseite
-<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3.jpg">
+== Lager == 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/lager.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/lagerbuchungen.jpg
 
-Artikelverwaltung
-<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_Artikel.jpg">
+== Preise == 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/preise.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/Vertriebskosten.png
 
-Kundenverwaltung
-<img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_Kunden.jpg">
+== Rechnungen == 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnung.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnungdruck.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnungdruck_akonto.jpg
+
+== Kundenverwaltung == 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/kunden.jpg
+http://intrasell.googlecode.com/svn/trunk/Screenshots/Kundengruppen.jpg
 
 Trading Board
 <img src="http://www.griton.eu/misc/intrasell/Screenshot_intrasell_3_TradingBoard.jpg">
