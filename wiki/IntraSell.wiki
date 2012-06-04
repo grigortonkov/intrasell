@@ -2,7 +2,7 @@
 #labels Featured
 
 = Einführung =
-hier finden Sie einige Programm Screenshots.
+Hier finden Sie einige Programm Screenshots.
 
 
 = Hauptmaske =
@@ -11,7 +11,7 @@ hier finden Sie einige Programm Screenshots.
 http://intrasell.googlecode.com/svn/trunk/Screenshots/haupt.jpg 
 
 == Artikelverwaltung == 
-[Artikelverwaltung]
+Artikelverwaltung
 http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel.jpg 
 http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel_set.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/einstellungen.jpg
@@ -21,7 +21,7 @@ http://intrasell.googlecode.com/svn/trunk/Screenshots/lager.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/lagerbuchungen.jpg
 
 == Preise == 
-[Preise]
+Preise
 http://intrasell.googlecode.com/svn/trunk/Screenshots/preise.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/Vertriebskosten.png
 
