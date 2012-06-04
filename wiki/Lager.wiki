@@ -1,0 +1,12 @@
+#summary Lagerverwaltung, Lagerbuchungen
+
+=  Einführung =
+
+Mit IntraSell können Sie unbegrenzt viele Lagerplätze verwalten.
+
+
+= Lagerverwaltung =
+
+z:\Business\IntraSell_System\Screenshots\
+
+= Lagerbuchungen = 
