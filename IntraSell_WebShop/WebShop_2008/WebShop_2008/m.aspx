@@ -1,4 +1,6 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="m.aspx.vb" Inherits="WebApplicationTest.m" %>
+﻿<!--#include file="intrasoft/functions.aspx"-->
+<!--#include file="intrasoft/functionsCache.aspx"-->
+<%@ Page Language="vb" AutoEventWireup="false"   Inherits="WebApplicationTest.m" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,8 +12,11 @@
     <form id="form1" runat="server">
     <div>
     
-        Browser Detector... if mobile browser then wesend the user to the mobile pages:<br />
-    
+        Browser Detector... if mobile browser then we send the user to the mobile pages:<br />
+    <% 
+        Response.Write("isMobileBrowser=" & isMobileBrowser() & "<br />")
+    %>
+
     </div>
     </form>
 </body>
