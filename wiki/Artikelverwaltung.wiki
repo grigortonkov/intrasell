@@ -1,5 +1,8 @@
 #summary Hilfe: Artikelverwaltung mit IntraSell.
 
+<wiki:toc max_depth="2" />
+
+
 = Allgemein =
 
 Hier finden Sie Anleitungen für die Artikelverwaltung in IntraSell. 
@@ -9,11 +12,15 @@ Screenshot 1:
 
 
 = Artikelanlage =
+http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel.jpg
 
 = Artikeländerungen =
 
 = Set Artikel =
 Sie können Artikelsets verwalten. Bei Lagerbuchungen werden auch die Unterartikel in den angegebenen Mengen abgebucht. 
+
+http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel_set.jpg
+
 
 = Vorbereitung fürs Web =
  
