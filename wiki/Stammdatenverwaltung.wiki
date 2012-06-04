@@ -1,6 +1,12 @@
 #summary Hilfe: Stammdatenverwaltung in IntraSell.
 
 = Stammdatenverwaltung =
+== Kundengruppen == 
+Hauptmaske->Kundengruppen
+Legen Sie zuerst die Kundengruppen an. 
+Hier ist die Eingabe von KundenNr Nummerkreisen und ob die Vorgänge MwSt enthalten sollen entscheidend für den weiteren Programmablauf. 
+
+[http://code.google.com/p/intrasell/source/browse/trunk/Screenshots/Kundengruppen.jpg]
 
 == Kunden ==
 
