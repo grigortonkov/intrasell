@@ -8,10 +8,19 @@ Die Vorgänge können konvertiert werden. D.h. Sie können ein Angebot in eine R
 
 = Rechnungen =
 
+== Barverkauf Rechnung ==
+Hauptmenü -> Barverkauf 
+
 == Rechnung mit MwSt ==
 Kunden -> (Kunde Suchen) -> Vorgänge -> Rechnung
 
-Eine Rechnung mit MwSt. kann nur für einen Kunden mit MwSt. angelegt werden. 
+Eine Rechnung mit MwSt. kann nur für einen Kunden mit MwSt. angelegt werden.
+
+ * Klicken Sie auf Button "Neu" um eine neue Rechnung zu beginnen. 
+
+ * Wählen Sie die Positionen. Der Preis wird automatisch je nach Kunde und Stückzahl errechnet. 
+
+ * Klicken Sie auf Button "Abschließen" damit Lagerbuchungen durchgeführt werden können. 
 
 == Rechnung ohne MwST ==
 Kunden -> (Kunde Suchen) -> Vorgänge -> Rechnung  
