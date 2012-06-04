@@ -22,6 +22,9 @@ Eine Rechnung mit MwSt. kann nur für einen Kunden mit MwSt. angelegt werden.
 
  * Klicken Sie auf Button "Abschließen" damit Lagerbuchungen durchgeführt werden können. 
 
+http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnung.jpg
+
+
 == Rechnung ohne MwST ==
 Kunden -> (Kunde Suchen) -> Vorgänge -> Rechnung  
 
@@ -31,5 +34,9 @@ Eine Rechnung ohne MwSt. kann nur für einen Kunden ohne MwSt. angelegt werden.
 
 Dafür gibt es drei Möglichkeiten:
 === Access Vorlage anpassen === 
+
+http://intrasell.googlecode.com/svn/trunk/Screenshots/rechnungdruck.jpg
+
+
 === Fiskal Drucker Vorlage anpassen === 
 === MS Word Vorlage anpassen === 
