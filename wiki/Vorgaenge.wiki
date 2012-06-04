@@ -1,13 +1,26 @@
 #summary Hilfe: Angebote, Aufträge, Rechnungen, Lieferscheine, Gutschriften.
 
-= Introduction =
+= Rechnungslegung =
+Sie können Angebote, Aufträge, Rechnungen, Lieferscheine u.e.m. verwalten. 
+Die Vorgänge können konvertiert werden. D.h. Sie können ein Angebot in eine Rechnung konvertieren. hiermit werden alle Positionen übernommen. 
 
-Add your content here.
 
 
-= Details =
+= Rechnungen =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Rechnung mit MwSt ==
+Kunden -> (Kunde Suchen) -> Vorgänge -> Rechnung
+
+Eine Rechnung mit MwSt. kann nur für einen Kunden mit MwSt. angelegt werden. 
+
+== Rechnung ohne MwST ==
+Kunden -> (Kunde Suchen) -> Vorgänge -> Rechnung  
+
+Eine Rechnung ohne MwSt. kann nur für einen Kunden ohne MwSt. angelegt werden. 
+
+== Rechnungsvorlage anpassen ==
+
+Dafür gibt es drei Möglichkeiten:
+=== Access Vorlage anpassen === 
+=== Fiskal Drucker Vorlage anpassen === 
+=== MS Word Vorlage anpassen === 
