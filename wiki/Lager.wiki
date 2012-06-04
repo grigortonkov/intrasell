@@ -1,5 +1,10 @@
 #summary Lagerverwaltung, Lagerbuchungen
 
+
+<wiki:toc max_depth="2" />
+
+
+
 =  Einführung =
 
 Mit IntraSell können Sie unbegrenzt viele Lagerplätze verwalten.
@@ -7,6 +12,22 @@ Mit IntraSell können Sie unbegrenzt viele Lagerplätze verwalten.
 
 = Lagerverwaltung =
 
-z:\Business\IntraSell_System\Screenshots\
+Hauptmenü -> Lagerverwaltung
+
+Hier können Sie den aktuellen Lagerstand prüfen. 
+
+http://intrasell.googlecode.com/svn/trunk/Screenshots/lager.jpg
 
 = Lagerbuchungen = 
+Hauptmenü -> Lagerbuchungen
+
+Hier können Sie Lagerbuchungen vornehmen. 
+Info: mit dem Abschluss einer Rechnung werden auch Lagerbuchungen erstellt.
+
+* Artikel wählen
+* Stückzahl kontrollieren
+* Protokoll drucken (optional) 
+* Buchung vornehmen
+
+
+http://intrasell.googlecode.com/svn/trunk/Screenshots/lagerbuchungen.jpg
