@@ -12,9 +12,23 @@ Screenshot 1:
 
 
 = Artikelanlage =
+Hauptmenü -> Artikel od. 
+Hauptmenü -> Artikelliste 
+* Kategorie wählen
+* Button "Neu" auswählen
+* Die Pflichtfelder eingeben (Bezeichnung, Preise) 
+
+
 http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel.jpg
 
 = Artikeländerungen =
+Hauptmenü -> Artikel od. 
+Hauptmenü -> Artikelliste 
+* Button "Edit"
+* Anpassungen vornehmen.
+
+Wichtig: Artikeländerungen haben keine Auswirkung auf bereits abgeschlossene Vorgänge. 
+
 
 = Set Artikel =
 Sie können Artikelsets verwalten. Bei Lagerbuchungen werden auch die Unterartikel in den angegebenen Mengen abgebucht. 
