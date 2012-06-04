@@ -9,7 +9,9 @@ hier finden Sie einige Programm Screenshots.
 
 == Hauptseite ==
 http://intrasell.googlecode.com/svn/trunk/Screenshots/haupt.jpg 
+
 == Artikelverwaltung == 
+[Artikelverwaltung]
 http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel.jpg 
 http://intrasell.googlecode.com/svn/trunk/Screenshots/artikel_set.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/einstellungen.jpg
@@ -19,6 +21,7 @@ http://intrasell.googlecode.com/svn/trunk/Screenshots/lager.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/lagerbuchungen.jpg
 
 == Preise == 
+[Preise]
 http://intrasell.googlecode.com/svn/trunk/Screenshots/preise.jpg
 http://intrasell.googlecode.com/svn/trunk/Screenshots/Vertriebskosten.png
 
