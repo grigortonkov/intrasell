@@ -143,7 +143,7 @@
                         <input type="button" class="button" value="<%=getTranslation("Bestellung ändern")%>"
                             onclick="document.location='default.aspx?pageToShow=warenkorbStep1'" />
                         &nbsp; &nbsp;
-                        <input type="submit" class="button" value="<%=getTranslation("bestellen")%>">
+                        <input type="submit" class="button" value="<%=getTranslation("zahlungspflichtig bestellen")%>">
                     </p>
                 </td>
         </tr>
