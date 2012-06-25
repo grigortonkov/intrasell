@@ -1,0 +1,139 @@
+﻿<RuleDefinitions xmlns="http://schemas.microsoft.com/winfx/2006/xaml/workflow">
+	<RuleDefinitions.Conditions>
+		<RuleExpressionCondition Name="WorkerParticipates">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodePropertyReferenceExpression PropertyName="Participates" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodePropertyReferenceExpression.TargetObject>
+						<ns0:CodePropertyReferenceExpression PropertyName="Mitarbeiter">
+							<ns0:CodePropertyReferenceExpression.TargetObject>
+								<ns0:CodeThisReferenceExpression />
+							</ns0:CodePropertyReferenceExpression.TargetObject>
+						</ns0:CodePropertyReferenceExpression>
+					</ns0:CodePropertyReferenceExpression.TargetObject>
+				</ns0:CodePropertyReferenceExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+		<RuleExpressionCondition Name="PMParticipates">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodePropertyReferenceExpression PropertyName="Participates" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodePropertyReferenceExpression.TargetObject>
+						<ns0:CodePropertyReferenceExpression PropertyName="PeopleManager">
+							<ns0:CodePropertyReferenceExpression.TargetObject>
+								<ns0:CodeThisReferenceExpression />
+							</ns0:CodePropertyReferenceExpression.TargetObject>
+						</ns0:CodePropertyReferenceExpression>
+					</ns0:CodePropertyReferenceExpression.TargetObject>
+				</ns0:CodePropertyReferenceExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+		<RuleExpressionCondition Name="HRParticipates">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodePropertyReferenceExpression PropertyName="Participates" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodePropertyReferenceExpression.TargetObject>
+						<ns0:CodeArrayIndexerExpression>
+							<ns0:CodeArrayIndexerExpression.Indices>
+								<ns0:CodePrimitiveExpression>
+									<ns0:CodePrimitiveExpression.Value>
+										<ns1:Int32 xmlns:ns1="clr-namespace:System;Assembly=mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</ns1:Int32>
+									</ns0:CodePrimitiveExpression.Value>
+								</ns0:CodePrimitiveExpression>
+							</ns0:CodeArrayIndexerExpression.Indices>
+							<ns0:CodeArrayIndexerExpression.TargetObject>
+								<ns0:CodePropertyReferenceExpression PropertyName="HR">
+									<ns0:CodePropertyReferenceExpression.TargetObject>
+										<ns0:CodeThisReferenceExpression />
+									</ns0:CodePropertyReferenceExpression.TargetObject>
+								</ns0:CodePropertyReferenceExpression>
+							</ns0:CodeArrayIndexerExpression.TargetObject>
+						</ns0:CodeArrayIndexerExpression>
+					</ns0:CodePropertyReferenceExpression.TargetObject>
+				</ns0:CodePropertyReferenceExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+		<RuleExpressionCondition Name="COParticipates">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodePropertyReferenceExpression PropertyName="Participates" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodePropertyReferenceExpression.TargetObject>
+						<ns0:CodePropertyReferenceExpression PropertyName="CO">
+							<ns0:CodePropertyReferenceExpression.TargetObject>
+								<ns0:CodeThisReferenceExpression />
+							</ns0:CodePropertyReferenceExpression.TargetObject>
+						</ns0:CodePropertyReferenceExpression>
+					</ns0:CodePropertyReferenceExpression.TargetObject>
+				</ns0:CodePropertyReferenceExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+		<RuleExpressionCondition Name="LastAdditionalPersonResponded">
+			<RuleExpressionCondition.Expression>
+				<ns0:CodeBinaryOperatorExpression Operator="BooleanAnd" xmlns:ns0="clr-namespace:System.CodeDom;Assembly=System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+					<ns0:CodeBinaryOperatorExpression.Left>
+						<ns0:CodeBinaryOperatorExpression Operator="GreaterThan">
+							<ns0:CodeBinaryOperatorExpression.Left>
+								<ns0:CodePropertyReferenceExpression PropertyName="Length">
+									<ns0:CodePropertyReferenceExpression.TargetObject>
+										<ns0:CodePropertyReferenceExpression PropertyName="AdditionalPersons">
+											<ns0:CodePropertyReferenceExpression.TargetObject>
+												<ns0:CodeThisReferenceExpression />
+											</ns0:CodePropertyReferenceExpression.TargetObject>
+										</ns0:CodePropertyReferenceExpression>
+									</ns0:CodePropertyReferenceExpression.TargetObject>
+								</ns0:CodePropertyReferenceExpression>
+							</ns0:CodeBinaryOperatorExpression.Left>
+							<ns0:CodeBinaryOperatorExpression.Right>
+								<ns0:CodePrimitiveExpression>
+									<ns0:CodePrimitiveExpression.Value>
+										<ns1:Int32 xmlns:ns1="clr-namespace:System;Assembly=mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">0</ns1:Int32>
+									</ns0:CodePrimitiveExpression.Value>
+								</ns0:CodePrimitiveExpression>
+							</ns0:CodeBinaryOperatorExpression.Right>
+						</ns0:CodeBinaryOperatorExpression>
+					</ns0:CodeBinaryOperatorExpression.Left>
+					<ns0:CodeBinaryOperatorExpression.Right>
+						<ns0:CodeBinaryOperatorExpression Operator="ValueEquality">
+							<ns0:CodeBinaryOperatorExpression.Left>
+								<ns0:CodePropertyReferenceExpression PropertyName="ResponseDate">
+									<ns0:CodePropertyReferenceExpression.TargetObject>
+										<ns0:CodeArrayIndexerExpression>
+											<ns0:CodeArrayIndexerExpression.Indices>
+												<ns0:CodeBinaryOperatorExpression Operator="Subtract">
+													<ns0:CodeBinaryOperatorExpression.Left>
+														<ns0:CodePropertyReferenceExpression PropertyName="Length">
+															<ns0:CodePropertyReferenceExpression.TargetObject>
+																<ns0:CodePropertyReferenceExpression PropertyName="AdditionalPersons">
+																	<ns0:CodePropertyReferenceExpression.TargetObject>
+																		<ns0:CodeThisReferenceExpression />
+																	</ns0:CodePropertyReferenceExpression.TargetObject>
+																</ns0:CodePropertyReferenceExpression>
+															</ns0:CodePropertyReferenceExpression.TargetObject>
+														</ns0:CodePropertyReferenceExpression>
+													</ns0:CodeBinaryOperatorExpression.Left>
+													<ns0:CodeBinaryOperatorExpression.Right>
+														<ns0:CodePrimitiveExpression>
+															<ns0:CodePrimitiveExpression.Value>
+																<ns1:Int32 xmlns:ns1="clr-namespace:System;Assembly=mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">1</ns1:Int32>
+															</ns0:CodePrimitiveExpression.Value>
+														</ns0:CodePrimitiveExpression>
+													</ns0:CodeBinaryOperatorExpression.Right>
+												</ns0:CodeBinaryOperatorExpression>
+											</ns0:CodeArrayIndexerExpression.Indices>
+											<ns0:CodeArrayIndexerExpression.TargetObject>
+												<ns0:CodePropertyReferenceExpression PropertyName="AdditionalPersons">
+													<ns0:CodePropertyReferenceExpression.TargetObject>
+														<ns0:CodeThisReferenceExpression />
+													</ns0:CodePropertyReferenceExpression.TargetObject>
+												</ns0:CodePropertyReferenceExpression>
+											</ns0:CodeArrayIndexerExpression.TargetObject>
+										</ns0:CodeArrayIndexerExpression>
+									</ns0:CodePropertyReferenceExpression.TargetObject>
+								</ns0:CodePropertyReferenceExpression>
+							</ns0:CodeBinaryOperatorExpression.Left>
+							<ns0:CodeBinaryOperatorExpression.Right>
+								<ns0:CodePrimitiveExpression />
+							</ns0:CodeBinaryOperatorExpression.Right>
+						</ns0:CodeBinaryOperatorExpression>
+					</ns0:CodeBinaryOperatorExpression.Right>
+				</ns0:CodeBinaryOperatorExpression>
+			</RuleExpressionCondition.Expression>
+		</RuleExpressionCondition>
+	</RuleDefinitions.Conditions>
+</RuleDefinitions>
