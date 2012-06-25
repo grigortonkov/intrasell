@@ -1417,6 +1417,20 @@
             Return True
         End If
 
+        Dim mobiles As String() = New String() {"midp", "j2me", "avant", "docomo", "novarra", "palmos", "palmsource", "240x320", "opwv", "chtml", _
+                    "pda", "windows ce", "mmp/", "blackberry", "mib/", "symbian", "wireless", "nokia", "hand", "mobi", "phone", "cdm", "up.b", "audio", _
+                    "SIE-", "SEC-", "samsung", "HTC", "mot-", "mitsu", "sagem", "sony", "alcatel", "lg", "eric", "vx", "NEC", "philips", "mmm", "xx", _
+                    "panasonic", "sharp", "wap", "sch", "rover", "pocket", "benq", "java", "pt", "pg", "vox", "amoi", "bird", "compal", "kg", "voda", _
+                    "sany", "kdd", "dbt", "sendo", "sgh", "gradi", "jb", "dddi", "moto", "iphone" ,"mozilla"} '"mozilla" is added to test with FF mobile devices
+        Dim userAgent As String = context.Request.ServerVariables("HTTP_USER_AGENT")
+        Dim m As String 
+        For Each m In mobiles
+            If userAgent.ToLower.Contains(m) Then
+                Return True
+            End If
+        Next
+        'Response.Write ( "Agent:" & userAgent)
+        
         Return False
     End Function
 </script>

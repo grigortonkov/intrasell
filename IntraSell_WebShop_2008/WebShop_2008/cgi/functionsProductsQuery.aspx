@@ -8,20 +8,21 @@
     ' new feature 03-12-2004: Line Highlight and Fixed Sorting on Product Keywords 
     '****************************************************************************
 
-Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult lines 
+    Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult lines 
 
-''' <summary>
-''' makeProductListOnQuery - lists all products depending on the SQL query
-''' </summary>
-''' <param name="Sql"></param>
-''' <param name="FilterBySQL">SearchDescription - what the user searches for </param>
-''' <param name="OrderBy"></param>
-''' <param name="SearchDescription"></param>
-''' <returns></returns>
-''' <remarks></remarks>
+    ''' <summary>
+    ''' makeProductListOnQuery - lists all products depending on the SQL query
+    ''' </summary>
+    ''' <param name="Sql"></param>
+    ''' <param name="FilterBySQL">SearchDescription - what the user searches for </param>
+    ''' <param name="OrderBy"></param>
+    ''' <param name="SearchDescription"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function makeProductListOnQuery(ByVal Sql, ByVal FilterBySQL, ByVal OrderBy, ByVal SearchDescription) As String
         Dim showOnlyResultCount : showOnlyResultCount = Request("showOnlyResultCount") 'true
-
+        Dim isMobileMode As Boolean = IsMobileBrowser()
+        
         Session("CURRENT_SEARCH") = Sql ' save for the next search/filter
 
         'added 22-12-2004 
@@ -116,7 +117,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
     
         Dim BenutzeEAN As Boolean = VARVALUE_DEFAULT("BenutzeEAN", "true")
     
-        Dim artKatNR as Integer: artKatNR = 0
+        Dim artKatNR As Integer : artKatNR = 0
         
         If Request("preKatNr") <> "" Then artKatNR = Request("preKatNr")
         If Request("artKatNrForFilter") <> "" Then artKatNR = Request("artKatNrForFilter")
@@ -124,17 +125,17 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
         Dim template_ColumnDescription As String 'template for description column
         template_ColumnDescription = "" & readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/" & FLENAME_PRODUCT_LIST_COLUMN_DESCRIPTION))
 
-        Dim template_Header  As String 'html tempalte for table header / extra functions 
+        Dim template_Header As String 'html tempalte for table header / extra functions 
         template_Header = "" & readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/" & FLENAME_PRODUCT_LIST_HEADER))
 
         'START SONDERBEHANDLUNG FÜR SUCHINSRATE IMMO 
-        Dim catDesc as String: catDesc = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", artKatNR, "[Desc]") 'has "Suchen" on beginning 
+        Dim catDesc As String : catDesc = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", artKatNR, "[Desc]") 'has "Suchen" on beginning 
         'response.Write "catDesc=" & catDesc
         If InStr(catDesc, "uchen") > 0 Then 'hat Suchen 
             SHOP_SHOW_PRICE = False
             showThumbnails = False
         End If
-        'END SONDERBEHANDLUNG FÜR SUCHINSRATE IMMO 
+        'END SONDERBEHANDLUNG FÜR SUCHINSERATE IMMO 
 
         Dim ordr As String  'holds old order by 
         Dim html As String ' contains buffered search result 
@@ -152,9 +153,9 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
         If FilterBySQL <> "" Then Sql = Sql & " AND " & FilterBySQL
         Sql = Sql & OrderBy
         
-        Dim generalLinkParameters as String : generalLinkParameters = "preKatNr=" & artKatNR
+        Dim generalLinkParameters As String : generalLinkParameters = "preKatNr=" & artKatNR
         
-        Dim hideCheckedUnchecked As String: hideCheckedUnchecked = Request("hideCheckedUnchecked")
+        Dim hideCheckedUnchecked As String : hideCheckedUnchecked = Request("hideCheckedUnchecked")
  
 
         'DEFAULT from SESSION
@@ -196,7 +197,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                    "<!--<" & COUNT_RESULT_LINES & ">0</" & COUNT_RESULT_LINES & ">--><br /></center>"
                                
             'mail this event to the Shop Administration 
-            Dim sendVar as Boolean 'set default 
+            Dim sendVar As Boolean 'set default 
             sendVar = VARVALUE_DEFAULT("SHOW_SEND_EMAIL_FOR_EMPTY_SEARCH", "true")
             If sendVar <> "TRUE" And sendVar <> "FALSE" Then
                 Call SETVARVALUE("SHOW_SEND_EMAIL_FOR_EMPTY_SEARCH", "FALSE")
@@ -217,7 +218,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             rsArtikel.MoveFirst()
 
             subPage = 1
-            If not Request("pp") is Nothing and Request("pp") <> "" Then
+            If Not Request("pp") Is Nothing And Request("pp") <> "" Then
                 subPage = Request("pp")
             Else
                 subPage = CInt(subPage)
@@ -259,12 +260,12 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
             html = html & "<form action=""default.aspx?pageToShow=compareManyProducts"" type=""POST"">"
             html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareManyProducts"">"
             
-            Dim htmlHeader As String 
+            Dim htmlHeader As String
             'Template variables for the header description
             Dim htmlSearchDescription As String, htmlSearchDescriptionSaveButton As String
-            Dim htmlButtonProductImages As String 
-            Dim htmlSortBy, htmlFilterBy As String 
-            Dim htmlProductCount As String, htmlPages As String 
+            Dim htmlButtonProductImages As String
+            Dim htmlSortBy, htmlFilterBy As String
+            Dim htmlProductCount As String, htmlPages As String
                 
             If SearchDescription <> "" Then
                 htmlHeader = htmlHeader & getTranslation("Sie haben gesucht nach:") & "<b>" & SearchDescription & "</b> "
@@ -368,7 +369,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
 
                             
                     Dim rsF
-                    Dim sqlF As String 
+                    Dim sqlF As String
                     sqlF = "Select distinct firma from (" & Session("CURRENT_SEARCH") & ") NEWTBL " & _
                         " group by Firma order by Firma"
                     'sqlF = "Select distinct Firma from lieferantenAdressen where Rolle like 'Hersteller' group by Firma order by Firma" 
@@ -446,81 +447,171 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""40"" height=""52"">Image</th>"
             End If
-            tableColumns = tableColumns + 1
-            html = html & "<th width=""400"" height=""52""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & _ 
-            "&orderBy=" &  IIf(ordr="Bezeichnung",  "Bezeichnung DESC" ,  "Bezeichnung")  & """>" & getTranslation("Bezeichnung") & _ 
-            IIf(ordr="Bezeichnung", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-            IIf(ordr="Bezeichnung DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
-            "</a></th>"
+            
+            If isMobileMode Then
+                html = html & "<th>"
+            End If
+            
+            If Not isMobileMode Then
+                tableColumns = tableColumns + 1
+                html = html & "<th width=""400"" height=""52"">"
+            End If
+            
+            html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & _
+            "&orderBy=" & IIf(ordr = "Bezeichnung", "Bezeichnung DESC", "Bezeichnung") & """>" & getTranslation("Bezeichnung") & _
+            IIf(ordr = "Bezeichnung", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+            IIf(ordr = "Bezeichnung DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
+            "</a>"
+            
+            If Not isMobileMode Then
+                html = html & "</th>"
+            End If
             
             If SHOP_SHOW_PRICE Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""80"" align=right><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
-                IIf(ordr="PreisATS", "PreisATS DESC" , "PreisATS") & """>" & getTranslation("Preis") & _
-                IIf(ordr="PreisATS", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-                IIf(ordr="PreisATS DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
-               "</a></th>"
+                If Not isMobileMode Then
+                    html = html & "<th width=""80"" align=right>"
+                Else
+                    html = html & "/ "
+                End If
+                
+                html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+                IIf(ordr = "PreisATS", "PreisATS DESC", "PreisATS") & """>" & getTranslation("Preis") & _
+                IIf(ordr = "PreisATS", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+                IIf(ordr = "PreisATS DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
+               "</a>"
+                If Not isMobileMode Then
+                    html = html & "</th>"
+                End If
+                
             End If
             
             If VARVALUE_DEFAULT("SHOP_SHOW_HERSTELLER", "true") Then
-                tableColumns = tableColumns + 1
-                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+               
+                If Not isMobileMode Then
+                    tableColumns = tableColumns + 1
+                    html = html & "<th width=""90"">"
+                Else
+                    html = html & "/ "
+                End If
+                
+                html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
                 IIf(ordr = "Firma", "Firma DESC", "Firma") & """>" & getTranslation("Hersteller") & _
                 IIf(ordr = "Firma", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
                 IIf(ordr = "Firma DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
-                "</a></th>"
+                "</a>"
+                If Not isMobileMode Then
+                    html = html & "</th>"
+                End If
             End If
 
             If VARVALUE_DEFAULT("SHOP_SHOW_ANGELEGTAM", "true") Then
-                tableColumns = tableColumns + 1
-                html = html & "<th width=""90""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _ 
-                IIf(ordr="AngelegtAm", "AngelegtAm DESC" ,  "AngelegtAm")  & """>" & getTranslation("Angelegt am") & _ 
-                IIf(ordr="AngelegtAm", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-                IIf(ordr="AngelegtAm DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
-                "</a></th>"
+                
+                If Not isMobileMode Then
+                    tableColumns = tableColumns + 1
+                    html = html & "<th width=""90"">"
+                Else
+                    html = html & "/ "
+                End If
+                
+                html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+                IIf(ordr = "AngelegtAm", "AngelegtAm DESC", "AngelegtAm") & """>" & getTranslation("Angelegt am") & _
+                IIf(ordr = "AngelegtAm", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+                IIf(ordr = "AngelegtAm DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
+                "</a>"
+                If Not isMobileMode Then
+                    html = html & "</th>"
+                End If
+                
             End If
                 
-            tableColumns = tableColumns + 1
+           
                 
             'wir haben sortierung nach ArtikelNr auch: ->html = html & "<th width=""80"">" & getTranslation("Artikel Nr") & "</th>"
-            If BenutzeEAN then 
-                 html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
-                 IIf(ordr="EAN", "EAN DESC" , "EAN")  & """>" & getTranslation("EAN") & _ 
-                 IIf(ordr="EAN", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-                 IIf(ordr="EAN DESC", "<img src='/skins/skin_default/images/icons/up.gif' border=0 />" , "") & _ 
-                 "</a></th>"
+            If BenutzeEAN Then
+                If Not isMobileMode Then
+                    tableColumns = tableColumns + 1
+                    html = html & "<th width=""80"">"
+                Else
+                    html = html & "/ "
+                End If
+                
+                html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+                 IIf(ordr = "EAN", "EAN DESC", "EAN") & """>" & getTranslation("EAN") & _
+                 IIf(ordr = "EAN", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+                 IIf(ordr = "EAN DESC", "<img src='/skins/skin_default/images/icons/up.gif' border=0 />", "") & _
+                 "</a>"
+                If Not isMobileMode Then
+                    html = html & "</th>"
+                End If
+                
             Else 'ArtNR 
-                 html = html & "<th width=""80""><a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" &  _ 
-                 IIf(ordr="ArtNR", "ArtNR DESC" , "ArtNR")  & """>" & getTranslation("Artikel Nr") & _ 
-                 IIf(ordr="ArtNR", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />" , "") & _ 
-                 IIf(ordr="ArtNR DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />" , "") & _ 
-                 "</a></th>"
-             End If 
+                If Not isMobileMode Then
+                    html = html & "<th width=""80"">"
+                Else
+                    html = html & "/"
+                End If
+                html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
+                 IIf(ordr = "ArtNR", "ArtNR DESC", "ArtNR") & """>" & getTranslation("Artikel Nr") & _
+                 IIf(ordr = "ArtNR", "<img src='/skins/skin_default/images/icons/down.gif'  border=0 />", "") & _
+                 IIf(ordr = "ArtNR DESC", "<img src='/skins/skin_default/images/icons/up.gif'  border=0 />", "") & _
+                 "</a>"
+                If Not isMobileMode Then
+                    html = html & "</th>"
+                End If
+            End If
                 
             If SHOWLAGERINFO Then
-                tableColumns = tableColumns + 1
-                html = html & "<th width=""80"">" & getTranslation("Lagerinfo") & "</th>"
+                If Not isMobileMode Then
+                    tableColumns = tableColumns + 1
+                    html = html & "<th width=""80"">"
+                    html = html & getTranslation("Lagerinfo")
+                    html = html & "</th>"
+                Else
+                    html = html & "/" & getTranslation("Lagerinfo")
+                End If
             End If
             
             If SHOWLAGERINFOICON Then
-                tableColumns = tableColumns + 1
-                html = html & "<th width=""16"">" & getTranslation("Lagerinfo") & "</th>"
+                If Not isMobileMode Then
+                    tableColumns = tableColumns + 1
+                    html = html & "<th width=""16"">"
+                    html = html & getTranslation("Lagerinfo")
+                    html = html & "</th>"
+                Else
+                    html = html & "/" & getTranslation("Lager")
+                End If
             End If
             
-            tableColumns = tableColumns + 1
-            html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
+            If Not isMobileMode Then
+                tableColumns = tableColumns + 1
+                html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
+            Else
+                html = html & "/" & getTranslation("Bestellen")
+            End If
+            
+            If isMobileMode Then
+                html = html & "</th>"
+            End If
+            
             'html = html & "<th width=""40"">Detail</th>"
             If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
+        
                 tableColumns = tableColumns + 1
                 html = html & "<th width=""90"" align=""center"">"
+                
                 If SHOP_SHOW_COMPARE Then
                     html = html & "<input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objekte vergleichen.") & """ src=""" & imageFullName("compare.gif") & """ value=""Vergleichen"" Name=""Action"">"
                 End If
                 If SHOP_SHOW_DRUCKEN Then
-                    html = html & "<br/><input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"">"
+                    html = html & " <input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"">"
                 End If
+                
                 html = html & "</th>"
             End If
+            
+            
+      
             html = html & "</tr>"
 
 
@@ -623,6 +714,8 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     htmlProductRow = htmlProductRow & "<tr>"
                     
                     Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
+                    If isMobileMode Then SHOP_THUMBNAIL_MAX_SIZE = 64
+                    
                     If showThumbnails Then
                         htmlProductRow = htmlProductRow & "<td width=""40""  bgcolor=""" & rowColor & """>"
                         htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & ArtNr & "'>"
@@ -653,9 +746,15 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                         htmlProductRow = htmlProductRow & "</td>"
                     End If
 
+                    If isMobileMode Then
+                        htmlProductRow = htmlProductRow & "<td align=""left"" bgcolor=""" & rowColor & """>"
+                    End If
 
                     'Bezeichnung und Beschreibung column
-                    htmlProductRow = htmlProductRow & "<td align=""left"" bgcolor=""" & rowColor & """>"
+                    If Not isMobileMode Then
+                        htmlProductRow = htmlProductRow & "<td align=""left"" bgcolor=""" & rowColor & """>"
+                    End If
+                    
                     If template_ColumnDescription <> "" Then 'template exists 
                         'handles in SHOW_PRODUCT_DETAILS    
                     Else
@@ -665,7 +764,7 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                     If SHOW_PRODUCT_DETAILS Then 'the Description can be templated with a file FLENAME_COLUMNT_DESCRIPTION
 
                         If template_ColumnDescription <> "" Then 'file exists 
-                            Dim copyTempl : copyTempl = "" & template_ColumnDescription
+                            Dim copyTempl As String = "" & template_ColumnDescription
                             htmlProductRow = htmlProductRow & makeProductPageWithTemplate(ArtNr, copyTempl)
                         Else 'no template file 
                             Dim beschreibung
@@ -676,18 +775,32 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                             htmlProductRow = htmlProductRow & "<br />" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
                         End If
                     End If
-                    htmlProductRow = htmlProductRow & "</td>"
-
+                    If Not isMobileMode Then
+                        htmlProductRow = htmlProductRow & "</td>"
+                    End If
+                    
                     If SHOP_SHOW_PRICE Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """> <p align=""right"">€ " & VKPreis
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """> <p align=""right"">"
+                        End If
+                        
+                        htmlProductRow = htmlProductRow & "€ " & VKPreis
                         If HerstellerRabatt <> "" Then
                             htmlProductRow = htmlProductRow & "<br />" & getTranslation("Rabatt") & ":" & HerstellerRabatt
                         End If
-                        htmlProductRow = htmlProductRow & "</td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "</p></td>"
+                        End If
+                        
                     End If
 
                     If SHOP_SHOW_HERSTELLER Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & Firma & "</td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & Firma & "</td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/ " & Firma & " "
+                        End If
+                        
                     End If
 
                     If SHOP_SHOW_ANGELEGTAM Then
@@ -698,47 +811,87 @@ Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult line
                         If AngelegtAm > Now().AddDays(-10) Then color_angelegt_am = "green"
                         If AngelegtAm > Now().AddDays(-3) Then color_angelegt_am = "red"
                         
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><font color='" & color_angelegt_am & "'>" & AngelegtAm & "</font></td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><font color='" & color_angelegt_am & "'>" & AngelegtAm & "</font></td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/<font color='" & color_angelegt_am & "'>" & AngelegtAm & "</font>"
+                        End If
+                    
                     End If
-                    If BenutzeEAN Then  'EAN                    
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & EAN & "</td>"
+                    If BenutzeEAN Then  'EAN               
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & EAN & "</td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/ " & EAN
+                        End If
+                        
                     Else 'ArtNR 
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ArtNr & "</td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ArtNr & "</td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/ " & ArtNr
+                        End If
+                        
                     End If
                     
                     If SHOWLAGERINFO Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & LagerInfo & "</td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & LagerInfo & "</td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/ " & LagerInfo
+                        End If
                     End If
                     
                     If SHOWLAGERINFOICON Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & getLagerInfoIcon(ArtNr) & "</td>"
+                        If Not isMobileMode Then
+                            htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & getLagerInfoIcon(ArtNr) & "</td>"
+                        Else
+                            htmlProductRow = htmlProductRow & "/ " & getLagerInfoIcon(ArtNr)
+                        End If
+                    End If
+                    If Not isMobileMode Then
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>"
                     End If
                     
-                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Bestellen") & " " & Bezeichnung & "'></a></td>"
+                    htmlProductRow = htmlProductRow & "<a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Bestellen") & " " & Bezeichnung & "'></a>"
+                    If Not isMobileMode Then
+                        htmlProductRow = htmlProductRow & "</td>"
+                    End If
+                    
+                    If isMobileMode Then
+                        htmlProductRow = htmlProductRow & "</td>"
+                    End If
+                    
                     'html = html & "<td align=""center"" bgcolor=""" & rowColor &"""><a href='default.aspx?ArtNr=" & ArtNr & "'>detail</a></td>"
                     If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ ><input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit""></td>"
+                        
+                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ >"
+                        htmlProductRow = htmlProductRow & "<input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit"">"
+                        htmlProductRow = htmlProductRow & "</td>"
+            
                     End If
+                    
+                 
                     htmlProductRow = htmlProductRow & "</tr>"
                     
                     'save in Cache 
                     Call setCache(productRowCacheName, htmlProductRow)
                 End If 'read product row from cache 
                 
-                    If SHOP_USE_SORT_IMPORTANCY Then
-                        Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(ArtNr, "Wichtigkeit") & ""
-                        If productHasBetterSorting <> "" Then 'put on the top 
-                            htmlAllRows = htmlProductRow & _
-                            "<tr colspan=" & (tableColumns - 1) & "><td></td></tr>" & _
-                            htmlAllRows
-                        Else
-                            htmlAllRows = htmlAllRows & htmlProductRow
-                        End If
+                If SHOP_USE_SORT_IMPORTANCY Then
+                    Dim productHasBetterSorting : productHasBetterSorting = getEigenschaft(ArtNr, "Wichtigkeit") & ""
+                    If productHasBetterSorting <> "" Then 'put on the top 
+                        htmlAllRows = htmlProductRow & _
+                        "<tr colspan=" & (tableColumns - 1) & "><td></td></tr>" & _
+                        htmlAllRows
                     Else
                         htmlAllRows = htmlAllRows & htmlProductRow
                     End If
-                    htmlProductRow = ""
-                    rsArtikel.moveNext()
+                Else
+                    htmlAllRows = htmlAllRows & htmlProductRow
+                End If
+                htmlProductRow = ""
+                rsArtikel.moveNext()
             End While
             
             html = html & htmlAllRows
