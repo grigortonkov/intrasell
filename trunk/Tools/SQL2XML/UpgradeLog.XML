@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SQL2XML">
+</Property><Property Name="Projektmappendatei" Value="Z:\Business\IntraSell_System\Tools\SQL2XML\SQL2XML.sln">
+</Property><Property Name="Date" Value="Mittwoch, 2. September 2009">
+</Property><Property Name="Time" Value="16:20">
+</Property></Properties><Event ErrorLevel="0" Project="SQL2XML" Source="SQL2XML.csproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="SQL2XML" Source="SQL2XML.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="XML2Word" Source="..\XML2Word\XML2Word.vbproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="XML2Word" Source="..\XML2Word\XML2Word.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="XML2WordCMD" Source="..\XML2WordCMD\XML2WordCMD.vbproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="XML2WordCMD" Source="..\XML2WordCMD\XML2WordCMD.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SQL2XML.sln" Description="Die Projektmappe wurde erfolgreich konvertiert.">
+</Event><Event ErrorLevel="3" Project="" Source="SQL2XML.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SQL2XML" Source="SQL2XML.csproj" Description="Überprüfung abgeschlossen: Aktualisierung von Projektdateien nicht erforderlich.">
+</Event><Event ErrorLevel="0" Project="XML2Word" Source="..\XML2Word\XML2Word.vbproj" Description="Überprüfung abgeschlossen: Aktualisierung von Projektdateien nicht erforderlich.">
+</Event><Event ErrorLevel="0" Project="XML2WordCMD" Source="..\XML2WordCMD\XML2WordCMD.vbproj" Description="Überprüfung abgeschlossen: Aktualisierung von Projektdateien nicht erforderlich.">
+</Event></UpgradeLog>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GriTon.SQL2XML.Program">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Programm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GriTon.SQL2XML.ReportParameter">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ReportParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GriTon.SQL2XML.SQL2DOC">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAAAAATQgABDACAigAAAGIAAAAYBAAAAAEAgDBBU=</HashCode>
+      <FileName>SQL2DOC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GriTon.SQL2XML.SQL2XML">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SQL2XML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GriTon.SQL2XML.Sql2XMLDataSet">
+    <Position X="3.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.TemplateFileRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="GriTon.SQL2XML.Sql2XMLDataSet.Sql2XMLFileRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.ReportParameterRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.TemplateFileRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.TemplateFileDataTable" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+      <Delegate Name="GriTon.SQL2XML.Sql2XMLDataSet.ReportParameterRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.ReportParameterDataTable" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.Sql2XMLFileDataTable" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.ReportParameterRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="GriTon.SQL2XML.Sql2XMLDataSet.TemplateFileRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.Sql2XMLFileRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GriTon.SQL2XML.Sql2XMLDataSet.Sql2XMLFileRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAgCIBAAAwAAAAJABAAAQAgAAAgCQBgQAAAAABEABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQL2XML.Sql2XMLDataSet">
+    <Position X="4" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Class Name="SQL2XML.Sql2XMLDataSet.ReportParameterDataTable" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Sql2XMLDataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql2XMLDataSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
