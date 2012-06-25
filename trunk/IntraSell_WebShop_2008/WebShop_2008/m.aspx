@@ -1,6 +1,4 @@
-﻿<!--#include file="intrasoft/functions.aspx"-->
-<!--#include file="intrasoft/functionsCache.aspx"-->
-<%@ Page Language="vb" AutoEventWireup="false"   Inherits="WebApplicationTest.m" %>
+﻿<!--#include file="cgi/defaulthead.inc.aspx"-->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,6 +13,7 @@
         Browser Detector... if mobile browser then we send the user to the mobile pages:<br />
     <% 
         Response.Write("isMobileBrowser=" & isMobileBrowser() & "<br />")
+        
     %>
 
     </div>

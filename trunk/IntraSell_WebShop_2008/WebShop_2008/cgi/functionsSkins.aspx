@@ -1,5 +1,8 @@
 <%
-    SKINNUMBER = varvalue("SKINNUMBER") 'configuration  
+    SKINNUMBER = varvalue("SKINNUMBER") 'configuration
+    If isMobileBrowser() Then
+        SKINNUMBER = "_mobile"
+    End If
     SKIN = "/skins/skin" & SKINNUMBER 'configuration
 %>
 
