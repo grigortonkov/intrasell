@@ -1421,7 +1421,7 @@
                     "pda", "windows ce", "mmp/", "blackberry", "mib/", "symbian", "wireless", "nokia", "hand", "mobi", "phone", "cdm", "up.b", "audio", _
                     "SIE-", "SEC-", "samsung", "HTC", "mot-", "mitsu", "sagem", "sony", "alcatel", "lg", "eric", "vx", "NEC", "philips", "mmm", "xx", _
                     "panasonic", "sharp", "wap", "sch", "rover", "pocket", "benq", "java", "pt", "pg", "vox", "amoi", "bird", "compal", "kg", "voda", _
-                    "sany", "kdd", "dbt", "sendo", "sgh", "gradi", "jb", "dddi", "moto", "iphone" ,"mozilla"} '"mozilla" is added to test with FF mobile devices
+                    "sany", "kdd", "dbt", "sendo", "sgh", "gradi", "jb", "dddi", "moto", "iphone" ,"_mozilla"} '"mozilla" is added to test with FF mobile devices
         Dim userAgent As String = context.Request.ServerVariables("HTTP_USER_AGENT")
         Dim m As String 
         For Each m In mobiles
