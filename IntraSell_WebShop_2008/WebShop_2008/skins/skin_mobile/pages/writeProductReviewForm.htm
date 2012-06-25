@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Neue Seite 1</title>
+</head>
+
+<body>
+
+<form method="post" action="cgi/productReviewsWriteReview.aspx" target="Save">
+  <p><input type="hidden" name="ArtNr" value="[ArtNr]">
+  <table border="0" width="600" height="61">
+    <tr>
+      <td width="12%" height="11">Name (Autor*)</td>
+      <td width="88%" height="11">
+<input name="Autor" value="[Autor]" size="20">
+<b>[Autor]</b>
+<!--<input name="Autor" value="Anonym" size="20">--></td>
+    </tr>
+    <tr>
+      <td width="12%" height="16">Kommentar</td>
+      <td width="88%" height="16"><textarea cols="80" name="Review" rows="3" style="height: 80; width: 428"></textarea></td>
+    </tr>
+    <tr>
+      <td width="12%" height="16">Ihre Bewertung</td>
+      <td width="88%" height="16">(schlecht) 1<input type="radio" value="1" name="Points">
+        2<input type="radio" value="2" name="Points"> 3<input type="radio" value="3" name="Points" checked>
+        4<input type="radio" value="4" name="Points"> 5<input type="radio" value="5" name="Points">
+        (sehr gut)</td>
+    </tr>
+    <tr>
+      <td width="12%" height="16"></td>
+      <td width="88%" height="16"><input OnClick="window.open('Save','Save','top=300,left=300,height=200,width=250,status=yes,toolbar=no,menubar=no,location=no');" type="submit" value="Abschicken" name="Go"></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+
+</html>
