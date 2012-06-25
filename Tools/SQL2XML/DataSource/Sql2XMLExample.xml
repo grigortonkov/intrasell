@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- the embedded SQL Commands are executed and parsed as XML Tags-->
+<Document>
+
+  <Rechnung>
+    <SQLCommand>
+      <!--
+        Beispiele für Connection String: 
+        "Driver={SQL Server};Server=(local);Trusted_Connection=Yes;Database=AdventureWorks;"
+        "Driver={Microsoft ODBC for Oracle};Server=ORACLE8i7;Persist Security Info=False;Trusted_Connection=Yes"
+        "Driver={Microsoft Access Driver (*.mdb)};DBQ=c:\bin\Northwind.mdb"
+        "Driver={Microsoft Excel Driver (*.xls)};DBQ=c:\bin\book1.xls"
+        "Driver={Microsoft Text Driver (*.txt; *.csv)};DBQ=c:\bin"
+        "DSN=dsnname"
+        -->
+      <ConnectionString>
+        Driver={MySQL ODBC 3.51 Driver}; Server=localhost; Port=3306; Database=lwc; UID=:USERNAME; PWD=:PWD
+      </ConnectionString>
+      <CommandText>
+        <![CDATA[select * from Anfrage limit 1 ]]>
+      </CommandText>
+      <RowTagName>Anfrage</RowTagName>
+    </SQLCommand>
+    <Adressen>
+      <SQLCommand>
+        <ConnectionString>
+          Driver={MySQL ODBC 3.51 Driver}; Server=localhost; Port=3306; Database=lwc; UID=:USERNAME; PWD=:PWD
+        </ConnectionString>
+        <CommandText>
+          <![CDATA[select * from Adresse Where Ort Like ':Ort' Limit 10]]>
+        </CommandText>
+        <RowTagName>Adresse</RowTagName>
+      </SQLCommand>
+    </Adressen>
+
+    <Fahrzeuge>
+      <SQLCommand>
+        <ConnectionString>
+          Driver={MySQL ODBC 3.51 Driver}; Server=localhost; Port=3306; Database=lwc; UID=:USERNAME; PWD=:PWD
+        </ConnectionString>
+        <CommandText>
+          <![CDATA[select * from Fahrzeug]]>
+        </CommandText>
+        <RowTagName>Fahrzeug</RowTagName>
+      </SQLCommand>
+    </Fahrzeuge>
+    
+    <ReportParameters>
+    <ReportParameter>
+      <Name>Ort</Name>
+      <Type>String</Type>
+      <Default>Linz</Default>
+    </ReportParameter>
+      <ReportParameter>
+        <Name>USERNAME</Name>
+        <Type>String</Type>
+        <Default>root</Default>
+      </ReportParameter>
+      <ReportParameter>
+        <Name>PWD</Name>
+        <Type>String</Type>
+        <Default></Default>
+      </ReportParameter>   
+  </ReportParameters>
+
+  </Rechnung>
+
+</Document>
