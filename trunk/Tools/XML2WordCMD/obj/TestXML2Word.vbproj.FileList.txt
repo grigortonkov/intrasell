@@ -1,2 +1,0 @@
-obj\Debug\TestXML2Word.exe
-obj\Debug\TestXML2Word.pdb
