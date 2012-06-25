@@ -60,13 +60,13 @@ Anzahl Archivpreise&nbsp;</td>
 <h3>Anzahl SHOP Weiterleitungen:&nbsp;</h3>
 <p> [SQL:<![CDATA[select  year(c.timestamp) as 'Jahr', month(c.timestamp) as 'Monat',  l.Firma, count(*) as 'AnzClicks' from priceComparePriceClicks c,  lieferantenAdressen l 
 where c.lieferantNr = l.idnr 
-group by year(c.timestamp), month(c.timestamp), l.idnr , l.Firma;]]>] <br>
+group by year(c.timestamp), month(c.timestamp), l.idnr , l.Firma;]]>] <br />
 
 <h3>Price Import:&nbsp;</h3>
 <p> [SQL:<![CDATA[select l.idnr, l.Firma,  count(*) AnzahlPreise, min(PreisDatum) MinDatum, max(Preisdatum) as MaxDatum
 from `lieferantenArtikel-Preise` lp, lieferantenAdressen l where 
 l.idnr = lp.lieferantnr
-group by  l.idnr, l.Firma;]]>] <br>
+group by  l.idnr, l.Firma;]]>] <br />
 
 </p>
 

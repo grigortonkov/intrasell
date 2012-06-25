@@ -4,10 +4,10 @@
 		<TITLE>Lost Password</TITLE>
 	</HEAD>
 	<link REL="stylesheet" HREF="../../style.css" TYPE="text/css">
-		<br>
-		<br>
-		<br>
-		<br>
+		<br />
+		<br />
+		<br />
+		<br />
 		<%
 		
 'ONLY EMAIL IS NEEDED FOR SEND PASS FUNCTIONS		
