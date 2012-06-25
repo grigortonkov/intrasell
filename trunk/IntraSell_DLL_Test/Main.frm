@@ -4,10 +4,10 @@ Begin VB.Form FormMain
    ClientHeight    =   5985
    ClientLeft      =   2505
    ClientTop       =   3885
-   ClientWidth     =   9675
+   ClientWidth     =   11415
    LinkTopic       =   "Form1"
    ScaleHeight     =   5985
-   ScaleWidth      =   9675
+   ScaleWidth      =   11415
    Begin VB.TextBox txtConnString 
       Height          =   525
       Left            =   600
@@ -15,7 +15,7 @@ Begin VB.Form FormMain
       TabIndex        =   6
       Text            =   "Main.frx":0000
       Top             =   240
-      Width           =   6135
+      Width           =   10695
    End
    Begin VB.CommandButton CommandKunden 
       Caption         =   "Kunden"
@@ -26,7 +26,7 @@ Begin VB.Form FormMain
       Width           =   1095
    End
    Begin VB.Frame Frame2 
-      Caption         =   "Frame2"
+      Caption         =   "Oeffne Word Printing"
       Height          =   1215
       Left            =   600
       TabIndex        =   2
@@ -58,7 +58,7 @@ Begin VB.Form FormMain
       Width           =   1215
    End
    Begin VB.Frame Frame1 
-      Caption         =   "Frame1"
+      Caption         =   "Run Tests 1,2,3"
       Height          =   1095
       Left            =   600
       TabIndex        =   1

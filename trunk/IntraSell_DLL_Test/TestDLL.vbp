@@ -1,5 +1,5 @@
 Type=Exe
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\Windows\SysWOW64\stdole2.tlb#OLE Automation
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#D:\Windows\SysWOW64\stdole2.tlb#OLE Automation
 Reference=*\G{E9A0BB63-8C01-4AC7-A4DA-E5B0A2A5BC28}#1.1#0#..\IntraSell_DLL\IntraSell.dll#IntraSell DLL Datei für Basis Business Funktionalität
 Form=Main.frm
 Startup="FormMain"
