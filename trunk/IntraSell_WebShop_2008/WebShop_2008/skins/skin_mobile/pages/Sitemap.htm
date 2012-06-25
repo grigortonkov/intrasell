@@ -1,0 +1,9 @@
+  <hr/>
+ All product categories: 
+ [SUBCATEGORIES]
+  <hr/>
+ Best Products:
+ [MOSTCLICKEDPRODUCTS]
+ <hr/>
+ All Products:
+ [SQL:<![CDATA[select ArtNr, Bezeichnung, concat('<a href=default.aspx?ArtNr=', convert( ArtNr, char(8)), '>Visit</a>') as Link from grArtikel where produktAktiv<>0 order by ArtNr desc limit 1000;]]>]
