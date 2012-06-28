@@ -280,7 +280,7 @@
                                 -->
                         <input type="radio" class="submit" value="<%=rsZM("destination").Value%>" name="destination"
                             <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination").Value%>';">
-                        <%=rsZM("destination").Value%>
+                        <%=getFriendlyDestination(rsZM("destination").Value)%>
                         <%
                             rsZM.MoveNExt()
                         End While
