@@ -764,7 +764,7 @@
             html = html & "<input type='radio' value='" & rsZM("destination").Value & "' name='destination' " & selected & ""
             html = html & "   onclick='document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & payMode & "&postmode=" & postMode & "&destination=" & rsZM("destination").Value & "';'"
             html = html & "   id='Radio3'>"
-            html = html & "" & rsZM("destination").Value
+            html = html & "" & getFriendlyDestination(rsZM("destination").Value)
         
             rsZM.MoveNext()
         End While
@@ -775,6 +775,14 @@
         
         Response.Write(html)
         
+    End Function
+    
+    
+    Function getFriendlyDestination(ByVal land_iso2 As String) As String
+        getFriendlyDestination = FIRSTVALUE("select name from grLand where iso2='" & land_iso2 & "'")
+        If getFriendlyDestination = "N.A." Then
+            getFriendlyDestination = land_iso2
+        End If
     End Function
 </script>
 
