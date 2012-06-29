@@ -778,7 +778,8 @@
     End Function
     
     
-    Function getFriendlyDestination(ByVal land_iso2 As String) As String
+    Function getFriendlyDestination(ByVal land_iso2 As Object) As String
+        if IsDbNull(land_iso2) then return ""
         getFriendlyDestination = FIRSTVALUE("select name from grLand where iso2='" & land_iso2 & "'")
         If getFriendlyDestination = "N.A." Then
             getFriendlyDestination = land_iso2
