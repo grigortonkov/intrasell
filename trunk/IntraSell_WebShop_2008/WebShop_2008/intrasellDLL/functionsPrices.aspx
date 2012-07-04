@@ -81,29 +81,28 @@
     End Function
 
     Function makeBruttoPreis2(ByVal ArtNr As Object, ByVal Stk As Object, ByVal Land As Object) As Decimal
-        on error goto err
-        If Request.QueryString("debug") = "true" Then
-            Response.Write("<br />" & Chr(13))
-            Response.Write("get Price for ArtNR = [" & ArtNr & "]")
-            Response.Write("<br />" & Chr(13))
-            Response.Write("get Price for Stk = [" & Stk & "]")
-            Response.Write("<br />" & Chr(13))
-            Response.Write("get Price for Land = [" & Land & "]")
-        End If
+        Try
+            If Request.QueryString("debug") = "true" Then
+                Response.Write("<br />" & Chr(13))
+                Response.Write("get Price for ArtNR = [" & ArtNr & "]")
+                Response.Write("<br />" & Chr(13))
+                Response.Write("get Price for Stk = [" & Stk & "]")
+                Response.Write("<br />" & Chr(13))
+                Response.Write("get Price for Land = [" & Land & "]")
+            End If
 
   
-        makeBruttoPreis2 = IntraSellPreise().makeBruttoPreis2(ArtNr, Stk, Land)
-        exit function 
+            makeBruttoPreis2 = IntraSellPreise().makeBruttoPreis2(ArtNr, Stk, Land)
+        Catch ex As Exception
 
-err:
             Response.Write("<br />" & Chr(13))
-            Response.Write("Fehler in Funktion makeBruttoPreis2") 
+            Response.Write("<font color=red>Fehler in Funktion makeBruttoPreis2</font>")
             Response.Write("get Price for ArtNR = [" & ArtNr & "]")
             Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Stk = [" & Stk & "]")
             Response.Write("<br />" & Chr(13))
             Response.Write("get Price for Land = [" & Land & "]")
-
+        End Try
     End Function
 
     Public Function calculateBruttoPreis(ByVal VKPreis As Object, ByVal ArtNr As Object, ByVal IDNR As Object) As Decimal

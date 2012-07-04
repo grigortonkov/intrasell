@@ -640,7 +640,9 @@
           
             Dim SHOP_PRODUCTLIST_ROW_COLOR As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR", "#F7F7F7")
             Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR_ALT", "#FFFFFF")
- 
+            Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
+            If isMobileMode Then SHOP_THUMBNAIL_MAX_SIZE = 64
+            
             While (Not rsArtikel.EOF) And (CDbl(swnItems) < CDbl(ITEMPERPAGE))
                 swnItems = swnItems + 1
 
@@ -672,7 +674,7 @@
                 End If
                 'end GROUP ROW 
 
-                Dim productRowCacheName As String = "PROD_ROW_" & ArtNr & "_" & Session("language") & "_" & getLOGIN()
+                Dim productRowCacheName As String = "PROD_ROW_" & ArtNr & "_" & Session("language") & "_" & getLOGIN() & "_" & showThumbnails
                 htmlProductRow = getCache(productRowCacheName)
                 If htmlProductRow = "" Then
 
@@ -688,7 +690,7 @@
                     VKPreis = FormatNumber(VKPreis, 2)
 
                     If IsNumeric(VKPreis) Then
-                        'If VKPreis <= 0 Then VKPreis = "n.a." 'remove VKPreis for -1 and so on 
+                        If VKPreis <= 0 Then VKPreis = "n.a." 'remove VKPreis for -1 and so on 
                     End If
 
                     If Not isPurchasingAllowed() Then
@@ -712,37 +714,12 @@
                     ArtKatNrProdukt = tablevalue("grArtikel", "ArtNR", ArtNr, "ArtKatNr")
                     
                     htmlProductRow = htmlProductRow & "<tr>"
-                    
-                    Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
-                    If isMobileMode Then SHOP_THUMBNAIL_MAX_SIZE = 64
-                    
+    
                     If showThumbnails Then
                         htmlProductRow = htmlProductRow & "<td width=""40""  bgcolor=""" & rowColor & """>"
                         htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & ArtNr & "'>"
                         htmlProductRow = htmlProductRow & makeImgTag(Picture, Server.HtmlEncode(Bezeichnung & ""), SHOP_THUMBNAIL_MAX_SIZE) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
                         htmlProductRow = htmlProductRow & "</a>"
-                        
-                        If False Then 'not needed 
-                            If Picture <> "" And Picture <> "no-image" Then
-                                Dim thumbnailBezForToolTip : thumbnailBezForToolTip = Server.HtmlEncode(Bezeichnung & "")
-                                Dim thumbnailURL
-                                If LCase(VARVALUE_DEFAULT("SHOP_USE_LOCAL_THUMBS", "true")) = "true" Then
-                                    thumbnailURL = "thumbs/" & Picture
-                                Else
-                                    If InStr(Picture, "ttp") > 0 Then 'it is absolute url 
-                                        thumbnailURL = Picture
-                                    Else
-                                        thumbnailURL = "productImages/thumbnail.aspx?width=" & PRODUCT_IMAGE_SMALL_MAX_SIZE & "&filename=" & Picture
-                                    End If
-                                End If
-                                
-                                htmlProductRow = htmlProductRow & "<a href='default.aspx?ArtNr=" & ArtNr & "'>"
-                                htmlProductRow = htmlProductRow & "<img src=""" & thumbnailURL & """ alt='Image fuer " & _
-                                Server.HtmlEncode(Bezeichnung & "") & _
-                                "' tooltip='" & thumbnailBezForToolTip & "' border=0>"
-                                htmlProductRow = htmlProductRow & "</a>"
-                            End If
-                        End If
                         htmlProductRow = htmlProductRow & "</td>"
                     End If
 
@@ -915,5 +892,49 @@
         makeProductListOnQuery = html
         
     End Function
+    
+    
+    'Lists all Products and the prices for them 
+    Function productCatalog()
+       
+        Dim Sql As String = "select * from grArtikel where produktAktiv <> 0 order by EAN, Bezeichnung"
+        Dim MWSt As String
+        Dim VKPreis As String
+ 
+        Dim rsArtikel = objConnectionExecute(Sql)
+        Response.Write("<table> <tr><th> </th> <th> </th> <th> </th></tr> ")
+        While Not rsArtikel.EOF
+            
+            Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
+            Response.Flush()
+
+        
+            MWSt = rsArtikel("MWST").Value
+ 
+            VKPreis = getPreis(getLOGIN(), rsArtikel("ArtNr").Value, 1)
+            If getLOGIN() <= 0 Then
+                VKPreis = makeBruttoPreis(VKPreis, MWSt, Session("Land"))
+            Else 'user is logged in 
+                VKPreis = calculateBruttoPreis(VKPreis, rsArtikel("ArtNr").Value, getLOGIN())
+            End If
+
+            VKPreis = FormatNumber(VKPreis, 2)
+            If IsNumeric(VKPreis) Then
+                If Not VKPreis > 0 Then
+                    VKPreis = "<font color=red>" & vkpreis & "</font>"
+                End If
+            End If
+
+            Dim line As String = "<tr><td>" & rsArtikel("EAN").Value & " </td><td>" & rsArtikel("Bezeichnung").Value & "</td> <td>" & VKPreis & "</td></tr>"
+            Response.Write(line)
+            Response.Flush()
+            
+            rsArtikel.moveNext()
+        End While
+        
+
+        Response.Write("</table>")
+    End Function
+
 </script>
 
