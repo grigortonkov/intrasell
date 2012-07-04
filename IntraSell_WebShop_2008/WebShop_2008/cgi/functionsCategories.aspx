@@ -879,7 +879,7 @@
     Function getCountOfProductsOpt(ByVal optArtKatNR, ByVal optLieferantNr, ByVal optHerstellerNr) As Long
         Dim sql As String, rs
         sql = " select count(*) as countProds from grArtikel  " & _
-              " Where ProduktAktiv <> 0 "
+              " Where ProduktAktiv <> 0 and ProduktAktivOnline <>0 "
         Try
             If optArtKatNR <> "" Then sql = sql & " and ArtKatNr=" & optArtKatNR
         Catch
