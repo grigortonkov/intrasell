@@ -154,6 +154,29 @@ WHERE     (IdNr = @Original_IdNr)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="grLandPlzTableAdapter" GeneratorDataComponentClassName="grLandPlzTableAdapter" Name="grLandPlz" UserDataComponentName="grLandPlzTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        grland.IdNr AS grLandIDNR, grplz.IdNr, grland.Name, grplz.PLZ, grplz.Ort
+FROM            grplz INNER JOIN
+                         grland ON grplz.Land = grland.IdNr
+ORDER BY grland.Name, grplz.PLZ, grplz.Ort</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdNr" DataSetColumn="IdNr" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="PLZ" DataSetColumn="PLZ" />
+              <Mapping SourceColumn="Ort" DataSetColumn="Ort" />
+              <Mapping SourceColumn="grLandIDNR" DataSetColumn="grLandIDNR" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -260,6 +283,41 @@ WHERE     (IdNr = @Original_IdNr)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="grLandPlz" msprop:Generator_TableClassName="grLandPlzDataTable" msprop:Generator_TableVarName="tablegrLandPlz" msprop:Generator_TablePropName="grLandPlz" msprop:Generator_RowDeletingName="grLandPlzRowDeleting" msprop:Generator_UserTableName="grLandPlz" msprop:Generator_RowChangingName="grLandPlzRowChanging" msprop:Generator_RowEvHandlerName="grLandPlzRowChangeEventHandler" msprop:Generator_RowDeletedName="grLandPlzRowDeleted" msprop:Generator_RowEvArgName="grLandPlzRowChangeEvent" msprop:Generator_RowChangedName="grLandPlzRowChanged" msprop:Generator_RowClassName="grLandPlzRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdNr" msprop:Generator_ColumnVarNameInTable="columnIdNr" msprop:Generator_ColumnPropNameInRow="IdNr" msprop:Generator_ColumnPropNameInTable="IdNrColumn" msprop:Generator_UserColumnName="IdNr">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLZ" msprop:Generator_ColumnVarNameInTable="columnPLZ" msprop:Generator_ColumnPropNameInRow="PLZ" msprop:Generator_ColumnPropNameInTable="PLZColumn" msprop:Generator_UserColumnName="PLZ" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ort" msprop:Generator_ColumnVarNameInTable="columnOrt" msprop:Generator_ColumnPropNameInRow="Ort" msprop:Generator_ColumnPropNameInTable="OrtColumn" msprop:Generator_UserColumnName="Ort" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="grLandIDNR" msprop:Generator_ColumnVarNameInTable="columngrLandIDNR" msprop:Generator_ColumnPropNameInRow="grLandIDNR" msprop:Generator_ColumnPropNameInTable="grLandIDNRColumn" msprop:Generator_UserColumnName="grLandIDNR" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -268,6 +326,10 @@ WHERE     (IdNr = @Original_IdNr)</CommandText>
     </xs:unique>
     <xs:unique name="grland_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:grland" />
+      <xs:field xpath="mstns:IdNr" />
+    </xs:unique>
+    <xs:unique name="grLandPlz_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:grLandPlz" />
       <xs:field xpath="mstns:IdNr" />
     </xs:unique>
   </xs:element>
