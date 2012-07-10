@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPLZ" targetNamespace="http://tempuri.org/dsPLZ.xsd" xmlns:mstns="http://tempuri.org/dsPLZ.xsd" xmlns="http://tempuri.org/dsPLZ.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnIntraSellData" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnIntraSellData (MySettings)" PropertyReference="ApplicationSettings.IntraSell_Net.My.MySettings.GlobalReference.Default.ConnIntraSellData" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="grPLZTableAdapter" GeneratorDataComponentClassName="grPLZTableAdapter" Name="grPLZ" UserDataComponentName="grPLZTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnIntraSellData (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        *
+FROM            grPLZ</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdNr" DataSetColumn="IdNr" />
+              <Mapping SourceColumn="BLand" DataSetColumn="BLand" />
+              <Mapping SourceColumn="PLZ" DataSetColumn="PLZ" />
+              <Mapping SourceColumn="Ort" DataSetColumn="Ort" />
+              <Mapping SourceColumn="TelVWahl" DataSetColumn="TelVWahl" />
+              <Mapping SourceColumn="Land" DataSetColumn="Land" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="grLandTableAdapter" GeneratorDataComponentClassName="grLandTableAdapter" Name="grLand" UserDataComponentName="grLandTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnIntraSellData (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from grLand</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdNr" DataSetColumn="IdNr" />
+              <Mapping SourceColumn="VWahl" DataSetColumn="VWahl" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Currency" DataSetColumn="Currency" />
+              <Mapping SourceColumn="PLZPraefix" DataSetColumn="PLZPraefix" />
+              <Mapping SourceColumn="ISO2" DataSetColumn="ISO2" />
+              <Mapping SourceColumn="ISO3" DataSetColumn="ISO3" />
+              <Mapping SourceColumn="language_Code" DataSetColumn="language_Code" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPLZ" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsPLZ" msprop:Generator_UserDSName="dsPLZ">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="grPLZ" msprop:Generator_TableClassName="grPLZDataTable" msprop:Generator_TableVarName="tablegrPLZ" msprop:Generator_TablePropName="grPLZ" msprop:Generator_RowDeletingName="grPLZRowDeleting" msprop:Generator_UserTableName="grPLZ" msprop:Generator_RowChangingName="grPLZRowChanging" msprop:Generator_RowEvHandlerName="grPLZRowChangeEventHandler" msprop:Generator_RowDeletedName="grPLZRowDeleted" msprop:Generator_RowEvArgName="grPLZRowChangeEvent" msprop:Generator_RowChangedName="grPLZRowChanged" msprop:Generator_RowClassName="grPLZRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdNr" msprop:Generator_ColumnVarNameInTable="columnIdNr" msprop:Generator_ColumnPropNameInRow="IdNr" msprop:Generator_ColumnPropNameInTable="IdNrColumn" msprop:Generator_UserColumnName="IdNr">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BLand" msprop:Generator_ColumnVarNameInTable="columnBLand" msprop:Generator_ColumnPropNameInRow="BLand" msprop:Generator_ColumnPropNameInTable="BLandColumn" msprop:Generator_UserColumnName="BLand" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLZ" msprop:Generator_ColumnVarNameInTable="columnPLZ" msprop:Generator_ColumnPropNameInRow="PLZ" msprop:Generator_ColumnPropNameInTable="PLZColumn" msprop:Generator_UserColumnName="PLZ" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ort" msprop:Generator_ColumnVarNameInTable="columnOrt" msprop:Generator_ColumnPropNameInRow="Ort" msprop:Generator_ColumnPropNameInTable="OrtColumn" msprop:Generator_UserColumnName="Ort" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TelVWahl" msprop:Generator_ColumnVarNameInTable="columnTelVWahl" msprop:Generator_ColumnPropNameInRow="TelVWahl" msprop:Generator_ColumnPropNameInTable="TelVWahlColumn" msprop:Generator_UserColumnName="TelVWahl" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Land" msprop:Generator_ColumnVarNameInTable="columnLand" msprop:Generator_ColumnPropNameInRow="Land" msprop:Generator_ColumnPropNameInTable="LandColumn" msprop:Generator_UserColumnName="Land" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="grLand" msprop:Generator_TableClassName="grLandDataTable" msprop:Generator_TableVarName="tablegrLand" msprop:Generator_TablePropName="grLand" msprop:Generator_RowDeletingName="grLandRowDeleting" msprop:Generator_UserTableName="grLand" msprop:Generator_RowChangingName="grLandRowChanging" msprop:Generator_RowEvHandlerName="grLandRowChangeEventHandler" msprop:Generator_RowDeletedName="grLandRowDeleted" msprop:Generator_RowEvArgName="grLandRowChangeEvent" msprop:Generator_RowChangedName="grLandRowChanged" msprop:Generator_RowClassName="grLandRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdNr" msprop:Generator_ColumnVarNameInTable="columnIdNr" msprop:Generator_ColumnPropNameInRow="IdNr" msprop:Generator_ColumnPropNameInTable="IdNrColumn" msprop:Generator_UserColumnName="IdNr" type="xs:int" />
+              <xs:element name="VWahl" msprop:Generator_ColumnVarNameInTable="columnVWahl" msprop:Generator_ColumnPropNameInRow="VWahl" msprop:Generator_ColumnPropNameInTable="VWahlColumn" msprop:Generator_UserColumnName="VWahl" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Currency" msprop:Generator_ColumnVarNameInTable="columnCurrency" msprop:Generator_ColumnPropNameInRow="Currency" msprop:Generator_ColumnPropNameInTable="CurrencyColumn" msprop:Generator_UserColumnName="Currency" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLZPraefix" msprop:Generator_ColumnVarNameInTable="columnPLZPraefix" msprop:Generator_ColumnPropNameInRow="PLZPraefix" msprop:Generator_ColumnPropNameInTable="PLZPraefixColumn" msprop:Generator_UserColumnName="PLZPraefix" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISO2" msprop:Generator_ColumnVarNameInTable="columnISO2" msprop:Generator_ColumnPropNameInRow="ISO2" msprop:Generator_ColumnPropNameInTable="ISO2Column" msprop:Generator_UserColumnName="ISO2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISO3" msprop:Generator_ColumnVarNameInTable="columnISO3" msprop:Generator_ColumnPropNameInRow="ISO3" msprop:Generator_ColumnPropNameInTable="ISO3Column" msprop:Generator_UserColumnName="ISO3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="language_Code" msprop:Generator_ColumnVarNameInTable="columnlanguage_Code" msprop:Generator_ColumnPropNameInRow="language_Code" msprop:Generator_ColumnPropNameInTable="language_CodeColumn" msprop:Generator_UserColumnName="language_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:grPLZ" />
+      <xs:field xpath="mstns:IdNr" />
+    </xs:unique>
+    <xs:unique name="grLand_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:grLand" />
+      <xs:field xpath="mstns:IdNr" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="grPLZ_grLand" msdata:parent="grPLZ" msdata:child="grLand" msdata:parentkey="Land" msdata:childkey="IdNr" msprop:Generator_UserChildTable="grLand" msprop:Generator_ChildPropName="GetgrLandRows" msprop:Generator_ParentPropName="grPLZRow" msprop:Generator_UserRelationName="grPLZ_grLand" msprop:Generator_RelationVarName="relationgrPLZ_grLand" msprop:Generator_UserParentTable="grPLZ" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
