@@ -63,6 +63,17 @@ Namespace My
                 Return CType(Me("ConnIntraSellData"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;User Id=root;password=a1060;Persist Security Info=True;database="& _ 
+            "intrasell_daten_2")>  _
+        Public ReadOnly Property intrasell_daten_2_ConnectionString() As String
+            Get
+                Return CType(Me("intrasell_daten_2_ConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
