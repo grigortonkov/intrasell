@@ -25,11 +25,11 @@ Option Explicit On
 Partial Public Class dsPLZ
     Inherits Global.System.Data.DataSet
     
-    Private tablegrPLZ As grPLZDataTable
+    Private tablegrplz As grplzDataTable
     
-    Private tablegrLand As grLandDataTable
+    Private tablegrland As grlandDataTable
     
-    Private relationgrPLZ_grLand As Global.System.Data.DataRelation
+    Private relationgrplz_ibfk_1 As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -60,11 +60,11 @@ Partial Public Class dsPLZ
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("grPLZ")) Is Nothing) Then
-                MyBase.Tables.Add(New grPLZDataTable(ds.Tables("grPLZ")))
+            If (Not (ds.Tables("grplz")) Is Nothing) Then
+                MyBase.Tables.Add(New grplzDataTable(ds.Tables("grplz")))
             End If
-            If (Not (ds.Tables("grLand")) Is Nothing) Then
-                MyBase.Tables.Add(New grLandDataTable(ds.Tables("grLand")))
+            If (Not (ds.Tables("grland")) Is Nothing) Then
+                MyBase.Tables.Add(New grlandDataTable(ds.Tables("grland")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -87,9 +87,9 @@ Partial Public Class dsPLZ
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property grPLZ() As grPLZDataTable
+    Public ReadOnly Property grplz() As grplzDataTable
         Get
-            Return Me.tablegrPLZ
+            Return Me.tablegrplz
         End Get
     End Property
     
@@ -97,9 +97,9 @@ Partial Public Class dsPLZ
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property grLand() As grLandDataTable
+    Public ReadOnly Property grland() As grlandDataTable
         Get
-            Return Me.tablegrLand
+            Return Me.tablegrland
         End Get
     End Property
     
@@ -170,11 +170,11 @@ Partial Public Class dsPLZ
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("grPLZ")) Is Nothing) Then
-                MyBase.Tables.Add(New grPLZDataTable(ds.Tables("grPLZ")))
+            If (Not (ds.Tables("grplz")) Is Nothing) Then
+                MyBase.Tables.Add(New grplzDataTable(ds.Tables("grplz")))
             End If
-            If (Not (ds.Tables("grLand")) Is Nothing) Then
-                MyBase.Tables.Add(New grLandDataTable(ds.Tables("grLand")))
+            If (Not (ds.Tables("grland")) Is Nothing) Then
+                MyBase.Tables.Add(New grlandDataTable(ds.Tables("grland")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -208,19 +208,19 @@ Partial Public Class dsPLZ
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tablegrPLZ = CType(MyBase.Tables("grPLZ"),grPLZDataTable)
+        Me.tablegrplz = CType(MyBase.Tables("grplz"),grplzDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablegrPLZ) Is Nothing) Then
-                Me.tablegrPLZ.InitVars
+            If (Not (Me.tablegrplz) Is Nothing) Then
+                Me.tablegrplz.InitVars
             End If
         End If
-        Me.tablegrLand = CType(MyBase.Tables("grLand"),grLandDataTable)
+        Me.tablegrland = CType(MyBase.Tables("grland"),grlandDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablegrLand) Is Nothing) Then
-                Me.tablegrLand.InitVars
+            If (Not (Me.tablegrland) Is Nothing) Then
+                Me.tablegrland.InitVars
             End If
         End If
-        Me.relationgrPLZ_grLand = Me.Relations("grPLZ_grLand")
+        Me.relationgrplz_ibfk_1 = Me.Relations("grplz_ibfk_1")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -231,23 +231,23 @@ Partial Public Class dsPLZ
         Me.Namespace = "http://tempuri.org/dsPLZ.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tablegrPLZ = New grPLZDataTable()
-        MyBase.Tables.Add(Me.tablegrPLZ)
-        Me.tablegrLand = New grLandDataTable()
-        MyBase.Tables.Add(Me.tablegrLand)
-        Me.relationgrPLZ_grLand = New Global.System.Data.DataRelation("grPLZ_grLand", New Global.System.Data.DataColumn() {Me.tablegrPLZ.LandColumn}, New Global.System.Data.DataColumn() {Me.tablegrLand.IdNrColumn}, false)
-        Me.Relations.Add(Me.relationgrPLZ_grLand)
+        Me.tablegrplz = New grplzDataTable()
+        MyBase.Tables.Add(Me.tablegrplz)
+        Me.tablegrland = New grlandDataTable()
+        MyBase.Tables.Add(Me.tablegrland)
+        Me.relationgrplz_ibfk_1 = New Global.System.Data.DataRelation("grplz_ibfk_1", New Global.System.Data.DataColumn() {Me.tablegrland.IdNrColumn}, New Global.System.Data.DataColumn() {Me.tablegrplz.LandColumn}, false)
+        Me.Relations.Add(Me.relationgrplz_ibfk_1)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializegrPLZ() As Boolean
+    Private Function ShouldSerializegrplz() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializegrLand() As Boolean
+    Private Function ShouldSerializegrland() As Boolean
         Return false
     End Function
     
@@ -310,18 +310,18 @@ Partial Public Class dsPLZ
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub grPLZRowChangeEventHandler(ByVal sender As Object, ByVal e As grPLZRowChangeEvent)
+    Public Delegate Sub grplzRowChangeEventHandler(ByVal sender As Object, ByVal e As grplzRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub grLandRowChangeEventHandler(ByVal sender As Object, ByVal e As grLandRowChangeEvent)
+    Public Delegate Sub grlandRowChangeEventHandler(ByVal sender As Object, ByVal e As grlandRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class grPLZDataTable
-        Inherits Global.System.Data.TypedTableBase(Of grPLZRow)
+    Partial Public Class grplzDataTable
+        Inherits Global.System.Data.TypedTableBase(Of grplzRow)
         
         Private columnIdNr As Global.System.Data.DataColumn
         
@@ -339,7 +339,7 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "grPLZ"
+            Me.TableName = "grplz"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -429,50 +429,53 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As grPLZRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As grplzRow
             Get
-                Return CType(Me.Rows(index),grPLZRow)
+                Return CType(Me.Rows(index),grplzRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grPLZRowChanging As grPLZRowChangeEventHandler
+        Public Event grplzRowChanging As grplzRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grPLZRowChanged As grPLZRowChangeEventHandler
+        Public Event grplzRowChanged As grplzRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grPLZRowDeleting As grPLZRowChangeEventHandler
+        Public Event grplzRowDeleting As grplzRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grPLZRowDeleted As grPLZRowChangeEventHandler
+        Public Event grplzRowDeleted As grplzRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddgrPLZRow(ByVal row As grPLZRow)
+        Public Overloads Sub AddgrplzRow(ByVal row As grplzRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddgrPLZRow(ByVal IdNr As String, ByVal BLand As String, ByVal PLZ As String, ByVal Ort As String, ByVal TelVWahl As String, ByVal Land As Integer) As grPLZRow
-            Dim rowgrPLZRow As grPLZRow = CType(Me.NewRow,grPLZRow)
-            Dim columnValuesArray() As Object = New Object() {IdNr, BLand, PLZ, Ort, TelVWahl, Land}
-            rowgrPLZRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowgrPLZRow)
-            Return rowgrPLZRow
+        Public Overloads Function AddgrplzRow(ByVal IdNr As String, ByVal BLand As String, ByVal PLZ As String, ByVal Ort As String, ByVal TelVWahl As String, ByVal parentgrlandRowBygrplz_ibfk_1 As grlandRow) As grplzRow
+            Dim rowgrplzRow As grplzRow = CType(Me.NewRow,grplzRow)
+            Dim columnValuesArray() As Object = New Object() {IdNr, BLand, PLZ, Ort, TelVWahl, Nothing}
+            If (Not (parentgrlandRowBygrplz_ibfk_1) Is Nothing) Then
+                columnValuesArray(5) = parentgrlandRowBygrplz_ibfk_1(0)
+            End If
+            rowgrplzRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowgrplzRow)
+            Return rowgrplzRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByIdNr(ByVal IdNr As String) As grPLZRow
-            Return CType(Me.Rows.Find(New Object() {IdNr}),grPLZRow)
+        Public Function FindByIdNr(ByVal IdNr As String) As grplzRow
+            Return CType(Me.Rows.Find(New Object() {IdNr}),grplzRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As grPLZDataTable = CType(MyBase.Clone,grPLZDataTable)
+            Dim cln As grplzDataTable = CType(MyBase.Clone,grplzDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -480,7 +483,7 @@ Partial Public Class dsPLZ
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New grPLZDataTable()
+            Return New grplzDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -521,28 +524,28 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewgrPLZRow() As grPLZRow
-            Return CType(Me.NewRow,grPLZRow)
+        Public Function NewgrplzRow() As grplzRow
+            Return CType(Me.NewRow,grplzRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New grPLZRow(builder)
+            Return New grplzRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(grPLZRow)
+            Return GetType(grplzRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.grPLZRowChangedEvent) Is Nothing) Then
-                RaiseEvent grPLZRowChanged(Me, New grPLZRowChangeEvent(CType(e.Row,grPLZRow), e.Action))
+            If (Not (Me.grplzRowChangedEvent) Is Nothing) Then
+                RaiseEvent grplzRowChanged(Me, New grplzRowChangeEvent(CType(e.Row,grplzRow), e.Action))
             End If
         End Sub
         
@@ -550,8 +553,8 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.grPLZRowChangingEvent) Is Nothing) Then
-                RaiseEvent grPLZRowChanging(Me, New grPLZRowChangeEvent(CType(e.Row,grPLZRow), e.Action))
+            If (Not (Me.grplzRowChangingEvent) Is Nothing) Then
+                RaiseEvent grplzRowChanging(Me, New grplzRowChangeEvent(CType(e.Row,grplzRow), e.Action))
             End If
         End Sub
         
@@ -559,8 +562,8 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.grPLZRowDeletedEvent) Is Nothing) Then
-                RaiseEvent grPLZRowDeleted(Me, New grPLZRowChangeEvent(CType(e.Row,grPLZRow), e.Action))
+            If (Not (Me.grplzRowDeletedEvent) Is Nothing) Then
+                RaiseEvent grplzRowDeleted(Me, New grplzRowChangeEvent(CType(e.Row,grplzRow), e.Action))
             End If
         End Sub
         
@@ -568,14 +571,14 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.grPLZRowDeletingEvent) Is Nothing) Then
-                RaiseEvent grPLZRowDeleting(Me, New grPLZRowChangeEvent(CType(e.Row,grPLZRow), e.Action))
+            If (Not (Me.grplzRowDeletingEvent) Is Nothing) Then
+                RaiseEvent grplzRowDeleting(Me, New grplzRowChangeEvent(CType(e.Row,grplzRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemovegrPLZRow(ByVal row As grPLZRow)
+        Public Sub RemovegrplzRow(ByVal row As grplzRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -602,7 +605,7 @@ Partial Public Class dsPLZ
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "grPLZDataTable"
+            attribute2.FixedValue = "grplzDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -651,8 +654,8 @@ Partial Public Class dsPLZ
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class grLandDataTable
-        Inherits Global.System.Data.TypedTableBase(Of grLandRow)
+    Partial Public Class grlandDataTable
+        Inherits Global.System.Data.TypedTableBase(Of grlandRow)
         
         Private columnIdNr As Global.System.Data.DataColumn
         
@@ -674,7 +677,7 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "grLand"
+            Me.TableName = "grland"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -780,53 +783,50 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As grLandRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As grlandRow
             Get
-                Return CType(Me.Rows(index),grLandRow)
+                Return CType(Me.Rows(index),grlandRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grLandRowChanging As grLandRowChangeEventHandler
+        Public Event grlandRowChanging As grlandRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grLandRowChanged As grLandRowChangeEventHandler
+        Public Event grlandRowChanged As grlandRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grLandRowDeleting As grLandRowChangeEventHandler
+        Public Event grlandRowDeleting As grlandRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event grLandRowDeleted As grLandRowChangeEventHandler
+        Public Event grlandRowDeleted As grlandRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddgrLandRow(ByVal row As grLandRow)
+        Public Overloads Sub AddgrlandRow(ByVal row As grlandRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddgrLandRow(ByVal parentgrPLZRowBygrPLZ_grLand As grPLZRow, ByVal VWahl As String, ByVal Name As String, ByVal Currency As String, ByVal PLZPraefix As String, ByVal ISO2 As String, ByVal ISO3 As String, ByVal language_Code As String) As grLandRow
-            Dim rowgrLandRow As grLandRow = CType(Me.NewRow,grLandRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, VWahl, Name, Currency, PLZPraefix, ISO2, ISO3, language_Code}
-            If (Not (parentgrPLZRowBygrPLZ_grLand) Is Nothing) Then
-                columnValuesArray(0) = parentgrPLZRowBygrPLZ_grLand(5)
-            End If
-            rowgrLandRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowgrLandRow)
-            Return rowgrLandRow
+        Public Overloads Function AddgrlandRow(ByVal IdNr As Integer, ByVal VWahl As String, ByVal Name As String, ByVal Currency As String, ByVal PLZPraefix As String, ByVal ISO2 As String, ByVal ISO3 As String, ByVal language_Code As String) As grlandRow
+            Dim rowgrlandRow As grlandRow = CType(Me.NewRow,grlandRow)
+            Dim columnValuesArray() As Object = New Object() {IdNr, VWahl, Name, Currency, PLZPraefix, ISO2, ISO3, language_Code}
+            rowgrlandRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowgrlandRow)
+            Return rowgrlandRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByIdNr(ByVal IdNr As Integer) As grLandRow
-            Return CType(Me.Rows.Find(New Object() {IdNr}),grLandRow)
+        Public Function FindByIdNr(ByVal IdNr As Integer) As grlandRow
+            Return CType(Me.Rows.Find(New Object() {IdNr}),grlandRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As grLandDataTable = CType(MyBase.Clone,grLandDataTable)
+            Dim cln As grlandDataTable = CType(MyBase.Clone,grlandDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -834,7 +834,7 @@ Partial Public Class dsPLZ
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New grLandDataTable()
+            Return New grlandDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -883,28 +883,28 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewgrLandRow() As grLandRow
-            Return CType(Me.NewRow,grLandRow)
+        Public Function NewgrlandRow() As grlandRow
+            Return CType(Me.NewRow,grlandRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New grLandRow(builder)
+            Return New grlandRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(grLandRow)
+            Return GetType(grlandRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.grLandRowChangedEvent) Is Nothing) Then
-                RaiseEvent grLandRowChanged(Me, New grLandRowChangeEvent(CType(e.Row,grLandRow), e.Action))
+            If (Not (Me.grlandRowChangedEvent) Is Nothing) Then
+                RaiseEvent grlandRowChanged(Me, New grlandRowChangeEvent(CType(e.Row,grlandRow), e.Action))
             End If
         End Sub
         
@@ -912,8 +912,8 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.grLandRowChangingEvent) Is Nothing) Then
-                RaiseEvent grLandRowChanging(Me, New grLandRowChangeEvent(CType(e.Row,grLandRow), e.Action))
+            If (Not (Me.grlandRowChangingEvent) Is Nothing) Then
+                RaiseEvent grlandRowChanging(Me, New grlandRowChangeEvent(CType(e.Row,grlandRow), e.Action))
             End If
         End Sub
         
@@ -921,8 +921,8 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.grLandRowDeletedEvent) Is Nothing) Then
-                RaiseEvent grLandRowDeleted(Me, New grLandRowChangeEvent(CType(e.Row,grLandRow), e.Action))
+            If (Not (Me.grlandRowDeletedEvent) Is Nothing) Then
+                RaiseEvent grlandRowDeleted(Me, New grlandRowChangeEvent(CType(e.Row,grlandRow), e.Action))
             End If
         End Sub
         
@@ -930,14 +930,14 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.grLandRowDeletingEvent) Is Nothing) Then
-                RaiseEvent grLandRowDeleting(Me, New grLandRowChangeEvent(CType(e.Row,grLandRow), e.Action))
+            If (Not (Me.grlandRowDeletingEvent) Is Nothing) Then
+                RaiseEvent grlandRowDeleting(Me, New grlandRowChangeEvent(CType(e.Row,grlandRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemovegrLandRow(ByVal row As grLandRow)
+        Public Sub RemovegrlandRow(ByVal row As grlandRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -964,7 +964,7 @@ Partial Public Class dsPLZ
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "grLandDataTable"
+            attribute2.FixedValue = "grlandDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -1011,26 +1011,26 @@ Partial Public Class dsPLZ
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class grPLZRow
+    Partial Public Class grplzRow
         Inherits Global.System.Data.DataRow
         
-        Private tablegrPLZ As grPLZDataTable
+        Private tablegrplz As grplzDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablegrPLZ = CType(Me.Table,grPLZDataTable)
+            Me.tablegrplz = CType(Me.Table,grplzDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property IdNr() As String
             Get
-                Return CType(Me(Me.tablegrPLZ.IdNrColumn),String)
+                Return CType(Me(Me.tablegrplz.IdNrColumn),String)
             End Get
             Set
-                Me(Me.tablegrPLZ.IdNrColumn) = value
+                Me(Me.tablegrplz.IdNrColumn) = value
             End Set
         End Property
         
@@ -1039,13 +1039,13 @@ Partial Public Class dsPLZ
         Public Property BLand() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrPLZ.BLandColumn),String)
+                    Return CType(Me(Me.tablegrplz.BLandColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'BLand' in table 'grPLZ' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BLand' in table 'grplz' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrPLZ.BLandColumn) = value
+                Me(Me.tablegrplz.BLandColumn) = value
             End Set
         End Property
         
@@ -1054,13 +1054,13 @@ Partial Public Class dsPLZ
         Public Property PLZ() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrPLZ.PLZColumn),String)
+                    Return CType(Me(Me.tablegrplz.PLZColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZ' in table 'grPLZ' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZ' in table 'grplz' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrPLZ.PLZColumn) = value
+                Me(Me.tablegrplz.PLZColumn) = value
             End Set
         End Property
         
@@ -1069,13 +1069,13 @@ Partial Public Class dsPLZ
         Public Property Ort() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrPLZ.OrtColumn),String)
+                    Return CType(Me(Me.tablegrplz.OrtColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ort' in table 'grPLZ' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ort' in table 'grplz' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrPLZ.OrtColumn) = value
+                Me(Me.tablegrplz.OrtColumn) = value
             End Set
         End Property
         
@@ -1084,13 +1084,13 @@ Partial Public Class dsPLZ
         Public Property TelVWahl() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrPLZ.TelVWahlColumn),String)
+                    Return CType(Me(Me.tablegrplz.TelVWahlColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TelVWahl' in table 'grPLZ' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TelVWahl' in table 'grplz' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrPLZ.TelVWahlColumn) = value
+                Me(Me.tablegrplz.TelVWahlColumn) = value
             End Set
         End Property
         
@@ -1099,110 +1099,111 @@ Partial Public Class dsPLZ
         Public Property Land() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tablegrPLZ.LandColumn),Integer)
+                    Return CType(Me(Me.tablegrplz.LandColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Land' in table 'grPLZ' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Land' in table 'grplz' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrPLZ.LandColumn) = value
+                Me(Me.tablegrplz.LandColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property grlandRow() As grlandRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("grplz_ibfk_1")),grlandRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("grplz_ibfk_1"))
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsBLandNull() As Boolean
-            Return Me.IsNull(Me.tablegrPLZ.BLandColumn)
+            Return Me.IsNull(Me.tablegrplz.BLandColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetBLandNull()
-            Me(Me.tablegrPLZ.BLandColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrplz.BLandColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPLZNull() As Boolean
-            Return Me.IsNull(Me.tablegrPLZ.PLZColumn)
+            Return Me.IsNull(Me.tablegrplz.PLZColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPLZNull()
-            Me(Me.tablegrPLZ.PLZColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrplz.PLZColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsOrtNull() As Boolean
-            Return Me.IsNull(Me.tablegrPLZ.OrtColumn)
+            Return Me.IsNull(Me.tablegrplz.OrtColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetOrtNull()
-            Me(Me.tablegrPLZ.OrtColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrplz.OrtColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsTelVWahlNull() As Boolean
-            Return Me.IsNull(Me.tablegrPLZ.TelVWahlColumn)
+            Return Me.IsNull(Me.tablegrplz.TelVWahlColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetTelVWahlNull()
-            Me(Me.tablegrPLZ.TelVWahlColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrplz.TelVWahlColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsLandNull() As Boolean
-            Return Me.IsNull(Me.tablegrPLZ.LandColumn)
+            Return Me.IsNull(Me.tablegrplz.LandColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLandNull()
-            Me(Me.tablegrPLZ.LandColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrplz.LandColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetgrLandRows() As grLandRow()
-            If (Me.Table.ChildRelations("grPLZ_grLand") Is Nothing) Then
-                Return New grLandRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("grPLZ_grLand")),grLandRow())
-            End If
-        End Function
     End Class
     
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class grLandRow
+    Partial Public Class grlandRow
         Inherits Global.System.Data.DataRow
         
-        Private tablegrLand As grLandDataTable
+        Private tablegrland As grlandDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablegrLand = CType(Me.Table,grLandDataTable)
+            Me.tablegrland = CType(Me.Table,grlandDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property IdNr() As Integer
             Get
-                Return CType(Me(Me.tablegrLand.IdNrColumn),Integer)
+                Return CType(Me(Me.tablegrland.IdNrColumn),Integer)
             End Get
             Set
-                Me(Me.tablegrLand.IdNrColumn) = value
+                Me(Me.tablegrland.IdNrColumn) = value
             End Set
         End Property
         
@@ -1211,13 +1212,13 @@ Partial Public Class dsPLZ
         Public Property VWahl() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.VWahlColumn),String)
+                    Return CType(Me(Me.tablegrland.VWahlColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'VWahl' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VWahl' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.VWahlColumn) = value
+                Me(Me.tablegrland.VWahlColumn) = value
             End Set
         End Property
         
@@ -1226,13 +1227,13 @@ Partial Public Class dsPLZ
         Public Property Name() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.NameColumn),String)
+                    Return CType(Me(Me.tablegrland.NameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.NameColumn) = value
+                Me(Me.tablegrland.NameColumn) = value
             End Set
         End Property
         
@@ -1241,13 +1242,13 @@ Partial Public Class dsPLZ
         Public Property Currency() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.CurrencyColumn),String)
+                    Return CType(Me(Me.tablegrland.CurrencyColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Currency' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Currency' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.CurrencyColumn) = value
+                Me(Me.tablegrland.CurrencyColumn) = value
             End Set
         End Property
         
@@ -1256,13 +1257,13 @@ Partial Public Class dsPLZ
         Public Property PLZPraefix() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.PLZPraefixColumn),String)
+                    Return CType(Me(Me.tablegrland.PLZPraefixColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZPraefix' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZPraefix' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.PLZPraefixColumn) = value
+                Me(Me.tablegrland.PLZPraefixColumn) = value
             End Set
         End Property
         
@@ -1271,13 +1272,13 @@ Partial Public Class dsPLZ
         Public Property ISO2() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.ISO2Column),String)
+                    Return CType(Me(Me.tablegrland.ISO2Column),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO2' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO2' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.ISO2Column) = value
+                Me(Me.tablegrland.ISO2Column) = value
             End Set
         End Property
         
@@ -1286,13 +1287,13 @@ Partial Public Class dsPLZ
         Public Property ISO3() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.ISO3Column),String)
+                    Return CType(Me(Me.tablegrland.ISO3Column),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO3' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO3' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.ISO3Column) = value
+                Me(Me.tablegrland.ISO3Column) = value
             End Set
         End Property
         
@@ -1301,126 +1302,125 @@ Partial Public Class dsPLZ
         Public Property language_Code() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablegrLand.language_CodeColumn),String)
+                    Return CType(Me(Me.tablegrland.language_CodeColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'language_Code' in table 'grLand' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'language_Code' in table 'grland' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablegrLand.language_CodeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property grPLZRow() As grPLZRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("grPLZ_grLand")),grPLZRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("grPLZ_grLand"))
+                Me(Me.tablegrland.language_CodeColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsVWahlNull() As Boolean
-            Return Me.IsNull(Me.tablegrLand.VWahlColumn)
+            Return Me.IsNull(Me.tablegrland.VWahlColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetVWahlNull()
-            Me(Me.tablegrLand.VWahlColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.VWahlColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsNameNull() As Boolean
-            Return Me.IsNull(Me.tablegrLand.NameColumn)
+            Return Me.IsNull(Me.tablegrland.NameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetNameNull()
-            Me(Me.tablegrLand.NameColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.NameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCurrencyNull() As Boolean
-            Return Me.IsNull(Me.tablegrLand.CurrencyColumn)
+            Return Me.IsNull(Me.tablegrland.CurrencyColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCurrencyNull()
-            Me(Me.tablegrLand.CurrencyColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.CurrencyColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPLZPraefixNull() As Boolean
-            Return Me.IsNull(Me.tablegrLand.PLZPraefixColumn)
+            Return Me.IsNull(Me.tablegrland.PLZPraefixColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPLZPraefixNull()
-            Me(Me.tablegrLand.PLZPraefixColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.PLZPraefixColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsISO2Null() As Boolean
-            Return Me.IsNull(Me.tablegrLand.ISO2Column)
+            Return Me.IsNull(Me.tablegrland.ISO2Column)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetISO2Null()
-            Me(Me.tablegrLand.ISO2Column) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.ISO2Column) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsISO3Null() As Boolean
-            Return Me.IsNull(Me.tablegrLand.ISO3Column)
+            Return Me.IsNull(Me.tablegrland.ISO3Column)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetISO3Null()
-            Me(Me.tablegrLand.ISO3Column) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.ISO3Column) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function Islanguage_CodeNull() As Boolean
-            Return Me.IsNull(Me.tablegrLand.language_CodeColumn)
+            Return Me.IsNull(Me.tablegrland.language_CodeColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub Setlanguage_CodeNull()
-            Me(Me.tablegrLand.language_CodeColumn) = Global.System.Convert.DBNull
+            Me(Me.tablegrland.language_CodeColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetgrplzRows() As grplzRow()
+            If (Me.Table.ChildRelations("grplz_ibfk_1") Is Nothing) Then
+                Return New grplzRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("grplz_ibfk_1")),grplzRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class grPLZRowChangeEvent
+    Public Class grplzRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As grPLZRow
+        Private eventRow As grplzRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As grPLZRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As grplzRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -1428,7 +1428,7 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As grPLZRow
+        Public ReadOnly Property Row() As grplzRow
             Get
                 Return Me.eventRow
             End Get
@@ -1447,16 +1447,16 @@ Partial Public Class dsPLZ
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class grLandRowChangeEvent
+    Public Class grlandRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As grLandRow
+        Private eventRow As grlandRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As grLandRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As grlandRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -1464,7 +1464,7 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As grLandRow
+        Public ReadOnly Property Row() As grlandRow
             Get
                 Return Me.eventRow
             End Get
@@ -1491,16 +1491,16 @@ Namespace dsPLZTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class grPLZTableAdapter
+    Partial Public Class grplzTableAdapter
         Inherits Global.System.ComponentModel.Component
         
-        Private WithEvents _adapter As Global.System.Data.Odbc.OdbcDataAdapter
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
         
-        Private _connection As Global.System.Data.Odbc.OdbcConnection
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
         
-        Private _transaction As Global.System.Data.Odbc.OdbcTransaction
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
         
-        Private _commandCollection() As Global.System.Data.Odbc.OdbcCommand
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
         
         Private _clearBeforeFill As Boolean
         
@@ -1513,7 +1513,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.Odbc.OdbcDataAdapter
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
             Get
                 If (Me._adapter Is Nothing) Then
                     Me.InitAdapter
@@ -1524,7 +1524,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.Odbc.OdbcConnection
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -1545,7 +1545,7 @@ Namespace dsPLZTableAdapters
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.Odbc.OdbcCommand).Connection = value
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -1554,7 +1554,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.Odbc.OdbcTransaction
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
             Get
                 Return Me._transaction
             End Get
@@ -1582,7 +1582,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.Odbc.OdbcCommand()
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
             Get
                 If (Me._commandCollection Is Nothing) Then
                     Me.InitCommandCollection
@@ -1605,10 +1605,10 @@ Namespace dsPLZTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.Odbc.OdbcDataAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "grPLZ"
+            tableMapping.DataSetTable = "grplz"
             tableMapping.ColumnMappings.Add("IdNr", "IdNr")
             tableMapping.ColumnMappings.Add("BLand", "BLand")
             tableMapping.ColumnMappings.Add("PLZ", "PLZ")
@@ -1616,22 +1616,316 @@ Namespace dsPLZTableAdapters
             tableMapping.ColumnMappings.Add("TelVWahl", "TelVWahl")
             tableMapping.ColumnMappings.Add("Land", "Land")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `grplz` WHERE ((`IdNr` = @Original_IdNr) AND ((@IsNull_BLand = 1 AND "& _ 
+                "`BLand` IS NULL) OR (`BLand` = @Original_BLand)) AND ((@IsNull_PLZ = 1 AND `PLZ`"& _ 
+                " IS NULL) OR (`PLZ` = @Original_PLZ)) AND ((@IsNull_Ort = 1 AND `Ort` IS NULL) O"& _ 
+                "R (`Ort` = @Original_Ort)) AND ((@IsNull_TelVWahl = 1 AND `TelVWahl` IS NULL) OR"& _ 
+                " (`TelVWahl` = @Original_TelVWahl)) AND ((@IsNull_Land = 1 AND `Land` IS NULL) O"& _ 
+                "R (`Land` = @Original_Land)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IdNr"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_BLand"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_BLand"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_PLZ"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_PLZ"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Ort"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Ort"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_TelVWahl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_TelVWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `grplz` (`IdNr`, `BLand`, `PLZ`, `Ort`, `TelVWahl`, `Land`) VALUES (@"& _ 
+                "IdNr, @BLand, @PLZ, @Ort, @TelVWahl, @Land)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IdNr"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@BLand"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@PLZ"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Ort"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@TelVWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `grplz` SET `IdNr` = @IdNr, `BLand` = @BLand, `PLZ` = @PLZ, `Ort` = @Ort, "& _ 
+                "`TelVWahl` = @TelVWahl, `Land` = @Land WHERE ((`IdNr` = @Original_IdNr) AND ((@I"& _ 
+                "sNull_BLand = 1 AND `BLand` IS NULL) OR (`BLand` = @Original_BLand)) AND ((@IsNu"& _ 
+                "ll_PLZ = 1 AND `PLZ` IS NULL) OR (`PLZ` = @Original_PLZ)) AND ((@IsNull_Ort = 1 "& _ 
+                "AND `Ort` IS NULL) OR (`Ort` = @Original_Ort)) AND ((@IsNull_TelVWahl = 1 AND `T"& _ 
+                "elVWahl` IS NULL) OR (`TelVWahl` = @Original_TelVWahl)) AND ((@IsNull_Land = 1 A"& _ 
+                "ND `Land` IS NULL) OR (`Land` = @Original_Land)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IdNr"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@BLand"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@PLZ"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Ort"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@TelVWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IdNr"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_BLand"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_BLand"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "BLand"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_PLZ"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_PLZ"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZ"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Ort"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Ort"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Ort"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_TelVWahl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_TelVWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "TelVWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Land"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Land"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
-            Me._connection = New Global.System.Data.Odbc.OdbcConnection()
-            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.ConnIntraSellData
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        *"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            grPLZ"
+            Me._commandCollection(0).CommandText = "SELECT `IdNr`, `BLand`, `PLZ`, `Ort`, `TelVWahl`, `Land` FROM `grplz`"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1639,7 +1933,7 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsPLZ.grPLZDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsPLZ.grplzDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -1652,11 +1946,247 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsPLZ.grPLZDataTable
+        Public Overloads Overridable Function GetData() As dsPLZ.grplzDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As dsPLZ.grPLZDataTable = New dsPLZ.grPLZDataTable()
+            Dim dataTable As dsPLZ.grplzDataTable = New dsPLZ.grplzDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As dsPLZ.grplzDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As dsPLZ) As Integer
+            Return Me.Adapter.Update(dataSet, "grplz")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_IdNr As String, ByVal Original_BLand As String, ByVal Original_PLZ As String, ByVal Original_Ort As String, ByVal Original_TelVWahl As String, ByVal Original_Land As Global.System.Nullable(Of Integer)) As Integer
+            If (Original_IdNr Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_IdNr")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IdNr,String)
+            End If
+            If (Original_BLand Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_BLand,String)
+            End If
+            If (Original_PLZ Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_PLZ,String)
+            End If
+            If (Original_Ort Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Ort,String)
+            End If
+            If (Original_TelVWahl Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_TelVWahl,String)
+            End If
+            If (Original_Land.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Land.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert(ByVal IdNr As String, ByVal BLand As String, ByVal PLZ As String, ByVal Ort As String, ByVal TelVWahl As String, ByVal Land As Global.System.Nullable(Of Integer)) As Integer
+            If (IdNr Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdNr")
+            Else
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(IdNr,String)
+            End If
+            If (BLand Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(BLand,String)
+            End If
+            If (PLZ Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PLZ,String)
+            End If
+            If (Ort Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Ort,String)
+            End If
+            If (TelVWahl Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(TelVWahl,String)
+            End If
+            If (Land.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Land.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal IdNr As String, ByVal BLand As String, ByVal PLZ As String, ByVal Ort As String, ByVal TelVWahl As String, ByVal Land As Global.System.Nullable(Of Integer), ByVal Original_IdNr As String, ByVal Original_BLand As String, ByVal Original_PLZ As String, ByVal Original_Ort As String, ByVal Original_TelVWahl As String, ByVal Original_Land As Global.System.Nullable(Of Integer)) As Integer
+            If (IdNr Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IdNr")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(IdNr,String)
+            End If
+            If (BLand Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(BLand,String)
+            End If
+            If (PLZ Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PLZ,String)
+            End If
+            If (Ort Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Ort,String)
+            End If
+            If (TelVWahl Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(TelVWahl,String)
+            End If
+            If (Land.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Land.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            If (Original_IdNr Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_IdNr")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_IdNr,String)
+            End If
+            If (Original_BLand Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_BLand,String)
+            End If
+            If (Original_PLZ Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_PLZ,String)
+            End If
+            If (Original_Ort Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Ort,String)
+            End If
+            If (Original_TelVWahl Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_TelVWahl,String)
+            End If
+            If (Original_Land.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Land.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal BLand As String, ByVal PLZ As String, ByVal Ort As String, ByVal TelVWahl As String, ByVal Land As Global.System.Nullable(Of Integer), ByVal Original_IdNr As String, ByVal Original_BLand As String, ByVal Original_PLZ As String, ByVal Original_Ort As String, ByVal Original_TelVWahl As String, ByVal Original_Land As Global.System.Nullable(Of Integer)) As Integer
+            Return Me.Update(Original_IdNr, BLand, PLZ, Ort, TelVWahl, Land, Original_IdNr, Original_BLand, Original_PLZ, Original_Ort, Original_TelVWahl, Original_Land)
         End Function
     End Class
     
@@ -1669,16 +2199,16 @@ Namespace dsPLZTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class grLandTableAdapter
+    Partial Public Class grlandTableAdapter
         Inherits Global.System.ComponentModel.Component
         
-        Private WithEvents _adapter As Global.System.Data.Odbc.OdbcDataAdapter
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
         
-        Private _connection As Global.System.Data.Odbc.OdbcConnection
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
         
-        Private _transaction As Global.System.Data.Odbc.OdbcTransaction
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
         
-        Private _commandCollection() As Global.System.Data.Odbc.OdbcCommand
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
         
         Private _clearBeforeFill As Boolean
         
@@ -1691,7 +2221,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.Odbc.OdbcDataAdapter
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
             Get
                 If (Me._adapter Is Nothing) Then
                     Me.InitAdapter
@@ -1702,7 +2232,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.Odbc.OdbcConnection
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
             Get
                 If (Me._connection Is Nothing) Then
                     Me.InitConnection
@@ -1723,7 +2253,7 @@ Namespace dsPLZTableAdapters
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.Odbc.OdbcCommand).Connection = value
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -1732,7 +2262,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.Odbc.OdbcTransaction
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
             Get
                 Return Me._transaction
             End Get
@@ -1760,7 +2290,7 @@ Namespace dsPLZTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.Odbc.OdbcCommand()
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
             Get
                 If (Me._commandCollection Is Nothing) Then
                     Me.InitCommandCollection
@@ -1783,10 +2313,10 @@ Namespace dsPLZTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.Odbc.OdbcDataAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "grLand"
+            tableMapping.DataSetTable = "grland"
             tableMapping.ColumnMappings.Add("IdNr", "IdNr")
             tableMapping.ColumnMappings.Add("VWahl", "VWahl")
             tableMapping.ColumnMappings.Add("Name", "Name")
@@ -1796,22 +2326,421 @@ Namespace dsPLZTableAdapters
             tableMapping.ColumnMappings.Add("ISO3", "ISO3")
             tableMapping.ColumnMappings.Add("language_Code", "language_Code")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `grland` WHERE ((`IdNr` = @Original_IdNr) AND ((@IsNull_VWahl = 1 AND"& _ 
+                " `VWahl` IS NULL) OR (`VWahl` = @Original_VWahl)) AND ((@IsNull_Name = 1 AND `Na"& _ 
+                "me` IS NULL) OR (`Name` = @Original_Name)) AND ((@IsNull_Currency = 1 AND `Curre"& _ 
+                "ncy` IS NULL) OR (`Currency` = @Original_Currency)) AND ((@IsNull_PLZPraefix = 1"& _ 
+                " AND `PLZPraefix` IS NULL) OR (`PLZPraefix` = @Original_PLZPraefix)) AND ((@IsNu"& _ 
+                "ll_ISO2 = 1 AND `ISO2` IS NULL) OR (`ISO2` = @Original_ISO2)) AND ((@IsNull_ISO3"& _ 
+                " = 1 AND `ISO3` IS NULL) OR (`ISO3` = @Original_ISO3)) AND ((@IsNull_language_Co"& _ 
+                "de = 1 AND `language_Code` IS NULL) OR (`language_Code` = @Original_language_Cod"& _ 
+                "e)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IdNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_VWahl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_VWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Name"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Currency"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Currency"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_PLZPraefix"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_PLZPraefix"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_ISO2"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_ISO2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_ISO3"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_ISO3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_language_Code"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_language_Code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `grland` (`IdNr`, `VWahl`, `Name`, `Currency`, `PLZPraefix`, `ISO2`, "& _ 
+                "`ISO3`, `language_Code`) VALUES (@IdNr, @VWahl, @Name, @Currency, @PLZPraefix, @"& _ 
+                "ISO2, @ISO3, @language_Code)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IdNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@VWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Currency"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@PLZPraefix"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ISO2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ISO3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@language_Code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE `grland` SET `IdNr` = @IdNr, `VWahl` = @VWahl, `Name` = @Name, `Currency` "& _ 
+                "= @Currency, `PLZPraefix` = @PLZPraefix, `ISO2` = @ISO2, `ISO3` = @ISO3, `langua"& _ 
+                "ge_Code` = @language_Code WHERE ((`IdNr` = @Original_IdNr) AND ((@IsNull_VWahl ="& _ 
+                " 1 AND `VWahl` IS NULL) OR (`VWahl` = @Original_VWahl)) AND ((@IsNull_Name = 1 A"& _ 
+                "ND `Name` IS NULL) OR (`Name` = @Original_Name)) AND ((@IsNull_Currency = 1 AND "& _ 
+                "`Currency` IS NULL) OR (`Currency` = @Original_Currency)) AND ((@IsNull_PLZPraef"& _ 
+                "ix = 1 AND `PLZPraefix` IS NULL) OR (`PLZPraefix` = @Original_PLZPraefix)) AND ("& _ 
+                "(@IsNull_ISO2 = 1 AND `ISO2` IS NULL) OR (`ISO2` = @Original_ISO2)) AND ((@IsNul"& _ 
+                "l_ISO3 = 1 AND `ISO3` IS NULL) OR (`ISO3` = @Original_ISO3)) AND ((@IsNull_langu"& _ 
+                "age_Code = 1 AND `language_Code` IS NULL) OR (`language_Code` = @Original_langua"& _ 
+                "ge_Code)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IdNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@VWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Currency"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@PLZPraefix"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ISO2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ISO3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@language_Code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IdNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IdNr"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_VWahl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_VWahl"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "VWahl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Name"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Name"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Name"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_Currency"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_Currency"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "Currency"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_PLZPraefix"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_PLZPraefix"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "PLZPraefix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_ISO2"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_ISO2"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO2"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_ISO3"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_ISO3"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "ISO3"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IsNull_language_Code"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_language_Code"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.IsNullable = true
+            param.SourceColumn = "language_Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
-            Me._connection = New Global.System.Data.Odbc.OdbcConnection()
-            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.ConnIntraSellData
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select * from grLand"
+            Me._commandCollection(0).CommandText = "SELECT `IdNr`, `VWahl`, `Name`, `Currency`, `PLZPraefix`, `ISO2`, `ISO3`, `langua"& _ 
+                "ge_Code` FROM `grland`"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -1819,7 +2748,7 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsPLZ.grLandDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsPLZ.grlandDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -1832,11 +2761,295 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsPLZ.grLandDataTable
+        Public Overloads Overridable Function GetData() As dsPLZ.grlandDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As dsPLZ.grLandDataTable = New dsPLZ.grLandDataTable()
+            Dim dataTable As dsPLZ.grlandDataTable = New dsPLZ.grlandDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As dsPLZ.grlandDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As dsPLZ) As Integer
+            Return Me.Adapter.Update(dataSet, "grland")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_IdNr As Integer, ByVal Original_VWahl As String, ByVal Original_Name As String, ByVal Original_Currency As String, ByVal Original_PLZPraefix As String, ByVal Original_ISO2 As String, ByVal Original_ISO3 As String, ByVal Original_language_Code As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IdNr,Integer)
+            If (Original_VWahl Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_VWahl,String)
+            End If
+            If (Original_Name Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Name,String)
+            End If
+            If (Original_Currency Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Currency,String)
+            End If
+            If (Original_PLZPraefix Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_PLZPraefix,String)
+            End If
+            If (Original_ISO2 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_ISO2,String)
+            End If
+            If (Original_ISO3 Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_ISO3,String)
+            End If
+            If (Original_language_Code Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_language_Code,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert(ByVal IdNr As Integer, ByVal VWahl As String, ByVal Name As String, ByVal Currency As String, ByVal PLZPraefix As String, ByVal ISO2 As String, ByVal ISO3 As String, ByVal language_Code As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(IdNr,Integer)
+            If (VWahl Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(VWahl,String)
+            End If
+            If (Name Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Name,String)
+            End If
+            If (Currency Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Currency,String)
+            End If
+            If (PLZPraefix Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(PLZPraefix,String)
+            End If
+            If (ISO2 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ISO2,String)
+            End If
+            If (ISO3 Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(ISO3,String)
+            End If
+            If (language_Code Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(language_Code,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal IdNr As Integer,  _
+                    ByVal VWahl As String,  _
+                    ByVal Name As String,  _
+                    ByVal Currency As String,  _
+                    ByVal PLZPraefix As String,  _
+                    ByVal ISO2 As String,  _
+                    ByVal ISO3 As String,  _
+                    ByVal language_Code As String,  _
+                    ByVal Original_IdNr As Integer,  _
+                    ByVal Original_VWahl As String,  _
+                    ByVal Original_Name As String,  _
+                    ByVal Original_Currency As String,  _
+                    ByVal Original_PLZPraefix As String,  _
+                    ByVal Original_ISO2 As String,  _
+                    ByVal Original_ISO3 As String,  _
+                    ByVal Original_language_Code As String) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(IdNr,Integer)
+            If (VWahl Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(VWahl,String)
+            End If
+            If (Name Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Name,String)
+            End If
+            If (Currency Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Currency,String)
+            End If
+            If (PLZPraefix Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(PLZPraefix,String)
+            End If
+            If (ISO2 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ISO2,String)
+            End If
+            If (ISO3 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(ISO3,String)
+            End If
+            If (language_Code Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(language_Code,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_IdNr,Integer)
+            If (Original_VWahl Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_VWahl,String)
+            End If
+            If (Original_Name Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Name,String)
+            End If
+            If (Original_Currency Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Currency,String)
+            End If
+            If (Original_PLZPraefix Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_PLZPraefix,String)
+            End If
+            If (Original_ISO2 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_ISO2,String)
+            End If
+            If (Original_ISO3 Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_ISO3,String)
+            End If
+            If (Original_language_Code Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_language_Code,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal VWahl As String, ByVal Name As String, ByVal Currency As String, ByVal PLZPraefix As String, ByVal ISO2 As String, ByVal ISO3 As String, ByVal language_Code As String, ByVal Original_IdNr As Integer, ByVal Original_VWahl As String, ByVal Original_Name As String, ByVal Original_Currency As String, ByVal Original_PLZPraefix As String, ByVal Original_ISO2 As String, ByVal Original_ISO3 As String, ByVal Original_language_Code As String) As Integer
+            Return Me.Update(Original_IdNr, VWahl, Name, Currency, PLZPraefix, ISO2, ISO3, language_Code, Original_IdNr, Original_VWahl, Original_Name, Original_Currency, Original_PLZPraefix, Original_ISO2, Original_ISO3, Original_language_Code)
         End Function
     End Class
     
@@ -1853,6 +3066,10 @@ Namespace dsPLZTableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
+        Private _grplzTableAdapter As grplzTableAdapter
+        
+        Private _grlandTableAdapter As grlandTableAdapter
+        
         Private _backupDataSetBeforeUpdate As Boolean
         
         Private _connection As Global.System.Data.IDbConnection
@@ -1865,6 +3082,34 @@ Namespace dsPLZTableAdapters
             End Get
             Set
                 Me._updateOrder = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property grplzTableAdapter() As grplzTableAdapter
+            Get
+                Return Me._grplzTableAdapter
+            End Get
+            Set
+                Me._grplzTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property grlandTableAdapter() As grlandTableAdapter
+            Get
+                Return Me._grlandTableAdapter
+            End Get
+            Set
+                Me._grlandTableAdapter = value
             End Set
         End Property
         
@@ -1887,6 +3132,14 @@ Namespace dsPLZTableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
+                If ((Not (Me._grplzTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._grplzTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._grplzTableAdapter.Connection
+                End If
+                If ((Not (Me._grlandTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._grlandTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._grlandTableAdapter.Connection
+                End If
                 Return Nothing
             End Get
             Set
@@ -1900,6 +3153,12 @@ Namespace dsPLZTableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
+                If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
                 Return count
             End Get
         End Property
@@ -1911,6 +3170,24 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As dsPLZ, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.grland.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._grlandTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.grplz.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._grplzTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -1921,6 +3198,22 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As dsPLZ, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.grland.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._grlandTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.grplz.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._grplzTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -1931,6 +3224,22 @@ Namespace dsPLZTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As dsPLZ, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.grplz.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._grplzTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.grland.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._grlandTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -1972,6 +3281,16 @@ Namespace dsPLZTableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
+            If ((Not (Me._grplzTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._grplzTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
+            If ((Not (Me._grlandTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._grlandTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
             Dim workConnection As Global.System.Data.IDbConnection = Me.Connection
             If (workConnection Is Nothing) Then
                 Throw New Global.System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana"& _ 
@@ -2004,6 +3323,24 @@ Namespace dsPLZTableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
+                If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._grplzTableAdapter, Me._grplzTableAdapter.Connection)
+                    Me._grplzTableAdapter.Connection = CType(workConnection,Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._grplzTableAdapter.Transaction = CType(workTransaction,Global.MySql.Data.MySqlClient.MySqlTransaction)
+                    If Me._grplzTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._grplzTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._grplzTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._grlandTableAdapter, Me._grlandTableAdapter.Connection)
+                    Me._grlandTableAdapter.Connection = CType(workConnection,Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._grlandTableAdapter.Transaction = CType(workTransaction,Global.MySql.Data.MySqlClient.MySqlTransaction)
+                    If Me._grlandTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._grlandTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._grlandTableAdapter.Adapter)
+                    End If
+                End If
                 '
                 '---- Perform updates -----------
                 '
@@ -2063,6 +3400,14 @@ Namespace dsPLZTableAdapters
             Finally
                 If workConnOpened Then
                     workConnection.Close
+                End If
+                If (Not (Me._grplzTableAdapter) Is Nothing) Then
+                    Me._grplzTableAdapter.Connection = CType(revertConnections(Me._grplzTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._grplzTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._grlandTableAdapter) Is Nothing) Then
+                    Me._grlandTableAdapter.Connection = CType(revertConnections(Me._grlandTableAdapter),Global.MySql.Data.MySqlClient.MySqlConnection)
+                    Me._grlandTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
