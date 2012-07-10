@@ -18,4 +18,15 @@
 
     End Sub
  
+    Private Sub btnPLZ_Click(sender As System.Object, e As System.EventArgs) Handles btnPLZ.Click
+        Try
+            Dim plz As PLZSelector = New PLZSelector
+            plz.txtOrt = Me.txtOrt
+            plz.txtPLZ = Me.txtPLZ
+            plz.txtLand = Me.txtland
+            plz.ShowDialog()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
