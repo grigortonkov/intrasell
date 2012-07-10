@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class KundenListe
+Partial Class KundenListe2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -63,11 +63,11 @@ Partial Class KundenListe
         Me.EUNummer2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BHReferenzDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OfAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
-        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenTableAdapter()
+        Me.DsAdressen2 = New IntraSell_Net.dsAdressen2()
+        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressen2TableAdapters.ofAdressenTableAdapter()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsAdressen2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -314,36 +314,36 @@ Partial Class KundenListe
         'OfAdressenBindingSource
         '
         Me.OfAdressenBindingSource.DataMember = "ofAdressen"
-        Me.OfAdressenBindingSource.DataSource = Me.DataSetKunden
+        Me.OfAdressenBindingSource.DataSource = Me.DsAdressen2
         '
-        'DataSetKunden
+        'DsAdressen2
         '
-        Me.DataSetKunden.DataSetName = "DataSetKunden"
-        Me.DataSetKunden.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.DsAdressen2.DataSetName = "dsAdressen2"
+        Me.DsAdressen2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'OfAdressenTableAdapter
         '
         Me.OfAdressenTableAdapter.ClearBeforeFill = True
         '
-        'KundenListe
+        'KundenListe2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1190, 468)
         Me.Controls.Add(Me.DataGridView1)
-        Me.Name = "KundenListe"
-        Me.Text = "KundenListe"
+        Me.Name = "KundenListe2"
+        Me.Text = "KunddenListe2"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsAdressen2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
+    Friend WithEvents DsAdressen2 As IntraSell_Net.dsAdressen2
     Friend WithEvents OfAdressenBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofAdressenTableAdapter
+    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressen2TableAdapters.ofAdressenTableAdapter
     Friend WithEvents IDNRDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents StatusDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BrancheDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

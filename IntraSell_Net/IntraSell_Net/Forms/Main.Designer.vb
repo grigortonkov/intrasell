@@ -24,8 +24,9 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.KundenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ListeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KundenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Liste2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -40,22 +41,28 @@ Partial Class Main
         '
         'KundenToolStripMenuItem
         '
-        Me.KundenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KundenToolStripMenuItem1, Me.ListeToolStripMenuItem})
+        Me.KundenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KundenToolStripMenuItem1, Me.ListeToolStripMenuItem, Me.Liste2ToolStripMenuItem})
         Me.KundenToolStripMenuItem.Name = "KundenToolStripMenuItem"
-        Me.KundenToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
-        Me.KundenToolStripMenuItem.Text = "Kunden"
-        '
-        'ListeToolStripMenuItem
-        '
-        Me.ListeToolStripMenuItem.Name = "ListeToolStripMenuItem"
-        Me.ListeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ListeToolStripMenuItem.Text = "Liste"
+        Me.KundenToolStripMenuItem.Size = New System.Drawing.Size(87, 20)
+        Me.KundenToolStripMenuItem.Text = "&Stammdaten"
         '
         'KundenToolStripMenuItem1
         '
         Me.KundenToolStripMenuItem1.Name = "KundenToolStripMenuItem1"
         Me.KundenToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.KundenToolStripMenuItem1.Text = "Kunden"
+        Me.KundenToolStripMenuItem1.Text = "&Kunden"
+        '
+        'ListeToolStripMenuItem
+        '
+        Me.ListeToolStripMenuItem.Name = "ListeToolStripMenuItem"
+        Me.ListeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ListeToolStripMenuItem.Text = "&Liste"
+        '
+        'Liste2ToolStripMenuItem
+        '
+        Me.Liste2ToolStripMenuItem.Name = "Liste2ToolStripMenuItem"
+        Me.Liste2ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Liste2ToolStripMenuItem.Text = "Liste2"
         '
         'Main
         '
@@ -77,5 +84,6 @@ Partial Class Main
     Friend WithEvents KundenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KundenToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Liste2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

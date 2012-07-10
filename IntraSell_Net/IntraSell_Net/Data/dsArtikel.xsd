@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsArtikel" targetNamespace="http://tempuri.org/dsArtikel.xsd" xmlns:mstns="http://tempuri.org/dsArtikel.xsd" xmlns="http://tempuri.org/dsArtikel.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnIntraSellData" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnIntraSellData (MySettings)" PropertyReference="ApplicationSettings.IntraSell_Net.My.MySettings.GlobalReference.Default.ConnIntraSellData" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnIntraSellData (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        *
+FROM            grArtikel</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ArtNr" DataSetColumn="ArtNr" />
+              <Mapping SourceColumn="EAN" DataSetColumn="EAN" />
+              <Mapping SourceColumn="Barcode" DataSetColumn="Barcode" />
+              <Mapping SourceColumn="Bezeichnung" DataSetColumn="Bezeichnung" />
+              <Mapping SourceColumn="Bezeichnung1" DataSetColumn="Bezeichnung1" />
+              <Mapping SourceColumn="Beschreibung" DataSetColumn="Beschreibung" />
+              <Mapping SourceColumn="Einheit" DataSetColumn="Einheit" />
+              <Mapping SourceColumn="PreisATS" DataSetColumn="PreisATS" />
+              <Mapping SourceColumn="PreisEuro" DataSetColumn="PreisEuro" />
+              <Mapping SourceColumn="PreisATS_Brutto" DataSetColumn="PreisATS_Brutto" />
+              <Mapping SourceColumn="LagerArtikel" DataSetColumn="LagerArtikel" />
+              <Mapping SourceColumn="EKPreis" DataSetColumn="EKPreis" />
+              <Mapping SourceColumn="LEKPreis" DataSetColumn="LEKPreis" />
+              <Mapping SourceColumn="Seriennummer" DataSetColumn="Seriennummer" />
+              <Mapping SourceColumn="LieferantNR" DataSetColumn="LieferantNR" />
+              <Mapping SourceColumn="SetArtikel" DataSetColumn="SetArtikel" />
+              <Mapping SourceColumn="ArtKatNr" DataSetColumn="ArtKatNr" />
+              <Mapping SourceColumn="MWST" DataSetColumn="MWST" />
+              <Mapping SourceColumn="Gewicht" DataSetColumn="Gewicht" />
+              <Mapping SourceColumn="Picture" DataSetColumn="Picture" />
+              <Mapping SourceColumn="HerstellerNr" DataSetColumn="HerstellerNr" />
+              <Mapping SourceColumn="ProduktAktiv" DataSetColumn="ProduktAktiv" />
+              <Mapping SourceColumn="ShopURL" DataSetColumn="ShopURL" />
+              <Mapping SourceColumn="HerstellerURL" DataSetColumn="HerstellerURL" />
+              <Mapping SourceColumn="Modifikationen" DataSetColumn="Modifikationen" />
+              <Mapping SourceColumn="HerstellerRabatt" DataSetColumn="HerstellerRabatt" />
+              <Mapping SourceColumn="HerstellerRabattText" DataSetColumn="HerstellerRabattText" />
+              <Mapping SourceColumn="AngelegtAn" DataSetColumn="AngelegtAn" />
+              <Mapping SourceColumn="BruttoGewicht" DataSetColumn="BruttoGewicht" />
+              <Mapping SourceColumn="NettoGewicht" DataSetColumn="NettoGewicht" />
+              <Mapping SourceColumn="TaraGewicht" DataSetColumn="TaraGewicht" />
+              <Mapping SourceColumn="AngelegtAm" DataSetColumn="AngelegtAm" />
+              <Mapping SourceColumn="NichtBestellbar" DataSetColumn="NichtBestellbar" />
+              <Mapping SourceColumn="ProduktAktivOnline" DataSetColumn="ProduktAktivOnline" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="ConnIntraSellData (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SelectAll" MethodsParameterType="CLR" Modifier="Public" Name="SelectAll" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SelectAll">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        *
+FROM            grArtikel</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsArtikel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsArtikel" msprop:Generator_UserDSName="dsArtikel">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ArtNr" msprop:Generator_ColumnVarNameInTable="columnArtNr" msprop:Generator_ColumnPropNameInRow="ArtNr" msprop:Generator_ColumnPropNameInTable="ArtNrColumn" msprop:Generator_UserColumnName="ArtNr" type="xs:int" />
+              <xs:element name="EAN" msprop:Generator_ColumnVarNameInTable="columnEAN" msprop:Generator_ColumnPropNameInRow="EAN" msprop:Generator_ColumnPropNameInTable="EANColumn" msprop:Generator_UserColumnName="EAN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Barcode" msprop:Generator_ColumnVarNameInTable="columnBarcode" msprop:Generator_ColumnPropNameInRow="Barcode" msprop:Generator_ColumnPropNameInTable="BarcodeColumn" msprop:Generator_UserColumnName="Barcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Bezeichnung" msprop:Generator_ColumnVarNameInTable="columnBezeichnung" msprop:Generator_ColumnPropNameInRow="Bezeichnung" msprop:Generator_ColumnPropNameInTable="BezeichnungColumn" msprop:Generator_UserColumnName="Bezeichnung" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Bezeichnung1" msprop:Generator_ColumnVarNameInTable="columnBezeichnung1" msprop:Generator_ColumnPropNameInRow="Bezeichnung1" msprop:Generator_ColumnPropNameInTable="Bezeichnung1Column" msprop:Generator_UserColumnName="Bezeichnung1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Beschreibung" msprop:Generator_ColumnVarNameInTable="columnBeschreibung" msprop:Generator_ColumnPropNameInRow="Beschreibung" msprop:Generator_ColumnPropNameInTable="BeschreibungColumn" msprop:Generator_UserColumnName="Beschreibung" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Einheit" msprop:Generator_ColumnVarNameInTable="columnEinheit" msprop:Generator_ColumnPropNameInRow="Einheit" msprop:Generator_ColumnPropNameInTable="EinheitColumn" msprop:Generator_UserColumnName="Einheit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PreisATS" msprop:Generator_ColumnVarNameInTable="columnPreisATS" msprop:Generator_ColumnPropNameInRow="PreisATS" msprop:Generator_ColumnPropNameInTable="PreisATSColumn" msprop:Generator_UserColumnName="PreisATS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PreisEuro" msprop:Generator_ColumnVarNameInTable="columnPreisEuro" msprop:Generator_ColumnPropNameInRow="PreisEuro" msprop:Generator_ColumnPropNameInTable="PreisEuroColumn" msprop:Generator_UserColumnName="PreisEuro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PreisATS_Brutto" msprop:Generator_ColumnVarNameInTable="columnPreisATS_Brutto" msprop:Generator_ColumnPropNameInRow="PreisATS_Brutto" msprop:Generator_ColumnPropNameInTable="PreisATS_BruttoColumn" msprop:Generator_UserColumnName="PreisATS_Brutto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LagerArtikel" msprop:Generator_ColumnVarNameInTable="columnLagerArtikel" msprop:Generator_ColumnPropNameInRow="LagerArtikel" msprop:Generator_ColumnPropNameInTable="LagerArtikelColumn" msprop:Generator_UserColumnName="LagerArtikel" type="xs:short" />
+              <xs:element name="EKPreis" msprop:Generator_ColumnVarNameInTable="columnEKPreis" msprop:Generator_ColumnPropNameInRow="EKPreis" msprop:Generator_ColumnPropNameInTable="EKPreisColumn" msprop:Generator_UserColumnName="EKPreis" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LEKPreis" msprop:Generator_ColumnVarNameInTable="columnLEKPreis" msprop:Generator_ColumnPropNameInRow="LEKPreis" msprop:Generator_ColumnPropNameInTable="LEKPreisColumn" msprop:Generator_UserColumnName="LEKPreis" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Seriennummer" msprop:Generator_ColumnVarNameInTable="columnSeriennummer" msprop:Generator_ColumnPropNameInRow="Seriennummer" msprop:Generator_ColumnPropNameInTable="SeriennummerColumn" msprop:Generator_UserColumnName="Seriennummer" type="xs:short" />
+              <xs:element name="LieferantNR" msprop:Generator_ColumnVarNameInTable="columnLieferantNR" msprop:Generator_ColumnPropNameInRow="LieferantNR" msprop:Generator_ColumnPropNameInTable="LieferantNRColumn" msprop:Generator_UserColumnName="LieferantNR" type="xs:int" minOccurs="0" />
+              <xs:element name="SetArtikel" msprop:Generator_ColumnVarNameInTable="columnSetArtikel" msprop:Generator_ColumnPropNameInRow="SetArtikel" msprop:Generator_ColumnPropNameInTable="SetArtikelColumn" msprop:Generator_UserColumnName="SetArtikel" type="xs:short" />
+              <xs:element name="ArtKatNr" msprop:Generator_ColumnVarNameInTable="columnArtKatNr" msprop:Generator_ColumnPropNameInRow="ArtKatNr" msprop:Generator_ColumnPropNameInTable="ArtKatNrColumn" msprop:Generator_UserColumnName="ArtKatNr" type="xs:int" minOccurs="0" />
+              <xs:element name="MWST" msprop:Generator_ColumnVarNameInTable="columnMWST" msprop:Generator_ColumnPropNameInRow="MWST" msprop:Generator_ColumnPropNameInTable="MWSTColumn" msprop:Generator_UserColumnName="MWST" type="xs:int" minOccurs="0" />
+              <xs:element name="Gewicht" msprop:Generator_ColumnVarNameInTable="columnGewicht" msprop:Generator_ColumnPropNameInRow="Gewicht" msprop:Generator_ColumnPropNameInTable="GewichtColumn" msprop:Generator_UserColumnName="Gewicht" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Picture" msprop:Generator_ColumnVarNameInTable="columnPicture" msprop:Generator_ColumnPropNameInRow="Picture" msprop:Generator_ColumnPropNameInTable="PictureColumn" msprop:Generator_UserColumnName="Picture" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HerstellerNr" msprop:Generator_ColumnVarNameInTable="columnHerstellerNr" msprop:Generator_ColumnPropNameInRow="HerstellerNr" msprop:Generator_ColumnPropNameInTable="HerstellerNrColumn" msprop:Generator_UserColumnName="HerstellerNr" type="xs:int" minOccurs="0" />
+              <xs:element name="ProduktAktiv" msprop:Generator_ColumnVarNameInTable="columnProduktAktiv" msprop:Generator_ColumnPropNameInRow="ProduktAktiv" msprop:Generator_ColumnPropNameInTable="ProduktAktivColumn" msprop:Generator_UserColumnName="ProduktAktiv" type="xs:short" />
+              <xs:element name="ShopURL" msprop:Generator_ColumnVarNameInTable="columnShopURL" msprop:Generator_ColumnPropNameInRow="ShopURL" msprop:Generator_ColumnPropNameInTable="ShopURLColumn" msprop:Generator_UserColumnName="ShopURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HerstellerURL" msprop:Generator_ColumnVarNameInTable="columnHerstellerURL" msprop:Generator_ColumnPropNameInRow="HerstellerURL" msprop:Generator_ColumnPropNameInTable="HerstellerURLColumn" msprop:Generator_UserColumnName="HerstellerURL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Modifikationen" msprop:Generator_ColumnVarNameInTable="columnModifikationen" msprop:Generator_ColumnPropNameInRow="Modifikationen" msprop:Generator_ColumnPropNameInTable="ModifikationenColumn" msprop:Generator_UserColumnName="Modifikationen" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HerstellerRabatt" msprop:Generator_ColumnVarNameInTable="columnHerstellerRabatt" msprop:Generator_ColumnPropNameInRow="HerstellerRabatt" msprop:Generator_ColumnPropNameInTable="HerstellerRabattColumn" msprop:Generator_UserColumnName="HerstellerRabatt" type="xs:double" minOccurs="0" />
+              <xs:element name="HerstellerRabattText" msprop:Generator_ColumnVarNameInTable="columnHerstellerRabattText" msprop:Generator_ColumnPropNameInRow="HerstellerRabattText" msprop:Generator_ColumnPropNameInTable="HerstellerRabattTextColumn" msprop:Generator_UserColumnName="HerstellerRabattText" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AngelegtAn" msprop:Generator_ColumnVarNameInTable="columnAngelegtAn" msprop:Generator_ColumnPropNameInRow="AngelegtAn" msprop:Generator_ColumnPropNameInTable="AngelegtAnColumn" msprop:Generator_UserColumnName="AngelegtAn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BruttoGewicht" msprop:Generator_ColumnVarNameInTable="columnBruttoGewicht" msprop:Generator_ColumnPropNameInRow="BruttoGewicht" msprop:Generator_ColumnPropNameInTable="BruttoGewichtColumn" msprop:Generator_UserColumnName="BruttoGewicht" type="xs:double" minOccurs="0" />
+              <xs:element name="NettoGewicht" msprop:Generator_ColumnVarNameInTable="columnNettoGewicht" msprop:Generator_ColumnPropNameInRow="NettoGewicht" msprop:Generator_ColumnPropNameInTable="NettoGewichtColumn" msprop:Generator_UserColumnName="NettoGewicht" type="xs:double" minOccurs="0" />
+              <xs:element name="TaraGewicht" msprop:Generator_ColumnVarNameInTable="columnTaraGewicht" msprop:Generator_ColumnPropNameInRow="TaraGewicht" msprop:Generator_ColumnPropNameInTable="TaraGewichtColumn" msprop:Generator_UserColumnName="TaraGewicht" type="xs:double" minOccurs="0" />
+              <xs:element name="AngelegtAm" msprop:Generator_ColumnVarNameInTable="columnAngelegtAm" msprop:Generator_ColumnPropNameInRow="AngelegtAm" msprop:Generator_ColumnPropNameInTable="AngelegtAmColumn" msprop:Generator_UserColumnName="AngelegtAm" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NichtBestellbar" msprop:Generator_ColumnVarNameInTable="columnNichtBestellbar" msprop:Generator_ColumnPropNameInRow="NichtBestellbar" msprop:Generator_ColumnPropNameInTable="NichtBestellbarColumn" msprop:Generator_UserColumnName="NichtBestellbar" type="xs:short" />
+              <xs:element name="ProduktAktivOnline" msprop:Generator_ColumnVarNameInTable="columnProduktAktivOnline" msprop:Generator_ColumnPropNameInRow="ProduktAktivOnline" msprop:Generator_ColumnPropNameInTable="ProduktAktivOnlineColumn" msprop:Generator_UserColumnName="ProduktAktivOnline" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:ArtNr" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

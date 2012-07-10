@@ -53,6 +53,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -77,6 +78,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsAdressen.vb">
+      <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsAdressen2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdressen2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsPLZ.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
@@ -87,6 +101,12 @@
       <DependentUpon>AbstractForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\AbstractForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KundenListe2.Designer.vb">
+      <DependentUpon>KundenListe2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KundenListe2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Kunden.Designer.vb">
@@ -128,6 +148,9 @@
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KundenListe2.resx">
+      <DependentUpon>KundenListe2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden.resx">
       <DependentUpon>Kunden.vb</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +169,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\dsAdressen2.xsc">
+      <DependentUpon>dsAdressen2.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAdressen2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdressen2.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAdressen2.xss">
+      <DependentUpon>dsAdressen2.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPLZ.xsc">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPLZ.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPLZ.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsPLZ.xss">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
     <None Include="Forms\ClassDiagramForms.cd" />
     <None Include="Data\dsAdressen.xsc">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
