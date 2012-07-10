@@ -50,20 +50,20 @@ Partial Class Main
         'KundenToolStripMenuItem1
         '
         Me.KundenToolStripMenuItem1.Name = "KundenToolStripMenuItem1"
-        Me.KundenToolStripMenuItem1.Size = New System.Drawing.Size(115, 22)
+        Me.KundenToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.KundenToolStripMenuItem1.Text = "&Kunden"
         '
         'ListeToolStripMenuItem
         '
         Me.ListeToolStripMenuItem.Name = "ListeToolStripMenuItem"
-        Me.ListeToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.ListeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ListeToolStripMenuItem.Text = "&Liste"
         '
         'Liste2ToolStripMenuItem
         '
         Me.Liste2ToolStripMenuItem.Name = "Liste2ToolStripMenuItem"
-        Me.Liste2ToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
-        Me.Liste2ToolStripMenuItem.Text = "Liste2"
+        Me.Liste2ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Liste2ToolStripMenuItem.Text = "Artikel"
         '
         'Main
         '
