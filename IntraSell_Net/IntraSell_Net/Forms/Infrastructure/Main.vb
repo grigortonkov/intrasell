@@ -13,10 +13,9 @@
     End Sub
 
     Private Sub ListeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem.Click
-        Dim f As KundenListe = New KundenListe
+        Dim f As Kundenliste = New Kundenliste
         f.MdiParent = Me
         f.Show()
-
     End Sub
 
     Private Sub Liste2ToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Liste2ToolStripMenuItem.Click
@@ -34,7 +33,6 @@
     Private Sub ÜberIntraSellToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ÜberIntraSellToolStripMenuItem.Click
         About.ShowDialog()
     End Sub
-
 
     Private Sub BeendenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class KundenListe
+Partial Class Kundenliste
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,363 +23,286 @@ Partial Class KundenListe
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.IDNRDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BrancheDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BriefanredeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TitelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AnredeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VornameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Name1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FirmaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdresseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LandDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PLZDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tel2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FaxDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fax2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MobilDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EmailDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WebDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ExportDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AngelegtAnDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MAAusenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MAInnenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AbbuchungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HasMenuDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PasswortDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NextIDNRDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MandantDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GeburtstagDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SkypeAdresseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MessengerAdresseDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EUNummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EUNummer1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EUNummer2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BHReferenzDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OfAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
-        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OfAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FilterButton = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PLZVonTextBox = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DsAdressen = New IntraSell_Net.dsAdressen()
+        Me.OfAdressenlisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.OfAdressenlisteTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter()
+        Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
+        Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer.Panel1.SuspendLayout()
+        Me.SplitContainer.Panel2.SuspendLayout()
+        Me.SplitContainer.SuspendLayout()
         Me.SuspendLayout()
         '
-        'DataGridView1
+        'FilterButton
         '
-        Me.DataGridView1.AllowUserToOrderColumns = True
-        Me.DataGridView1.AutoGenerateColumns = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDNRDataGridViewTextBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.BrancheDataGridViewTextBoxColumn, Me.BriefanredeDataGridViewTextBoxColumn, Me.TitelDataGridViewTextBoxColumn, Me.AnredeDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.Name1DataGridViewTextBoxColumn, Me.FirmaDataGridViewTextBoxColumn, Me.AdresseDataGridViewTextBoxColumn, Me.LandDataGridViewTextBoxColumn, Me.PLZDataGridViewTextBoxColumn, Me.OrtDataGridViewTextBoxColumn, Me.TelDataGridViewTextBoxColumn, Me.Tel2DataGridViewTextBoxColumn, Me.FaxDataGridViewTextBoxColumn, Me.Fax2DataGridViewTextBoxColumn, Me.MobilDataGridViewTextBoxColumn, Me.EmailDataGridViewTextBoxColumn, Me.WebDataGridViewTextBoxColumn, Me.ExportDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.MAAusenDataGridViewTextBoxColumn, Me.MAInnenDataGridViewTextBoxColumn, Me.AbbuchungDataGridViewTextBoxColumn, Me.HasMenuDataGridViewTextBoxColumn, Me.PasswortDataGridViewTextBoxColumn, Me.NextIDNRDataGridViewTextBoxColumn, Me.MandantDataGridViewTextBoxColumn, Me.GeburtstagDataGridViewTextBoxColumn, Me.UIDDataGridViewTextBoxColumn, Me.SkypeAdresseDataGridViewTextBoxColumn, Me.MessengerAdresseDataGridViewTextBoxColumn, Me.EUNummerDataGridViewTextBoxColumn, Me.EUNummer1DataGridViewTextBoxColumn, Me.EUNummer2DataGridViewTextBoxColumn, Me.BHReferenzDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.OfAdressenBindingSource
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1190, 468)
-        Me.DataGridView1.TabIndex = 0
+        Me.FilterButton.Location = New System.Drawing.Point(12, 93)
+        Me.FilterButton.Name = "FilterButton"
+        Me.FilterButton.Size = New System.Drawing.Size(209, 44)
+        Me.FilterButton.TabIndex = 1
+        Me.FilterButton.Text = "Filter anwenden"
+        Me.FilterButton.UseVisualStyleBackColor = True
         '
-        'IDNRDataGridViewTextBoxColumn
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(30, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "PLZ:"
+        '
+        'PLZVonTextBox
+        '
+        Me.PLZVonTextBox.Location = New System.Drawing.Point(95, 13)
+        Me.PLZVonTextBox.Name = "PLZVonTextBox"
+        Me.PLZVonTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.PLZVonTextBox.TabIndex = 3
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(169, 13)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(52, 20)
+        Me.TextBox1.TabIndex = 4
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(153, 16)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(10, 13)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "-"
         '
-        Me.IDNRDataGridViewTextBoxColumn.DataPropertyName = "IDNR"
-        Me.IDNRDataGridViewTextBoxColumn.HeaderText = "IDNR"
-        Me.IDNRDataGridViewTextBoxColumn.Name = "IDNRDataGridViewTextBoxColumn"
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(9, 42)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(80, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Kundengruppe:"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(95, 39)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(126, 21)
+        Me.ComboBox1.TabIndex = 7
+        '
+        'ComboBox2
         '
-        'StatusDataGridViewTextBoxColumn
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(95, 66)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(126, 21)
+        Me.ComboBox2.TabIndex = 9
+        '
+        'Label4
         '
-        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
-        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
-        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(9, 69)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Preisliste:"
         '
-        'BrancheDataGridViewTextBoxColumn
+        'DsAdressen
         '
-        Me.BrancheDataGridViewTextBoxColumn.DataPropertyName = "Branche"
-        Me.BrancheDataGridViewTextBoxColumn.HeaderText = "Branche"
-        Me.BrancheDataGridViewTextBoxColumn.Name = "BrancheDataGridViewTextBoxColumn"
+        Me.DsAdressen.DataSetName = "dsAdressen"
+        Me.DsAdressen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'BriefanredeDataGridViewTextBoxColumn
+        'OfAdressenlisteBindingSource
         '
-        Me.BriefanredeDataGridViewTextBoxColumn.DataPropertyName = "Briefanrede"
-        Me.BriefanredeDataGridViewTextBoxColumn.HeaderText = "Briefanrede"
-        Me.BriefanredeDataGridViewTextBoxColumn.Name = "BriefanredeDataGridViewTextBoxColumn"
+        Me.OfAdressenlisteBindingSource.DataMember = "ofAdressenliste"
+        Me.OfAdressenlisteBindingSource.DataSource = Me.DsAdressen
         '
-        'TitelDataGridViewTextBoxColumn
+        'OfAdressenlisteTableAdapter
         '
-        Me.TitelDataGridViewTextBoxColumn.DataPropertyName = "Titel"
-        Me.TitelDataGridViewTextBoxColumn.HeaderText = "Titel"
-        Me.TitelDataGridViewTextBoxColumn.Name = "TitelDataGridViewTextBoxColumn"
+        Me.OfAdressenlisteTableAdapter.ClearBeforeFill = True
         '
-        'AnredeDataGridViewTextBoxColumn
+        'TableAdapterManager
         '
-        Me.AnredeDataGridViewTextBoxColumn.DataPropertyName = "Anrede"
-        Me.AnredeDataGridViewTextBoxColumn.HeaderText = "Anrede"
-        Me.AnredeDataGridViewTextBoxColumn.Name = "AnredeDataGridViewTextBoxColumn"
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.ofadressen_settingsTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_weitereTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsbedingungenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressenTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'NameDataGridViewTextBoxColumn
+        'OfAdressenlisteDataGridView
         '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "Name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Name"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.OfAdressenlisteDataGridView.AllowUserToAddRows = False
+        Me.OfAdressenlisteDataGridView.AllowUserToDeleteRows = False
+        Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
+        Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
+        Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
+        Me.OfAdressenlisteDataGridView.DataSource = Me.OfAdressenlisteBindingSource
+        Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
+        Me.OfAdressenlisteDataGridView.ReadOnly = True
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(765, 762)
+        Me.OfAdressenlisteDataGridView.TabIndex = 10
         '
-        'VornameDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn1
         '
-        Me.VornameDataGridViewTextBoxColumn.DataPropertyName = "Vorname"
-        Me.VornameDataGridViewTextBoxColumn.HeaderText = "Vorname"
-        Me.VornameDataGridViewTextBoxColumn.Name = "VornameDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDNR"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "IDNR"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
         '
-        'Name1DataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn2
         '
-        Me.Name1DataGridViewTextBoxColumn.DataPropertyName = "Name1"
-        Me.Name1DataGridViewTextBoxColumn.HeaderText = "Name1"
-        Me.Name1DataGridViewTextBoxColumn.Name = "Name1DataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Name"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
         '
-        'FirmaDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn3
         '
-        Me.FirmaDataGridViewTextBoxColumn.DataPropertyName = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.HeaderText = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.Name = "FirmaDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Vorname"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Vorname"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
         '
-        'AdresseDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn4
         '
-        Me.AdresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse"
-        Me.AdresseDataGridViewTextBoxColumn.HeaderText = "Adresse"
-        Me.AdresseDataGridViewTextBoxColumn.Name = "AdresseDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Firma"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Firma"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
         '
-        'LandDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn5
         '
-        Me.LandDataGridViewTextBoxColumn.DataPropertyName = "Land"
-        Me.LandDataGridViewTextBoxColumn.HeaderText = "Land"
-        Me.LandDataGridViewTextBoxColumn.Name = "LandDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Adresse"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Adresse"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
         '
-        'PLZDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn6
         '
-        Me.PLZDataGridViewTextBoxColumn.DataPropertyName = "PLZ"
-        Me.PLZDataGridViewTextBoxColumn.HeaderText = "PLZ"
-        Me.PLZDataGridViewTextBoxColumn.Name = "PLZDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "PLZ"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "PLZ"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
         '
-        'OrtDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn7
         '
-        Me.OrtDataGridViewTextBoxColumn.DataPropertyName = "Ort"
-        Me.OrtDataGridViewTextBoxColumn.HeaderText = "Ort"
-        Me.OrtDataGridViewTextBoxColumn.Name = "OrtDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Ort"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Ort"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
         '
-        'TelDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn8
         '
-        Me.TelDataGridViewTextBoxColumn.DataPropertyName = "Tel"
-        Me.TelDataGridViewTextBoxColumn.HeaderText = "Tel"
-        Me.TelDataGridViewTextBoxColumn.Name = "TelDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Kundengruppe"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Kundengruppe"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
         '
-        'Tel2DataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn9
         '
-        Me.Tel2DataGridViewTextBoxColumn.DataPropertyName = "Tel2"
-        Me.Tel2DataGridViewTextBoxColumn.HeaderText = "Tel2"
-        Me.Tel2DataGridViewTextBoxColumn.Name = "Tel2DataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "Preisliste"
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Preisliste"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.ReadOnly = True
         '
-        'FaxDataGridViewTextBoxColumn
+        'SplitContainer
         '
-        Me.FaxDataGridViewTextBoxColumn.DataPropertyName = "Fax"
-        Me.FaxDataGridViewTextBoxColumn.HeaderText = "Fax"
-        Me.FaxDataGridViewTextBoxColumn.Name = "FaxDataGridViewTextBoxColumn"
+        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.Name = "SplitContainer"
         '
-        'Fax2DataGridViewTextBoxColumn
+        'SplitContainer.Panel1
         '
-        Me.Fax2DataGridViewTextBoxColumn.DataPropertyName = "Fax2"
-        Me.Fax2DataGridViewTextBoxColumn.HeaderText = "Fax2"
-        Me.Fax2DataGridViewTextBoxColumn.Name = "Fax2DataGridViewTextBoxColumn"
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ComboBox2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer.Panel1.Controls.Add(Me.TextBox1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ComboBox1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
         '
-        'MobilDataGridViewTextBoxColumn
+        'SplitContainer.Panel2
         '
-        Me.MobilDataGridViewTextBoxColumn.DataPropertyName = "Mobil"
-        Me.MobilDataGridViewTextBoxColumn.HeaderText = "Mobil"
-        Me.MobilDataGridViewTextBoxColumn.Name = "MobilDataGridViewTextBoxColumn"
+        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
+        Me.SplitContainer.SplitterDistance = 239
+        Me.SplitContainer.TabIndex = 11
         '
-        'EmailDataGridViewTextBoxColumn
-        '
-        Me.EmailDataGridViewTextBoxColumn.DataPropertyName = "Email"
-        Me.EmailDataGridViewTextBoxColumn.HeaderText = "Email"
-        Me.EmailDataGridViewTextBoxColumn.Name = "EmailDataGridViewTextBoxColumn"
-        '
-        'WebDataGridViewTextBoxColumn
-        '
-        Me.WebDataGridViewTextBoxColumn.DataPropertyName = "Web"
-        Me.WebDataGridViewTextBoxColumn.HeaderText = "Web"
-        Me.WebDataGridViewTextBoxColumn.Name = "WebDataGridViewTextBoxColumn"
-        '
-        'ExportDataGridViewTextBoxColumn
-        '
-        Me.ExportDataGridViewTextBoxColumn.DataPropertyName = "Export"
-        Me.ExportDataGridViewTextBoxColumn.HeaderText = "Export"
-        Me.ExportDataGridViewTextBoxColumn.Name = "ExportDataGridViewTextBoxColumn"
-        '
-        'AngelegtAnDataGridViewTextBoxColumn
-        '
-        Me.AngelegtAnDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAn"
-        Me.AngelegtAnDataGridViewTextBoxColumn.HeaderText = "AngelegtAn"
-        Me.AngelegtAnDataGridViewTextBoxColumn.Name = "AngelegtAnDataGridViewTextBoxColumn"
-        '
-        'MAAusenDataGridViewTextBoxColumn
-        '
-        Me.MAAusenDataGridViewTextBoxColumn.DataPropertyName = "MAAusen"
-        Me.MAAusenDataGridViewTextBoxColumn.HeaderText = "MAAusen"
-        Me.MAAusenDataGridViewTextBoxColumn.Name = "MAAusenDataGridViewTextBoxColumn"
-        '
-        'MAInnenDataGridViewTextBoxColumn
-        '
-        Me.MAInnenDataGridViewTextBoxColumn.DataPropertyName = "MAInnen"
-        Me.MAInnenDataGridViewTextBoxColumn.HeaderText = "MAInnen"
-        Me.MAInnenDataGridViewTextBoxColumn.Name = "MAInnenDataGridViewTextBoxColumn"
-        '
-        'AbbuchungDataGridViewTextBoxColumn
-        '
-        Me.AbbuchungDataGridViewTextBoxColumn.DataPropertyName = "Abbuchung"
-        Me.AbbuchungDataGridViewTextBoxColumn.HeaderText = "Abbuchung"
-        Me.AbbuchungDataGridViewTextBoxColumn.Name = "AbbuchungDataGridViewTextBoxColumn"
-        '
-        'HasMenuDataGridViewTextBoxColumn
-        '
-        Me.HasMenuDataGridViewTextBoxColumn.DataPropertyName = "hasMenu"
-        Me.HasMenuDataGridViewTextBoxColumn.HeaderText = "hasMenu"
-        Me.HasMenuDataGridViewTextBoxColumn.Name = "HasMenuDataGridViewTextBoxColumn"
-        '
-        'PasswortDataGridViewTextBoxColumn
-        '
-        Me.PasswortDataGridViewTextBoxColumn.DataPropertyName = "Passwort"
-        Me.PasswortDataGridViewTextBoxColumn.HeaderText = "Passwort"
-        Me.PasswortDataGridViewTextBoxColumn.Name = "PasswortDataGridViewTextBoxColumn"
-        '
-        'NextIDNRDataGridViewTextBoxColumn
-        '
-        Me.NextIDNRDataGridViewTextBoxColumn.DataPropertyName = "nextIDNR"
-        Me.NextIDNRDataGridViewTextBoxColumn.HeaderText = "nextIDNR"
-        Me.NextIDNRDataGridViewTextBoxColumn.Name = "NextIDNRDataGridViewTextBoxColumn"
-        '
-        'MandantDataGridViewTextBoxColumn
-        '
-        Me.MandantDataGridViewTextBoxColumn.DataPropertyName = "mandant"
-        Me.MandantDataGridViewTextBoxColumn.HeaderText = "mandant"
-        Me.MandantDataGridViewTextBoxColumn.Name = "MandantDataGridViewTextBoxColumn"
-        '
-        'GeburtstagDataGridViewTextBoxColumn
-        '
-        Me.GeburtstagDataGridViewTextBoxColumn.DataPropertyName = "Geburtstag"
-        Me.GeburtstagDataGridViewTextBoxColumn.HeaderText = "Geburtstag"
-        Me.GeburtstagDataGridViewTextBoxColumn.Name = "GeburtstagDataGridViewTextBoxColumn"
-        '
-        'UIDDataGridViewTextBoxColumn
-        '
-        Me.UIDDataGridViewTextBoxColumn.DataPropertyName = "UID"
-        Me.UIDDataGridViewTextBoxColumn.HeaderText = "UID"
-        Me.UIDDataGridViewTextBoxColumn.Name = "UIDDataGridViewTextBoxColumn"
-        '
-        'SkypeAdresseDataGridViewTextBoxColumn
-        '
-        Me.SkypeAdresseDataGridViewTextBoxColumn.DataPropertyName = "SkypeAdresse"
-        Me.SkypeAdresseDataGridViewTextBoxColumn.HeaderText = "SkypeAdresse"
-        Me.SkypeAdresseDataGridViewTextBoxColumn.Name = "SkypeAdresseDataGridViewTextBoxColumn"
-        '
-        'MessengerAdresseDataGridViewTextBoxColumn
-        '
-        Me.MessengerAdresseDataGridViewTextBoxColumn.DataPropertyName = "MessengerAdresse"
-        Me.MessengerAdresseDataGridViewTextBoxColumn.HeaderText = "MessengerAdresse"
-        Me.MessengerAdresseDataGridViewTextBoxColumn.Name = "MessengerAdresseDataGridViewTextBoxColumn"
-        '
-        'EUNummerDataGridViewTextBoxColumn
-        '
-        Me.EUNummerDataGridViewTextBoxColumn.DataPropertyName = "EUNummer"
-        Me.EUNummerDataGridViewTextBoxColumn.HeaderText = "EUNummer"
-        Me.EUNummerDataGridViewTextBoxColumn.Name = "EUNummerDataGridViewTextBoxColumn"
-        '
-        'EUNummer1DataGridViewTextBoxColumn
-        '
-        Me.EUNummer1DataGridViewTextBoxColumn.DataPropertyName = "EUNummer1"
-        Me.EUNummer1DataGridViewTextBoxColumn.HeaderText = "EUNummer1"
-        Me.EUNummer1DataGridViewTextBoxColumn.Name = "EUNummer1DataGridViewTextBoxColumn"
-        '
-        'EUNummer2DataGridViewTextBoxColumn
-        '
-        Me.EUNummer2DataGridViewTextBoxColumn.DataPropertyName = "EUNummer2"
-        Me.EUNummer2DataGridViewTextBoxColumn.HeaderText = "EUNummer2"
-        Me.EUNummer2DataGridViewTextBoxColumn.Name = "EUNummer2DataGridViewTextBoxColumn"
-        '
-        'BHReferenzDataGridViewTextBoxColumn
-        '
-        Me.BHReferenzDataGridViewTextBoxColumn.DataPropertyName = "BHReferenz"
-        Me.BHReferenzDataGridViewTextBoxColumn.HeaderText = "BHReferenz"
-        Me.BHReferenzDataGridViewTextBoxColumn.Name = "BHReferenzDataGridViewTextBoxColumn"
-        '
-        'OfAdressenBindingSource
-        '
-        Me.OfAdressenBindingSource.DataMember = "ofAdressen"
-        Me.OfAdressenBindingSource.DataSource = Me.DataSetKunden
-        '
-        'DataSetKunden
-        '
-        Me.DataSetKunden.DataSetName = "DataSetKunden"
-        Me.DataSetKunden.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'OfAdressenTableAdapter
-        '
-        Me.OfAdressenTableAdapter.ClearBeforeFill = True
-        '
-        'KundenListe
+        'Kundenliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1190, 468)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Name = "KundenListe"
-        Me.Text = "KundenListe"
+        Me.ClientSize = New System.Drawing.Size(1008, 762)
+        Me.Controls.Add(Me.SplitContainer)
+        Me.Name = "Kundenliste"
+        Me.Text = "Kundenliste"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OfAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer.Panel1.ResumeLayout(False)
+        Me.SplitContainer.Panel1.PerformLayout()
+        Me.SplitContainer.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
-    Friend WithEvents OfAdressenBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
-    Friend WithEvents IDNRDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents StatusDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents BrancheDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents BriefanredeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TitelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AnredeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VornameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Name1DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FirmaDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AdresseDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LandDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PLZDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents OrtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Tel2DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FaxDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Fax2DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MobilDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents EmailDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents WebDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ExportDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AngelegtAnDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MAAusenDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MAInnenDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AbbuchungDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents HasMenuDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PasswortDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NextIDNRDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MandantDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents GeburtstagDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents UIDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SkypeAdresseDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MessengerAdresseDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents EUNummerDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents EUNummer1DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents EUNummer2DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents BHReferenzDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents FilterButton As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents PLZVonTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents DsAdressen As IntraSell_Net.dsAdressen
+    Friend WithEvents OfAdressenlisteBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents OfAdressenlisteTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter
+    Friend WithEvents TableAdapterManager As IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager
+    Friend WithEvents OfAdressenlisteDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer As System.Windows.Forms.SplitContainer
 End Class

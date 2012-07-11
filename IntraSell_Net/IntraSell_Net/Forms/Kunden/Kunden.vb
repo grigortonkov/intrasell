@@ -67,8 +67,8 @@
     Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
-        Catch ex As System.Exception
-            System.Windows.Forms.MessageBox.Show(ex.Message)
+        Catch ex As Exception
+            HandleAppError(ex)
         End Try
 
     End Sub
