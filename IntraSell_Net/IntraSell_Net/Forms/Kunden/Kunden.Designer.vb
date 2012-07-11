@@ -1,0 +1,1199 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Kunden
+    Inherits IntraSell_Net.AbstractForm
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim IDNRLabel As System.Windows.Forms.Label
+        Dim StatusLabel As System.Windows.Forms.Label
+        Dim BrancheLabel As System.Windows.Forms.Label
+        Dim BriefanredeLabel As System.Windows.Forms.Label
+        Dim TitelLabel As System.Windows.Forms.Label
+        Dim AnredeLabel As System.Windows.Forms.Label
+        Dim NameLabel As System.Windows.Forms.Label
+        Dim VornameLabel As System.Windows.Forms.Label
+        Dim Name1Label As System.Windows.Forms.Label
+        Dim FirmaLabel As System.Windows.Forms.Label
+        Dim AdresseLabel As System.Windows.Forms.Label
+        Dim LandLabel As System.Windows.Forms.Label
+        Dim PLZLabel As System.Windows.Forms.Label
+        Dim OrtLabel As System.Windows.Forms.Label
+        Dim TelLabel As System.Windows.Forms.Label
+        Dim Tel2Label As System.Windows.Forms.Label
+        Dim FaxLabel As System.Windows.Forms.Label
+        Dim Fax2Label As System.Windows.Forms.Label
+        Dim MobilLabel As System.Windows.Forms.Label
+        Dim EmailLabel As System.Windows.Forms.Label
+        Dim WebLabel As System.Windows.Forms.Label
+        Dim ExportLabel As System.Windows.Forms.Label
+        Dim AngelegtAnLabel As System.Windows.Forms.Label
+        Dim MAAusenLabel As System.Windows.Forms.Label
+        Dim MAInnenLabel As System.Windows.Forms.Label
+        Dim AbbuchungLabel As System.Windows.Forms.Label
+        Dim HasMenuLabel As System.Windows.Forms.Label
+        Dim PasswortLabel As System.Windows.Forms.Label
+        Dim NextIDNRLabel As System.Windows.Forms.Label
+        Dim MandantLabel As System.Windows.Forms.Label
+        Dim GeburtstagLabel As System.Windows.Forms.Label
+        Dim UIDLabel As System.Windows.Forms.Label
+        Dim SkypeAdresseLabel As System.Windows.Forms.Label
+        Dim MessengerAdresseLabel As System.Windows.Forms.Label
+        Dim EUNummerLabel As System.Windows.Forms.Label
+        Dim EUNummer1Label As System.Windows.Forms.Label
+        Dim EUNummer2Label As System.Windows.Forms.Label
+        Dim BHReferenzLabel As System.Windows.Forms.Label
+        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
+        Me.ofAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cbKundengruppe = New System.Windows.Forms.ComboBox()
+        Me.FKofAdressenofadressensettingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.KundengruppenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.cbPreisliste = New System.Windows.Forms.ComboBox()
+        Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Ofadressen_settingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
+        Me.PreislistenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter()
+        Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
+        Me.Ofadressen_settingsTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_settingsTableAdapter()
+        Me.KundengruppenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter()
+        Me.DsPLZ = New IntraSell_Net.dsPLZ()
+        Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
+        Me.TableAdapterManager1 = New IntraSell_Net.dsPLZTableAdapters.TableAdapterManager()
+        Me.GrLandPlzBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.IDNRTextBox = New System.Windows.Forms.TextBox()
+        Me.StatusComboBox = New System.Windows.Forms.ComboBox()
+        Me.BrancheComboBox = New System.Windows.Forms.ComboBox()
+        Me.BriefanredeComboBox = New System.Windows.Forms.ComboBox()
+        Me.TitelComboBox = New System.Windows.Forms.ComboBox()
+        Me.AnredeComboBox = New System.Windows.Forms.ComboBox()
+        Me.NameTextBox = New System.Windows.Forms.TextBox()
+        Me.VornameTextBox = New System.Windows.Forms.TextBox()
+        Me.Name1TextBox = New System.Windows.Forms.TextBox()
+        Me.FirmaTextBox = New System.Windows.Forms.TextBox()
+        Me.AdresseTextBox = New System.Windows.Forms.TextBox()
+        Me.LandTextBox = New System.Windows.Forms.TextBox()
+        Me.PLZComboBox = New System.Windows.Forms.ComboBox()
+        Me.OrtComboBox = New System.Windows.Forms.ComboBox()
+        Me.TelTextBox = New System.Windows.Forms.TextBox()
+        Me.Tel2TextBox = New System.Windows.Forms.TextBox()
+        Me.FaxTextBox = New System.Windows.Forms.TextBox()
+        Me.Fax2TextBox = New System.Windows.Forms.TextBox()
+        Me.MobilTextBox = New System.Windows.Forms.TextBox()
+        Me.EmailTextBox = New System.Windows.Forms.TextBox()
+        Me.WebTextBox = New System.Windows.Forms.TextBox()
+        Me.ExportCheckBox = New System.Windows.Forms.CheckBox()
+        Me.AngelegtAnDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.MAAusenComboBox = New System.Windows.Forms.ComboBox()
+        Me.MAInnenComboBox = New System.Windows.Forms.ComboBox()
+        Me.AbbuchungCheckBox = New System.Windows.Forms.CheckBox()
+        Me.HasMenuCheckBox = New System.Windows.Forms.CheckBox()
+        Me.PasswortTextBox = New System.Windows.Forms.TextBox()
+        Me.NextIDNRComboBox = New System.Windows.Forms.ComboBox()
+        Me.MandantTextBox = New System.Windows.Forms.TextBox()
+        Me.GeburtstagDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.UIDTextBox = New System.Windows.Forms.TextBox()
+        Me.SkypeAdresseTextBox = New System.Windows.Forms.TextBox()
+        Me.MessengerAdresseTextBox = New System.Windows.Forms.TextBox()
+        Me.EUNummerTextBox = New System.Windows.Forms.TextBox()
+        Me.EUNummer1TextBox = New System.Windows.Forms.TextBox()
+        Me.EUNummer2TextBox = New System.Windows.Forms.TextBox()
+        Me.BHReferenzTextBox = New System.Windows.Forms.TextBox()
+        IDNRLabel = New System.Windows.Forms.Label()
+        StatusLabel = New System.Windows.Forms.Label()
+        BrancheLabel = New System.Windows.Forms.Label()
+        BriefanredeLabel = New System.Windows.Forms.Label()
+        TitelLabel = New System.Windows.Forms.Label()
+        AnredeLabel = New System.Windows.Forms.Label()
+        NameLabel = New System.Windows.Forms.Label()
+        VornameLabel = New System.Windows.Forms.Label()
+        Name1Label = New System.Windows.Forms.Label()
+        FirmaLabel = New System.Windows.Forms.Label()
+        AdresseLabel = New System.Windows.Forms.Label()
+        LandLabel = New System.Windows.Forms.Label()
+        PLZLabel = New System.Windows.Forms.Label()
+        OrtLabel = New System.Windows.Forms.Label()
+        TelLabel = New System.Windows.Forms.Label()
+        Tel2Label = New System.Windows.Forms.Label()
+        FaxLabel = New System.Windows.Forms.Label()
+        Fax2Label = New System.Windows.Forms.Label()
+        MobilLabel = New System.Windows.Forms.Label()
+        EmailLabel = New System.Windows.Forms.Label()
+        WebLabel = New System.Windows.Forms.Label()
+        ExportLabel = New System.Windows.Forms.Label()
+        AngelegtAnLabel = New System.Windows.Forms.Label()
+        MAAusenLabel = New System.Windows.Forms.Label()
+        MAInnenLabel = New System.Windows.Forms.Label()
+        AbbuchungLabel = New System.Windows.Forms.Label()
+        HasMenuLabel = New System.Windows.Forms.Label()
+        PasswortLabel = New System.Windows.Forms.Label()
+        NextIDNRLabel = New System.Windows.Forms.Label()
+        MandantLabel = New System.Windows.Forms.Label()
+        GeburtstagLabel = New System.Windows.Forms.Label()
+        UIDLabel = New System.Windows.Forms.Label()
+        SkypeAdresseLabel = New System.Windows.Forms.Label()
+        MessengerAdresseLabel = New System.Windows.Forms.Label()
+        EUNummerLabel = New System.Windows.Forms.Label()
+        EUNummer1Label = New System.Windows.Forms.Label()
+        EUNummer2Label = New System.Windows.Forms.Label()
+        BHReferenzLabel = New System.Windows.Forms.Label()
+        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'IDNRLabel
+        '
+        IDNRLabel.AutoSize = True
+        IDNRLabel.Location = New System.Drawing.Point(15, 56)
+        IDNRLabel.Name = "IDNRLabel"
+        IDNRLabel.Size = New System.Drawing.Size(37, 13)
+        IDNRLabel.TabIndex = 7
+        IDNRLabel.Text = "IDNR:"
+        '
+        'StatusLabel
+        '
+        StatusLabel.AutoSize = True
+        StatusLabel.Location = New System.Drawing.Point(15, 82)
+        StatusLabel.Name = "StatusLabel"
+        StatusLabel.Size = New System.Drawing.Size(40, 13)
+        StatusLabel.TabIndex = 9
+        StatusLabel.Text = "Status:"
+        '
+        'BrancheLabel
+        '
+        BrancheLabel.AutoSize = True
+        BrancheLabel.Location = New System.Drawing.Point(15, 109)
+        BrancheLabel.Name = "BrancheLabel"
+        BrancheLabel.Size = New System.Drawing.Size(50, 13)
+        BrancheLabel.TabIndex = 11
+        BrancheLabel.Text = "Branche:"
+        '
+        'BriefanredeLabel
+        '
+        BriefanredeLabel.AutoSize = True
+        BriefanredeLabel.Location = New System.Drawing.Point(15, 136)
+        BriefanredeLabel.Name = "BriefanredeLabel"
+        BriefanredeLabel.Size = New System.Drawing.Size(64, 13)
+        BriefanredeLabel.TabIndex = 13
+        BriefanredeLabel.Text = "Briefanrede:"
+        '
+        'TitelLabel
+        '
+        TitelLabel.AutoSize = True
+        TitelLabel.Location = New System.Drawing.Point(15, 163)
+        TitelLabel.Name = "TitelLabel"
+        TitelLabel.Size = New System.Drawing.Size(30, 13)
+        TitelLabel.TabIndex = 15
+        TitelLabel.Text = "Titel:"
+        '
+        'AnredeLabel
+        '
+        AnredeLabel.AutoSize = True
+        AnredeLabel.Location = New System.Drawing.Point(15, 190)
+        AnredeLabel.Name = "AnredeLabel"
+        AnredeLabel.Size = New System.Drawing.Size(44, 13)
+        AnredeLabel.TabIndex = 17
+        AnredeLabel.Text = "Anrede:"
+        '
+        'NameLabel
+        '
+        NameLabel.AutoSize = True
+        NameLabel.Location = New System.Drawing.Point(15, 217)
+        NameLabel.Name = "NameLabel"
+        NameLabel.Size = New System.Drawing.Size(38, 13)
+        NameLabel.TabIndex = 19
+        NameLabel.Text = "Name:"
+        '
+        'VornameLabel
+        '
+        VornameLabel.AutoSize = True
+        VornameLabel.Location = New System.Drawing.Point(15, 243)
+        VornameLabel.Name = "VornameLabel"
+        VornameLabel.Size = New System.Drawing.Size(52, 13)
+        VornameLabel.TabIndex = 21
+        VornameLabel.Text = "Vorname:"
+        '
+        'Name1Label
+        '
+        Name1Label.AutoSize = True
+        Name1Label.Location = New System.Drawing.Point(15, 269)
+        Name1Label.Name = "Name1Label"
+        Name1Label.Size = New System.Drawing.Size(44, 13)
+        Name1Label.TabIndex = 23
+        Name1Label.Text = "Name1:"
+        '
+        'FirmaLabel
+        '
+        FirmaLabel.AutoSize = True
+        FirmaLabel.Location = New System.Drawing.Point(15, 295)
+        FirmaLabel.Name = "FirmaLabel"
+        FirmaLabel.Size = New System.Drawing.Size(35, 13)
+        FirmaLabel.TabIndex = 25
+        FirmaLabel.Text = "Firma:"
+        '
+        'AdresseLabel
+        '
+        AdresseLabel.AutoSize = True
+        AdresseLabel.Location = New System.Drawing.Point(325, 56)
+        AdresseLabel.Name = "AdresseLabel"
+        AdresseLabel.Size = New System.Drawing.Size(48, 13)
+        AdresseLabel.TabIndex = 27
+        AdresseLabel.Text = "Adresse:"
+        '
+        'LandLabel
+        '
+        LandLabel.AutoSize = True
+        LandLabel.Location = New System.Drawing.Point(325, 82)
+        LandLabel.Name = "LandLabel"
+        LandLabel.Size = New System.Drawing.Size(34, 13)
+        LandLabel.TabIndex = 29
+        LandLabel.Text = "Land:"
+        '
+        'PLZLabel
+        '
+        PLZLabel.AutoSize = True
+        PLZLabel.Location = New System.Drawing.Point(325, 108)
+        PLZLabel.Name = "PLZLabel"
+        PLZLabel.Size = New System.Drawing.Size(30, 13)
+        PLZLabel.TabIndex = 31
+        PLZLabel.Text = "PLZ:"
+        '
+        'OrtLabel
+        '
+        OrtLabel.AutoSize = True
+        OrtLabel.Location = New System.Drawing.Point(325, 135)
+        OrtLabel.Name = "OrtLabel"
+        OrtLabel.Size = New System.Drawing.Size(24, 13)
+        OrtLabel.TabIndex = 33
+        OrtLabel.Text = "Ort:"
+        '
+        'TelLabel
+        '
+        TelLabel.AutoSize = True
+        TelLabel.Location = New System.Drawing.Point(325, 162)
+        TelLabel.Name = "TelLabel"
+        TelLabel.Size = New System.Drawing.Size(25, 13)
+        TelLabel.TabIndex = 35
+        TelLabel.Text = "Tel:"
+        '
+        'Tel2Label
+        '
+        Tel2Label.AutoSize = True
+        Tel2Label.Location = New System.Drawing.Point(325, 188)
+        Tel2Label.Name = "Tel2Label"
+        Tel2Label.Size = New System.Drawing.Size(31, 13)
+        Tel2Label.TabIndex = 37
+        Tel2Label.Text = "Tel2:"
+        '
+        'FaxLabel
+        '
+        FaxLabel.AutoSize = True
+        FaxLabel.Location = New System.Drawing.Point(325, 214)
+        FaxLabel.Name = "FaxLabel"
+        FaxLabel.Size = New System.Drawing.Size(27, 13)
+        FaxLabel.TabIndex = 39
+        FaxLabel.Text = "Fax:"
+        '
+        'Fax2Label
+        '
+        Fax2Label.AutoSize = True
+        Fax2Label.Location = New System.Drawing.Point(325, 240)
+        Fax2Label.Name = "Fax2Label"
+        Fax2Label.Size = New System.Drawing.Size(33, 13)
+        Fax2Label.TabIndex = 41
+        Fax2Label.Text = "Fax2:"
+        '
+        'MobilLabel
+        '
+        MobilLabel.AutoSize = True
+        MobilLabel.Location = New System.Drawing.Point(325, 266)
+        MobilLabel.Name = "MobilLabel"
+        MobilLabel.Size = New System.Drawing.Size(35, 13)
+        MobilLabel.TabIndex = 43
+        MobilLabel.Text = "Mobil:"
+        '
+        'EmailLabel
+        '
+        EmailLabel.AutoSize = True
+        EmailLabel.Location = New System.Drawing.Point(325, 292)
+        EmailLabel.Name = "EmailLabel"
+        EmailLabel.Size = New System.Drawing.Size(35, 13)
+        EmailLabel.TabIndex = 45
+        EmailLabel.Text = "Email:"
+        '
+        'WebLabel
+        '
+        WebLabel.AutoSize = True
+        WebLabel.Location = New System.Drawing.Point(325, 318)
+        WebLabel.Name = "WebLabel"
+        WebLabel.Size = New System.Drawing.Size(33, 13)
+        WebLabel.TabIndex = 47
+        WebLabel.Text = "Web:"
+        '
+        'ExportLabel
+        '
+        ExportLabel.AutoSize = True
+        ExportLabel.Location = New System.Drawing.Point(6, 27)
+        ExportLabel.Name = "ExportLabel"
+        ExportLabel.Size = New System.Drawing.Size(40, 13)
+        ExportLabel.TabIndex = 49
+        ExportLabel.Text = "Export:"
+        '
+        'AngelegtAnLabel
+        '
+        AngelegtAnLabel.AutoSize = True
+        AngelegtAnLabel.Location = New System.Drawing.Point(6, 56)
+        AngelegtAnLabel.Name = "AngelegtAnLabel"
+        AngelegtAnLabel.Size = New System.Drawing.Size(68, 13)
+        AngelegtAnLabel.TabIndex = 51
+        AngelegtAnLabel.Text = "Angelegt An:"
+        '
+        'MAAusenLabel
+        '
+        MAAusenLabel.AutoSize = True
+        MAAusenLabel.Location = New System.Drawing.Point(6, 81)
+        MAAusenLabel.Name = "MAAusenLabel"
+        MAAusenLabel.Size = New System.Drawing.Size(61, 13)
+        MAAusenLabel.TabIndex = 53
+        MAAusenLabel.Text = "MAAussen:"
+        '
+        'MAInnenLabel
+        '
+        MAInnenLabel.AutoSize = True
+        MAInnenLabel.Location = New System.Drawing.Point(6, 108)
+        MAInnenLabel.Name = "MAInnenLabel"
+        MAInnenLabel.Size = New System.Drawing.Size(53, 13)
+        MAInnenLabel.TabIndex = 55
+        MAInnenLabel.Text = "MAInnen:"
+        '
+        'AbbuchungLabel
+        '
+        AbbuchungLabel.AutoSize = True
+        AbbuchungLabel.Location = New System.Drawing.Point(6, 137)
+        AbbuchungLabel.Name = "AbbuchungLabel"
+        AbbuchungLabel.Size = New System.Drawing.Size(65, 13)
+        AbbuchungLabel.TabIndex = 57
+        AbbuchungLabel.Text = "Abbuchung:"
+        '
+        'HasMenuLabel
+        '
+        HasMenuLabel.AutoSize = True
+        HasMenuLabel.Location = New System.Drawing.Point(6, 167)
+        HasMenuLabel.Name = "HasMenuLabel"
+        HasMenuLabel.Size = New System.Drawing.Size(57, 13)
+        HasMenuLabel.TabIndex = 59
+        HasMenuLabel.Text = "has Menu:"
+        '
+        'PasswortLabel
+        '
+        PasswortLabel.AutoSize = True
+        PasswortLabel.Location = New System.Drawing.Point(6, 195)
+        PasswortLabel.Name = "PasswortLabel"
+        PasswortLabel.Size = New System.Drawing.Size(53, 13)
+        PasswortLabel.TabIndex = 61
+        PasswortLabel.Text = "Passwort:"
+        '
+        'NextIDNRLabel
+        '
+        NextIDNRLabel.AutoSize = True
+        NextIDNRLabel.Location = New System.Drawing.Point(6, 221)
+        NextIDNRLabel.Name = "NextIDNRLabel"
+        NextIDNRLabel.Size = New System.Drawing.Size(60, 13)
+        NextIDNRLabel.TabIndex = 63
+        NextIDNRLabel.Text = "next IDNR:"
+        '
+        'MandantLabel
+        '
+        MandantLabel.AutoSize = True
+        MandantLabel.Location = New System.Drawing.Point(6, 248)
+        MandantLabel.Name = "MandantLabel"
+        MandantLabel.Size = New System.Drawing.Size(52, 13)
+        MandantLabel.TabIndex = 65
+        MandantLabel.Text = "Mandant:"
+        '
+        'GeburtstagLabel
+        '
+        GeburtstagLabel.AutoSize = True
+        GeburtstagLabel.Location = New System.Drawing.Point(15, 322)
+        GeburtstagLabel.Name = "GeburtstagLabel"
+        GeburtstagLabel.Size = New System.Drawing.Size(62, 13)
+        GeburtstagLabel.TabIndex = 67
+        GeburtstagLabel.Text = "Geburtstag:"
+        '
+        'UIDLabel
+        '
+        UIDLabel.AutoSize = True
+        UIDLabel.Location = New System.Drawing.Point(354, 52)
+        UIDLabel.Name = "UIDLabel"
+        UIDLabel.Size = New System.Drawing.Size(29, 13)
+        UIDLabel.TabIndex = 69
+        UIDLabel.Text = "UID:"
+        '
+        'SkypeAdresseLabel
+        '
+        SkypeAdresseLabel.AutoSize = True
+        SkypeAdresseLabel.Location = New System.Drawing.Point(354, 78)
+        SkypeAdresseLabel.Name = "SkypeAdresseLabel"
+        SkypeAdresseLabel.Size = New System.Drawing.Size(81, 13)
+        SkypeAdresseLabel.TabIndex = 71
+        SkypeAdresseLabel.Text = "Skype Adresse:"
+        '
+        'MessengerAdresseLabel
+        '
+        MessengerAdresseLabel.AutoSize = True
+        MessengerAdresseLabel.Location = New System.Drawing.Point(354, 104)
+        MessengerAdresseLabel.Name = "MessengerAdresseLabel"
+        MessengerAdresseLabel.Size = New System.Drawing.Size(103, 13)
+        MessengerAdresseLabel.TabIndex = 73
+        MessengerAdresseLabel.Text = "Messenger Adresse:"
+        '
+        'EUNummerLabel
+        '
+        EUNummerLabel.AutoSize = True
+        EUNummerLabel.Location = New System.Drawing.Point(354, 130)
+        EUNummerLabel.Name = "EUNummerLabel"
+        EUNummerLabel.Size = New System.Drawing.Size(64, 13)
+        EUNummerLabel.TabIndex = 75
+        EUNummerLabel.Text = "EUNummer:"
+        '
+        'EUNummer1Label
+        '
+        EUNummer1Label.AutoSize = True
+        EUNummer1Label.Location = New System.Drawing.Point(354, 156)
+        EUNummer1Label.Name = "EUNummer1Label"
+        EUNummer1Label.Size = New System.Drawing.Size(70, 13)
+        EUNummer1Label.TabIndex = 77
+        EUNummer1Label.Text = "EUNummer1:"
+        '
+        'EUNummer2Label
+        '
+        EUNummer2Label.AutoSize = True
+        EUNummer2Label.Location = New System.Drawing.Point(354, 182)
+        EUNummer2Label.Name = "EUNummer2Label"
+        EUNummer2Label.Size = New System.Drawing.Size(70, 13)
+        EUNummer2Label.TabIndex = 79
+        EUNummer2Label.Text = "EUNummer2:"
+        '
+        'BHReferenzLabel
+        '
+        BHReferenzLabel.AutoSize = True
+        BHReferenzLabel.Location = New System.Drawing.Point(354, 208)
+        BHReferenzLabel.Name = "BHReferenzLabel"
+        BHReferenzLabel.Size = New System.Drawing.Size(68, 13)
+        BHReferenzLabel.TabIndex = 81
+        BHReferenzLabel.Text = "BHReferenz:"
+        '
+        'DataSetKunden
+        '
+        Me.DataSetKunden.DataSetName = "DataSetKunden"
+        Me.DataSetKunden.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ofAdressenBindingSource
+        '
+        Me.ofAdressenBindingSource.DataMember = "ofAdressen"
+        Me.ofAdressenBindingSource.DataSource = Me.DataSetKunden
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Location = New System.Drawing.Point(18, 351)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(707, 317)
+        Me.TabControl1.TabIndex = 3
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Label15)
+        Me.TabPage1.Controls.Add(Me.Label14)
+        Me.TabPage1.Controls.Add(Me.cbKundengruppe)
+        Me.TabPage1.Controls.Add(Me.cbPreisliste)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(323, 134)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Einstellungen"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(17, 48)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(80, 13)
+        Me.Label15.TabIndex = 9
+        Me.Label15.Text = "Kundengruppe:"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(17, 21)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(51, 13)
+        Me.Label14.TabIndex = 8
+        Me.Label14.Text = "Preisliste:"
+        '
+        'cbKundengruppe
+        '
+        Me.cbKundengruppe.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FKofAdressenofadressensettingsBindingSource, "Kundengruppe", True))
+        Me.cbKundengruppe.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.KundengruppenBindingSource, "Gruppe", True))
+        Me.cbKundengruppe.DataSource = Me.KundengruppenBindingSource
+        Me.cbKundengruppe.DisplayMember = "Gruppe"
+        Me.cbKundengruppe.FormattingEnabled = True
+        Me.cbKundengruppe.Location = New System.Drawing.Point(115, 45)
+        Me.cbKundengruppe.Name = "cbKundengruppe"
+        Me.cbKundengruppe.Size = New System.Drawing.Size(121, 21)
+        Me.cbKundengruppe.TabIndex = 7
+        Me.cbKundengruppe.ValueMember = "Gruppe"
+        '
+        'FKofAdressenofadressensettingsBindingSource
+        '
+        Me.FKofAdressenofadressensettingsBindingSource.DataMember = "FK_ofAdressen_ofadressen-settings"
+        Me.FKofAdressenofadressensettingsBindingSource.DataSource = Me.ofAdressenBindingSource
+        '
+        'KundengruppenBindingSource
+        '
+        Me.KundengruppenBindingSource.DataMember = "Kundengruppen"
+        Me.KundengruppenBindingSource.DataSource = Me.DataSetKunden
+        '
+        'cbPreisliste
+        '
+        Me.cbPreisliste.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.PreislistenBindingSource, "PreislisteName", True))
+        Me.cbPreisliste.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FKofAdressenofadressensettingsBindingSource, "Preisliste", True))
+        Me.cbPreisliste.DataSource = Me.PreislistenBindingSource
+        Me.cbPreisliste.DisplayMember = "PreislisteName"
+        Me.cbPreisliste.FormattingEnabled = True
+        Me.cbPreisliste.Location = New System.Drawing.Point(115, 18)
+        Me.cbPreisliste.Name = "cbPreisliste"
+        Me.cbPreisliste.Size = New System.Drawing.Size(121, 21)
+        Me.cbPreisliste.TabIndex = 6
+        Me.cbPreisliste.ValueMember = "PreislisteName"
+        '
+        'PreislistenBindingSource
+        '
+        Me.PreislistenBindingSource.DataMember = "Preislisten"
+        Me.PreislistenBindingSource.DataSource = Me.DataSetKunden
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(ExportLabel)
+        Me.TabPage2.Controls.Add(Me.MandantTextBox)
+        Me.TabPage2.Controls.Add(MandantLabel)
+        Me.TabPage2.Controls.Add(Me.NextIDNRComboBox)
+        Me.TabPage2.Controls.Add(NextIDNRLabel)
+        Me.TabPage2.Controls.Add(Me.PasswortTextBox)
+        Me.TabPage2.Controls.Add(PasswortLabel)
+        Me.TabPage2.Controls.Add(Me.HasMenuCheckBox)
+        Me.TabPage2.Controls.Add(HasMenuLabel)
+        Me.TabPage2.Controls.Add(Me.AbbuchungCheckBox)
+        Me.TabPage2.Controls.Add(AbbuchungLabel)
+        Me.TabPage2.Controls.Add(Me.MAInnenComboBox)
+        Me.TabPage2.Controls.Add(MAInnenLabel)
+        Me.TabPage2.Controls.Add(Me.MAAusenComboBox)
+        Me.TabPage2.Controls.Add(MAAusenLabel)
+        Me.TabPage2.Controls.Add(Me.AngelegtAnDateTimePicker)
+        Me.TabPage2.Controls.Add(AngelegtAnLabel)
+        Me.TabPage2.Controls.Add(Me.ExportCheckBox)
+        Me.TabPage2.Controls.Add(UIDLabel)
+        Me.TabPage2.Controls.Add(Me.BHReferenzTextBox)
+        Me.TabPage2.Controls.Add(BHReferenzLabel)
+        Me.TabPage2.Controls.Add(Me.EUNummer2TextBox)
+        Me.TabPage2.Controls.Add(EUNummer2Label)
+        Me.TabPage2.Controls.Add(Me.EUNummer1TextBox)
+        Me.TabPage2.Controls.Add(EUNummer1Label)
+        Me.TabPage2.Controls.Add(Me.EUNummerTextBox)
+        Me.TabPage2.Controls.Add(EUNummerLabel)
+        Me.TabPage2.Controls.Add(Me.MessengerAdresseTextBox)
+        Me.TabPage2.Controls.Add(MessengerAdresseLabel)
+        Me.TabPage2.Controls.Add(Me.SkypeAdresseTextBox)
+        Me.TabPage2.Controls.Add(SkypeAdresseLabel)
+        Me.TabPage2.Controls.Add(Me.UIDTextBox)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(699, 291)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Weitere Stammdaten"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Ofadressen_settingsBindingSource
+        '
+        Me.Ofadressen_settingsBindingSource.DataMember = "ofadressen-settings"
+        Me.Ofadressen_settingsBindingSource.DataSource = Me.DataSetKunden
+        '
+        'OfAdressenTableAdapter
+        '
+        Me.OfAdressenTableAdapter.ClearBeforeFill = True
+        '
+        'PreislistenTableAdapter
+        '
+        Me.PreislistenTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.ofadressen_settingsTableAdapter = Me.Ofadressen_settingsTableAdapter
+        Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_weitereTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsbedingungenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressenTableAdapter = Me.OfAdressenTableAdapter
+        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'Ofadressen_settingsTableAdapter
+        '
+        Me.Ofadressen_settingsTableAdapter.ClearBeforeFill = True
+        '
+        'KundengruppenTableAdapter
+        '
+        Me.KundengruppenTableAdapter.ClearBeforeFill = True
+        '
+        'DsPLZ
+        '
+        Me.DsPLZ.DataSetName = "dsPLZ"
+        Me.DsPLZ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GrLandPlzTableAdapter
+        '
+        Me.GrLandPlzTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager1
+        '
+        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager1.Connection = Nothing
+        Me.TableAdapterManager1.grlandTableAdapter = Nothing
+        Me.TableAdapterManager1.grplzTableAdapter = Nothing
+        Me.TableAdapterManager1.UpdateOrder = IntraSell_Net.dsPLZTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'GrLandPlzBindingSource
+        '
+        Me.GrLandPlzBindingSource.DataMember = "grLandPlz"
+        Me.GrLandPlzBindingSource.DataSource = Me.DsPLZ
+        '
+        'IDNRTextBox
+        '
+        Me.IDNRTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "IDNR", True))
+        Me.IDNRTextBox.Location = New System.Drawing.Point(83, 53)
+        Me.IDNRTextBox.Name = "IDNRTextBox"
+        Me.IDNRTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.IDNRTextBox.TabIndex = 8
+        '
+        'StatusComboBox
+        '
+        Me.StatusComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Status", True))
+        Me.StatusComboBox.FormattingEnabled = True
+        Me.StatusComboBox.Location = New System.Drawing.Point(83, 79)
+        Me.StatusComboBox.Name = "StatusComboBox"
+        Me.StatusComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.StatusComboBox.TabIndex = 10
+        '
+        'BrancheComboBox
+        '
+        Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Branche", True))
+        Me.BrancheComboBox.FormattingEnabled = True
+        Me.BrancheComboBox.Location = New System.Drawing.Point(83, 106)
+        Me.BrancheComboBox.Name = "BrancheComboBox"
+        Me.BrancheComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.BrancheComboBox.TabIndex = 12
+        '
+        'BriefanredeComboBox
+        '
+        Me.BriefanredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Briefanrede", True))
+        Me.BriefanredeComboBox.FormattingEnabled = True
+        Me.BriefanredeComboBox.Location = New System.Drawing.Point(83, 133)
+        Me.BriefanredeComboBox.Name = "BriefanredeComboBox"
+        Me.BriefanredeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.BriefanredeComboBox.TabIndex = 14
+        '
+        'TitelComboBox
+        '
+        Me.TitelComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Titel", True))
+        Me.TitelComboBox.FormattingEnabled = True
+        Me.TitelComboBox.Location = New System.Drawing.Point(83, 160)
+        Me.TitelComboBox.Name = "TitelComboBox"
+        Me.TitelComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.TitelComboBox.TabIndex = 16
+        '
+        'AnredeComboBox
+        '
+        Me.AnredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Anrede", True))
+        Me.AnredeComboBox.FormattingEnabled = True
+        Me.AnredeComboBox.Location = New System.Drawing.Point(83, 187)
+        Me.AnredeComboBox.Name = "AnredeComboBox"
+        Me.AnredeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.AnredeComboBox.TabIndex = 18
+        '
+        'NameTextBox
+        '
+        Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name", True))
+        Me.NameTextBox.Location = New System.Drawing.Point(83, 214)
+        Me.NameTextBox.Name = "NameTextBox"
+        Me.NameTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.NameTextBox.TabIndex = 20
+        '
+        'VornameTextBox
+        '
+        Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Vorname", True))
+        Me.VornameTextBox.Location = New System.Drawing.Point(83, 240)
+        Me.VornameTextBox.Name = "VornameTextBox"
+        Me.VornameTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.VornameTextBox.TabIndex = 22
+        '
+        'Name1TextBox
+        '
+        Me.Name1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name1", True))
+        Me.Name1TextBox.Location = New System.Drawing.Point(83, 266)
+        Me.Name1TextBox.Name = "Name1TextBox"
+        Me.Name1TextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Name1TextBox.TabIndex = 24
+        '
+        'FirmaTextBox
+        '
+        Me.FirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Firma", True))
+        Me.FirmaTextBox.Location = New System.Drawing.Point(83, 292)
+        Me.FirmaTextBox.Name = "FirmaTextBox"
+        Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.FirmaTextBox.TabIndex = 26
+        '
+        'AdresseTextBox
+        '
+        Me.AdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Adresse", True))
+        Me.AdresseTextBox.Location = New System.Drawing.Point(379, 56)
+        Me.AdresseTextBox.Name = "AdresseTextBox"
+        Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.AdresseTextBox.TabIndex = 28
+        '
+        'LandTextBox
+        '
+        Me.LandTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Land", True))
+        Me.LandTextBox.Location = New System.Drawing.Point(379, 82)
+        Me.LandTextBox.Name = "LandTextBox"
+        Me.LandTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.LandTextBox.TabIndex = 30
+        '
+        'PLZComboBox
+        '
+        Me.PLZComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "PLZ", True))
+        Me.PLZComboBox.FormattingEnabled = True
+        Me.PLZComboBox.Location = New System.Drawing.Point(379, 108)
+        Me.PLZComboBox.Name = "PLZComboBox"
+        Me.PLZComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.PLZComboBox.TabIndex = 32
+        '
+        'OrtComboBox
+        '
+        Me.OrtComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Ort", True))
+        Me.OrtComboBox.FormattingEnabled = True
+        Me.OrtComboBox.Location = New System.Drawing.Point(379, 135)
+        Me.OrtComboBox.Name = "OrtComboBox"
+        Me.OrtComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.OrtComboBox.TabIndex = 34
+        '
+        'TelTextBox
+        '
+        Me.TelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel", True))
+        Me.TelTextBox.Location = New System.Drawing.Point(379, 162)
+        Me.TelTextBox.Name = "TelTextBox"
+        Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.TelTextBox.TabIndex = 36
+        '
+        'Tel2TextBox
+        '
+        Me.Tel2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel2", True))
+        Me.Tel2TextBox.Location = New System.Drawing.Point(379, 188)
+        Me.Tel2TextBox.Name = "Tel2TextBox"
+        Me.Tel2TextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Tel2TextBox.TabIndex = 38
+        '
+        'FaxTextBox
+        '
+        Me.FaxTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax", True))
+        Me.FaxTextBox.Location = New System.Drawing.Point(379, 214)
+        Me.FaxTextBox.Name = "FaxTextBox"
+        Me.FaxTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.FaxTextBox.TabIndex = 40
+        '
+        'Fax2TextBox
+        '
+        Me.Fax2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax2", True))
+        Me.Fax2TextBox.Location = New System.Drawing.Point(379, 240)
+        Me.Fax2TextBox.Name = "Fax2TextBox"
+        Me.Fax2TextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Fax2TextBox.TabIndex = 42
+        '
+        'MobilTextBox
+        '
+        Me.MobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Mobil", True))
+        Me.MobilTextBox.Location = New System.Drawing.Point(379, 266)
+        Me.MobilTextBox.Name = "MobilTextBox"
+        Me.MobilTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.MobilTextBox.TabIndex = 44
+        '
+        'EmailTextBox
+        '
+        Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Email", True))
+        Me.EmailTextBox.Location = New System.Drawing.Point(379, 292)
+        Me.EmailTextBox.Name = "EmailTextBox"
+        Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.EmailTextBox.TabIndex = 46
+        '
+        'WebTextBox
+        '
+        Me.WebTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Web", True))
+        Me.WebTextBox.Location = New System.Drawing.Point(379, 318)
+        Me.WebTextBox.Name = "WebTextBox"
+        Me.WebTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.WebTextBox.TabIndex = 48
+        '
+        'ExportCheckBox
+        '
+        Me.ExportCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Export", True))
+        Me.ExportCheckBox.Location = New System.Drawing.Point(115, 22)
+        Me.ExportCheckBox.Name = "ExportCheckBox"
+        Me.ExportCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.ExportCheckBox.TabIndex = 50
+        Me.ExportCheckBox.UseVisualStyleBackColor = True
+        '
+        'AngelegtAnDateTimePicker
+        '
+        Me.AngelegtAnDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "AngelegtAn", True))
+        Me.AngelegtAnDateTimePicker.Location = New System.Drawing.Point(115, 52)
+        Me.AngelegtAnDateTimePicker.Name = "AngelegtAnDateTimePicker"
+        Me.AngelegtAnDateTimePicker.Size = New System.Drawing.Size(200, 20)
+        Me.AngelegtAnDateTimePicker.TabIndex = 52
+        '
+        'MAAusenComboBox
+        '
+        Me.MAAusenComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "MAAusen", True))
+        Me.MAAusenComboBox.FormattingEnabled = True
+        Me.MAAusenComboBox.Location = New System.Drawing.Point(115, 78)
+        Me.MAAusenComboBox.Name = "MAAusenComboBox"
+        Me.MAAusenComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.MAAusenComboBox.TabIndex = 54
+        '
+        'MAInnenComboBox
+        '
+        Me.MAInnenComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "MAInnen", True))
+        Me.MAInnenComboBox.FormattingEnabled = True
+        Me.MAInnenComboBox.Location = New System.Drawing.Point(115, 105)
+        Me.MAInnenComboBox.Name = "MAInnenComboBox"
+        Me.MAInnenComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.MAInnenComboBox.TabIndex = 56
+        '
+        'AbbuchungCheckBox
+        '
+        Me.AbbuchungCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Abbuchung", True))
+        Me.AbbuchungCheckBox.Location = New System.Drawing.Point(115, 132)
+        Me.AbbuchungCheckBox.Name = "AbbuchungCheckBox"
+        Me.AbbuchungCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.AbbuchungCheckBox.TabIndex = 58
+        Me.AbbuchungCheckBox.UseVisualStyleBackColor = True
+        '
+        'HasMenuCheckBox
+        '
+        Me.HasMenuCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "hasMenu", True))
+        Me.HasMenuCheckBox.Location = New System.Drawing.Point(115, 162)
+        Me.HasMenuCheckBox.Name = "HasMenuCheckBox"
+        Me.HasMenuCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.HasMenuCheckBox.TabIndex = 60
+        Me.HasMenuCheckBox.UseVisualStyleBackColor = True
+        '
+        'PasswortTextBox
+        '
+        Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Passwort", True))
+        Me.PasswortTextBox.Location = New System.Drawing.Point(115, 192)
+        Me.PasswortTextBox.Name = "PasswortTextBox"
+        Me.PasswortTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.PasswortTextBox.TabIndex = 62
+        '
+        'NextIDNRComboBox
+        '
+        Me.NextIDNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "nextIDNR", True))
+        Me.NextIDNRComboBox.FormattingEnabled = True
+        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 218)
+        Me.NextIDNRComboBox.Name = "NextIDNRComboBox"
+        Me.NextIDNRComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.NextIDNRComboBox.TabIndex = 64
+        '
+        'MandantTextBox
+        '
+        Me.MandantTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "mandant", True))
+        Me.MandantTextBox.Location = New System.Drawing.Point(115, 245)
+        Me.MandantTextBox.Name = "MandantTextBox"
+        Me.MandantTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.MandantTextBox.TabIndex = 66
+        '
+        'GeburtstagDateTimePicker
+        '
+        Me.GeburtstagDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "Geburtstag", True))
+        Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(83, 318)
+        Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
+        Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
+        Me.GeburtstagDateTimePicker.TabIndex = 68
+        '
+        'UIDTextBox
+        '
+        Me.UIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "UID", True))
+        Me.UIDTextBox.Location = New System.Drawing.Point(463, 49)
+        Me.UIDTextBox.Name = "UIDTextBox"
+        Me.UIDTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.UIDTextBox.TabIndex = 70
+        '
+        'SkypeAdresseTextBox
+        '
+        Me.SkypeAdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "SkypeAdresse", True))
+        Me.SkypeAdresseTextBox.Location = New System.Drawing.Point(463, 75)
+        Me.SkypeAdresseTextBox.Name = "SkypeAdresseTextBox"
+        Me.SkypeAdresseTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.SkypeAdresseTextBox.TabIndex = 72
+        '
+        'MessengerAdresseTextBox
+        '
+        Me.MessengerAdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "MessengerAdresse", True))
+        Me.MessengerAdresseTextBox.Location = New System.Drawing.Point(463, 101)
+        Me.MessengerAdresseTextBox.Name = "MessengerAdresseTextBox"
+        Me.MessengerAdresseTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.MessengerAdresseTextBox.TabIndex = 74
+        '
+        'EUNummerTextBox
+        '
+        Me.EUNummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "EUNummer", True))
+        Me.EUNummerTextBox.Location = New System.Drawing.Point(463, 127)
+        Me.EUNummerTextBox.Name = "EUNummerTextBox"
+        Me.EUNummerTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.EUNummerTextBox.TabIndex = 76
+        '
+        'EUNummer1TextBox
+        '
+        Me.EUNummer1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "EUNummer1", True))
+        Me.EUNummer1TextBox.Location = New System.Drawing.Point(463, 153)
+        Me.EUNummer1TextBox.Name = "EUNummer1TextBox"
+        Me.EUNummer1TextBox.Size = New System.Drawing.Size(200, 20)
+        Me.EUNummer1TextBox.TabIndex = 78
+        '
+        'EUNummer2TextBox
+        '
+        Me.EUNummer2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "EUNummer2", True))
+        Me.EUNummer2TextBox.Location = New System.Drawing.Point(463, 179)
+        Me.EUNummer2TextBox.Name = "EUNummer2TextBox"
+        Me.EUNummer2TextBox.Size = New System.Drawing.Size(200, 20)
+        Me.EUNummer2TextBox.TabIndex = 80
+        '
+        'BHReferenzTextBox
+        '
+        Me.BHReferenzTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "BHReferenz", True))
+        Me.BHReferenzTextBox.Location = New System.Drawing.Point(463, 205)
+        Me.BHReferenzTextBox.Name = "BHReferenzTextBox"
+        Me.BHReferenzTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.BHReferenzTextBox.TabIndex = 82
+        '
+        'Kunden
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(746, 681)
+        Me.Controls.Add(IDNRLabel)
+        Me.Controls.Add(Me.IDNRTextBox)
+        Me.Controls.Add(StatusLabel)
+        Me.Controls.Add(Me.StatusComboBox)
+        Me.Controls.Add(BrancheLabel)
+        Me.Controls.Add(Me.BrancheComboBox)
+        Me.Controls.Add(BriefanredeLabel)
+        Me.Controls.Add(Me.BriefanredeComboBox)
+        Me.Controls.Add(TitelLabel)
+        Me.Controls.Add(Me.TitelComboBox)
+        Me.Controls.Add(AnredeLabel)
+        Me.Controls.Add(Me.AnredeComboBox)
+        Me.Controls.Add(NameLabel)
+        Me.Controls.Add(Me.NameTextBox)
+        Me.Controls.Add(VornameLabel)
+        Me.Controls.Add(Me.VornameTextBox)
+        Me.Controls.Add(Name1Label)
+        Me.Controls.Add(Me.Name1TextBox)
+        Me.Controls.Add(FirmaLabel)
+        Me.Controls.Add(Me.FirmaTextBox)
+        Me.Controls.Add(AdresseLabel)
+        Me.Controls.Add(Me.AdresseTextBox)
+        Me.Controls.Add(LandLabel)
+        Me.Controls.Add(Me.LandTextBox)
+        Me.Controls.Add(PLZLabel)
+        Me.Controls.Add(Me.PLZComboBox)
+        Me.Controls.Add(OrtLabel)
+        Me.Controls.Add(Me.OrtComboBox)
+        Me.Controls.Add(TelLabel)
+        Me.Controls.Add(Me.TelTextBox)
+        Me.Controls.Add(Tel2Label)
+        Me.Controls.Add(Me.Tel2TextBox)
+        Me.Controls.Add(FaxLabel)
+        Me.Controls.Add(Me.FaxTextBox)
+        Me.Controls.Add(Fax2Label)
+        Me.Controls.Add(Me.Fax2TextBox)
+        Me.Controls.Add(MobilLabel)
+        Me.Controls.Add(Me.MobilTextBox)
+        Me.Controls.Add(EmailLabel)
+        Me.Controls.Add(Me.EmailTextBox)
+        Me.Controls.Add(WebLabel)
+        Me.Controls.Add(Me.WebTextBox)
+        Me.Controls.Add(GeburtstagLabel)
+        Me.Controls.Add(Me.GeburtstagDateTimePicker)
+        Me.Controls.Add(Me.TabControl1)
+        Me.Name = "Kunden"
+        Me.Text = "Kunden"
+        Me.Controls.SetChildIndex(Me.TabControl1, 0)
+        Me.Controls.SetChildIndex(Me.GeburtstagDateTimePicker, 0)
+        Me.Controls.SetChildIndex(GeburtstagLabel, 0)
+        Me.Controls.SetChildIndex(Me.WebTextBox, 0)
+        Me.Controls.SetChildIndex(WebLabel, 0)
+        Me.Controls.SetChildIndex(Me.EmailTextBox, 0)
+        Me.Controls.SetChildIndex(EmailLabel, 0)
+        Me.Controls.SetChildIndex(Me.MobilTextBox, 0)
+        Me.Controls.SetChildIndex(MobilLabel, 0)
+        Me.Controls.SetChildIndex(Me.Fax2TextBox, 0)
+        Me.Controls.SetChildIndex(Fax2Label, 0)
+        Me.Controls.SetChildIndex(Me.FaxTextBox, 0)
+        Me.Controls.SetChildIndex(FaxLabel, 0)
+        Me.Controls.SetChildIndex(Me.Tel2TextBox, 0)
+        Me.Controls.SetChildIndex(Tel2Label, 0)
+        Me.Controls.SetChildIndex(Me.TelTextBox, 0)
+        Me.Controls.SetChildIndex(TelLabel, 0)
+        Me.Controls.SetChildIndex(Me.OrtComboBox, 0)
+        Me.Controls.SetChildIndex(OrtLabel, 0)
+        Me.Controls.SetChildIndex(Me.PLZComboBox, 0)
+        Me.Controls.SetChildIndex(PLZLabel, 0)
+        Me.Controls.SetChildIndex(Me.LandTextBox, 0)
+        Me.Controls.SetChildIndex(LandLabel, 0)
+        Me.Controls.SetChildIndex(Me.AdresseTextBox, 0)
+        Me.Controls.SetChildIndex(AdresseLabel, 0)
+        Me.Controls.SetChildIndex(Me.FirmaTextBox, 0)
+        Me.Controls.SetChildIndex(FirmaLabel, 0)
+        Me.Controls.SetChildIndex(Me.Name1TextBox, 0)
+        Me.Controls.SetChildIndex(Name1Label, 0)
+        Me.Controls.SetChildIndex(Me.VornameTextBox, 0)
+        Me.Controls.SetChildIndex(VornameLabel, 0)
+        Me.Controls.SetChildIndex(Me.NameTextBox, 0)
+        Me.Controls.SetChildIndex(NameLabel, 0)
+        Me.Controls.SetChildIndex(Me.AnredeComboBox, 0)
+        Me.Controls.SetChildIndex(AnredeLabel, 0)
+        Me.Controls.SetChildIndex(Me.TitelComboBox, 0)
+        Me.Controls.SetChildIndex(TitelLabel, 0)
+        Me.Controls.SetChildIndex(Me.BriefanredeComboBox, 0)
+        Me.Controls.SetChildIndex(BriefanredeLabel, 0)
+        Me.Controls.SetChildIndex(Me.BrancheComboBox, 0)
+        Me.Controls.SetChildIndex(BrancheLabel, 0)
+        Me.Controls.SetChildIndex(Me.StatusComboBox, 0)
+        Me.Controls.SetChildIndex(StatusLabel, 0)
+        Me.Controls.SetChildIndex(Me.IDNRTextBox, 0)
+        Me.Controls.SetChildIndex(IDNRLabel, 0)
+        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+
+    Friend WithEvents ofAdressenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
+    Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cbPreisliste As System.Windows.Forms.ComboBox
+    Friend WithEvents PreislistenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents PreislistenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter
+    Friend WithEvents TableAdapterManager As IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager
+    Friend WithEvents Ofadressen_settingsTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressen_settingsTableAdapter
+    Friend WithEvents Ofadressen_settingsBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents FKofAdressenofadressensettingsBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents cbKundengruppe As System.Windows.Forms.ComboBox
+    Friend WithEvents KundengruppenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents KundengruppenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter
+    Friend WithEvents DsPLZ As IntraSell_Net.dsPLZ
+    Friend WithEvents GrLandPlzTableAdapter As IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter
+    Friend WithEvents TableAdapterManager1 As IntraSell_Net.dsPLZTableAdapters.TableAdapterManager
+    Friend WithEvents GrLandPlzBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents IDNRTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents BrancheComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents BriefanredeComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents TitelComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents AnredeComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents NameTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents VornameTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Name1TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents FirmaTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents AdresseTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents LandTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PLZComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents OrtComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents TelTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Tel2TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents FaxTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Fax2TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents MobilTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents WebTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ExportCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents AngelegtAnDateTimePicker As System.Windows.Forms.DateTimePicker
+    Friend WithEvents MAAusenComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents MAInnenComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents AbbuchungCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents HasMenuCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents PasswortTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents NextIDNRComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents MandantTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents GeburtstagDateTimePicker As System.Windows.Forms.DateTimePicker
+    Friend WithEvents UIDTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SkypeAdresseTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents MessengerAdresseTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents EUNummerTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents EUNummer1TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents EUNummer2TextBox As System.Windows.Forms.TextBox
+    Friend WithEvents BHReferenzTextBox As System.Windows.Forms.TextBox
+End Class
