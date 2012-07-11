@@ -2918,10 +2918,9 @@ Namespace dsPLZTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE    grland"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET              IdNr = @IdNr, VWahl = @VWahl, Name = @Name, Cu"& _ 
-                "rrency = @Currency, PLZPraefix = @PLZPraefix, ISO2 = @ISO2, ISO3 = @ISO3, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                  language_Code = @language_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IdNr = @Original_Id"& _ 
-                "Nr)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       grland"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                IdNr = @IdNr, VWahl = @VWahl, Name = @Nam"& _ 
+                "e, Currency = @Currency, PLZPraefix = @PLZPraefix, ISO2 = @ISO2, ISO3 = @ISO3, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         language_Code = @language_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IdNr = @"& _ 
+                "Original_IdNr)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@IdNr"
@@ -3009,8 +3008,7 @@ Namespace dsPLZTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `IdNr`, `VWahl`, `Name`, `Currency`, `PLZPraefix`, `ISO2`, `ISO3`, `langua"& _ 
-                "ge_Code` FROM `grland`"
+            Me._commandCollection(0).CommandText = "SELECT        IdNr, VWahl, Name, Currency, PLZPraefix, ISO2, ISO3, language_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            grland"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Name"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
