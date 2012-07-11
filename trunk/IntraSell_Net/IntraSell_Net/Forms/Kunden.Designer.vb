@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class Kunden
-    Inherits System.Windows.Forms.Form
+    Inherits IntraSell_Net.AbstractForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -24,17 +24,21 @@ Partial Class Kunden
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Kunden))
-        Me.DataSetKunden = New IntraSell_Net.dsAdressen3()
+        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
         Me.txtFirma = New System.Windows.Forms.TextBox()
-        Me.BindingSourceKunden = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ofAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblFirma = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.txtPreisliste = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Ofadressen_settingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.cbKundengruppe = New System.Windows.Forms.ComboBox()
+        Me.FKofAdressenofadressensettingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.KundengruppenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.cbPreisliste = New System.Windows.Forms.ComboBox()
         Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Ofadressen_settingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtIDNR = New System.Windows.Forms.TextBox()
@@ -50,7 +54,7 @@ Partial Class Kunden
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.BindingNavigatorKunden = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.ParentBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
@@ -63,7 +67,7 @@ Partial Class Kunden
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
-        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressen3TableAdapters.ofadressenTableAdapter()
+        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
         Me.OfAdressenDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -121,20 +125,32 @@ Partial Class Kunden
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.btnPLZ = New System.Windows.Forms.Button()
-        Me.PreislistenTableAdapter = New IntraSell_Net.dsAdressen3TableAdapters.PreislistenTableAdapter()
-        Me.TableAdapterManager = New IntraSell_Net.dsAdressen3TableAdapters.TableAdapterManager()
-        Me.Ofadressen_settingsTableAdapter = New IntraSell_Net.dsAdressen3TableAdapters.ofadressen_settingsTableAdapter()
+        Me.PreislistenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter()
+        Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
+        Me.Ofadressen_settingsTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_settingsTableAdapter()
+        Me.KundengruppenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter()
+        Me.DsPLZ = New IntraSell_Net.dsPLZ()
+        Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
+        Me.TableAdapterManager1 = New IntraSell_Net.dsPLZTableAdapters.TableAdapterManager()
+        Me.FillToolStrip = New System.Windows.Forms.ToolStrip()
+        Me.FillToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GrLandPlzBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSourceKunden, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.BindingNavigatorKunden, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.BindingNavigatorKunden.SuspendLayout()
+        CType(Me.ParentBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ParentBindingNavigator.SuspendLayout()
         CType(Me.OfAdressenDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FillToolStrip.SuspendLayout()
+        CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataSetKunden
@@ -145,18 +161,18 @@ Partial Class Kunden
         'txtFirma
         '
         Me.txtFirma.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtFirma.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Firma", True))
-        Me.txtFirma.Location = New System.Drawing.Point(71, 29)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtFirma.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Firma", True))
+        Me.txtFirma.Location = New System.Drawing.Point(67, 29)
         Me.txtFirma.Name = "txtFirma"
-        Me.txtFirma.Size = New System.Drawing.Size(181, 20)
+        Me.txtFirma.Size = New System.Drawing.Size(172, 20)
         Me.txtFirma.TabIndex = 1
         '
-        'BindingSourceKunden
+        'ofAdressenBindingSource
         '
-        Me.BindingSourceKunden.DataMember = "ofAdressen"
-        Me.BindingSourceKunden.DataSource = Me.DataSetKunden
+        Me.ofAdressenBindingSource.DataMember = "ofAdressen"
+        Me.ofAdressenBindingSource.DataSource = Me.DataSetKunden
         '
         'lblFirma
         '
@@ -171,7 +187,7 @@ Partial Class Kunden
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(18, 264)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 248)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(331, 160)
@@ -179,41 +195,71 @@ Partial Class Kunden
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.txtPreisliste)
-        Me.TabPage1.Controls.Add(Me.ComboBox1)
+        Me.TabPage1.Controls.Add(Me.Label15)
+        Me.TabPage1.Controls.Add(Me.Label14)
+        Me.TabPage1.Controls.Add(Me.cbKundengruppe)
+        Me.TabPage1.Controls.Add(Me.cbPreisliste)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(323, 134)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.Text = "Einstellungen"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'txtPreisliste
+        'Label15
         '
-        Me.txtPreisliste.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DataSetKunden, "ofAdressen.FK_ofAdressen_ofadressen-settings.Preisliste", True))
-        Me.txtPreisliste.Location = New System.Drawing.Point(87, 45)
-        Me.txtPreisliste.Name = "txtPreisliste"
-        Me.txtPreisliste.Size = New System.Drawing.Size(121, 20)
-        Me.txtPreisliste.TabIndex = 7
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(17, 48)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(80, 13)
+        Me.Label15.TabIndex = 9
+        Me.Label15.Text = "Kundengruppe:"
         '
-        'ComboBox1
+        'Label14
         '
-        Me.ComboBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Ofadressen_settingsBindingSource, "Preisliste", True))
-        Me.ComboBox1.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.PreislistenBindingSource, "PreislisteName", True))
-        Me.ComboBox1.DataSource = Me.PreislistenBindingSource
-        Me.ComboBox1.DisplayMember = "PreislisteName"
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(87, 18)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 6
-        Me.ComboBox1.ValueMember = "PreislisteName"
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(17, 21)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(51, 13)
+        Me.Label14.TabIndex = 8
+        Me.Label14.Text = "Preisliste:"
         '
-        'Ofadressen_settingsBindingSource
+        'cbKundengruppe
         '
-        Me.Ofadressen_settingsBindingSource.DataMember = "ofadressen-settings"
-        Me.Ofadressen_settingsBindingSource.DataSource = Me.DataSetKunden
+        Me.cbKundengruppe.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FKofAdressenofadressensettingsBindingSource, "Kundengruppe", True))
+        Me.cbKundengruppe.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.KundengruppenBindingSource, "Gruppe", True))
+        Me.cbKundengruppe.DataSource = Me.KundengruppenBindingSource
+        Me.cbKundengruppe.DisplayMember = "Gruppe"
+        Me.cbKundengruppe.FormattingEnabled = True
+        Me.cbKundengruppe.Location = New System.Drawing.Point(115, 45)
+        Me.cbKundengruppe.Name = "cbKundengruppe"
+        Me.cbKundengruppe.Size = New System.Drawing.Size(121, 21)
+        Me.cbKundengruppe.TabIndex = 7
+        Me.cbKundengruppe.ValueMember = "Gruppe"
+        '
+        'FKofAdressenofadressensettingsBindingSource
+        '
+        Me.FKofAdressenofadressensettingsBindingSource.DataMember = "FK_ofAdressen_ofadressen-settings"
+        Me.FKofAdressenofadressensettingsBindingSource.DataSource = Me.ofAdressenBindingSource
+        '
+        'KundengruppenBindingSource
+        '
+        Me.KundengruppenBindingSource.DataMember = "Kundengruppen"
+        Me.KundengruppenBindingSource.DataSource = Me.DataSetKunden
+        '
+        'cbPreisliste
+        '
+        Me.cbPreisliste.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.PreislistenBindingSource, "PreislisteName", True))
+        Me.cbPreisliste.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.FKofAdressenofadressensettingsBindingSource, "Preisliste", True))
+        Me.cbPreisliste.DataSource = Me.PreislistenBindingSource
+        Me.cbPreisliste.DisplayMember = "PreislisteName"
+        Me.cbPreisliste.FormattingEnabled = True
+        Me.cbPreisliste.Location = New System.Drawing.Point(115, 18)
+        Me.cbPreisliste.Name = "cbPreisliste"
+        Me.cbPreisliste.Size = New System.Drawing.Size(121, 21)
+        Me.cbPreisliste.TabIndex = 6
+        Me.cbPreisliste.ValueMember = "PreislisteName"
         '
         'PreislistenBindingSource
         '
@@ -230,12 +276,17 @@ Partial Class Kunden
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Ofadressen_settingsBindingSource
+        '
+        Me.Ofadressen_settingsBindingSource.DataMember = "ofadressen-settings"
+        Me.Ofadressen_settingsBindingSource.DataSource = Me.DataSetKunden
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.66667!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.33333!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Label5, 0, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.txtIDNR, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.txtFirma, 1, 2)
@@ -279,12 +330,12 @@ Partial Class Kunden
         'txtIDNR
         '
         Me.txtIDNR.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtIDNR.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "IDNR", True))
-        Me.txtIDNR.Location = New System.Drawing.Point(71, 3)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtIDNR.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "IDNR", True))
+        Me.txtIDNR.Location = New System.Drawing.Point(67, 3)
         Me.txtIDNR.Name = "txtIDNR"
-        Me.txtIDNR.Size = New System.Drawing.Size(181, 20)
+        Me.txtIDNR.Size = New System.Drawing.Size(172, 20)
         Me.txtIDNR.TabIndex = 0
         '
         'lblIDNR
@@ -308,23 +359,23 @@ Partial Class Kunden
         'txtAnrede
         '
         Me.txtAnrede.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtAnrede.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Anrede", True))
-        Me.txtAnrede.Location = New System.Drawing.Point(71, 55)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtAnrede.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Anrede", True))
+        Me.txtAnrede.Location = New System.Drawing.Point(67, 55)
         Me.txtAnrede.Name = "txtAnrede"
-        Me.txtAnrede.Size = New System.Drawing.Size(181, 20)
+        Me.txtAnrede.Size = New System.Drawing.Size(172, 20)
         Me.txtAnrede.TabIndex = 2
         '
         'TextBox1
         '
         Me.TextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Titel", True))
-        Me.TextBox1.Location = New System.Drawing.Point(71, 81)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Titel", True))
+        Me.TextBox1.Location = New System.Drawing.Point(67, 81)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(172, 20)
         Me.TextBox1.TabIndex = 5
         '
         'Label1
@@ -339,34 +390,34 @@ Partial Class Kunden
         'TextBox2
         '
         Me.TextBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Vorname", True))
-        Me.TextBox2.Location = New System.Drawing.Point(71, 107)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Vorname", True))
+        Me.TextBox2.Location = New System.Drawing.Point(67, 107)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(172, 20)
         Me.TextBox2.TabIndex = 10
         '
         'TextBox3
         '
         Me.TextBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Name", True))
-        Me.TextBox3.Location = New System.Drawing.Point(71, 133)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name", True))
+        Me.TextBox3.Location = New System.Drawing.Point(67, 133)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(172, 20)
         Me.TextBox3.TabIndex = 11
         '
         'TextBox4
         '
         Me.TextBox4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Tel", True))
-        Me.TextBox4.Location = New System.Drawing.Point(71, 159)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel", True))
+        Me.TextBox4.Location = New System.Drawing.Point(67, 159)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(172, 20)
         Me.TextBox4.TabIndex = 12
         '
         'Label2
@@ -383,7 +434,7 @@ Partial Class Kunden
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(3, 130)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.Size = New System.Drawing.Size(53, 26)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Nachname:"
         '
@@ -399,31 +450,31 @@ Partial Class Kunden
         'TextBox5
         '
         Me.TextBox5.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Tel2", True))
-        Me.TextBox5.Location = New System.Drawing.Point(71, 185)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel2", True))
+        Me.TextBox5.Location = New System.Drawing.Point(67, 185)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(172, 20)
         Me.TextBox5.TabIndex = 14
         '
-        'BindingNavigatorKunden
+        'ParentBindingNavigator
         '
-        Me.BindingNavigatorKunden.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.BindingNavigatorKunden.BindingSource = Me.BindingSourceKunden
-        Me.BindingNavigatorKunden.CountItem = Me.BindingNavigatorCountItem
-        Me.BindingNavigatorKunden.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.BindingNavigatorKunden.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.BindingNavigatorSaveItem})
-        Me.BindingNavigatorKunden.Location = New System.Drawing.Point(0, 0)
-        Me.BindingNavigatorKunden.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.BindingNavigatorKunden.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.BindingNavigatorKunden.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.BindingNavigatorKunden.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.BindingNavigatorKunden.Name = "BindingNavigatorKunden"
-        Me.BindingNavigatorKunden.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindingNavigatorKunden.Size = New System.Drawing.Size(1064, 25)
-        Me.BindingNavigatorKunden.TabIndex = 4
-        Me.BindingNavigatorKunden.Text = "BindingNavigator1"
+        Me.ParentBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
+        Me.ParentBindingNavigator.BindingSource = Me.ofAdressenBindingSource
+        Me.ParentBindingNavigator.CountItem = Me.BindingNavigatorCountItem
+        Me.ParentBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
+        Me.ParentBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.BindingNavigatorSaveItem})
+        Me.ParentBindingNavigator.Location = New System.Drawing.Point(0, 0)
+        Me.ParentBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
+        Me.ParentBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
+        Me.ParentBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
+        Me.ParentBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
+        Me.ParentBindingNavigator.Name = "ParentBindingNavigator"
+        Me.ParentBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
+        Me.ParentBindingNavigator.Size = New System.Drawing.Size(1106, 25)
+        Me.ParentBindingNavigator.TabIndex = 4
+        Me.ParentBindingNavigator.Text = "BindingNavigator1"
         '
         'BindingNavigatorAddNewItem
         '
@@ -437,7 +488,7 @@ Partial Class Kunden
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -528,10 +579,10 @@ Partial Class Kunden
         Me.OfAdressenDataGridView.AutoGenerateColumns = False
         Me.OfAdressenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OfAdressenDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewCheckBoxColumn1, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewCheckBoxColumn2, Me.DataGridViewCheckBoxColumn3, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn27, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33, Me.DataGridViewTextBoxColumn34, Me.DataGridViewTextBoxColumn35})
-        Me.OfAdressenDataGridView.DataSource = Me.BindingSourceKunden
+        Me.OfAdressenDataGridView.DataSource = Me.ofAdressenBindingSource
         Me.OfAdressenDataGridView.Location = New System.Drawing.Point(12, 430)
         Me.OfAdressenDataGridView.Name = "OfAdressenDataGridView"
-        Me.OfAdressenDataGridView.Size = New System.Drawing.Size(1027, 163)
+        Me.OfAdressenDataGridView.Size = New System.Drawing.Size(1074, 171)
         Me.OfAdressenDataGridView.TabIndex = 4
         '
         'DataGridViewTextBoxColumn1
@@ -767,7 +818,7 @@ Partial Class Kunden
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.66667!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.33333!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 0, 8)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox6, 1, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.txtPLZ, 1, 2)
@@ -812,23 +863,23 @@ Partial Class Kunden
         'TextBox6
         '
         Me.TextBox6.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Adresse", True))
-        Me.TextBox6.Location = New System.Drawing.Point(71, 3)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Adresse", True))
+        Me.TextBox6.Location = New System.Drawing.Point(67, 3)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox6.Size = New System.Drawing.Size(172, 20)
         Me.TextBox6.TabIndex = 0
         '
         'txtPLZ
         '
         Me.txtPLZ.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPLZ.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "PLZ", True))
-        Me.txtPLZ.Location = New System.Drawing.Point(71, 29)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPLZ.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "PLZ", True))
+        Me.txtPLZ.Location = New System.Drawing.Point(67, 29)
         Me.txtPLZ.Name = "txtPLZ"
-        Me.txtPLZ.Size = New System.Drawing.Size(181, 20)
+        Me.txtPLZ.Size = New System.Drawing.Size(172, 20)
         Me.txtPLZ.TabIndex = 1
         '
         'Label7
@@ -861,23 +912,23 @@ Partial Class Kunden
         'txtOrt
         '
         Me.txtOrt.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtOrt.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Ort", True))
-        Me.txtOrt.Location = New System.Drawing.Point(71, 58)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtOrt.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Ort", True))
+        Me.txtOrt.Location = New System.Drawing.Point(67, 58)
         Me.txtOrt.Name = "txtOrt"
-        Me.txtOrt.Size = New System.Drawing.Size(181, 20)
+        Me.txtOrt.Size = New System.Drawing.Size(172, 20)
         Me.txtOrt.TabIndex = 2
         '
         'txtLand
         '
         Me.txtLand.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtLand.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Land", True))
-        Me.txtLand.Location = New System.Drawing.Point(71, 84)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtLand.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Land", True))
+        Me.txtLand.Location = New System.Drawing.Point(67, 84)
         Me.txtLand.Name = "txtLand"
-        Me.txtLand.Size = New System.Drawing.Size(181, 20)
+        Me.txtLand.Size = New System.Drawing.Size(172, 20)
         Me.txtLand.TabIndex = 5
         '
         'Label10
@@ -892,34 +943,34 @@ Partial Class Kunden
         'TextBox10
         '
         Me.TextBox10.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Email", True))
-        Me.TextBox10.Location = New System.Drawing.Point(71, 110)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Email", True))
+        Me.TextBox10.Location = New System.Drawing.Point(67, 110)
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox10.Size = New System.Drawing.Size(172, 20)
         Me.TextBox10.TabIndex = 10
         '
         'TextBox11
         '
         Me.TextBox11.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Web", True))
-        Me.TextBox11.Location = New System.Drawing.Point(71, 136)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Web", True))
+        Me.TextBox11.Location = New System.Drawing.Point(67, 136)
         Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox11.Size = New System.Drawing.Size(172, 20)
         Me.TextBox11.TabIndex = 11
         '
         'TextBox12
         '
         Me.TextBox12.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Mobil", True))
-        Me.TextBox12.Location = New System.Drawing.Point(71, 162)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Mobil", True))
+        Me.TextBox12.Location = New System.Drawing.Point(67, 162)
         Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox12.Size = New System.Drawing.Size(172, 20)
         Me.TextBox12.TabIndex = 12
         '
         'Label11
@@ -952,17 +1003,17 @@ Partial Class Kunden
         'TextBox13
         '
         Me.TextBox13.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BindingSourceKunden, "Fax", True))
-        Me.TextBox13.Location = New System.Drawing.Point(71, 188)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax", True))
+        Me.TextBox13.Location = New System.Drawing.Point(67, 188)
         Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(181, 20)
+        Me.TextBox13.Size = New System.Drawing.Size(172, 20)
         Me.TextBox13.TabIndex = 14
         '
         'btnPLZ
         '
-        Me.btnPLZ.Location = New System.Drawing.Point(258, 29)
+        Me.btnPLZ.Location = New System.Drawing.Point(245, 29)
         Me.btnPLZ.Name = "btnPLZ"
         Me.btnPLZ.Size = New System.Drawing.Size(21, 23)
         Me.btnPLZ.TabIndex = 15
@@ -977,52 +1028,111 @@ Partial Class Kunden
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.ofadressen_settingsTableAdapter = Me.Ofadressen_settingsTableAdapter
+        Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_weitereTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsbedingungenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsmethodenTableAdapter = Nothing
         Me.TableAdapterManager.ofadressenTableAdapter = Me.OfAdressenTableAdapter
-        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressen3TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'Ofadressen_settingsTableAdapter
         '
         Me.Ofadressen_settingsTableAdapter.ClearBeforeFill = True
         '
+        'KundengruppenTableAdapter
+        '
+        Me.KundengruppenTableAdapter.ClearBeforeFill = True
+        '
+        'DsPLZ
+        '
+        Me.DsPLZ.DataSetName = "dsPLZ"
+        Me.DsPLZ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GrLandPlzTableAdapter
+        '
+        Me.GrLandPlzTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager1
+        '
+        Me.TableAdapterManager1.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager1.Connection = Nothing
+        Me.TableAdapterManager1.grlandTableAdapter = Nothing
+        Me.TableAdapterManager1.grplzTableAdapter = Nothing
+        Me.TableAdapterManager1.UpdateOrder = IntraSell_Net.dsPLZTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'FillToolStrip
+        '
+        Me.FillToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillToolStripButton})
+        Me.FillToolStrip.Location = New System.Drawing.Point(0, 25)
+        Me.FillToolStrip.Name = "FillToolStrip"
+        Me.FillToolStrip.Size = New System.Drawing.Size(1106, 25)
+        Me.FillToolStrip.TabIndex = 7
+        Me.FillToolStrip.Text = "FillToolStrip"
+        '
+        'FillToolStripButton
+        '
+        Me.FillToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.FillToolStripButton.Name = "FillToolStripButton"
+        Me.FillToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.FillToolStripButton.Text = "Fill"
+        '
+        'GrLandPlzBindingSource
+        '
+        Me.GrLandPlzBindingSource.DataMember = "grLandPlz"
+        Me.GrLandPlzBindingSource.DataSource = Me.DsPLZ
+        '
         'Kunden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1064, 613)
+        Me.ClientSize = New System.Drawing.Size(1106, 621)
+        Me.Controls.Add(Me.FillToolStrip)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.OfAdressenDataGridView)
-        Me.Controls.Add(Me.BindingNavigatorKunden)
+        Me.Controls.Add(Me.ParentBindingNavigator)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Kunden"
         Me.Text = "Kunden"
+        Me.Controls.SetChildIndex(Me.TabControl1, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        Me.Controls.SetChildIndex(Me.ParentBindingNavigator, 0)
+        Me.Controls.SetChildIndex(Me.OfAdressenDataGridView, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel2, 0)
+        Me.Controls.SetChildIndex(Me.FillToolStrip, 0)
         CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSourceKunden, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.BindingNavigatorKunden, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.BindingNavigatorKunden.ResumeLayout(False)
-        Me.BindingNavigatorKunden.PerformLayout()
+        CType(Me.ParentBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ParentBindingNavigator.ResumeLayout(False)
+        Me.ParentBindingNavigator.PerformLayout()
         CType(Me.OfAdressenDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FillToolStrip.ResumeLayout(False)
+        Me.FillToolStrip.PerformLayout()
+        CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen3
+    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
     Friend WithEvents txtFirma As System.Windows.Forms.TextBox
     Friend WithEvents lblFirma As System.Windows.Forms.Label
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents BindingNavigatorKunden As System.Windows.Forms.BindingNavigator
+    Friend WithEvents ParentBindingNavigator As System.Windows.Forms.BindingNavigator
     Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
     Friend WithEvents BindingNavigatorDeleteItem As System.Windows.Forms.ToolStripButton
@@ -1034,8 +1144,8 @@ Partial Class Kunden
     Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingSourceKunden As System.Windows.Forms.BindingSource
-    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressen3TableAdapters.ofadressenTableAdapter
+    Friend WithEvents ofAdressenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
     Friend WithEvents txtIDNR As System.Windows.Forms.TextBox
     Friend WithEvents lblIDNR As System.Windows.Forms.Label
     Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
@@ -1108,11 +1218,22 @@ Partial Class Kunden
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents TextBox13 As System.Windows.Forms.TextBox
     Friend WithEvents btnPLZ As System.Windows.Forms.Button
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents cbPreisliste As System.Windows.Forms.ComboBox
     Friend WithEvents PreislistenBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents PreislistenTableAdapter As IntraSell_Net.dsAdressen3TableAdapters.PreislistenTableAdapter
-    Friend WithEvents TableAdapterManager As IntraSell_Net.dsAdressen3TableAdapters.TableAdapterManager
-    Friend WithEvents Ofadressen_settingsTableAdapter As IntraSell_Net.dsAdressen3TableAdapters.ofadressen_settingsTableAdapter
+    Friend WithEvents PreislistenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter
+    Friend WithEvents TableAdapterManager As IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager
+    Friend WithEvents Ofadressen_settingsTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressen_settingsTableAdapter
     Friend WithEvents Ofadressen_settingsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents txtPreisliste As System.Windows.Forms.TextBox
+    Friend WithEvents FKofAdressenofadressensettingsBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents cbKundengruppe As System.Windows.Forms.ComboBox
+    Friend WithEvents KundengruppenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents KundengruppenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter
+    Friend WithEvents DsPLZ As IntraSell_Net.dsPLZ
+    Friend WithEvents GrLandPlzTableAdapter As IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter
+    Friend WithEvents TableAdapterManager1 As IntraSell_Net.dsPLZTableAdapters.TableAdapterManager
+    Friend WithEvents FillToolStrip As System.Windows.Forms.ToolStrip
+    Friend WithEvents FillToolStripButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents GrLandPlzBindingSource As System.Windows.Forms.BindingSource
 End Class

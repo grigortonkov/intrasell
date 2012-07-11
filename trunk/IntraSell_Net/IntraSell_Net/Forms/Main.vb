@@ -19,4 +19,10 @@
         'f.MdiParent = Me
         'f.Show()
     End Sub
+
+    Private Sub FormKundenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormKundenToolStripMenuItem.Click
+        Dim f As FormKunden = New FormKunden
+        f.MdiParent = Me
+        f.Show()
+    End Sub
 End Class

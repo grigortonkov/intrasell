@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="dsArtikel" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -412,7 +412,7 @@ WHERE        (ArtNr = @Original_ArtNr) AND (EAN = @Original_EAN) AND (@IsNull_Ba
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+  <xs:element name="dsArtikel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsArtikel" msprop:Generator_UserDSName="dsArtikel">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="grartikel" msprop:Generator_TableClassName="grartikelDataTable" msprop:Generator_TableVarName="tablegrartikel" msprop:Generator_TablePropName="grartikel" msprop:Generator_RowDeletingName="grartikelRowDeleting" msprop:Generator_UserTableName="grartikel" msprop:Generator_RowChangingName="grartikelRowChanging" msprop:Generator_RowEvHandlerName="grartikelRowChangeEventHandler" msprop:Generator_RowDeletedName="grartikelRowDeleted" msprop:Generator_RowEvArgName="grartikelRowChangeEvent" msprop:Generator_RowChangedName="grartikelRowChanged" msprop:Generator_RowClassName="grartikelRow">
