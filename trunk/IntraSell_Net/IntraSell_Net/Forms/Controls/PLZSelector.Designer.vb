@@ -105,7 +105,7 @@ Partial Class PLZSelector
         'NameDataGridViewTextBoxColumn
         '
         Me.NameDataGridViewTextBoxColumn.DataPropertyName = "Name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Land"
         Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
         Me.NameDataGridViewTextBoxColumn.ReadOnly = True
         '
