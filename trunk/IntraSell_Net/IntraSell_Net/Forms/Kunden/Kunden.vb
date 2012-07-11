@@ -1,15 +1,28 @@
 ﻿Public Class Kunden
 
+    'Die Datensätze filtern
+    Public Sub FilterBy(Expression As String)
+        Try
+            Me.ofAdressenBindingSource.Filter = Expression
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 
     Private Sub Rebind()
-        'try to bind comboboxes 
-        Me.FKofAdressenofadressensettingsBindingSource.ResetItem(0)
+        Try
+            'try to bind comboboxes 
+            Me.FKofAdressenofadressensettingsBindingSource.ResetItem(0)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
     End Sub
 
 #Region "Events "
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-          Try
+        Try
             Me.OfAdressenTableAdapter.Fill(Me.DataSetKunden.ofadressen)
             Me.Ofadressen_settingsTableAdapter.Fill(Me.DataSetKunden._ofadressen_settings)
             Me.PreislistenTableAdapter.Fill(Me.DataSetKunden.Preislisten)
@@ -72,6 +85,6 @@
         End Try
 
     End Sub
- 
+
 
 End Class

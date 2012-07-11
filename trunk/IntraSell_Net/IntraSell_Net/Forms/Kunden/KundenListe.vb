@@ -2,7 +2,6 @@
 
     Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
-
         Try
             'TODO: This line of code loads data into the 'DsPLZ.grland' table. You can move, or remove it, as needed.
             Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
@@ -23,6 +22,7 @@
 
     End Sub
 
+    'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
             Dim filter As String = Nothing
@@ -58,5 +58,16 @@
         Catch ex As Exception
             HandleAppError(ex)
         End Try
+    End Sub
+ 
+    'KundenDetail öffnen 
+    Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
+        Try
+            Kunden.Show()
+            Kunden.FilterBy("IDNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
     End Sub
 End Class
