@@ -98,6 +98,12 @@
     <Compile Include="Data\dsAdressen.vb">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Controls\TextBoxLink.Designer.vb">
+      <DependentUpon>TextBoxLink.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\TextBoxLink.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Infrastructure\About.Designer.vb">
       <DependentUpon>About.vb</DependentUpon>
     </Compile>

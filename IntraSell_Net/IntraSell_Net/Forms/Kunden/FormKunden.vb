@@ -12,4 +12,8 @@
         Me.OfadressenTableAdapter.Fill(Me.DsAdressen.ofadressen)
         Me.ParentBindingNavigator.BindingSource = Me.OfAdressenBindingSource
     End Sub
+
+    Private Sub BriefanredeTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles BriefanredeTextBox.TextChanged
+
+    End Sub
 End Class
