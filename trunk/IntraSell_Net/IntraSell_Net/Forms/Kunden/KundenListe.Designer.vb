@@ -26,13 +26,15 @@ Partial Class Kundenliste
         Me.FilterButton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PLZVonTextBox = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.PLZBisTextBox = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.KundengruppeComboBox = New System.Windows.Forms.ComboBox()
+        Me.KundengruppenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsAdressen = New IntraSell_Net.dsAdressen()
+        Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
+        Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OfAdressenlisteTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
@@ -44,31 +46,43 @@ Partial Class Kundenliste
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Land = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.LandComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrlandBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsPLZ = New IntraSell_Net.dsPLZ()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.KundengruppenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter()
+        Me.PreislistenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter()
+        Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'FilterButton
         '
-        Me.FilterButton.Location = New System.Drawing.Point(12, 93)
+        Me.FilterButton.Location = New System.Drawing.Point(15, 130)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
-        Me.FilterButton.TabIndex = 1
+        Me.FilterButton.TabIndex = 5
         Me.FilterButton.Text = "Filter anwenden"
         Me.FilterButton.UseVisualStyleBackColor = True
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 16)
+        Me.Label1.Location = New System.Drawing.Point(12, 53)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(30, 13)
         Me.Label1.TabIndex = 2
@@ -76,22 +90,22 @@ Partial Class Kundenliste
         '
         'PLZVonTextBox
         '
-        Me.PLZVonTextBox.Location = New System.Drawing.Point(95, 13)
+        Me.PLZVonTextBox.Location = New System.Drawing.Point(98, 50)
         Me.PLZVonTextBox.Name = "PLZVonTextBox"
         Me.PLZVonTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PLZVonTextBox.TabIndex = 3
+        Me.PLZVonTextBox.TabIndex = 1
         '
-        'TextBox1
+        'PLZBisTextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(169, 13)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(52, 20)
-        Me.TextBox1.TabIndex = 4
+        Me.PLZBisTextBox.Location = New System.Drawing.Point(172, 50)
+        Me.PLZBisTextBox.Name = "PLZBisTextBox"
+        Me.PLZBisTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.PLZBisTextBox.TabIndex = 2
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(153, 16)
+        Me.Label2.Location = New System.Drawing.Point(156, 53)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(10, 13)
         Me.Label2.TabIndex = 5
@@ -100,41 +114,59 @@ Partial Class Kundenliste
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 42)
+        Me.Label3.Location = New System.Drawing.Point(12, 79)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 13)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Kundengruppe:"
         '
-        'ComboBox1
+        'KundengruppeComboBox
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(95, 39)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(126, 21)
-        Me.ComboBox1.TabIndex = 7
+        Me.KundengruppeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.KundengruppeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.KundengruppeComboBox.DataSource = Me.KundengruppenBindingSource
+        Me.KundengruppeComboBox.DisplayMember = "Gruppe"
+        Me.KundengruppeComboBox.FormattingEnabled = True
+        Me.KundengruppeComboBox.Location = New System.Drawing.Point(98, 76)
+        Me.KundengruppeComboBox.Name = "KundengruppeComboBox"
+        Me.KundengruppeComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.KundengruppeComboBox.TabIndex = 3
         '
-        'ComboBox2
+        'KundengruppenBindingSource
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(95, 66)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(126, 21)
-        Me.ComboBox2.TabIndex = 9
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 69)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(51, 13)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Preisliste:"
+        Me.KundengruppenBindingSource.DataMember = "Kundengruppen"
+        Me.KundengruppenBindingSource.DataSource = Me.DsAdressen
         '
         'DsAdressen
         '
         Me.DsAdressen.DataSetName = "dsAdressen"
         Me.DsAdressen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'PreislisteComboBox
+        '
+        Me.PreislisteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.PreislisteComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.PreislisteComboBox.DataSource = Me.PreislistenBindingSource
+        Me.PreislisteComboBox.DisplayMember = "PreislisteName"
+        Me.PreislisteComboBox.FormattingEnabled = True
+        Me.PreislisteComboBox.Location = New System.Drawing.Point(98, 103)
+        Me.PreislisteComboBox.Name = "PreislisteComboBox"
+        Me.PreislisteComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.PreislisteComboBox.TabIndex = 4
+        '
+        'PreislistenBindingSource
+        '
+        Me.PreislistenBindingSource.DataMember = "Preislisten"
+        Me.PreislistenBindingSource.DataSource = Me.DsAdressen
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 106)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Preisliste:"
         '
         'OfAdressenlisteBindingSource
         '
@@ -164,14 +196,14 @@ Partial Class Kundenliste
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
         Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
+        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.Land, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
         Me.OfAdressenlisteDataGridView.DataSource = Me.OfAdressenlisteBindingSource
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(765, 762)
-        Me.OfAdressenlisteDataGridView.TabIndex = 10
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
+        Me.OfAdressenlisteDataGridView.TabIndex = 6
         '
         'DataGridViewTextBoxColumn1
         '
@@ -222,6 +254,13 @@ Partial Class Kundenliste
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         Me.DataGridViewTextBoxColumn7.ReadOnly = True
         '
+        'Land
+        '
+        Me.Land.DataPropertyName = "Land"
+        Me.Land.HeaderText = "Land"
+        Me.Land.Name = "Land"
+        Me.Land.ReadOnly = True
+        '
         'DataGridViewTextBoxColumn8
         '
         Me.DataGridViewTextBoxColumn8.DataPropertyName = "Kundengruppe"
@@ -244,13 +283,15 @@ Partial Class Kundenliste
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
         Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ComboBox2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer.Panel1.Controls.Add(Me.TextBox1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ComboBox1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
         '
@@ -258,8 +299,51 @@ Partial Class Kundenliste
         '
         Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
         Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 239
+        Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
+        '
+        'LandComboBox
+        '
+        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.LandComboBox.DataSource = Me.GrlandBindingSource
+        Me.LandComboBox.DisplayMember = "Name"
+        Me.LandComboBox.FormattingEnabled = True
+        Me.LandComboBox.Location = New System.Drawing.Point(98, 23)
+        Me.LandComboBox.Name = "LandComboBox"
+        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.LandComboBox.TabIndex = 0
+        '
+        'GrlandBindingSource
+        '
+        Me.GrlandBindingSource.DataMember = "grland"
+        Me.GrlandBindingSource.DataSource = Me.DsPLZ
+        '
+        'DsPLZ
+        '
+        Me.DsPLZ.DataSetName = "dsPLZ"
+        Me.DsPLZ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 26)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Land:"
+        '
+        'KundengruppenTableAdapter
+        '
+        Me.KundengruppenTableAdapter.ClearBeforeFill = True
+        '
+        'PreislistenTableAdapter
+        '
+        Me.PreislistenTableAdapter.ClearBeforeFill = True
+        '
+        'GrlandTableAdapter
+        '
+        Me.GrlandTableAdapter.ClearBeforeFill = True
         '
         'Kundenliste
         '
@@ -270,7 +354,9 @@ Partial Class Kundenliste
         Me.Name = "Kundenliste"
         Me.Text = "Kundenliste"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.Panel1.ResumeLayout(False)
@@ -278,23 +364,35 @@ Partial Class Kundenliste
         Me.SplitContainer.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.ResumeLayout(False)
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents FilterButton As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents PLZVonTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents PLZBisTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
+    Friend WithEvents KundengruppeComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents PreislisteComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents DsAdressen As IntraSell_Net.dsAdressen
     Friend WithEvents OfAdressenlisteBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents OfAdressenlisteTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter
     Friend WithEvents TableAdapterManager As IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager
     Friend WithEvents OfAdressenlisteDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents SplitContainer As System.Windows.Forms.SplitContainer
+    Friend WithEvents KundengruppenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents KundengruppenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter
+    Friend WithEvents PreislistenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents PreislistenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter
+    Friend WithEvents LandComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents DsPLZ As IntraSell_Net.dsPLZ
+    Friend WithEvents GrlandBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents GrlandTableAdapter As IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -302,7 +400,7 @@ Partial Class Kundenliste
     Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Land As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SplitContainer As System.Windows.Forms.SplitContainer
 End Class
