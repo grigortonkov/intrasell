@@ -54,7 +54,7 @@ Partial Class AbstractForm
         Me.ParentBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.ParentBindingNavigator.Name = "ParentBindingNavigator"
         Me.ParentBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.ParentBindingNavigator.Size = New System.Drawing.Size(456, 25)
+        Me.ParentBindingNavigator.Size = New System.Drawing.Size(375, 25)
         Me.ParentBindingNavigator.TabIndex = 0
         Me.ParentBindingNavigator.Text = "BindingNavigator1"
         '
@@ -70,7 +70,7 @@ Partial Class AbstractForm
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -156,7 +156,7 @@ Partial Class AbstractForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(456, 1028)
+        Me.ClientSize = New System.Drawing.Size(375, 207)
         Me.Controls.Add(Me.ParentBindingNavigator)
         Me.Name = "AbstractForm"
         Me.Text = "AbstractForm"

@@ -95,6 +95,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Infrastructure\About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\About.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Data\dsArtikel.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,42 +116,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPLZ.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AbstractForm.Designer.vb">
+    <Compile Include="Forms\Infrastructure\AbstractForm.Designer.vb">
       <DependentUpon>AbstractForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AbstractForm.vb">
+    <Compile Include="Forms\Infrastructure\AbstractForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormKunden.Designer.vb">
+    <Compile Include="Forms\Infrastructure\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\FormKunden.Designer.vb">
       <DependentUpon>FormKunden.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormKunden.vb">
+    <Compile Include="Forms\Kunden\FormKunden.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Kunden.Designer.vb">
+    <Compile Include="Forms\Kunden\Kunden.Designer.vb">
       <DependentUpon>Kunden.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Kunden.vb">
+    <Compile Include="Forms\Kunden\Kunden.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\KundenListe.Designer.vb">
+    <Compile Include="Forms\Kunden\KundenListe.Designer.vb">
       <DependentUpon>KundenListe.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KundenListe.vb">
+    <Compile Include="Forms\Kunden\KundenListe.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.vb">
+    <Compile Include="Forms\Infrastructure\Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.Designer.vb">
+    <Compile Include="Forms\Infrastructure\Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\ModuleMessages.vb" />
-    <Compile Include="Forms\PLZSelector.Designer.vb">
+    <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PLZSelector.vb">
+    <Compile Include="Forms\Controls\PLZSelector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -165,22 +177,28 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\AbstractForm.resx">
+    <EmbeddedResource Include="Forms\Infrastructure\About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\AbstractForm.resx">
       <DependentUpon>AbstractForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormKunden.resx">
+    <EmbeddedResource Include="Forms\Infrastructure\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\FormKunden.resx">
       <DependentUpon>FormKunden.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Kunden.resx">
+    <EmbeddedResource Include="Forms\Kunden\Kunden.resx">
       <DependentUpon>Kunden.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\KundenListe.resx">
+    <EmbeddedResource Include="Forms\Kunden\KundenListe.resx">
       <DependentUpon>KundenListe.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
+    <EmbeddedResource Include="Forms\Infrastructure\Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PLZSelector.resx">
+    <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -16,13 +16,16 @@
             Me.KundengruppenTableAdapter.Fill(Me.DataSetKunden.Kundengruppen)
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
             Rebind()
+
+            Me.ParentBindingNavigator.BindingSource = Me.ofAdressenBindingSource
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
     'Save Data 
-    Private Sub BindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
+    Private Sub OfAdressenBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
+
         Try
             Me.Validate()
 
@@ -39,12 +42,12 @@
     End Sub
 
 
-    Private Sub btnPLZ_Click(sender As System.Object, e As System.EventArgs) Handles btnPLZ.Click
+    Private Sub btnPLZ_Click(sender As System.Object, e As System.EventArgs)
         Try
             Dim plz As PLZSelector = New PLZSelector
-            plz.txtOrt = Me.txtOrt
-            plz.txtPLZ = Me.txtPLZ
-            plz.txtLand = Me.txtland
+            'plz.txtOrt = Me.OrtComboBox
+            'plz.txtPLZ = Me.PLZComboBox
+            plz.txtLand = Me.LandTextBox
             plz.ShowDialog()
         Catch ex As Exception
             HandleAppError(ex)
@@ -61,7 +64,7 @@
 
     End Sub
 
-    Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FillToolStripButton.Click
+    Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
         Catch ex As System.Exception
@@ -69,4 +72,6 @@
         End Try
 
     End Sub
+ 
+
 End Class
