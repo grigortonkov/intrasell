@@ -63,8 +63,8 @@ Partial Class KundenListe
         Me.EUNummer2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BHReferenzDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OfAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataSetKunden = New IntraSell_Net.dsAdressen3()
-        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressen3TableAdapters.ofadressenTableAdapter()
+        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
+        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,9 +341,9 @@ Partial Class KundenListe
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen3
+    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
     Friend WithEvents OfAdressenBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressen3TableAdapters.ofadressenTableAdapter
+    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
     Friend WithEvents IDNRDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents StatusDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BrancheDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
