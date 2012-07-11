@@ -68,7 +68,7 @@ Partial Class FormKunden
         Me.IDNRTextBox = New System.Windows.Forms.TextBox()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BrancheComboBox = New System.Windows.Forms.ComboBox()
-        Me.BriefanredeTextBox = New System.Windows.Forms.TextBox()
+        Me.BriefanredeTextBox = New IntraSell_Net.TextBoxLink()
         Me.TitelTextBox = New System.Windows.Forms.TextBox()
         Me.AnredeTextBox = New System.Windows.Forms.TextBox()
         Me.NameTextBox = New System.Windows.Forms.TextBox()
@@ -541,6 +541,7 @@ Partial Class FormKunden
         'BriefanredeTextBox
         '
         Me.BriefanredeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfAdressenBindingSource, "Briefanrede", True))
+        Me.BriefanredeTextBox.ForeColor = System.Drawing.Color.Blue
         Me.BriefanredeTextBox.Location = New System.Drawing.Point(121, 135)
         Me.BriefanredeTextBox.Name = "BriefanredeTextBox"
         Me.BriefanredeTextBox.Size = New System.Drawing.Size(200, 20)
@@ -549,6 +550,7 @@ Partial Class FormKunden
         'TitelTextBox
         '
         Me.TitelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfAdressenBindingSource, "Titel", True))
+        Me.TitelTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TitelTextBox.Location = New System.Drawing.Point(121, 161)
         Me.TitelTextBox.Name = "TitelTextBox"
         Me.TitelTextBox.Size = New System.Drawing.Size(200, 20)
@@ -997,7 +999,7 @@ Partial Class FormKunden
     Friend WithEvents IDNRTextBox As System.Windows.Forms.TextBox
     Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents BrancheComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents BriefanredeTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents BriefanredeTextBox As TextBoxLink
     Friend WithEvents TitelTextBox As System.Windows.Forms.TextBox
     Friend WithEvents AnredeTextBox As System.Windows.Forms.TextBox
     Friend WithEvents NameTextBox As System.Windows.Forms.TextBox
