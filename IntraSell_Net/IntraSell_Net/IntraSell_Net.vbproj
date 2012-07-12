@@ -98,6 +98,14 @@
     <Compile Include="Data\dsAdressen.vb">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsVorgaenge.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsVorgaenge.vb">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Controls\TextBoxLink.Designer.vb">
       <DependentUpon>TextBoxLink.vb</DependentUpon>
     </Compile>
@@ -162,6 +170,12 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Vorgaenge\Rechnung.Designer.vb">
+      <DependentUpon>Rechnung.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\Rechnung.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>
@@ -210,6 +224,9 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\Rechnung.resx">
+      <DependentUpon>Rechnung.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -251,6 +268,17 @@
     </None>
     <None Include="Data\dsPLZ.xss">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsVorgaenge.xsc">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsVorgaenge.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVorgaenge.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsVorgaenge.xss">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </None>
     <None Include="Forms\ClassDiagramForms.cd" />
     <None Include="My Project\Application.myapp">
