@@ -30,6 +30,11 @@
         f.Show()
     End Sub
 
+    Private Sub VorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangToolStripMenuItem.Click
+        Rechnung.MdiParent = Me
+        Rechnung.Show()
+    End Sub
+
     Private Sub ÜberIntraSellToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ÜberIntraSellToolStripMenuItem.Click
         About.ShowDialog()
     End Sub
@@ -37,4 +42,6 @@
     Private Sub BeendenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
     End Sub
+
+
 End Class
