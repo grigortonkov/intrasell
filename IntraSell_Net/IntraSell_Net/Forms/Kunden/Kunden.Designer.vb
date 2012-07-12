@@ -586,7 +586,7 @@ Partial Class Kunden
         'Language_codeLabel
         '
         Language_codeLabel.AutoSize = True
-        Language_codeLabel.Location = New System.Drawing.Point(278, 21)
+        Language_codeLabel.Location = New System.Drawing.Point(275, 21)
         Language_codeLabel.Name = "Language_codeLabel"
         Language_codeLabel.Size = New System.Drawing.Size(50, 13)
         Language_codeLabel.TabIndex = 13

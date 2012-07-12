@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IntraSell_Net.Form1" Collapsed="true">
-    <Position X="2.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAQAAAAAAAA=</HashCode>
-      <FileName>Forms\Form1.vb</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="IntraSell_Net.AbstractForm" Collapsed="true">
     <Position X="3.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Forms\AbstractForm.vb</FileName>
+      <HashCode>ABGAAAAAACCAgBAAAMCIACBCwAAAAAAAAAAAIAAAAQA=</HashCode>
+      <FileName>Forms\Infrastructure\AbstractForm.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IntraSell_Net.Kunden" Collapsed="true">
-    <Position X="5.5" Y="3.25" Width="1.5" />
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABGAIAAAACCggRAAhECAACIKRAQIAAIIAAAIMAABAQA=</HashCode>
-      <FileName>Forms\Kunden.vb</FileName>
+      <HashCode>YDBgJkkC2WWgIxhQoICVAEJKDDE7ISIIO5MMGgAFBB0=</HashCode>
+      <FileName>Forms\Kunden\Kunden.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Kundenliste" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAEgAkGAFJFAAAEmAAEADBCAQBAAAApEIAAAAQAE=</HashCode>
+      <FileName>Forms\Kunden\KundenListe.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

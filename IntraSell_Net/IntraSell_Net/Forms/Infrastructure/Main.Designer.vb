@@ -25,6 +25,7 @@ Partial Class Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KundenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KundenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -34,13 +35,15 @@ Partial Class Main
         Me.HilfeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WikiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÜberIntraSellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorgängeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorganglisteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.KundenToolStripMenuItem, Me.HilfeToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.KundenToolStripMenuItem, Me.VorgängeToolStripMenuItem, Me.HilfeToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1008, 24)
@@ -53,6 +56,12 @@ Partial Class Main
         Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
         Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.DateiToolStripMenuItem.Text = "&Datei"
+        '
+        'BeendenToolStripMenuItem
+        '
+        Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.BeendenToolStripMenuItem.Text = "&Beenden"
         '
         'KundenToolStripMenuItem
         '
@@ -101,20 +110,33 @@ Partial Class Main
         'WikiToolStripMenuItem
         '
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.WikiToolStripMenuItem.Text = "&Wiki"
         '
         'ÜberIntraSellToolStripMenuItem
         '
         Me.ÜberIntraSellToolStripMenuItem.Name = "ÜberIntraSellToolStripMenuItem"
-        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ÜberIntraSellToolStripMenuItem.Text = "&Über IntraSell"
         '
-        'BeendenToolStripMenuItem
+        'VorgängeToolStripMenuItem
         '
-        Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.BeendenToolStripMenuItem.Text = "&Beenden"
+        Me.VorgängeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem, Me.VorganglisteToolStripMenuItem})
+        Me.VorgängeToolStripMenuItem.Name = "VorgängeToolStripMenuItem"
+        Me.VorgängeToolStripMenuItem.Size = New System.Drawing.Size(70, 20)
+        Me.VorgängeToolStripMenuItem.Text = "Vorgänge"
+        '
+        'VorgangToolStripMenuItem
+        '
+        Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VorgangToolStripMenuItem.Text = "Vorgang"
+        '
+        'VorganglisteToolStripMenuItem
+        '
+        Me.VorganglisteToolStripMenuItem.Name = "VorganglisteToolStripMenuItem"
+        Me.VorganglisteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VorganglisteToolStripMenuItem.Text = "Vorgangliste"
         '
         'Main
         '
@@ -145,5 +167,8 @@ Partial Class Main
     Friend WithEvents WikiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ÜberIntraSellToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BeendenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorgängeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorgangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorganglisteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
