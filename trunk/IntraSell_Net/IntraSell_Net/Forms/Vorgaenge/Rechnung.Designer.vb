@@ -31,9 +31,6 @@ Partial Class Rechnung
         Dim NotizInternLabel As System.Windows.Forms.Label
         Dim NotizExternLabel As System.Windows.Forms.Label
         Dim SummeLabel As System.Windows.Forms.Label
-        Dim ZahlungsbedungungLabel As System.Windows.Forms.Label
-        Dim TransportMethodeLabel As System.Windows.Forms.Label
-        Dim ZahlungsMethodeLabel As System.Windows.Forms.Label
         Dim WoherLabel As System.Windows.Forms.Label
         Dim WohinLabel As System.Windows.Forms.Label
         Dim StatusLabel As System.Windows.Forms.Label
@@ -45,6 +42,9 @@ Partial Class Rechnung
         Dim WaehrungLabel As System.Windows.Forms.Label
         Dim ErstelltAmLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Rechnung))
+        Dim ZahlungsbedungungLabel1 As System.Windows.Forms.Label
+        Dim TransportMethodeLabel1 As System.Windows.Forms.Label
+        Dim ZahlungsMethodeLabel1 As System.Windows.Forms.Label
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.BuchvorgangBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.BuchvorgangTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangTableAdapter()
@@ -74,9 +74,6 @@ Partial Class Rechnung
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
         Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
         Me.AbgeschlossenCheckBox = New System.Windows.Forms.CheckBox()
-        Me.ZahlungsbedungungTextBox = New System.Windows.Forms.TextBox()
-        Me.TransportMethodeTextBox = New System.Windows.Forms.TextBox()
-        Me.ZahlungsMethodeTextBox = New System.Windows.Forms.TextBox()
         Me.WoherTextBox = New System.Windows.Forms.TextBox()
         Me.WohinTextBox = New System.Windows.Forms.TextBox()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
@@ -109,6 +106,9 @@ Partial Class Rechnung
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ErstelltAmDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.ZahlungsbedungungComboBox = New System.Windows.Forms.ComboBox()
+        Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
+        Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -117,9 +117,6 @@ Partial Class Rechnung
         NotizInternLabel = New System.Windows.Forms.Label()
         NotizExternLabel = New System.Windows.Forms.Label()
         SummeLabel = New System.Windows.Forms.Label()
-        ZahlungsbedungungLabel = New System.Windows.Forms.Label()
-        TransportMethodeLabel = New System.Windows.Forms.Label()
-        ZahlungsMethodeLabel = New System.Windows.Forms.Label()
         WoherLabel = New System.Windows.Forms.Label()
         WohinLabel = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -130,6 +127,9 @@ Partial Class Rechnung
         KundNr2Label = New System.Windows.Forms.Label()
         WaehrungLabel = New System.Windows.Forms.Label()
         ErstelltAmLabel = New System.Windows.Forms.Label()
+        ZahlungsbedungungLabel1 = New System.Windows.Forms.Label()
+        TransportMethodeLabel1 = New System.Windows.Forms.Label()
+        ZahlungsMethodeLabel1 = New System.Windows.Forms.Label()
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,33 +210,6 @@ Partial Class Rechnung
         SummeLabel.TabIndex = 15
         SummeLabel.Text = "Summe:"
         '
-        'ZahlungsbedungungLabel
-        '
-        ZahlungsbedungungLabel.AutoSize = True
-        ZahlungsbedungungLabel.Location = New System.Drawing.Point(708, 22)
-        ZahlungsbedungungLabel.Name = "ZahlungsbedungungLabel"
-        ZahlungsbedungungLabel.Size = New System.Drawing.Size(108, 13)
-        ZahlungsbedungungLabel.TabIndex = 23
-        ZahlungsbedungungLabel.Text = "Zahlungsbedungung:"
-        '
-        'TransportMethodeLabel
-        '
-        TransportMethodeLabel.AutoSize = True
-        TransportMethodeLabel.Location = New System.Drawing.Point(708, 48)
-        TransportMethodeLabel.Name = "TransportMethodeLabel"
-        TransportMethodeLabel.Size = New System.Drawing.Size(100, 13)
-        TransportMethodeLabel.TabIndex = 25
-        TransportMethodeLabel.Text = "Transport Methode:"
-        '
-        'ZahlungsMethodeLabel
-        '
-        ZahlungsMethodeLabel.AutoSize = True
-        ZahlungsMethodeLabel.Location = New System.Drawing.Point(708, 74)
-        ZahlungsMethodeLabel.Name = "ZahlungsMethodeLabel"
-        ZahlungsMethodeLabel.Size = New System.Drawing.Size(99, 13)
-        ZahlungsMethodeLabel.TabIndex = 27
-        ZahlungsMethodeLabel.Text = "Zahlungs Methode:"
-        '
         'WoherLabel
         '
         WoherLabel.AutoSize = True
@@ -267,7 +240,7 @@ Partial Class Rechnung
         'SummeMWSTLabel
         '
         SummeMWSTLabel.AutoSize = True
-        SummeMWSTLabel.Location = New System.Drawing.Point(708, 179)
+        SummeMWSTLabel.Location = New System.Drawing.Point(35, 237)
         SummeMWSTLabel.Name = "SummeMWSTLabel"
         SummeMWSTLabel.Size = New System.Drawing.Size(82, 13)
         SummeMWSTLabel.TabIndex = 35
@@ -276,7 +249,7 @@ Partial Class Rechnung
         'SummeBruttoLabel
         '
         SummeBruttoLabel.AutoSize = True
-        SummeBruttoLabel.Location = New System.Drawing.Point(708, 205)
+        SummeBruttoLabel.Location = New System.Drawing.Point(35, 263)
         SummeBruttoLabel.Name = "SummeBruttoLabel"
         SummeBruttoLabel.Size = New System.Drawing.Size(76, 13)
         SummeBruttoLabel.TabIndex = 37
@@ -376,7 +349,7 @@ Partial Class Rechnung
         Me.BuchvorgangBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BuchvorgangBindingNavigator.Name = "BuchvorgangBindingNavigator"
         Me.BuchvorgangBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BuchvorgangBindingNavigator.Size = New System.Drawing.Size(1036, 25)
+        Me.BuchvorgangBindingNavigator.Size = New System.Drawing.Size(1042, 25)
         Me.BuchvorgangBindingNavigator.TabIndex = 0
         Me.BuchvorgangBindingNavigator.Text = "BindingNavigator1"
         '
@@ -572,30 +545,6 @@ Partial Class Rechnung
         Me.AbgeschlossenCheckBox.Text = "abgeschlosen"
         Me.AbgeschlossenCheckBox.UseVisualStyleBackColor = True
         '
-        'ZahlungsbedungungTextBox
-        '
-        Me.ZahlungsbedungungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
-        Me.ZahlungsbedungungTextBox.Location = New System.Drawing.Point(822, 19)
-        Me.ZahlungsbedungungTextBox.Name = "ZahlungsbedungungTextBox"
-        Me.ZahlungsbedungungTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.ZahlungsbedungungTextBox.TabIndex = 24
-        '
-        'TransportMethodeTextBox
-        '
-        Me.TransportMethodeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "TransportMethode", True))
-        Me.TransportMethodeTextBox.Location = New System.Drawing.Point(822, 45)
-        Me.TransportMethodeTextBox.Name = "TransportMethodeTextBox"
-        Me.TransportMethodeTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TransportMethodeTextBox.TabIndex = 26
-        '
-        'ZahlungsMethodeTextBox
-        '
-        Me.ZahlungsMethodeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "ZahlungsMethode", True))
-        Me.ZahlungsMethodeTextBox.Location = New System.Drawing.Point(822, 71)
-        Me.ZahlungsMethodeTextBox.Name = "ZahlungsMethodeTextBox"
-        Me.ZahlungsMethodeTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.ZahlungsMethodeTextBox.TabIndex = 28
-        '
         'WoherTextBox
         '
         Me.WoherTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Woher", True))
@@ -624,7 +573,7 @@ Partial Class Rechnung
         'SummeMWSTTextBox
         '
         Me.SummeMWSTTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeMWST", True))
-        Me.SummeMWSTTextBox.Location = New System.Drawing.Point(822, 176)
+        Me.SummeMWSTTextBox.Location = New System.Drawing.Point(149, 234)
         Me.SummeMWSTTextBox.Name = "SummeMWSTTextBox"
         Me.SummeMWSTTextBox.Size = New System.Drawing.Size(200, 20)
         Me.SummeMWSTTextBox.TabIndex = 36
@@ -632,7 +581,7 @@ Partial Class Rechnung
         'SummeBruttoTextBox
         '
         Me.SummeBruttoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeBrutto", True))
-        Me.SummeBruttoTextBox.Location = New System.Drawing.Point(822, 202)
+        Me.SummeBruttoTextBox.Location = New System.Drawing.Point(149, 260)
         Me.SummeBruttoTextBox.Name = "SummeBruttoTextBox"
         Me.SummeBruttoTextBox.Size = New System.Drawing.Size(200, 20)
         Me.SummeBruttoTextBox.TabIndex = 38
@@ -817,11 +766,71 @@ Partial Class Rechnung
         Me.ErstelltAmDateTimePicker.Size = New System.Drawing.Size(200, 20)
         Me.ErstelltAmDateTimePicker.TabIndex = 48
         '
+        'ZahlungsbedungungLabel1
+        '
+        ZahlungsbedungungLabel1.AutoSize = True
+        ZahlungsbedungungLabel1.Location = New System.Drawing.Point(708, 15)
+        ZahlungsbedungungLabel1.Name = "ZahlungsbedungungLabel1"
+        ZahlungsbedungungLabel1.Size = New System.Drawing.Size(108, 13)
+        ZahlungsbedungungLabel1.TabIndex = 49
+        ZahlungsbedungungLabel1.Text = "Zahlungsbedungung:"
+        '
+        'ZahlungsbedungungComboBox
+        '
+        Me.ZahlungsbedungungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
+        Me.ZahlungsbedungungComboBox.FormattingEnabled = True
+        Me.ZahlungsbedungungComboBox.Location = New System.Drawing.Point(822, 12)
+        Me.ZahlungsbedungungComboBox.Name = "ZahlungsbedungungComboBox"
+        Me.ZahlungsbedungungComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.ZahlungsbedungungComboBox.TabIndex = 50
+        '
+        'TransportMethodeLabel1
+        '
+        TransportMethodeLabel1.AutoSize = True
+        TransportMethodeLabel1.Location = New System.Drawing.Point(708, 41)
+        TransportMethodeLabel1.Name = "TransportMethodeLabel1"
+        TransportMethodeLabel1.Size = New System.Drawing.Size(100, 13)
+        TransportMethodeLabel1.TabIndex = 50
+        TransportMethodeLabel1.Text = "Transport Methode:"
+        '
+        'TransportMethodeComboBox
+        '
+        Me.TransportMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "TransportMethode", True))
+        Me.TransportMethodeComboBox.FormattingEnabled = True
+        Me.TransportMethodeComboBox.Location = New System.Drawing.Point(822, 38)
+        Me.TransportMethodeComboBox.Name = "TransportMethodeComboBox"
+        Me.TransportMethodeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.TransportMethodeComboBox.TabIndex = 51
+        '
+        'ZahlungsMethodeLabel1
+        '
+        ZahlungsMethodeLabel1.AutoSize = True
+        ZahlungsMethodeLabel1.Location = New System.Drawing.Point(708, 68)
+        ZahlungsMethodeLabel1.Name = "ZahlungsMethodeLabel1"
+        ZahlungsMethodeLabel1.Size = New System.Drawing.Size(99, 13)
+        ZahlungsMethodeLabel1.TabIndex = 51
+        ZahlungsMethodeLabel1.Text = "Zahlungs Methode:"
+        '
+        'ZahlungsMethodeComboBox
+        '
+        Me.ZahlungsMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "ZahlungsMethode", True))
+        Me.ZahlungsMethodeComboBox.FormattingEnabled = True
+        Me.ZahlungsMethodeComboBox.Location = New System.Drawing.Point(822, 65)
+        Me.ZahlungsMethodeComboBox.Name = "ZahlungsMethodeComboBox"
+        Me.ZahlungsMethodeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.ZahlungsMethodeComboBox.TabIndex = 52
+        '
         'Rechnung
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1036, 680)
+        Me.ClientSize = New System.Drawing.Size(1042, 688)
+        Me.Controls.Add(ZahlungsMethodeLabel1)
+        Me.Controls.Add(Me.ZahlungsMethodeComboBox)
+        Me.Controls.Add(TransportMethodeLabel1)
+        Me.Controls.Add(Me.TransportMethodeComboBox)
+        Me.Controls.Add(ZahlungsbedungungLabel1)
+        Me.Controls.Add(Me.ZahlungsbedungungComboBox)
         Me.Controls.Add(Me.Buchvorgang_artikelDataGridView)
         Me.Controls.Add(NummerLabel)
         Me.Controls.Add(Me.NummerTextBox)
@@ -842,12 +851,6 @@ Partial Class Rechnung
         Me.Controls.Add(Me.BezahltCheckBox)
         Me.Controls.Add(Me.AusgedrucktCheckBox)
         Me.Controls.Add(Me.AbgeschlossenCheckBox)
-        Me.Controls.Add(ZahlungsbedungungLabel)
-        Me.Controls.Add(Me.ZahlungsbedungungTextBox)
-        Me.Controls.Add(TransportMethodeLabel)
-        Me.Controls.Add(Me.TransportMethodeTextBox)
-        Me.Controls.Add(ZahlungsMethodeLabel)
-        Me.Controls.Add(Me.ZahlungsMethodeTextBox)
         Me.Controls.Add(WoherLabel)
         Me.Controls.Add(Me.WoherTextBox)
         Me.Controls.Add(WohinLabel)
@@ -911,9 +914,6 @@ Partial Class Rechnung
     Friend WithEvents BezahltCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents AusgedrucktCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents AbgeschlossenCheckBox As System.Windows.Forms.CheckBox
-    Friend WithEvents ZahlungsbedungungTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents TransportMethodeTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents ZahlungsMethodeTextBox As System.Windows.Forms.TextBox
     Friend WithEvents WoherTextBox As System.Windows.Forms.TextBox
     Friend WithEvents WohinTextBox As System.Windows.Forms.TextBox
     Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
@@ -946,4 +946,7 @@ Partial Class Rechnung
     Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ErstelltAmDateTimePicker As System.Windows.Forms.DateTimePicker
+    Friend WithEvents ZahlungsbedungungComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents TransportMethodeComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents ZahlungsMethodeComboBox As System.Windows.Forms.ComboBox
 End Class
