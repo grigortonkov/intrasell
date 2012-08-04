@@ -176,6 +176,7 @@
     <Compile Include="Forms\Vorgaenge\Rechnung.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\ModuleCommons.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>
