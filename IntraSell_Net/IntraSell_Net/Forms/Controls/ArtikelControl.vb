@@ -3,6 +3,7 @@
 
     Private Sub ArtikelControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         FillComboBox(Me.ArtikelComboBox, "SELECT ArtNr, concat(EAN, ' - ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN", "Art", "ArtNr")
+        Me.ArtikelComboBox.Text = ""
     End Sub
 
     Private Sub ArtikelSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelSelectorButton.Click

@@ -67,6 +67,7 @@ Partial Class VorgangListe
         Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
         Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
@@ -77,7 +78,6 @@ Partial Class VorgangListe
         Me.Label11 = New System.Windows.Forms.Label()
         Me.DatumUntil = New System.Windows.Forms.DateTimePicker()
         Me.DatumVon = New System.Windows.Forms.DateTimePicker()
-        Me.KundeComboBox = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.MitarbeiterComboBox = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -87,7 +87,7 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -436,6 +436,7 @@ Partial Class VorgangListe
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
         Me.SplitContainer.Panel1.Controls.Add(Me.ArtikelControl1)
         Me.SplitContainer.Panel1.Controls.Add(StatusLabel)
         Me.SplitContainer.Panel1.Controls.Add(Me.StatusComboBox)
@@ -450,7 +451,6 @@ Partial Class VorgangListe
         Me.SplitContainer.Panel1.Controls.Add(Me.DatumUntil)
         Me.SplitContainer.Panel1.Controls.Add(DatumLabel)
         Me.SplitContainer.Panel1.Controls.Add(Me.DatumVon)
-        Me.SplitContainer.Panel1.Controls.Add(Me.KundeComboBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
         Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterComboBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
@@ -475,6 +475,13 @@ Partial Class VorgangListe
         Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl1.TabIndex = 38
         '
         'StatusComboBox
         '
@@ -562,16 +569,6 @@ Partial Class VorgangListe
         Me.DatumVon.Size = New System.Drawing.Size(125, 20)
         Me.DatumVon.TabIndex = 20
         '
-        'KundeComboBox
-        '
-        Me.KundeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.KundeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.KundeComboBox.FormattingEnabled = True
-        Me.KundeComboBox.Location = New System.Drawing.Point(96, 230)
-        Me.KundeComboBox.Name = "KundeComboBox"
-        Me.KundeComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.KundeComboBox.TabIndex = 17
-        '
         'Label9
         '
         Me.Label9.AutoSize = True
@@ -651,12 +648,12 @@ Partial Class VorgangListe
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
         '
-        'ArtikelControl1
+        'AdressenControl1
         '
-        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl1.TabIndex = 38
+        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 39
         '
         'VorgangListe
         '
@@ -723,7 +720,6 @@ Partial Class VorgangListe
     Friend WithEvents VornameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Land As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents KundeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents MitarbeiterComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -740,4 +736,5 @@ Partial Class VorgangListe
     Friend WithEvents AbgeschlossenCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ArtikelControl1 As IntraSell_Net.ArtikelControl
+    Friend WithEvents AdressenControl1 As IntraSell_Net.AdressenControl
 End Class
