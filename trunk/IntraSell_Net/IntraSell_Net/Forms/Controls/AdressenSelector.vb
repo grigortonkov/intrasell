@@ -1,6 +1,6 @@
 ﻿Public Class AdressenSelector
 
-    Public KundenComboBox As ComboBox
+    Public AdressenComboBox As ComboBox
 
     Private Sub PLZSelector_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DsAdressen.ofAdressenliste' table. You can move, or remove it, as needed.
@@ -18,7 +18,7 @@
         Try
             'filter dataset 
             If txtSuche.Text.Length > 0 Then
-                OfAdressenlisteBindingSource.Filter = "Firma like '%" + txtSuche.Text + "%' or Name Like '%" + txtSuche.Text + "%' or Name1 Like '%" + txtSuche.Text + "%' or Vorname Like '%" + txtSuche.Text + "%'"
+                OfAdressenlisteBindingSource.Filter = "Firma like '%" + txtSuche.Text + "%' or Name Like '%" + txtSuche.Text + "%' or Adresse Like '%" + txtSuche.Text + "%' or Vorname Like '%" + txtSuche.Text + "%'"
             Else
                 OfAdressenlisteBindingSource.Filter = Nothing
             End If
@@ -31,8 +31,8 @@
     Private Sub btnUebernehmen_Click(sender As System.Object, e As System.EventArgs) Handles btnUebernehmen.Click
         Try
 
-            If Not KundenComboBox Is Nothing Then
-                KundenComboBox.SelectedValue = Me.dgAdressen.SelectedRows(0).Cells(0).Value
+            If Not AdressenComboBox Is Nothing Then
+                AdressenComboBox.SelectedValue = Me.dgAdressen.SelectedRows(0).Cells(0).Value
             End If
 
             Me.Close()

@@ -15,6 +15,8 @@
             FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY  PreislisteName;", "PreislisteName")
             'Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
 
+            Me.TypComboBox.Text = ""
+            Me.StatusComboBox.Text = ""
             Me.LandComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
@@ -37,43 +39,47 @@
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
-            Dim filter As String = Nothing
+            Dim filter As String = "1=1"
 
 
             'filter dataset 
             If Me.TypComboBox.Text.Length > 0 Then
-                filter = "Typ = '" + TypComboBox.Text + "%'"
+                filter = filter & " and Typ = '" + TypComboBox.Text + "%'"
             End If
 
             If Me.NummerTextBox.Text.Length > 0 Then
-                filter = "Nummer Like '" + NummerTextBox.Text + "%'"
+                filter = filter & " and Nummer Like '" + NummerTextBox.Text + "%'"
             End If
 
             If Me.StatusComboBox.Text.Length > 0 Then
-                filter = "Status Like '" + StatusComboBox.Text + "%'"
+                filter = filter & " and Status Like '" + StatusComboBox.Text + "%'"
             End If
 
             If ArtikelControl1.ArtNr > 0 Then
-                filter = "ArtNr Like '" + ArtikelControl1.Text + "%'"
+                filter = filter & " and ArtNr Like '" + ArtikelControl1.Text + "%'"
+            End If
+
+            If AdressenControl1.IDNR > 0 Then
+                filter = filter & " and KundNr = " + CStr(AdressenControl1.IDNR)
             End If
 
             If Me.LandComboBox.Text.Length > 0 Then
-                filter = "Land Like '" + LandComboBox.Text + "%'"
+                filter = filter & " and Land Like '" + LandComboBox.Text + "%'"
             End If
 
             If Me.PLZVonTextBox.Text.Length > 0 Then
-                filter = "PLZ >= '" + PLZVonTextBox.Text + "%'"
+                filter = filter & " and PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
             If Me.PLZBisTextBox.Text.Length > 0 Then
-                filter = "PLZ <= '" + PLZVonTextBox.Text + "%'"
+                filter = filter & " and PLZ <= '" + PLZVonTextBox.Text + "%'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then
-                filter = "Kundengruppe Like '" + KundengruppeComboBox.Text + "%'"
+                filter = filter & " and Kundengruppe Like '" + KundengruppeComboBox.Text + "%'"
             End If
 
             If Me.PreislisteComboBox.Text.Length > 0 Then
-                filter = "Preisliste Like '" + PreislisteComboBox.Text + "%'"
+                filter = filter & " and Preisliste Like '" + PreislisteComboBox.Text + "%'"
             End If
 
             If Not filter Is Nothing Then
