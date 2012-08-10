@@ -41,6 +41,21 @@
 
 
             'filter dataset 
+            If Me.TypComboBox.Text.Length > 0 Then
+                filter = "Typ = '" + TypComboBox.Text + "%'"
+            End If
+
+            If Me.NummerTextBox.Text.Length > 0 Then
+                filter = "Nummer Like '" + NummerTextBox.Text + "%'"
+            End If
+
+            If Me.StatusComboBox.Text.Length > 0 Then
+                filter = "Status Like '" + StatusComboBox.Text + "%'"
+            End If
+
+            If ArtikelControl1.ArtNr > 0 Then
+                filter = "ArtNr Like '" + ArtikelControl1.Text + "%'"
+            End If
 
             If Me.LandComboBox.Text.Length > 0 Then
                 filter = "Land Like '" + LandComboBox.Text + "%'"
@@ -49,7 +64,7 @@
             If Me.PLZVonTextBox.Text.Length > 0 Then
                 filter = "PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
-            If Me.PLZbisTextBox.Text.Length > 0 Then
+            If Me.PLZBisTextBox.Text.Length > 0 Then
                 filter = "PLZ <= '" + PLZVonTextBox.Text + "%'"
             End If
 
