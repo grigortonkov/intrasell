@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Rechnung
+Partial Class Vorgang
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -41,7 +41,7 @@ Partial Class Rechnung
         Dim KundNr2Label As System.Windows.Forms.Label
         Dim WaehrungLabel As System.Windows.Forms.Label
         Dim ErstelltAmLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Rechnung))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Vorgang))
         Dim ZahlungsbedungungLabel1 As System.Windows.Forms.Label
         Dim TransportMethodeLabel1 As System.Windows.Forms.Label
         Dim ZahlungsMethodeLabel1 As System.Windows.Forms.Label

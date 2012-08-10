@@ -1,5 +1,14 @@
-﻿Public Class Rechnung
+﻿Public Class Vorgang
 
+    'Die Datensätze filtern
+    Public Sub FilterBy(Expression As String)
+        Try
+            Me.BuchvorgangBindingSource.Filter = Expression
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
     Private Sub BuchvorgangBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BuchvorgangBindingNavigatorSaveItem.Click
         Try
             Me.Validate()
@@ -18,7 +27,7 @@
             Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang)
             Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel)
 
-            FillComboBox(Me.StatusComboBox, "select Status from buchRechnung Group by Status", "Status")
+            FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus Group by Status", "Status")
 
 
             FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (select idnr from buchVorgang where nummer = " & Me.NummerTextBox.Text & ") ORDER BY Methode", "Methode")

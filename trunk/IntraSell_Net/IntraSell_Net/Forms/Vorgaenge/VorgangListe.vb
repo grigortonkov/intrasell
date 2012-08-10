@@ -5,8 +5,13 @@
         Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe)
 
         Try
-            FillComboBox(Me.LandComboBox, "select Name from grLand Order by Name", "Name")
-            FillComboBox(Me.KundengruppeComboBox, "select Gruppe from `ofAdressen-Kundengruppen` Order by Gruppe", "Gruppe")
+
+
+            FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ") 
+            FillComboBox(Me.StatusComboBox, "SELECT Status from buchVorgaengeStatus Group by Status", "Status")
+
+            FillComboBox(Me.LandComboBox, "SELECT Name from grLand Order by Name", "Name")
+            FillComboBox(Me.KundengruppeComboBox, "SELECT Gruppe from `ofAdressen-Kundengruppen` Order by Gruppe", "Gruppe")
             FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY  PreislisteName;", "PreislisteName")
             'Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
 
@@ -18,6 +23,15 @@
             HandleAppError(ex)
         End Try
 
+    End Sub
+
+    Private Sub TypComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles TypComboBox.SelectedIndexChanged
+        Try
+            If VarType(TypComboBox.SelectedValue) = VariantType.String Then
+                FillComboBox(Me.StatusComboBox, "SELECT Status from buchVorgaengeStatus where VorgangTyp='" & TypComboBox.SelectedValue & "' Group by Status", "Status")
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     'Filtern
@@ -73,4 +87,5 @@
     Private Sub OfAdressenlisteDataGridView_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles VorgangListeDataGridView.CellContentClick
 
     End Sub
+
 End Class
