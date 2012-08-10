@@ -67,6 +67,7 @@ Partial Class VorgangListe
         Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
@@ -87,7 +88,10 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
+        Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -436,6 +440,10 @@ Partial Class VorgangListe
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label13)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SummeVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SummeBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label14)
         Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
         Me.SplitContainer.Panel1.Controls.Add(Me.ArtikelControl1)
         Me.SplitContainer.Panel1.Controls.Add(StatusLabel)
@@ -475,6 +483,13 @@ Partial Class VorgangListe
         Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 39
         '
         'ArtikelControl1
         '
@@ -648,12 +663,37 @@ Partial Class VorgangListe
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
         '
-        'AdressenControl1
+        'Label13
         '
-        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 39
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(8, 179)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(45, 13)
+        Me.Label13.TabIndex = 42
+        Me.Label13.Text = "Umsatz:"
+        '
+        'SummeVonTextBox
+        '
+        Me.SummeVonTextBox.Location = New System.Drawing.Point(94, 176)
+        Me.SummeVonTextBox.Name = "SummeVonTextBox"
+        Me.SummeVonTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.SummeVonTextBox.TabIndex = 40
+        '
+        'SummeBisTextBox
+        '
+        Me.SummeBisTextBox.Location = New System.Drawing.Point(168, 176)
+        Me.SummeBisTextBox.Name = "SummeBisTextBox"
+        Me.SummeBisTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.SummeBisTextBox.TabIndex = 41
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(152, 179)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(10, 13)
+        Me.Label14.TabIndex = 43
+        Me.Label14.Text = "-"
         '
         'VorgangListe
         '
@@ -737,4 +777,8 @@ Partial Class VorgangListe
     Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ArtikelControl1 As IntraSell_Net.ArtikelControl
     Friend WithEvents AdressenControl1 As IntraSell_Net.AdressenControl
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents SummeVonTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SummeBisTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label14 As System.Windows.Forms.Label
 End Class

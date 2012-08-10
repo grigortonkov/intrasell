@@ -63,6 +63,19 @@
                 filter = filter & " and KundNr = " + CStr(AdressenControl1.IDNR)
             End If
 
+            If IsNumeric(SummeVonTextBox.Text) Then
+                If Me.SummeVonTextBox.Text.Length > 0 Then
+                    filter = filter & " and Summe >=" & SummeVonTextBox.Text
+                End If
+            End If
+
+            If IsNumeric(SummeBisTextBox.Text) Then
+                If Me.SummeBisTextBox.Text.Length > 0 Then
+                    filter = filter & " and Summe <=  " + SummeBisTextBox.Text
+                End If
+            End If
+
+
             If Me.LandComboBox.Text.Length > 0 Then
                 filter = filter & " and Land Like '" + LandComboBox.Text + "%'"
             End If
