@@ -67,7 +67,6 @@ Partial Class VorgangListe
         Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
         Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
@@ -88,6 +87,7 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -103,7 +103,7 @@ Partial Class VorgangListe
         'DatumLabel
         '
         DatumLabel.AutoSize = True
-        DatumLabel.Location = New System.Drawing.Point(8, 125)
+        DatumLabel.Location = New System.Drawing.Point(8, 92)
         DatumLabel.Name = "DatumLabel"
         DatumLabel.Size = New System.Drawing.Size(62, 13)
         DatumLabel.TabIndex = 19
@@ -112,7 +112,7 @@ Partial Class VorgangListe
         'Label10
         '
         Label10.AutoSize = True
-        Label10.Location = New System.Drawing.Point(9, 151)
+        Label10.Location = New System.Drawing.Point(9, 118)
         Label10.Name = "Label10"
         Label10.Size = New System.Drawing.Size(57, 13)
         Label10.TabIndex = 21
@@ -476,13 +476,6 @@ Partial Class VorgangListe
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
-        'ArtikelControl1
-        '
-        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 177)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.Size = New System.Drawing.Size(150, 30)
-        Me.ArtikelControl1.TabIndex = 38
-        '
         'StatusComboBox
         '
         Me.StatusComboBox.FormattingEnabled = True
@@ -556,7 +549,7 @@ Partial Class VorgangListe
         'DatumUntil
         '
         Me.DatumUntil.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DatumUntil.Location = New System.Drawing.Point(96, 151)
+        Me.DatumUntil.Location = New System.Drawing.Point(96, 118)
         Me.DatumUntil.Name = "DatumUntil"
         Me.DatumUntil.Size = New System.Drawing.Size(125, 20)
         Me.DatumUntil.TabIndex = 22
@@ -564,7 +557,7 @@ Partial Class VorgangListe
         'DatumVon
         '
         Me.DatumVon.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DatumVon.Location = New System.Drawing.Point(95, 125)
+        Me.DatumVon.Location = New System.Drawing.Point(95, 92)
         Me.DatumVon.Name = "DatumVon"
         Me.DatumVon.Size = New System.Drawing.Size(125, 20)
         Me.DatumVon.TabIndex = 20
@@ -629,7 +622,7 @@ Partial Class VorgangListe
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, 179)
+        Me.Label6.Location = New System.Drawing.Point(9, 146)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(39, 13)
         Me.Label6.TabIndex = 12
@@ -657,6 +650,13 @@ Partial Class VorgangListe
         'BuchVorgangListeTableAdapter
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl1.TabIndex = 38
         '
         'VorgangListe
         '
