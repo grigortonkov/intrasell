@@ -170,10 +170,16 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Vorgaenge\Rechnung.Designer.vb">
-      <DependentUpon>Rechnung.vb</DependentUpon>
+    <Compile Include="Forms\Vorgaenge\VorgangListe.Designer.vb">
+      <DependentUpon>VorgangListe.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Vorgaenge\Rechnung.vb">
+    <Compile Include="Forms\Vorgaenge\VorgangListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\Vorgang.Designer.vb">
+      <DependentUpon>Vorgang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\Vorgang.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\ModuleCommons.vb" />
@@ -225,8 +231,11 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Vorgaenge\Rechnung.resx">
-      <DependentUpon>Rechnung.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangListe.resx">
+      <DependentUpon>VorgangListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\Vorgang.resx">
+      <DependentUpon>Vorgang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

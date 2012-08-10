@@ -2,7 +2,7 @@
 <xs:schema id="dsVorgaenge" targetNamespace="http://tempuri.org/dsVorgaenge.xsd" xmlns:mstns="http://tempuri.org/dsVorgaenge.xsd" xmlns="http://tempuri.org/dsVorgaenge.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="buchVorgangListeQuery" GeneratorFunctionsComponentClassName="buchVorgangListeQuery" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="buchVorgangListeQuery" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="intrasell_daten_2_ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="intrasell_daten_2_ConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.IntraSell_Net.My.MySettings.GlobalReference.Default.intrasell_daten_2_ConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
@@ -1381,8 +1381,94 @@ WHERE        (ID = @Original_ID)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="buchVorgangListeTableAdapter" GeneratorDataComponentClassName="buchVorgangListeTableAdapter" Name="buchVorgangListe" UserDataComponentName="buchVorgangListeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, 
+                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, 
+                         buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, 
+                         buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm, 
+                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorname, `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste, grland.Name AS Land, grplz.PLZ, 
+                         grplz.Ort
+FROM            buchvorgangtyp INNER JOIN
+                         buchvorgang ON buchvorgangtyp.Typ = buchvorgang.Typ INNER JOIN
+                         `buchvorgang-artikel` ON buchvorgang.Nummer = `buchvorgang-artikel`.Nummer AND buchvorgang.Typ = `buchvorgang-artikel`.Typ INNER JOIN
+                         ofadressen ON buchvorgang.KundNr = ofadressen.IDNR INNER JOIN
+                         grland ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr INNER JOIN
+                         grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr LEFT OUTER JOIN
+                         `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR
+GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, 
+                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, 
+                         buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, 
+                         buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm, 
+                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorname, `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste, grland.Name, grplz.PLZ, grplz.Ort</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Nummer" DataSetColumn="Nummer" />
+              <Mapping SourceColumn="Typ" DataSetColumn="Typ" />
+              <Mapping SourceColumn="KundNr" DataSetColumn="KundNr" />
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+              <Mapping SourceColumn="Notiz" DataSetColumn="Notiz" />
+              <Mapping SourceColumn="NotizIntern" DataSetColumn="NotizIntern" />
+              <Mapping SourceColumn="NotizExtern" DataSetColumn="NotizExtern" />
+              <Mapping SourceColumn="Summe" DataSetColumn="Summe" />
+              <Mapping SourceColumn="Bezahlt" DataSetColumn="Bezahlt" />
+              <Mapping SourceColumn="Ausgedruckt" DataSetColumn="Ausgedruckt" />
+              <Mapping SourceColumn="Abgeschlossen" DataSetColumn="Abgeschlossen" />
+              <Mapping SourceColumn="Zahlungsbedungung" DataSetColumn="Zahlungsbedungung" />
+              <Mapping SourceColumn="TransportMethode" DataSetColumn="TransportMethode" />
+              <Mapping SourceColumn="ZahlungsMethode" DataSetColumn="ZahlungsMethode" />
+              <Mapping SourceColumn="Woher" DataSetColumn="Woher" />
+              <Mapping SourceColumn="Wohin" DataSetColumn="Wohin" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="SummeMWST" DataSetColumn="SummeMWST" />
+              <Mapping SourceColumn="SummeBrutto" DataSetColumn="SummeBrutto" />
+              <Mapping SourceColumn="LieferantNr" DataSetColumn="LieferantNr" />
+              <Mapping SourceColumn="MitarbeiterNr" DataSetColumn="MitarbeiterNr" />
+              <Mapping SourceColumn="KundNr2" DataSetColumn="KundNr2" />
+              <Mapping SourceColumn="Waehrung" DataSetColumn="Waehrung" />
+              <Mapping SourceColumn="ErstelltAm" DataSetColumn="ErstelltAm" />
+              <Mapping SourceColumn="Firma" DataSetColumn="Firma" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Vorname" DataSetColumn="Vorname" />
+              <Mapping SourceColumn="Kundengruppe" DataSetColumn="Kundengruppe" />
+              <Mapping SourceColumn="Preisliste" DataSetColumn="Preisliste" />
+              <Mapping SourceColumn="Land" DataSetColumn="Land" />
+              <Mapping SourceColumn="PLZ" DataSetColumn="PLZ" />
+              <Mapping SourceColumn="Ort" DataSetColumn="Ort" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
-        <Sources />
+        <Sources>
+          <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarQuery" MethodsParameterType="CLR" Modifier="Public" Name="ScalarQuery" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ScalarQuery">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, 
+                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, 
+                         buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, 
+                         buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm, 
+                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorname
+FROM            buchvorgangtyp INNER JOIN
+                         buchvorgang ON buchvorgangtyp.Typ = buchvorgang.Typ INNER JOIN
+                         `buchvorgang-artikel` ON buchvorgang.Nummer = `buchvorgang-artikel`.Nummer AND buchvorgang.Typ = `buchvorgang-artikel`.Typ INNER JOIN
+                         ofadressen ON buchvorgang.KundNr = ofadressen.IDNR
+GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, 
+                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, 
+                         buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, 
+                         buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm, 
+                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorname</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
@@ -2004,6 +2090,158 @@ WHERE        (ID = @Original_ID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="buchVorgangListe" msprop:Generator_TableClassName="buchVorgangListeDataTable" msprop:Generator_TableVarName="tablebuchVorgangListe" msprop:Generator_TablePropName="buchVorgangListe" msprop:Generator_RowDeletingName="buchVorgangListeRowDeleting" msprop:Generator_UserTableName="buchVorgangListe" msprop:Generator_RowChangingName="buchVorgangListeRowChanging" msprop:Generator_RowEvHandlerName="buchVorgangListeRowChangeEventHandler" msprop:Generator_RowDeletedName="buchVorgangListeRowDeleted" msprop:Generator_RowEvArgName="buchVorgangListeRowChangeEvent" msprop:Generator_RowChangedName="buchVorgangListeRowChanged" msprop:Generator_RowClassName="buchVorgangListeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nummer" msprop:Generator_ColumnVarNameInTable="columnNummer" msprop:Generator_ColumnPropNameInRow="Nummer" msprop:Generator_ColumnPropNameInTable="NummerColumn" msprop:Generator_UserColumnName="Nummer" type="xs:int" />
+              <xs:element name="Typ" msprop:Generator_ColumnVarNameInTable="columnTyp" msprop:Generator_ColumnPropNameInRow="Typ" msprop:Generator_ColumnPropNameInTable="TypColumn" msprop:Generator_UserColumnName="Typ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KundNr" msprop:Generator_ColumnVarNameInTable="columnKundNr" msprop:Generator_ColumnPropNameInRow="KundNr" msprop:Generator_ColumnPropNameInTable="KundNrColumn" msprop:Generator_UserColumnName="KundNr" type="xs:int" />
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" />
+              <xs:element name="Notiz" msprop:Generator_ColumnVarNameInTable="columnNotiz" msprop:Generator_ColumnPropNameInRow="Notiz" msprop:Generator_ColumnPropNameInTable="NotizColumn" msprop:Generator_UserColumnName="Notiz" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NotizIntern" msprop:Generator_ColumnVarNameInTable="columnNotizIntern" msprop:Generator_ColumnPropNameInRow="NotizIntern" msprop:Generator_ColumnPropNameInTable="NotizInternColumn" msprop:Generator_UserColumnName="NotizIntern" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NotizExtern" msprop:Generator_ColumnVarNameInTable="columnNotizExtern" msprop:Generator_ColumnPropNameInRow="NotizExtern" msprop:Generator_ColumnPropNameInTable="NotizExternColumn" msprop:Generator_UserColumnName="NotizExtern" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Summe" msprop:Generator_ColumnVarNameInTable="columnSumme" msprop:Generator_ColumnPropNameInRow="Summe" msprop:Generator_ColumnPropNameInTable="SummeColumn" msprop:Generator_UserColumnName="Summe" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Bezahlt" msprop:Generator_ColumnVarNameInTable="columnBezahlt" msprop:Generator_ColumnPropNameInRow="Bezahlt" msprop:Generator_ColumnPropNameInTable="BezahltColumn" msprop:Generator_UserColumnName="Bezahlt" type="xs:boolean" />
+              <xs:element name="Ausgedruckt" msprop:Generator_ColumnVarNameInTable="columnAusgedruckt" msprop:Generator_ColumnPropNameInRow="Ausgedruckt" msprop:Generator_ColumnPropNameInTable="AusgedrucktColumn" msprop:Generator_UserColumnName="Ausgedruckt" type="xs:boolean" />
+              <xs:element name="Abgeschlossen" msprop:Generator_ColumnVarNameInTable="columnAbgeschlossen" msprop:Generator_ColumnPropNameInRow="Abgeschlossen" msprop:Generator_ColumnPropNameInTable="AbgeschlossenColumn" msprop:Generator_UserColumnName="Abgeschlossen" type="xs:boolean" />
+              <xs:element name="Zahlungsbedungung" msprop:Generator_ColumnVarNameInTable="columnZahlungsbedungung" msprop:Generator_ColumnPropNameInRow="Zahlungsbedungung" msprop:Generator_ColumnPropNameInTable="ZahlungsbedungungColumn" msprop:Generator_UserColumnName="Zahlungsbedungung" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TransportMethode" msprop:Generator_ColumnVarNameInTable="columnTransportMethode" msprop:Generator_ColumnPropNameInRow="TransportMethode" msprop:Generator_ColumnPropNameInTable="TransportMethodeColumn" msprop:Generator_UserColumnName="TransportMethode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ZahlungsMethode" msprop:Generator_ColumnVarNameInTable="columnZahlungsMethode" msprop:Generator_ColumnPropNameInRow="ZahlungsMethode" msprop:Generator_ColumnPropNameInTable="ZahlungsMethodeColumn" msprop:Generator_UserColumnName="ZahlungsMethode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Woher" msprop:Generator_ColumnVarNameInTable="columnWoher" msprop:Generator_ColumnPropNameInRow="Woher" msprop:Generator_ColumnPropNameInTable="WoherColumn" msprop:Generator_UserColumnName="Woher" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Wohin" msprop:Generator_ColumnVarNameInTable="columnWohin" msprop:Generator_ColumnPropNameInRow="Wohin" msprop:Generator_ColumnPropNameInTable="WohinColumn" msprop:Generator_UserColumnName="Wohin" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SummeMWST" msprop:Generator_ColumnVarNameInTable="columnSummeMWST" msprop:Generator_ColumnPropNameInRow="SummeMWST" msprop:Generator_ColumnPropNameInTable="SummeMWSTColumn" msprop:Generator_UserColumnName="SummeMWST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SummeBrutto" msprop:Generator_ColumnVarNameInTable="columnSummeBrutto" msprop:Generator_ColumnPropNameInRow="SummeBrutto" msprop:Generator_ColumnPropNameInTable="SummeBruttoColumn" msprop:Generator_UserColumnName="SummeBrutto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LieferantNr" msprop:Generator_ColumnVarNameInTable="columnLieferantNr" msprop:Generator_ColumnPropNameInRow="LieferantNr" msprop:Generator_ColumnPropNameInTable="LieferantNrColumn" msprop:Generator_UserColumnName="LieferantNr" type="xs:int" minOccurs="0" />
+              <xs:element name="MitarbeiterNr" msprop:Generator_ColumnVarNameInTable="columnMitarbeiterNr" msprop:Generator_ColumnPropNameInRow="MitarbeiterNr" msprop:Generator_ColumnPropNameInTable="MitarbeiterNrColumn" msprop:Generator_UserColumnName="MitarbeiterNr" type="xs:int" minOccurs="0" />
+              <xs:element name="KundNr2" msprop:Generator_ColumnVarNameInTable="columnKundNr2" msprop:Generator_ColumnPropNameInRow="KundNr2" msprop:Generator_ColumnPropNameInTable="KundNr2Column" msprop:Generator_UserColumnName="KundNr2" type="xs:int" minOccurs="0" />
+              <xs:element name="Waehrung" msprop:Generator_ColumnVarNameInTable="columnWaehrung" msprop:Generator_ColumnPropNameInRow="Waehrung" msprop:Generator_ColumnPropNameInTable="WaehrungColumn" msprop:Generator_UserColumnName="Waehrung" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ErstelltAm" msprop:Generator_ColumnVarNameInTable="columnErstelltAm" msprop:Generator_ColumnPropNameInRow="ErstelltAm" msprop:Generator_ColumnPropNameInTable="ErstelltAmColumn" msprop:Generator_UserColumnName="ErstelltAm" type="xs:dateTime" />
+              <xs:element name="Firma" msprop:Generator_ColumnVarNameInTable="columnFirma" msprop:Generator_ColumnPropNameInRow="Firma" msprop:Generator_ColumnPropNameInTable="FirmaColumn" msprop:Generator_UserColumnName="Firma" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Vorname" msprop:Generator_ColumnVarNameInTable="columnVorname" msprop:Generator_ColumnPropNameInRow="Vorname" msprop:Generator_ColumnPropNameInTable="VornameColumn" msprop:Generator_UserColumnName="Vorname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Kundengruppe" msprop:Generator_ColumnVarNameInTable="columnKundengruppe" msprop:Generator_ColumnPropNameInRow="Kundengruppe" msprop:Generator_ColumnPropNameInTable="KundengruppeColumn" msprop:Generator_UserColumnName="Kundengruppe" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Preisliste" msprop:Generator_ColumnVarNameInTable="columnPreisliste" msprop:Generator_ColumnPropNameInRow="Preisliste" msprop:Generator_ColumnPropNameInTable="PreislisteColumn" msprop:Generator_UserColumnName="Preisliste" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Land" msprop:Generator_ColumnVarNameInTable="columnLand" msprop:Generator_ColumnPropNameInRow="Land" msprop:Generator_ColumnPropNameInTable="LandColumn" msprop:Generator_UserColumnName="Land" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLZ" msprop:Generator_ColumnVarNameInTable="columnPLZ" msprop:Generator_ColumnPropNameInRow="PLZ" msprop:Generator_ColumnPropNameInTable="PLZColumn" msprop:Generator_UserColumnName="PLZ" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ort" msprop:Generator_ColumnVarNameInTable="columnOrt" msprop:Generator_ColumnPropNameInRow="Ort" msprop:Generator_ColumnPropNameInTable="OrtColumn" msprop:Generator_UserColumnName="Ort" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -2064,6 +2302,11 @@ WHERE        (ID = @Original_ID)</CommandText>
     </xs:unique>
     <xs:unique name="buchvorgangtyp_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:buchvorgangtyp" />
+      <xs:field xpath="mstns:Typ" />
+    </xs:unique>
+    <xs:unique name="buchVorgangListe_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:buchVorgangListe" />
+      <xs:field xpath="mstns:Nummer" />
       <xs:field xpath="mstns:Typ" />
     </xs:unique>
     <xs:keyref name="buchVorgang-artikel_ibfk_1" refer="buchvorgang_Constraint1" msprop:rel_Generator_UserChildTable="buchvorgang-artikel" msprop:rel_Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:rel_Generator_ParentPropName="buchvorgangRowParent" msprop:rel_Generator_UserRelationName="buchVorgang-artikel_ibfk_1" msprop:rel_Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_1" msprop:rel_Generator_UserParentTable="buchvorgang">

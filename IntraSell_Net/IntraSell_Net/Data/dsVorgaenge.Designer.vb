@@ -49,6 +49,8 @@ Partial Public Class dsVorgaenge
     
     Private tablebuchvorgangtyp As buchvorgangtypDataTable
     
+    Private tablebuchVorgangListe As buchVorgangListeDataTable
+    
     Private _relationbuchVorgang_artikel_ibfk_1 As Global.System.Data.DataRelation
     
     Private _relationbuchrech_artikel_ibfk_1 As Global.System.Data.DataRelation
@@ -123,6 +125,9 @@ Partial Public Class dsVorgaenge
             End If
             If (Not (ds.Tables("buchvorgangtyp")) Is Nothing) Then
                 MyBase.Tables.Add(New buchvorgangtypDataTable(ds.Tables("buchvorgangtyp")))
+            End If
+            If (Not (ds.Tables("buchVorgangListe")) Is Nothing) Then
+                MyBase.Tables.Add(New buchVorgangListeDataTable(ds.Tables("buchVorgangListe")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -263,6 +268,16 @@ Partial Public Class dsVorgaenge
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property buchVorgangListe() As buchVorgangListeDataTable
+        Get
+            Return Me.tablebuchVorgangListe
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -363,6 +378,9 @@ Partial Public Class dsVorgaenge
             End If
             If (Not (ds.Tables("buchvorgangtyp")) Is Nothing) Then
                 MyBase.Tables.Add(New buchvorgangtypDataTable(ds.Tables("buchvorgangtyp")))
+            End If
+            If (Not (ds.Tables("buchVorgangListe")) Is Nothing) Then
+                MyBase.Tables.Add(New buchVorgangListeDataTable(ds.Tables("buchVorgangListe")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -468,6 +486,12 @@ Partial Public Class dsVorgaenge
                 Me.tablebuchvorgangtyp.InitVars
             End If
         End If
+        Me.tablebuchVorgangListe = CType(MyBase.Tables("buchVorgangListe"),buchVorgangListeDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablebuchVorgangListe) Is Nothing) Then
+                Me.tablebuchVorgangListe.InitVars
+            End If
+        End If
         Me._relationbuchVorgang_artikel_ibfk_1 = Me.Relations("buchVorgang-artikel_ibfk_1")
         Me._relationbuchrech_artikel_ibfk_1 = Me.Relations("buchrech-artikel_ibfk_1")
         Me._relationbuchrech_artikel_ibfk_2 = Me.Relations("buchrech-artikel_ibfk_2")
@@ -507,6 +531,8 @@ Partial Public Class dsVorgaenge
         MyBase.Tables.Add(Me._tablebuchvorgang_artikel)
         Me.tablebuchvorgangtyp = New buchvorgangtypDataTable()
         MyBase.Tables.Add(Me.tablebuchvorgangtyp)
+        Me.tablebuchVorgangListe = New buchVorgangListeDataTable()
+        MyBase.Tables.Add(Me.tablebuchVorgangListe)
         Dim fkc As Global.System.Data.ForeignKeyConstraint
         fkc = New Global.System.Data.ForeignKeyConstraint("buchVorgang-artikel_ibfk_1", New Global.System.Data.DataColumn() {Me.tablebuchvorgang.NummerColumn, Me.tablebuchvorgang.TypColumn}, New Global.System.Data.DataColumn() {Me._tablebuchvorgang_artikel.NummerColumn, Me._tablebuchvorgang_artikel.TypColumn})
         Me._tablebuchvorgang_artikel.Constraints.Add(fkc)
@@ -594,6 +620,12 @@ Partial Public Class dsVorgaenge
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Function ShouldSerializebuchvorgangtyp() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializebuchVorgangListe() As Boolean
         Return false
     End Function
     
@@ -690,6 +722,9 @@ Partial Public Class dsVorgaenge
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub buchvorgangtypRowChangeEventHandler(ByVal sender As Object, ByVal e As buchvorgangtypRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub buchVorgangListeRowChangeEventHandler(ByVal sender As Object, ByVal e As buchVorgangListeRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -5985,6 +6020,727 @@ Partial Public Class dsVorgaenge
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class buchVorgangListeDataTable
+        Inherits Global.System.Data.TypedTableBase(Of buchVorgangListeRow)
+        
+        Private columnNummer As Global.System.Data.DataColumn
+        
+        Private columnTyp As Global.System.Data.DataColumn
+        
+        Private columnKundNr As Global.System.Data.DataColumn
+        
+        Private columnDatum As Global.System.Data.DataColumn
+        
+        Private columnNotiz As Global.System.Data.DataColumn
+        
+        Private columnNotizIntern As Global.System.Data.DataColumn
+        
+        Private columnNotizExtern As Global.System.Data.DataColumn
+        
+        Private columnSumme As Global.System.Data.DataColumn
+        
+        Private columnBezahlt As Global.System.Data.DataColumn
+        
+        Private columnAusgedruckt As Global.System.Data.DataColumn
+        
+        Private columnAbgeschlossen As Global.System.Data.DataColumn
+        
+        Private columnZahlungsbedungung As Global.System.Data.DataColumn
+        
+        Private columnTransportMethode As Global.System.Data.DataColumn
+        
+        Private columnZahlungsMethode As Global.System.Data.DataColumn
+        
+        Private columnWoher As Global.System.Data.DataColumn
+        
+        Private columnWohin As Global.System.Data.DataColumn
+        
+        Private columnStatus As Global.System.Data.DataColumn
+        
+        Private columnSummeMWST As Global.System.Data.DataColumn
+        
+        Private columnSummeBrutto As Global.System.Data.DataColumn
+        
+        Private columnLieferantNr As Global.System.Data.DataColumn
+        
+        Private columnMitarbeiterNr As Global.System.Data.DataColumn
+        
+        Private columnKundNr2 As Global.System.Data.DataColumn
+        
+        Private columnWaehrung As Global.System.Data.DataColumn
+        
+        Private columnErstelltAm As Global.System.Data.DataColumn
+        
+        Private columnFirma As Global.System.Data.DataColumn
+        
+        Private columnName As Global.System.Data.DataColumn
+        
+        Private columnVorname As Global.System.Data.DataColumn
+        
+        Private columnKundengruppe As Global.System.Data.DataColumn
+        
+        Private columnPreisliste As Global.System.Data.DataColumn
+        
+        Private columnLand As Global.System.Data.DataColumn
+        
+        Private columnPLZ As Global.System.Data.DataColumn
+        
+        Private columnOrt As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "buchVorgangListe"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NummerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNummer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TypColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTyp
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KundNrColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKundNr
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DatumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDatum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NotizColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNotiz
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NotizInternColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNotizIntern
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NotizExternColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNotizExtern
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SummeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSumme
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BezahltColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBezahlt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AusgedrucktColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAusgedruckt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AbgeschlossenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAbgeschlossen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZahlungsbedungungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZahlungsbedungung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TransportMethodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTransportMethode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZahlungsMethodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZahlungsMethode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WoherColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWoher
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WohinColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWohin
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStatus
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SummeMWSTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSummeMWST
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SummeBruttoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSummeBrutto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LieferantNrColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLieferantNr
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MitarbeiterNrColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMitarbeiterNr
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KundNr2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKundNr2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WaehrungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWaehrung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ErstelltAmColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnErstelltAm
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FirmaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFirma
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property VornameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVorname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KundengruppeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKundengruppe
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PreislisteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPreisliste
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LandColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLand
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PLZColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPLZ
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OrtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOrt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As buchVorgangListeRow
+            Get
+                Return CType(Me.Rows(index),buchVorgangListeRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event buchVorgangListeRowChanging As buchVorgangListeRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event buchVorgangListeRowChanged As buchVorgangListeRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event buchVorgangListeRowDeleting As buchVorgangListeRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event buchVorgangListeRowDeleted As buchVorgangListeRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddbuchVorgangListeRow(ByVal row As buchVorgangListeRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddbuchVorgangListeRow( _
+                    ByVal Nummer As Integer,  _
+                    ByVal Typ As String,  _
+                    ByVal KundNr As Integer,  _
+                    ByVal Datum As Date,  _
+                    ByVal Notiz As String,  _
+                    ByVal NotizIntern As String,  _
+                    ByVal NotizExtern As String,  _
+                    ByVal Summe As Decimal,  _
+                    ByVal Bezahlt As Boolean,  _
+                    ByVal Ausgedruckt As Boolean,  _
+                    ByVal Abgeschlossen As Boolean,  _
+                    ByVal Zahlungsbedungung As String,  _
+                    ByVal TransportMethode As String,  _
+                    ByVal ZahlungsMethode As String,  _
+                    ByVal Woher As String,  _
+                    ByVal Wohin As String,  _
+                    ByVal Status As String,  _
+                    ByVal SummeMWST As Decimal,  _
+                    ByVal SummeBrutto As Decimal,  _
+                    ByVal LieferantNr As Integer,  _
+                    ByVal MitarbeiterNr As Integer,  _
+                    ByVal KundNr2 As Integer,  _
+                    ByVal Waehrung As String,  _
+                    ByVal ErstelltAm As Date,  _
+                    ByVal Firma As String,  _
+                    ByVal Name As String,  _
+                    ByVal Vorname As String,  _
+                    ByVal Kundengruppe As String,  _
+                    ByVal Preisliste As String,  _
+                    ByVal Land As String,  _
+                    ByVal PLZ As String,  _
+                    ByVal Ort As String) As buchVorgangListeRow
+            Dim rowbuchVorgangListeRow As buchVorgangListeRow = CType(Me.NewRow,buchVorgangListeRow)
+            Dim columnValuesArray() As Object = New Object() {Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedungung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Firma, Name, Vorname, Kundengruppe, Preisliste, Land, PLZ, Ort}
+            rowbuchVorgangListeRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowbuchVorgangListeRow)
+            Return rowbuchVorgangListeRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByNummerTyp(ByVal Nummer As Integer, ByVal Typ As String) As buchVorgangListeRow
+            Return CType(Me.Rows.Find(New Object() {Nummer, Typ}),buchVorgangListeRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As buchVorgangListeDataTable = CType(MyBase.Clone,buchVorgangListeDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New buchVorgangListeDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnNummer = MyBase.Columns("Nummer")
+            Me.columnTyp = MyBase.Columns("Typ")
+            Me.columnKundNr = MyBase.Columns("KundNr")
+            Me.columnDatum = MyBase.Columns("Datum")
+            Me.columnNotiz = MyBase.Columns("Notiz")
+            Me.columnNotizIntern = MyBase.Columns("NotizIntern")
+            Me.columnNotizExtern = MyBase.Columns("NotizExtern")
+            Me.columnSumme = MyBase.Columns("Summe")
+            Me.columnBezahlt = MyBase.Columns("Bezahlt")
+            Me.columnAusgedruckt = MyBase.Columns("Ausgedruckt")
+            Me.columnAbgeschlossen = MyBase.Columns("Abgeschlossen")
+            Me.columnZahlungsbedungung = MyBase.Columns("Zahlungsbedungung")
+            Me.columnTransportMethode = MyBase.Columns("TransportMethode")
+            Me.columnZahlungsMethode = MyBase.Columns("ZahlungsMethode")
+            Me.columnWoher = MyBase.Columns("Woher")
+            Me.columnWohin = MyBase.Columns("Wohin")
+            Me.columnStatus = MyBase.Columns("Status")
+            Me.columnSummeMWST = MyBase.Columns("SummeMWST")
+            Me.columnSummeBrutto = MyBase.Columns("SummeBrutto")
+            Me.columnLieferantNr = MyBase.Columns("LieferantNr")
+            Me.columnMitarbeiterNr = MyBase.Columns("MitarbeiterNr")
+            Me.columnKundNr2 = MyBase.Columns("KundNr2")
+            Me.columnWaehrung = MyBase.Columns("Waehrung")
+            Me.columnErstelltAm = MyBase.Columns("ErstelltAm")
+            Me.columnFirma = MyBase.Columns("Firma")
+            Me.columnName = MyBase.Columns("Name")
+            Me.columnVorname = MyBase.Columns("Vorname")
+            Me.columnKundengruppe = MyBase.Columns("Kundengruppe")
+            Me.columnPreisliste = MyBase.Columns("Preisliste")
+            Me.columnLand = MyBase.Columns("Land")
+            Me.columnPLZ = MyBase.Columns("PLZ")
+            Me.columnOrt = MyBase.Columns("Ort")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnNummer = New Global.System.Data.DataColumn("Nummer", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNummer)
+            Me.columnTyp = New Global.System.Data.DataColumn("Typ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTyp)
+            Me.columnKundNr = New Global.System.Data.DataColumn("KundNr", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKundNr)
+            Me.columnDatum = New Global.System.Data.DataColumn("Datum", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDatum)
+            Me.columnNotiz = New Global.System.Data.DataColumn("Notiz", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNotiz)
+            Me.columnNotizIntern = New Global.System.Data.DataColumn("NotizIntern", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNotizIntern)
+            Me.columnNotizExtern = New Global.System.Data.DataColumn("NotizExtern", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNotizExtern)
+            Me.columnSumme = New Global.System.Data.DataColumn("Summe", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSumme)
+            Me.columnBezahlt = New Global.System.Data.DataColumn("Bezahlt", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBezahlt)
+            Me.columnAusgedruckt = New Global.System.Data.DataColumn("Ausgedruckt", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAusgedruckt)
+            Me.columnAbgeschlossen = New Global.System.Data.DataColumn("Abgeschlossen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAbgeschlossen)
+            Me.columnZahlungsbedungung = New Global.System.Data.DataColumn("Zahlungsbedungung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZahlungsbedungung)
+            Me.columnTransportMethode = New Global.System.Data.DataColumn("TransportMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTransportMethode)
+            Me.columnZahlungsMethode = New Global.System.Data.DataColumn("ZahlungsMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZahlungsMethode)
+            Me.columnWoher = New Global.System.Data.DataColumn("Woher", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWoher)
+            Me.columnWohin = New Global.System.Data.DataColumn("Wohin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWohin)
+            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStatus)
+            Me.columnSummeMWST = New Global.System.Data.DataColumn("SummeMWST", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSummeMWST)
+            Me.columnSummeBrutto = New Global.System.Data.DataColumn("SummeBrutto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSummeBrutto)
+            Me.columnLieferantNr = New Global.System.Data.DataColumn("LieferantNr", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLieferantNr)
+            Me.columnMitarbeiterNr = New Global.System.Data.DataColumn("MitarbeiterNr", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMitarbeiterNr)
+            Me.columnKundNr2 = New Global.System.Data.DataColumn("KundNr2", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKundNr2)
+            Me.columnWaehrung = New Global.System.Data.DataColumn("Waehrung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWaehrung)
+            Me.columnErstelltAm = New Global.System.Data.DataColumn("ErstelltAm", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnErstelltAm)
+            Me.columnFirma = New Global.System.Data.DataColumn("Firma", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFirma)
+            Me.columnName = New Global.System.Data.DataColumn("Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnName)
+            Me.columnVorname = New Global.System.Data.DataColumn("Vorname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVorname)
+            Me.columnKundengruppe = New Global.System.Data.DataColumn("Kundengruppe", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKundengruppe)
+            Me.columnPreisliste = New Global.System.Data.DataColumn("Preisliste", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPreisliste)
+            Me.columnLand = New Global.System.Data.DataColumn("Land", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLand)
+            Me.columnPLZ = New Global.System.Data.DataColumn("PLZ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPLZ)
+            Me.columnOrt = New Global.System.Data.DataColumn("Ort", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOrt)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnNummer, Me.columnTyp}, true))
+            Me.columnNummer.AllowDBNull = false
+            Me.columnTyp.AllowDBNull = false
+            Me.columnTyp.MaxLength = 2
+            Me.columnKundNr.AllowDBNull = false
+            Me.columnDatum.AllowDBNull = false
+            Me.columnNotiz.MaxLength = 2000
+            Me.columnNotizIntern.MaxLength = 2000
+            Me.columnNotizExtern.MaxLength = 2000
+            Me.columnBezahlt.AllowDBNull = false
+            Me.columnAusgedruckt.AllowDBNull = false
+            Me.columnAbgeschlossen.AllowDBNull = false
+            Me.columnZahlungsbedungung.MaxLength = 250
+            Me.columnTransportMethode.MaxLength = 250
+            Me.columnZahlungsMethode.MaxLength = 250
+            Me.columnWoher.MaxLength = 250
+            Me.columnWohin.MaxLength = 250
+            Me.columnStatus.MaxLength = 50
+            Me.columnWaehrung.MaxLength = 3
+            Me.columnErstelltAm.AllowDBNull = false
+            Me.columnFirma.MaxLength = 255
+            Me.columnName.MaxLength = 50
+            Me.columnVorname.MaxLength = 50
+            Me.columnKundengruppe.MaxLength = 50
+            Me.columnPreisliste.MaxLength = 50
+            Me.columnLand.MaxLength = 50
+            Me.columnPLZ.MaxLength = 20
+            Me.columnOrt.MaxLength = 255
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewbuchVorgangListeRow() As buchVorgangListeRow
+            Return CType(Me.NewRow,buchVorgangListeRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New buchVorgangListeRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(buchVorgangListeRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.buchVorgangListeRowChangedEvent) Is Nothing) Then
+                RaiseEvent buchVorgangListeRowChanged(Me, New buchVorgangListeRowChangeEvent(CType(e.Row,buchVorgangListeRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.buchVorgangListeRowChangingEvent) Is Nothing) Then
+                RaiseEvent buchVorgangListeRowChanging(Me, New buchVorgangListeRowChangeEvent(CType(e.Row,buchVorgangListeRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.buchVorgangListeRowDeletedEvent) Is Nothing) Then
+                RaiseEvent buchVorgangListeRowDeleted(Me, New buchVorgangListeRowChangeEvent(CType(e.Row,buchVorgangListeRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.buchVorgangListeRowDeletingEvent) Is Nothing) Then
+                RaiseEvent buchVorgangListeRowDeleting(Me, New buchVorgangListeRowChangeEvent(CType(e.Row,buchVorgangListeRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemovebuchVorgangListeRow(ByVal row As buchVorgangListeRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As dsVorgaenge = New dsVorgaenge()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "buchVorgangListeDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class buchrechnungRow
@@ -9805,6 +10561,758 @@ Partial Public Class dsVorgaenge
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class buchVorgangListeRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablebuchVorgangListe As buchVorgangListeDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablebuchVorgangListe = CType(Me.Table,buchVorgangListeDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Nummer() As Integer
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.NummerColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.NummerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Typ() As String
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.TypColumn),String)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.TypColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property KundNr() As Integer
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.KundNrColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.KundNrColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Datum() As Date
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.DatumColumn),Date)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.DatumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Notiz() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.NotizColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Notiz' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.NotizColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NotizIntern() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.NotizInternColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NotizIntern' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.NotizInternColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NotizExtern() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.NotizExternColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NotizExtern' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.NotizExternColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Summe() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.SummeColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Summe' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.SummeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Bezahlt() As Boolean
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.BezahltColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.BezahltColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Ausgedruckt() As Boolean
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.AusgedrucktColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.AusgedrucktColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Abgeschlossen() As Boolean
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.AbgeschlossenColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.AbgeschlossenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Zahlungsbedungung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Zahlungsbedungung' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property TransportMethode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.TransportMethodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TransportMethode' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.TransportMethodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ZahlungsMethode() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.ZahlungsMethodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ZahlungsMethode' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.ZahlungsMethodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Woher() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.WoherColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Woher' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.WoherColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Wohin() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.WohinColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Wohin' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.WohinColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.StatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SummeMWST() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.SummeMWSTColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SummeMWST' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.SummeMWSTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SummeBrutto() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.SummeBruttoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SummeBrutto' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.SummeBruttoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property LieferantNr() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.LieferantNrColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LieferantNr' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.LieferantNrColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MitarbeiterNr() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.MitarbeiterNrColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MitarbeiterNr' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.MitarbeiterNrColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property KundNr2() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.KundNr2Column),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'KundNr2' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.KundNr2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Waehrung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.WaehrungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Waehrung' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.WaehrungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ErstelltAm() As Date
+            Get
+                Return CType(Me(Me.tablebuchVorgangListe.ErstelltAmColumn),Date)
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.ErstelltAmColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Firma() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.FirmaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Firma' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.FirmaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Name' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Vorname() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.VornameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Vorname' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.VornameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Kundengruppe() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.KundengruppeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Kundengruppe' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.KundengruppeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Preisliste() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.PreislisteColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Preisliste' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.PreislisteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Land() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.LandColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Land' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.LandColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PLZ() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.PLZColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZ' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.PLZColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Ort() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablebuchVorgangListe.OrtColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Ort' in table 'buchVorgangListe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablebuchVorgangListe.OrtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNotizNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.NotizColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNotizNull()
+            Me(Me.tablebuchVorgangListe.NotizColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNotizInternNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.NotizInternColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNotizInternNull()
+            Me(Me.tablebuchVorgangListe.NotizInternColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNotizExternNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.NotizExternColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNotizExternNull()
+            Me(Me.tablebuchVorgangListe.NotizExternColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSummeNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.SummeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSummeNull()
+            Me(Me.tablebuchVorgangListe.SummeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZahlungsbedungungNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.ZahlungsbedungungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZahlungsbedungungNull()
+            Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTransportMethodeNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.TransportMethodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTransportMethodeNull()
+            Me(Me.tablebuchVorgangListe.TransportMethodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZahlungsMethodeNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.ZahlungsMethodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZahlungsMethodeNull()
+            Me(Me.tablebuchVorgangListe.ZahlungsMethodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWoherNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.WoherColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWoherNull()
+            Me(Me.tablebuchVorgangListe.WoherColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWohinNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.WohinColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWohinNull()
+            Me(Me.tablebuchVorgangListe.WohinColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsStatusNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetStatusNull()
+            Me(Me.tablebuchVorgangListe.StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSummeMWSTNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.SummeMWSTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSummeMWSTNull()
+            Me(Me.tablebuchVorgangListe.SummeMWSTColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSummeBruttoNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.SummeBruttoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSummeBruttoNull()
+            Me(Me.tablebuchVorgangListe.SummeBruttoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsLieferantNrNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.LieferantNrColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetLieferantNrNull()
+            Me(Me.tablebuchVorgangListe.LieferantNrColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMitarbeiterNrNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.MitarbeiterNrColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMitarbeiterNrNull()
+            Me(Me.tablebuchVorgangListe.MitarbeiterNrColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsKundNr2Null() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.KundNr2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetKundNr2Null()
+            Me(Me.tablebuchVorgangListe.KundNr2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWaehrungNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.WaehrungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWaehrungNull()
+            Me(Me.tablebuchVorgangListe.WaehrungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFirmaNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.FirmaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFirmaNull()
+            Me(Me.tablebuchVorgangListe.FirmaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNameNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNameNull()
+            Me(Me.tablebuchVorgangListe.NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsVornameNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.VornameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetVornameNull()
+            Me(Me.tablebuchVorgangListe.VornameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsKundengruppeNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.KundengruppeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetKundengruppeNull()
+            Me(Me.tablebuchVorgangListe.KundengruppeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPreislisteNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.PreislisteColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPreislisteNull()
+            Me(Me.tablebuchVorgangListe.PreislisteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsLandNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.LandColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetLandNull()
+            Me(Me.tablebuchVorgangListe.LandColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPLZNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.PLZColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPLZNull()
+            Me(Me.tablebuchVorgangListe.PLZColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsOrtNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.OrtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetOrtNull()
+            Me(Me.tablebuchVorgangListe.OrtColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -10222,6 +11730,42 @@ Partial Public Class dsVorgaenge
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As buchvorgangtypRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class buchVorgangListeRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As buchVorgangListeRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As buchVorgangListeRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As buchVorgangListeRow
             Get
                 Return Me.eventRow
             End Get
@@ -23633,6 +25177,324 @@ Namespace dsVorgaengeTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class buchVorgangListeTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+        
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
+        
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
+        
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "buchVorgangListe"
+            tableMapping.ColumnMappings.Add("Nummer", "Nummer")
+            tableMapping.ColumnMappings.Add("Typ", "Typ")
+            tableMapping.ColumnMappings.Add("KundNr", "KundNr")
+            tableMapping.ColumnMappings.Add("Datum", "Datum")
+            tableMapping.ColumnMappings.Add("Notiz", "Notiz")
+            tableMapping.ColumnMappings.Add("NotizIntern", "NotizIntern")
+            tableMapping.ColumnMappings.Add("NotizExtern", "NotizExtern")
+            tableMapping.ColumnMappings.Add("Summe", "Summe")
+            tableMapping.ColumnMappings.Add("Bezahlt", "Bezahlt")
+            tableMapping.ColumnMappings.Add("Ausgedruckt", "Ausgedruckt")
+            tableMapping.ColumnMappings.Add("Abgeschlossen", "Abgeschlossen")
+            tableMapping.ColumnMappings.Add("Zahlungsbedungung", "Zahlungsbedungung")
+            tableMapping.ColumnMappings.Add("TransportMethode", "TransportMethode")
+            tableMapping.ColumnMappings.Add("ZahlungsMethode", "ZahlungsMethode")
+            tableMapping.ColumnMappings.Add("Woher", "Woher")
+            tableMapping.ColumnMappings.Add("Wohin", "Wohin")
+            tableMapping.ColumnMappings.Add("Status", "Status")
+            tableMapping.ColumnMappings.Add("SummeMWST", "SummeMWST")
+            tableMapping.ColumnMappings.Add("SummeBrutto", "SummeBrutto")
+            tableMapping.ColumnMappings.Add("LieferantNr", "LieferantNr")
+            tableMapping.ColumnMappings.Add("MitarbeiterNr", "MitarbeiterNr")
+            tableMapping.ColumnMappings.Add("KundNr2", "KundNr2")
+            tableMapping.ColumnMappings.Add("Waehrung", "Waehrung")
+            tableMapping.ColumnMappings.Add("ErstelltAm", "ErstelltAm")
+            tableMapping.ColumnMappings.Add("Firma", "Firma")
+            tableMapping.ColumnMappings.Add("Name", "Name")
+            tableMapping.ColumnMappings.Add("Vorname", "Vorname")
+            tableMapping.ColumnMappings.Add("Kundengruppe", "Kundengruppe")
+            tableMapping.ColumnMappings.Add("Preisliste", "Preisliste")
+            tableMapping.ColumnMappings.Add("Land", "Land")
+            tableMapping.ColumnMappings.Add("PLZ", "PLZ")
+            tableMapping.ColumnMappings.Add("Ort", "Ort")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgan"& _ 
+                "g.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Aus"& _ 
+                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvo"& _ 
+                "rgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorg"& _ 
+                "ang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.Erstel"& _ 
+                "ltAm, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Firma, ofadressen.Name, ofadressen.V"& _ 
+                "orname, `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste, gr"& _ 
+                "land.Name AS Land, grplz.PLZ, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz.Ort"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        "& _ 
+                "    buchvorgangtyp INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchvorgang ON buchvorga"& _ 
+                "ngtyp.Typ = buchvorgang.Typ INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `buchvorgang-ar"& _ 
+                "tikel` ON buchvorgang.Nummer = `buchvorgang-artikel`.Nummer AND buchvorgang.Typ "& _ 
+                "= `buchvorgang-artikel`.Typ INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen ON b"& _ 
+                "uchvorgang.KundNr = ofadressen.IDNR INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grland "& _ 
+                "ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr AND ofadresse"& _ 
+                "n.Land = grland.IdNr INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz ON ofadressen.PL"& _ 
+                "Z = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da"& _ 
+                "tum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "                     buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedr"& _ 
+                "uckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "           buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgan"& _ 
+                "g.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang."& _ 
+                "MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm"& _ 
+                ", "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorna"& _ 
+                "me, `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste, grland"& _ 
+                ".Name, grplz.PLZ, grplz.Ort"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsVorgaenge.buchVorgangListeDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As dsVorgaenge.buchVorgangListeDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As dsVorgaenge.buchVorgangListeDataTable = New dsVorgaenge.buchVorgangListeDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class buchVorgangListeQuery
+        Inherits Global.System.ComponentModel.Component
+        
+        Private _commandCollection() As Global.System.Data.IDbCommand
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.IDbCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.IDbCommand(0) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = New Global.MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).CommandText = "SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgan"& _ 
+                "g.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Aus"& _ 
+                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvo"& _ 
+                "rgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorg"& _ 
+                "ang.MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.Erstel"& _ 
+                "ltAm, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Firma, ofadressen.Name, ofadressen.V"& _ 
+                "orname"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            buchvorgangtyp INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buch"& _ 
+                "vorgang ON buchvorgangtyp.Typ = buchvorgang.Typ INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     `buchvorgang-artikel` ON buchvorgang.Nummer = `buchvorgang-artikel`.Nummer "& _ 
+                "AND buchvorgang.Typ = `buchvorgang-artikel`.Typ INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     ofadressen ON buchvorgang.KundNr = ofadressen.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY buchvorgang.Nu"& _ 
+                "mmer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz,"& _ 
+                " buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         bu"& _ 
+                "chvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abges"& _ 
+                "chlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchvorgang."& _ 
+                "TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wo"& _ 
+                "hin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchv"& _ 
+                "organg.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorg"& _ 
+                "ang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "      ofadressen.Firma, ofadressen.Name, ofadressen.Vorname"
+            CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function ScalarQuery() As Global.System.Nullable(Of Integer)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = CType(Me.CommandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return New Global.System.Nullable(Of Integer)()
+            Else
+                Return New Global.System.Nullable(Of Integer)(CType(returnValue,Integer))
+            End If
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -24015,15 +25877,6 @@ Namespace dsVorgaengeTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._buchrech_artikelTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._buchvorgangeigenschaftTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.buchvorgangeigenschaft.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -24042,21 +25895,12 @@ Namespace dsVorgaengeTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._buchvorgaengeausdruckeTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeausdrucke.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeausdruckeTableAdapter.Update(updatedRows))
+                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -24069,12 +25913,21 @@ Namespace dsVorgaengeTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(updatedRows))
+                    result = (result + Me._buchrech_artikelTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgaengeausdruckeTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeausdrucke.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeausdruckeTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -24084,6 +25937,15 @@ Namespace dsVorgaengeTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._buchvorgaengestatusTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -24129,14 +25991,6 @@ Namespace dsVorgaengeTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._buchrech_artikelTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._buchvorgangeigenschaftTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.buchvorgangeigenschaft.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -24153,19 +26007,11 @@ Namespace dsVorgaengeTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._buchvorgaengeausdruckeTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeausdrucke.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeausdruckeTableAdapter.Update(addedRows))
+                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -24177,11 +26023,19 @@ Namespace dsVorgaengeTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(addedRows))
+                    result = (result + Me._buchrech_artikelTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgaengeausdruckeTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeausdrucke.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeausdruckeTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -24190,6 +26044,14 @@ Namespace dsVorgaengeTableAdapters
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._buchvorgaengestatusTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -24203,27 +26065,19 @@ Namespace dsVorgaengeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As dsVorgaenge, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._buchvorgaengestatusTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengestatus.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._buchvorgaengestatusTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._buchvorgaengeTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.buchvorgaenge.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -24235,11 +26089,27 @@ Namespace dsVorgaengeTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._buchvorgaengeeigenschaftenTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.buchvorgaengeeigenschaften.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._buchvorgaengeeigenschaftenTableAdapter.Update(deletedRows))
+                    result = (result + Me._buchrech_artikelTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgaengeTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.buchvorgaenge.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._buchvorgaengeTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._buchvorgang_artikeldetaillagerTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet._buchvorgang_artikeldetaillager.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._buchvorgang_artikeldetaillagerTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -24256,14 +26126,6 @@ Namespace dsVorgaengeTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._buchvorgangeigenschaftTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._buchrech_artikelTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet._buchrech_artikel.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._buchrech_artikelTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If

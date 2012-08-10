@@ -13,7 +13,7 @@
     End Sub
 
     Private Sub ListeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem.Click
-        Dim f As Kundenliste = New Kundenliste
+        Dim f As VorgangListe = New VorgangListe
         f.MdiParent = Me
         f.Show()
     End Sub
@@ -31,8 +31,14 @@
     End Sub
 
     Private Sub VorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangToolStripMenuItem.Click
-        Rechnung.MdiParent = Me
-        Rechnung.Show()
+        Vorgang.MdiParent = Me
+        Vorgang.Show()
+    End Sub
+
+
+    Private Sub VorganglisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorganglisteToolStripMenuItem.Click
+        VorgangListe.MdiParent = Me
+        VorgangListe.Show()
     End Sub
 
     Private Sub ÜberIntraSellToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ÜberIntraSellToolStripMenuItem.Click
@@ -42,6 +48,5 @@
     Private Sub BeendenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
     End Sub
-
-
+ 
 End Class
