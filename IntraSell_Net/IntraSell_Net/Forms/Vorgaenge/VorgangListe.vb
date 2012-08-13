@@ -75,7 +75,6 @@
                 End If
             End If
 
-
             If Me.LandComboBox.Text.Length > 0 Then
                 filter = filter & " and Land Like '" + LandComboBox.Text + "%'"
             End If
@@ -94,6 +93,25 @@
             If Me.PreislisteComboBox.Text.Length > 0 Then
                 filter = filter & " and Preisliste Like '" + PreislisteComboBox.Text + "%'"
             End If
+
+            If Me.BezahltCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and bezahlt=True"
+            ElseIf Me.BezahltCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and bezahlt=False"
+            End If
+
+            If Me.AbgeschlossenCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and abgeschlossen=True"
+            ElseIf Me.AbgeschlossenCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and abgeschlossen=False"
+            End If
+
+            If Me.AusgedrucktCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and ausgedruckt=True"
+            ElseIf Me.AusgedrucktCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and ausgedruckt=False"
+            End If
+
 
             If Not filter Is Nothing Then
                 BuchVorgangListeBindingSource.Filter = filter
