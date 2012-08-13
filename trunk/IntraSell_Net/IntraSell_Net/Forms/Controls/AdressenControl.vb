@@ -1,5 +1,15 @@
 ﻿Public Class AdressenControl
-    Public IDNR As Integer
+    Private _IDNR As Integer
+
+    Public Property IDNR() As Integer
+        Get
+            Return _IDNR
+        End Get
+        Set(value As Integer)
+            _IDNR = value
+            Me.AdressenComboBox.SelectedValue = _IDNR
+        End Set
+    End Property
 
     Private Sub ArtikelControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         FillComboBox(Me.AdressenComboBox, "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma", "Adr", "IDNR")
