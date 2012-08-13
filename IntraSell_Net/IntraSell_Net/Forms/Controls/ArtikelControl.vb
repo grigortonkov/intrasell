@@ -1,5 +1,15 @@
 ﻿Public Class ArtikelControl
-    Public ArtNr As Integer
+    Private _ArtNr As Integer
+
+    Public Property ArtNr() As Integer
+        Get
+            Return _ArtNr
+        End Get
+        Set(value As Integer)
+            _ArtNr = value
+            Me.ArtikelComboBox.SelectedValue = _ArtNr
+        End Set
+    End Property
 
     Private Sub ArtikelControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         FillComboBox(Me.ArtikelComboBox, "SELECT ArtNr, concat(EAN, ' - ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN", "Art", "ArtNr")

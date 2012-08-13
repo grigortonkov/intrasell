@@ -118,6 +118,18 @@
     <Compile Include="Forms\Controls\ArtikelSelector.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Controls\AdressenControl.Designer.vb">
+      <DependentUpon>AdressenControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenSelector.Designer.vb">
+      <DependentUpon>AdressenSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\TextBoxLink.Designer.vb">
       <DependentUpon>TextBoxLink.vb</DependentUpon>
     </Compile>
@@ -224,6 +236,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\ArtikelSelector.resx">
       <DependentUpon>ArtikelSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenControl.resx">
+      <DependentUpon>AdressenControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenSelector.resx">
+      <DependentUpon>AdressenSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\About.resx">
       <DependentUpon>About.vb</DependentUpon>
