@@ -206,6 +206,11 @@
     <Compile Include="Forms\Vorgaenge\Vorgang.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\Functions.vb" />
+    <Compile Include="Modules\FunctionsDemoVersion.vb" />
+    <Compile Include="Modules\FunctionsOnStart.vb" />
+    <Compile Include="Modules\FunctionsVars.vb" />
+    <Compile Include="Modules\ModuleBuchVorgang.vb" />
     <Compile Include="Modules\ModuleCommons.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
@@ -229,6 +234,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestFriends.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
