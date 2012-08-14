@@ -46,6 +46,8 @@
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         'neuen vorgang erstellen
+        If MessageBox.Show("Wollen Sie einen neuen Vorgang erstellen?", "Vorgang erstellen", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+        End If
 
     End Sub
  
