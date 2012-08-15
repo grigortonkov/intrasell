@@ -14,16 +14,16 @@ Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VARIABLE IN DER VARS TABELLE
     '********************************************************************
-    Public Function varValue(ByVal varName As String) As Object
+    Public Function VarValue(ByVal varName As String) As Object
         'response.write varname
         Dim SQLString As String, rs As MySqlDataReader
         SQLString = "SELECT * FROM ofVars WHERE Name='" & varName & "'"
         rs = openRecordset(SQLString)
         If Not rs.Read Then
             MsgBox("Die Variable " & varName & " ist nicht vorhanden!", MsgBoxStyle.Exclamation)
-            varValue = Nothing
+            VarValue = Nothing
         Else
-            varValue = rs.GetString("Wert")
+            VarValue = rs.GetString("Wert")
         End If
         rs.Close()
     End Function
@@ -31,13 +31,13 @@ Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VARIABLE IN DER VARS TABELLE
     '********************************************************************
-    Public Function EXISTSVARVALUE(ByVal varName As String) As Boolean
+    Public Function ExistsVarValue(ByVal varName As String) As Boolean
         'response.write varname
         Dim SQLString As String
         Dim rs As MySqlDataReader
         SQLString = "SELECT * FROM ofVars WHERE Name='" & varName & "'"
         rs = openRecordset(SQLString)
-        EXISTSVARVALUE = Not rs.Read
+        ExistsVarValue = rs.Read
         rs.Close()
     End Function
 
@@ -45,17 +45,17 @@ Module FunctionsVars
     '********************************************************************
     'AKTUALISIERT EINE VARIABLE IN DIE VARS TABELLE
     '********************************************************************
-    Public Function SETVARVALUE(ByVal varName As String, ByVal varValue As String)
-        If Not EXISTSVARVALUE(varName) Then
+    Public Function SetVarValue(ByVal varName As String, ByVal varValue As String)
+        If Not ExistsVarValue(varName) Then
             Call INSERTVARVALUE(varName, varValue)
-            SETVARVALUE = varValue
+            SetVarValue = varValue
             Exit Function
         End If
 
         Dim SQLString As String
         SQLString = "UPDATE ofVars Set Wert = '" & varValue & "' WHERE Name='" & varName & "'"
         RunSQL(SQLString)
-        SETVARVALUE = varValue
+        SetVarValue = varValue
 
     End Function
 
@@ -63,12 +63,12 @@ Module FunctionsVars
     '********************************************************************
     'FÜGT EINE VARIABLE IN DIE VARS TABELLE EIN
     '********************************************************************
-    Public Function INSERTVARVALUE(ByVal varName As String, ByVal varValue As String)
+    Public Function InsertVarValue(ByVal varName As String, ByVal varValue As String)
 
         Dim SQLString As String
         SQLString = "INSERT INTO ofVars (Id, Name, Wert) VALUES (" & nextId("ofVars", "ID", , False) & ", '" & varName & "', '" & varValue & "')"
         RunSQL(SQLString)
-        INSERTVARVALUE = varValue
+        InsertVarValue = varValue
 
     End Function
 
@@ -76,19 +76,19 @@ Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VAR OR INSERT/AKTUALISIERT IN DIE VARS TABELLE
     '********************************************************************
-    Public Function VARVALUE_DEFAULT(ByVal varName As String, ByVal defaultValue As String)
+    Public Function VarValue_Default(ByVal varName As String, ByVal defaultValue As String)
 
-        If Not EXISTSVARVALUE(varName) Then 'existiert nicht
-            SETVARVALUE(varName, defaultValue)
-            VARVALUE_DEFAULT = defaultValue
+        If Not ExistsVarValue(varName) Then 'existiert nicht
+            SetVarValue(varName, defaultValue)
+            VarValue_Default = defaultValue
         Else
-            VARVALUE_DEFAULT = varValue(varName)
+            VarValue_Default = VarValue(varName)
         End If
 
     End Function
 
     Public Function UseEAN() As Boolean
-        If varValue("BenutzeEAN") = "TRUE" Then
+        If VarValue("BenutzeEAN") = "TRUE" Then
             UseEAN = True
         Else
             UseEAN = False
@@ -106,18 +106,17 @@ Module FunctionsVars
 
         Dim rs
 
-        On Error Resume Next
         rs = openRecordset(SQLString)
         ' On Error GoTo 0
-        If err.Number > 0 Then
+        If Err.Number > 0 Then
             'MsgBox err.Description
-            Debug.Print("Error in functionsVars:firstrow; SQLString = " & SQLString & err.Description)
-            err.Clear()
+            Debug.Print("Error in functionsVars:firstrow; SQLString = " & SQLString & Err.Description)
+            Err.Clear()
             On Error GoTo 0
             Exit Function
         End If
 
-        On Error GoTo 0
+
         If rs.EOF Then
             firstRow = ""
         Else
@@ -130,7 +129,7 @@ Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VARIABLE IN EINE TABELLE
     '********************************************************************
-    Public Function TABLEVALUE(ByVal TableName As String, ByVal colName As String, ByVal varValue As String, ByVal searchField As String)
+    Public Function TableValue(ByVal TableName As String, ByVal colName As String, ByVal varValue As String, ByVal searchField As String)
 
         Dim rs
         If Trim(TableName & "") = "" Or Trim(colName & "") = "" Or Trim(varValue & "") = "" Or Trim(searchField & "") = "" Then

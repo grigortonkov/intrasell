@@ -12,8 +12,7 @@ Module ModuleCommons
             conn.Open()
         End If
 
-        Dim d As New MySql.Data.MySqlClient.MySqlCommand(sql, conn)
-
+        Dim d As New MySqlCommand(sql, conn)
         Return d.ExecuteReader()
 
     End Function
@@ -21,7 +20,7 @@ Module ModuleCommons
     'Proxy Function RunSQL  for easy conversion of old Access Code
     Function RunSQL(ByVal sql As String) As Object
 
-        Dim d As New MySql.Data.MySqlClient.MySqlCommand(sql, conn)
+        Dim d As New MySqlCommand(sql, conn)
         Return d.ExecuteScalar()
 
     End Function
