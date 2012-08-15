@@ -210,8 +210,11 @@
     <Compile Include="Modules\FunctionsDemoVersion.vb" />
     <Compile Include="Modules\FunctionsOnStart.vb" />
     <Compile Include="Modules\FunctionsVars.vb" />
+    <Compile Include="Modules\ModuleBarcode.vb" />
     <Compile Include="Modules\ModuleBuchVorgang.vb" />
     <Compile Include="Modules\ModuleCommons.vb" />
+    <Compile Include="Modules\ModuleLager.vb" />
+    <Compile Include="Modules\ModuleLog.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>
@@ -219,6 +222,7 @@
     <Compile Include="Forms\Controls\PLZSelector.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\ModulePreise.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
