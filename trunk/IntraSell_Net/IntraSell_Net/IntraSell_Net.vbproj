@@ -244,6 +244,7 @@
     <Compile Include="TestFriends.vb" />
     <Compile Include="Update\ModuleTestUnzip.vb" />
     <Compile Include="Update\ModuleUnZip.vb" />
+    <Compile Include="Update\Setup.vb" />
     <Compile Include="Update\UnzipFiles.vb" />
     <Compile Include="Update\Update.vb" />
   </ItemGroup>
