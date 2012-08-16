@@ -63,46 +63,4 @@ Module ModuleTestUnzip
         ExtractZipFile("C:\\testzip.zip", "", "c:\\test\\")
     End Sub
 
-    Public Sub ExtractZipFile(archiveFilenameIn As String, password As String, outFolder As String)
-        Dim zf As ZipFile = Nothing
-        Try
-            Dim fs As FileStream = File.OpenRead(archiveFilenameIn)
-            zf = New ZipFile(fs)
-            If Not [String].IsNullOrEmpty(password) Then    ' AES encrypted entries are handled automatically
-                zf.Password = password
-            End If
-            For Each zipEntry As ZipEntry In zf
-                If Not zipEntry.IsFile Then     ' Ignore directories
-                    Continue For
-                End If
-                Dim entryFileName As [String] = zipEntry.Name
-                ' to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
-                ' Optionally match entrynames against a selection list here to skip as desired.
-                ' The unpacked length is available in the zipEntry.Size property.
-
-                Dim buffer As Byte() = New Byte(4095) {}    ' 4K is optimum
-                Dim zipStream As Stream = zf.GetInputStream(zipEntry)
-
-                ' Manipulate the output filename here as desired.
-                Dim fullZipToPath As [String] = Path.Combine(outFolder, entryFileName)
-                Dim directoryName As String = Path.GetDirectoryName(fullZipToPath)
-                If directoryName.Length > 0 Then
-                    Directory.CreateDirectory(directoryName)
-                End If
-
-                ' Unzip file in buffered chunks. This is just as fast as unpacking to a buffer the full size
-                ' of the file, but does not waste memory.
-                ' The "Using" will close the stream even if an exception occurs.
-                Using streamWriter As FileStream = File.Create(fullZipToPath)
-                    StreamUtils.Copy(zipStream, streamWriter, buffer)
-                End Using
-            Next
-        Finally
-            If zf IsNot Nothing Then
-                zf.IsStreamOwner = True     ' Makes close also shut the underlying stream
-                ' Ensure we release resources
-                zf.Close()
-            End If
-        End Try
-    End Sub
 End Module
