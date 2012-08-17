@@ -49,4 +49,8 @@
         Me.Close()
     End Sub
  
+    Private Sub SetupToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SetupToolStripMenuItem.Click
+        Log.Show()
+        Setup.ShowDialog()
+    End Sub
 End Class

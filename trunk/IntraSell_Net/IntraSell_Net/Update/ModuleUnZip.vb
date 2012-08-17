@@ -5,6 +5,11 @@ Imports System.IO
 Module ModuleUnZip
 
     Public Sub ExtractZipFile(archiveFilenameIn As String, password As String, outFolder As String)
+        writeLog("Extract ZipFile START")
+        writeLog("archive: " + archiveFilenameIn)
+        writeLog("password: " + password)
+        writeLog("outFolder: " + outFolder)
+
         Dim zf As ZipFile = Nothing
         Try
             Dim fs As FileStream = File.OpenRead(archiveFilenameIn)
@@ -45,6 +50,7 @@ Module ModuleUnZip
                 zf.Close()
             End If
         End Try
+        writeLog("Extract ZipFile DONE")
     End Sub
 
     '    Public Structure UNZIPnames

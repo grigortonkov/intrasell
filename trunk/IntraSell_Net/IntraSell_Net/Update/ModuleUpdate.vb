@@ -1,5 +1,5 @@
 ﻿Option Explicit On
-Module Update
+Module ModuleUpdate
     ' =======================================================================
     ' MSG for translate - @ZIP se zamenq s imeto na faila avtomatichno, ne go mahai
 
@@ -13,7 +13,9 @@ Module Update
     'Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/files/update.txt" 'From Downloads
     Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update.txt" ' From SVN
     Const INTRASELL_UPDATE_DLL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/Unzip32.dll" ' From SVN
-    Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/" ' "http://intrasell.googlecode.com/files/"
+    Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/"
+    Public Const INTRASELL_MYSQL_BINARIES = "http://intrasell.googlecode.com/svn/trunk/IntraSell_Net/MySql/MySQL Server 5.1.zip" ' From SVN
+
     ' =======================================================================
 
     Private Declare Function URLDownloadToFile Lib "urlmon" _
@@ -65,6 +67,7 @@ Module Update
             Dim _WebClient As New System.Net.WebClient()
             ' Downloads the resource with the specified URI to a local file.
             _WebClient.DownloadFile(sSourceUrl, sLocalFile)
+            Call writeLog("DownloadFile end")
         Catch _Exception As Exception
             ' Error
             Console.WriteLine("Exception caught in process: {0}", _Exception.ToString())
