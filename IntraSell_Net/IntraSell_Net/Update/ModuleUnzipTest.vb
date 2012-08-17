@@ -2,7 +2,7 @@
 Imports ICSharpCode.SharpZipLib.Zip
 Imports System.IO
 
-Module ModuleTestUnzip
+Module ModuleUnzipTest
     'Sub Unzip0()
 
     '    'CreateEmptyZip("c:\testzip.zip")

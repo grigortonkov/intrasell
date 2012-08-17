@@ -2,6 +2,10 @@
 Module Functions
 
 
+    Function GetAppPath() As String
+        Return Application.ExecutablePath.Replace("IntraSell_Net.EXE", "")
+    End Function
+
     'returns the next value from the table and field
     'Update for MxSQL to get not duplicate KEY
     Public Function nextId(ByVal TableName As String, ByVal FieldName As String, Optional optionalWhere As String = "", Optional concurencyCheck As Boolean = True) As Long

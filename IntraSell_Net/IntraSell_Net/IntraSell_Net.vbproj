@@ -166,10 +166,22 @@
     <Compile Include="Forms\Infrastructure\AbstractForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Infrastructure\Log.Designer.vb">
+      <DependentUpon>Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Infrastructure\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Infrastructure\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Setup.Designer.vb">
+      <DependentUpon>Setup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Setup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Kunden\FormKunden.Designer.vb">
@@ -242,11 +254,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TestFriends.vb" />
-    <Compile Include="Update\ModuleTestUnzip.vb" />
+    <Compile Include="Update\ModuleUnzipTest.vb" />
     <Compile Include="Update\ModuleUnZip.vb" />
-    <Compile Include="Update\Setup.vb" />
-    <Compile Include="Update\UnzipFiles.vb" />
-    <Compile Include="Update\Update.vb" />
+    <Compile Include="Update\ModuleSetup.vb" />
+    <Compile Include="Update\ModuleUnzipFiles.vb" />
+    <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
@@ -267,8 +279,14 @@
     <EmbeddedResource Include="Forms\Infrastructure\AbstractForm.resx">
       <DependentUpon>AbstractForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Log.resx">
+      <DependentUpon>Log.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Setup.resx">
+      <DependentUpon>Setup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden\FormKunden.resx">
       <DependentUpon>FormKunden.vb</DependentUpon>
