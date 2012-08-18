@@ -66,7 +66,7 @@ Module ModuleCommons
 
     Sub OpenForm(ByRef formName As String)
         'TODO 
-        MsgBox("Nicht implementiert!")
+        'MsgBox("Nicht implementiert!")
     End Sub
     Public Function testRS() As Object
         conn.Open()

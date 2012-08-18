@@ -101,6 +101,8 @@ Partial Class Artikel
         Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
         Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Grartikel_kategorienBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Grartikel_kategorienTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grartikel_kategorienTableAdapter()
         ArtNrLabel = New System.Windows.Forms.Label()
         EANLabel = New System.Windows.Forms.Label()
         BarcodeLabel = New System.Windows.Forms.Label()
@@ -132,6 +134,7 @@ Partial Class Artikel
         CType(Me.GrartikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GrartikelBindingNavigator.SuspendLayout()
+        CType(Me.Grartikel_kategorienBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ArtNrLabel
@@ -421,7 +424,7 @@ Partial Class Artikel
         Me.GrartikelBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.GrartikelBindingNavigator.Name = "GrartikelBindingNavigator"
         Me.GrartikelBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(854, 25)
+        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(875, 25)
         Me.GrartikelBindingNavigator.TabIndex = 0
         Me.GrartikelBindingNavigator.Text = "BindingNavigator1"
         '
@@ -801,11 +804,20 @@ Partial Class Artikel
         Me.Label1.Text = "alle Preise excl. MWSt.  Keine EK und VK definieren  wenn diese nach Preisliste k" & _
     "alk. werden!"
         '
+        'Grartikel_kategorienBindingSource
+        '
+        Me.Grartikel_kategorienBindingSource.DataMember = "grartikel-kategorien"
+        Me.Grartikel_kategorienBindingSource.DataSource = Me.DsArtikel
+        '
+        'Grartikel_kategorienTableAdapter
+        '
+        Me.Grartikel_kategorienTableAdapter.ClearBeforeFill = True
+        '
         'Artikel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(854, 482)
+        Me.ClientSize = New System.Drawing.Size(875, 494)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(ArtNrLabel)
         Me.Controls.Add(Me.ArtNrTextBox)
@@ -874,6 +886,7 @@ Partial Class Artikel
         CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GrartikelBindingNavigator.ResumeLayout(False)
         Me.GrartikelBindingNavigator.PerformLayout()
+        CType(Me.Grartikel_kategorienBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -928,4 +941,6 @@ Partial Class Artikel
     Friend WithEvents NichtBestellbarCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ProduktAktivOnlineCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Grartikel_kategorienBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents Grartikel_kategorienTableAdapter As IntraSell_Net.dsArtikelTableAdapters.grartikel_kategorienTableAdapter
 End Class
