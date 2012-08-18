@@ -109,6 +109,12 @@
     <Compile Include="Data\dsVorgaenge.vb">
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Artikel\Artikel.Designer.vb">
+      <DependentUpon>Artikel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\Artikel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\ArtikelControl.Designer.vb">
       <DependentUpon>ArtikelControl.vb</DependentUpon>
     </Compile>
@@ -263,6 +269,9 @@
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Artikel\Artikel.resx">
+      <DependentUpon>Artikel.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
       <DependentUpon>ArtikelControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -401,7 +410,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Artikel\" />
     <Folder Include="Forms\Lieferanten\" />
   </ItemGroup>
   <ItemGroup>
