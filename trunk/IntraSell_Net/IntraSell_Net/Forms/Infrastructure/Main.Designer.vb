@@ -130,19 +130,19 @@ Partial Class Main
         'WikiToolStripMenuItem
         '
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.WikiToolStripMenuItem.Text = "&Wiki"
         '
         'ÜberIntraSellToolStripMenuItem
         '
         Me.ÜberIntraSellToolStripMenuItem.Name = "ÜberIntraSellToolStripMenuItem"
-        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ÜberIntraSellToolStripMenuItem.Text = "&Über IntraSell"
         '
         'SetupToolStripMenuItem
         '
         Me.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
-        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.SetupToolStripMenuItem.Text = "Setup"
         '
         'Main

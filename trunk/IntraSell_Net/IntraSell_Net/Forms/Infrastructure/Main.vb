@@ -19,9 +19,13 @@
     End Sub
 
     Private Sub Liste2ToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Liste2ToolStripMenuItem.Click
-        'Dim f As KundenListe2 = New KundenListe2
-        'f.MdiParent = Me
-        'f.Show()
+        Dim f As Artikel = New Artikel
+        f.MdiParent = Me
+        f.Show()
+    End Sub
+
+    Private Sub ArtikellisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikellisteToolStripMenuItem.Click
+
     End Sub
 
     Private Sub FormKundenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormKundenToolStripMenuItem.Click
@@ -53,4 +57,6 @@
         Log.Show()
         Setup.ShowDialog()
     End Sub
+
+
 End Class
