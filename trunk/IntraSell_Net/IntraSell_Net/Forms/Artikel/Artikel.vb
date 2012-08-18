@@ -16,14 +16,17 @@
     End Sub
 
     Private Sub Artikel_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-   
-        Try
+        'TODO: This line of code loads data into the 'DsArtikel._grartikel_kategorien' table. You can move, or remove it, as needed.
 
-            FillComboBox(Me.LieferantNRComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "IDNR", "Firma")
-            FillComboBox(Me.HerstellerNrComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "IDNR", "Firma")
+
+        Try
+            Me.Grartikel_kategorienTableAdapter.Fill(Me.DsArtikel._grartikel_kategorien)
+            Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
+
+            FillComboBox(Me.LieferantNRComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
+            FillComboBox(Me.HerstellerNrComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
 
-            Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
