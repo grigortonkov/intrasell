@@ -228,8 +228,10 @@
     <Compile Include="Modules\ModuleBarcode.vb" />
     <Compile Include="Modules\ModuleBuchVorgang.vb" />
     <Compile Include="Modules\ModuleCommons.vb" />
+    <Compile Include="Modules\ModuleGlobals.vb" />
     <Compile Include="Modules\ModuleLager.vb" />
     <Compile Include="Modules\ModuleLog.vb" />
+    <Compile Include="Modules\ModuleLogIn.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>

@@ -64,6 +64,10 @@ Module ModuleCommons
         End With
     End Sub
 
+    Sub OpenForm(ByRef formName As String)
+        'TODO 
+        MsgBox("Nicht implementiert!")
+    End Sub
     Public Function testRS() As Object
         conn.Open()
         'response.write varname
