@@ -81,15 +81,6 @@ Partial Class Vorgang
         Me.MitarbeiterNrComboBox = New System.Windows.Forms.ComboBox()
         Me.Buchvorgang_artikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Buchvorgang_artikelDataGridView = New System.Windows.Forms.DataGridView()
-        Me.ZahlungsbedungungComboBox = New System.Windows.Forms.ComboBox()
-        Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
-        Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
-        Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
-        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.WaehrungComboBox = New System.Windows.Forms.ComboBox()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -110,6 +101,15 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ZahlungsbedungungComboBox = New System.Windows.Forms.ComboBox()
+        Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
+        Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
+        Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
+        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.WaehrungComboBox = New System.Windows.Forms.ComboBox()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -633,115 +633,6 @@ Partial Class Vorgang
         Me.Buchvorgang_artikelDataGridView.Size = New System.Drawing.Size(1018, 295)
         Me.Buchvorgang_artikelDataGridView.TabIndex = 49
         '
-        'ZahlungsbedungungComboBox
-        '
-        Me.ZahlungsbedungungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
-        Me.ZahlungsbedungungComboBox.FormattingEnabled = True
-        Me.ZahlungsbedungungComboBox.Location = New System.Drawing.Point(127, 57)
-        Me.ZahlungsbedungungComboBox.Name = "ZahlungsbedungungComboBox"
-        Me.ZahlungsbedungungComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ZahlungsbedungungComboBox.TabIndex = 50
-        '
-        'TransportMethodeComboBox
-        '
-        Me.TransportMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "TransportMethode", True))
-        Me.TransportMethodeComboBox.FormattingEnabled = True
-        Me.TransportMethodeComboBox.Location = New System.Drawing.Point(127, 83)
-        Me.TransportMethodeComboBox.Name = "TransportMethodeComboBox"
-        Me.TransportMethodeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.TransportMethodeComboBox.TabIndex = 51
-        '
-        'ZahlungsMethodeComboBox
-        '
-        Me.ZahlungsMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "ZahlungsMethode", True))
-        Me.ZahlungsMethodeComboBox.FormattingEnabled = True
-        Me.ZahlungsMethodeComboBox.Location = New System.Drawing.Point(127, 110)
-        Me.ZahlungsMethodeComboBox.Name = "ZahlungsMethodeComboBox"
-        Me.ZahlungsMethodeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ZahlungsMethodeComboBox.TabIndex = 52
-        '
-        'KundNrAdressenControl
-        '
-        Me.KundNrAdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
-        Me.KundNrAdressenControl.IDNR = 0
-        Me.KundNrAdressenControl.Location = New System.Drawing.Point(123, 110)
-        Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
-        Me.KundNrAdressenControl.TabIndex = 53
-        '
-        'KundNr2AdressenControl
-        '
-        Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
-        Me.KundNr2AdressenControl.IDNR = 0
-        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(123, 141)
-        Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
-        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
-        Me.KundNr2AdressenControl.TabIndex = 54
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(355, 28)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(675, 351)
-        Me.TabControl1.TabIndex = 55
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.BezahltCheckBox)
-        Me.TabPage1.Controls.Add(Me.MitarbeiterNrComboBox)
-        Me.TabPage1.Controls.Add(ZahlungsMethodeLabel1)
-        Me.TabPage1.Controls.Add(MitarbeiterNrLabel)
-        Me.TabPage1.Controls.Add(Me.ZahlungsMethodeComboBox)
-        Me.TabPage1.Controls.Add(Me.LieferantNrComboBox)
-        Me.TabPage1.Controls.Add(TransportMethodeLabel1)
-        Me.TabPage1.Controls.Add(LieferantNrLabel)
-        Me.TabPage1.Controls.Add(Me.TransportMethodeComboBox)
-        Me.TabPage1.Controls.Add(Me.StatusComboBox)
-        Me.TabPage1.Controls.Add(ZahlungsbedungungLabel1)
-        Me.TabPage1.Controls.Add(StatusLabel)
-        Me.TabPage1.Controls.Add(Me.ZahlungsbedungungComboBox)
-        Me.TabPage1.Controls.Add(Me.WohinTextBox)
-        Me.TabPage1.Controls.Add(WohinLabel)
-        Me.TabPage1.Controls.Add(Me.WoherTextBox)
-        Me.TabPage1.Controls.Add(WoherLabel)
-        Me.TabPage1.Controls.Add(Me.AbgeschlossenCheckBox)
-        Me.TabPage1.Controls.Add(Me.AusgedrucktCheckBox)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(667, 325)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Status"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.NotizTextBox)
-        Me.TabPage2.Controls.Add(Me.NotizExternTextBox)
-        Me.TabPage2.Controls.Add(NotizExternLabel)
-        Me.TabPage2.Controls.Add(Me.NotizInternTextBox)
-        Me.TabPage2.Controls.Add(NotizInternLabel)
-        Me.TabPage2.Controls.Add(NotizLabel)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(667, 325)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Notizen"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'WaehrungComboBox
-        '
-        Me.WaehrungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Waehrung", True))
-        Me.WaehrungComboBox.FormattingEnabled = True
-        Me.WaehrungComboBox.Location = New System.Drawing.Point(123, 259)
-        Me.WaehrungComboBox.Name = "WaehrungComboBox"
-        Me.WaehrungComboBox.Size = New System.Drawing.Size(131, 21)
-        Me.WaehrungComboBox.TabIndex = 53
-        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "ID"
@@ -874,6 +765,115 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.Visible = False
         '
+        'ZahlungsbedungungComboBox
+        '
+        Me.ZahlungsbedungungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
+        Me.ZahlungsbedungungComboBox.FormattingEnabled = True
+        Me.ZahlungsbedungungComboBox.Location = New System.Drawing.Point(127, 57)
+        Me.ZahlungsbedungungComboBox.Name = "ZahlungsbedungungComboBox"
+        Me.ZahlungsbedungungComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.ZahlungsbedungungComboBox.TabIndex = 50
+        '
+        'TransportMethodeComboBox
+        '
+        Me.TransportMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "TransportMethode", True))
+        Me.TransportMethodeComboBox.FormattingEnabled = True
+        Me.TransportMethodeComboBox.Location = New System.Drawing.Point(127, 83)
+        Me.TransportMethodeComboBox.Name = "TransportMethodeComboBox"
+        Me.TransportMethodeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.TransportMethodeComboBox.TabIndex = 51
+        '
+        'ZahlungsMethodeComboBox
+        '
+        Me.ZahlungsMethodeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "ZahlungsMethode", True))
+        Me.ZahlungsMethodeComboBox.FormattingEnabled = True
+        Me.ZahlungsMethodeComboBox.Location = New System.Drawing.Point(127, 110)
+        Me.ZahlungsMethodeComboBox.Name = "ZahlungsMethodeComboBox"
+        Me.ZahlungsMethodeComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.ZahlungsMethodeComboBox.TabIndex = 52
+        '
+        'KundNrAdressenControl
+        '
+        Me.KundNrAdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
+        Me.KundNrAdressenControl.IDNR = 0
+        Me.KundNrAdressenControl.Location = New System.Drawing.Point(123, 110)
+        Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNrAdressenControl.TabIndex = 53
+        '
+        'KundNr2AdressenControl
+        '
+        Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
+        Me.KundNr2AdressenControl.IDNR = 0
+        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(123, 141)
+        Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
+        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNr2AdressenControl.TabIndex = 54
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Location = New System.Drawing.Point(355, 28)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(675, 351)
+        Me.TabControl1.TabIndex = 55
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.BezahltCheckBox)
+        Me.TabPage1.Controls.Add(Me.MitarbeiterNrComboBox)
+        Me.TabPage1.Controls.Add(ZahlungsMethodeLabel1)
+        Me.TabPage1.Controls.Add(MitarbeiterNrLabel)
+        Me.TabPage1.Controls.Add(Me.ZahlungsMethodeComboBox)
+        Me.TabPage1.Controls.Add(Me.LieferantNrComboBox)
+        Me.TabPage1.Controls.Add(TransportMethodeLabel1)
+        Me.TabPage1.Controls.Add(LieferantNrLabel)
+        Me.TabPage1.Controls.Add(Me.TransportMethodeComboBox)
+        Me.TabPage1.Controls.Add(Me.StatusComboBox)
+        Me.TabPage1.Controls.Add(ZahlungsbedungungLabel1)
+        Me.TabPage1.Controls.Add(StatusLabel)
+        Me.TabPage1.Controls.Add(Me.ZahlungsbedungungComboBox)
+        Me.TabPage1.Controls.Add(Me.WohinTextBox)
+        Me.TabPage1.Controls.Add(WohinLabel)
+        Me.TabPage1.Controls.Add(Me.WoherTextBox)
+        Me.TabPage1.Controls.Add(WoherLabel)
+        Me.TabPage1.Controls.Add(Me.AbgeschlossenCheckBox)
+        Me.TabPage1.Controls.Add(Me.AusgedrucktCheckBox)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(667, 325)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Status"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.NotizTextBox)
+        Me.TabPage2.Controls.Add(Me.NotizExternTextBox)
+        Me.TabPage2.Controls.Add(NotizExternLabel)
+        Me.TabPage2.Controls.Add(Me.NotizInternTextBox)
+        Me.TabPage2.Controls.Add(NotizInternLabel)
+        Me.TabPage2.Controls.Add(NotizLabel)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(667, 325)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Notizen"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'WaehrungComboBox
+        '
+        Me.WaehrungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Waehrung", True))
+        Me.WaehrungComboBox.FormattingEnabled = True
+        Me.WaehrungComboBox.Location = New System.Drawing.Point(123, 259)
+        Me.WaehrungComboBox.Name = "WaehrungComboBox"
+        Me.WaehrungComboBox.Size = New System.Drawing.Size(131, 21)
+        Me.WaehrungComboBox.TabIndex = 53
+        '
         'Vorgang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -901,7 +901,7 @@ Partial Class Vorgang
         Me.Controls.Add(Me.SummeBruttoTextBox)
         Me.Controls.Add(Me.BuchvorgangBindingNavigator)
         Me.Name = "Vorgang"
-        Me.Text = "Rechnung"
+        Me.Text = "Vorgang"
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
