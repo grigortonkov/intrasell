@@ -101,8 +101,8 @@ Partial Class Artikel
         Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
         Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Grartikel_kategorienBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Grartikel_kategorienTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grartikel_kategorienTableAdapter()
+        Me.Grartikel_kategorienBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         ArtNrLabel = New System.Windows.Forms.Label()
         EANLabel = New System.Windows.Forms.Label()
         BarcodeLabel = New System.Windows.Forms.Label()
@@ -535,7 +535,7 @@ Partial Class Artikel
         Me.EANTextBox.Location = New System.Drawing.Point(130, 64)
         Me.EANTextBox.Name = "EANTextBox"
         Me.EANTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.EANTextBox.TabIndex = 4
+        Me.EANTextBox.TabIndex = 3
         '
         'BarcodeTextBox
         '
@@ -543,7 +543,7 @@ Partial Class Artikel
         Me.BarcodeTextBox.Location = New System.Drawing.Point(130, 90)
         Me.BarcodeTextBox.Name = "BarcodeTextBox"
         Me.BarcodeTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.BarcodeTextBox.TabIndex = 6
+        Me.BarcodeTextBox.TabIndex = 4
         '
         'BezeichnungTextBox
         '
@@ -551,7 +551,7 @@ Partial Class Artikel
         Me.BezeichnungTextBox.Location = New System.Drawing.Point(130, 116)
         Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
         Me.BezeichnungTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.BezeichnungTextBox.TabIndex = 8
+        Me.BezeichnungTextBox.TabIndex = 5
         '
         'Bezeichnung1TextBox
         '
@@ -559,7 +559,7 @@ Partial Class Artikel
         Me.Bezeichnung1TextBox.Location = New System.Drawing.Point(130, 142)
         Me.Bezeichnung1TextBox.Name = "Bezeichnung1TextBox"
         Me.Bezeichnung1TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Bezeichnung1TextBox.TabIndex = 10
+        Me.Bezeichnung1TextBox.TabIndex = 6
         '
         'BeschreibungTextBox
         '
@@ -568,7 +568,7 @@ Partial Class Artikel
         Me.BeschreibungTextBox.Multiline = True
         Me.BeschreibungTextBox.Name = "BeschreibungTextBox"
         Me.BeschreibungTextBox.Size = New System.Drawing.Size(200, 108)
-        Me.BeschreibungTextBox.TabIndex = 12
+        Me.BeschreibungTextBox.TabIndex = 7
         '
         'EinheitComboBox
         '
@@ -577,7 +577,7 @@ Partial Class Artikel
         Me.EinheitComboBox.Location = New System.Drawing.Point(130, 282)
         Me.EinheitComboBox.Name = "EinheitComboBox"
         Me.EinheitComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.EinheitComboBox.TabIndex = 14
+        Me.EinheitComboBox.TabIndex = 8
         '
         'PreisATSTextBox
         '
@@ -585,7 +585,7 @@ Partial Class Artikel
         Me.PreisATSTextBox.Location = New System.Drawing.Point(130, 309)
         Me.PreisATSTextBox.Name = "PreisATSTextBox"
         Me.PreisATSTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.PreisATSTextBox.TabIndex = 16
+        Me.PreisATSTextBox.TabIndex = 9
         '
         'PreisATS_BruttoTextBox
         '
@@ -593,7 +593,7 @@ Partial Class Artikel
         Me.PreisATS_BruttoTextBox.Location = New System.Drawing.Point(130, 361)
         Me.PreisATS_BruttoTextBox.Name = "PreisATS_BruttoTextBox"
         Me.PreisATS_BruttoTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.PreisATS_BruttoTextBox.TabIndex = 20
+        Me.PreisATS_BruttoTextBox.TabIndex = 11
         '
         'LagerArtikelCheckBox
         '
@@ -601,7 +601,7 @@ Partial Class Artikel
         Me.LagerArtikelCheckBox.Location = New System.Drawing.Point(721, 36)
         Me.LagerArtikelCheckBox.Name = "LagerArtikelCheckBox"
         Me.LagerArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.LagerArtikelCheckBox.TabIndex = 22
+        Me.LagerArtikelCheckBox.TabIndex = 28
         Me.LagerArtikelCheckBox.Text = "Lager Artikel"
         Me.LagerArtikelCheckBox.UseVisualStyleBackColor = True
         '
@@ -611,7 +611,7 @@ Partial Class Artikel
         Me.EKPreisTextBox.Location = New System.Drawing.Point(130, 386)
         Me.EKPreisTextBox.Name = "EKPreisTextBox"
         Me.EKPreisTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.EKPreisTextBox.TabIndex = 24
+        Me.EKPreisTextBox.TabIndex = 12
         '
         'LEKPreisTextBox
         '
@@ -619,7 +619,7 @@ Partial Class Artikel
         Me.LEKPreisTextBox.Location = New System.Drawing.Point(130, 412)
         Me.LEKPreisTextBox.Name = "LEKPreisTextBox"
         Me.LEKPreisTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.LEKPreisTextBox.TabIndex = 26
+        Me.LEKPreisTextBox.TabIndex = 13
         '
         'SeriennummerCheckBox
         '
@@ -627,7 +627,7 @@ Partial Class Artikel
         Me.SeriennummerCheckBox.Location = New System.Drawing.Point(721, 64)
         Me.SeriennummerCheckBox.Name = "SeriennummerCheckBox"
         Me.SeriennummerCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SeriennummerCheckBox.TabIndex = 28
+        Me.SeriennummerCheckBox.TabIndex = 29
         Me.SeriennummerCheckBox.Text = "Seriennummer erford."
         Me.SeriennummerCheckBox.UseVisualStyleBackColor = True
         '
@@ -638,7 +638,7 @@ Partial Class Artikel
         Me.LieferantNRComboBox.Location = New System.Drawing.Point(486, 62)
         Me.LieferantNRComboBox.Name = "LieferantNRComboBox"
         Me.LieferantNRComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.LieferantNRComboBox.TabIndex = 30
+        Me.LieferantNRComboBox.TabIndex = 15
         '
         'SetArtikelCheckBox
         '
@@ -646,7 +646,7 @@ Partial Class Artikel
         Me.SetArtikelCheckBox.Location = New System.Drawing.Point(721, 90)
         Me.SetArtikelCheckBox.Name = "SetArtikelCheckBox"
         Me.SetArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SetArtikelCheckBox.TabIndex = 32
+        Me.SetArtikelCheckBox.TabIndex = 30
         Me.SetArtikelCheckBox.Text = "Set Artikel"
         Me.SetArtikelCheckBox.UseVisualStyleBackColor = True
         '
@@ -657,7 +657,7 @@ Partial Class Artikel
         Me.ArtKatNrComboBox.Location = New System.Drawing.Point(486, 35)
         Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
         Me.ArtKatNrComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ArtKatNrComboBox.TabIndex = 34
+        Me.ArtKatNrComboBox.TabIndex = 14
         '
         'MWSTTextBox
         '
@@ -665,7 +665,7 @@ Partial Class Artikel
         Me.MWSTTextBox.Location = New System.Drawing.Point(130, 335)
         Me.MWSTTextBox.Name = "MWSTTextBox"
         Me.MWSTTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.MWSTTextBox.TabIndex = 36
+        Me.MWSTTextBox.TabIndex = 10
         '
         'GewichtTextBox
         '
@@ -673,7 +673,7 @@ Partial Class Artikel
         Me.GewichtTextBox.Location = New System.Drawing.Point(486, 305)
         Me.GewichtTextBox.Name = "GewichtTextBox"
         Me.GewichtTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.GewichtTextBox.TabIndex = 38
+        Me.GewichtTextBox.TabIndex = 23
         '
         'PictureTextBox
         '
@@ -681,7 +681,7 @@ Partial Class Artikel
         Me.PictureTextBox.Location = New System.Drawing.Point(486, 138)
         Me.PictureTextBox.Name = "PictureTextBox"
         Me.PictureTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.PictureTextBox.TabIndex = 40
+        Me.PictureTextBox.TabIndex = 17
         '
         'HerstellerNrComboBox
         '
@@ -690,7 +690,7 @@ Partial Class Artikel
         Me.HerstellerNrComboBox.Location = New System.Drawing.Point(486, 90)
         Me.HerstellerNrComboBox.Name = "HerstellerNrComboBox"
         Me.HerstellerNrComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.HerstellerNrComboBox.TabIndex = 42
+        Me.HerstellerNrComboBox.TabIndex = 16
         '
         'ProduktAktivCheckBox
         '
@@ -698,7 +698,7 @@ Partial Class Artikel
         Me.ProduktAktivCheckBox.Location = New System.Drawing.Point(721, 117)
         Me.ProduktAktivCheckBox.Name = "ProduktAktivCheckBox"
         Me.ProduktAktivCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.ProduktAktivCheckBox.TabIndex = 44
+        Me.ProduktAktivCheckBox.TabIndex = 31
         Me.ProduktAktivCheckBox.Text = "Produkt Aktiv"
         Me.ProduktAktivCheckBox.UseVisualStyleBackColor = True
         '
@@ -708,7 +708,7 @@ Partial Class Artikel
         Me.ShopURLTextBox.Location = New System.Drawing.Point(486, 166)
         Me.ShopURLTextBox.Name = "ShopURLTextBox"
         Me.ShopURLTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.ShopURLTextBox.TabIndex = 46
+        Me.ShopURLTextBox.TabIndex = 18
         '
         'HerstellerURLTextBox
         '
@@ -716,7 +716,7 @@ Partial Class Artikel
         Me.HerstellerURLTextBox.Location = New System.Drawing.Point(486, 192)
         Me.HerstellerURLTextBox.Name = "HerstellerURLTextBox"
         Me.HerstellerURLTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.HerstellerURLTextBox.TabIndex = 48
+        Me.HerstellerURLTextBox.TabIndex = 19
         '
         'ModifikationenTextBox
         '
@@ -724,7 +724,7 @@ Partial Class Artikel
         Me.ModifikationenTextBox.Location = New System.Drawing.Point(486, 218)
         Me.ModifikationenTextBox.Name = "ModifikationenTextBox"
         Me.ModifikationenTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.ModifikationenTextBox.TabIndex = 50
+        Me.ModifikationenTextBox.TabIndex = 20
         '
         'HerstellerRabattTextBox
         '
@@ -732,7 +732,7 @@ Partial Class Artikel
         Me.HerstellerRabattTextBox.Location = New System.Drawing.Point(486, 244)
         Me.HerstellerRabattTextBox.Name = "HerstellerRabattTextBox"
         Me.HerstellerRabattTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.HerstellerRabattTextBox.TabIndex = 52
+        Me.HerstellerRabattTextBox.TabIndex = 21
         '
         'HerstellerRabattTextTextBox
         '
@@ -740,7 +740,7 @@ Partial Class Artikel
         Me.HerstellerRabattTextTextBox.Location = New System.Drawing.Point(486, 270)
         Me.HerstellerRabattTextTextBox.Name = "HerstellerRabattTextTextBox"
         Me.HerstellerRabattTextTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.HerstellerRabattTextTextBox.TabIndex = 54
+        Me.HerstellerRabattTextTextBox.TabIndex = 22
         '
         'BruttoGewichtTextBox
         '
@@ -748,7 +748,7 @@ Partial Class Artikel
         Me.BruttoGewichtTextBox.Location = New System.Drawing.Point(486, 331)
         Me.BruttoGewichtTextBox.Name = "BruttoGewichtTextBox"
         Me.BruttoGewichtTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.BruttoGewichtTextBox.TabIndex = 56
+        Me.BruttoGewichtTextBox.TabIndex = 24
         '
         'NettoGewichtTextBox
         '
@@ -756,7 +756,7 @@ Partial Class Artikel
         Me.NettoGewichtTextBox.Location = New System.Drawing.Point(486, 357)
         Me.NettoGewichtTextBox.Name = "NettoGewichtTextBox"
         Me.NettoGewichtTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.NettoGewichtTextBox.TabIndex = 58
+        Me.NettoGewichtTextBox.TabIndex = 25
         '
         'TaraGewichtTextBox
         '
@@ -764,7 +764,7 @@ Partial Class Artikel
         Me.TaraGewichtTextBox.Location = New System.Drawing.Point(486, 383)
         Me.TaraGewichtTextBox.Name = "TaraGewichtTextBox"
         Me.TaraGewichtTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TaraGewichtTextBox.TabIndex = 60
+        Me.TaraGewichtTextBox.TabIndex = 26
         '
         'AngelegtAmDateTimePicker
         '
@@ -773,7 +773,7 @@ Partial Class Artikel
         Me.AngelegtAmDateTimePicker.Location = New System.Drawing.Point(486, 409)
         Me.AngelegtAmDateTimePicker.Name = "AngelegtAmDateTimePicker"
         Me.AngelegtAmDateTimePicker.Size = New System.Drawing.Size(200, 20)
-        Me.AngelegtAmDateTimePicker.TabIndex = 62
+        Me.AngelegtAmDateTimePicker.TabIndex = 27
         '
         'NichtBestellbarCheckBox
         '
@@ -781,7 +781,7 @@ Partial Class Artikel
         Me.NichtBestellbarCheckBox.Location = New System.Drawing.Point(721, 143)
         Me.NichtBestellbarCheckBox.Name = "NichtBestellbarCheckBox"
         Me.NichtBestellbarCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.NichtBestellbarCheckBox.TabIndex = 64
+        Me.NichtBestellbarCheckBox.TabIndex = 32
         Me.NichtBestellbarCheckBox.Text = "Nicht Bestellbar"
         Me.NichtBestellbarCheckBox.UseVisualStyleBackColor = True
         '
@@ -791,7 +791,7 @@ Partial Class Artikel
         Me.ProduktAktivOnlineCheckBox.Location = New System.Drawing.Point(721, 173)
         Me.ProduktAktivOnlineCheckBox.Name = "ProduktAktivOnlineCheckBox"
         Me.ProduktAktivOnlineCheckBox.Size = New System.Drawing.Size(123, 20)
-        Me.ProduktAktivOnlineCheckBox.TabIndex = 66
+        Me.ProduktAktivOnlineCheckBox.TabIndex = 33
         Me.ProduktAktivOnlineCheckBox.Text = "Produkt Aktiv Online"
         '
         'Label1
@@ -804,14 +804,14 @@ Partial Class Artikel
         Me.Label1.Text = "alle Preise excl. MWSt.  Keine EK und VK definieren  wenn diese nach Preisliste k" & _
     "alk. werden!"
         '
+        'Grartikel_kategorienTableAdapter
+        '
+        Me.Grartikel_kategorienTableAdapter.ClearBeforeFill = True
+        '
         'Grartikel_kategorienBindingSource
         '
         Me.Grartikel_kategorienBindingSource.DataMember = "grartikel-kategorien"
         Me.Grartikel_kategorienBindingSource.DataSource = Me.DsArtikel
-        '
-        'Grartikel_kategorienTableAdapter
-        '
-        Me.Grartikel_kategorienTableAdapter.ClearBeforeFill = True
         '
         'Artikel
         '
@@ -941,6 +941,6 @@ Partial Class Artikel
     Friend WithEvents NichtBestellbarCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ProduktAktivOnlineCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Grartikel_kategorienBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Grartikel_kategorienTableAdapter As IntraSell_Net.dsArtikelTableAdapters.grartikel_kategorienTableAdapter
+    Friend WithEvents Grartikel_kategorienBindingSource As System.Windows.Forms.BindingSource
 End Class

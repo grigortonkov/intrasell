@@ -35,66 +35,74 @@ Partial Class Artikelliste
         Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DsArtikel = New IntraSell_Net.dsArtikel()
         Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
+        Me.DsArtikel = New IntraSell_Net.dsArtikel()
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
         Me.LagerArtikelCheckBox = New System.Windows.Forms.CheckBox()
         Me.SeriennummerCheckBox = New System.Windows.Forms.CheckBox()
         Me.SetArtikelCheckBox = New System.Windows.Forms.CheckBox()
         Me.ProduktAktivCheckBox = New System.Windows.Forms.CheckBox()
         Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
         Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
+        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.ArtNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EANDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BarcodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BezeichnungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Bezeichnung1DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BeschreibungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EinheitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PreisATSDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MWSTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PreisATSBruttoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LagerArtikelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.EKPreisDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LEKPreisDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SeriennummerDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.LieferantNRDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SetArtikelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ArtKatNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MWSTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GewichtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PictureDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HerstellerNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ProduktAktivDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ShopURLDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HerstellerURLDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ModifikationenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HerstellerRabattDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HerstellerRabattTextDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AngelegtAnDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GewichtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BruttoGewichtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NettoGewichtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TaraGewichtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AngelegtAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SeriennummerDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.SetArtikelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.LagerArtikelDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.NichtBestellbarDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
+        Me.ProduktAktivDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.AngelegtAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         SetArtikelLabel = New System.Windows.Forms.Label()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
-        CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'SetArtikelLabel
+        '
+        SetArtikelLabel.AutoSize = True
+        SetArtikelLabel.Location = New System.Drawing.Point(157, 169)
+        SetArtikelLabel.Name = "SetArtikelLabel"
+        SetArtikelLabel.Size = New System.Drawing.Size(0, 13)
+        SetArtikelLabel.TabIndex = 70
         '
         'FilterButton
         '
@@ -188,7 +196,7 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
         Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.KategorieDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.BarcodeDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn})
+        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.KategorieDataGridViewTextBoxColumn, Me.BarcodeDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn})
         Me.OfAdressenlisteDataGridView.DataSource = Me.GrArtikellisteBindingSource
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
@@ -196,6 +204,16 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.ReadOnly = True
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
+        '
+        'GrArtikellisteBindingSource
+        '
+        Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
+        Me.GrArtikellisteBindingSource.DataSource = Me.DsArtikel
+        '
+        'DsArtikel
+        '
+        Me.DsArtikel.DataSetName = "dsArtikel"
+        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'SplitContainer
         '
@@ -235,54 +253,21 @@ Partial Class Artikelliste
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
-        'ArtKatNrComboBox
+        'Label7
         '
-        Me.ArtKatNrComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ArtKatNrComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ArtKatNrComboBox.FormattingEnabled = True
-        Me.ArtKatNrComboBox.Location = New System.Drawing.Point(98, 64)
-        Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
-        Me.ArtKatNrComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.ArtKatNrComboBox.TabIndex = 2
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 41)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(58, 13)
+        Me.Label7.TabIndex = 76
+        Me.Label7.Text = "EAN/Bez.:"
         '
-        'Label5
+        'BezeichnungTextBox
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 67)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 13)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Kategorie:"
-        '
-        'DsArtikel
-        '
-        Me.DsArtikel.DataSetName = "dsArtikel"
-        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'GrArtikellisteBindingSource
-        '
-        Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
-        Me.GrArtikellisteBindingSource.DataSource = Me.DsArtikel
-        '
-        'GrArtikellisteTableAdapter
-        '
-        Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 15)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(34, 13)
-        Me.Label6.TabIndex = 12
-        Me.Label6.Text = "ArtNr:"
-        '
-        'ArtNrTextBox
-        '
-        Me.ArtNrTextBox.Location = New System.Drawing.Point(98, 12)
-        Me.ArtNrTextBox.Name = "ArtNrTextBox"
-        Me.ArtNrTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.ArtNrTextBox.TabIndex = 0
+        Me.BezeichnungTextBox.Location = New System.Drawing.Point(98, 38)
+        Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
+        Me.BezeichnungTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.BezeichnungTextBox.TabIndex = 1
         '
         'LagerArtikelCheckBox
         '
@@ -305,14 +290,6 @@ Partial Class Artikelliste
         Me.SeriennummerCheckBox.TabIndex = 6
         Me.SeriennummerCheckBox.Text = "Seriennummer erford."
         Me.SeriennummerCheckBox.UseVisualStyleBackColor = True
-        '
-        'SetArtikelLabel
-        '
-        SetArtikelLabel.AutoSize = True
-        SetArtikelLabel.Location = New System.Drawing.Point(157, 169)
-        SetArtikelLabel.Name = "SetArtikelLabel"
-        SetArtikelLabel.Size = New System.Drawing.Size(0, 13)
-        SetArtikelLabel.TabIndex = 70
         '
         'SetArtikelCheckBox
         '
@@ -357,6 +334,45 @@ Partial Class Artikelliste
         Me.ProduktAktivOnlineCheckBox.TabIndex = 10
         Me.ProduktAktivOnlineCheckBox.Text = "Produkt Aktiv Online"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 15)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(34, 13)
+        Me.Label6.TabIndex = 12
+        Me.Label6.Text = "ArtNr:"
+        '
+        'ArtNrTextBox
+        '
+        Me.ArtNrTextBox.Location = New System.Drawing.Point(98, 12)
+        Me.ArtNrTextBox.Name = "ArtNrTextBox"
+        Me.ArtNrTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.ArtNrTextBox.TabIndex = 0
+        '
+        'ArtKatNrComboBox
+        '
+        Me.ArtKatNrComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ArtKatNrComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ArtKatNrComboBox.FormattingEnabled = True
+        Me.ArtKatNrComboBox.Location = New System.Drawing.Point(98, 64)
+        Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
+        Me.ArtKatNrComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.ArtKatNrComboBox.TabIndex = 2
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 67)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Kategorie:"
+        '
+        'GrArtikellisteTableAdapter
+        '
+        Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
+        '
         'ArtNrDataGridViewTextBoxColumn
         '
         Me.ArtNrDataGridViewTextBoxColumn.DataPropertyName = "ArtNr"
@@ -364,19 +380,19 @@ Partial Class Artikelliste
         Me.ArtNrDataGridViewTextBoxColumn.Name = "ArtNrDataGridViewTextBoxColumn"
         Me.ArtNrDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'KategorieDataGridViewTextBoxColumn
-        '
-        Me.KategorieDataGridViewTextBoxColumn.DataPropertyName = "Kategorie"
-        Me.KategorieDataGridViewTextBoxColumn.HeaderText = "Kategorie"
-        Me.KategorieDataGridViewTextBoxColumn.Name = "KategorieDataGridViewTextBoxColumn"
-        Me.KategorieDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'EANDataGridViewTextBoxColumn
         '
         Me.EANDataGridViewTextBoxColumn.DataPropertyName = "EAN"
         Me.EANDataGridViewTextBoxColumn.HeaderText = "EAN"
         Me.EANDataGridViewTextBoxColumn.Name = "EANDataGridViewTextBoxColumn"
         Me.EANDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'KategorieDataGridViewTextBoxColumn
+        '
+        Me.KategorieDataGridViewTextBoxColumn.DataPropertyName = "Kategorie"
+        Me.KategorieDataGridViewTextBoxColumn.HeaderText = "Kategorie"
+        Me.KategorieDataGridViewTextBoxColumn.Name = "KategorieDataGridViewTextBoxColumn"
+        Me.KategorieDataGridViewTextBoxColumn.ReadOnly = True
         '
         'BarcodeDataGridViewTextBoxColumn
         '
@@ -420,19 +436,19 @@ Partial Class Artikelliste
         Me.PreisATSDataGridViewTextBoxColumn.Name = "PreisATSDataGridViewTextBoxColumn"
         Me.PreisATSDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'MWSTDataGridViewTextBoxColumn
+        '
+        Me.MWSTDataGridViewTextBoxColumn.DataPropertyName = "MWST"
+        Me.MWSTDataGridViewTextBoxColumn.HeaderText = "MWST"
+        Me.MWSTDataGridViewTextBoxColumn.Name = "MWSTDataGridViewTextBoxColumn"
+        Me.MWSTDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'PreisATSBruttoDataGridViewTextBoxColumn
         '
         Me.PreisATSBruttoDataGridViewTextBoxColumn.DataPropertyName = "PreisATS_Brutto"
         Me.PreisATSBruttoDataGridViewTextBoxColumn.HeaderText = "Preis_Brutto"
         Me.PreisATSBruttoDataGridViewTextBoxColumn.Name = "PreisATSBruttoDataGridViewTextBoxColumn"
         Me.PreisATSBruttoDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'LagerArtikelDataGridViewCheckBoxColumn
-        '
-        Me.LagerArtikelDataGridViewCheckBoxColumn.DataPropertyName = "LagerArtikel"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.HeaderText = "LagerArtikel"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.Name = "LagerArtikelDataGridViewCheckBoxColumn"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.ReadOnly = True
         '
         'EKPreisDataGridViewTextBoxColumn
         '
@@ -448,13 +464,6 @@ Partial Class Artikelliste
         Me.LEKPreisDataGridViewTextBoxColumn.Name = "LEKPreisDataGridViewTextBoxColumn"
         Me.LEKPreisDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'SeriennummerDataGridViewCheckBoxColumn
-        '
-        Me.SeriennummerDataGridViewCheckBoxColumn.DataPropertyName = "Seriennummer"
-        Me.SeriennummerDataGridViewCheckBoxColumn.HeaderText = "Seriennummer"
-        Me.SeriennummerDataGridViewCheckBoxColumn.Name = "SeriennummerDataGridViewCheckBoxColumn"
-        Me.SeriennummerDataGridViewCheckBoxColumn.ReadOnly = True
-        '
         'LieferantNRDataGridViewTextBoxColumn
         '
         Me.LieferantNRDataGridViewTextBoxColumn.DataPropertyName = "LieferantNR"
@@ -462,33 +471,13 @@ Partial Class Artikelliste
         Me.LieferantNRDataGridViewTextBoxColumn.Name = "LieferantNRDataGridViewTextBoxColumn"
         Me.LieferantNRDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'SetArtikelDataGridViewCheckBoxColumn
-        '
-        Me.SetArtikelDataGridViewCheckBoxColumn.DataPropertyName = "SetArtikel"
-        Me.SetArtikelDataGridViewCheckBoxColumn.HeaderText = "SetArtikel"
-        Me.SetArtikelDataGridViewCheckBoxColumn.Name = "SetArtikelDataGridViewCheckBoxColumn"
-        Me.SetArtikelDataGridViewCheckBoxColumn.ReadOnly = True
-        '
         'ArtKatNrDataGridViewTextBoxColumn
         '
         Me.ArtKatNrDataGridViewTextBoxColumn.DataPropertyName = "ArtKatNr"
         Me.ArtKatNrDataGridViewTextBoxColumn.HeaderText = "ArtKatNr"
         Me.ArtKatNrDataGridViewTextBoxColumn.Name = "ArtKatNrDataGridViewTextBoxColumn"
         Me.ArtKatNrDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'MWSTDataGridViewTextBoxColumn
-        '
-        Me.MWSTDataGridViewTextBoxColumn.DataPropertyName = "MWST"
-        Me.MWSTDataGridViewTextBoxColumn.HeaderText = "MWST"
-        Me.MWSTDataGridViewTextBoxColumn.Name = "MWSTDataGridViewTextBoxColumn"
-        Me.MWSTDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'GewichtDataGridViewTextBoxColumn
-        '
-        Me.GewichtDataGridViewTextBoxColumn.DataPropertyName = "Gewicht"
-        Me.GewichtDataGridViewTextBoxColumn.HeaderText = "Gewicht"
-        Me.GewichtDataGridViewTextBoxColumn.Name = "GewichtDataGridViewTextBoxColumn"
-        Me.GewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ArtKatNrDataGridViewTextBoxColumn.Visible = False
         '
         'PictureDataGridViewTextBoxColumn
         '
@@ -503,13 +492,6 @@ Partial Class Artikelliste
         Me.HerstellerNrDataGridViewTextBoxColumn.HeaderText = "HerstellerNr"
         Me.HerstellerNrDataGridViewTextBoxColumn.Name = "HerstellerNrDataGridViewTextBoxColumn"
         Me.HerstellerNrDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ProduktAktivDataGridViewCheckBoxColumn
-        '
-        Me.ProduktAktivDataGridViewCheckBoxColumn.DataPropertyName = "ProduktAktiv"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.HeaderText = "ProduktAktiv"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.Name = "ProduktAktivDataGridViewCheckBoxColumn"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.ReadOnly = True
         '
         'ShopURLDataGridViewTextBoxColumn
         '
@@ -552,6 +534,14 @@ Partial Class Artikelliste
         Me.AngelegtAnDataGridViewTextBoxColumn.HeaderText = "AngelegtAn"
         Me.AngelegtAnDataGridViewTextBoxColumn.Name = "AngelegtAnDataGridViewTextBoxColumn"
         Me.AngelegtAnDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AngelegtAnDataGridViewTextBoxColumn.Visible = False
+        '
+        'GewichtDataGridViewTextBoxColumn
+        '
+        Me.GewichtDataGridViewTextBoxColumn.DataPropertyName = "Gewicht"
+        Me.GewichtDataGridViewTextBoxColumn.HeaderText = "Gewicht"
+        Me.GewichtDataGridViewTextBoxColumn.Name = "GewichtDataGridViewTextBoxColumn"
+        Me.GewichtDataGridViewTextBoxColumn.ReadOnly = True
         '
         'BruttoGewichtDataGridViewTextBoxColumn
         '
@@ -574,12 +564,26 @@ Partial Class Artikelliste
         Me.TaraGewichtDataGridViewTextBoxColumn.Name = "TaraGewichtDataGridViewTextBoxColumn"
         Me.TaraGewichtDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'AngelegtAmDataGridViewTextBoxColumn
+        'SeriennummerDataGridViewCheckBoxColumn
         '
-        Me.AngelegtAmDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAm"
-        Me.AngelegtAmDataGridViewTextBoxColumn.HeaderText = "AngelegtAm"
-        Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
-        Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.SeriennummerDataGridViewCheckBoxColumn.DataPropertyName = "Seriennummer"
+        Me.SeriennummerDataGridViewCheckBoxColumn.HeaderText = "Seriennummer"
+        Me.SeriennummerDataGridViewCheckBoxColumn.Name = "SeriennummerDataGridViewCheckBoxColumn"
+        Me.SeriennummerDataGridViewCheckBoxColumn.ReadOnly = True
+        '
+        'SetArtikelDataGridViewCheckBoxColumn
+        '
+        Me.SetArtikelDataGridViewCheckBoxColumn.DataPropertyName = "SetArtikel"
+        Me.SetArtikelDataGridViewCheckBoxColumn.HeaderText = "SetArtikel"
+        Me.SetArtikelDataGridViewCheckBoxColumn.Name = "SetArtikelDataGridViewCheckBoxColumn"
+        Me.SetArtikelDataGridViewCheckBoxColumn.ReadOnly = True
+        '
+        'LagerArtikelDataGridViewCheckBoxColumn
+        '
+        Me.LagerArtikelDataGridViewCheckBoxColumn.DataPropertyName = "LagerArtikel"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.HeaderText = "LagerArtikel"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.Name = "LagerArtikelDataGridViewCheckBoxColumn"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.ReadOnly = True
         '
         'NichtBestellbarDataGridViewCheckBoxColumn
         '
@@ -588,48 +592,48 @@ Partial Class Artikelliste
         Me.NichtBestellbarDataGridViewCheckBoxColumn.Name = "NichtBestellbarDataGridViewCheckBoxColumn"
         Me.NichtBestellbarDataGridViewCheckBoxColumn.ReadOnly = True
         '
+        'ProduktAktivDataGridViewCheckBoxColumn
+        '
+        Me.ProduktAktivDataGridViewCheckBoxColumn.DataPropertyName = "ProduktAktiv"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.HeaderText = "ProduktAktiv"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.Name = "ProduktAktivDataGridViewCheckBoxColumn"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.ReadOnly = True
+        '
         'ProduktAktivOnlineDataGridViewTextBoxColumn
         '
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.DataPropertyName = "ProduktAktivOnline"
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.HeaderText = "ProduktAktivOnline"
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Name = "ProduktAktivOnlineDataGridViewTextBoxColumn"
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'Label7
+        'AngelegtAmDataGridViewTextBoxColumn
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 41)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 13)
-        Me.Label7.TabIndex = 76
-        Me.Label7.Text = "EAN/Bez.:"
-        '
-        'BezeichnungTextBox
-        '
-        Me.BezeichnungTextBox.Location = New System.Drawing.Point(98, 38)
-        Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
-        Me.BezeichnungTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.BezeichnungTextBox.TabIndex = 1
+        Me.AngelegtAmDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAm"
+        Me.AngelegtAmDataGridViewTextBoxColumn.HeaderText = "AngelegtAm"
+        Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
+        Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
         '
         'Artikelliste
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 762)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "Artikelliste"
         Me.Text = "Artikelliste"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.PreislistenBindingSource,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.OfAdressenlisteDataGridView,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer.Panel1.ResumeLayout(false)
-        Me.SplitContainer.Panel1.PerformLayout
-        Me.SplitContainer.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer.ResumeLayout(false)
-        CType(Me.DsArtikel,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GrArtikellisteBindingSource,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer.Panel1.ResumeLayout(False)
+        Me.SplitContainer.Panel1.PerformLayout()
+        Me.SplitContainer.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer.ResumeLayout(False)
+        Me.ResumeLayout(False)
 
 End Sub
     Friend WithEvents FilterButton As System.Windows.Forms.Button
@@ -657,40 +661,40 @@ End Sub
     Friend WithEvents ProduktAktivCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents NichtBestellbarCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents ProduktAktivOnlineCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ArtNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents KategorieDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EANDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents KategorieDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BarcodeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BezeichnungDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Bezeichnung1DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BeschreibungDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents EinheitDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PreisATSDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MWSTDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PreisATSBruttoDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents LagerArtikelDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents EKPreisDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LEKPreisDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SeriennummerDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents LieferantNRDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents SetArtikelDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ArtKatNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MWSTDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents GewichtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PictureDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents HerstellerNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ProduktAktivDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ShopURLDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents HerstellerURLDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ModifikationenDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents HerstellerRabattDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents HerstellerRabattTextDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AngelegtAnDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents GewichtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BruttoGewichtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NettoGewichtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TaraGewichtDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AngelegtAmDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents SeriennummerDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents SetArtikelDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents LagerArtikelDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents NichtBestellbarDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents ProduktAktivOnlineDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ProduktAktivDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents ProduktAktivOnlineDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents AngelegtAmDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

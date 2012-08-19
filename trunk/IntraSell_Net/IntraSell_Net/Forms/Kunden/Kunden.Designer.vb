@@ -600,7 +600,7 @@ Partial Class Kunden
         FirmenKontoIdLabel.Size = New System.Drawing.Size(84, 13)
         FirmenKontoIdLabel.TabIndex = 14
         FirmenKontoIdLabel.Text = "Firmen Konto Id:"
-        AddHandler FirmenKontoIdLabel.Click, AddressOf Me.FirmenKontoIdLabel_Click
+
         '
         'DataSetKunden
         '

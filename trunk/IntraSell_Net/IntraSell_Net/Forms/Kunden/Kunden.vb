@@ -87,14 +87,7 @@
     End Sub
 
 #End Region
-
-    Private Sub cbPreisliste_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbPreisliste.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub cbKundengruppe_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbKundengruppe.SelectedIndexChanged
-
-    End Sub
+ 
 
     Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
@@ -105,11 +98,5 @@
 
     End Sub
 
-
-    Private Sub FirmenKontoIdTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles FirmenKontoIdTextBox.TextChanged
-
-    End Sub
-    Private Sub FirmenKontoIdLabel_Click(sender As System.Object, e As System.EventArgs)
-
-    End Sub
+ 
 End Class

@@ -10,7 +10,7 @@
   <Class Name="IntraSell_Net.Kunden" Collapsed="true">
     <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YDBgJkkC2WWgIxhQoICVAEJKDDE7ISIIO5MMGgAFBB0=</HashCode>
+      <HashCode>YBBgJkkC2WWgIxhQoICVAEBKDDE7ISIIO5EMGgAFBB0=</HashCode>
       <FileName>Forms\Kunden\Kunden.vb</FileName>
     </TypeIdentifier>
   </Class>
@@ -19,6 +19,20 @@
     <TypeIdentifier>
       <HashCode>EAEAAEgAkGAFJFAAAEmAAEADBCAQBAAAApEIAAAAQAE=</HashCode>
       <FileName>Forms\Kunden\KundenListe.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Artikel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CDGBACkBOGCikBIBAliAAiAWQhAAIQAOCCACIIAIESQ=</HashCode>
+      <FileName>Forms\Artikel\Artikel.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Vorgang" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARHAQEAQkGqixXQA8ECAAGECxCAwAQAFBrEIIhAIAQA=</HashCode>
+      <FileName>Forms\Vorgaenge\Vorgang.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
