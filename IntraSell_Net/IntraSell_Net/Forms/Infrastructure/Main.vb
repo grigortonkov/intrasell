@@ -25,7 +25,9 @@
     End Sub
 
     Private Sub ArtikellisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikellisteToolStripMenuItem.Click
-
+        Dim f As Artikelliste = New Artikelliste
+        f.MdiParent = Me
+        f.Show()
     End Sub
 
     Private Sub FormKundenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormKundenToolStripMenuItem.Click
