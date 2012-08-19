@@ -5,7 +5,6 @@
             If (e.Column.ColumnName = Me.ErstelltAmColumn.ColumnName) Then
                 'Add user code here
             End If
-
         End Sub
 
     End Class
