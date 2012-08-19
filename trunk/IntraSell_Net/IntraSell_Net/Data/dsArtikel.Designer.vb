@@ -11002,68 +11002,26 @@ Namespace dsArtikelTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `grartikel` SET `ArtNr` = @ArtNr, `EAN` = @EAN, `Barcode` = @Barcode, `Bez"& _ 
-                "eichnung` = @Bezeichnung, `Bezeichnung1` = @Bezeichnung1, `Beschreibung` = @Besc"& _ 
-                "hreibung, `Einheit` = @Einheit, `PreisATS` = @PreisATS, `PreisEuro` = @PreisEuro"& _ 
-                ", `PreisATS_Brutto` = @PreisATS_Brutto, `LagerArtikel` = @LagerArtikel, `EKPreis"& _ 
-                "` = @EKPreis, `LEKPreis` = @LEKPreis, `Seriennummer` = @Seriennummer, `Lieferant"& _ 
-                "NR` = @LieferantNR, `SetArtikel` = @SetArtikel, `ArtKatNr` = @ArtKatNr, `MWST` ="& _ 
-                " @MWST, `Gewicht` = @Gewicht, `Picture` = @Picture, `HerstellerNr` = @Hersteller"& _ 
-                "Nr, `ProduktAktiv` = @ProduktAktiv, `ShopURL` = @ShopURL, `HerstellerURL` = @Her"& _ 
-                "stellerURL, `Modifikationen` = @Modifikationen, `HerstellerRabatt` = @Hersteller"& _ 
-                "Rabatt, `HerstellerRabattText` = @HerstellerRabattText, `AngelegtAn` = @Angelegt"& _ 
-                "An, `BruttoGewicht` = @BruttoGewicht, `NettoGewicht` = @NettoGewicht, `TaraGewic"& _ 
-                "ht` = @TaraGewicht, `AngelegtAm` = @AngelegtAm, `NichtBestellbar` = @NichtBestel"& _ 
-                "lbar, `ProduktAktivOnline` = @ProduktAktivOnline WHERE ((`ArtNr` = @Original_Art"& _ 
-                "Nr) AND (`EAN` = @Original_EAN) AND ((@IsNull_Barcode = 1 AND `Barcode` IS NULL)"& _ 
-                " OR (`Barcode` = @Original_Barcode)) AND ((@IsNull_Bezeichnung = 1 AND `Bezeichn"& _ 
-                "ung` IS NULL) OR (`Bezeichnung` = @Original_Bezeichnung)) AND ((@IsNull_Bezeichn"& _ 
-                "ung1 = 1 AND `Bezeichnung1` IS NULL) OR (`Bezeichnung1` = @Original_Bezeichnung1"& _ 
-                ")) AND ((@IsNull_Beschreibung = 1 AND `Beschreibung` IS NULL) OR (`Beschreibung`"& _ 
-                " = @Original_Beschreibung)) AND ((@IsNull_Einheit = 1 AND `Einheit` IS NULL) OR "& _ 
-                "(`Einheit` = @Original_Einheit)) AND ((@IsNull_PreisATS = 1 AND `PreisATS` IS NU"& _ 
-                "LL) OR (`PreisATS` = @Original_PreisATS)) AND ((@IsNull_PreisEuro = 1 AND `Preis"& _ 
-                "Euro` IS NULL) OR (`PreisEuro` = @Original_PreisEuro)) AND ((@IsNull_PreisATS_Br"& _ 
-                "utto = 1 AND `PreisATS_Brutto` IS NULL) OR (`PreisATS_Brutto` = @Original_PreisA"& _ 
-                "TS_Brutto)) AND (`LagerArtikel` = @Original_LagerArtikel) AND ((@IsNull_EKPreis "& _ 
-                "= 1 AND `EKPreis` IS NULL) OR (`EKPreis` = @Original_EKPreis)) AND ((@IsNull_LEK"& _ 
-                "Preis = 1 AND `LEKPreis` IS NULL) OR (`LEKPreis` = @Original_LEKPreis)) AND (`Se"& _ 
-                "riennummer` = @Original_Seriennummer) AND ((@IsNull_LieferantNR = 1 AND `Liefera"& _ 
-                "ntNR` IS NULL) OR (`LieferantNR` = @Original_LieferantNR)) AND (`SetArtikel` = @"& _ 
-                "Original_SetArtikel) AND ((@IsNull_ArtKatNr = 1 AND `ArtKatNr` IS NULL) OR (`Art"& _ 
-                "KatNr` = @Original_ArtKatNr)) AND ((@IsNull_MWST = 1 AND `MWST` IS NULL) OR (`MW"& _ 
-                "ST` = @Original_MWST)) AND ((@IsNull_Gewicht = 1 AND `Gewicht` IS NULL) OR (`Gew"& _ 
-                "icht` = @Original_Gewicht)) AND ((@IsNull_Picture = 1 AND `Picture` IS NULL) OR "& _ 
-                "(`Picture` = @Original_Picture)) AND ((@IsNull_HerstellerNr = 1 AND `HerstellerN"& _ 
-                "r` IS NULL) OR (`HerstellerNr` = @Original_HerstellerNr)) AND (`ProduktAktiv` = "& _ 
-                "@Original_ProduktAktiv) AND ((@IsNull_ShopURL = 1 AND `ShopURL` IS NULL) OR (`Sh"& _ 
-                "opURL` = @Original_ShopURL)) AND ((@IsNull_HerstellerURL = 1 AND `HerstellerURL`"& _ 
-                " IS NULL) OR (`HerstellerURL` = @Original_HerstellerURL)) AND ((@IsNull_Modifika"& _ 
-                "tionen = 1 AND `Modifikationen` IS NULL) OR (`Modifikationen` = @Original_Modifi"& _ 
-                "kationen)) AND ((@IsNull_HerstellerRabatt = 1 AND `HerstellerRabatt` IS NULL) OR"& _ 
-                " (`HerstellerRabatt` = @Original_HerstellerRabatt)) AND ((@IsNull_HerstellerRaba"& _ 
-                "ttText = 1 AND `HerstellerRabattText` IS NULL) OR (`HerstellerRabattText` = @Ori"& _ 
-                "ginal_HerstellerRabattText)) AND ((@IsNull_AngelegtAn = 1 AND `AngelegtAn` IS NU"& _ 
-                "LL) OR (`AngelegtAn` = @Original_AngelegtAn)) AND ((@IsNull_BruttoGewicht = 1 AN"& _ 
-                "D `BruttoGewicht` IS NULL) OR (`BruttoGewicht` = @Original_BruttoGewicht)) AND ("& _ 
-                "(@IsNull_NettoGewicht = 1 AND `NettoGewicht` IS NULL) OR (`NettoGewicht` = @Orig"& _ 
-                "inal_NettoGewicht)) AND ((@IsNull_TaraGewicht = 1 AND `TaraGewicht` IS NULL) OR "& _ 
-                "(`TaraGewicht` = @Original_TaraGewicht)) AND ((@IsNull_AngelegtAm = 1 AND `Angel"& _ 
-                "egtAm` IS NULL) OR (`AngelegtAm` = @Original_AngelegtAm)) AND (`NichtBestellbar`"& _ 
-                " = @Original_NichtBestellbar) AND ((@IsNull_ProduktAktivOnline = 1 AND `ProduktA"& _ 
-                "ktivOnline` IS NULL) OR (`ProduktAktivOnline` = @Original_ProduktAktivOnline)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                EAN = @EAN, Barcode = @Barcode, Bezeic"& _ 
+                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung"& _ 
+                ", Einheit = @Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PreisATS = @PreisATS, PreisEuro"& _ 
+                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel,"& _ 
+                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Seriennumm"& _ 
+                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat"& _ 
+                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pic"& _ 
+                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho"& _ 
+                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Modi"& _ 
+                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa"& _ 
+                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht"& _ 
+                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline = @ProduktAktivOnline"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
+                " (ArtNr = @Original_ArtNr)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EAN"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "EAN"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11071,6 +11029,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Barcode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Barcode"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11078,6 +11037,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Bezeichnung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Bezeichnung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11085,12 +11045,15 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Bezeichnung1"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Bezeichnung1"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Beschreibung"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "Beschreibung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11098,6 +11061,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Einheit"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Einheit"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11124,8 +11088,9 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LagerArtikel"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "LagerArtikel"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11145,8 +11110,9 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Seriennummer"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "Seriennummer"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11159,8 +11125,9 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SetArtikel"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "SetArtikel"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11182,6 +11149,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Gewicht"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 10
             param.IsNullable = true
             param.SourceColumn = "Gewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11189,6 +11157,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Picture"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
             param.IsNullable = true
             param.SourceColumn = "Picture"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11201,20 +11170,25 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ProduktAktiv"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "ProduktAktiv"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ShopURL"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "ShopURL"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerURL"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "HerstellerURL"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11222,12 +11196,13 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@Modifikationen"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
             param.IsNullable = true
             param.SourceColumn = "Modifikationen"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerRabatt"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "HerstellerRabatt"
@@ -11236,6 +11211,7 @@ Namespace dsArtikelTableAdapters
             param.ParameterName = "@HerstellerRabattText"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "HerstellerRabattText"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11248,21 +11224,21 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@BruttoGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "BruttoGewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NettoGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "NettoGewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TaraGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "TaraGewicht"
@@ -11276,15 +11252,17 @@ Namespace dsArtikelTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NichtBestellbar"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "NichtBestellbar"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ProduktAktivOnline"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
             param.IsNullable = true
             param.SourceColumn = "ProduktAktivOnline"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -11294,510 +11272,6 @@ Namespace dsArtikelTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EAN"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "EAN"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Barcode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Barcode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Barcode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Barcode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Bezeichnung1"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Beschreibung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Beschreibung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Beschreibung"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "Beschreibung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Einheit"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Einheit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Einheit"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Einheit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisATS"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisATS"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisEuro"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisEuro"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisEuro"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisEuro"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisATS_Brutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisATS_Brutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LagerArtikel"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "LagerArtikel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LEKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LEKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "LEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Seriennummer"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Seriennummer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SetArtikel"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "SetArtikel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Gewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Gewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Gewicht"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Gewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Picture"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Picture"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Picture"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Picture"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ProduktAktiv"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktiv"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ShopURL"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ShopURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ShopURL"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "ShopURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerURL"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerURL"
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Modifikationen"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Modifikationen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Modifikationen"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Modifikationen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerRabatt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabatt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerRabatt"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabatt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerRabattText"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabattText"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerRabattText"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabattText"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_BruttoGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "BruttoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_BruttoGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "BruttoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NettoGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NettoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NettoGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "NettoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_TaraGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "TaraGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_TaraGewicht"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "TaraGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AngelegtAm"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AngelegtAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NichtBestellbar"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "NichtBestellbar"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ProduktAktivOnline"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktivOnline"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ProduktAktivOnline"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktivOnline"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -11825,73 +11299,22 @@ Namespace dsArtikelTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE       grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                ArtNr = @ArtNr, EAN = @EAN, Barcode = "& _ 
-                "@Barcode, Bezeichnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung"& _ 
-                " = @Beschreibung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Einheit = @Einheit, PreisATS = @Pre"& _ 
-                "isATS, PreisEuro = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel "& _ 
-                "= @LagerArtikel, EKPreis = @EKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         LEKPreis = @LEKP"& _ 
-                "reis, Seriennummer = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @Se"& _ 
-                "tArtikel, ArtKatNr = @ArtKatNr, MWST = @MWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Gewicht"& _ 
-                " = @Gewicht, Picture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @P"& _ 
-                "roduktAktiv, ShopURL = @ShopURL, HerstellerURL = @HerstellerURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
-                "            Modifikationen = @Modifikationen, HerstellerRabatt = @HerstellerRaba"& _ 
-                "tt, HerstellerRabattText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewi"& _ 
-                "cht, TaraGewicht = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @Ni"& _ 
-                "chtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline = @ProduktAktivOnli"& _ 
-                "ne"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (ArtNr = @Original_ArtNr) AND (EAN = @Original_EAN) AND (@IsNul"& _ 
-                "l_Barcode = 1 AND Barcode IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Barcode = @Origin"& _ 
-                "al_Barcode) AND (@IsNull_Bezeichnung = 1 AND Bezeichnung IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              Bezeichnung = @Original_Bezeichnung) AND (@IsNull_Bezeichnung1 = 1"& _ 
-                " AND Bezeichnung1 IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Bezeichnung1 = @Original_"& _ 
-                "Bezeichnung1) AND (@IsNull_Beschreibung = 1 AND Beschreibung IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                  Beschreibung = @Original_Beschreibung) AND (@IsNull_Einheit = "& _ 
-                "1 AND Einheit IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Einheit = @Original_Einheit) "& _ 
-                "AND (@IsNull_PreisATS = 1 AND PreisATS IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Prei"& _ 
-                "sATS = @Original_PreisATS) AND (@IsNull_PreisEuro = 1 AND PreisEuro IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "                         PreisEuro = @Original_PreisEuro) AND (@IsNull_PreisATS_"& _ 
-                "Brutto = 1 AND PreisATS_Brutto IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PreisATS_Bru"& _ 
-                "tto = @Original_PreisATS_Brutto) AND (LagerArtikel = @Original_LagerArtikel) AND"& _ 
-                " (@IsNull_EKPreis = 1 AND EKPreis IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         EKPreis ="& _ 
-                " @Original_EKPreis) AND (@IsNull_LEKPreis = 1 AND LEKPreis IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                LEKPreis = @Original_LEKPreis) AND (Seriennummer = @Original_Ser"& _ 
-                "iennummer) AND (@IsNull_LieferantNR = 1 AND LieferantNR IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
-                "             LieferantNR = @Original_LieferantNR) AND (SetArtikel = @Original_Se"& _ 
-                "tArtikel) AND (@IsNull_ArtKatNr = 1 AND ArtKatNr IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      ArtKatNr = @Original_ArtKatNr) AND (@IsNull_MWST = 1 AND MWST IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "                         MWST = @Original_MWST) AND (@IsNull_Gewicht = 1 AND Gew"& _ 
-                "icht IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Gewicht = @Original_Gewicht) AND (@IsN"& _ 
-                "ull_Picture = 1 AND Picture IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Picture = @Orig"& _ 
-                "inal_Picture) AND (@IsNull_HerstellerNr = 1 AND HerstellerNr IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                  HerstellerNr = @Original_HerstellerNr) AND (ProduktAktiv = @Or"& _ 
-                "iginal_ProduktAktiv) AND (@IsNull_ShopURL = 1 AND ShopURL IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               ShopURL = @Original_ShopURL) AND (@IsNull_HerstellerURL = 1 AND H"& _ 
-                "erstellerURL IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         HerstellerURL = @Original_Hers"& _ 
-                "tellerURL) AND (@IsNull_Modifikationen = 1 AND Modifikationen IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
-                "                   Modifikationen = @Original_Modifikationen) AND (@IsNull_Herst"& _ 
-                "ellerRabatt = 1 AND HerstellerRabatt IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Herste"& _ 
-                "llerRabatt = @Original_HerstellerRabatt) AND (@IsNull_HerstellerRabattText = 1 A"& _ 
-                "ND HerstellerRabattText IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         HerstellerRabattTex"& _ 
-                "t = @Original_HerstellerRabattText) AND (@IsNull_AngelegtAn = 1 AND AngelegtAn I"& _ 
-                "S NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         AngelegtAn = @Original_AngelegtAn) AND (@IsN"& _ 
-                "ull_BruttoGewicht = 1 AND BruttoGewicht IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Bru"& _ 
-                "ttoGewicht = @Original_BruttoGewicht) AND (@IsNull_NettoGewicht = 1 AND NettoGew"& _ 
-                "icht IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         NettoGewicht = @Original_NettoGewicht)"& _ 
-                " AND (@IsNull_TaraGewicht = 1 AND TaraGewicht IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
-                "   TaraGewicht = @Original_TaraGewicht) AND (@IsNull_AngelegtAm = 1 AND Angelegt"& _ 
-                "Am IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         AngelegtAm = @Original_AngelegtAm) AND ("& _ 
-                "NichtBestellbar = @Original_NichtBestellbar) AND (@IsNull_ProduktAktivOnline = 1"& _ 
-                " AND ProduktAktivOnline IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline "& _ 
-                "= @Original_ProduktAktivOnline)"
+            Me._commandCollection(1).CommandText = "UPDATE       grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                EAN = @EAN, Barcode = @Barcode, Bezeic"& _ 
+                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung"& _ 
+                ", Einheit = @Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PreisATS = @PreisATS, PreisEuro"& _ 
+                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel,"& _ 
+                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Seriennumm"& _ 
+                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat"& _ 
+                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pic"& _ 
+                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho"& _ 
+                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Modi"& _ 
+                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa"& _ 
+                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht"& _ 
+                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline = @ProduktAktivOnline"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
+                " (ArtNr = @Original_ArtNr)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EAN"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
@@ -12146,531 +11569,6 @@ Namespace dsArtikelTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EAN"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "EAN"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Barcode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Barcode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Barcode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "Barcode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Bezeichnung1"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Beschreibung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Beschreibung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Beschreibung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "Beschreibung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Einheit"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Einheit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Einheit"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "Einheit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisATS"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisATS"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisEuro"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisEuro"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisEuro"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisEuro"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreisATS_Brutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreisATS_Brutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "PreisATS_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LagerArtikel"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "LagerArtikel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LEKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LEKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "LEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Seriennummer"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "Seriennummer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SetArtikel"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "SetArtikel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Gewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Gewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Gewicht"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 10
-            param.IsNullable = true
-            param.SourceColumn = "Gewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Picture"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Picture"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Picture"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 255
-            param.IsNullable = true
-            param.SourceColumn = "Picture"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ProduktAktiv"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktiv"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ShopURL"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ShopURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ShopURL"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "ShopURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerURL"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerURL"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerURL"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Modifikationen"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Modifikationen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Modifikationen"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 255
-            param.IsNullable = true
-            param.SourceColumn = "Modifikationen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerRabatt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabatt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerRabatt"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabatt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_HerstellerRabattText"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabattText"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_HerstellerRabattText"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.Size = 50
-            param.IsNullable = true
-            param.SourceColumn = "HerstellerRabattText"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_BruttoGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "BruttoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_BruttoGewicht"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "BruttoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NettoGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NettoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NettoGewicht"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "NettoGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_TaraGewicht"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "TaraGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_TaraGewicht"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "TaraGewicht"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AngelegtAm"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AngelegtAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NichtBestellbar"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "NichtBestellbar"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ProduktAktivOnline"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktivOnline"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._commandCollection(1).Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ProduktAktivOnline"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.Size = 1024
-            param.IsNullable = true
-            param.SourceColumn = "ProduktAktivOnline"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(1).Parameters.Add(param)
         End Sub
@@ -13186,516 +12084,6 @@ Namespace dsArtikelTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal ArtNr As Integer,  _
-                    ByVal EAN As String,  _
-                    ByVal Barcode As String,  _
-                    ByVal Bezeichnung As String,  _
-                    ByVal Bezeichnung1 As String,  _
-                    ByVal Beschreibung As String,  _
-                    ByVal Einheit As String,  _
-                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal LagerArtikel As Byte,  _
-                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Seriennummer As Byte,  _
-                    ByVal LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal SetArtikel As Byte,  _
-                    ByVal ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal Gewicht As String,  _
-                    ByVal Picture As String,  _
-                    ByVal HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal ProduktAktiv As Byte,  _
-                    ByVal ShopURL As String,  _
-                    ByVal HerstellerURL As String,  _
-                    ByVal Modifikationen As String,  _
-                    ByVal HerstellerRabatt As Global.System.Nullable(Of Double),  _
-                    ByVal HerstellerRabattText As String,  _
-                    ByVal AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal BruttoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal NettoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal TaraGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal AngelegtAm As Global.System.Nullable(Of Date),  _
-                    ByVal NichtBestellbar As Byte,  _
-                    ByVal ProduktAktivOnline As Global.System.Nullable(Of Byte),  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_EAN As String,  _
-                    ByVal Original_Barcode As String,  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal Original_Bezeichnung1 As String,  _
-                    ByVal Original_Beschreibung As String,  _
-                    ByVal Original_Einheit As String,  _
-                    ByVal Original_PreisATS As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LagerArtikel As Byte,  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LEKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Seriennummer As Byte,  _
-                    ByVal Original_LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SetArtikel As Byte,  _
-                    ByVal Original_ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Gewicht As String,  _
-                    ByVal Original_Picture As String,  _
-                    ByVal Original_HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ProduktAktiv As Byte,  _
-                    ByVal Original_ShopURL As String,  _
-                    ByVal Original_HerstellerURL As String,  _
-                    ByVal Original_Modifikationen As String,  _
-                    ByVal Original_HerstellerRabatt As Global.System.Nullable(Of Double),  _
-                    ByVal Original_HerstellerRabattText As String,  _
-                    ByVal Original_AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal Original_BruttoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_NettoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_TaraGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_AngelegtAm As Global.System.Nullable(Of Date),  _
-                    ByVal Original_NichtBestellbar As Byte,  _
-                    ByVal Original_ProduktAktivOnline As Global.System.Nullable(Of Byte)) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(ArtNr,Integer)
-            If (EAN Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("EAN")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(EAN,String)
-            End If
-            If (Barcode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Barcode,String)
-            End If
-            If (Bezeichnung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Bezeichnung,String)
-            End If
-            If (Bezeichnung1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Bezeichnung1,String)
-            End If
-            If (Beschreibung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Beschreibung,String)
-            End If
-            If (Einheit Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Einheit,String)
-            End If
-            If (PreisATS.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PreisATS.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (PreisEuro.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PreisEuro.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (PreisATS_Brutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PreisATS_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(LagerArtikel,Byte)
-            If (EKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(EKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (LEKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(LEKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Seriennummer,Byte)
-            If (LieferantNR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(LieferantNR.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(SetArtikel,Byte)
-            If (ArtKatNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(ArtKatNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (MWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(MWST.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            End If
-            If (Gewicht Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Gewicht,String)
-            End If
-            If (Picture Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Picture,String)
-            End If
-            If (HerstellerNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(HerstellerNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ProduktAktiv,Byte)
-            If (ShopURL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(ShopURL,String)
-            End If
-            If (HerstellerURL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(HerstellerURL,String)
-            End If
-            If (Modifikationen Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Modifikationen,String)
-            End If
-            If (HerstellerRabatt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(HerstellerRabatt.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            If (HerstellerRabattText Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(HerstellerRabattText,String)
-            End If
-            If (AngelegtAn.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(AngelegtAn.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
-            End If
-            If (BruttoGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(BruttoGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (NettoGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(NettoGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            End If
-            If (TaraGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(TaraGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            If (AngelegtAm.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(AngelegtAm.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(32).Value = CType(NichtBestellbar,Byte)
-            If (ProduktAktivOnline.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(ProduktAktivOnline.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_ArtNr,Integer)
-            If (Original_EAN Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_EAN")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_EAN,String)
-            End If
-            If (Original_Barcode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Barcode,String)
-            End If
-            If (Original_Bezeichnung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_Bezeichnung,String)
-            End If
-            If (Original_Bezeichnung1 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_Bezeichnung1,String)
-            End If
-            If (Original_Beschreibung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_Beschreibung,String)
-            End If
-            If (Original_Einheit Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_Einheit,String)
-            End If
-            If (Original_PreisATS.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_PreisATS.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PreisEuro.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_PreisEuro.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PreisATS_Brutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(Original_PreisATS_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_LagerArtikel,Byte)
-            If (Original_EKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_EKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LEKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_LEKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(57).Value = CType(Original_Seriennummer,Byte)
-            If (Original_LieferantNR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(Original_LieferantNR.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_SetArtikel,Byte)
-            If (Original_ArtKatNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_ArtKatNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_MWST.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Gewicht Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(66).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(Original_Gewicht,String)
-            End If
-            If (Original_Picture Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(68).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(Original_Picture,String)
-            End If
-            If (Original_HerstellerNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(Original_HerstellerNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(70).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(71).Value = CType(Original_ProduktAktiv,Byte)
-            If (Original_ShopURL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(Original_ShopURL,String)
-            End If
-            If (Original_HerstellerURL Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(Original_HerstellerURL,String)
-            End If
-            If (Original_Modifikationen Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(Original_Modifikationen,String)
-            End If
-            If (Original_HerstellerRabatt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(Original_HerstellerRabatt.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
-            End If
-            If (Original_HerstellerRabattText Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(Original_HerstellerRabattText,String)
-            End If
-            If (Original_AngelegtAn.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(Original_AngelegtAn.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BruttoGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(Original_BruttoGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NettoGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(Original_NettoGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
-            End If
-            If (Original_TaraGewicht.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(Original_TaraGewicht.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AngelegtAm.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(Original_AngelegtAm.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(92).Value = CType(Original_NichtBestellbar,Byte)
-            If (Original_ProduktAktivOnline.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(Original_ProduktAktivOnline.Value,Byte)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(94).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal EAN As String,  _
-                    ByVal Barcode As String,  _
-                    ByVal Bezeichnung As String,  _
-                    ByVal Bezeichnung1 As String,  _
-                    ByVal Beschreibung As String,  _
-                    ByVal Einheit As String,  _
-                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal LagerArtikel As Byte,  _
-                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Seriennummer As Byte,  _
-                    ByVal LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal SetArtikel As Byte,  _
-                    ByVal ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal Gewicht As String,  _
-                    ByVal Picture As String,  _
-                    ByVal HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal ProduktAktiv As Byte,  _
-                    ByVal ShopURL As String,  _
-                    ByVal HerstellerURL As String,  _
-                    ByVal Modifikationen As String,  _
-                    ByVal HerstellerRabatt As Global.System.Nullable(Of Double),  _
-                    ByVal HerstellerRabattText As String,  _
-                    ByVal AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal BruttoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal NettoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal TaraGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal AngelegtAm As Global.System.Nullable(Of Date),  _
-                    ByVal NichtBestellbar As Byte,  _
-                    ByVal ProduktAktivOnline As Global.System.Nullable(Of Byte),  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_EAN As String,  _
-                    ByVal Original_Barcode As String,  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal Original_Bezeichnung1 As String,  _
-                    ByVal Original_Beschreibung As String,  _
-                    ByVal Original_Einheit As String,  _
-                    ByVal Original_PreisATS As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LagerArtikel As Byte,  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LEKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Seriennummer As Byte,  _
-                    ByVal Original_LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SetArtikel As Byte,  _
-                    ByVal Original_ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Gewicht As String,  _
-                    ByVal Original_Picture As String,  _
-                    ByVal Original_HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ProduktAktiv As Byte,  _
-                    ByVal Original_ShopURL As String,  _
-                    ByVal Original_HerstellerURL As String,  _
-                    ByVal Original_Modifikationen As String,  _
-                    ByVal Original_HerstellerRabatt As Global.System.Nullable(Of Double),  _
-                    ByVal Original_HerstellerRabattText As String,  _
-                    ByVal Original_AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal Original_BruttoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_NettoGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_TaraGewicht As Global.System.Nullable(Of Double),  _
-                    ByVal Original_AngelegtAm As Global.System.Nullable(Of Date),  _
-                    ByVal Original_NichtBestellbar As Byte,  _
-                    ByVal Original_ProduktAktivOnline As Global.System.Nullable(Of Byte)) As Integer
-            Return Me.Update(Original_ArtNr, EAN, Barcode, Bezeichnung, Bezeichnung1, Beschreibung, Einheit, PreisATS, PreisEuro, PreisATS_Brutto, LagerArtikel, EKPreis, LEKPreis, Seriennummer, LieferantNR, SetArtikel, ArtKatNr, MWST, Gewicht, Picture, HerstellerNr, ProduktAktiv, ShopURL, HerstellerURL, Modifikationen, HerstellerRabatt, HerstellerRabattText, AngelegtAn, BruttoGewicht, NettoGewicht, TaraGewicht, AngelegtAm, NichtBestellbar, ProduktAktivOnline, Original_ArtNr, Original_EAN, Original_Barcode, Original_Bezeichnung, Original_Bezeichnung1, Original_Beschreibung, Original_Einheit, Original_PreisATS, Original_PreisEuro, Original_PreisATS_Brutto, Original_LagerArtikel, Original_EKPreis, Original_LEKPreis, Original_Seriennummer, Original_LieferantNR, Original_SetArtikel, Original_ArtKatNr, Original_MWST, Original_Gewicht, Original_Picture, Original_HerstellerNr, Original_ProduktAktiv, Original_ShopURL, Original_HerstellerURL, Original_Modifikationen, Original_HerstellerRabatt, Original_HerstellerRabattText, Original_AngelegtAn, Original_BruttoGewicht, Original_NettoGewicht, Original_TaraGewicht, Original_AngelegtAm, Original_NichtBestellbar, Original_ProduktAktivOnline)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateQuery( _
-                    ByVal ArtNr As Integer,  _
                     ByVal EAN As String,  _
                     ByVal Barcode As String,  _
                     ByVal Bezeichnung As String,  _
@@ -13729,535 +12117,393 @@ Namespace dsArtikelTableAdapters
                     ByVal AngelegtAm As Global.System.Nullable(Of Date),  _
                     ByVal NichtBestellbar As Object,  _
                     ByVal ProduktAktivOnline As Object,  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_EAN As String,  _
-                    ByVal IsNull_Barcode As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Barcode As String,  _
-                    ByVal IsNull_Bezeichnung As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal IsNull_Bezeichnung1 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Bezeichnung1 As String,  _
-                    ByVal IsNull_Beschreibung As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Beschreibung As String,  _
-                    ByVal IsNull_Einheit As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Einheit As String,  _
-                    ByVal IsNull_PreisATS As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_PreisATS As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_PreisEuro As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_PreisATS_Brutto As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LagerArtikel As Object,  _
-                    ByVal IsNull_EKPreis As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_LEKPreis As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LEKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Seriennummer As Object,  _
-                    ByVal IsNull_LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LieferantNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_SetArtikel As Object,  _
-                    ByVal IsNull_ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal IsNull_MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Integer),  _
-                    ByVal IsNull_Gewicht As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Gewicht As String,  _
-                    ByVal IsNull_Picture As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Picture As String,  _
-                    ByVal IsNull_HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_HerstellerNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ProduktAktiv As Object,  _
-                    ByVal IsNull_ShopURL As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ShopURL As String,  _
-                    ByVal IsNull_HerstellerURL As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_HerstellerURL As String,  _
-                    ByVal IsNull_Modifikationen As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Modifikationen As String,  _
-                    ByVal IsNull_HerstellerRabatt As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_HerstellerRabatt As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_HerstellerRabattText As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_HerstellerRabattText As String,  _
-                    ByVal IsNull_AngelegtAn As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal IsNull_BruttoGewicht As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_BruttoGewicht As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_NettoGewicht As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_NettoGewicht As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_TaraGewicht As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_TaraGewicht As Global.System.Nullable(Of Decimal),  _
-                    ByVal IsNull_AngelegtAm As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_AngelegtAm As Global.System.Nullable(Of Date),  _
-                    ByVal Original_NichtBestellbar As Object,  _
-                    ByVal IsNull_ProduktAktivOnline As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ProduktAktivOnline As Object) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
-            command.Parameters(0).Value = CType(ArtNr,Integer)
+                    ByVal Original_ArtNr As Integer) As Integer
             If (EAN Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("EAN")
             Else
-                command.Parameters(1).Value = CType(EAN,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(EAN,String)
             End If
             If (Barcode Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(2).Value = CType(Barcode,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Barcode,String)
             End If
             If (Bezeichnung Is Nothing) Then
-                command.Parameters(3).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(3).Value = CType(Bezeichnung,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Bezeichnung,String)
             End If
             If (Bezeichnung1 Is Nothing) Then
-                command.Parameters(4).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(4).Value = CType(Bezeichnung1,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Bezeichnung1,String)
             End If
             If (Beschreibung Is Nothing) Then
-                command.Parameters(5).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(5).Value = CType(Beschreibung,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Beschreibung,String)
             End If
             If (Einheit Is Nothing) Then
-                command.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(6).Value = CType(Einheit,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Einheit,String)
             End If
             If (PreisATS.HasValue = true) Then
-                command.Parameters(7).Value = CType(PreisATS.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(PreisATS.Value,Decimal)
             Else
-                command.Parameters(7).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (PreisEuro.HasValue = true) Then
-                command.Parameters(8).Value = CType(PreisEuro.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PreisEuro.Value,Decimal)
             Else
-                command.Parameters(8).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (PreisATS_Brutto.HasValue = true) Then
-                command.Parameters(9).Value = CType(PreisATS_Brutto.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PreisATS_Brutto.Value,Decimal)
             Else
-                command.Parameters(9).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
             If (LagerArtikel Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("LagerArtikel")
             Else
-                command.Parameters(10).Value = CType(LagerArtikel,Object)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(LagerArtikel,Object)
             End If
             If (EKPreis.HasValue = true) Then
-                command.Parameters(11).Value = CType(EKPreis.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(EKPreis.Value,Decimal)
             Else
-                command.Parameters(11).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
             If (LEKPreis.HasValue = true) Then
-                command.Parameters(12).Value = CType(LEKPreis.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(LEKPreis.Value,Decimal)
             Else
-                command.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Seriennummer Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Seriennummer")
             Else
-                command.Parameters(13).Value = CType(Seriennummer,Object)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Seriennummer,Object)
             End If
             If (LieferantNR.HasValue = true) Then
-                command.Parameters(14).Value = CType(LieferantNR.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(LieferantNR.Value,Integer)
             Else
-                command.Parameters(14).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
             If (SetArtikel Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("SetArtikel")
             Else
-                command.Parameters(15).Value = CType(SetArtikel,Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(SetArtikel,Object)
             End If
             If (ArtKatNr.HasValue = true) Then
-                command.Parameters(16).Value = CType(ArtKatNr.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(ArtKatNr.Value,Integer)
             Else
-                command.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
             If (MWST.HasValue = true) Then
-                command.Parameters(17).Value = CType(MWST.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(MWST.Value,Integer)
             Else
-                command.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             End If
             If (Gewicht Is Nothing) Then
-                command.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(18).Value = CType(Gewicht,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Gewicht,String)
             End If
             If (Picture Is Nothing) Then
-                command.Parameters(19).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(19).Value = CType(Picture,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Picture,String)
             End If
             If (HerstellerNr.HasValue = true) Then
-                command.Parameters(20).Value = CType(HerstellerNr.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(HerstellerNr.Value,Integer)
             Else
-                command.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
             If (ProduktAktiv Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("ProduktAktiv")
             Else
-                command.Parameters(21).Value = CType(ProduktAktiv,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(ProduktAktiv,Object)
             End If
             If (ShopURL Is Nothing) Then
-                command.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(22).Value = CType(ShopURL,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ShopURL,String)
             End If
             If (HerstellerURL Is Nothing) Then
-                command.Parameters(23).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(23).Value = CType(HerstellerURL,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(HerstellerURL,String)
             End If
             If (Modifikationen Is Nothing) Then
-                command.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(24).Value = CType(Modifikationen,String)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Modifikationen,String)
             End If
             If (HerstellerRabatt.HasValue = true) Then
-                command.Parameters(25).Value = CType(HerstellerRabatt.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(HerstellerRabatt.Value,Decimal)
             Else
-                command.Parameters(25).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
             If (HerstellerRabattText Is Nothing) Then
-                command.Parameters(26).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(26).Value = CType(HerstellerRabattText,String)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(HerstellerRabattText,String)
             End If
             If (AngelegtAn.HasValue = true) Then
-                command.Parameters(27).Value = CType(AngelegtAn.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(AngelegtAn.Value,Date)
             Else
-                command.Parameters(27).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             End If
             If (BruttoGewicht.HasValue = true) Then
-                command.Parameters(28).Value = CType(BruttoGewicht.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(BruttoGewicht.Value,Decimal)
             Else
-                command.Parameters(28).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             If (NettoGewicht.HasValue = true) Then
-                command.Parameters(29).Value = CType(NettoGewicht.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(NettoGewicht.Value,Decimal)
             Else
-                command.Parameters(29).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
             If (TaraGewicht.HasValue = true) Then
-                command.Parameters(30).Value = CType(TaraGewicht.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(TaraGewicht.Value,Decimal)
             Else
-                command.Parameters(30).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
             If (AngelegtAm.HasValue = true) Then
-                command.Parameters(31).Value = CType(AngelegtAm.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(AngelegtAm.Value,Date)
             Else
-                command.Parameters(31).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             End If
             If (NichtBestellbar Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("NichtBestellbar")
             Else
-                command.Parameters(32).Value = CType(NichtBestellbar,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(NichtBestellbar,Object)
             End If
             If (ProduktAktivOnline Is Nothing) Then
-                command.Parameters(33).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(33).Value = CType(ProduktAktivOnline,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(ProduktAktivOnline,Object)
             End If
-            command.Parameters(34).Value = CType(Original_ArtNr,Integer)
-            If (Original_EAN Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_EAN")
+            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_ArtNr,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function UpdateQuery( _
+                    ByVal EAN As String,  _
+                    ByVal Barcode As String,  _
+                    ByVal Bezeichnung As String,  _
+                    ByVal Bezeichnung1 As String,  _
+                    ByVal Beschreibung As String,  _
+                    ByVal Einheit As String,  _
+                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
+                    ByVal LagerArtikel As Object,  _
+                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
+                    ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
+                    ByVal Seriennummer As Object,  _
+                    ByVal LieferantNR As Global.System.Nullable(Of Integer),  _
+                    ByVal SetArtikel As Object,  _
+                    ByVal ArtKatNr As Global.System.Nullable(Of Integer),  _
+                    ByVal MWST As Global.System.Nullable(Of Integer),  _
+                    ByVal Gewicht As String,  _
+                    ByVal Picture As String,  _
+                    ByVal HerstellerNr As Global.System.Nullable(Of Integer),  _
+                    ByVal ProduktAktiv As Object,  _
+                    ByVal ShopURL As String,  _
+                    ByVal HerstellerURL As String,  _
+                    ByVal Modifikationen As String,  _
+                    ByVal HerstellerRabatt As Global.System.Nullable(Of Decimal),  _
+                    ByVal HerstellerRabattText As String,  _
+                    ByVal AngelegtAn As Global.System.Nullable(Of Date),  _
+                    ByVal BruttoGewicht As Global.System.Nullable(Of Decimal),  _
+                    ByVal NettoGewicht As Global.System.Nullable(Of Decimal),  _
+                    ByVal TaraGewicht As Global.System.Nullable(Of Decimal),  _
+                    ByVal AngelegtAm As Global.System.Nullable(Of Date),  _
+                    ByVal NichtBestellbar As Object,  _
+                    ByVal ProduktAktivOnline As Object,  _
+                    ByVal Original_ArtNr As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
+            If (EAN Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("EAN")
             Else
-                command.Parameters(35).Value = CType(Original_EAN,String)
+                command.Parameters(0).Value = CType(EAN,String)
             End If
-            If (IsNull_Barcode.HasValue = true) Then
-                command.Parameters(36).Value = CType(IsNull_Barcode.Value,Integer)
+            If (Barcode Is Nothing) Then
+                command.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(36).Value = Global.System.DBNull.Value
+                command.Parameters(1).Value = CType(Barcode,String)
             End If
-            If (Original_Barcode Is Nothing) Then
-                command.Parameters(37).Value = Global.System.DBNull.Value
+            If (Bezeichnung Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(37).Value = CType(Original_Barcode,String)
+                command.Parameters(2).Value = CType(Bezeichnung,String)
             End If
-            If (IsNull_Bezeichnung.HasValue = true) Then
-                command.Parameters(38).Value = CType(IsNull_Bezeichnung.Value,Integer)
+            If (Bezeichnung1 Is Nothing) Then
+                command.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(38).Value = Global.System.DBNull.Value
+                command.Parameters(3).Value = CType(Bezeichnung1,String)
             End If
-            If (Original_Bezeichnung Is Nothing) Then
-                command.Parameters(39).Value = Global.System.DBNull.Value
+            If (Beschreibung Is Nothing) Then
+                command.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(39).Value = CType(Original_Bezeichnung,String)
+                command.Parameters(4).Value = CType(Beschreibung,String)
             End If
-            If (IsNull_Bezeichnung1.HasValue = true) Then
-                command.Parameters(40).Value = CType(IsNull_Bezeichnung1.Value,Integer)
+            If (Einheit Is Nothing) Then
+                command.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(40).Value = Global.System.DBNull.Value
+                command.Parameters(5).Value = CType(Einheit,String)
             End If
-            If (Original_Bezeichnung1 Is Nothing) Then
-                command.Parameters(41).Value = Global.System.DBNull.Value
+            If (PreisATS.HasValue = true) Then
+                command.Parameters(6).Value = CType(PreisATS.Value,Decimal)
             Else
-                command.Parameters(41).Value = CType(Original_Bezeichnung1,String)
+                command.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_Beschreibung.HasValue = true) Then
-                command.Parameters(42).Value = CType(IsNull_Beschreibung.Value,Integer)
+            If (PreisEuro.HasValue = true) Then
+                command.Parameters(7).Value = CType(PreisEuro.Value,Decimal)
             Else
-                command.Parameters(42).Value = Global.System.DBNull.Value
+                command.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (Original_Beschreibung Is Nothing) Then
-                command.Parameters(43).Value = Global.System.DBNull.Value
+            If (PreisATS_Brutto.HasValue = true) Then
+                command.Parameters(8).Value = CType(PreisATS_Brutto.Value,Decimal)
             Else
-                command.Parameters(43).Value = CType(Original_Beschreibung,String)
+                command.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_Einheit.HasValue = true) Then
-                command.Parameters(44).Value = CType(IsNull_Einheit.Value,Integer)
+            If (LagerArtikel Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("LagerArtikel")
             Else
-                command.Parameters(44).Value = Global.System.DBNull.Value
+                command.Parameters(9).Value = CType(LagerArtikel,Object)
             End If
-            If (Original_Einheit Is Nothing) Then
-                command.Parameters(45).Value = Global.System.DBNull.Value
+            If (EKPreis.HasValue = true) Then
+                command.Parameters(10).Value = CType(EKPreis.Value,Decimal)
             Else
-                command.Parameters(45).Value = CType(Original_Einheit,String)
+                command.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_PreisATS.HasValue = true) Then
-                command.Parameters(46).Value = CType(IsNull_PreisATS.Value,Integer)
+            If (LEKPreis.HasValue = true) Then
+                command.Parameters(11).Value = CType(LEKPreis.Value,Decimal)
             Else
-                command.Parameters(46).Value = Global.System.DBNull.Value
+                command.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            If (Original_PreisATS.HasValue = true) Then
-                command.Parameters(47).Value = CType(Original_PreisATS.Value,Decimal)
+            If (Seriennummer Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Seriennummer")
             Else
-                command.Parameters(47).Value = Global.System.DBNull.Value
+                command.Parameters(12).Value = CType(Seriennummer,Object)
             End If
-            If (IsNull_PreisEuro.HasValue = true) Then
-                command.Parameters(48).Value = CType(IsNull_PreisEuro.Value,Integer)
+            If (LieferantNR.HasValue = true) Then
+                command.Parameters(13).Value = CType(LieferantNR.Value,Integer)
             Else
-                command.Parameters(48).Value = Global.System.DBNull.Value
+                command.Parameters(13).Value = Global.System.DBNull.Value
             End If
-            If (Original_PreisEuro.HasValue = true) Then
-                command.Parameters(49).Value = CType(Original_PreisEuro.Value,Decimal)
+            If (SetArtikel Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("SetArtikel")
             Else
-                command.Parameters(49).Value = Global.System.DBNull.Value
+                command.Parameters(14).Value = CType(SetArtikel,Object)
             End If
-            If (IsNull_PreisATS_Brutto.HasValue = true) Then
-                command.Parameters(50).Value = CType(IsNull_PreisATS_Brutto.Value,Integer)
+            If (ArtKatNr.HasValue = true) Then
+                command.Parameters(15).Value = CType(ArtKatNr.Value,Integer)
             Else
-                command.Parameters(50).Value = Global.System.DBNull.Value
+                command.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (Original_PreisATS_Brutto.HasValue = true) Then
-                command.Parameters(51).Value = CType(Original_PreisATS_Brutto.Value,Decimal)
+            If (MWST.HasValue = true) Then
+                command.Parameters(16).Value = CType(MWST.Value,Integer)
             Else
-                command.Parameters(51).Value = Global.System.DBNull.Value
+                command.Parameters(16).Value = Global.System.DBNull.Value
             End If
-            If (Original_LagerArtikel Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_LagerArtikel")
+            If (Gewicht Is Nothing) Then
+                command.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(52).Value = CType(Original_LagerArtikel,Object)
+                command.Parameters(17).Value = CType(Gewicht,String)
             End If
-            If (IsNull_EKPreis.HasValue = true) Then
-                command.Parameters(53).Value = CType(IsNull_EKPreis.Value,Integer)
+            If (Picture Is Nothing) Then
+                command.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(53).Value = Global.System.DBNull.Value
+                command.Parameters(18).Value = CType(Picture,String)
             End If
-            If (Original_EKPreis.HasValue = true) Then
-                command.Parameters(54).Value = CType(Original_EKPreis.Value,Decimal)
+            If (HerstellerNr.HasValue = true) Then
+                command.Parameters(19).Value = CType(HerstellerNr.Value,Integer)
             Else
-                command.Parameters(54).Value = Global.System.DBNull.Value
+                command.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_LEKPreis.HasValue = true) Then
-                command.Parameters(55).Value = CType(IsNull_LEKPreis.Value,Integer)
+            If (ProduktAktiv Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ProduktAktiv")
             Else
-                command.Parameters(55).Value = Global.System.DBNull.Value
+                command.Parameters(20).Value = CType(ProduktAktiv,Object)
             End If
-            If (Original_LEKPreis.HasValue = true) Then
-                command.Parameters(56).Value = CType(Original_LEKPreis.Value,Decimal)
+            If (ShopURL Is Nothing) Then
+                command.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(56).Value = Global.System.DBNull.Value
+                command.Parameters(21).Value = CType(ShopURL,String)
             End If
-            If (Original_Seriennummer Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Seriennummer")
+            If (HerstellerURL Is Nothing) Then
+                command.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(57).Value = CType(Original_Seriennummer,Object)
+                command.Parameters(22).Value = CType(HerstellerURL,String)
             End If
-            If (IsNull_LieferantNR.HasValue = true) Then
-                command.Parameters(58).Value = CType(IsNull_LieferantNR.Value,Integer)
+            If (Modifikationen Is Nothing) Then
+                command.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(58).Value = Global.System.DBNull.Value
+                command.Parameters(23).Value = CType(Modifikationen,String)
             End If
-            If (Original_LieferantNR.HasValue = true) Then
-                command.Parameters(59).Value = CType(Original_LieferantNR.Value,Integer)
+            If (HerstellerRabatt.HasValue = true) Then
+                command.Parameters(24).Value = CType(HerstellerRabatt.Value,Decimal)
             Else
-                command.Parameters(59).Value = Global.System.DBNull.Value
+                command.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (Original_SetArtikel Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_SetArtikel")
+            If (HerstellerRabattText Is Nothing) Then
+                command.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(60).Value = CType(Original_SetArtikel,Object)
+                command.Parameters(25).Value = CType(HerstellerRabattText,String)
             End If
-            If (IsNull_ArtKatNr.HasValue = true) Then
-                command.Parameters(61).Value = CType(IsNull_ArtKatNr.Value,Integer)
+            If (AngelegtAn.HasValue = true) Then
+                command.Parameters(26).Value = CType(AngelegtAn.Value,Date)
             Else
-                command.Parameters(61).Value = Global.System.DBNull.Value
+                command.Parameters(26).Value = Global.System.DBNull.Value
             End If
-            If (Original_ArtKatNr.HasValue = true) Then
-                command.Parameters(62).Value = CType(Original_ArtKatNr.Value,Integer)
+            If (BruttoGewicht.HasValue = true) Then
+                command.Parameters(27).Value = CType(BruttoGewicht.Value,Decimal)
             Else
-                command.Parameters(62).Value = Global.System.DBNull.Value
+                command.Parameters(27).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_MWST.HasValue = true) Then
-                command.Parameters(63).Value = CType(IsNull_MWST.Value,Integer)
+            If (NettoGewicht.HasValue = true) Then
+                command.Parameters(28).Value = CType(NettoGewicht.Value,Decimal)
             Else
-                command.Parameters(63).Value = Global.System.DBNull.Value
+                command.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            If (Original_MWST.HasValue = true) Then
-                command.Parameters(64).Value = CType(Original_MWST.Value,Integer)
+            If (TaraGewicht.HasValue = true) Then
+                command.Parameters(29).Value = CType(TaraGewicht.Value,Decimal)
             Else
-                command.Parameters(64).Value = Global.System.DBNull.Value
+                command.Parameters(29).Value = Global.System.DBNull.Value
             End If
-            If (IsNull_Gewicht.HasValue = true) Then
-                command.Parameters(65).Value = CType(IsNull_Gewicht.Value,Integer)
+            If (AngelegtAm.HasValue = true) Then
+                command.Parameters(30).Value = CType(AngelegtAm.Value,Date)
             Else
-                command.Parameters(65).Value = Global.System.DBNull.Value
+                command.Parameters(30).Value = Global.System.DBNull.Value
             End If
-            If (Original_Gewicht Is Nothing) Then
-                command.Parameters(66).Value = Global.System.DBNull.Value
+            If (NichtBestellbar Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("NichtBestellbar")
             Else
-                command.Parameters(66).Value = CType(Original_Gewicht,String)
+                command.Parameters(31).Value = CType(NichtBestellbar,Object)
             End If
-            If (IsNull_Picture.HasValue = true) Then
-                command.Parameters(67).Value = CType(IsNull_Picture.Value,Integer)
+            If (ProduktAktivOnline Is Nothing) Then
+                command.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(67).Value = Global.System.DBNull.Value
+                command.Parameters(32).Value = CType(ProduktAktivOnline,Object)
             End If
-            If (Original_Picture Is Nothing) Then
-                command.Parameters(68).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(68).Value = CType(Original_Picture,String)
-            End If
-            If (IsNull_HerstellerNr.HasValue = true) Then
-                command.Parameters(69).Value = CType(IsNull_HerstellerNr.Value,Integer)
-            Else
-                command.Parameters(69).Value = Global.System.DBNull.Value
-            End If
-            If (Original_HerstellerNr.HasValue = true) Then
-                command.Parameters(70).Value = CType(Original_HerstellerNr.Value,Integer)
-            Else
-                command.Parameters(70).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ProduktAktiv Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_ProduktAktiv")
-            Else
-                command.Parameters(71).Value = CType(Original_ProduktAktiv,Object)
-            End If
-            If (IsNull_ShopURL.HasValue = true) Then
-                command.Parameters(72).Value = CType(IsNull_ShopURL.Value,Integer)
-            Else
-                command.Parameters(72).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ShopURL Is Nothing) Then
-                command.Parameters(73).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(73).Value = CType(Original_ShopURL,String)
-            End If
-            If (IsNull_HerstellerURL.HasValue = true) Then
-                command.Parameters(74).Value = CType(IsNull_HerstellerURL.Value,Integer)
-            Else
-                command.Parameters(74).Value = Global.System.DBNull.Value
-            End If
-            If (Original_HerstellerURL Is Nothing) Then
-                command.Parameters(75).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(75).Value = CType(Original_HerstellerURL,String)
-            End If
-            If (IsNull_Modifikationen.HasValue = true) Then
-                command.Parameters(76).Value = CType(IsNull_Modifikationen.Value,Integer)
-            Else
-                command.Parameters(76).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Modifikationen Is Nothing) Then
-                command.Parameters(77).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(77).Value = CType(Original_Modifikationen,String)
-            End If
-            If (IsNull_HerstellerRabatt.HasValue = true) Then
-                command.Parameters(78).Value = CType(IsNull_HerstellerRabatt.Value,Integer)
-            Else
-                command.Parameters(78).Value = Global.System.DBNull.Value
-            End If
-            If (Original_HerstellerRabatt.HasValue = true) Then
-                command.Parameters(79).Value = CType(Original_HerstellerRabatt.Value,Decimal)
-            Else
-                command.Parameters(79).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_HerstellerRabattText.HasValue = true) Then
-                command.Parameters(80).Value = CType(IsNull_HerstellerRabattText.Value,Integer)
-            Else
-                command.Parameters(80).Value = Global.System.DBNull.Value
-            End If
-            If (Original_HerstellerRabattText Is Nothing) Then
-                command.Parameters(81).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(81).Value = CType(Original_HerstellerRabattText,String)
-            End If
-            If (IsNull_AngelegtAn.HasValue = true) Then
-                command.Parameters(82).Value = CType(IsNull_AngelegtAn.Value,Integer)
-            Else
-                command.Parameters(82).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AngelegtAn.HasValue = true) Then
-                command.Parameters(83).Value = CType(Original_AngelegtAn.Value,Date)
-            Else
-                command.Parameters(83).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_BruttoGewicht.HasValue = true) Then
-                command.Parameters(84).Value = CType(IsNull_BruttoGewicht.Value,Integer)
-            Else
-                command.Parameters(84).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BruttoGewicht.HasValue = true) Then
-                command.Parameters(85).Value = CType(Original_BruttoGewicht.Value,Decimal)
-            Else
-                command.Parameters(85).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_NettoGewicht.HasValue = true) Then
-                command.Parameters(86).Value = CType(IsNull_NettoGewicht.Value,Integer)
-            Else
-                command.Parameters(86).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NettoGewicht.HasValue = true) Then
-                command.Parameters(87).Value = CType(Original_NettoGewicht.Value,Decimal)
-            Else
-                command.Parameters(87).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_TaraGewicht.HasValue = true) Then
-                command.Parameters(88).Value = CType(IsNull_TaraGewicht.Value,Integer)
-            Else
-                command.Parameters(88).Value = Global.System.DBNull.Value
-            End If
-            If (Original_TaraGewicht.HasValue = true) Then
-                command.Parameters(89).Value = CType(Original_TaraGewicht.Value,Decimal)
-            Else
-                command.Parameters(89).Value = Global.System.DBNull.Value
-            End If
-            If (IsNull_AngelegtAm.HasValue = true) Then
-                command.Parameters(90).Value = CType(IsNull_AngelegtAm.Value,Integer)
-            Else
-                command.Parameters(90).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AngelegtAm.HasValue = true) Then
-                command.Parameters(91).Value = CType(Original_AngelegtAm.Value,Date)
-            Else
-                command.Parameters(91).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NichtBestellbar Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_NichtBestellbar")
-            Else
-                command.Parameters(92).Value = CType(Original_NichtBestellbar,Object)
-            End If
-            If (IsNull_ProduktAktivOnline.HasValue = true) Then
-                command.Parameters(93).Value = CType(IsNull_ProduktAktivOnline.Value,Integer)
-            Else
-                command.Parameters(93).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ProduktAktivOnline Is Nothing) Then
-                command.Parameters(94).Value = Global.System.DBNull.Value
-            Else
-                command.Parameters(94).Value = CType(Original_ProduktAktivOnline,Object)
-            End If
+            command.Parameters(33).Value = CType(Original_ArtNr,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
