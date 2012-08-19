@@ -1,10 +1,10 @@
 ﻿Public Class Artikelliste
 
     Private Sub ArtikelListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsArtikel.grArtikelliste' table. You can move, or remove it, as needed.
-        Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
 
         Try
+
+            Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
 
             Me.ArtKatNrComboBox.Text = ""
@@ -92,8 +92,8 @@
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
-            Kunden.Show()
-            Kunden.FilterBy("IDNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
+            Artikel.Show()
+            Artikel.FilterBy("ArtNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

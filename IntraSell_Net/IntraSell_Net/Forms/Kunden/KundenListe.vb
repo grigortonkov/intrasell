@@ -32,22 +32,22 @@
             filter = "1=1 "
 
             If Me.LandComboBox.Text.Length > 0 Then
-                filter = " and Land Like '" + LandComboBox.Text + "%'"
+                filter += " and Land Like '" + LandComboBox.Text + "%'"
             End If
 
             If Me.PLZVonTextBox.Text.Length > 0 Then
-                filter = " and PLZ >= '" + PLZVonTextBox.Text + "%'"
+                filter += " and PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
             If Me.PLZbisTextBox.Text.Length > 0 Then
-                filter = " and PLZ <= '" + PLZVonTextBox.Text + "%'"
+                filter += " and PLZ <= '" + PLZVonTextBox.Text + "%'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then
-                filter = " and Kundengruppe Like '" + KundengruppeComboBox.Text + "%'"
+                filter += " and Kundengruppe Like '" + KundengruppeComboBox.Text + "%'"
             End If
 
             If Me.PreislisteComboBox.Text.Length > 0 Then
-                filter = " and Preisliste Like '" + PreislisteComboBox.Text + "%'"
+                filter += " and Preisliste Like '" + PreislisteComboBox.Text + "%'"
             End If
 
             If Not filter Is Nothing Then

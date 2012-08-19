@@ -27,14 +27,14 @@ Partial Class PLZSelector
         Me.txtSuche = New System.Windows.Forms.TextBox()
         Me.btnUebernehmen = New System.Windows.Forms.Button()
         Me.dgPLZ = New System.Windows.Forms.DataGridView()
-        Me.GrLandPlzBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsPLZ = New IntraSell_Net.dsPLZ()
-        Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
         Me.IdNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PLZDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrtDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grLandIDNR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GrLandPlzBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsPLZ = New IntraSell_Net.dsPLZ()
+        Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
         CType(Me.dgPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,20 +79,6 @@ Partial Class PLZSelector
         Me.dgPLZ.Size = New System.Drawing.Size(537, 214)
         Me.dgPLZ.TabIndex = 3
         '
-        'GrLandPlzBindingSource
-        '
-        Me.GrLandPlzBindingSource.DataMember = "grLandPlz"
-        Me.GrLandPlzBindingSource.DataSource = Me.DsPLZ
-        '
-        'DsPLZ
-        '
-        Me.DsPLZ.DataSetName = "dsPLZ"
-        Me.DsPLZ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'GrLandPlzTableAdapter
-        '
-        Me.GrLandPlzTableAdapter.ClearBeforeFill = True
-        '
         'IdNrDataGridViewTextBoxColumn
         '
         Me.IdNrDataGridViewTextBoxColumn.DataPropertyName = "IdNr"
@@ -130,6 +116,20 @@ Partial Class PLZSelector
         Me.grLandIDNR.Name = "grLandIDNR"
         Me.grLandIDNR.ReadOnly = True
         Me.grLandIDNR.Visible = False
+        '
+        'GrLandPlzBindingSource
+        '
+        Me.GrLandPlzBindingSource.DataMember = "grLandPlz"
+        Me.GrLandPlzBindingSource.DataSource = Me.DsPLZ
+        '
+        'DsPLZ
+        '
+        Me.DsPLZ.DataSetName = "dsPLZ"
+        Me.DsPLZ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GrLandPlzTableAdapter
+        '
+        Me.GrLandPlzTableAdapter.ClearBeforeFill = True
         '
         'PLZSelector
         '
