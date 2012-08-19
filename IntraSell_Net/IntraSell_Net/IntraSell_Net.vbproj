@@ -115,6 +115,12 @@
     <Compile Include="Forms\Artikel\Artikel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Artikel\ArtikelListe.Designer.vb">
+      <DependentUpon>ArtikelListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\ArtikelListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\ArtikelControl.Designer.vb">
       <DependentUpon>ArtikelControl.vb</DependentUpon>
     </Compile>
@@ -271,6 +277,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\Artikel\Artikel.resx">
       <DependentUpon>Artikel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikel\ArtikelListe.resx">
+      <DependentUpon>ArtikelListe.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
       <DependentUpon>ArtikelControl.vb</DependentUpon>
