@@ -101,6 +101,14 @@
     <Compile Include="Data\dsAdressen.vb">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsArtikel.vb">
+      <DependentUpon>dsArtikel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsEinstellungen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsVorgaenge.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,6 +158,12 @@
     </Compile>
     <Compile Include="Forms\Controls\TextBoxLink.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Vars.Designer.vb">
+      <DependentUpon>Vars.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Vars.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Infrastructure\About.Designer.vb">
       <DependentUpon>About.vb</DependentUpon>
@@ -293,6 +307,9 @@
     <EmbeddedResource Include="Forms\Controls\AdressenSelector.resx">
       <DependentUpon>AdressenSelector.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Einstellungen\Vars.resx">
+      <DependentUpon>Vars.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\About.resx">
       <DependentUpon>About.vb</DependentUpon>
     </EmbeddedResource>
@@ -359,6 +376,17 @@
     </None>
     <None Include="Data\dsAdressen.xss">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsEinstellungen.xsc">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsEinstellungen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEinstellungen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsEinstellungen.xss">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
     </None>
     <None Include="Data\dsPLZ.xsc">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
