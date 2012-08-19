@@ -26,16 +26,16 @@
             'filter dataset 
             filter = "1=1 "
 
-            If Me.ArtNrTextBox.Text.Length > 0 And IsNumeric(PreisBisTextBox.Text) Then
+            If Me.ArtNrTextBox.Text.Length > 0 And IsNumeric(ArtNrTextBox.Text) Then
                 filter += " and ArtNr = " + ArtNrTextBox.Text
             End If
 
             If Me.BezeichnungTextBox.Text.Length > 0 Then
-                filter += " and (EAN Like '" + ArtKatNrComboBox.Text + "%'  or Bezeichnung Like '" + ArtKatNrComboBox.Text + "%' or Bezeichnung1 Like '" + ArtKatNrComboBox.Text + "%' or Beschreibung Like '" + ArtKatNrComboBox.Text + "%') "
+                filter += " and (EAN Like '" + BezeichnungTextBox.Text + "%'  or Bezeichnung Like '" + BezeichnungTextBox.Text + "%' or Bezeichnung1 Like '" + BezeichnungTextBox.Text + "%' or Beschreibung Like '" + BezeichnungTextBox.Text + "%') "
             End If
 
             If Me.ArtKatNrComboBox.Text.Length > 0 Then
-                filter += " and ArtKatNR = " + ArtKatNrComboBox.Text + ""
+                filter += " and Kategorie = '" + ArtKatNrComboBox.Text + "'"
             End If
 
             If Me.PreisVonTextBox.Text.Length > 0 And IsNumeric(PreisVonTextBox.Text) Then
