@@ -37,7 +37,7 @@ Public Class IntraSellDictionary
 
     'once at program start
     Public Sub loadCharsets()
-        Dim sql, rs As MySqlDataReader
+        Dim rs As MySqlDataReader
         rs = openRecordset("select set from ofDictionarySets where CHARSET like 'ENG'")
         charSet_ENG = rs("Set")
         rs.Close()

@@ -1,5 +1,4 @@
-﻿Imports IntraSell
-Imports IntraSell_DLL
+﻿Imports IntraSell_DLL
 
 Public Class Artikelliste
 

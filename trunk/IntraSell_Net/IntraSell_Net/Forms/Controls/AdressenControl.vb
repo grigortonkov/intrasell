@@ -12,12 +12,12 @@ Public Class AdressenControl
         End Set
     End Property
 
-    Private Sub ArtikelControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub AdressenControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         FillComboBox(Me.AdressenComboBox, "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma", "Adr", "IDNR")
         Me.AdressenComboBox.Text = ""
     End Sub
 
-    Private Sub ArtikelSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelSelectorButton.Click
+    Private Sub AdressenSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelSelectorButton.Click
         Try
             AdressenSelector.Show()
             AdressenSelector.AdressenComboBox = AdressenComboBox
@@ -27,7 +27,7 @@ Public Class AdressenControl
     End Sub
 
 
-    Private Sub ArtikelComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles AdressenComboBox.SelectedIndexChanged
+    Private Sub AdressenComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles AdressenComboBox.SelectedIndexChanged
         Try
             If VarType(AdressenComboBox.SelectedValue) = VariantType.Integer Then
                 IDNR = AdressenComboBox.SelectedValue

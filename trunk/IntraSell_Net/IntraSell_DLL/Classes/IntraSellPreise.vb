@@ -287,20 +287,21 @@ Public Class IntraSellPreise
     '*****************************************************************
     '*****************************************************************
     Private Function getAufschlagEKpreisKategorie(ArtKatNr) As Double
-        Dim sql, rs
+        Dim sql As String
+        Dim rs As MySqlDataReader
         sql = " select ArtKatNR, Aufschlag, ArtKatNrParent from [grArtikel-Kategorien] where " & _
               " ArtKatNr =" & ArtKatNr & _
               " and Aufschlag > 0 "
 
         rs = openRecordset_(sql, dbOpenDynaset)
 
-        If Not rs.EOF Then
+        If rs.Read Then
             getAufschlagEKpreisKategorie = rs("Aufschlag")
         Else 'recursion
             If ArtKatNr > 0 Then 'take aufschlag from parent kategory
                 sql = "select ArtKatNrParent from [grArtikel-Kategorien] where ArtKatNR =" & ArtKatNr
                 rs = openRecordset_(sql, dbOpenDynaset)
-                If Not rs.EOF Then
+                If rs.Read Then
                     getAufschlagEKpreisKategorie = getAufschlagEKpreisKategorie(rs("ArtKatNrParent"))
                 End If
             End If
@@ -324,9 +325,9 @@ Public Class IntraSellPreise
     '*****************************************************************
     Function makeBruttoPreis2(ByVal ArtNr, ByVal Stk, ByVal Land)
         If Stk = "" Then Stk = 1
-        Dim sql, rs, preisManyPieces
+        Dim rs As MySqlDataReader
         rs = openRecordset_("select ArtNr, MWST from grArtikel where ArtNr=" & ArtNr, dbOpenDynaset)
-        If rs.EOF Then
+        If Not rs.Read Then
             makeBruttoPreis2 = 0
         Else
             Dim preis1stk : preis1stk = makeNettoPreis(ArtNr, Stk, 0)
@@ -341,9 +342,11 @@ Public Class IntraSellPreise
     ' need only the artNr AND Stk /for staffelung/
     '*****************************************************************
     Function makeNettoPreis(ArtNr, Stk, IdNr) As Double
-        Dim sql, rs, preisManyPieces
+        Dim sql As String
+        Dim rs As MySqlDataReader
+        Dim preisManyPieces
         rs = openRecordset_("select * from grArtikel where ArtNr=" & ArtNr, dbOpenDynaset)
-        If rs.EOF Then
+        If Not rs.Read Then
             makeNettoPreis = 0
         Else
             Dim preis1stk : preis1stk = getPreis(IdNr, ArtNr, Stk) 'rs("PreisATS")
@@ -367,16 +370,16 @@ Public Class IntraSellPreise
     Function getVAT(Land, MwstGroup) As String
         If Land = "" Then Land = "AT"
         Land = UCase(Land)
-        Dim sql, rs
+        Dim sql As String
+        Dim rs As MySqlDataReader
         sql = "SELECT Land, Prozent FROM grMWST where Land='" & Land & "' AND MWSTGROUP=" & MwstGroup
         'Response.Write sql
         rs = openRecordset_(sql, dbOpenDynaset)
-        If Not rs.EOF Then
+        If rs.Read Then
             getVAT = rs("Prozent")
         Else
             getVAT = 206
             getVAT = "Error: Die MWST Information fehlt für Land [" & Land & "]!"
-
         End If
         rs.Close()
     End Function
@@ -386,15 +389,15 @@ Public Class IntraSellPreise
     '*****************************************************************
     Function getClientLand(IdNr) As String
         getClientLand = vars.firstRow("select iso2 from ofAdressen a, grland l where  a.land = l.idnr and a.idnr=" & IdNr)
-        Exit Function
-        '
-        Dim plzLAND, clientPLZ
-        plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", IdNr, "LAND")
-        'response.write "PLZLand =" & PLZLand
-        If plzLAND = 43 Then getClientLand = "AT"
-        If plzLAND = 49 Then getClientLand = "DE"
-        If plzLAND = 359 Then getClientLand = "BG"
-        If plzLAND = 1 Then getClientLand = "US"
+        'Exit Function
+        ''
+        'Dim plzLAND, clientPLZ
+        'plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", IdNr, "LAND")
+        ''response.write "PLZLand =" & PLZLand
+        'If plzLAND = 43 Then getClientLand = "AT"
+        'If plzLAND = 49 Then getClientLand = "DE"
+        'If plzLAND = 359 Then getClientLand = "BG"
+        'If plzLAND = 1 Then getClientLand = "US"
     End Function
 
 
@@ -402,7 +405,7 @@ Public Class IntraSellPreise
     ' For example Converts one Auftrag to Rechnung
     ' returns the nummer of the created new OrderType or 0 of failed
     '*****************************************************************
-    Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr) As String
+    Public Function convertFromTo(ByVal VorgangTypVon As String, ByVal VorgangTypNach As String, ByVal VorgangNummerVon As Integer, ByVal NewKundNr As Integer) As String
         Dim benutzeTransaktion As Boolean
         benutzeTransaktion = False
         ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
@@ -421,14 +424,14 @@ Public Class IntraSellPreise
             End If
 
 
-            tableNameFrom = getVorgangTableForType(FromOrder)
-            tableNameFromProducts = getVorgangArtikelTableForType(FromOrder)
+            tableNameFrom = getVorgangTableForType(VorgangTypVon)
+            tableNameFromProducts = getVorgangArtikelTableForType(VorgangTypVon)
 
-            tableNameTo = getVorgangTableForType(ToOrder)
-            tableNameToProducts = getVorgangArtikelTableForType(ToOrder)
+            tableNameTo = getVorgangTableForType(VorgangTypNach)
+            tableNameToProducts = getVorgangArtikelTableForType(VorgangTypNach)
 
             Dim IdNr
-            sql = "select * from " & tableNameFrom & " where nummer =" & fromNummer
+            sql = "select * from " & tableNameFrom & " where nummer =" & VorgangNummerVon
             rs = openRecordset_(sql, "")
             If Not rs.Read Then
                 convertFromTo = 0
@@ -439,33 +442,33 @@ Public Class IntraSellPreise
             rs.Close()
 
             Dim nextRechnungNummer
-            nextRechnungNummer = getNewVorgangNummer(ToOrder, IdNr)
+            nextRechnungNummer = getNewVorgangNummer(VorgangTypNach, IdNr)
 
-            If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
+            If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
                 sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
-                      " WHERE Nummer = " & fromNummer
+                      " WHERE Nummer = " & VorgangNummerVon
             Else
                 sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
-                      " WHERE Nummer = " & fromNummer
+                      " WHERE Nummer = " & VorgangNummerVon
             End If
 
             Call openRecordset_(sql, "")
 
             'Positionen
-            If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
+            If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
                 sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
                        " SELECT " & nextRechnungNummer & ", ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
-                       " RechNr=" & fromNummer
+                       " RechNr=" & VorgangNummerVon
             Else
                 sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
                        " SELECT " & nextRechnungNummer & ", ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
-                       " RechNr=" & fromNummer
+                       " RechNr=" & VorgangNummerVon
             End If
 
 
@@ -474,14 +477,14 @@ Public Class IntraSellPreise
             Call openRecordset_(sql, "")
 
             sql = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
-                " SELECT '" & ToOrder & "', " & nextRechnungNummer & ", Name, [Value] " & _
+                " SELECT '" & VorgangTypNach & "', " & nextRechnungNummer & ", Name, [Value] " & _
                 " FROM buchVorgaengeEigenschaften " & _
-                " WHERE VorgangTyp='" & FromOrder & "'  AND Nummer=" & fromNummer & ";"
+                " WHERE VorgangTyp='" & VorgangTypVon & "'  AND Nummer=" & VorgangNummerVon & ";"
             Call openRecordset_(sql, "")
 
             'set where the vorgang goes to
-            sql = "UPDATE " & tableNameFrom & " SET Wohin = '" & ToOrder & nextRechnungNummer & "'" & _
-                    " WHERE Nummer = " & fromNummer
+            sql = "UPDATE " & tableNameFrom & " SET Wohin = '" & VorgangTypNach & nextRechnungNummer & "'" & _
+                    " WHERE Nummer = " & VorgangNummerVon
             'response.write SQL
             Call openRecordset_(sql, "")
             'response.write "Converting was OK!"
@@ -502,7 +505,7 @@ Public Class IntraSellPreise
                 mysqltr.Rollback()
 
             End If
-               
+
 
         End Try
     End Function
@@ -511,52 +514,53 @@ Public Class IntraSellPreise
 
     '=======================================================
     '=======================================================
-    Public Function getVorgangTableForType(ByVal Typ) As String
-        Select Case Typ
-            Case "AN"
-                getVorgangTableForType = "buchAngebot"
-            Case "AU"
-                getVorgangTableForType = "buchAuftrag"
-            Case "RÜ"
-                getVorgangTableForType = "buchRuestschein"
-            Case "LI"
-                getVorgangTableForType = "buchLieferschein"
-            Case "AR"
-                getVorgangTableForType = "buchRechnung"
-            Case "RE"
-                getVorgangTableForType = "buchRetourwaren"
-            Case "GU"
-                getVorgangTableForType = "buchGutschrift"
+    Public Function getVorgangTableForType(ByVal Typ As String) As String
+        Return "buchVorgang"
+        'Select Case Typ
+        '    Case "AN"
+        '        getVorgangTableForType = "buchAngebot"
+        '    Case "AU"
+        '        getVorgangTableForType = "buchAuftrag"
+        '    Case "RÜ"
+        '        getVorgangTableForType = "buchRuestschein"
+        '    Case "LI"
+        '        getVorgangTableForType = "buchLieferschein"
+        '    Case "AR"
+        '        getVorgangTableForType = "buchRechnung"
+        '    Case "RE"
+        '        getVorgangTableForType = "buchRetourwaren"
+        '    Case "GU"
+        '        getVorgangTableForType = "buchGutschrift"
 
-            Case VORGANG_TYP_LAU
-                getVorgangTableForType = "buchLieferantAuftrag"
-
-        End Select
+        '    Case VORGANG_TYP_LAU
+        '        getVorgangTableForType = "buchLieferantAuftrag"
+        'End Select
     End Function
 
     '*****************************************************************
     '*****************************************************************
-    Public Function getVorgangArtikelTableForType(ByVal Typ) As String
-        Select Case Typ
-            Case "AN"
-                getVorgangArtikelTableForType = "buchAngebot-Artikel"
-            Case "AU"
-                getVorgangArtikelTableForType = "buchAuftrag-Artikel"
-            Case "RÜ"
-                getVorgangArtikelTableForType = "buchRuestschein-Artikel"
-            Case "LI"
-                getVorgangArtikelTableForType = "buchLieferschein-Artikel"
-            Case "AR"
-                getVorgangArtikelTableForType = "buchRech-Artikel"
-            Case "RE"
-                getVorgangArtikelTableForType = "buchRetourwaren-Artikel"
-            Case "GU"
-                getVorgangArtikelTableForType = "buchGutschrift-Artikel"
+    Public Function getVorgangArtikelTableForType(ByVal Typ As String) As String
+        Return "buchVorgang-Artikel"
+        'Select Case Typ
+        '    Case "AN"
+        '        getVorgangArtikelTableForType = "buchAngebot-Artikel"
+        '    Case "AU"
+        '        getVorgangArtikelTableForType = "buchAuftrag-Artikel"
+        '    Case "RÜ"
+        '        getVorgangArtikelTableForType = "buchRuestschein-Artikel"
+        '    Case "LI"
+        '        getVorgangArtikelTableForType = "buchLieferschein-Artikel"
+        '    Case "AR"
+        '        getVorgangArtikelTableForType = "buchRech-Artikel"
+        '    Case "RE"
+        '        getVorgangArtikelTableForType = "buchRetourwaren-Artikel"
+        '    Case "GU"
+        '        getVorgangArtikelTableForType = "buchGutschrift-Artikel"
 
-            Case VORGANG_TYP_LAU
-                getVorgangArtikelTableForType = "buchLieferantAuftrag-Artikel"
+        '    Case VORGANG_TYP_LAU
+        '        getVorgangArtikelTableForType = "buchLieferantAuftrag-Artikel"
 
-        End Select
+        'End Select
     End Function
 
     '*****************************************************************
@@ -578,10 +582,8 @@ Public Class IntraSellPreise
                 getVarNameForType = "letzteRetourwarenNummer"
             Case "GU"
                 getVarNameForType = "letzteGutschriftNummer"
-
             Case VORGANG_TYP_LAU
                 getVarNameForType = "letzteLieferantAuftragNummer"
-
         End Select
     End Function
 
@@ -604,11 +606,8 @@ Public Class IntraSellPreise
                 getDruckForType = "Rutourwaren"
             Case "GU"
                 getDruckForType = "Gutschrift"
-
-
             Case VORGANG_TYP_LAU
                 getDruckForType = "Auftrag"
-
         End Select
     End Function
 
@@ -616,15 +615,16 @@ Public Class IntraSellPreise
     'get the next free vorgangnummer
     'first looks if the kundenGruppe needs special number curcle and then get the new one from the free
     '======================================================================================
-    Public Function getNewVorgangNummer(ByVal Typ, ByVal IdNr) As String
-        Dim von, bis, sql
-        Dim rs
+    Public Function getNewVorgangNummer(ByVal Typ As String, ByVal IdNr As Integer) As String
+        Dim von, bis
+
+        Dim rs As MySqlDataReader
         von = 0
         bis = 9999999
 
         'if kundengruppe defined
         rs = openRecordset_("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
-        If Not rs.EOF Then 'kundengruppe is definiert
+        If rs.Read Then 'kundengruppe is definiert
             von = rs("VorgangNrKreisvon")
             bis = rs("VorgangNrKreisbis")
             'End If
@@ -632,7 +632,7 @@ Public Class IntraSellPreise
              "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc", dbOpenDynaset)
             'rs.Sort = "nummer"
             'Set rs = rs.openRecordset()
-            If rs.EOF Then
+            If Not rs.Read Then
                 getNewVorgangNummer = von
             Else
                 'rs.MoveLast
@@ -646,16 +646,16 @@ Public Class IntraSellPreise
 
             letzteNummer = vars.varValue(vname)
             'Die Nummer erhöhen
-            Call vars.SETVARVALUE(vname, letzteNummer + 1)
+            Call vars.SetVarValue(vname, letzteNummer + 1)
 
             'prüfen ob die Nummer besetzt ist
             rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & " where nummer =" & (letzteNummer + 1), dbOpenDynaset)
-            If rs.EOF Then
+            If Not rs.Read Then
                 getNewVorgangNummer = letzteNummer + 1
             Else 'wieder erhöhen
                 getNewVorgangNummer = getNewVorgangNummer(Typ, IdNr)
             End If
-
+            rs.Close()
         End If
 
     End Function
