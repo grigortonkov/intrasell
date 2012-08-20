@@ -111,6 +111,10 @@
     <None Include="UIMap.uitest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IntraSell_DLL\IntraSell_DLL.vbproj">
+      <Project>{F7AB991F-D9E4-4285-897B-B95109C5D6DF}</Project>
+      <Name>IntraSell_DLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IntraSell_Net\IntraSell_Net.vbproj">
       <Project>{110E199B-E42C-4A66-A98A-A9473E6FDA30}</Project>
       <Name>IntraSell_Net</Name>
