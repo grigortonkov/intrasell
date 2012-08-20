@@ -2,6 +2,8 @@
 Imports ICSharpCode.SharpZipLib.Core
 Imports ICSharpCode.SharpZipLib.Zip
 Imports System.IO
+Imports IntraSell_DLL
+
 Module ModuleUnZip
 
     Public Sub ExtractZipFile(archiveFilenameIn As String, password As String, outFolder As String)

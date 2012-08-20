@@ -1,12 +1,13 @@
-﻿Public Class VorgangListe
+﻿Imports IntraSell_DLL
+Public Class VorgangListe
 
     Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-   
+
 
         Try
 
             Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe)
-            FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ") 
+            FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
             FillComboBox(Me.StatusComboBox, "SELECT Status from buchVorgaengeStatus Group by Status", "Status")
 
             FillComboBox(Me.LandComboBox, "SELECT Name from grLand Order by Name", "Name")

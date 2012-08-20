@@ -1,4 +1,5 @@
-﻿Module ModulePreise
+﻿Imports IntraSell_DLL
+Module ModulePreise
 
     '===========================================================================
     ' Autor: Written and edited by Grigor Tonkov 2001-2009 (R)
@@ -45,22 +46,22 @@
     '    getBestLieferant = IntraSellPreise.getBestLieferant(ArtNr)
     'End Function
 
-    '' Call the DLL
-    'Public Function getDruckForType(ByVal Typ)
+    ' Call the DLL
+    Public Function getDruckForType(ByVal Typ As String) As String
 
-    '    getDruckForType = IntraSellPreise.getDruckForType(Typ)
-    '    'Boote Marian - unterstützung für Akonto und Schlussrechnung
-    '    If firstRow("select 1 from qryBuchRechAkonto") = 1 Then
-    '        getDruckForType = "Schuss-" & getDruckForType
-    '        Exit Function
-    '    End If
-    '    Dim Woher As Object : Woher = firstRow("select woher from qryBuchRech")
-    '    If Woher <> "" And Left(Woher, Len(Typ)) = Typ Then
-    '        getDruckForType = "Akonto-" & getDruckForType
-    '        Exit Function
-    '    End If
+        getDruckForType = getDruckForType(Typ)
+        'Boote Marian - unterstützung für Akonto und Schlussrechnung
+        If firstRow("select 1 from qryBuchRechAkonto") = 1 Then
+            Return "Schuss-" & getDruckForType
+            Exit Function
+        End If
+        Dim Woher As Object : Woher = firstRow("select woher from qryBuchRech")
+        If Woher <> "" And Left(Woher, Len(Typ)) = Typ Then
+            Return "Akonto-" & getDruckForType
+            Exit Function
+        End If
 
-    'End Function
+    End Function
 
 
     Public Function getVorgangTableForType(ByVal Typ)

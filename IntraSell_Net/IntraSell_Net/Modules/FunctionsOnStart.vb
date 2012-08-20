@@ -1,4 +1,5 @@
-﻿Module FunctionsOnStart
+﻿Imports IntraSell_DLL
+Module FunctionsOnStart
 
     Public Const VARNAME_BRANCHE = "BRANCHE"
     Public Const BACKEND_NAME = "IntraSell_Daten_2.mdb"

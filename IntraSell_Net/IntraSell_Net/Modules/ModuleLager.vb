@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports IntraSell_DLL
 
 Module ModuleLager
 
@@ -11,8 +12,6 @@ Module ModuleLager
 
         Dim tr As MySqlTransaction = conn.BeginTransaction
         Try
-
- 
             ' save current
 
             Dim rs As MySqlDataReader, sql As String

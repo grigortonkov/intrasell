@@ -66,8 +66,15 @@ Module ModuleCommons
 
     Sub OpenForm(ByRef formName As String)
         'TODO 
-        'MsgBox("Nicht implementiert!")
+        MsgBox("Nicht implementiert!")
     End Sub
+
+    'For MS Access easy conversion 
+    Function Forms(ByRef formName As String) As Form
+        'return the form by formName 
+        MsgBox("Nicht implementiert!")
+    End Function
+
     Public Function testRS() As Object
         conn.Open()
         'response.write varname

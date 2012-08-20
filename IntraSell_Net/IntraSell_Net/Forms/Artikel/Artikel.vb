@@ -1,4 +1,6 @@
-﻿Public Class Artikel
+﻿Imports IntraSell_DLL
+
+Public Class Artikel
 
     'Die Datensätze filtern
     Public Sub FilterBy(Expression As String)
@@ -45,5 +47,5 @@
         End Try
     End Sub
 
- 
+
 End Class

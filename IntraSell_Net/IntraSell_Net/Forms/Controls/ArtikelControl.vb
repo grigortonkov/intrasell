@@ -1,4 +1,5 @@
-﻿Public Class ArtikelControl
+﻿Imports IntraSell_DLL
+Public Class ArtikelControl
     Private _ArtNr As Integer
 
     Public Property ArtNr() As Integer

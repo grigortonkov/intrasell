@@ -1,4 +1,5 @@
-﻿Public Class Vorgang
+﻿Imports IntraSell_DLL
+Public Class Vorgang
 
     'Die Datensätze filtern
     Public Sub FilterBy(Expression As String)
@@ -50,7 +51,7 @@
         End If
 
     End Sub
- 
+
     Private Sub AusgedrucktCheckBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles AusgedrucktCheckBox.CheckedChanged
 
     End Sub

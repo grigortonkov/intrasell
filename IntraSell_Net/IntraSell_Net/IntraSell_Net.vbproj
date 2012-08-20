@@ -250,14 +250,16 @@
     <Compile Include="Modules\Functions.vb" />
     <Compile Include="Modules\FunctionsDemoVersion.vb" />
     <Compile Include="Modules\FunctionsOnStart.vb" />
-    <Compile Include="Modules\FunctionsVars.vb" />
     <Compile Include="Modules\ModuleBarcode.vb" />
     <Compile Include="Modules\ModuleBuchVorgang.vb" />
-    <Compile Include="Modules\ModuleCommons.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangXML.vb" />
+    <Compile Include="Modules\ModuleDictionary.vb" />
+    <Compile Include="Modules\ModuleDOS.vb" />
     <Compile Include="Modules\ModuleGlobals.vb" />
+    <Compile Include="Modules\ModuleKassabuch.vb" />
     <Compile Include="Modules\ModuleLager.vb" />
-    <Compile Include="Modules\ModuleLog.vb" />
     <Compile Include="Modules\ModuleLogIn.vb" />
+    <Compile Include="Modules\ModuleMail.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
       <DependentUpon>PLZSelector.vb</DependentUpon>
@@ -265,7 +267,10 @@
     <Compile Include="Forms\Controls\PLZSelector.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\ModulePDF.vb" />
     <Compile Include="Modules\ModulePreise.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangDruck.vb" />
+    <Compile Include="Modules\ModuleXML.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -450,15 +455,10 @@
     <Folder Include="Forms\Lieferanten\" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="IntraSell">
-      <Guid>{D853BEE6-4123-468E-A072-815695AA8D60}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <ProjectReference Include="..\IntraSell_DLL\IntraSell_DLL.vbproj">
+      <Project>{F7AB991F-D9E4-4285-897B-B95109C5D6DF}</Project>
+      <Name>IntraSell_DLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

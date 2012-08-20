@@ -1,8 +1,12 @@
-﻿Public Class Main
+﻿Imports IntraSell_DLL
+
+Public Class Main
 
     Private Sub Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             writeLog("Start IntraSell")
+            'Init Connection 
+            conn = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
             'Login
             Login.ShowDialog()
         Catch ex As Exception
@@ -32,9 +36,9 @@
     End Sub
 
     Private Sub Liste2ToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Liste2ToolStripMenuItem.Click
-        Try 
-        Dim f As Artikel = New Artikel
-        f.MdiParent = Me
+        Try
+            Dim f As Artikel = New Artikel
+            f.MdiParent = Me
             f.Show()
         Catch ex As Exception
             HandleAppError(ex)
