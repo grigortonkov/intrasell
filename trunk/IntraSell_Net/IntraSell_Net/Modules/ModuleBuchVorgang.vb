@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports IntraSell_DLL
 
 Module ModuleBuchVorgang
 
@@ -195,73 +196,73 @@ Module ModuleBuchVorgang
     ' storniert einen Vorgang
     ' die Nummer wird auch freigegeben und dann wieder verwendet, aber nur wenn das die letzte nummer ist
     '==============================================================================
-    'Public Function Storno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
+    Public Function Storno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
 
 
-    '    If IsNull(VorgangNummer) Then
-    '        Exit Function
-    '    End If
+        If IsNull(VorgangNummer) Then
+            Exit Function
+        End If
 
 
-    '    Dim tr As MySqlTransaction = conn.BeginTransaction
-    '    Try
+        Dim tr As MySqlTransaction = ModuleCommons.conn.BeginTransaction
+        Try
 
 
-    '        Storno = False
-    '        Dim sql, rs
-    '        sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
-    '        rs = openRecordset(sql)
-    '        Dim Abgeschlossen As Boolean
-    '        If rs.EOF Then
-    '            Exit Function
-    '        Else
-    '            Abgeschlossen = rs("abgeschlossen")
-    '        End If
+            Storno = False
+            Dim sql, rs
+            sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
+            rs = openRecordset(sql)
+            Dim Abgeschlossen As Boolean
+            If rs.EOF Then
+                Exit Function
+            Else
+                Abgeschlossen = rs("abgeschlossen")
+            End If
 
 
-    '        If MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " # " & VorgangNummer & " stornieren?", vbYesNo) = vbYes Then
+            If MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " # " & VorgangNummer & " stornieren?", vbYesNo) = vbYes Then
 
 
 
-    '            If Abgeschlossen <> 0 Then 'abgeschlossen
+                If Abgeschlossen <> 0 Then 'abgeschlossen
 
-    '                If VorgangTyp = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then 'Lierschein
-    '                    Call lagerEingang(VorgangNummer, VorgangTyp)
-    '                End If
+                    If VorgangTyp = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then 'Lierschein
+                        Call lagerEingang(VorgangNummer, VorgangTyp)
+                    End If
 
-    '                'If VorgangTyp = "RE" Or VorgangTyp = "RÜ" Then 'retourwaren oder rüestschein
-    '                '        Call lagerAusgang(vorgangNummer, VorgangTyp)
-    '                'End If
+                    'If VorgangTyp = "RE" Or VorgangTyp = "RÜ" Then 'retourwaren oder rüestschein
+                    '        Call lagerAusgang(vorgangNummer, VorgangTyp)
+                    'End If
 
-    '                If VorgangTyp = "AR" And rs("Bezahlt") Then
-    '                    Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & VorgangNummer, -1 * getSummeVorgang(VorgangTyp, VorgangNummer))
-    '                End If
-    '            End If
+                    If VorgangTyp = "AR" And rs("Bezahlt") Then
+                        Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & VorgangNummer, -1 * getSummeVorgang(VorgangTyp, VorgangNummer))
+                    End If
+                End If
 
 
-    '            'delete eigenschaften
-    '            sql = "delete from [buchvorgaengeeigenschaften] where VorgangTyp='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
-    '            RunSQL(sql)
+                'delete eigenschaften
+                sql = "delete from [buchvorgaengeeigenschaften] where VorgangTyp='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
+                RunSQL(sql)
 
-    '            'delete pos
-    '            sql = "delete from [" & getVorgangArtikelTableForType(VorgangTyp) & "] where RechNr =" & VorgangNummer
-    '            RunSQL(sql)
+                'delete pos
+                sql = "delete from [" & getVorgangArtikelTableForType(VorgangTyp) & "] where RechNr =" & VorgangNummer
+                RunSQL(sql)
 
-    '            'delete vorgang
-    '            sql = "delete from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
-    '            RunSQL(sql)
+                'delete vorgang
+                sql = "delete from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
+                RunSQL(sql)
 
-    '            tr.Commit()
+                tr.Commit()
 
-    '            Storno = True
-    '        End If
+                Storno = True
+            End If
 
-    '    Catch ex As Exception
-    '        tr.Rollback()
-    '        MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
-    '    End Try
+        Catch ex As Exception
+            tr.Rollback()
+            MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
+        End Try
 
-    'End Function
+    End Function
 
     'liefert die Brutto summe eines vorganges
     Function getSummeVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Double
@@ -649,5 +650,10 @@ Module ModuleBuchVorgang
     '            MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!")
     '        End If
     '    End Sub
+
+    Private Sub RunSQL(sql As String)
+        Throw New NotImplementedException
+    End Sub
+
 
 End Module

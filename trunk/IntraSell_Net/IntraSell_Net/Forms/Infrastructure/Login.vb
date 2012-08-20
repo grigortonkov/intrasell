@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports IntraSell_DLL
 
 Public Class Login
 

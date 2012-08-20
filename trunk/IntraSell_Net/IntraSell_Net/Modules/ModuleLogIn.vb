@@ -1,5 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.IO
+Imports IntraSell_DLL
 
 Module ModuleLogIn
     Private Const LAST_USER_SETTINGS As String = "IntraSell_user.tmp"

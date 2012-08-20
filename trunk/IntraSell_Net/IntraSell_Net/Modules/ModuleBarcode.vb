@@ -1,6 +1,8 @@
-﻿Module ModuleBarcode
+﻿Imports IntraSell_DLL
 
- 
+Module ModuleBarcode
+
+
     Public Const BARCODE_LENGTH = 16
 
     'creates new barcode

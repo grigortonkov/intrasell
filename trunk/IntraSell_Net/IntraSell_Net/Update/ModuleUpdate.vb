@@ -1,4 +1,6 @@
 ﻿Option Explicit On
+Imports IntraSell_DLL
+
 Module ModuleUpdate
     ' =======================================================================
     ' MSG for translate - @ZIP se zamenq s imeto na faila avtomatichno, ne go mahai

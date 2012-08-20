@@ -1,4 +1,7 @@
-﻿Public Class Artikelliste
+﻿Imports IntraSell
+Imports IntraSell_DLL
+
+Public Class Artikelliste
 
     Private Sub ArtikelListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 

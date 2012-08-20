@@ -1,52 +1,19 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports IntraSell_DLL
+
 Module Functions
 
 
-    Function GetAppPath() As String
-        Return Application.ExecutablePath.Replace("IntraSell_Net.EXE", "")
+    Public Function ConnStringIntraSellData()
+        Dim dbType As String : dbType = varValue("DBTYPE")
+
+        If UCase(dbType) = "ACCESS" Then
+            Return "driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & VarValue("DB_DATA_FILENAME") & ";"
+        Else 'ODBC COnnection
+            Return VarValue("DB_CONN_STRING")
+        End If
     End Function
 
-    'returns the next value from the table and field
-    'Update for MxSQL to get not duplicate KEY
-    Public Function nextId(ByVal TableName As String, ByVal FieldName As String, Optional optionalWhere As String = "", Optional concurencyCheck As Boolean = True) As Long
-
-        Dim rs As MySqlDataReader
-        Dim sql As String
-        Dim nID As Long
-
-        sql = "select  1+ max(" & FieldName & ") as m  from " & TableName
-        If optionalWhere <> "" Then sql = sql + " where " & optionalWhere
-
-        rs = openRecordset(sql)
-        nID = 1
-        If rs.Read Then
-            If Not IsNull(rs("m")) Then
-                nID = CLng(rs("m"))
-                If Err.Number > 0 Then
-                    nID = 1
-                    'Exit Function
-                End If
-            Else 'is null
-                nID = 1
-            End If
-        End If
-        If concurencyCheck Then
-            'check that do not colides with last called varvalues
-            Dim varName As String : varName = "letzteNummer_" & TableName
-
-            If Not EXISTSVARVALUE(varName) Then
-                Call INSERTVARVALUE(varName, nID)
-            Else
-                If varValue(varName) = nID Then
-                    nID = nID + 1 'use next because other user has already used this ID
-                End If
-
-                Call SETVARVALUE(varName, nID)
-            End If
-        End If
-        nextId = nID
-        rs.Close()
-    End Function
 
 
     'Problem: Access round is making round to even (not to the bigger)
@@ -101,14 +68,13 @@ Module Functions
     'End Function
 
 
-    ''Takes the current db folder
-    'Function dbFolder()
-    '    Dim dbfol, i
-    '    For i = 0 To UBound(Split(CurrentDb.Name, "\")) - 1
-    '        dbfol = dbfol & Split(CurrentDb.Name, "\")(i) & "\"
-    '    Next
-    '    dbFolder = dbfol
-    'End Function
+    ''Takes the current app folder
+    Public Function AppFolder()
+        Return GetAppPath()
+    End Function
+    Public Function DbFolder()
+        Return GetAppPath()
+    End Function
 
     Public Function replaceString(ByVal expression As String, ByVal searchString As String, ByVal replacement As String) As String
         replaceString = Replace(expression, searchString, replacement)

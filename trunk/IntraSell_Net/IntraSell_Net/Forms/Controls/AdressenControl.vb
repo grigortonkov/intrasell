@@ -1,4 +1,5 @@
-﻿Public Class AdressenControl
+﻿Imports IntraSell_DLL
+Public Class AdressenControl
     Private _IDNR As Integer
 
     Public Property IDNR() As Integer

@@ -1,4 +1,5 @@
-﻿Module FunctionsDemoVersion
+﻿Imports IntraSell_DLL
+Module FunctionsDemoVersion
 
     'Demoversion ist solange die Firma 'Ihre Firma' heisst
 
