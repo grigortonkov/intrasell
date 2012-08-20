@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-
+Imports IntraSell_DLL
 
 
 '''<summary>
@@ -65,7 +65,7 @@ Public Class ModuleCommonsTest
         Dim expected As MySql.Data.MySqlClient.MySqlDataReader = Nothing ' TODO: Initialize to an appropriate value
         Dim actual As MySql.Data.MySqlClient.MySqlDataReader
 
-        actual = ModuleCommons.openRecordset(sql) 
+        actual = ModuleCommons.openRecordset(sql)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
