@@ -17,11 +17,11 @@ Public Module ModuleLog
         End If
 
         Dim sb As StringBuilder = New StringBuilder()
-        sb.AppendLine(Now() + ":" + logEntry)
+        sb.AppendLine(Now() + ": " + logEntry)
 
         Using outfile As StreamWriter = New StreamWriter(LOG_FILENAME, True)
             Debug.WriteLine(sb.ToString())
-            outfile.WriteLine(sb.ToString())
+            outfile.Write(sb.ToString())
             'Log.WriteLine(sb.ToString())
         End Using
 

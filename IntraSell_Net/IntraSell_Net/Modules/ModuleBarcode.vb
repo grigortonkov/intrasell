@@ -16,7 +16,7 @@ Module ModuleBarcode
         itemID = "00001"
 
 
-        Dim uniquePart
+
         Dim sql As String, rs As MySql.Data.MySqlClient.MySqlDataReader
         sql = "select Barcode from [grArtikel-ItemTrackingHistory] where vorgangstyp='LE' and  Barcode like '" & ANR & lNr & "*' order by Barcode desc"   'lager eingang
         rs = openRecordset(sql)
