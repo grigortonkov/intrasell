@@ -290,7 +290,7 @@
     <Compile Include="Update\ModuleUnzipTest.vb" />
     <Compile Include="Update\ModuleUnZip.vb" />
     <Compile Include="Update\ModuleSetup.vb" />
-    <Compile Include="Update\ModuleUnzipFiles.vb" />
+    <Compile Include="Update\ClassUnzipFiles.vb" />
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>

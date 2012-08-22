@@ -7,8 +7,9 @@ Public Module ModuleCommons
     'ModuleCommons.conn = new  MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
     Public conn As New MySqlConnection ' (Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
 
-    Function GetAppPath() As String
-        Return Application.ExecutablePath.Replace("IntraSell_Net.EXE", "")
+    'Return current Applikation Path for Exe, IntraSell
+    Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.EXE") As String
+        Return Application.ExecutablePath.Replace(exeFilename, "")
     End Function
 
 

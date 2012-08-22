@@ -4,7 +4,7 @@ Imports IntraSell_DLL
 
 Public Module ModuleLog
     Dim LOG_FILENAME As String
-
+    Public LogWindow As InterfaceLogger
     'Create Log Entry in IntraSell Log File
     Public Sub writeLog(ByVal logEntry As String)
         'Init
@@ -22,7 +22,11 @@ Public Module ModuleLog
         Using outfile As StreamWriter = New StreamWriter(LOG_FILENAME, True)
             Debug.WriteLine(sb.ToString())
             outfile.Write(sb.ToString())
-            'Log.WriteLine(sb.ToString())
+
+            If Not LogWindow Is Nothing Then
+                LogWindow.WriteLine(sb.ToString())
+            End If
+
         End Using
 
     End Sub
