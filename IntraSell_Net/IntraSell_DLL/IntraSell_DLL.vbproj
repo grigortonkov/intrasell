@@ -74,6 +74,7 @@
     <Compile Include="Classes\IntraSellPreise.vb" />
     <Compile Include="Classes\IntraSellVars.vb" />
     <Compile Include="Classes\IntraSellVorgaengeAusdruck.vb" />
+    <Compile Include="Interfaces\InterfaceLogger.vb" />
     <Compile Include="Modules\ModuleCommons.vb" />
     <Compile Include="Modules\ModuleLog.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

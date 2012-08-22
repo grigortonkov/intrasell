@@ -83,7 +83,7 @@ Public Class Main
     Private Sub ÜberIntraSellToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ÜberIntraSellToolStripMenuItem.Click
         Try
             About.MdiParent = Me
-            About.ShowDialog()
+            About.Show()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -103,7 +103,7 @@ Public Class Main
             Log.MdiParent = Me
             Setup.MdiParent = Me
             Log.Show()
-            Setup.ShowDialog()
+            Setup.Show()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -117,5 +117,26 @@ Public Class Main
         Catch ex As Exception
             HandleAppError(ex)
         End Try
+    End Sub
+
+    Private Sub UpdateToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles UpdateToolStripMenuItem.Click
+        Try
+            UpdateIntraSell(False)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub LogToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LogToolStripMenuItem.Click
+        Try
+            Log.MdiParent = Me
+            Log.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub WikiToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles WikiToolStripMenuItem.Click
+
     End Sub
 End Class

@@ -26,6 +26,7 @@ Partial Class Main
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EintellungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KundenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KundenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -39,7 +40,8 @@ Partial Class Main
         Me.WikiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÜberIntraSellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EintellungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,8 +64,14 @@ Partial Class Main
         'BeendenToolStripMenuItem
         '
         Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.BeendenToolStripMenuItem.Text = "&Beenden"
+        '
+        'EintellungenToolStripMenuItem
+        '
+        Me.EintellungenToolStripMenuItem.Name = "EintellungenToolStripMenuItem"
+        Me.EintellungenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.EintellungenToolStripMenuItem.Text = "&Einstellungen"
         '
         'KundenToolStripMenuItem
         '
@@ -123,7 +131,7 @@ Partial Class Main
         '
         'HilfeToolStripMenuItem
         '
-        Me.HilfeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WikiToolStripMenuItem, Me.ÜberIntraSellToolStripMenuItem, Me.SetupToolStripMenuItem})
+        Me.HilfeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WikiToolStripMenuItem, Me.ÜberIntraSellToolStripMenuItem, Me.SetupToolStripMenuItem, Me.UpdateToolStripMenuItem, Me.LogToolStripMenuItem})
         Me.HilfeToolStripMenuItem.Name = "HilfeToolStripMenuItem"
         Me.HilfeToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HilfeToolStripMenuItem.Text = "&Hilfe"
@@ -131,26 +139,32 @@ Partial Class Main
         'WikiToolStripMenuItem
         '
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.WikiToolStripMenuItem.Text = "&Wiki"
         '
         'ÜberIntraSellToolStripMenuItem
         '
         Me.ÜberIntraSellToolStripMenuItem.Name = "ÜberIntraSellToolStripMenuItem"
-        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ÜberIntraSellToolStripMenuItem.Text = "&Über IntraSell"
         '
         'SetupToolStripMenuItem
         '
         Me.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
-        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
-        Me.SetupToolStripMenuItem.Text = "Setup"
+        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetupToolStripMenuItem.Text = "&Setup"
         '
-        'EintellungenToolStripMenuItem
+        'UpdateToolStripMenuItem
         '
-        Me.EintellungenToolStripMenuItem.Name = "EintellungenToolStripMenuItem"
-        Me.EintellungenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EintellungenToolStripMenuItem.Text = "&Einstellungen"
+        Me.UpdateToolStripMenuItem.Name = "UpdateToolStripMenuItem"
+        Me.UpdateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UpdateToolStripMenuItem.Text = "&Update"
+        '
+        'LogToolStripMenuItem
+        '
+        Me.LogToolStripMenuItem.Name = "LogToolStripMenuItem"
+        Me.LogToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LogToolStripMenuItem.Text = "&Log"
         '
         'Main
         '
@@ -186,5 +200,7 @@ Partial Class Main
     Friend WithEvents VorganglisteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SetupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EintellungenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UpdateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LogToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
