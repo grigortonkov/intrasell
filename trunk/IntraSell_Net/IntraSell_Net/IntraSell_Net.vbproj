@@ -117,6 +117,7 @@
     <Compile Include="Data\dsVorgaenge.vb">
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DB\DBUpgrade.vb" />
     <Compile Include="Forms\Artikel\Artikel.Designer.vb">
       <DependentUpon>Artikel.vb</DependentUpon>
     </Compile>
