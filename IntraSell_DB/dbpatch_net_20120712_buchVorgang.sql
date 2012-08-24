@@ -1,7 +1,8 @@
 ﻿CREATE TABLE  `intrasell_daten_2`.`buchVorgangTyp` (
   `Typ` varchar(2) NOT NULL DEFAULT 'AR',
   `Bezeichnung` varchar(100) DEFAULT 'Rechnung',
-  `Druckbezeichnung`  varchar(100)
+  `Druckbezeichnung`  varchar(100),
+   PRIMARY KEY (`Typ`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
@@ -28,13 +29,17 @@ CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
   `SummeBrutto` decimal(10,2) DEFAULT NULL,
   `LieferantNr` int(10) DEFAULT NULL,
   `MitarbeiterNr` int(10) DEFAULT NULL,
+  `KundNr1` int(10) DEFAULT NULL,
   `KundNr2` int(10) DEFAULT NULL,
   `Waehrung` varchar(3) DEFAULT 'EUR',
   `ErstelltAm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Nummer`,`Typ`),
   KEY `Nummer` (`Nummer`,`Typ`),
   KEY `ofAdressenBuchVorgang` (`KundNr`),
-  CONSTRAINT `buchVorgang_ibfk_1` FOREIGN KEY (`KundNr`) REFERENCES `ofadressen` (`IDNR`)
+  KEY `buchVorgangTyp` (`Typ`),
+  CONSTRAINT `buchVorgang_ibfk_1` FOREIGN KEY (`KundNr`) REFERENCES `ofadressen` (`IDNR`),
+  CONSTRAINT `buchVorgang_ibfk_2` FOREIGN KEY (`KundNr1`) REFERENCES `ofadressen-Weitere` (`ID`),
+  CONSTRAINT `buchVorgangTyp_ibfk_3` FOREIGN KEY (`Typ`) REFERENCES `buchVorgangTyp` (`Typ`),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
