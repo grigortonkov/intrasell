@@ -103,30 +103,30 @@ Module Functions
     '    getFormByName = Nothing
     'End Function
 
-    ''Prüft ob ein Formular offen ist oder nicht
-    'Function isFormOpenByCaption(ByVal formCaption As String) As Boolean
-    '    isFormOpenByCaption = False
-    '    Dim i As Integer
-    '    For i = 1 To Forms.Count
-    '        If formCaption = Forms(i - 1).Caption Then
-    '            isFormOpenByCaption = True
-    '        End If
-    '    Next
-    'End Function
+    'Prüft ob ein Formular offen ist oder nicht
+    Function isFormOpenByCaption(ByVal formCaption As String) As Boolean
+        isFormOpenByCaption = False
+        Dim i As Integer
+        For i = 1 To Main.MdiChildren.Count
+            If formCaption = Main.MdiChildren(i - 1).Text Then
+                Return True
+            End If
+        Next
+    End Function
 
-    ''Prüft ob ein Formular offen ist oder nicht
-    'Function getFormByCaption(ByVal formCaption As String) As Form
+    'Prüft ob ein Formular offen ist oder nicht
+    Function getFormByCaption(ByVal formCaption As String) As Form
 
-    '    Dim i As Integer
-    '    For i = 1 To Forms.Count
-    '        If formCaption = Forms(i - 1).Caption Then
-    '            getFormByCaption = Forms(i - 1)
-    '            Exit Function
-    '        End If
-    '    Next
+        Dim i As Integer
+        For i = 1 To Main.MdiChildren.Count
+            If formCaption = Main.MdiChildren(i - 1).Text Then
+                getFormByCaption = Main.MdiChildren(i - 1)
+                Exit Function
+            End If
+        Next
 
-    '    getFormByCaption = Nothing
-    'End Function
+        getFormByCaption = Nothing
+    End Function
 
 
 

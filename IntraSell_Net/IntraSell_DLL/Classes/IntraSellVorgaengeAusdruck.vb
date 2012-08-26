@@ -20,7 +20,7 @@ Public Class IntraSellVorgaengeAusdruck
     'modulinitialisierung, unbedingt notwendig
     Public Sub init(ByVal connString As String)
 
-        FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
+        FunctionsDB.CurrentDB.ConnectionString = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
         FunctionsDB.connOpen()
         CurrentDB = FunctionsDB.CurrentDB
         vars = New IntraSellVars

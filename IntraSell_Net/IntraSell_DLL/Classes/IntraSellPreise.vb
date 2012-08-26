@@ -5,8 +5,6 @@ Imports MySql.Data.MySqlClient
 
 Public Class IntraSellPreise
 
-    Public CurrentDB As MySqlConnection
-
     Private vars As IntraSellVars
     Private kunden As IntraSellKunden
 
@@ -14,9 +12,10 @@ Public Class IntraSellPreise
 
     Public Sub init(ByVal connString As String)
 
-        FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
-        FunctionsDB.connOpen()
-        CurrentDB = FunctionsDB.CurrentDB
+        If Not FunctionsDB.CurrentDB.State = ConnectionState.Open Then
+            FunctionsDB.CurrentDB.ConnectionString = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
+            FunctionsDB.connOpen()
+        End If
 
         vars = New IntraSellVars
         vars.init(connString)
@@ -27,7 +26,8 @@ Public Class IntraSellPreise
     End Sub
 
     Public Sub destroy()
-        functionsDB.connClose()
+
+        FunctionsDB.connClose()
         vars.destroy()
         vars = Nothing
         kunden.destroy()
@@ -58,6 +58,9 @@ Public Class IntraSellPreise
         If Not rs.Read Then Return 0 : Exit Function
 
         ArtKatNr = CInt(rs("ArtKAtNR"))
+        rs.Close()
+
+        Dim basisVKPreis = getBasisVKPreis(ArtNr)
 
         If IdNr = -1 Then ' user ist egal
             sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
@@ -81,24 +84,30 @@ Public Class IntraSellPreise
         'if rs.EOF
 
         If rs.Read Then
+
             'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
-            getPreis = getBasisVKPreis(ArtNr)
+            getPreis = basisVKPreis
 
-            If CDbl(rs("vkpreis")) > 0 Then
-                getPreis = CDbl(rs("vkpreis"))
-                Exit Function
+            If Not rs.IsDBNull(0) Then
+                If CDbl(rs("vkpreis")) > 0 Then
+                    getPreis = CDbl(rs("vkpreis"))
+                    Exit Function
+                End If
             End If
 
-            If CDbl(rs("aufschlagvkpreis")) <> 0 Then
-                getPreis = (CDbl(rs("aufschlagvkpreis")) + 1) * getBasisVKPreis(ArtNr)
-                Exit Function
+            If Not rs.IsDBNull(1) Then
+                If CDbl(rs("aufschlagvkpreis")) <> 0 Then
+                    getPreis = (CDbl(rs("aufschlagvkpreis")) + 1) * getBasisVKPreis(ArtNr)
+                    Exit Function
+                End If
             End If
 
-            If CDbl(rs("aufschlagekpreis")) <> 0 Then
-                getPreis = (CDbl(rs("aufschlagekpreis")) + 1) * getEKPreis(ArtNr)
-                Exit Function
+            If Not rs.IsDBNull(2) Then
+                If CDbl(rs("aufschlagekpreis")) <> 0 Then
+                    getPreis = (CDbl(rs("aufschlagekpreis")) + 1) * getEKPreis(ArtNr)
+                    Exit Function
+                End If
             End If
-
         End If
         rs.Close()
         rs = Nothing
@@ -162,6 +171,10 @@ Public Class IntraSellPreise
     Private Function getBasisVKPreis(ByVal ArtNr As Integer) As Double
         Dim sql As String, rs As MySqlDataReader
         Dim ArtKatNr As Integer
+        Dim PreisATS As Decimal
+
+        Dim Aufschlag As Double = getAufschlagEKpreisKategorie(ArtKatNr)
+        Dim ekPreis As Double = getEKPreis(ArtNr)
 
         sql = "select ArtNR, ArtKatNR, PreisATS from grArtikel where artnr=" & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
@@ -169,28 +182,34 @@ Public Class IntraSellPreise
 
         If rs.Read Then
             ArtKatNr = CInt(rs("ArtKatNr"))
-            Dim Aufschlag As Double = getAufschlagEKpreisKategorie(ArtKatNr)
+            PreisATS = CDec(rs("PreisATS"))
+            rs.Close()
+            rs = Nothing
+
+
             If Aufschlag <> 0 Then
-                getBasisVKPreis = getEKPreis(ArtNr) * (1 + Aufschlag)
+                getBasisVKPreis = ekPreis * (1 + Aufschlag)
             Else
-                If IsNull(rs("PreisATS")) Then
-                    getBasisVKPreis = 0
-                Else
-                    getBasisVKPreis = CDbl(rs("PreisATS"))
-                End If
+                'If IsNull(PreisATS) Then
+                '    getBasisVKPreis = 0
+                'Else
+                getBasisVKPreis = CDbl(PreisATS)
+                'End If
             End If
         Else
+            rs.Close()
+            rs = Nothing
             getBasisVKPreis = 0
         End If
 
-        rs.Close()
-        rs = Nothing
+
 
     End Function
 
     '*****************************************************************
     '*****************************************************************
     Public Function getEKPreis(ByVal ArtNr As Integer) As Double
+        Dim ekLieferant As Double = makeEKPreisVonLieferant(ArtNr)
 
         Dim sql As String, rs As MySqlDataReader
 
@@ -199,7 +218,7 @@ Public Class IntraSellPreise
         getEKPreis = 0
         If rs.Read Then
             If CDbl(rs("EKPreis")) <= 0 Then 'not defined
-                getEKPreis = makeEKPreisVonLieferant(ArtNr)
+                getEKPreis = ekLieferant
             Else
                 If IsNull(rs("EKPreis")) Then
                     getEKPreis = 0
@@ -263,7 +282,7 @@ Public Class IntraSellPreise
     Public Function getLieferantLagerInfo(ByVal ArtNr As Integer) As String
 
         'If IsNull(ArtNr) Then Return "" : Exit Function
- 
+
         Dim sql As String, rs As MySqlDataReader
         sql = "select ArtNr, Bezeichnung, Bezeichnung1 from grArtikel where artnr=" & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
@@ -412,7 +431,7 @@ Public Class IntraSellPreise
 
             If benutzeTransaktion Then
                 'CurrentDB.BeginTrans()
-                mysqltr = conn.BeginTransaction
+                mysqltr = CurrentDB.BeginTransaction
             End If
 
 
@@ -618,6 +637,7 @@ Public Class IntraSellPreise
         If rs.Read Then 'kundengruppe is definiert
             von = CInt(rs("VorgangNrKreisvon"))
             bis = CInt(rs("VorgangNrKreisbis"))
+            rs.Close()
             'End If
             rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & _
              "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc", dbOpenDynaset)

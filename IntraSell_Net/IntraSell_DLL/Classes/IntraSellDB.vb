@@ -9,7 +9,7 @@ Public Class IntraSellDB
 
 
     Public Sub init(ByVal connString As String)
-        FunctionsDB.ConnStringODBC = connString
+        FunctionsDB.CurrentDB.ConnectionString = connString
         FunctionsDB.connOpen()
         CurrentDB = FunctionsDB.CurrentDB
     End Sub

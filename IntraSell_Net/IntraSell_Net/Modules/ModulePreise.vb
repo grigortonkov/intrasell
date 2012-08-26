@@ -31,10 +31,10 @@ Module ModulePreise
 
 
     '' Call the DLL to get the price
-    'Public Function getPreis(ByVal IDNR, ByVal ArtNr, ByVal Stk) As Double
-    '    If ArtNr & "" = "" Then Exit Function
-    '    getPreis = IntraSellPreise.getPreis(IDNR, ArtNr, Replace(Stk, ",", "."))
-    'End Function
+    Public Function getPreis(ByVal IDNR As Integer, ByVal ArtNr As Integer, ByVal Stk As Double) As Double
+        If ArtNr & "" = "" Then Return 0 : Exit Function
+        getPreis = IntraSellPreise.getPreis(IDNR, ArtNr, Stk)
+    End Function
 
 
     Public Function getEKPreis(ByVal ArtNr As Integer) As Double

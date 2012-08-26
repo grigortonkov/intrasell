@@ -10,7 +10,7 @@ Module ModuleLager
     'Verbucht die Einträge von der Tabelle lagerLagerBuchung
     Public Sub buchen(cbDruckeBarcode As Boolean)
 
-        Dim tr As MySqlTransaction = conn.BeginTransaction
+        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
             ' save current
 
@@ -123,7 +123,7 @@ Module ModuleLager
      ByVal Vorgangtyp As String, _
      ByVal BewegungsTyp As String, _
      Optional Silent As Boolean = False)
-        Dim tr As MySqlTransaction = conn.BeginTransaction
+        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
 
             Call writeLog("BEGIN TRANSACTION")
@@ -584,7 +584,7 @@ Module ModuleLager
     Sub Umbuchen(LagerOrt_von As String, LagerOrt_Nach As String)
 
         If MsgBox("Wollen Sie diese Positionen umbuchen?", vbYesNo) = vbNo Then Exit Sub
-        Dim tr As MySqlTransaction = conn.BeginTransaction
+        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
 
 

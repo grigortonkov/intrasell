@@ -26,9 +26,9 @@ Partial Class VorgangListe
         Dim DatumLabel As System.Windows.Forms.Label
         Dim Label10 As System.Windows.Forms.Label
         Dim StatusLabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FilterButton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PLZVonTextBox = New System.Windows.Forms.TextBox()
@@ -39,34 +39,6 @@ Partial Class VorgangListe
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.VorgangListeDataGridView = New System.Windows.Forms.DataGridView()
-        Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
-        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
-        Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.StatusComboBox = New System.Windows.Forms.ComboBox()
-        Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
-        Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
-        Me.AbgeschlossenCheckBox = New System.Windows.Forms.CheckBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.NummerTextBox = New System.Windows.Forms.TextBox()
-        Me.TypComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.DatumUntil = New System.Windows.Forms.DateTimePicker()
-        Me.DatumVon = New System.Windows.Forms.DateTimePicker()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.MitarbeiterComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.LieferantComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.LandComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.NummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TypDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KundNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -93,6 +65,34 @@ Partial Class VorgangListe
         Me.KundNr2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ErstelltAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NotizDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
+        Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
+        Me.StatusComboBox = New System.Windows.Forms.ComboBox()
+        Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
+        Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
+        Me.AbgeschlossenCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.NummerTextBox = New System.Windows.Forms.TextBox()
+        Me.TypComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.DatumUntil = New System.Windows.Forms.DateTimePicker()
+        Me.DatumVon = New System.Windows.Forms.DateTimePicker()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.MitarbeiterComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LieferantComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.LandComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -217,318 +217,39 @@ Partial Class VorgangListe
         Me.VorgangListeDataGridView.AllowUserToDeleteRows = False
         Me.VorgangListeDataGridView.AllowUserToOrderColumns = True
         Me.VorgangListeDataGridView.AutoGenerateColumns = False
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.VorgangListeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.VorgangListeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.VorgangListeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.VorgangListeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NummerDataGridViewTextBoxColumn, Me.TypDataGridViewTextBoxColumn, Me.KundNrDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.Land, Me.FirmaDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.BezahltDataGridViewCheckBoxColumn, Me.AusgedrucktDataGridViewCheckBoxColumn, Me.AbgeschlossenDataGridViewCheckBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.WaehrungDataGridViewTextBoxColumn, Me.SummeDataGridViewTextBoxColumn, Me.SummeMWSTDataGridViewTextBoxColumn, Me.SummeBruttoDataGridViewTextBoxColumn, Me.ZahlungsbedungungDataGridViewTextBoxColumn, Me.TransportMethodeDataGridViewTextBoxColumn, Me.ZahlungsMethodeDataGridViewTextBoxColumn, Me.WoherDataGridViewTextBoxColumn, Me.WohinDataGridViewTextBoxColumn, Me.LieferantNrDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.KundNr2DataGridViewTextBoxColumn, Me.ErstelltAmDataGridViewTextBoxColumn, Me.NotizDataGridViewTextBoxColumn})
         Me.VorgangListeDataGridView.DataSource = Me.BuchVorgangListeBindingSource
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.VorgangListeDataGridView.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.VorgangListeDataGridView.DefaultCellStyle = DataGridViewCellStyle2
         Me.VorgangListeDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.VorgangListeDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.VorgangListeDataGridView.Name = "VorgangListeDataGridView"
         Me.VorgangListeDataGridView.ReadOnly = True
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.VorgangListeDataGridView.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.VorgangListeDataGridView.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.VorgangListeDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.VorgangListeDataGridView.TabIndex = 6
-        '
-        'BuchVorgangListeBindingSource
-        '
-        Me.BuchVorgangListeBindingSource.DataMember = "buchVorgangListe"
-        Me.BuchVorgangListeBindingSource.DataSource = Me.DsVorgaenge
-        '
-        'DsVorgaenge
-        '
-        Me.DsVorgaenge.DataSetName = "dsVorgaenge"
-        Me.DsVorgaenge.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'SplitContainer
-        '
-        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer.Name = "SplitContainer"
-        '
-        'SplitContainer.Panel1
-        '
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label13)
-        Me.SplitContainer.Panel1.Controls.Add(Me.SummeVonTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.SummeBisTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label14)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ArtikelControl1)
-        Me.SplitContainer.Panel1.Controls.Add(StatusLabel)
-        Me.SplitContainer.Panel1.Controls.Add(Me.StatusComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.BezahltCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AusgedrucktCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AbgeschlossenCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label12)
-        Me.SplitContainer.Panel1.Controls.Add(Me.NummerTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.TypComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label11)
-        Me.SplitContainer.Panel1.Controls.Add(Label10)
-        Me.SplitContainer.Panel1.Controls.Add(Me.DatumUntil)
-        Me.SplitContainer.Panel1.Controls.Add(DatumLabel)
-        Me.SplitContainer.Panel1.Controls.Add(Me.DatumVon)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
-        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
-        Me.SplitContainer.Panel1.Controls.Add(Me.LieferantComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
-        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
-        '
-        'SplitContainer.Panel2
-        '
-        Me.SplitContainer.Panel2.Controls.Add(Me.VorgangListeDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 238
-        Me.SplitContainer.TabIndex = 11
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(8, 179)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(45, 13)
-        Me.Label13.TabIndex = 42
-        Me.Label13.Text = "Umsatz:"
-        '
-        'SummeVonTextBox
-        '
-        Me.SummeVonTextBox.Location = New System.Drawing.Point(94, 176)
-        Me.SummeVonTextBox.Name = "SummeVonTextBox"
-        Me.SummeVonTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.SummeVonTextBox.TabIndex = 40
-        '
-        'SummeBisTextBox
-        '
-        Me.SummeBisTextBox.Location = New System.Drawing.Point(168, 176)
-        Me.SummeBisTextBox.Name = "SummeBisTextBox"
-        Me.SummeBisTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.SummeBisTextBox.TabIndex = 41
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(152, 179)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(10, 13)
-        Me.Label14.TabIndex = 43
-        Me.Label14.Text = "-"
-        '
-        'StatusComboBox
-        '
-        Me.StatusComboBox.FormattingEnabled = True
-        Me.StatusComboBox.Location = New System.Drawing.Point(96, 65)
-        Me.StatusComboBox.Name = "StatusComboBox"
-        Me.StatusComboBox.Size = New System.Drawing.Size(124, 21)
-        Me.StatusComboBox.TabIndex = 36
-        '
-        'BezahltCheckBox
-        '
-        Me.BezahltCheckBox.Checked = True
-        Me.BezahltCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.BezahltCheckBox.Location = New System.Drawing.Point(95, 400)
-        Me.BezahltCheckBox.Name = "BezahltCheckBox"
-        Me.BezahltCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.BezahltCheckBox.TabIndex = 27
-        Me.BezahltCheckBox.Text = "bezahlt"
-        Me.BezahltCheckBox.UseVisualStyleBackColor = True
-        '
-        'AusgedrucktCheckBox
-        '
-        Me.AusgedrucktCheckBox.Checked = True
-        Me.AusgedrucktCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.AusgedrucktCheckBox.Location = New System.Drawing.Point(95, 430)
-        Me.AusgedrucktCheckBox.Name = "AusgedrucktCheckBox"
-        Me.AusgedrucktCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AusgedrucktCheckBox.TabIndex = 28
-        Me.AusgedrucktCheckBox.Text = "ausgedruckt"
-        Me.AusgedrucktCheckBox.UseVisualStyleBackColor = True
-        '
-        'AbgeschlossenCheckBox
-        '
-        Me.AbgeschlossenCheckBox.Checked = True
-        Me.AbgeschlossenCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.AbgeschlossenCheckBox.Location = New System.Drawing.Point(95, 460)
-        Me.AbgeschlossenCheckBox.Name = "AbgeschlossenCheckBox"
-        Me.AbgeschlossenCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AbgeschlossenCheckBox.TabIndex = 29
-        Me.AbgeschlossenCheckBox.Text = "abgeschlosen"
-        Me.AbgeschlossenCheckBox.UseVisualStyleBackColor = True
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(9, 42)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(49, 13)
-        Me.Label12.TabIndex = 26
-        Me.Label12.Text = "Nummer:"
-        '
-        'NummerTextBox
-        '
-        Me.NummerTextBox.Location = New System.Drawing.Point(95, 39)
-        Me.NummerTextBox.Name = "NummerTextBox"
-        Me.NummerTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.NummerTextBox.TabIndex = 25
-        '
-        'TypComboBox
-        '
-        Me.TypComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.TypComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.TypComboBox.FormattingEnabled = True
-        Me.TypComboBox.Location = New System.Drawing.Point(95, 12)
-        Me.TypComboBox.Name = "TypComboBox"
-        Me.TypComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.TypComboBox.TabIndex = 23
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(9, 15)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(28, 13)
-        Me.Label11.TabIndex = 24
-        Me.Label11.Text = "Typ:"
-        '
-        'DatumUntil
-        '
-        Me.DatumUntil.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DatumUntil.Location = New System.Drawing.Point(96, 118)
-        Me.DatumUntil.Name = "DatumUntil"
-        Me.DatumUntil.Size = New System.Drawing.Size(125, 20)
-        Me.DatumUntil.TabIndex = 22
-        '
-        'DatumVon
-        '
-        Me.DatumVon.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DatumVon.Location = New System.Drawing.Point(95, 92)
-        Me.DatumVon.Name = "DatumVon"
-        Me.DatumVon.Size = New System.Drawing.Size(125, 20)
-        Me.DatumVon.TabIndex = 20
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(9, 233)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(38, 13)
-        Me.Label9.TabIndex = 18
-        Me.Label9.Text = "Kunde"
-        '
-        'MitarbeiterComboBox
-        '
-        Me.MitarbeiterComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.MitarbeiterComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.MitarbeiterComboBox.FormattingEnabled = True
-        Me.MitarbeiterComboBox.Location = New System.Drawing.Point(95, 203)
-        Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
-        Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.MitarbeiterComboBox.TabIndex = 15
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(9, 206)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(59, 13)
-        Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Mitarbeiter:"
-        '
-        'LieferantComboBox
-        '
-        Me.LieferantComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.LieferantComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.LieferantComboBox.FormattingEnabled = True
-        Me.LieferantComboBox.Location = New System.Drawing.Point(95, 259)
-        Me.LieferantComboBox.Name = "LieferantComboBox"
-        Me.LieferantComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LieferantComboBox.TabIndex = 13
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 262)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(51, 13)
-        Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Lieferant:"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, 146)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
-        Me.Label6.TabIndex = 12
-        Me.Label6.Text = "Artikel:"
-        '
-        'LandComboBox
-        '
-        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.LandComboBox.FormattingEnabled = True
-        Me.LandComboBox.Location = New System.Drawing.Point(95, 286)
-        Me.LandComboBox.Name = "LandComboBox"
-        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LandComboBox.TabIndex = 0
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(9, 289)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Land:"
-        '
-        'BuchVorgangListeTableAdapter
-        '
-        Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
-        '
-        'AdressenControl1
-        '
-        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 39
-        '
-        'ArtikelControl1
-        '
-        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl1.TabIndex = 38
         '
         'NummerDataGridViewTextBoxColumn
         '
@@ -712,6 +433,287 @@ Partial Class VorgangListe
         Me.NotizDataGridViewTextBoxColumn.Name = "NotizDataGridViewTextBoxColumn"
         Me.NotizDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'BuchVorgangListeBindingSource
+        '
+        Me.BuchVorgangListeBindingSource.DataMember = "buchVorgangListe"
+        Me.BuchVorgangListeBindingSource.DataSource = Me.DsVorgaenge
+        '
+        'DsVorgaenge
+        '
+        Me.DsVorgaenge.DataSetName = "dsVorgaenge"
+        Me.DsVorgaenge.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'SplitContainer
+        '
+        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.Name = "SplitContainer"
+        '
+        'SplitContainer.Panel1
+        '
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label13)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SummeVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SummeBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label14)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ArtikelControl1)
+        Me.SplitContainer.Panel1.Controls.Add(StatusLabel)
+        Me.SplitContainer.Panel1.Controls.Add(Me.StatusComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.BezahltCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AusgedrucktCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AbgeschlossenCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label12)
+        Me.SplitContainer.Panel1.Controls.Add(Me.NummerTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.TypComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label11)
+        Me.SplitContainer.Panel1.Controls.Add(Label10)
+        Me.SplitContainer.Panel1.Controls.Add(Me.DatumUntil)
+        Me.SplitContainer.Panel1.Controls.Add(DatumLabel)
+        Me.SplitContainer.Panel1.Controls.Add(Me.DatumVon)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
+        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
+        Me.SplitContainer.Panel1.Controls.Add(Me.LieferantComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
+        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
+        '
+        'SplitContainer.Panel2
+        '
+        Me.SplitContainer.Panel2.Controls.Add(Me.VorgangListeDataGridView)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
+        Me.SplitContainer.SplitterDistance = 238
+        Me.SplitContainer.TabIndex = 11
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(8, 179)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(45, 13)
+        Me.Label13.TabIndex = 42
+        Me.Label13.Text = "Umsatz:"
+        '
+        'SummeVonTextBox
+        '
+        Me.SummeVonTextBox.Location = New System.Drawing.Point(94, 176)
+        Me.SummeVonTextBox.Name = "SummeVonTextBox"
+        Me.SummeVonTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.SummeVonTextBox.TabIndex = 40
+        '
+        'SummeBisTextBox
+        '
+        Me.SummeBisTextBox.Location = New System.Drawing.Point(168, 176)
+        Me.SummeBisTextBox.Name = "SummeBisTextBox"
+        Me.SummeBisTextBox.Size = New System.Drawing.Size(52, 20)
+        Me.SummeBisTextBox.TabIndex = 41
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(152, 179)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(10, 13)
+        Me.Label14.TabIndex = 43
+        Me.Label14.Text = "-"
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 39
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.ArtNr = 0
+        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl1.TabIndex = 38
+        '
+        'StatusComboBox
+        '
+        Me.StatusComboBox.FormattingEnabled = True
+        Me.StatusComboBox.Location = New System.Drawing.Point(96, 65)
+        Me.StatusComboBox.Name = "StatusComboBox"
+        Me.StatusComboBox.Size = New System.Drawing.Size(124, 21)
+        Me.StatusComboBox.TabIndex = 36
+        '
+        'BezahltCheckBox
+        '
+        Me.BezahltCheckBox.Checked = True
+        Me.BezahltCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.BezahltCheckBox.Location = New System.Drawing.Point(95, 400)
+        Me.BezahltCheckBox.Name = "BezahltCheckBox"
+        Me.BezahltCheckBox.Size = New System.Drawing.Size(101, 24)
+        Me.BezahltCheckBox.TabIndex = 27
+        Me.BezahltCheckBox.Text = "bezahlt"
+        Me.BezahltCheckBox.UseVisualStyleBackColor = True
+        '
+        'AusgedrucktCheckBox
+        '
+        Me.AusgedrucktCheckBox.Checked = True
+        Me.AusgedrucktCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.AusgedrucktCheckBox.Location = New System.Drawing.Point(95, 430)
+        Me.AusgedrucktCheckBox.Name = "AusgedrucktCheckBox"
+        Me.AusgedrucktCheckBox.Size = New System.Drawing.Size(101, 24)
+        Me.AusgedrucktCheckBox.TabIndex = 28
+        Me.AusgedrucktCheckBox.Text = "ausgedruckt"
+        Me.AusgedrucktCheckBox.UseVisualStyleBackColor = True
+        '
+        'AbgeschlossenCheckBox
+        '
+        Me.AbgeschlossenCheckBox.Checked = True
+        Me.AbgeschlossenCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.AbgeschlossenCheckBox.Location = New System.Drawing.Point(95, 460)
+        Me.AbgeschlossenCheckBox.Name = "AbgeschlossenCheckBox"
+        Me.AbgeschlossenCheckBox.Size = New System.Drawing.Size(101, 24)
+        Me.AbgeschlossenCheckBox.TabIndex = 29
+        Me.AbgeschlossenCheckBox.Text = "abgeschlosen"
+        Me.AbgeschlossenCheckBox.UseVisualStyleBackColor = True
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(9, 42)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(49, 13)
+        Me.Label12.TabIndex = 26
+        Me.Label12.Text = "Nummer:"
+        '
+        'NummerTextBox
+        '
+        Me.NummerTextBox.Location = New System.Drawing.Point(95, 39)
+        Me.NummerTextBox.Name = "NummerTextBox"
+        Me.NummerTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.NummerTextBox.TabIndex = 25
+        '
+        'TypComboBox
+        '
+        Me.TypComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TypComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TypComboBox.FormattingEnabled = True
+        Me.TypComboBox.Location = New System.Drawing.Point(95, 12)
+        Me.TypComboBox.Name = "TypComboBox"
+        Me.TypComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.TypComboBox.TabIndex = 23
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(9, 15)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(28, 13)
+        Me.Label11.TabIndex = 24
+        Me.Label11.Text = "Typ:"
+        '
+        'DatumUntil
+        '
+        Me.DatumUntil.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DatumUntil.Location = New System.Drawing.Point(96, 118)
+        Me.DatumUntil.Name = "DatumUntil"
+        Me.DatumUntil.Size = New System.Drawing.Size(125, 20)
+        Me.DatumUntil.TabIndex = 22
+        '
+        'DatumVon
+        '
+        Me.DatumVon.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DatumVon.Location = New System.Drawing.Point(95, 92)
+        Me.DatumVon.Name = "DatumVon"
+        Me.DatumVon.Size = New System.Drawing.Size(125, 20)
+        Me.DatumVon.TabIndex = 20
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(9, 233)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(38, 13)
+        Me.Label9.TabIndex = 18
+        Me.Label9.Text = "Kunde"
+        '
+        'MitarbeiterComboBox
+        '
+        Me.MitarbeiterComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.MitarbeiterComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.MitarbeiterComboBox.FormattingEnabled = True
+        Me.MitarbeiterComboBox.Location = New System.Drawing.Point(95, 203)
+        Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
+        Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.MitarbeiterComboBox.TabIndex = 15
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(9, 206)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(59, 13)
+        Me.Label8.TabIndex = 16
+        Me.Label8.Text = "Mitarbeiter:"
+        '
+        'LieferantComboBox
+        '
+        Me.LieferantComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.LieferantComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.LieferantComboBox.FormattingEnabled = True
+        Me.LieferantComboBox.Location = New System.Drawing.Point(95, 259)
+        Me.LieferantComboBox.Name = "LieferantComboBox"
+        Me.LieferantComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.LieferantComboBox.TabIndex = 13
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(9, 262)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(51, 13)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "Lieferant:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 146)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.TabIndex = 12
+        Me.Label6.Text = "Artikel:"
+        '
+        'LandComboBox
+        '
+        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.LandComboBox.FormattingEnabled = True
+        Me.LandComboBox.Location = New System.Drawing.Point(95, 286)
+        Me.LandComboBox.Name = "LandComboBox"
+        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.LandComboBox.TabIndex = 0
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 289)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Land:"
+        '
+        'BuchVorgangListeTableAdapter
+        '
+        Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
+        '
         'VorgangListe
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -719,7 +721,7 @@ Partial Class VorgangListe
         Me.ClientSize = New System.Drawing.Size(1008, 762)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "VorgangListe"
-        Me.Text = "Kundenliste"
+        Me.Text = "Vorgangliste"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.VorgangListeDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchVorgangListeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

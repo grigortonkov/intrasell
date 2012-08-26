@@ -5,9 +5,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Windows.Forms
 
 Public Module ModuleCommons
-    'should be initilized by calling application. E.g.: 
-    'ModuleCommons.conn = new  MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
-    Public conn As New MySqlConnection ' (Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+  
     Public appPath As String = Nothing 'Set by UnitTests 
 
     'Return current Applikation Path for Exe, IntraSell
@@ -22,12 +20,14 @@ Public Module ModuleCommons
 
     'Proxy Function openRecordset  for easy conversion of old Access Code
     Public Function openRecordset(ByVal sql As String) As MySqlDataReader
+        FixAccessSQL(CurrentDB.ConnectionString, sql)
+
         'writeLog("openRecordset for sql:" + sql)
-        If Not conn.State = ConnectionState.Open Then
-            conn.Open()
+        If Not CurrentDB.State = ConnectionState.Open Then
+            CurrentDB.Open()
         End If
 
-        Dim d As New MySqlCommand(sql, conn)
+        Dim d As New MySqlCommand(sql, CurrentDB)
         Return d.ExecuteReader()
 
     End Function
@@ -35,7 +35,7 @@ Public Module ModuleCommons
     'Proxy Function RunSQL  for easy conversion of old Access Code
     Function RunSQL(ByVal sql As String) As Object
         writeLog("RunSQL for sql:" + sql)
-        Dim d As New MySqlCommand(sql, conn)
+        Dim d As New MySqlCommand(sql, CurrentDB)
         Return d.ExecuteScalar()
 
     End Function
@@ -49,7 +49,7 @@ Public Module ModuleCommons
     'New Function openDataTable  for easy conversion of old Access Code
     Function OpenDataTable(ByVal sql As String) As DataTable
         writeLog("openDataTable for sql:" + sql)
-        Dim da As New MySqlDataAdapter(sql, conn)
+        Dim da As New MySqlDataAdapter(sql, CurrentDB)
         Dim ds As New DataSet
         Dim rs As DataTable
         da.Fill(ds, "t")
@@ -62,9 +62,8 @@ Public Module ModuleCommons
     Public Sub FillComboBox(ByRef combo As ComboBox, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
         Try
 
-
             Dim strSQL As String = query '"SELECT * FROM Disk"
-            Dim da As New MySqlDataAdapter(strSQL, conn)
+            Dim da As New MySqlDataAdapter(strSQL, CurrentDB)
             Dim ds As New DataSet
             da.Fill(ds, "t")
 
