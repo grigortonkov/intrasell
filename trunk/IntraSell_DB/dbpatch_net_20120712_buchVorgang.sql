@@ -5,8 +5,10 @@
    PRIMARY KEY (`Typ`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-
+DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
 DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgang`;
+
+
 CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
   `Nummer` int(10) NOT NULL DEFAULT '0',
   `Typ` varchar(2) NOT NULL,
@@ -39,13 +41,13 @@ CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
   KEY `buchVorgangTyp` (`Typ`),
   CONSTRAINT `buchVorgang_ibfk_1` FOREIGN KEY (`KundNr`) REFERENCES `ofadressen` (`IDNR`),
   CONSTRAINT `buchVorgang_ibfk_2` FOREIGN KEY (`KundNr1`) REFERENCES `ofadressen-Weitere` (`ID`),
-  CONSTRAINT `buchVorgangTyp_ibfk_3` FOREIGN KEY (`Typ`) REFERENCES `buchVorgangTyp` (`Typ`),
+  CONSTRAINT `buchVorgangTyp_ibfk_3` FOREIGN KEY (`Typ`) REFERENCES `buchVorgangTyp` (`Typ`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
 
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
+
 CREATE TABLE  `intrasell_daten_2`.`buchvorgang-artikel` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `Nummer` int(10) NOT NULL,
