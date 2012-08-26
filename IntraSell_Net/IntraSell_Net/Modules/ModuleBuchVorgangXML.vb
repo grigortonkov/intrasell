@@ -1,5 +1,8 @@
 ﻿Option Explicit On
+Option Strict Off
+
 Imports IntraSell_DLL
+Imports GriTon.XML2Word
 
 Module ModuleBuchVorgangXML
 
@@ -8,8 +11,8 @@ Module ModuleBuchVorgangXML
         XML2WORD = dbFolder & "..\components\XML2WordGT\TestXML2Word.exe"
     End Function
 
-    'Viewer = WORD
-    'Viewer = OUTLOOK
+    ' Generates new MS Wor File using XML2WORD
+    ' Viewer = WORD,  OUTLOOK or PDF
     ' Returns the filename of the XML File
     Function OpenAusdruck_inWord_XML(ByVal VorgangNummer As Long, _
                                 ByVal VorgangTyp As String, _
@@ -17,17 +20,20 @@ Module ModuleBuchVorgangXML
                                 ByVal Viewer As String, _
                                 ByVal SofortSenden As Boolean, _
                                 ByVal MailText As String) As String
+
+        Application.UseWaitCursor = True
+
         Dim VonForm As String
-        Dim VonForm_Artikel
+        Dim VonForm_Artikel As String
 
         VonForm = getVorgangTableForType(VorgangTyp)
         VonForm_Artikel = getVorgangArtikelTableForType(VorgangTyp)
 
 
         'jetzt XML erstellen
-        Dim xml
-        xml = "<DOCUMENT>"
-        xml = xml & VorgangXML(VorgangNummer, VorgangTyp)
+        Dim xml As String
+        xml = "<DOCUMENT>" & vbCrLf
+        xml = xml & VorgangXML(VorgangNummer, VorgangTyp) & vbCrLf
         xml = xml & "</DOCUMENT>"
 
         'Create TMP Folder 
@@ -36,13 +42,12 @@ Module ModuleBuchVorgangXML
             MkDir(GetAppPath() & "tmp")
         End If
 
-        Dim fileName As String = dbFolder & "tmp\Vorgang_" & VonForm & "_" & VorgangTyp & VorgangNummer & ".xml"
+        Dim fileName As String = DbFolder() & "tmp\Vorgang_" & VonForm & "_" & VorgangTyp & VorgangNummer & ".xml"
 
         saveXML(xml, fileName)
 
-        Dim resultFilenamePrefix : resultFilenamePrefix = "Vorgang_" & VorgangTyp & VorgangNummer
-        Dim resultFilename
-        resultFilename = dbFolder & "tmp\" & resultFilenamePrefix & "1.doc"
+        Dim resultFilenamePrefix As String = "Vorgang_" & VorgangTyp & VorgangNummer
+        Dim resultFilename As String = DbFolder() & "tmp\" & resultFilenamePrefix & "1.doc"
 
 
         'merge with word template
@@ -52,21 +57,21 @@ Module ModuleBuchVorgangXML
         'http://code.google.com/p/intrasell/issues/detail?id=91&q=interdel
         exportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, exportPath) 'hier kann der Administrator den Speicherplatz bestimmern
 
-        ' Shell XML2WORD & " """ & filename & """ """ & vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """", vbNormalFocus
-        SynchShell(XML2WORD() & " """ & fileName & """ """ & Vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """")
+        'Shell XML2WORD & " """ & filename & """ """ & vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """", vbNormalFocus
+        'SynchShell(XML2WORD() & " """ & fileName & """ """ & Vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """")
+        CallXML2WORD(fileName, Vorlage, exportPath, resultFilenamePrefix)
 
         'rename file to remove the 1 at the end
-
-        resultFilename = Replace(resultFilename, dbFolder & "tmp\", exportPath)
-
-        renameFile(resultFilename, Replace(resultFilename, "1.doc", ".doc"))
-        resultFilename = Replace(resultFilename, "1.doc", ".doc")
+        Dim archiveFilename As String
+        archiveFilename = Replace(resultFilename, DbFolder() & "tmp\", exportPath)
+        archiveFilename = Replace(archiveFilename, "1.doc", ".doc")
+        renameFile(resultFilename, archiveFilename)
 
         'print or send per email
 
 
         If False Then
-            If MsgBox("Wurde die Datei  " & resultFilename & " erstellt ? " & Chr(13) & Chr(10) & _
+            If MsgBox("Wurde die Datei  " & archiveFilename & " erstellt ? " & Chr(13) & Chr(10) & _
                     "Nach der Erstellung bitte af OK klicken!", vbYesNo) = vbNo Then
                 Return Nothing
                 Exit Function
@@ -75,11 +80,11 @@ Module ModuleBuchVorgangXML
 
 
         If Viewer = "WORD" Then
-            DokumentInWordZeigen(resultFilename)
+            DokumentInWordZeigen(archiveFilename)
         End If
 
         If Viewer = "PDF" Then
-            SaveWordAsPDF(resultFilename)
+            SaveWordAsPDF(archiveFilename)
         End If
 
         If Viewer = "OUTLOOK" Then
@@ -88,98 +93,126 @@ Module ModuleBuchVorgangXML
             mailWithOutlook(MailBetreff, KundenEmail, resultFilename, MailText, "", SofortSenden)
         End If
 
-        OpenAusdruck_inWord_XML = fileName
+        OpenAusdruck_inWord_XML = archiveFilename
 
         'Save as document in DokSys if DokSys exists
         Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), VorgangNummer & "", fileName)
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), VorgangNummer & "", resultFilename & "")
+        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), VorgangNummer & "", archiveFilename)
 
+        Application.UseWaitCursor = False
 
     End Function
 
     'Erstellt XML für einen Vorgang
     Public Function VorgangXML(ByVal VorgangNummer As Long, ByVal VorgangTyp As String) As String
-        Dim xml As String = ""
-        Dim VonForm As String = getVorgangTableForType(VorgangTyp)
-        Dim VonForm_Artikel As String = getVorgangArtikelTableForType(VorgangTyp)
+        Try
+            Application.UseWaitCursor = True
 
-        Dim language_Code As String = getLanguageForVorgang(VorgangTyp, VorgangNummer)
+            Dim xml As String = ""
+            Dim VonForm As String = getVorgangTableForType(VorgangTyp)
+            Dim VonForm_Artikel As String = getVorgangArtikelTableForType(VorgangTyp)
 
-        xml = xml & "<Vorgang>"
+            Dim language_Code As String = getLanguageForVorgang(VorgangTyp, VorgangNummer)
 
-        xml = xml + QueryToXML("select * from " & VonForm & " anf where anf.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'")
+            xml = xml & "<Vorgang>"
 
-        'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_Adressfelder adr " & _
-        '            " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer, "Kunde")
+            xml = xml + QueryToXML("select * from " & VonForm & " anf where anf.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'")
 
-        xml = xml + QueryToXML(getRecSource_Address("ofAdressen", "idnr in (select KundNr from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Kunde")
+            'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_Adressfelder adr " & _
+            '            " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer, "Kunde")
 
-
-
-        'Kundeneinstellungen
-        xml = xml + QueryToXML("select k.* from " & VonForm & " a, `ofadressen-settings` ks, buchfirmenkonto k " & _
-                    " where a.KundNr = ks.IDNR and ks.Firmenkontoid = k.KontoId and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "UnsereBankVerbindung")
-
-        'Lieferadresse
-        'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_Adressfelder adr " & _
-        '            " where a.KundNr2 = adr.IDNR and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "Lieferadresse")
-        'Erste / Rechnung Adresse abweichend von der ersten
-        xml = xml + QueryToXML(getRecSource_Address("`ofAdressen-Weitere`", "ID in (select KundNr1 from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Rechnungadresse")
-        'Zweite / Lieferadresse 
-        xml = xml + QueryToXML(getRecSource_Address("`ofAdressen-Weitere`", "ID in (select KundNr2 from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Lieferadresse")
+            xml = xml + QueryToXML(getRecSource_Address("ofAdressen", "idnr in (select KundNr from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Kunde")
 
 
-        'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_AdressfelderLieferant adr " & _
-        '            " where a.LieferantNr = adr.IDNR and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "Lieferant")
-        xml = xml + QueryToXML(getRecSource_Address("lieferantenAdressen", "IDNR in (select LieferantNr from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Lieferant")
+
+            'Kundeneinstellungen
+            xml = xml + QueryToXML("select k.* from " & VonForm & " a, `ofadressen-settings` ks, buchfirmenkonto k " & _
+                        " where a.KundNr = ks.IDNR and ks.Firmenkontoid = k.KontoId and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "UnsereBankVerbindung")
+
+            'Lieferadresse
+            'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_Adressfelder adr " & _
+            '            " where a.KundNr2 = adr.IDNR and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "Lieferadresse")
+            'Erste / Rechnung Adresse abweichend von der ersten
+            xml = xml + QueryToXML(getRecSource_Address("`ofAdressen-Weitere`", "ID in (select KundNr1 from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Rechnungadresse")
+            'Zweite / Lieferadresse 
+            xml = xml + QueryToXML(getRecSource_Address("`ofAdressen-Weitere`", "ID in (select KundNr2 from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Lieferadresse")
 
 
-        xml = xml + QueryToXML("select adr.* from " & VonForm & " a, ofMitarbeiter adr " & _
-                    " where a.MitarbeiterNr = adr.IDNR and a.Nummer=" & VorgangNummer & " and a.Typ = '" & VorgangTyp & "'", "Mitarbeiter")
-
-        'xml = xml + QueryToXML("select * from buchVorgaengeEigenschaften_Kreuztabelle where VorgangTyp='" & VorgangTyp & "' and VorgangNummer=" & VorgangNummer, "Eigenschaften")
-
-        xml = xml + QueryToXML("SELECT Name, Value FROM buchvorgaengeeigenschaften b where b.VorgangTyp='" & VorgangTyp & "' and b.Nummer=" & VorgangNummer, "Eigenschaften")
+            'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_AdressfelderLieferant adr " & _
+            '            " where a.LieferantNr = adr.IDNR and a.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'", "Lieferant")
+            xml = xml + QueryToXML(getRecSource_Address("lieferantenAdressen", "IDNR in (select LieferantNr from  " & VonForm & " where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "')"), "Lieferant")
 
 
-        xml = xml & "<Positionen>"
+            xml = xml + QueryToXML("select adr.* from " & VonForm & " a, ofMitarbeiter adr " & _
+                        " where a.MitarbeiterNr = adr.IDNR and a.Nummer=" & VorgangNummer & " and a.Typ = '" & VorgangTyp & "'", "Mitarbeiter")
 
-        'xml = xml + QueryToXML("select p.Id , p.RechNr, p.ArtNR, p.PreisATS, p.PreisEuro, p.Stk, p.PreisATS_Brutto, p.ArtikelIdentifikation, " & _
-        '             " p.EKPreis, round(p.PreisATS*p.Stk,2) as PreisSummeNetto, round(p.PreisATS_Brutto*p.Stk,2) as PreisSummeBrutto, " & _
-        '             " getTranslationDok(""grArtikel"", [p].[ArtNr], ""Bezeichnung"", [p].[Bezeichnung], '" & language_Code & "') as Bezeichnung, " & _
-        '             " p.LieferantNR, p.PositionStatus, p.referenz, p.Packung, p.herkunft, p.Incoterm, " & _
-        '             " p.Spezifikation, " & _
-        '             " getTranslationDok(""grArtikel-Kategorien"", [k].[ArtKatNr], ""Name"", [k].[Name], '" & language_Code & "') as Kategorie " & _
-        '             " from [" & VonForm_Artikel & "] p, grArtikel a,  [grArtikel-Kategorien] k " & _
-        '             " where p.ArtNr=a.ArtNr and a.ArtKatNr=k.ArtKatNr and p.RechNr=" & VorgangNummer & " and p.Typ = '" & VorgangTyp & "'" & _
-        '             " ORDER BY k.Name, [p].[Bezeichnung], p.ArtNr", "Position")
+            'xml = xml + QueryToXML("select * from buchVorgaengeEigenschaften_Kreuztabelle where VorgangTyp='" & VorgangTyp & "' and VorgangNummer=" & VorgangNummer, "Eigenschaften")
+
+            xml = xml + QueryToXML("SELECT Name, Value FROM buchvorgaengeeigenschaften b where b.VorgangTyp='" & VorgangTyp & "' and b.Nummer=" & VorgangNummer, "Eigenschaften")
 
 
-        xml = xml + QueryToXML("select p.*, round(p.Preis_Netto*p.Stk,2) as PreisSummeNetto, round(p.Preis_Brutto*p.Stk,2) as PreisSummeBrutto, " & _
-             " round(p.Preis_Brutto*p.Stk,2) - round(p.Preis_Netto*p.Stk,2) as PreisSummeMWST, " & _
-             " k.Name as Kategorie " & _
-             " from `" & VonForm_Artikel & "` p, grArtikel a,  `grArtikel-Kategorien` k " & _
-             " where p.ArtNr=a.ArtNr and a.ArtKatNr=k.ArtKatNr and p.Nummer=" & VorgangNummer & " and p.Typ = '" & VorgangTyp & "'" & _
-             " ORDER BY p.Id, k.Name, p.Bezeichnung, p.ArtNr", "Position")
+            xml = xml & "<Positionen>"
 
-        xml = xml & "</Positionen>"
+            'xml = xml + QueryToXML("select p.Id , p.RechNr, p.ArtNR, p.PreisATS, p.PreisEuro, p.Stk, p.PreisATS_Brutto, p.ArtikelIdentifikation, " & _
+            '             " p.EKPreis, round(p.PreisATS*p.Stk,2) as PreisSummeNetto, round(p.PreisATS_Brutto*p.Stk,2) as PreisSummeBrutto, " & _
+            '             " getTranslationDok(""grArtikel"", [p].[ArtNr], ""Bezeichnung"", [p].[Bezeichnung], '" & language_Code & "') as Bezeichnung, " & _
+            '             " p.LieferantNR, p.PositionStatus, p.referenz, p.Packung, p.herkunft, p.Incoterm, " & _
+            '             " p.Spezifikation, " & _
+            '             " getTranslationDok(""grArtikel-Kategorien"", [k].[ArtKatNr], ""Name"", [k].[Name], '" & language_Code & "') as Kategorie " & _
+            '             " from [" & VonForm_Artikel & "] p, grArtikel a,  [grArtikel-Kategorien] k " & _
+            '             " where p.ArtNr=a.ArtNr and a.ArtKatNr=k.ArtKatNr and p.RechNr=" & VorgangNummer & " and p.Typ = '" & VorgangTyp & "'" & _
+            '             " ORDER BY k.Name, [p].[Bezeichnung], p.ArtNr", "Position")
 
-        xml = xml & "</Vorgang>"
 
-        VorgangXML = xml
+            xml = xml + QueryToXML("select p.*, round(p.Preis_Netto*p.Stk,2) as PreisSummeNetto, round(p.Preis_Brutto*p.Stk,2) as PreisSummeBrutto, " & _
+                 " round(p.Preis_Brutto*p.Stk,2) - round(p.Preis_Netto*p.Stk,2) as PreisSummeMWST, " & _
+                 " k.Name as Kategorie " & _
+                 " from `" & VonForm_Artikel & "` p, grArtikel a,  `grArtikel-Kategorien` k " & _
+                 " where p.ArtNr=a.ArtNr and a.ArtKatNr=k.ArtKatNr and p.Nummer=" & VorgangNummer & " and p.Typ = '" & VorgangTyp & "'" & _
+                 " ORDER BY p.Id, k.Name, p.Bezeichnung, p.ArtNr", "Position")
+
+            xml = xml & "</Positionen>"
+
+            xml = xml & "</Vorgang>"
+
+            VorgangXML = xml
+            Application.UseWaitCursor = False
+        Catch ex As Exception
+            HandleAppError(ex)
+            Application.UseWaitCursor = False
+        End Try
+
     End Function
 
+    Private Sub CallXML2WORD(XMLFilename As String, WordTemplateFilename As String, GenerationPath As String, ResultPraefix As String)
+        Try
+            Application.UseWaitCursor = True
+            Dim xml2Word As XML2WORD = New XML2WORD()
+            xml2Word.XMLFile = XMLFilename
+            xml2Word.WordTemplate = WordTemplateFilename
+            xml2Word.Path = GetAppPath() & "\tmp\" 'where to generate the files 
+            xml2Word.DocumentPrefix = ResultPraefix
+            xml2Word.Execute(Nothing, False) 'Word is invisible and closed at the end 
+            Application.UseWaitCursor = False
+        Catch ex As Exception
+            Application.UseWaitCursor = False
+            HandleAppError(ex)
+        End Try
+    End Sub
+
     Public Sub DokumentInWordZeigen(ByVal Dateiname As String, Optional ByVal read_only As Boolean = True)
-
-        Dim App 'As Application
-        App = CreateObject("Word.Application")
-        App.Visible = True
-        App.Documents.Open(fileName:=Dateiname, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False, Format:=0)
-        If read_only Then
-            App.ActiveDocument.Protect(Password:="xxxqwe", NoReset:=False, Type:= _
-            1, UseIRM:=False, EnforceStyleLock:=False)
-        End If
-
+        Try
+            Dim App 'As Application
+            App = CreateObject("Word.Application")
+            App.Visible = True
+            App.Documents.Open(fileName:=Dateiname, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False, Format:=0)
+            If read_only Then
+                App.ActiveDocument.Protect(Password:="xxxqwe", NoReset:=False, Type:= _
+                1, UseIRM:=False, EnforceStyleLock:=False)
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
 
@@ -214,7 +247,7 @@ Module ModuleBuchVorgangXML
     End Function
 
     Private Sub SaveDokumenteInDokSys(p1 As Object, p2 As String, fileName As String)
-        Throw New NotImplementedException
+        'Throw New NotImplementedException
     End Sub
 
 

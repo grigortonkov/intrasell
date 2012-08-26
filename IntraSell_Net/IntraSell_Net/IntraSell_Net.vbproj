@@ -508,6 +508,10 @@
     <Folder Include="Forms\Lieferanten\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Tools\XML2Word\XML2Word.vbproj">
+      <Project>{B2186A7A-FECC-443A-827A-4D16582E7C9C}</Project>
+      <Name>XML2Word</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IntraSell_DLL\IntraSell_DLL.vbproj">
       <Project>{F7AB991F-D9E4-4285-897B-B95109C5D6DF}</Project>
       <Name>IntraSell_DLL</Name>

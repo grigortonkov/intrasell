@@ -1,74 +1,77 @@
-﻿Imports IntraSell_DLL
+﻿Option Strict On
+Option Explicit On
+
+Imports IntraSell_DLL
+Imports MySql.Data.MySqlClient
+
 Module FunctionsOnStart
 
     Public Const VARNAME_BRANCHE = "BRANCHE"
-    Public Const BACKEND_NAME = "IntraSell_Daten_2.mdb"
     Public Const POSITION_DEALER As String = "Dealer_Logik_Deaktiviert" '"Dealer"
     Public Const POSITION_ADMINISTRATOR = "Admin"
 
     '=========================================================
     ' hier startet das intrasell programm
     '=========================================================
-    Public Function startIntraSell()
-        '        startIntraSell = 0 ' ok
-        '        'check if DB connected
-        '        err.Clear()
-        '        On Error Resume Next 'needed to open the tables
+    Public Sub StartIntraSell()
 
-        '        Dim rs
-        '        rs = openRecordset("ofVars")
-        '        'DoCmd.OpenTable "ofVars", acViewNormal, acReadOnly
-        '        'DoCmd.Close acTable, "ofvars"
-
-        '        If err.Number > 0 Then  ' error happened
-        '            'Debug.Print err.Number
-        '            'check if DB file exist and reconnect automatac, needed because after setup the backend is no different place
-        '            Dim fso : fso = VBA.CreateObject("Scripting.FileSystemObject")
-        '            Dim defaultDBFilename : defaultDBFilename = dbFolder() & BACKEND_NAME
-        '            If fso.FileExists(defaultDBFilename) Then
-        '                Call fRefreshLinks(defaultDBFilename)
-        '                DoCmd.OpenForm("ImpexDatenbank")
-        '            Else
-        '                MsgBox("The file " & defaultDBFilename & " does not exist! You have to select the proper database!")
-        '                DoCmd.OpenForm("ImpexDatenbank")
-        '                Exit Function
-        '            End If
-        '        End If
-        '        On Error GoTo 0
-        '        'end check
-
-
-        '        'check lizenz key
-        '        If Not islicenceKeyCorrect() Then ' lizenz nicht ok
-        '            DoCmd.OpenForm("oflizenzierung")
-        '            Call IsDemoVersionOver()
-        '        Else
-        '            If varValue("adminpass") <> "" Then ' nur wenn dass passwort gesetzt ist!
-        '                DoCmd.OpenForm("mainLogin")
-        '                'Dim Passwort
-        '                '   Passwort = InputBox("Bitte Passwort eingeben: " & Chr(13) & Chr(10) & "Tipp: Sie können ""123"" benutzen wenn Sie das erste Mal dieses Programm starten.", "Passwort")
-        '                'If Passwort <> varvalue("adminpass") Then
-        '                '  DoCmd.RunMacro "Quit"
-        '                'End If
-        '            Else 'keine Passwort anforderung im programm
-        '                DoCmd.OpenForm("TreeView")
-        '            End If
-        '        End If 'lizenz ok
-
-        '        If varValue("Firma") = "Ihre Firma" Then
-        '            MsgBox("Das is eine Shareware Version! " & Chr(13) & Chr(10) & _
-        '                            "Wir bitten Sie höfflichst diese Software zu registrieren - http://www.vegsys.com." & Chr(13) & Chr(10) & _
-        '                            "Viel Erfolg!")
-        '            Call IsDemoVersionOver() 'beendet das programm wenn zuviel eingegeben
-        '        End If
-
-        '        Call checkBranche()
-        '        '   DoCmd.OpenForm "TreeView" 'programm start formular
-
-    End Function
+        'check if DB connected
+        Dim rs As MySqlDataReader
+        Try
+            rs = openRecordset("select 1 from ofVars")
+            'DoCmd.OpenTable "ofVars", acViewNormal, acReadOnly
+            'DoCmd.Close acTable, "ofvars"
+            rs.Close()
+        Catch ex As Exception
+            'Debug.Print err.Number
+            'check if DB file exist and reconnect automatac, needed because after setup the backend is no different place
+            'Dim fso : fso = VBA.CreateObject("Scripting.FileSystemObject")
+            'Dim defaultDBFilename : defaultDBFilename = DbFolder() & BACKEND_NAME
+            'If fso.FileExists(defaultDBFilename) Then
+            '    Call fRefreshLinks(defaultDBFilename)
+            '    DoCmd.OpenForm("ImpexDatenbank")
+            'Else
+            '    MsgBox("The file " & defaultDBFilename & " does not exist! You have to select the proper database!")
+            '    DoCmd.OpenForm("ImpexDatenbank")
+            '    Exit Sub
+            'End If
+            MsgBox(ex.Message, vbCritical)
+            Setup.ShowDialog()
+        End Try
+        'end check
 
 
-    Public Function checkBranche()
+        'check lizenz key
+        If Not islicenceKeyCorrect() Then ' lizenz nicht ok
+            OpenForm("oflizenzierung")
+            Call IsDemoVersionOver()
+        Else
+            If VarValue("adminpass") <> "" Then ' nur wenn dass passwort gesetzt ist!
+                OpenForm("mainLogin")
+                'Dim Passwort
+                '   Passwort = InputBox("Bitte Passwort eingeben: " & Chr(13) & Chr(10) & "Tipp: Sie können ""123"" benutzen wenn Sie das erste Mal dieses Programm starten.", "Passwort")
+                'If Passwort <> varvalue("adminpass") Then
+                '  DoCmd.RunMacro "Quit"
+                'End If
+            Else 'keine Passwort anforderung im programm
+                OpenForm("TreeView")
+            End If
+        End If 'lizenz ok
+
+        'If VarValue("Firma") = "Ihre Firma" Then
+        '    MsgBox("Das is eine Shareware Version! " & Chr(13) & Chr(10) & _
+        '                    "Wir bitten Sie höfflichst diese Software zu registrieren - http://www.vegsys.com." & Chr(13) & Chr(10) & _
+        '                    "Viel Erfolg!")
+        '    Call IsDemoVersionOver() 'beendet das programm wenn zuviel eingegeben
+        'End If
+
+        Call checkBranche()
+        '   DoCmd.OpenForm "TreeView" 'programm start formular
+
+    End Sub
+
+
+    Public Sub CheckBranche()
         '        Dim rs, sql
         '        Dim Branche
         '        Branche = varValue(VARNAME_BRANCHE)
@@ -77,12 +80,11 @@ Module FunctionsOnStart
         '            'bestimmen Sie Ihre Branche
         '            DoCmd.OpenForm("grBranche")
         '        End If
-    End Function
+    End Sub
 
 
 
-
-    Public Function setBranche(ByVal brancheId As String)
+    Public Sub SetBranche(ByVal brancheId As String)
         '        If MsgBox("Wollen Sie die Brancheneinstellungen übernehmen?", vbYesNo) = vbYes Then
         '            Dim rs, sql
         '            DoCmd.SetWarnings(False)
@@ -102,13 +104,12 @@ Module FunctionsOnStart
 
         '            Call SETVARVALUE(VARNAME_BRANCHE, brancheId)
         '        End If
-    End Function
+    End Sub
 
     '    'executes Macros defined for the mitarbeiter
 
-    Sub executeMacro(IDNR As Integer)
-        Dim Pos As String = "" & firstRow("select Position from ofMitarbeiter where idnr=" & IDNR)
-
+    Sub ExecuteMacro(IDNR As Integer)
+        Dim Pos As String = CStr(firstRow("select Position from ofMitarbeiter where idnr=" & CStr(IDNR)))
         If Pos = POSITION_DEALER Then
             'hide Main Form
             'Show Trading Form
@@ -116,9 +117,7 @@ Module FunctionsOnStart
             'Forms("TreeView").Visible = False
             'DoCmd.OpenForm("tradeBoardForm")
             'DoCmd.Maximize()
-
         End If
-
     End Sub
 
 

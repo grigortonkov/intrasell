@@ -502,15 +502,15 @@ Module ModuleBuchVorgangDruck
     End Function
 
 
-    Public Function getKundenEmail(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
+    Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
         Dim Email
         Dim rsEmail
         Dim sql
 
-        sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
+        sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Nummer = " & VorgangNummer & ")"
 
-        If Vorgangtyp = "LAU" Then
-            sql = "select Email from lieferantenAdressen where idnr in (select LieferantNr from " & getVorgangTableForType(Vorgangtyp) & " WHERE Nummer = " & Vorgang_Nummer & ")"
+        If VorgangTyp = "LAU" Then
+            sql = "select Email from lieferantenAdressen where idnr in (select LieferantNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Nummer = " & VorgangNummer & ")"
         End If
 
         rsEmail = openRecordset(sql)
