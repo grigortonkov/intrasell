@@ -600,7 +600,6 @@ Partial Class Kunden
         FirmenKontoIdLabel.Size = New System.Drawing.Size(84, 13)
         FirmenKontoIdLabel.TabIndex = 14
         FirmenKontoIdLabel.Text = "Firmen Konto Id:"
-
         '
         'DataSetKunden
         '
@@ -1075,7 +1074,7 @@ Partial Class Kunden
         Me.Ofadressen_weitereDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(3, 3)
         Me.Ofadressen_weitereDataGridView.Name = "Ofadressen_weitereDataGridView"
-        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(676, 285)
+        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(780, 285)
         Me.Ofadressen_weitereDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn8

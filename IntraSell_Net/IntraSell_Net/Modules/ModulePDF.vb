@@ -1,10 +1,12 @@
-﻿
+﻿Option Strict Off
+Option Explicit On
+
 Module ModulePDF
  
     ' Converts Word to PDF File
     ' Warning: Uses the PDFCreator utility, please install first
     ' and make the settings for auto save with same filename as the doc file
-    Sub saveWordAsPDF(ByVal filenameWordDoc As String)
+    Sub SaveWordAsPDF(ByVal filenameWordDoc As String)
 
         Dim App 'As Application
         App = CreateObject("Word.Application")

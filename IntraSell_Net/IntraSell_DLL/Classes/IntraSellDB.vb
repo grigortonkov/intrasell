@@ -1,11 +1,14 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Option Strict On
+Option Explicit On
+
+Imports MySql.Data.MySqlClient
 Public Class IntraSellDB
     Const DBTYPE_ACCESS = "ACCESS"
     Const DBTYPE_MSSQL = "MSSQL"
     Const DBTYPE_MYSQL = "MYSQL"
 
 
-    Public Sub init(ByVal connString)
+    Public Sub init(ByVal connString As String)
         FunctionsDB.ConnStringODBC = connString
         FunctionsDB.connOpen()
         CurrentDB = FunctionsDB.CurrentDB

@@ -1,4 +1,7 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Option Strict On
+Option Explicit On
+
+Imports MySql.Data.MySqlClient
 
 Public Module FunctionsVars
 
@@ -14,7 +17,7 @@ Public Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VARIABLE IN DER VARS TABELLE
     '********************************************************************
-    Public Function VarValue(ByVal varName As String) As Object
+    Public Function VarValue(ByVal varName As String) As String
         'response.write varname
         Dim SQLString As String, rs As MySqlDataReader
         SQLString = "SELECT * FROM ofVars WHERE Name='" & varName & "'"
@@ -45,7 +48,7 @@ Public Module FunctionsVars
     '********************************************************************
     'AKTUALISIERT EINE VARIABLE IN DIE VARS TABELLE
     '********************************************************************
-    Public Function SetVarValue(ByVal varName As String, ByVal varValue As String)
+    Public Function SetVarValue(ByVal varName As String, ByVal varValue As String) As String
         If Not ExistsVarValue(varName) Then
             Call InsertVarValue(varName, varValue)
             SetVarValue = varValue
@@ -63,7 +66,7 @@ Public Module FunctionsVars
     '********************************************************************
     'FÜGT EINE VARIABLE IN DIE VARS TABELLE EIN
     '********************************************************************
-    Public Function InsertVarValue(ByVal varName As String, ByVal varValue As String)
+    Public Function InsertVarValue(ByVal varName As String, ByVal varValue As String) As String
 
         Dim SQLString As String
         SQLString = "INSERT INTO ofVars (Id, Name, Wert) VALUES (" & nextId("ofVars", "ID", , False) & ", '" & varName & "', '" & varValue & "')"
@@ -76,7 +79,7 @@ Public Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VAR OR INSERT/AKTUALISIERT IN DIE VARS TABELLE
     '********************************************************************
-    Public Function VarValue_Default(ByVal varName As String, ByVal defaultValue As String)
+    Public Function VarValue_Default(ByVal varName As String, ByVal defaultValue As String) As String
 
         If Not ExistsVarValue(varName) Then 'existiert nicht
             SetVarValue(varName, defaultValue)
@@ -100,27 +103,24 @@ Public Module FunctionsVars
     'End Function
 
 
-    Public Function firstRow(ByVal SQLString As String)
+    Public Function firstRow(ByVal SQLString As String) As Object
 
         firstRow = NOT_AVAILABLE 'N/A String
-
-        Dim rs
+        Dim rs As MySqlDataReader
 
         rs = openRecordset(SQLString)
-        ' On Error GoTo 0
         If Err.Number > 0 Then
             'MsgBox err.Description
             Debug.Print("Error in functionsVars:firstrow; SQLString = " & SQLString & Err.Description)
             Err.Clear()
-            On Error GoTo 0
             Exit Function
         End If
 
 
-        If rs.EOF Then
-            firstRow = ""
+        If Not rs.Read Then
+            firstRow = Nothing
         Else
-            firstRow = rs.Fields(0)
+            firstRow = rs(0)
         End If
         rs.Close()
     End Function
@@ -129,9 +129,9 @@ Public Module FunctionsVars
     '********************************************************************
     'SUCHT EINE VARIABLE IN EINE TABELLE
     '********************************************************************
-    Public Function TableValue(ByVal TableName As String, ByVal colName As String, ByVal varValue As String, ByVal searchField As String)
+    Public Function TableValue(ByVal TableName As String, ByVal colName As String, ByVal varValue As String, ByVal searchField As String) As String
 
-        Dim rs
+        Dim rs As MySqlDataReader
         If Trim(TableName & "") = "" Or Trim(colName & "") = "" Or Trim(varValue & "") = "" Or Trim(searchField & "") = "" Then
             TableValue = "Wrong usage! Die Variable " & varValue & " ist nicht vorhanden!"
             Exit Function
@@ -140,10 +140,10 @@ Public Module FunctionsVars
         Dim SQLString As String
         SQLString = "SELECT * FROM " & TableName & " WHERE " & colName & "=" & varValue
         rs = openRecordset(SQLString)
-        If rs.EOF Then
+        If Not rs.Read Then
             TableValue = "Die Variable [" & varValue & "] ist nicht vorhanden!"
         Else
-            TableValue = rs(searchField)
+            TableValue = CStr(rs(searchField))
         End If
         rs.Close()
     End Function
@@ -163,7 +163,7 @@ Public Module FunctionsVars
         rs = openRecordset(sql)
         nID = 1
         If rs.Read Then
-            If Not IsNull(rs("m")) Then
+            If Not rs.IsDBNull(0) Then
                 nID = CLng(rs("m"))
                 If Err.Number > 0 Then
                     nID = 1
@@ -178,13 +178,13 @@ Public Module FunctionsVars
             Dim varName As String : varName = "letzteNummer_" & TableName
 
             If Not ExistsVarValue(varName) Then
-                Call InsertVarValue(varName, nID)
+                Call InsertVarValue(varName, CType(nID, String))
             Else
-                If VarValue(varName) = nID Then
+                If CType(VarValue(varName), Integer) = nID Then
                     nID = nID + 1 'use next because other user has already used this ID
                 End If
 
-                Call SetVarValue(varName, nID)
+                Call SetVarValue(varName, CType(nID, String))
             End If
         End If
         nextId = nID

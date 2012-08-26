@@ -1,5 +1,8 @@
-﻿Option Explicit On
+﻿Option Strict On
+Option Explicit On
+
 Imports MySql.Data.MySqlClient
+
 Public Class IntraSellPreise
 
     Public CurrentDB As MySqlConnection
@@ -9,11 +12,11 @@ Public Class IntraSellPreise
 
     Const VORGANG_TYP_LAU = "LAU"
 
-    Public Sub init(ByVal connString)
+    Public Sub init(ByVal connString As String)
 
-        functionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
-        functionsDB.connOpen()
-        CurrentDB = functionsDB.CurrentDB
+        FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
+        FunctionsDB.connOpen()
+        CurrentDB = FunctionsDB.CurrentDB
 
         vars = New IntraSellVars
         vars.init(connString)
@@ -43,18 +46,18 @@ Public Class IntraSellPreise
     ' returns the special preis if defined
     ' when not defined returns 0
     '*****************************************************************
-    Public Function getPreis(ByVal IdNr, ByVal ArtNr, ByVal Stk) As Double
-        If IsNull(IdNr) Then IdNr = -1
-        If IsNull(ArtNr) Then getPreis = 0 : Exit Function
-        Dim ArtKatNr
+    Public Function getPreis(ByVal IdNr As Integer, ByVal ArtNr As Integer, ByVal Stk As Double) As Double
+        'If IsNull(IdNr) Then IdNr = -1
+        'If IsNull(ArtNr) Then getPreis = 0 : Exit Function
+        Dim ArtKatNr As Integer
         getPreis = 0
-        Dim sql, rs
+        Dim sql As String, rs As MySqlDataReader
 
         sql = "select ArtKatNr from grArtikel where artNr = " & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
-        If rs.EOF Then getPreis = 0 : Exit Function
+        If Not rs.Read Then Return 0 : Exit Function
 
-        ArtKatNr = rs("ArtKAtNR")
+        ArtKatNr = CInt(rs("ArtKAtNR"))
 
         If IdNr = -1 Then ' user ist egal
             sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
@@ -77,22 +80,22 @@ Public Class IntraSellPreise
         'if not found try with the super categery too
         'if rs.EOF
 
-        If Not rs.EOF Then
+        If rs.Read Then
             'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
             getPreis = getBasisVKPreis(ArtNr)
 
-            If rs("vkpreis") > 0 Then
-                getPreis = rs("vkpreis")
+            If CDbl(rs("vkpreis")) > 0 Then
+                getPreis = CDbl(rs("vkpreis"))
                 Exit Function
             End If
 
-            If rs("aufschlagvkpreis") <> 0 Then
-                getPreis = (rs("aufschlagvkpreis") + 1) * getBasisVKPreis(ArtNr)
+            If CDbl(rs("aufschlagvkpreis")) <> 0 Then
+                getPreis = (CDbl(rs("aufschlagvkpreis")) + 1) * getBasisVKPreis(ArtNr)
                 Exit Function
             End If
 
-            If rs("aufschlagekpreis") <> 0 Then
-                getPreis = (rs("aufschlagekpreis") + 1) * getEKPreis(ArtNr)
+            If CDbl(rs("aufschlagekpreis")) <> 0 Then
+                getPreis = (CDbl(rs("aufschlagekpreis")) + 1) * getEKPreis(ArtNr)
                 Exit Function
             End If
 
@@ -112,15 +115,15 @@ Public Class IntraSellPreise
     ' returns the special preis if defined
     ' when not defined returns 0
     '*****************************************************************
-    Private Function getSpecialPreis(ByVal IdNr, ByVal ArtNr) As Double
+    Private Function getSpecialPreis(ByVal IdNr As Integer, ByVal ArtNr As Integer) As Double
         getSpecialPreis = 0
-        Dim sql, rs
+        Dim sql As String, rs As MySqlDataReader
         sql = "select vkpreis from [grArtikel-VKPreisPerSelection] where preislistename in " & _
         " (select preisliste from [ofAdressen-settings] where IdNR = " & IdNr & ") and artnr = " & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
-        If Not rs.EOF Then
+        If rs.Read Then
             'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
-            getSpecialPreis = rs("vkpreis")
+            getSpecialPreis = CDbl(rs("vkpreis"))
         End If
         rs.Close()
         rs = Nothing
@@ -129,22 +132,22 @@ Public Class IntraSellPreise
     '*****************************************************************
     ' returns the  min or max and VK or EK PReis from LieferantenArtikelPreis
     '*****************************************************************
-    Public Function getLieferantPreis(ByVal ArtNr, ByVal boolMinPreis, ByVal boolVKPreis) As Double
+    Public Function getLieferantPreis(ByVal ArtNr As Integer, ByVal boolMinPreis As Boolean, ByVal boolVKPreis As Boolean) As Double
         getLieferantPreis = 0
-        Dim sql, rs
+        Dim sql As String, rs As MySqlDataReader
 
         If boolMinPreis Then
-            sql = "select min(PreisField) as mPREIS from [lieferantenArtikel-Preise] where PreisField>0 and artikelnr = " & ArtNr
+            sql = "select min(PreisField) as mPREIS from `lieferantenArtikel-Preise` where PreisField>0 and artikelnr = " & ArtNr
         Else
-            sql = "select max(PreisField) as mPREIS from [lieferantenArtikel-Preise] where PreisField>0 and artikelnr = " & ArtNr
+            sql = "select max(PreisField) as mPREIS from `lieferantenArtikel-Preise` where PreisField>0 and artikelnr = " & ArtNr
         End If
 
         If boolVKPreis Then sql = Replace(sql, "PreisField", "VKpreis") Else sql = Replace(sql, "PreisField", "EKpreis")
 
         rs = openRecordset_(sql, dbOpenDynaset)
-        If Not rs.EOF Then
+        If rs.Read Then
             'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
-            getLieferantPreis = rs("mPREIS")
+            getLieferantPreis = CDbl(rs("mPREIS"))
         End If
         rs.Close()
         rs = Nothing
@@ -156,23 +159,24 @@ Public Class IntraSellPreise
     'gibt den VKpreis eines Artikels zurück, egal von besteller
     'falls aufschlag auf EKpreis nach Kategorie existiert dann wird es aufgeschlagen
     '*****************************************************************
-    Private Function getBasisVKPreis(ByVal ArtNr) As Double
-        Dim sql, rs, ArtKatNr
+    Private Function getBasisVKPreis(ByVal ArtNr As Integer) As Double
+        Dim sql As String, rs As MySqlDataReader
+        Dim ArtKatNr As Integer
 
         sql = "select ArtNR, ArtKatNR, PreisATS from grArtikel where artnr=" & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
         getBasisVKPreis = 0
 
-        If Not rs.EOF Then
-            ArtKatNr = rs("ArtKatNR")
-            Dim Aufschlag : Aufschlag = getAufschlagEKpreisKategorie(ArtKatNr)
+        If rs.Read Then
+            ArtKatNr = CInt(rs("ArtKatNr"))
+            Dim Aufschlag As Double = getAufschlagEKpreisKategorie(ArtKatNr)
             If Aufschlag <> 0 Then
                 getBasisVKPreis = getEKPreis(ArtNr) * (1 + Aufschlag)
             Else
                 If IsNull(rs("PreisATS")) Then
                     getBasisVKPreis = 0
                 Else
-                    getBasisVKPreis = rs("PreisATS")
+                    getBasisVKPreis = CDbl(rs("PreisATS"))
                 End If
             End If
         Else
@@ -186,20 +190,21 @@ Public Class IntraSellPreise
 
     '*****************************************************************
     '*****************************************************************
-    Public Function getEKPreis(ByVal ArtNr) As Double
-        Dim sql, rs
+    Public Function getEKPreis(ByVal ArtNr As Integer) As Double
 
-        sql = "select EKPreis from [grArtikel] where artnr=" & ArtNr
-        rs = openRecordset_(sql, dbOpenDynaset)
+        Dim sql As String, rs As MySqlDataReader
+
+        sql = "select EKPreis from grArtikel where artnr=" & ArtNr
+        rs = openRecordset_(sql)
         getEKPreis = 0
-        If Not rs.EOF Then
-            If rs("EKPreis") <= 0 Then 'not defined
+        If rs.Read Then
+            If CDbl(rs("EKPreis")) <= 0 Then 'not defined
                 getEKPreis = makeEKPreisVonLieferant(ArtNr)
             Else
                 If IsNull(rs("EKPreis")) Then
                     getEKPreis = 0
                 Else
-                    getEKPreis = rs("EKPreis")
+                    getEKPreis = CDbl(rs("EKPreis"))
                 End If
             End If
         End If
@@ -212,20 +217,20 @@ Public Class IntraSellPreise
     '*****************************************************************
     'liefert Bestpreis aus der lieferanten Preise Tabelle
     '*****************************************************************
-    Function makeEKPreisVonLieferant(ByVal ArtNr) As Double
+    Function makeEKPreisVonLieferant(ByVal ArtNr As Integer) As Double
         makeEKPreisVonLieferant = 0
         If ArtNr & "" = "" Then Exit Function
-        Dim sql, rs
-        sql = "select EKPreis from [lieferantenArtikel-Preise] " & _
+        Dim sql As String, rs As MySqlDataReader
+        sql = "select EKPreis from `lieferantenArtikel-Preise` " & _
               " where ekpreis>0 and artikelnr=" & ArtNr & _
               " ORDER BY Prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
         makeEKPreisVonLieferant = 0
-        If Not rs.EOF Then
+        If rs.Read Then
             If IsNull(rs("EKPreis")) Then
                 makeEKPreisVonLieferant = 0
             Else
-                makeEKPreisVonLieferant = rs("EKPreis")
+                makeEKPreisVonLieferant = CDbl(rs("EKPreis"))
             End If
         End If
         rs.Close()
@@ -235,17 +240,17 @@ Public Class IntraSellPreise
     '*****************************************************************
     'returns the name of the best lieferant
     '*****************************************************************
-    Public Function getBestLieferant(ByVal ArtNr) As String
-        Dim sql, rs
-        sql = "select artikelnr, LieferantNr, EKPreis from [lieferantenArtikel-Preise] " & _
+    Public Function getBestLieferant(ByVal ArtNr As Integer) As String
+        Dim sql As String, rs As MySqlDataReader
+        sql = "select artikelnr, LieferantNr, EKPreis from `lieferantenArtikel-Preise` " & _
               " where artikelnr=" & ArtNr & " ORDER BY prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
         getBestLieferant = "n/a"
-        If Not rs.EOF Then
-            sql = "select Firma from lieferantenAdressen where idnr=" & rs("LieferantNr")
+        If rs.Read Then
+            sql = "select Firma from lieferantenAdressen where idnr=" & CStr(rs("LieferantNr"))
             rs = openRecordset_(sql, dbOpenDynaset)
-            If Not rs.EOF Then
-                getBestLieferant = rs("Firma")
+            If rs.Read Then
+                getBestLieferant = CStr(rs("Firma"))
             End If
         End If
         rs.Close()
@@ -255,29 +260,26 @@ Public Class IntraSellPreise
     '*****************************************************************
     'returns the lagerinfo of the best lieferant
     '*****************************************************************
-    Public Function getLieferantLagerInfo(ByVal ArtNr) As String
+    Public Function getLieferantLagerInfo(ByVal ArtNr As Integer) As String
 
-        If IsNull(ArtNr) Then
-            getLieferantLagerInfo = ""
-            Exit Function
-        End If
-
-        Dim sql, rs
-        sql = "select ArtNr, Bezeichnung, Bezeichnung1 from [grArtikel] where artnr=" & ArtNr
+        'If IsNull(ArtNr) Then Return "" : Exit Function
+ 
+        Dim sql As String, rs As MySqlDataReader
+        sql = "select ArtNr, Bezeichnung, Bezeichnung1 from grArtikel where artnr=" & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
-        If Not rs.EOF Then
-            If rs("Bezeichnung1") & "" <> "" Then
-                getLieferantLagerInfo = rs("Bezeichnung1")
+        If rs.Read Then
+            If CStr(rs("Bezeichnung1")) & "" <> "" Then
+                getLieferantLagerInfo = CStr(rs("Bezeichnung1"))
             End If
         End If
 
-        sql = "select artikelnr, Lagerinfo from [lieferantenArtikel-Preise] " & _
+        sql = "select artikelnr, Lagerinfo from `lieferantenArtikel-Preise` " & _
               " where artikelnr=" & ArtNr & " ORDER BY prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
         getLieferantLagerInfo = "n/a"
 
-        If Not rs.EOF Then
-            getLieferantLagerInfo = rs("Lagerinfo")
+        If rs.Read Then
+            getLieferantLagerInfo = CStr(rs("Lagerinfo"))
         End If
 
         rs.Close()
@@ -286,23 +288,25 @@ Public Class IntraSellPreise
 
     '*****************************************************************
     '*****************************************************************
-    Private Function getAufschlagEKpreisKategorie(ArtKatNr) As Double
-        Dim sql As String
-        Dim rs As MySqlDataReader
+    Private Function getAufschlagEKpreisKategorie(ArtKatNr As Integer) As Double
+
+        Dim sql As String, rs As MySqlDataReader
+
         sql = " select ArtKatNR, Aufschlag, ArtKatNrParent from [grArtikel-Kategorien] where " & _
               " ArtKatNr =" & ArtKatNr & _
               " and Aufschlag > 0 "
 
         rs = openRecordset_(sql, dbOpenDynaset)
+        getAufschlagEKpreisKategorie = 0
 
         If rs.Read Then
-            getAufschlagEKpreisKategorie = rs("Aufschlag")
+            getAufschlagEKpreisKategorie = CDbl(rs("Aufschlag"))
         Else 'recursion
             If ArtKatNr > 0 Then 'take aufschlag from parent kategory
                 sql = "select ArtKatNrParent from [grArtikel-Kategorien] where ArtKatNR =" & ArtKatNr
                 rs = openRecordset_(sql, dbOpenDynaset)
                 If rs.Read Then
-                    getAufschlagEKpreisKategorie = getAufschlagEKpreisKategorie(rs("ArtKatNrParent"))
+                    getAufschlagEKpreisKategorie = getAufschlagEKpreisKategorie(CInt(rs("ArtKatNrParent")))
                 End If
             End If
         End If
@@ -314,7 +318,7 @@ Public Class IntraSellPreise
     '*****************************************************************
     ' makeBruttoPreis for any preis without artnr
     '*****************************************************************
-    Function makeBruttoPreis(ByVal Preis, ByVal MwstGroup, ByVal Land) As Double
+    Function makeBruttoPreis(ByVal Preis As Double, ByVal MwstGroup As Integer, ByVal Land As String) As Double
         ' Dim Land: Land = Session("LAND")
         If Land = "" Then Land = "AT"
         makeBruttoPreis = Preis * (1 + getVAT(Land, MwstGroup) / 100)
@@ -323,15 +327,15 @@ Public Class IntraSellPreise
     '*****************************************************************
     'need only the artNr AND Stk /for staffelung/ to create preis / +MWST, VAT/
     '*****************************************************************
-    Function makeBruttoPreis2(ByVal ArtNr, ByVal Stk, ByVal Land)
-        If Stk = "" Then Stk = 1
+    Function makeBruttoPreis2(ByVal ArtNr As Integer, ByVal Stk As Double, ByVal Land As String) As Double
+        ' If Stk = "" Then Stk = 1
         Dim rs As MySqlDataReader
         rs = openRecordset_("select ArtNr, MWST from grArtikel where ArtNr=" & ArtNr, dbOpenDynaset)
         If Not rs.Read Then
             makeBruttoPreis2 = 0
         Else
-            Dim preis1stk : preis1stk = makeNettoPreis(ArtNr, Stk, 0)
-            makeBruttoPreis2 = makeBruttoPreis(preis1stk, rs("MWST"), Land)
+            Dim preis1stk As Double = makeNettoPreis(ArtNr, Stk, 0)
+            Return makeBruttoPreis(preis1stk, CInt(rs("MWST")), Land)
         End If
         rs.Close()
     End Function
@@ -341,20 +345,18 @@ Public Class IntraSellPreise
     ' makeNettoPreis
     ' need only the artNr AND Stk /for staffelung/
     '*****************************************************************
-    Function makeNettoPreis(ArtNr, Stk, IdNr) As Double
-        Dim sql As String
-        Dim rs As MySqlDataReader
-        Dim preisManyPieces
+    Function makeNettoPreis(ArtNr As Integer, Stk As Double, IdNr As Integer) As Double
+        Dim sql As String, rs As MySqlDataReader
+        Dim preisManyPieces As Double
         rs = openRecordset_("select * from grArtikel where ArtNr=" & ArtNr, dbOpenDynaset)
         If Not rs.Read Then
             makeNettoPreis = 0
         Else
-            Dim preis1stk : preis1stk = getPreis(IdNr, ArtNr, Stk) 'rs("PreisATS")
+            Dim preis1stk As Double = getPreis(IdNr, ArtNr, Stk) 'rs("PreisATS")
             sql = "select * from [grArtikel-Staffelpreise] Where ArtNr = " & ArtNr & " AND stkAb <" & Stk
             Dim rsRabatt = openRecordset_(sql, dbOpenDynaset)
-            Dim prozent : prozent = 0
-            If rsRabatt.Read Then prozent = rsRabatt("ProzentRabatt")
-
+            Dim prozent As Double = 0
+            If rsRabatt.Read Then prozent = CDbl(rsRabatt("ProzentRabatt"))
 
             preisManyPieces = preis1stk * 100 / (100 + prozent)
             makeNettoPreis = preisManyPieces
@@ -367,7 +369,7 @@ Public Class IntraSellPreise
     ' getVAT
     ' MWSTGROUP -0, 1, or 2
     '*****************************************************************
-    Function getVAT(Land, MwstGroup) As String
+    Function getVAT(Land As String, MwstGroup As Integer) As Double
         If Land = "" Then Land = "AT"
         Land = UCase(Land)
         Dim sql As String
@@ -376,10 +378,10 @@ Public Class IntraSellPreise
         'Response.Write sql
         rs = openRecordset_(sql, dbOpenDynaset)
         If rs.Read Then
-            getVAT = rs("Prozent")
+            getVAT = CDbl(rs("Prozent"))
         Else
-            getVAT = 206
-            getVAT = "Error: Die MWST Information fehlt für Land [" & Land & "]!"
+            getVAT = 0.2
+            'getVAT = "Error: Die MWST Information fehlt für Land [" & Land & "]!"
         End If
         rs.Close()
     End Function
@@ -387,17 +389,8 @@ Public Class IntraSellPreise
     '*****************************************************************
     ' getVAT
     '*****************************************************************
-    Function getClientLand(IdNr) As String
-        getClientLand = vars.firstRow("select iso2 from ofAdressen a, grland l where  a.land = l.idnr and a.idnr=" & IdNr)
-        'Exit Function
-        ''
-        'Dim plzLAND, clientPLZ
-        'plzLAND = vars.TABLEVALUE("ofAdressen", "IDNR", IdNr, "LAND")
-        ''response.write "PLZLand =" & PLZLand
-        'If plzLAND = 43 Then getClientLand = "AT"
-        'If plzLAND = 49 Then getClientLand = "DE"
-        'If plzLAND = 359 Then getClientLand = "BG"
-        'If plzLAND = 1 Then getClientLand = "US"
+    Function getClientLand(IdNr As Integer) As String
+        getClientLand = CStr(vars.firstRow("select iso2 from ofAdressen a, grland l where  a.land = l.idnr and a.idnr=" & IdNr))
     End Function
 
 
@@ -409,13 +402,12 @@ Public Class IntraSellPreise
         Dim benutzeTransaktion As Boolean
         benutzeTransaktion = False
         ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
-        Dim mysqltr As MySqlTransaction
+        Dim mysqltr As MySqlTransaction = Nothing
         Try
 
-
-            Dim sql
+            Dim sql As String
             Dim rs As MySqlDataReader
-            Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
+            Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts As String
 
 
             If benutzeTransaktion Then
@@ -430,19 +422,18 @@ Public Class IntraSellPreise
             tableNameTo = getVorgangTableForType(VorgangTypNach)
             tableNameToProducts = getVorgangArtikelTableForType(VorgangTypNach)
 
-            Dim IdNr
+            Dim IdNr As Integer
             sql = "select * from " & tableNameFrom & " where nummer =" & VorgangNummerVon
             rs = openRecordset_(sql, "")
             If Not rs.Read Then
-                convertFromTo = 0
+                convertFromTo = "0"
                 Exit Function
             Else
-                IdNr = rs("Kundnr")
+                IdNr = CInt(rs("Kundnr"))
             End If
             rs.Close()
 
-            Dim nextRechnungNummer
-            nextRechnungNummer = getNewVorgangNummer(VorgangTypNach, IdNr)
+            Dim nextRechnungNummer As String = getNewVorgangNummer(VorgangTypNach, IdNr)
 
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
                 sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
@@ -498,7 +489,6 @@ Public Class IntraSellPreise
             Exit Function
         Catch ex As Exception
 
-
             MsgBox("Die Transaktion wurde storniert!" + Err.Description, vbCritical)
             If benutzeTransaktion Then
                 ' CurrentDB.Rollback()
@@ -506,13 +496,13 @@ Public Class IntraSellPreise
 
             End If
 
-
         End Try
     End Function
 
 
 
     '=======================================================
+    ' Since IS.NET we have only one table for all Types of Vorgänge
     '=======================================================
     Public Function getVorgangTableForType(ByVal Typ As String) As String
         Return "buchVorgang"
@@ -537,8 +527,9 @@ Public Class IntraSellPreise
         'End Select
     End Function
 
-    '*****************************************************************
-    '*****************************************************************
+    '=======================================================
+    ' Since IS.NET we have only one table for all Types of Vorgänge
+    '=======================================================
     Public Function getVorgangArtikelTableForType(ByVal Typ As String) As String
         Return "buchVorgang-Artikel"
         'Select Case Typ
@@ -566,31 +557,31 @@ Public Class IntraSellPreise
     '*****************************************************************
     'liefert den namen für den Ausdruck zurück
     '*****************************************************************
-    Public Function getVarNameForType(ByVal Typ) As String
+    Public Function getVarNameForType(ByVal Typ As String) As String
         Select Case Typ
             Case "AN"
-                getVarNameForType = "letzteAngebotNummer"
+                Return "letzteAngebotNummer"
             Case "AU"
-                getVarNameForType = "letzteAuftragNummer"
+                Return "letzteAuftragNummer"
             Case "RÜ"
-                getVarNameForType = "letzteRüstscheinNummer"
+                Return "letzteRüstscheinNummer"
             Case "LI"
-                getVarNameForType = "letzteLieferscheinNummer"
+                Return "letzteLieferscheinNummer"
             Case "AR"
-                getVarNameForType = "letzteRechnungsNummer"
+                Return "letzteRechnungsNummer"
             Case "RE"
-                getVarNameForType = "letzteRetourwarenNummer"
+                Return "letzteRetourwarenNummer"
             Case "GU"
-                getVarNameForType = "letzteGutschriftNummer"
+                Return "letzteGutschriftNummer"
             Case VORGANG_TYP_LAU
-                getVarNameForType = "letzteLieferantAuftragNummer"
+                Return "letzteLieferantAuftragNummer"
         End Select
     End Function
 
     '=======================================================
     'liefert den namen für den Ausdruck zurück
     '=======================================================
-    Public Function getDruckForType(ByVal Typ) As String
+    Public Function getDruckForType(ByVal Typ As String) As String
         Select Case Typ
             Case "AN"
                 getDruckForType = "Angebot"
@@ -616,7 +607,7 @@ Public Class IntraSellPreise
     'first looks if the kundenGruppe needs special number curcle and then get the new one from the free
     '======================================================================================
     Public Function getNewVorgangNummer(ByVal Typ As String, ByVal IdNr As Integer) As String
-        Dim von, bis
+        Dim von As Integer, bis As Integer
 
         Dim rs As MySqlDataReader
         von = 0
@@ -625,33 +616,33 @@ Public Class IntraSellPreise
         'if kundengruppe defined
         rs = openRecordset_("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
         If rs.Read Then 'kundengruppe is definiert
-            von = rs("VorgangNrKreisvon")
-            bis = rs("VorgangNrKreisbis")
+            von = CInt(rs("VorgangNrKreisvon"))
+            bis = CInt(rs("VorgangNrKreisbis"))
             'End If
             rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & _
              "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc", dbOpenDynaset)
             'rs.Sort = "nummer"
             'Set rs = rs.openRecordset()
             If Not rs.Read Then
-                getNewVorgangNummer = von
+                getNewVorgangNummer = CStr(von)
             Else
                 'rs.MoveLast
-                getNewVorgangNummer = rs("Nummer") + 1
+                getNewVorgangNummer = CStr(CInt(rs("Nummer")) + 1)
             End If
             rs.Close()
         Else
             'wenn keine gruppe definiert ' standart vorgang
-            Dim letzteNummer
-            Dim vname : vname = getVarNameForType(Typ)
+            Dim letzteNummer As String
+            Dim vname As String = getVarNameForType(Typ)
 
             letzteNummer = vars.varValue(vname)
             'Die Nummer erhöhen
-            Call vars.SetVarValue(vname, letzteNummer + 1)
+            Call vars.SetVarValue(vname, CInt(letzteNummer) + 1)
 
             'prüfen ob die Nummer besetzt ist
-            rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & " where nummer =" & (letzteNummer + 1), dbOpenDynaset)
+            rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & " where nummer =" & CStr(CInt(letzteNummer) + 1))
             If Not rs.Read Then
-                getNewVorgangNummer = letzteNummer + 1
+                getNewVorgangNummer = CStr(CInt(letzteNummer) + 1)
             Else 'wieder erhöhen
                 getNewVorgangNummer = getNewVorgangNummer(Typ, IdNr)
             End If
@@ -662,13 +653,13 @@ Public Class IntraSellPreise
 
     '======================================================================================
     '======================================================================================
-    Public Function getMWSTArtikel(ByVal ArtNr As String) As String
-        getMWSTArtikel = vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr)
+    Public Function getMWSTArtikel(ByVal ArtNr As String) As Double
+        getMWSTArtikel = CDbl(vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr))
     End Function
 
     '======================================================================================
     '======================================================================================
-    Public Function calculateBruttoPreis(ByVal VKPreis As Double, ByVal ArtNr As String, ByVal IdNr As String) As Double
+    Public Function calculateBruttoPreis(ByVal VKPreis As Double, ByVal ArtNr As String, ByVal IdNr As Integer) As Double
         If kunden.needsMWST(IdNr) Then
             calculateBruttoPreis = VKPreis * (1 + getMWSTArtikel(ArtNr) / 100)
         Else
@@ -679,7 +670,7 @@ Public Class IntraSellPreise
     '======================================================================================
     'Wrapper for the Function from Kunden Module
     '======================================================================================
-    Public Function needsMWST(ByVal IdNr) As Boolean
+    Public Function needsMWST(ByVal IdNr As Integer) As Boolean
         needsMWST = kunden.needsMWST(IdNr)
     End Function
 

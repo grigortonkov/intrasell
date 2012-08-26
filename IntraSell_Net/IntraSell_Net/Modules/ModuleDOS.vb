@@ -1,4 +1,4 @@
-﻿
+﻿Option Strict Off
 Option Explicit On
 
 Module ModuleDOS
@@ -27,8 +27,6 @@ Module ModuleDOS
     'WIN_MIN or 3
 
 
-
-
     'calls synchronously any programm
     Public Sub SynchShell(programm As String, Optional parameters As String = "")
         Dim lngRetCode As Long
@@ -55,10 +53,6 @@ Module ModuleDOS
 
         Call fs.MoveFile(oldfilename, newfilename)
     End Sub
-
-
-
-
 
 
 End Module

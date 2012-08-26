@@ -1,4 +1,6 @@
-﻿Option Explicit On
+﻿Option Strict On
+Option Explicit On
+
 Imports ICSharpCode.SharpZipLib.Core
 Imports ICSharpCode.SharpZipLib.Zip
 Imports System.IO

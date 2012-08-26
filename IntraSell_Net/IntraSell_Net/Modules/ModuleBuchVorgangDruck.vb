@@ -12,29 +12,32 @@ Module ModuleBuchVorgangDruck
 
     '=======================================================
     '=======================================================
-    Function getRecSource(Vorgangtyp, Vorgang_Nummer) As String
+    Public Function getRecSource(VorgangTyp As String, VorgangNummer As Integer) As String
 
         'getRecSource = IntraSellVorgaengeAusdruck.getRecSource(Vorgangtyp, Vorgang_Nummer)
         'Exit Function
 
         Dim VonForm, VonForm_Artikel
-        VonForm = getVorgangTableForType(Vorgangtyp)
-        VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
+        VonForm = getVorgangTableForType(VorgangTyp)
+        VonForm_Artikel = getVorgangArtikelTableForType(VorgangTyp)
+        'getRecSource = IntraSellVorgaengeAusdruck.getRecSource(VorgangTyp, VorgangNummer)
 
-        getRecSource = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname as Namen , ofAdressen.Firma, ofAdressen.Adresse, " & _
-                   " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort] AS plzort, " & _
-                   " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, first(" & VonForm & ".Notiz) as Notiz, " & _
-                   " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
-                   " ofAdressen.Anrede , ofAdressen.Anrede + "" "" & ofAdressen.Titel as AnredeTitel, getLand(ofAdressen.Idnr) as land, getUID(ofAdressen.idnr) as uid, Tel, Email, " & VonForm & ".KundNr2" & _
-                   " FROM ((ofAdressen RIGHT JOIN " & VonForm & " ON ofAdressen.IDNR = " & VonForm & ".KundNr) " & _
-                   " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & VonForm_Artikel & "] " & _
-                   " ON " & VonForm & ".Nummer = [" & VonForm_Artikel & "].RechNr " & _
-                   " Where nummer=" & Vorgang_Nummer & "  " & _
-                   " GROUP BY '" & Vorgangtyp & "' , ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, " & _
-                   " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
-                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode ,  " & VonForm & ".Notiz, Woher, Wohin," & _
-                   " ofAdressen.Anrede, ofAdressen.Anrede + "" "" & ofAdressen.Titel, getLand(ofAdressen.Idnr), getUID(ofAdressen.idnr), Tel, Email, " & VonForm & ".KundNr2;"
+        getRecSource = "SELECT '" & VorgangTyp & "'  as VorgangTyp, v.Nummer, a.Idnr, " & _
+                        " concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  (select concat(grPLZ.plz, ' ' , grPLZ.ort) from grPLZ WHERE a.PLZ = grPLZ.IdNr) AS PLZOrt, (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Email, " & _
+                        " Sum(Stk*Preis_Netto) AS Summe, Sum(Stk*Preis_Brutto) AS SummeBrutto, v.Datum," & _
+                        " v.Notiz as Notiz,  v.KundNr, v.ZahlungsBedungung," & _
+                        " v.Zahlungsmethode, v.TransportMethode,  v.Notiz, Woher, Wohin, a.Anrede , concat(a.Anrede,' ', a.Titel) as AnredeTitel," & _
+                        " v.KundNr1, v.KundNr2" & _
+                        " FROM ofAdressen as a RIGHT JOIN " & VonForm & " as v ON a.IDNR = v.KundNr" & _
+                        " INNER JOIN `" & VonForm_Artikel & "` as va  ON v.Nummer = va.Nummer" & _
+                        " LEFT JOIN `ofAdressen-Weitere` as a1 ON a1.IDNR = v.KundNr1 " & _
+                        " LEFT JOIN `ofAdressen-Weitere` as a2 ON a1.IDNR = v.KundNr2 " & _
+                        " WHERE v.nummer = " & VorgangNummer & "" & _
+                        " GROUP BY  '" & VorgangTyp & "' , v.Nummer, a.Idnr, concat(a.Name, ' ', a.Vorname), a.Firma, a.Adresse," & _
+                        " v.Datum, v.Notiz, v.KundNr, v.ZahlungsBedungung, v.Zahlungsmethode, v.TransportMethode ," & _
+                        " v.Notiz, v.Woher, v.Wohin, a.Anrede, concat(a.Anrede,' ', a.Titel), a.Tel, a.Email, v.KundNr1, v.KundNr2;"
 
+        Debug.Print("Print for SQL: " + getRecSource)
     End Function
 
     '=======================================================
@@ -46,6 +49,15 @@ Module ModuleBuchVorgangDruck
     End Function
 
 
+    Function getRecSource_Address(tablename As String, where As String) As String
+        Dim sql As String
+        sql = "SELECT a.Vorname, a.Name, concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  " & _
+       " (select concat(grPLZ.plz, ' ' , grPLZ.ort) from grPLZ WHERE a.PLZ = grPLZ.IdNr) AS PLZOrt, " & _
+       " (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Email, a.UID " & _
+       " FROM " & tablename & " a WHERE " & where
+        Return sql
+    End Function
+
     Public Function getLand(ByVal IDNR) As String
         getLand = TableValue("grLand", "IDNR", TableValue("ofAdressen", "Idnr", IDNR, "LAND"), "Name") & ""
     End Function
@@ -54,13 +66,13 @@ Module ModuleBuchVorgangDruck
         getUID = TableValue("ofAdressen", "Idnr", IDNR, "UID") & ""
     End Function
 
-    'Public Function getLand_new(ByVal IDNR) As String
-    '    getLand_new = IntraSellVorgaengeAusdruck.getLand(IDNR)
-    'End Function
+    Public Function getLand_new(ByVal IDNR) As String
+        'Return IntraSellVorgaengeAusdruck.getLand(IDNR)
+    End Function
 
-    'Public Function getUID_new(ByVal IDNR) As String
-    '    getUID_new = IntraSellVorgaengeAusdruck.getUID(IDNR)
-    'End Function
+    Public Function getUID_new(ByVal IDNR) As String
+        'Return IntraSellVorgaengeAusdruck.getUID(IDNR)
+    End Function
 
     '=======================================================
     ' prueft ob eine weitere adresse vorhanden ist
@@ -68,7 +80,7 @@ Module ModuleBuchVorgangDruck
     Function checkIfWeitereVorhanden(ByVal IDNR, ByVal Vorgangtyp) As Integer
         checkIfWeitereVorhanden = 0
         Dim rs, sql
-        sql = "select count(*) as cnt from [ofAdressen-Weitere] where idnr=" & IDNR & " AND typ like """ & Vorgangtyp & """"
+        sql = "select count(*) as cnt from [ofAdressen-Weitere] where idnr=" & IDNR & " AND typ = '" & Vorgangtyp & "'"
         rs = openRecordset(sql)
         If Not rs.EOF Then
             checkIfWeitereVorhanden = rs("cnt")
@@ -83,8 +95,6 @@ Module ModuleBuchVorgangDruck
     Public Sub OpenAusdruck(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
         Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, FormatNummer)
     End Sub
-
-
 
 
     '=======================================================
@@ -197,19 +207,21 @@ Module ModuleBuchVorgangDruck
     '=================================================================
     ' oeffnet den ausdruck mit word formular
     '=================================================================
-    Public Sub OpenAusdruck_inWord(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
-        Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, FormatNummer, "Vorlage_Rechnung.doc")
+    Public Sub OpenAusdruck_inWord(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
+        Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, "Vorlagen\\Vorlage_Rechnung.doc")
     End Sub
+
     Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, _
                                             ByVal Vorgang_Nummer As String, _
-                                            ByVal FormatNummer As String, _
                                             ByVal Dateiname As String)
         Dim App 'As Application
         Dim VorlageFilename
-        Dim rs As MySqlDataReader
+
         Dim VonForm, VonForm_Artikel
-        Dim sql
-        Dim RsArt
+        Dim sql As String
+
+        Dim rs As MySqlDataReader
+        Dim rsArt As MySqlDataReader
 
         VonForm = getVorgangTableForType(Vorgangtyp)
         VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
@@ -222,26 +234,30 @@ Module ModuleBuchVorgangDruck
 
         App.Documents.Open(fileName:=VorlageFilename, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False, Format:=0)
 
-
-        rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
-
-
-
-
+        sql = getRecSource(Vorgangtyp, Vorgang_Nummer)
+        rs = openRecordset(sql)
 
         If Not rs.Read Then
             MsgBox("Es sind keine Daten vorhanden!", vbCritical)
             App.Quit()
+            rs.Close()
             Exit Sub
         End If
 
-        If checkIfWeitereVorhanden(rs("idnr"), Vorgangtyp) > 0 And Vorgangtyp = "LI" Then
+        Dim idnr As String = rs("IDNR")
+        rs.Close()
+
+
+        If checkIfWeitereVorhanden(idnr, Vorgangtyp) > 0 And Vorgangtyp = "LI" Then
             If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) Then
-                Dim selectedIdNr As String : selectedIdNr = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
-                Dim sql1 As String : sql = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
-                rs = openRecordset(sql1)
+                Dim selectedIdNr As String = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
+                sql = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
             End If
         End If
+
+
+        rs.Close()
+        rs = openRecordset(sql)
 
 
         Call replaceInWordOnce(App, "[Idnr]", rs("Idnr") & "")
@@ -266,14 +282,14 @@ Module ModuleBuchVorgangDruck
         Call replaceInWordOnce(App, "[Netto]", FormatNumber(rs("summeATS"), 2))
         Call replaceInWordOnce(App, "[MWST]", FormatNumber(rs("summeATSBrutto") - rs("summeATS"), 2))
         Call replaceInWordOnce(App, "[Total]", FormatNumber(rs("summeATSBrutto"), 2))
-
+        rs.Close()
 
         'PART II - Positionen
 
         sql = "select count(*) as pos from [" & VonForm_Artikel & "] where rechnr=" & Vorgang_Nummer
-        RsArt = openRecordset(sql)
+        rsArt = openRecordset(sql)
         Dim Positionen
-        Positionen = RsArt("pos")
+        Positionen = rsArt("pos")
 
 
         'copy the artikel line times as needed
@@ -307,16 +323,15 @@ Module ModuleBuchVorgangDruck
 
         sql = "select [" & VonForm_Artikel & "].*, Beschreibung from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr and  rechnr=" & Vorgang_Nummer
         Debug.Print(sql)
-        RsArt = openRecordset(sql)
-        While Not RsArt.EOF
-            Call replaceInWordOnce(App, "[Stk]", RsArt("Stk"))
-            Call replaceInWordOnce(App, "[ArtNR]", RsArt("ArtNR"))
-            Call replaceInWordOnce(App, "[Bezeichnung]", RsArt("Bezeichnung") & "")
-            Call replaceInWordOnce(App, "[Beschreibung]", RsArt("Beschreibung") & "")
-            Call replaceInWordOnce(App, "[Preis]", FormatNumber(RsArt("PreisATS"), 2))
-            RsArt.MoveNext()
+        rsArt = openRecordset(sql)
+        While rsArt.Read
+            Call replaceInWordOnce(App, "[Stk]", rsArt("Stk"))
+            Call replaceInWordOnce(App, "[ArtNR]", rsArt("ArtNR"))
+            Call replaceInWordOnce(App, "[Bezeichnung]", rsArt("Bezeichnung") & "")
+            Call replaceInWordOnce(App, "[Beschreibung]", rsArt("Beschreibung") & "")
+            Call replaceInWordOnce(App, "[Preis]", FormatNumber(rsArt("PreisATS"), 2))
         End While
-
+        rsArt.Close()
         'Eigenschaften
 
         sql = "select  * from buchVorgaengeEigenschaften where Nummer  = " & Vorgang_Nummer & " and  vorgangtyp like '" & Vorgangtyp & "'"
@@ -329,7 +344,7 @@ Module ModuleBuchVorgangDruck
         rsEig.Close()
 
 
-        Dim saveAsFilename : saveAsFilename = AppFolder() & Vorgangtyp & "_" & Vorgang_Nummer & ".doc"
+        Dim saveAsFilename As String = AppFolder() & Vorgangtyp & "_" & Vorgang_Nummer & ".doc"
         If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
 
             App.ActiveDocument.SaveAs(fileName:=saveAsFilename, FileFormat:= _
@@ -337,6 +352,7 @@ Module ModuleBuchVorgangDruck
                 True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
                 False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
                 SaveAsAOCELetter:=False)
+
         End If
 
         On Error Resume Next ' vielleicht ist word bereits geschlossen
@@ -591,7 +607,7 @@ Module ModuleBuchVorgangDruck
         'Anzahl Positionen
         sql = "select count(*) as pos from [" & VonForm_Artikel & "] where rechnr=" & Vorgang_Nummer
         RsArt = openRecordset(sql)
-        Dim Positionen, i
+        Dim Positionen
         Positionen = RsArt("pos")
 
 
@@ -625,8 +641,6 @@ Module ModuleBuchVorgangDruck
 
         'copy the artikel line times as needed
 
-
-        Dim BEZ
         sql = "select [" & VonForm_Artikel & "].*, " & _
               "Beschreibung, EAN from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr " & _
               "and  rechnr=" & Vorgang_Nummer
@@ -656,7 +670,7 @@ Module ModuleBuchVorgangDruck
 
 
         'SAVE FILE
-        Dim saveAsFilename : saveAsFilename = DbFolder() & Vorgangtyp & "_" & Vorgang_Nummer & "." & Right(Dateiname, 3)
+        Dim saveAsFilename As String = DbFolder() & Vorgangtyp & "_" & Vorgang_Nummer & "." & Right(Dateiname, 3)
 
         fileContent = Trim(fileContent)
         Using outfile As StreamWriter = New StreamWriter(saveAsFilename, True)
@@ -687,7 +701,7 @@ Module ModuleBuchVorgangDruck
 
 
     Function parseVorgangVorlage(ByVal Vorgangtyp As String, _
-                          ByVal Vorgang_Nummer As String) As String
+                                 ByVal Vorgang_Nummer As String) As String
 
     End Function
 
@@ -708,17 +722,15 @@ Module ModuleBuchVorgangDruck
 
 
     'Liefert die Auswahl einer weiteren Adresse
-    Public Function selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer) As String
-        Dim VonForm : VonForm = getVorgangTableForType(Vorgangtyp)
+    Public Function selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer) As Integer
+        Dim VonForm As String = getVorgangTableForType(Vorgangtyp)
 
         'Falls mehrere weitere adressen vom gleichen Vorgangtyp definiert sind dann abfragen welche zu verwenden ist
-        Dim IDNR As String
-        IDNR = TableValue(VonForm, "Nummer", Vorgang_Nummer, "KundNr")
+        Dim IDNR As String = TableValue(VonForm, "Nummer", Vorgang_Nummer, "KundNr")
 
         selectEineWeitereAdresse = IDNR
 
-        Dim sqlMehrereWeitereAdressen As String
-        sqlMehrereWeitereAdressen = "select * from [ofAdressen-Weitere] where idnr = " & IDNR & " and Typ like '" & Vorgangtyp & "'"
+        Dim sqlMehrereWeitereAdressen As String = "select * from [ofAdressen-Weitere] where idnr = " & IDNR & " and Typ like '" & Vorgangtyp & "'"
         Dim rsMehrereWeitereAdressen As MySqlDataReader = openRecordset(sqlMehrereWeitereAdressen)
 
         Dim RecordCount = 0
@@ -726,7 +738,7 @@ Module ModuleBuchVorgangDruck
             RecordCount += 1
         End While
 
- 
+
         If RecordCount = 1 Then
             selectEineWeitereAdresse = rsMehrereWeitereAdressen("ID")
         ElseIf RecordCount > 1 Then

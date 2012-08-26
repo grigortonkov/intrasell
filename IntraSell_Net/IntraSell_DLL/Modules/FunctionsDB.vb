@@ -1,4 +1,7 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Option Strict On
+Option Explicit On
+
+Imports MySql.Data.MySqlClient
 Module FunctionsDB
 
     Public ConnStringODBC As String
@@ -34,7 +37,7 @@ Module FunctionsDB
 
     Public Function openRecordset_(ByVal sql As String, Optional something As Object = 0, Optional unusedParameter As Object = 0) As MySqlDataReader
 
-        If InStr(ConnStringODBC, "MySQL") Then
+        If InStr(ConnStringODBC, "MySQL") > 0 Then
             sql = Replace(sql, "[", "`")
             sql = Replace(sql, "]", "`")
             sql = Replace(sql, "Date()", "CURRENT_DATE")

@@ -1,4 +1,6 @@
-﻿Option Explicit On
+﻿Option Strict Off
+Option Explicit On
+
 Public Class UnzipFiles
 
     Public Enum ZMessageLevel

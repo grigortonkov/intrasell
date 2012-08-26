@@ -53,6 +53,7 @@ Module ModuleBarcode
     End Function
 
     Function makeBCHistory(ByVal BC As String, ByVal Vorgangtyp As String, ByVal VorgangNummer As String, ByVal Status As String) As Boolean
+        makeBCHistory = False
         If BC & "" = "" Then Exit Function
 
         makeBCHistory = True

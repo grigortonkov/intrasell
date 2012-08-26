@@ -1,4 +1,6 @@
-﻿Option Explicit On
+﻿Option Strict On
+Option Explicit On
+
 Imports MySql.Data.MySqlClient
 
 Public Class IntraSellKunden
@@ -12,7 +14,7 @@ Public Class IntraSellKunden
 
 
 
-    Public Sub init(ByVal connString)
+    Public Sub init(ByVal connString As String)
 
         FunctionsDB.ConnStringODBC = connString
         FunctionsDB.connOpen()
@@ -31,20 +33,10 @@ Public Class IntraSellKunden
 
     End Sub
 
-
-
-
-
-    Public Function neueAdresse()
-
-    End Function
-
-
-
-
+ 
 
     'checks if the user needs mwst in the rechnung according the kundengruppe
-    Public Function needsMWST(ByVal IdNr As String) As Boolean
+    Public Function needsMWST(ByVal IdNr As Integer) As Boolean
         needsMWST = True
 
         Dim rs As MySqlDataReader
@@ -64,18 +56,18 @@ Public Class IntraSellKunden
 
 
 
-    Public Function calculateUmsatzKunde(ByVal IdNr As Long)
-        If IsNull(IdNr) Then calculateUmsatzKunde = 0 : Exit Function
-        Dim rs, sql
+    Public Function calculateUmsatzKunde(ByVal IdNr As Integer) As Double
+        'If IdNr Is Nothing Then calculateUmsatzKunde = 0 : Exit Function
+        Dim rs As MySqlDataReader, sql As String
         sql = " SELECT buchRechnung.KundNr, Sum([PreisATS]*[stk]) AS UmsatzKunde" & _
               " FROM buchRechnung LEFT JOIN [buchRech-Artikel] ON buchRechnung.Nummer = [buchRech-Artikel].RechNr " & _
               " WHERE buchRechnung.KundNr = " & IdNr & _
               " GROUP BY buchRechnung.KundNr"
         rs = openRecordset(sql)
-        If rs.EOF Then
+        If Not rs.Read Then
             calculateUmsatzKunde = 0
         Else
-            calculateUmsatzKunde = rs("umsatzKunde")
+            calculateUmsatzKunde = CDbl(rs("umsatzKunde"))
         End If
 
     End Function

@@ -1,4 +1,5 @@
-﻿Option Explicit On
+﻿Option Strict On
+Option Explicit On 
 
 Imports IntraSell_DLL
 Imports System.IO
@@ -20,6 +21,10 @@ Module ModuleUpdate
     Const INTRASELL_BASE_URL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/"
     Public Const INTRASELL_MYSQL_BINARIES As String = "http://intrasell.googlecode.com/svn/trunk/IntraSell_Net/MySql/MySQL Server 5.1.zip" ' From SVN
 
+    Private Const ERROR_SUCCESS As Long = 0
+    Private Const BINDF_GETNEWESTVERSION As Long = &H10
+    Private Const INTERNET_FLAG_RELOAD As Long = &H80000000
+
     ' =======================================================================
 
     Private Declare Function URLDownloadToFile Lib "urlmon" _
@@ -30,9 +35,7 @@ Module ModuleUpdate
        ByVal dwReserved As Long, _
        ByVal lpfnCB As Long) As Long
 
-    Private Const ERROR_SUCCESS As Long = 0
-    Private Const BINDF_GETNEWESTVERSION As Long = &H10
-    Private Const INTERNET_FLAG_RELOAD As Long = &H80000000
+
 
     '    Public Function DownloadFile(sSourceUrl As String, _
     '                                 sLocalFile As String) As Boolean

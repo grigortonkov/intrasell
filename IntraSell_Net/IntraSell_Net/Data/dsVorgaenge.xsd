@@ -1363,6 +1363,33 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        'AR' AS VorgangTyp, ofAdressen.Idnr, concat(ofAdressen.Name, ' ', ofAdressen.Vorname) AS Namen, ofAdressen.Firma, ofAdressen.Adresse, buchVorgang.Nummer, 
+                         concat(grPLZ.plz, ' ', grPLZ.ort) AS plzort, SUM(Stk * Preis_Netto) AS summeATS, SUM(Stk * Preis_Brutto) AS summeATSBrutto, buchVorgang.Datum, 
+                         buchVorgang.Notiz AS Notiz, buchVorgang.KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, buchVorgang.Notiz, Woher, Wohin, 
+                         ofAdressen.Anrede, concat(ofAdressen.Anrede, ' ', ofAdressen.Titel) AS AnredeTitel,
+                             (SELECT        name
+                               FROM            grLand
+                               WHERE        idnr = ofAdressen.Land) AS land, (ofAdressen.UID) AS uid, Tel, Email, buchVorgang.KundNr2
+FROM            ((ofAdressen RIGHT JOIN
+                         buchVorgang ON ofAdressen.IDNR = buchVorgang.KundNr) LEFT JOIN
+                         grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN
+                         `buchVorgang-Artikel` ON buchVorgang.Nummer = `buchVorgang-Artikel`.Nummer
+GROUP BY 'AR', ofAdressen.Idnr, concat(ofAdressen.Name, ' ', ofAdressen.Vorname), ofAdressen.Firma, ofAdressen.Adresse, buchVorgang.Nummer, concat(grPLZ.plz, ' ', 
+                         grPLZ.ort), buchVorgang.Datum, buchVorgang.Notiz, buchVorgang.KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, buchVorgang.Notiz, Woher, 
+                         Wohin, ofAdressen.Anrede, concat(ofAdressen.Anrede, ' ', ofAdressen.Titel), Tel, Email, buchVorgang.KundNr2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ScalarQuery" MethodsParameterType="CLR" Modifier="Public" Name="ScalarQuery" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ScalarQuery">
@@ -2160,6 +2187,10 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -2227,7 +2258,7 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
       <xs:field xpath="mstns:Nummer" />
       <xs:field xpath="mstns:Typ" />
     </xs:unique>
-    <xs:keyref name="buchVorgang-artikel_ibfk_1" refer="buchvorgang_Constraint1" msprop:rel_Generator_UserChildTable="buchvorgang-artikel" msprop:rel_Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:rel_Generator_UserParentTable="buchvorgang" msprop:rel_Generator_UserRelationName="buchVorgang-artikel_ibfk_1" msprop:rel_Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_1" msprop:rel_Generator_ParentPropName="buchvorgangRowParent">
+    <xs:keyref name="buchVorgang-artikel_ibfk_1" refer="buchvorgang_Constraint1" msprop:rel_Generator_UserChildTable="buchvorgang-artikel" msprop:rel_Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:rel_Generator_ParentPropName="buchvorgangRowParent" msprop:rel_Generator_UserRelationName="buchVorgang-artikel_ibfk_1" msprop:rel_Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_1" msprop:rel_Generator_UserParentTable="buchvorgang">
       <xs:selector xpath=".//mstns:buchvorgang-artikel" />
       <xs:field xpath="mstns:Nummer" />
       <xs:field xpath="mstns:Typ" />
@@ -2235,10 +2266,10 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="buchrech-artikel_ibfk_1" msdata:parent="buchrechnung" msdata:child="buchrech-artikel" msdata:parentkey="Nummer" msdata:childkey="RechNr" msprop:Generator_UserChildTable="buchrech-artikel" msprop:Generator_ChildPropName="_Getbuchrech_artikelRows" msprop:Generator_ParentPropName="buchrechnungRow" msprop:Generator_UserRelationName="buchrech-artikel_ibfk_1" msprop:Generator_RelationVarName="_relationbuchrech_artikel_ibfk_1" msprop:Generator_UserParentTable="buchrechnung" />
-      <msdata:Relationship name="buchrech-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchrech-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchrech-artikel" msprop:Generator_ChildPropName="_Getbuchrech_artikelRows" msprop:Generator_ParentPropName="grartikelRow" msprop:Generator_UserRelationName="buchrech-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchrech_artikel_ibfk_2" msprop:Generator_UserParentTable="grartikel" />
-      <msdata:Relationship name="buchVorgang-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchvorgang-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchvorgang-artikel" msprop:Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:Generator_UserParentTable="grartikel" msprop:Generator_UserRelationName="buchVorgang-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_2" msprop:Generator_ParentPropName="grartikelRow" />
-      <msdata:Relationship name="buchVorgangTyp_ibfk_1" msdata:parent="buchvorgangtyp" msdata:child="buchvorgang" msdata:parentkey="Typ" msdata:childkey="Typ" msprop:Generator_UserChildTable="buchvorgang" msprop:Generator_ChildPropName="GetbuchvorgangRows" msprop:Generator_ParentPropName="buchvorgangtypRow" msprop:Generator_UserRelationName="buchVorgangTyp_ibfk_1" msprop:Generator_RelationVarName="relationbuchVorgangTyp_ibfk_1" msprop:Generator_UserParentTable="buchvorgangtyp" />
+      <msdata:Relationship name="buchrech-artikel_ibfk_1" msdata:parent="buchrechnung" msdata:child="buchrech-artikel" msdata:parentkey="Nummer" msdata:childkey="RechNr" msprop:Generator_UserChildTable="buchrech-artikel" msprop:Generator_ChildPropName="_Getbuchrech_artikelRows" msprop:Generator_UserParentTable="buchrechnung" msprop:Generator_UserRelationName="buchrech-artikel_ibfk_1" msprop:Generator_RelationVarName="_relationbuchrech_artikel_ibfk_1" msprop:Generator_ParentPropName="buchrechnungRow" />
+      <msdata:Relationship name="buchrech-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchrech-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchrech-artikel" msprop:Generator_ChildPropName="_Getbuchrech_artikelRows" msprop:Generator_UserParentTable="grartikel" msprop:Generator_UserRelationName="buchrech-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchrech_artikel_ibfk_2" msprop:Generator_ParentPropName="grartikelRow" />
+      <msdata:Relationship name="buchVorgang-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchvorgang-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchvorgang-artikel" msprop:Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:Generator_ParentPropName="grartikelRow" msprop:Generator_UserRelationName="buchVorgang-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_2" msprop:Generator_UserParentTable="grartikel" />
+      <msdata:Relationship name="buchVorgangTyp_ibfk_1" msdata:parent="buchvorgangtyp" msdata:child="buchvorgang" msdata:parentkey="Typ" msdata:childkey="Typ" msprop:Generator_UserChildTable="buchvorgang" msprop:Generator_ChildPropName="GetbuchvorgangRows" msprop:Generator_UserParentTable="buchvorgangtyp" msprop:Generator_UserRelationName="buchVorgangTyp_ibfk_1" msprop:Generator_RelationVarName="relationbuchVorgangTyp_ibfk_1" msprop:Generator_ParentPropName="buchvorgangtypRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

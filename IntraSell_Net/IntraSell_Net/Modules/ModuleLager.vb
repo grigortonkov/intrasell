@@ -76,7 +76,7 @@ Module ModuleLager
                             RunSQL(sqlBC)
                             'Insert in buchSeriennummer
                             sqlBC = "Insert into [buchSeriennummer] (ArtNr, SerienNr, Eingangsdatum, EkPreis, LagerOrt)" & _
-                                    " values ('" & rs("ArtNR") & "','" & SerienNrOriginal & "'," & makeSQLDate(Date.Today)() & " ," & Replace(rs("Ekpreis"), ",", ".") & ", " & rs("lagerOrt") & ")"
+                                    " values ('" & rs("ArtNR") & "','" & SerienNrOriginal & "'," & makeSQLDate(Date.Today) & " ," & Replace(rs("Ekpreis"), ",", ".") & ", " & rs("lagerOrt") & ")"
                             RunSQL(sqlBC)
 
                         Next
