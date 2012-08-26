@@ -1,3 +1,5 @@
+Imports GriTon.XML2Word
+
 Module [Global]
 
     'arguments
@@ -13,7 +15,7 @@ Module [Global]
             Exit Sub
         End If
         Try
-            Dim xml2Word As XML2Word.clMain = New XML2Word.clMain()
+            Dim xml2Word As XML2WORD = New XML2WORD()
 
             frm.TextBox1.Text = CmdArgs(0)
             frm.TextBox2.Text = CmdArgs(1)

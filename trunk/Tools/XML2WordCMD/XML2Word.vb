@@ -1,3 +1,6 @@
+
+Imports GriTon.XML2Word
+
 Public Class XML2WordForm
     Inherits System.Windows.Forms.Form
 
@@ -180,7 +183,7 @@ Public Class XML2WordForm
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMerge.Click
 
-        Dim xml2Word As XML2Word.clMain = New XML2Word.clMain()
+        Dim xml2Word As XML2WORD = New XML2WORD()
         xml2Word.XMLFile = Me.TextBox1.Text
         xml2Word.WordTemplate = Me.TextBox2.Text
         xml2Word.Path = Application.StartupPath 'where to generate the files 
