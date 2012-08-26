@@ -6,7 +6,7 @@ Public Class Main
         Try
             writeLog("Start IntraSell")
             'Init Connection 
-            conn = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            FunctionsDB.CurrentDB = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
             'Start Module 
             StartIntraSell()
 

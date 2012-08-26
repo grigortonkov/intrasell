@@ -28,12 +28,13 @@
       <FileName>Forms\Artikel\Artikel.vb</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IntraSell_Net.Vorgang" Collapsed="true">
+  <Class Name="IntraSell_Net.Vorgang">
     <Position X="6" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ARHAQEAQkGqixXQA8ECAAGECxCAwAQAFBrEIIhAIAQA=</HashCode>
+      <HashCode>ARHAQEAQkGqixXQA8ESAAGECxCEwAQAFBrUIIhAMAQA=</HashCode>
       <FileName>Forms\Vorgaenge\Vorgang.vb</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

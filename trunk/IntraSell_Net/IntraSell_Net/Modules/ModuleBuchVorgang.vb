@@ -85,7 +85,7 @@ Module ModuleBuchVorgang
     '=======================================================
     'inserts the open (nicht benutzten) vorgange in die Tabelle buchVorgänge
     '=======================================================
-    Private Sub insert(Where As String, Typ As String, IDNR As String)
+    Private Sub FindeOffeneVorgaenge(Where As String, Typ As String, IDNR As String)
 
         Dim sql As String = " INSERT INTO buchVorgaenge (Typ, RechNr, KundNr, Datum, Summe, Bezahlt, Ausgedrukt, anElba )" & _
                 " SELECT '" & Typ & "' AS t, Nummer, KundNr, Datum, Summe, Bezahlt, 0, 0 " & _
@@ -97,7 +97,6 @@ Module ModuleBuchVorgang
         Call writeLog("TRY " & sql)
         RunSQL(sql)
         Call writeLog("TRY " & sql)
-
 
     End Sub
 
@@ -112,25 +111,25 @@ Module ModuleBuchVorgang
 
         Select Case formName
             Case "AU"
-                insert("buchAngebot", "AN", IDNR)
+                FindeOffeneVorgaenge("buchAngebot", "AN", IDNR)
             Case "RÜ"
-                insert("buchAngebot", "AN", IDNR)
-                insert("buchAuftrag", "AU", IDNR)
+                FindeOffeneVorgaenge("buchAngebot", "AN", IDNR)
+                FindeOffeneVorgaenge("buchAuftrag", "AU", IDNR)
             Case "LI"
-                insert("buchAngebot", "AN", IDNR)
-                insert("buchAuftrag", "AU", IDNR)
-                insert("buchRuestschein", "RÜ", IDNR)
+                FindeOffeneVorgaenge("buchAngebot", "AN", IDNR)
+                FindeOffeneVorgaenge("buchAuftrag", "AU", IDNR)
+                FindeOffeneVorgaenge("buchRuestschein", "RÜ", IDNR)
             Case "AR"
-                insert("buchAngebot", "AN", IDNR)
-                insert("buchAuftrag", "AU", IDNR)
-                insert("buchRuestschein", "RÜ", IDNR)
-                insert("buchLieferschein", "LI", IDNR)
+                FindeOffeneVorgaenge("buchAngebot", "AN", IDNR)
+                FindeOffeneVorgaenge("buchAuftrag", "AU", IDNR)
+                FindeOffeneVorgaenge("buchRuestschein", "RÜ", IDNR)
+                FindeOffeneVorgaenge("buchLieferschein", "LI", IDNR)
             Case "RE"
-                insert("buchLieferschein", "LI", IDNR)
+                FindeOffeneVorgaenge("buchLieferschein", "LI", IDNR)
             Case "GU"
-                insert("buchRechnung", "AR", IDNR)
+                FindeOffeneVorgaenge("buchRechnung", "AR", IDNR)
             Case "LAU"
-                insert("buchLieferantAuftrag", "LAU", IDNR)
+                FindeOffeneVorgaenge("buchLieferantAuftrag", "LAU", IDNR)
         End Select
 
     End Sub
@@ -205,10 +204,8 @@ Module ModuleBuchVorgang
         End If
 
 
-        Dim tr As MySqlTransaction = ModuleCommons.conn.BeginTransaction
+        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
-
-
 
             Dim sql, rs
             sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
@@ -268,7 +265,7 @@ Module ModuleBuchVorgang
     'liefert die Brutto summe eines vorganges
     Function getSummeVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Double
         Dim rs, sql
-        sql = "Select Sum([Stk]*[PreisATS_Brutto]) as Summe FROM [" & getVorgangArtikelTableForType(Vorgangtyp) & "] " & _
+        sql = "Select Sum(Stk*Preis_Brutto) as Summe FROM [" & getVorgangArtikelTableForType(VorgangTyp) & "] " & _
               " where RechNr =" & VorgangNummer
         rs = openRecordset(sql)
         If rs.EOF Then
@@ -285,60 +282,60 @@ Module ModuleBuchVorgang
     End Function
 
 
-    'Public Sub setSummeVorgang(ByVal Vorgangtyp As String, ByVal VorgangNummer As Integer, ByVal formCaption As String)
+    Public Sub setSummeVorgang(ByVal Vorgangtyp As String, ByVal VorgangNummer As Integer, ByVal formCaption As String)
 
-    '    If IsNull(VorgangNummer) Then Exit Sub
-
-
-    '    Dim rs As MySqlDataReader, sql As String
-    '    sql = "Select sum(RoundUp([Stk]*[PreisATS],2)) as Summe, sum(RoundUp([Stk]*[PreisATS_Brutto],2)) as Summe_Brutto " & _
-    '    " FROM [" & getVorgangArtikelTableForType(Vorgangtyp) & "] where RechNr = " & VorgangNummer & ""
-    '    rs = openRecordset(sql)
-    '    If rs.Read Then
+        If IsNull(VorgangNummer) Then Exit Sub
 
 
-    '        If Not IsNull(rs("Summe")) Then
-
-    '            Dim Summe As Double, SummeBrutto As Double, SummeMWST As Double
-    '            Summe = rs("Summe")
-    '            SummeBrutto = nvl(rs("Summe_Brutto"), 0)
-    '            SummeMWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
-
-    '            If isFormOpenByCaption(formCaption) Then
-    '                Dim frm As Form
-    '                frm = getFormByCaption(formCaption)
-
-    '                If frm.summeATS <> rs("Summe") Or IsNull(frm.summeATS) Then
-    '                    frm.summeATS = rs("Summe")
-    '                End If
-
-    '                If frm.mwstATS <> nvl(rs("Summe_Brutto"), 0) - rs("Summe") Or IsNull(frm.mwstATS) Then
-    '                    frm.mwstATS = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
-    '                End If
-
-    '                If frm.summeATSPlusMWST <> rs("Summe_Brutto") Or IsNull(frm.summeATSPlusMWST) Then
-    '                    frm.summeATSPlusMWST = rs("Summe_Brutto")
-    '                End If
-
-    '            Else 'DB Update
-    '                sql = "update  [" & getVorgangTableForType(Vorgangtyp) & "] " & _
-    '                  " set Summe =" & Replace(RoundUp(rs("Summe"), 2), ",", ".") & _
-    '                  ", SummeMWST =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0) - rs("Summe"), 2), ",", ".") & _
-    '                  ", SummeBrutto =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0), 2), ",", ".") & _
-    '                  " where Nummer =" & VorgangNummer
-    '                'TODO: in MySQL ist der DS gesperrt und dadurch probleme
-    '                RunSQL(sql)
-    '            End If
-
-    '            setSummeVorgangWaehrung(Vorgangtyp, VorgangNummer, Summe, SummeBrutto, SummeMWST)
-
-    '        End If
-    '    End If
-    '    rs.Close()
-    '    rs = Nothing
+        Dim rs As MySqlDataReader, sql As String
+        sql = "Select sum(RoundUp([Stk]*[PreisATS],2)) as Summe, sum(RoundUp([Stk]*[PreisATS_Brutto],2)) as Summe_Brutto " & _
+        " FROM [" & getVorgangArtikelTableForType(Vorgangtyp) & "] where RechNr = " & VorgangNummer & ""
+        rs = openRecordset(sql)
+        If rs.Read Then
 
 
-    'End Sub
+            If Not IsNull(rs("Summe")) Then
+
+                Dim Summe As Double, SummeBrutto As Double, SummeMWST As Double
+                Summe = rs("Summe")
+                SummeBrutto = nvl(rs("Summe_Brutto"), 0)
+                SummeMWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
+
+                If isFormOpenByCaption(formCaption) Then
+                    Dim frm As Vorgang
+                    frm = Functions.getFormByCaption(formCaption)
+
+                    If frm.summeNetto <> rs("Summe") Or IsNull(frm.summeNetto) Then
+                        frm.summeNetto = rs("Summe")
+                    End If
+
+                    If frm.MWST <> nvl(rs("Summe_Brutto"), 0) - rs("Summe") Or IsNull(frm.MWST) Then
+                        frm.MWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
+                    End If
+
+                    If frm.summeBrutto <> rs("Summe_Brutto") Or IsNull(frm.summeBrutto) Then
+                        frm.summeBrutto = rs("Summe_Brutto")
+                    End If
+
+                Else 'DB Update
+                    sql = "update  [" & getVorgangTableForType(Vorgangtyp) & "] " & _
+                      " set Summe =" & Replace(RoundUp(rs("Summe"), 2), ",", ".") & _
+                      ", SummeMWST =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0) - rs("Summe"), 2), ",", ".") & _
+                      ", SummeBrutto =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0), 2), ",", ".") & _
+                      " where Nummer =" & VorgangNummer
+                    'TODO: in MySQL ist der DS gesperrt und dadurch probleme
+                    RunSQL(sql)
+                End If
+
+                setSummeVorgangWaehrung(Vorgangtyp, VorgangNummer, Summe, SummeBrutto, SummeMWST)
+
+            End If
+        End If
+        rs.Close()
+        rs = Nothing
+
+
+    End Sub
 
 
 
@@ -351,7 +348,7 @@ Module ModuleBuchVorgang
         End If
 
 
-        Dim sql As String : sql = "select * from buchvorgaengeWaehrung where vorgangTyp = '" + Vorgangtyp + "' and Nummer =  " & VorgangNummer
+        Dim sql As String = "select * from buchvorgaengeWaehrung where vorgangTyp = '" + VorgangTyp + "' and Nummer =  " & VorgangNummer
         Dim rs As MySqlDataReader
         rs = openRecordset(sql)
         If rs.Read Then

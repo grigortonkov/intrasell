@@ -8,9 +8,10 @@ Public Class IntraSellVars
     Public CurrentDB As MySqlConnection
 
     Public Sub init(ByVal connString As String)
-        FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
-        FunctionsDB.connOpen()
-        CurrentDB = FunctionsDB.CurrentDB
+        If Not FunctionsDB.CurrentDB.State = ConnectionState.Open Then
+            FunctionsDB.CurrentDB.ConnectionString = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
+            FunctionsDB.connOpen()
+        End If
     End Sub
 
     Public Sub destroy()

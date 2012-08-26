@@ -18,9 +18,11 @@ Public Class IntraSellDictionary
     Private preise As IntraSellPreise
 
     Public Sub init(ByVal connString As String)
-        FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
-        FunctionsDB.connOpen()
-        CurrentDB = FunctionsDB.CurrentDB
+
+        If Not FunctionsDB.CurrentDB.State = ConnectionState.Open Then
+            FunctionsDB.CurrentDB.ConnectionString = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
+            FunctionsDB.connOpen()
+        End If
 
         vars = New IntraSellVars
         vars.init(connString)
