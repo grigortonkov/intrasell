@@ -7,6 +7,9 @@ Public Class Main
             writeLog("Start IntraSell")
             'Init Connection 
             conn = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            'Start Module 
+            StartIntraSell()
+
             'Login
             Login.ShowDialog()
 

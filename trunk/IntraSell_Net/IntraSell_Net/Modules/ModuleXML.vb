@@ -132,7 +132,10 @@ Module ModuleXML
     Public Function saveXML(ByVal content As String, ByVal fileName As String) As Boolean
         saveXML = False
 
-        Dim fileLine As String = "<?xml version = ""1.0""  encoding=""Unicode"" ?>"
+        Dim fileLine As String
+        'fileLine = "<?xml version=""1.0"" encoding=""Unicode"" ?>" & vbCrLf
+        fileLine = "<?xml version=""1.0"" encoding=""utf-8""?>" & vbCrLf
+
         Dim fw As StreamWriter = New StreamWriter(fileName, False)
  
         fileLine = fileLine & content

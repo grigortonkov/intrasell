@@ -3,6 +3,7 @@
 Imports IntraSell_Net
 
 Imports IntraSell_DLL
+Imports System.Xml
 
 
 '''<summary>
@@ -24,7 +25,7 @@ Public Class ModuleBuchVorgangXMLTest
             Return testContextInstance
         End Get
         Set(value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -67,8 +68,17 @@ Public Class ModuleBuchVorgangXMLTest
         Dim expected As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim actual As String
         actual = ModuleBuchVorgangXML.VorgangXML(VorgangNummer, VorgangTyp)
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+
+
+        'Load in XML Document to check if ok 
+        Dim x As XmlDataDocument = (New Xml.XmlDataDocument())
+        x.LoadXml(actual)
+
+        x = (New Xml.XmlDataDocument())
+        x.Load("z:\\Business\\IntraSell_System\\IntraSell_Net\\IntraSell_Net\\bin\\Debug\\tmp\\Vorgang_buchVorgang_AR1.xml")
+
+        'Assert.AreEqual(expected, actual)
+        'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
     '''<summary>
@@ -79,14 +89,15 @@ Public Class ModuleBuchVorgangXMLTest
         Dim VorgangNummer As Long = 1
         Dim VorgangTyp As String = "AR"
         Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
-        Dim Viewer As String = "WORD"
+        Dim Viewer As String = "NONE" '"WORD"
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
 
-        Dim expected As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As String = "c:\Vorgang_AR1.doc" ' TODO: Initialize to an appropriate value
         Dim actual As String
         actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangNummer, VorgangTyp, VorlageFilename, Viewer, SofortSenden, MailText)
+
         Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+        'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 End Class
