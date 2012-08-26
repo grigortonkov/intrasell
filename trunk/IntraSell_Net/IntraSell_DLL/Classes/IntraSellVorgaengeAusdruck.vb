@@ -1,4 +1,6 @@
-﻿Option Explicit On
+﻿Option Strict Off
+Option Explicit On
+
 Public Class IntraSellVorgaengeAusdruck
 
 
@@ -16,7 +18,7 @@ Public Class IntraSellVorgaengeAusdruck
 
 
     'modulinitialisierung, unbedingt notwendig
-    Public Sub init(ByVal connString)
+    Public Sub init(ByVal connString As String)
 
         FunctionsDB.ConnStringODBC = connString '"driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
         FunctionsDB.connOpen()
@@ -40,9 +42,9 @@ Public Class IntraSellVorgaengeAusdruck
 
     '=======================================================
     '=======================================================
-    Shared Function getRecSource(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
+    Shared Function getRecSource(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String) As String
 
-        Dim VonForm, vonForm_Artikel
+        Dim VonForm, vonForm_Artikel As String
         VonForm = preise.getVorgangTableForType(Vorgangtyp)
         vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
 
@@ -67,36 +69,35 @@ Public Class IntraSellVorgaengeAusdruck
     '
     ' SelectedId - vom User ausgewählte ID in einem Dialog
     '=======================================================
-    Shared Function getRecSource_Weitere(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, Optional ByVal SelectedId As String = "")
+    Shared Function getRecSource_Weitere(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, Optional ByVal SelectedId As String = "") As String
 
-        Dim VonForm, vonForm_Artikel
+        Dim VonForm, vonForm_Artikel As String
         VonForm = preise.getVorgangTableForType(Vorgangtyp)
         vonForm_Artikel = preise.getVorgangArtikelTableForType(Vorgangtyp)
 
-        getRecSource_Weitere = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, [ofAdressen-Weitere].Idnr, [ofAdressen-Weitere].Name & "" "" &   [OfAdressen-Weitere].Vorname as Namen, [ofAdressen-Weitere].Firma, [ofAdressen-Weitere].Adresse, " & _
-                   " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort] AS plzort, " & _
-                   " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, " & VonForm & ".Notiz, " & _
-                   " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
-                   " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email, " & VonForm & ".KundNr2 " & _
-                   " FROM (([ofAdressen-Weitere] RIGHT JOIN " & VonForm & " ON [ofAdressen-Weitere].IDNR = " & VonForm & ".KundNr)" & _
-                   " LEFT JOIN grPLZ ON [ofAdressen-Weitere].PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
+        getRecSource_Weitere = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, a.Idnr, a.Name & "" "" &   a.Vorname as Namen, a.Firma, a.Adresse, " & _
+                   " " & VonForm & ".Nummer, concat(p.plz,' ',p.ort) AS plzort, " & _
+                   " Sum(Stk*Preis_Netto) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, " & VonForm & ".Notiz, " & _
+                   " " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
+                   " a.Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email, " & VonForm & ".KundNr2 " & _
+                   " FROM ((`ofAdressen-Weitere` as a RIGHT JOIN " & VonForm & " ON a.IDNR = " & VonForm & ".KundNr)" & _
+                   " LEFT JOIN grPLZ p ON a.PLZ = p.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
                    " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
-                   " Where nummer=" & Vorgang_Nummer & "  " & _
-                   " AND [ofAdressen-Weitere].Typ like '" & Vorgangtyp & "'" & _
-                   " AND [ofAdressen-Weitere].Id = " & SelectedId & " " & _
-                   " GROUP BY '" & Vorgangtyp & "' , [ofAdressen-Weitere].Idnr, [ofAdressen-Weitere].Name & "" "" & [ofAdressen-weitere].vorname,  [ofAdressen-Weitere].Firma, [ofAdressen-Weitere].Adresse, " & _
-                   " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
-                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz,Woher, Wohin," & _
-                   " [ofAdressen-Weitere].Anrede, getLand(" & VonForm & ".KundNr), getUID(" & VonForm & ".KundNr), Tel, Email, " & VonForm & ".KundNr2;"
+                   " WHERE nummer=" & Vorgang_Nummer & "  " & _
+                   " AND a.Typ = '" & Vorgangtyp & "'" & _
+                   " AND a.Id = " & SelectedId & " " & _
+                   " GROUP BY '" & Vorgangtyp & "' , a.Idnr, a.Name & "" "" & a.vorname,  a.Firma, a.Adresse, " & _
+                   " " & VonForm & ".Nummer, p.plz & "" "" & p.[ort], " & VonForm & ".Datum, " & _
+                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
+                   " a.Anrede, Tel, Email, " & VonForm & ".KundNr2;"
         Debug.Print(getRecSource_Weitere)
-        'getLand(" & vonForm & ".KundNr), getUID(" & vonForm & ".KundNr),
     End Function
 
-    Public Function getLand(ByVal IdNr) As String
+    Public Function getLand(ByVal IdNr As Integer) As String
         getLand = vars.TABLEVALUE("grLand", "IDNR", vars.TABLEVALUE("ofAdressen", "Idnr", IdNr, "LAND"), "Name") & ""
     End Function
 
-    Public Function getUID(ByVal IdNr) As String
+    Public Function getUID(ByVal IdNr As Integer) As String
         getUID = vars.TABLEVALUE("ofAdressen", "Idnr", IdNr, "UID") & ""
     End Function
 

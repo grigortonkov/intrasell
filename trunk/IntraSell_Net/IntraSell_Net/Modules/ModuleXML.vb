@@ -1,11 +1,11 @@
-﻿
+﻿Option Strict On
 Option Explicit On
+
 Imports MySql.Data.MySqlClient
 Imports IntraSell_DLL
+Imports System.IO
 
 Module ModuleXML
-
-
 
     Function QueryToXML(ByVal sql As String, Optional baseTagName As String = "") As String
         Dim rs As MySqlDataReader
@@ -26,16 +26,16 @@ Module ModuleXML
 
             'A CDATA section starts with "<![CDATA[" and ends with "]]>":
             For i = 1 To rs.FieldCount
-                FeldName = Replace(rs(i - 1).Name, " ", "")
+                FeldName = Replace(rs.GetName(i - 1), " ", "")
                 FeldName = Replace(FeldName, "_", "")
 
                 If InStr(FeldName, "<") <= 0 And InStr(FeldName, ">") <= 0 Then
-
-                    FeldWert = rs(i - 1).Value & ""
-
-                    If FeldWert = "" Then
+                    If rs.IsDBNull(i - 1) Then
                         FeldWert = "_"
+                    Else
+                        FeldWert = CType(rs(i - 1), String)
                     End If
+
 
                     If Trim(FeldWert) <> "" Then 'nur dann einfügen wenn daten vorhanden sind
                         'Start Tag
@@ -59,9 +59,9 @@ Module ModuleXML
                                      FeldName = "ArtikelIdentifikation" Or _
                                      FeldName = "VorgangNummer" Or _
                                      FeldName = "AnfrageNr") Then
-                                'Als Sandard Zahl Formatieren, aber nurr dann wenn keine Differenz entsteht
+                                'Als Sandard Zahl Formatieren, aber nur dann wenn keine Differenz entsteht
 
-                                If FeldWert * 1 = 1 * Format(FeldWert, "Standard") Then
+                                If CDbl(FeldWert) * 1 = 1 * CDbl(Format(CDbl(FeldWert), "Standard")) Then
                                     line = line & Format(FeldWert, "Standard") '2 nachkommastellige Zahl
                                 Else
                                     line = line & encodeForXML(FeldWert) '3 nachkommastellen Zahl
@@ -69,7 +69,7 @@ Module ModuleXML
 
                             Else
                                 If InStr(FeldName, "Preis") > 0 And IsNumeric(FeldWert) Then
-                                    If FeldWert * 1 = 1 * Format(FeldWert, "Standard") Then
+                                    If CDbl(FeldWert) * 1 = 1 * CDbl(Format(CDbl(FeldWert), "Standard")) Then
                                         line = line & Format(FeldWert, "Standard")
                                     Else
                                         line = line & encodeForXML(FeldWert) '3 nachkommastellen Zahl
@@ -131,18 +131,14 @@ Module ModuleXML
     'makes XML file from query or table
     Public Function saveXML(ByVal content As String, ByVal fileName As String) As Boolean
         saveXML = False
-        'If Creation of export filename wished
-        Dim fs, exportFile
 
-        Dim fileLine : fileLine = "<?xml version = ""1.0""  encoding=""Unicode"" ?>"
-
-        fs = CreateObject("Scripting.FileSystemObject")
-        exportFile = fs.CreateTextFile(fileName, True, True)
-
+        Dim fileLine As String = "<?xml version = ""1.0""  encoding=""Unicode"" ?>"
+        Dim fw As StreamWriter = New StreamWriter(fileName, False)
+ 
         fileLine = fileLine & content
+        fw.WriteLine(fileLine)
+        fw.Close()
 
-        exportFile.Writeline(fileLine)
-        exportFile.Close()
         saveXML = True
     End Function
 

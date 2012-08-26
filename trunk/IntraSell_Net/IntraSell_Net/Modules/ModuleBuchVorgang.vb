@@ -198,6 +198,7 @@ Module ModuleBuchVorgang
     '==============================================================================
     Public Function Storno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
 
+        Storno = False
 
         If IsNull(VorgangNummer) Then
             Exit Function
@@ -208,7 +209,7 @@ Module ModuleBuchVorgang
         Try
 
 
-            Storno = False
+
             Dim sql, rs
             sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
             rs = openRecordset(sql)

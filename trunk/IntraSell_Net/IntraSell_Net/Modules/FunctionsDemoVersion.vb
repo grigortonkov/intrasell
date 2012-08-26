@@ -1,43 +1,46 @@
-﻿Imports IntraSell_DLL
+﻿Option Strict On
+Option Explicit On
+
+Imports IntraSell_DLL
 Module FunctionsDemoVersion
 
     'Demoversion ist solange die Firma 'Ihre Firma' heisst
 
     Const Demoversion = True
-    Const MAX_POSSIBLE_RECHNUNGEN = 100 'gerenzwert für die Demoversion
-    Const MAX_POSSIBLE_KUNDEN = 100 'gerenzwert für die Demoversion
+    Const MAX_POSSIBLE_RECHNUNGEN = 1000 'gerenzwert für die Demoversion
+    Const MAX_POSSIBLE_KUNDEN = 1000 'gerenzwert für die Demoversion
     Const CONST_TO_LICKEY = "KALAMARATONKOVGRIGOR" 'erweiterung für Licence key ' to avoid collisions for short company names
-
+    Const EXPIRY_DATE As Date = #12/12/2013#
 
 
     '=========================================================
     ' Prüft ob die Demoversion abgelaufen ist
     ' das programm erlaubt max MAX_POSSIBLE_RECHNUNGEN und MAX_POSSIBLE_KUNDEN
     '=========================================================
-    Function IsDemoVersionOver()
-        Dim rs
+    Function IsDemoVersionOver() As Boolean
+        Dim rs As MySql.Data.MySqlClient.MySqlDataReader
         Dim demoIsOver As Boolean
         demoIsOver = False
 
 
         rs = openRecordset("DEMOVERSION_COUNT_KUNDEN")
-        If Not rs.EOF Then
-            If rs("Sum") > MAX_POSSIBLE_KUNDEN Then
+        If rs.Read Then
+            If CInt(rs("Sum")) > MAX_POSSIBLE_KUNDEN Then
                 demoIsOver = True
             End If
         End If
         rs.Close()
 
         rs = openRecordset("DEMOVERSION_COUNT_RECHNUNGEN")
-        If Not rs.EOF Then
-            If rs("Sum") > MAX_POSSIBLE_RECHNUNGEN Then
+        If rs.Read Then
+            If CInt(rs("Sum")) > MAX_POSSIBLE_RECHNUNGEN Then
                 demoIsOver = True
             End If
         End If
         rs.Close()
 
 
-        If (Date.Today > #12/12/2013#) Then
+        If (Date.Today > EXPIRY_DATE) Then
             demoIsOver = True
         End If
 
@@ -57,10 +60,12 @@ Module FunctionsDemoVersion
     'checks if the lizKey is correct
     'licKey has 8 chars
     'arFehRGR ist die code für "Ihre Firma"
-    Public Function islicenceKeyCorrect()
-        Dim Firma, licKey, i
-        Firma = varValue("Firma")
-        licKey = Trim(varValue("Lizenzcode") & "")
+    Public Function islicenceKeyCorrect() As Boolean
+        Dim Firma, licKey As String
+        Dim i As Integer
+
+        Firma = VarValue("Firma")
+        licKey = Trim(VarValue("Lizenzcode") & "")
 
         If Len(licKey) <> 8 Then
             'Call MsgBox("Die Lizenzcode hat 8 Stellen!", vbCritical)
@@ -68,8 +73,7 @@ Module FunctionsDemoVersion
             Exit Function
         End If
 
-        Dim lickeyCorrect
-        lickeyCorrect = CONST_TO_LICKEY & Firma
+        Dim lickeyCorrect As String = CONST_TO_LICKEY & Firma
 
         For i = 1 To 8 'jede 2 te buchstabe
             If Not Mid(licKey, i, 1) = Mid(lickeyCorrect, Len(lickeyCorrect) - (i - 1) * 2, 1) Then
@@ -80,7 +84,7 @@ Module FunctionsDemoVersion
         Next i
         islicenceKeyCorrect = True
 
-        If Date.Today > #12/12/2014# Then
+        If Date.Today > EXPIRY_DATE Then
             islicenceKeyCorrect = False
         End If
 
@@ -89,10 +93,12 @@ Module FunctionsDemoVersion
     '=========================================================
     ' generiert einen Key nach Firmennamen
     '=========================================================
-    Function keyGen(Firma)
+    Function keyGen(Firma As String) As String
 
         Dim lickeyCorrect As String = CONST_TO_LICKEY & Firma
-        Dim licKey As String = "", i
+        Dim licKey As String = ""
+        Dim i As Integer
+
         For i = 1 To 8 'jede 2 te buchstabe
             licKey = licKey & Mid(lickeyCorrect, Len(lickeyCorrect) - (i - 1) * 2, 1)
         Next i

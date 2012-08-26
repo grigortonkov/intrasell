@@ -1,4 +1,6 @@
-﻿
+﻿Option Strict On
+Option Explicit On
+
 Imports MySql.Data.MySqlClient
 Imports System.Windows.Forms
 
@@ -6,10 +8,15 @@ Public Module ModuleCommons
     'should be initilized by calling application. E.g.: 
     'ModuleCommons.conn = new  MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
     Public conn As New MySqlConnection ' (Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+    Public appPath As String = Nothing 'Set by UnitTests 
 
     'Return current Applikation Path for Exe, IntraSell
     Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.EXE") As String
-        Return Application.ExecutablePath.Replace(exeFilename, "")
+        If appPath Is Nothing Then
+            Return Application.ExecutablePath.Replace(exeFilename, "")
+        Else
+            Return appPath
+        End If
     End Function
 
 
@@ -34,7 +41,7 @@ Public Module ModuleCommons
     End Function
 
     'Proxy Function IsNull for easy conversion of old VB 6 Code
-    Function IsNull(ByRef any As VariantType) As Boolean
+    Function IsNull(ByRef any As Object) As Boolean
         Return IsNothing(any)
     End Function
 

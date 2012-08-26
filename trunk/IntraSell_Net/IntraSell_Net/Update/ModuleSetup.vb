@@ -1,4 +1,7 @@
-﻿Imports IntraSell_DLL
+﻿Option Strict On
+Option Explicit On
+
+Imports IntraSell_DLL
 
 Module ModuleSetup
     Const MYSQL_SETUP_FOLDER As String = "C:\\"
@@ -60,7 +63,7 @@ Module ModuleSetup
             Dim gotConnection As Boolean = VarValue("ADMIN") = "WebShop"
             If gotConnection Then
                 writeLog("Setup MySQL erfolgreich.")
-                MsgBox("MySQL Verbindung ist OK!", vbOK)
+                MsgBox("MySQL Verbindung ist OK!", MsgBoxStyle.OkOnly)
             End If
         Catch ex As Exception
             writeLog("Setup MySQL FAILED. Fehler: " + ex.Message)

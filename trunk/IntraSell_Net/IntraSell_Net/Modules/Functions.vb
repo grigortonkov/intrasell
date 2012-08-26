@@ -1,11 +1,14 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Option Strict On
+Option Explicit On
+
+Imports MySql.Data.MySqlClient
 Imports IntraSell_DLL
 
 Module Functions
 
 
-    Public Function ConnStringIntraSellData()
-        Dim dbType As String : dbType = varValue("DBTYPE")
+    Public Function ConnStringIntraSellData() As String
+        Dim dbType As String : dbType = VarValue("DBTYPE")
 
         If UCase(dbType) = "ACCESS" Then
             Return "driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & VarValue("DB_DATA_FILENAME") & ";"
@@ -15,40 +18,37 @@ Module Functions
     End Function
 
 
-
     'Problem: Access round is making round to even (not to the bigger)
     'This fuction makes to proper rounding
     'Example Format(1312.545,"#.00")
     ' is different than RoundUp(1312.545,2)
 
-    Public Function RoundUp(ByVal what As Double, Optional Position As Integer = 0) As Double
+    Public Function RoundUp(ByVal what As Double, Optional Position As Integer = 0) As String
 
-        Dim formatExpression As String : formatExpression = Left("0000000000", Position)
+        Dim formatExpression As String = Left("0000000000", Position)
         formatExpression = "#." & formatExpression
         RoundUp = Format(what, formatExpression)
 
     End Function
 
 
-
-
-    Public Function makeSQLDate(ByVal dat As Date)
+    Public Function makeSQLDate(ByVal dat As Date) As String
         makeSQLDate = "#" & Month(dat) & "/" & Microsoft.VisualBasic.Day(dat) & "/" & Year(dat) & "#"
     End Function
 
 
-    Public Function toSQLDate(da)
+    Public Function toSQLDate(da As Date) As String
         toSQLDate = "#" & Month(da) & "/" & Microsoft.VisualBasic.Day(da) & "/" & Year(da) & "#"
     End Function
 
 
 
     'converts the string to date for sorting in the mask
-    Public Function toDateFormat(ByVal dateString) As Date
+    Public Function toDateFormat(ByVal dateString As String) As Date
         toDateFormat = #1/1/1980#
 
         If dateString & "" <> "" Then
-            toDateFormat = dateString
+            toDateFormat = CDate(dateString)
         End If
     End Function
 
@@ -69,24 +69,17 @@ Module Functions
 
 
     ''Takes the current app folder
-    Public Function AppFolder()
+    Public Function AppFolder() As String
         Return GetAppPath()
     End Function
-    Public Function DbFolder()
+    Public Function DbFolder() As String
         Return GetAppPath()
     End Function
 
     Public Function replaceString(ByVal expression As String, ByVal searchString As String, ByVal replacement As String) As String
         replaceString = Replace(expression, searchString, replacement)
     End Function
-
-    Function splitString(ByVal expression)
-        splitString = Split(expression)
-    End Function
-
-     
-
-
+ 
     ''Prüft ob ein Formular offen ist oder nicht
     'Function isFormOpen(ByVal formName As String) As Boolean
     '    isFormOpen = False

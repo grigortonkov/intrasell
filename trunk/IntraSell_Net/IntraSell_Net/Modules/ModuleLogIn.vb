@@ -1,4 +1,7 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Option Strict On
+Option Explicit On
+
+Imports MySql.Data.MySqlClient
 Imports System.IO
 Imports IntraSell_DLL
 

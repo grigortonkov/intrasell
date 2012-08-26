@@ -1,6 +1,7 @@
 ﻿Imports IntraSell_DLL
 
 Public Class Vorgang
+    Implements InterfacePrintable
 
     'Die Datensätze filtern
     Public Sub FilterBy(Expression As String)
@@ -55,5 +56,10 @@ Public Class Vorgang
 
     Private Sub AusgedrucktCheckBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles AusgedrucktCheckBox.CheckedChanged
 
+    End Sub
+
+    Public Sub Print(sender As Object) Implements InterfacePrintable.Print
+        'Start printing for the Vorgang 
+        OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
     End Sub
 End Class

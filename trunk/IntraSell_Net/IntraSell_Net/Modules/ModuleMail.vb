@@ -1,11 +1,11 @@
-﻿
+﻿'Option Strict On
 Option Explicit On
 
 Module ModuleMail
 
     'cAttach can be file1;file2;file3
 
-    Public Function mailWithOutlook(ByVal cSubject As String, _
+    Public Sub mailWithOutlook(ByVal cSubject As String, _
     ByVal cName As String, _
     ByVal cAttach As String, _
     ByVal cBody As String, _
@@ -50,7 +50,7 @@ Module ModuleMail
             objOutlook = Nothing
         End If
 
-    End Function
+    End Sub
 
     Function getMailBody(ByVal fileName)
         Dim fso, ts

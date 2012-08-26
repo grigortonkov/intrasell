@@ -9,6 +9,7 @@ Public Class Main
             conn = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
             'Login
             Login.ShowDialog()
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -140,4 +141,39 @@ Public Class Main
     Private Sub WikiToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles WikiToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub DruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DruckenToolStripMenuItem.Click
+        Try
+            If Not ActiveMdiChild Is Nothing Then
+                'Print the form in focus 
+                Dim printable As InterfacePrintable = Me.ActiveMdiChild
+                printable.Print(Me)
+            Else
+                Me.DruckenToolStripMenuItem.Enabled = False
+            End If
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub Main_MdiChildActivate(sender As Object, e As System.EventArgs) Handles Me.MdiChildActivate
+
+        If ActiveMdiChild Is Nothing Then
+            Me.DruckenToolStripMenuItem.Enabled = False
+        Else
+            Me.DruckenToolStripMenuItem.Enabled = IsImplementedFrom(ActiveMdiChild.GetType, GetType(InterfacePrintable))
+        End If
+
+    End Sub
+
+    Function IsImplementedFrom(objectType As Type, intefaceType As Type) As Boolean
+        For Each thisInterface As Type In objectType.GetInterfaces
+            If thisInterface Is intefaceType Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
 End Class

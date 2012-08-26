@@ -48,6 +48,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Components\net-20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -98,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodedUITest1.vb" />
+    <Compile Include="DBTest.vb" />
+    <Compile Include="ModuleBuchVorgangDruckTest.vb" />
+    <Compile Include="ModuleBuchVorgangXMLTest.vb" />
     <Compile Include="ModuleCommonsTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="UIMap.Designer.vb">
@@ -108,6 +114,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="GenericTest1.GenericTest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="UIMap.uitest" />
   </ItemGroup>
   <ItemGroup>

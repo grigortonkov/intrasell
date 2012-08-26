@@ -34,7 +34,7 @@ Module ModuleDictionary
 
     'once at program start
     Public Sub loadCharsets()
-        Dim sql, rs
+        Dim rs As MySql.Data.MySqlClient.MySqlDataReader
         rs = openRecordset("select set from ofDictionarySets where CHARSET like 'ENG'")
         charSet_ENG = rs("Set")
         rs = openRecordset("select * from ofDictionarySets where CHARSET like 'CYRASCII'")
@@ -198,40 +198,39 @@ Module ModuleDictionary
     End Function
 
 
-    Public Function getLanguageForVorgang(ByVal Vorgangtyp As String, ByVal vorgangnummer As Long)
+    Public Function getLanguageForVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Long)
 
-        Dim VORGANG_TYP_LAU
-        VORGANG_TYP_LAU = "LAU"
+        Dim VORGANG_TYP_LAU As String = "LAU"
         If Len(CURRENT_LANGUAGE_CODE) = 3 Then
-            getLanguageForVorgang = CURRENT_LANGUAGE_CODE
+            Return CURRENT_LANGUAGE_CODE
             Exit Function
         End If
 
 
-        Dim VonForm As String : VonForm = getVorgangTableForType(Vorgangtyp)
+        Dim VonForm As String = getVorgangTableForType(VorgangTyp)
 
-        Dim def_language_Code As String : def_language_Code = VarValue("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID)
+        Dim def_language_Code As String = VarValue_Default("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID, "DEU")
 
         Dim kund_language_Code As String
-        If Vorgangtyp = VORGANG_TYP_LAU Then
-            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, [ofadressen-settings] adr " & _
-                              " where a.lieferantNr = adr.IDNR and a.Nummer=" & vorgangnummer)
+        If VorgangTyp = VORGANG_TYP_LAU Then
+            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
+                              " where a.lieferantNr = adr.IDNR and a.Nummer=" & VorgangNummer)
         Else
-            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, [ofadressen-settings] adr " & _
-                              " where a.KundNr = adr.IDNR and a.Nummer=" & vorgangnummer)
+            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
+                              " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer)
         End If
 
         If Len(kund_language_Code) = 3 Then
-            getLanguageForVorgang = kund_language_Code
+            Return kund_language_Code
         Else
-            getLanguageForVorgang = def_language_Code
+            Return def_language_Code
         End If
 
 
     End Function
 
-    Public Function getLanguageForVorgang_(ByVal Vorgangtyp As String, ByVal VorgangNummer As Long)
-        getLanguageForVorgang_ = IntraSellDictionary.getLanguageForVorgang(Vorgangtyp, VorgangNummer, ModuleGlobals.MitarbeiterID)
-    End Function
+    'Public Function getLanguageForVorgang_(ByVal Vorgangtyp As String, ByVal VorgangNummer As Long)
+    '    getLanguageForVorgang_ = IntraSellDictionary.getLanguageForVorgang(Vorgangtyp, VorgangNummer, ModuleGlobals.MitarbeiterID)
+    'End Function
 
 End Module
