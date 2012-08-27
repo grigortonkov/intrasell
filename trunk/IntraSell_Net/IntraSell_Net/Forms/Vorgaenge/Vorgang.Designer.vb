@@ -81,19 +81,21 @@ Partial Class Vorgang
         Me.MitarbeiterNrComboBox = New System.Windows.Forms.ComboBox()
         Me.Buchvorgang_artikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Buchvorgang_artikelDataGridView = New System.Windows.Forms.DataGridView()
+        Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsArtikel = New IntraSell_Net.dsArtikel()
         Me.ZahlungsbedungungComboBox = New System.Windows.Forms.ComboBox()
         Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
-        Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
-        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.WaehrungComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.DataGridViewTextBoxColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnNummer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnTyp = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnStk = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ArtNrComboBox = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.DataGridViewTextBoxColumnArtNr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnBezeichnung = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnPreisNetto = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -110,6 +112,8 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
+        Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -136,6 +140,8 @@ Partial Class Vorgang
         Me.BuchvorgangBindingNavigator.SuspendLayout()
         CType(Me.Buchvorgang_artikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Buchvorgang_artikelDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -525,8 +531,10 @@ Partial Class Vorgang
         Me.SummeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Summe", True))
         Me.SummeTextBox.Location = New System.Drawing.Point(123, 181)
         Me.SummeTextBox.Name = "SummeTextBox"
+        Me.SummeTextBox.ReadOnly = True
         Me.SummeTextBox.Size = New System.Drawing.Size(131, 20)
         Me.SummeTextBox.TabIndex = 16
+        Me.SummeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'BezahltCheckBox
         '
@@ -588,16 +596,20 @@ Partial Class Vorgang
         Me.SummeMWSTTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeMWST", True))
         Me.SummeMWSTTextBox.Location = New System.Drawing.Point(123, 207)
         Me.SummeMWSTTextBox.Name = "SummeMWSTTextBox"
+        Me.SummeMWSTTextBox.ReadOnly = True
         Me.SummeMWSTTextBox.Size = New System.Drawing.Size(131, 20)
         Me.SummeMWSTTextBox.TabIndex = 36
+        Me.SummeMWSTTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'SummeBruttoTextBox
         '
         Me.SummeBruttoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeBrutto", True))
         Me.SummeBruttoTextBox.Location = New System.Drawing.Point(123, 233)
         Me.SummeBruttoTextBox.Name = "SummeBruttoTextBox"
+        Me.SummeBruttoTextBox.ReadOnly = True
         Me.SummeBruttoTextBox.Size = New System.Drawing.Size(131, 20)
         Me.SummeBruttoTextBox.TabIndex = 38
+        Me.SummeBruttoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LieferantNrComboBox
         '
@@ -626,12 +638,22 @@ Partial Class Vorgang
         '
         Me.Buchvorgang_artikelDataGridView.AutoGenerateColumns = False
         Me.Buchvorgang_artikelDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Buchvorgang_artikelDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnID, Me.DataGridViewTextBoxColumnNummer, Me.DataGridViewTextBoxColumnTyp, Me.DataGridViewTextBoxColumnStk, Me.DataGridViewTextBoxColumnArtNr, Me.DataGridViewTextBoxColumnBezeichnung, Me.DataGridViewTextBoxColumnPreisNetto, Me.DataGridViewTextBoxColumnPreisBrutto, Me.DataGridViewTextBoxColumnMWST, Me.DataGridViewTextBoxColumnEKPreis, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20})
+        Me.Buchvorgang_artikelDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnID, Me.DataGridViewTextBoxColumnNummer, Me.DataGridViewTextBoxColumnTyp, Me.DataGridViewTextBoxColumnStk, Me.ArtNrComboBox, Me.DataGridViewTextBoxColumnArtNr, Me.DataGridViewTextBoxColumnBezeichnung, Me.DataGridViewTextBoxColumnPreisNetto, Me.DataGridViewTextBoxColumnPreisBrutto, Me.DataGridViewTextBoxColumnMWST, Me.DataGridViewTextBoxColumnEKPreis, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20})
         Me.Buchvorgang_artikelDataGridView.DataSource = Me.Buchvorgang_artikelBindingSource
         Me.Buchvorgang_artikelDataGridView.Location = New System.Drawing.Point(12, 381)
         Me.Buchvorgang_artikelDataGridView.Name = "Buchvorgang_artikelDataGridView"
         Me.Buchvorgang_artikelDataGridView.Size = New System.Drawing.Size(1018, 295)
         Me.Buchvorgang_artikelDataGridView.TabIndex = 49
+        '
+        'GrArtikellisteBindingSource
+        '
+        Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
+        Me.GrArtikellisteBindingSource.DataSource = Me.DsArtikel
+        '
+        'DsArtikel
+        '
+        Me.DsArtikel.DataSetName = "dsArtikel"
+        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'ZahlungsbedungungComboBox
         '
@@ -659,24 +681,6 @@ Partial Class Vorgang
         Me.ZahlungsMethodeComboBox.Name = "ZahlungsMethodeComboBox"
         Me.ZahlungsMethodeComboBox.Size = New System.Drawing.Size(200, 21)
         Me.ZahlungsMethodeComboBox.TabIndex = 52
-        '
-        'KundNrAdressenControl
-        '
-        Me.KundNrAdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
-        Me.KundNrAdressenControl.IDNR = 0
-        Me.KundNrAdressenControl.Location = New System.Drawing.Point(123, 110)
-        Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
-        Me.KundNrAdressenControl.TabIndex = 53
-        '
-        'KundNr2AdressenControl
-        '
-        Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
-        Me.KundNr2AdressenControl.IDNR = 0
-        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(123, 141)
-        Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
-        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
-        Me.KundNr2AdressenControl.TabIndex = 54
         '
         'TabControl1
         '
@@ -742,6 +746,10 @@ Partial Class Vorgang
         Me.WaehrungComboBox.Size = New System.Drawing.Size(131, 21)
         Me.WaehrungComboBox.TabIndex = 53
         '
+        'GrArtikellisteTableAdapter
+        '
+        Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
+        '
         'DataGridViewTextBoxColumnID
         '
         Me.DataGridViewTextBoxColumnID.DataPropertyName = "ID"
@@ -768,11 +776,21 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumnStk.HeaderText = "Stk"
         Me.DataGridViewTextBoxColumnStk.Name = "DataGridViewTextBoxColumnStk"
         '
+        'ArtNrComboBox
+        '
+        Me.ArtNrComboBox.DataPropertyName = "ArtNr"
+        Me.ArtNrComboBox.DataSource = Me.GrArtikellisteBindingSource
+        Me.ArtNrComboBox.DisplayMember = "EAN"
+        Me.ArtNrComboBox.HeaderText = "Artikel"
+        Me.ArtNrComboBox.Name = "ArtNrComboBox"
+        Me.ArtNrComboBox.ValueMember = "ArtNr"
+        '
         'DataGridViewTextBoxColumnArtNr
         '
         Me.DataGridViewTextBoxColumnArtNr.DataPropertyName = "ArtNr"
         Me.DataGridViewTextBoxColumnArtNr.HeaderText = "ArtNr"
         Me.DataGridViewTextBoxColumnArtNr.Name = "DataGridViewTextBoxColumnArtNr"
+        Me.DataGridViewTextBoxColumnArtNr.Visible = False
         '
         'DataGridViewTextBoxColumnBezeichnung
         '
@@ -874,6 +892,24 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.Visible = False
         '
+        'KundNr2AdressenControl
+        '
+        Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
+        Me.KundNr2AdressenControl.IDNR = 0
+        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(123, 141)
+        Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
+        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNr2AdressenControl.TabIndex = 54
+        '
+        'KundNrAdressenControl
+        '
+        Me.KundNrAdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
+        Me.KundNrAdressenControl.IDNR = 0
+        Me.KundNrAdressenControl.Location = New System.Drawing.Point(123, 110)
+        Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNrAdressenControl.TabIndex = 53
+        '
         'Vorgang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -909,6 +945,8 @@ Partial Class Vorgang
         Me.BuchvorgangBindingNavigator.PerformLayout()
         CType(Me.Buchvorgang_artikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Buchvorgang_artikelDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -964,10 +1002,14 @@ Partial Class Vorgang
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents WaehrungComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents DsArtikel As IntraSell_Net.dsArtikel
+    Friend WithEvents GrArtikellisteBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents GrArtikellisteTableAdapter As IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter
     Friend WithEvents DataGridViewTextBoxColumnID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnNummer As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnTyp As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnStk As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ArtNrComboBox As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnArtNr As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnBezeichnung As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnPreisNetto As System.Windows.Forms.DataGridViewTextBoxColumn

@@ -302,8 +302,7 @@ Module ModuleBuchVorgang
                 SummeMWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
 
                 If isFormOpenByCaption(formCaption) Then
-                    Dim frm As Vorgang
-                    frm = Functions.getFormByCaption(formCaption)
+                    Dim frm As Vorgang = Functions.getFormByCaption(formCaption)
 
                     If frm.summeNetto <> rs("Summe") Or IsNull(frm.summeNetto) Then
                         frm.summeNetto = rs("Summe")
