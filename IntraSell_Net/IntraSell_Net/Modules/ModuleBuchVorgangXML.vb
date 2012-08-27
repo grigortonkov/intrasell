@@ -14,8 +14,9 @@ Module ModuleBuchVorgangXML
     ' Generates new MS Wor File using XML2WORD
     ' Viewer = WORD,  OUTLOOK or PDF
     ' Returns the filename of the XML File
-    Function OpenAusdruck_inWord_XML(ByVal VorgangNummer As Long, _
+    Function OpenAusdruck_inWord_XML( _
                                 ByVal VorgangTyp As String, _
+                                ByVal VorgangNummer As Long, _
                                 ByVal VorlageFilename As String, _
                                 ByVal Viewer As String, _
                                 ByVal SofortSenden As Boolean, _

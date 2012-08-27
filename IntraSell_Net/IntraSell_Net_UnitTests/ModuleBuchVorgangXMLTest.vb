@@ -95,7 +95,7 @@ Public Class ModuleBuchVorgangXMLTest
 
         Dim expected As String = "c:\Vorgang_AR1.doc" ' TODO: Initialize to an appropriate value
         Dim actual As String
-        actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangNummer, VorgangTyp, VorlageFilename, Viewer, SofortSenden, MailText)
+        actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangTyp, VorgangNummer, VorlageFilename, Viewer, SofortSenden, MailText)
 
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")

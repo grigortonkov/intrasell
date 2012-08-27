@@ -85,31 +85,34 @@ Public Class IntraSellPreise
 
         If rs.Read Then
 
+            Dim vkpreis As Double = 0 : If Not rs.IsDBNull(0) Then vkpreis = CDbl(rs("vkpreis"))
+            Dim aufschlagvkpreis As Double = 0 : If Not rs.IsDBNull(1) Then aufschlagvkpreis = CDbl(rs("aufschlagvkpreis"))
+            Dim aufschlagekpreis As Double = 0 : If Not rs.IsDBNull(2) Then aufschlagekpreis = CDbl(rs("aufschlagekpreis"))
+            rs.Close()
             'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
             getPreis = basisVKPreis
 
-            If Not rs.IsDBNull(0) Then
-                If CDbl(rs("vkpreis")) > 0 Then
-                    getPreis = CDbl(rs("vkpreis"))
-                    Exit Function
-                End If
+
+            If (vkpreis) > 0 Then
+                getPreis = (vkpreis)
+                rs.Close()
+                Exit Function
+            End If
+ 
+            If (aufschlagvkpreis) <> 0 Then
+                getPreis = (aufschlagvkpreis + 1) * getBasisVKPreis(ArtNr)
+                Exit Function
+            End If
+ 
+            If (aufschlagekpreis) <> 0 Then
+                getPreis = (aufschlagekpreis + 1) * getEKPreis(ArtNr)
+                Exit Function
             End If
 
-            If Not rs.IsDBNull(1) Then
-                If CDbl(rs("aufschlagvkpreis")) <> 0 Then
-                    getPreis = (CDbl(rs("aufschlagvkpreis")) + 1) * getBasisVKPreis(ArtNr)
-                    Exit Function
-                End If
-            End If
-
-            If Not rs.IsDBNull(2) Then
-                If CDbl(rs("aufschlagekpreis")) <> 0 Then
-                    getPreis = (CDbl(rs("aufschlagekpreis")) + 1) * getEKPreis(ArtNr)
-                    Exit Function
-                End If
-            End If
+        Else
+            rs.Close()
         End If
-        rs.Close()
+
         rs = Nothing
     End Function
 
@@ -241,7 +244,7 @@ Public Class IntraSellPreise
         If ArtNr & "" = "" Then Exit Function
         Dim sql As String, rs As MySqlDataReader
         sql = "select EKPreis from `lieferantenArtikel-Preise` " & _
-              " where ekpreis>0 and artikelnr=" & ArtNr & _
+              " where ekpreis > 0 and artikelnr=" & ArtNr & _
               " ORDER BY Prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
         makeEKPreisVonLieferant = 0
@@ -264,7 +267,7 @@ Public Class IntraSellPreise
         sql = "select artikelnr, LieferantNr, EKPreis from `lieferantenArtikel-Preise` " & _
               " where artikelnr=" & ArtNr & " ORDER BY prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
-        getBestLieferant = "n/a"
+        getBestLieferant = NOT_AVAILABLE
         If rs.Read Then
             sql = "select Firma from lieferantenAdressen where idnr=" & CStr(rs("LieferantNr"))
             rs = openRecordset_(sql, dbOpenDynaset)
@@ -295,7 +298,7 @@ Public Class IntraSellPreise
         sql = "select artikelnr, Lagerinfo from `lieferantenArtikel-Preise` " & _
               " where artikelnr=" & ArtNr & " ORDER BY prioritaet, EKPreis"
         rs = openRecordset_(sql, dbOpenDynaset)
-        getLieferantLagerInfo = "n/a"
+        getLieferantLagerInfo = NOT_AVAILABLE
 
         If rs.Read Then
             getLieferantLagerInfo = CStr(rs("Lagerinfo"))
