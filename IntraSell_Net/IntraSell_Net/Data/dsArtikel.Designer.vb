@@ -1331,14 +1331,20 @@ Partial Public Class dsArtikel
             Me.columnBezeichnung1.MaxLength = 50
             Me.columnEinheit.MaxLength = 50
             Me.columnLagerArtikel.AllowDBNull = false
+            Me.columnLagerArtikel.DefaultValue = CType(true,Boolean)
             Me.columnSeriennummer.AllowDBNull = false
+            Me.columnSeriennummer.DefaultValue = CType(false,Boolean)
             Me.columnSetArtikel.AllowDBNull = false
+            Me.columnSetArtikel.DefaultValue = CType(false,Boolean)
             Me.columnGewicht.MaxLength = 10
             Me.columnPicture.MaxLength = 255
             Me.columnProduktAktiv.AllowDBNull = false
+            Me.columnProduktAktiv.DefaultValue = CType(true,Boolean)
             Me.columnModifikationen.MaxLength = 255
             Me.columnHerstellerRabattText.MaxLength = 50
             Me.columnNichtBestellbar.AllowDBNull = false
+            Me.columnNichtBestellbar.DefaultValue = CType(false,Boolean)
+            Me.columnProduktAktivOnline.DefaultValue = CType(CSByte(0),SByte)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10198,282 +10204,282 @@ Namespace dsArtikelTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM grartikel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (ArtNr = @Original_ArtNr)"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (ArtNr = @Original_ArtNr)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtNr"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `grartikel` (`ArtNr`, `EAN`, `Barcode`, `Bezeichnung`, `Bezeichnung1`" & _
-                ", `Beschreibung`, `Einheit`, `PreisATS`, `PreisEuro`, `PreisATS_Brutto`, `LagerA" & _
-                "rtikel`, `EKPreis`, `LEKPreis`, `Seriennummer`, `LieferantNR`, `SetArtikel`, `Ar" & _
-                "tKatNr`, `MWST`, `Gewicht`, `Picture`, `HerstellerNr`, `ProduktAktiv`, `ShopURL`" & _
-                ", `HerstellerURL`, `Modifikationen`, `HerstellerRabatt`, `HerstellerRabattText`," & _
-                " `AngelegtAn`, `BruttoGewicht`, `NettoGewicht`, `TaraGewicht`, `AngelegtAm`, `Ni" & _
-                "chtBestellbar`, `ProduktAktivOnline`) VALUES (@ArtNr, @EAN, @Barcode, @Bezeichnu" & _
-                "ng, @Bezeichnung1, @Beschreibung, @Einheit, @PreisATS, @PreisEuro, @PreisATS_Bru" & _
-                "tto, @LagerArtikel, @EKPreis, @LEKPreis, @Seriennummer, @LieferantNR, @SetArtike" & _
-                "l, @ArtKatNr, @MWST, @Gewicht, @Picture, @HerstellerNr, @ProduktAktiv, @ShopURL," & _
-                " @HerstellerURL, @Modifikationen, @HerstellerRabatt, @HerstellerRabattText, @Ang" & _
-                "elegtAn, @BruttoGewicht, @NettoGewicht, @TaraGewicht, @AngelegtAm, @NichtBestell" & _
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `grartikel` (`ArtNr`, `EAN`, `Barcode`, `Bezeichnung`, `Bezeichnung1`"& _ 
+                ", `Beschreibung`, `Einheit`, `PreisATS`, `PreisEuro`, `PreisATS_Brutto`, `LagerA"& _ 
+                "rtikel`, `EKPreis`, `LEKPreis`, `Seriennummer`, `LieferantNR`, `SetArtikel`, `Ar"& _ 
+                "tKatNr`, `MWST`, `Gewicht`, `Picture`, `HerstellerNr`, `ProduktAktiv`, `ShopURL`"& _ 
+                ", `HerstellerURL`, `Modifikationen`, `HerstellerRabatt`, `HerstellerRabattText`,"& _ 
+                " `AngelegtAn`, `BruttoGewicht`, `NettoGewicht`, `TaraGewicht`, `AngelegtAm`, `Ni"& _ 
+                "chtBestellbar`, `ProduktAktivOnline`) VALUES (@ArtNr, @EAN, @Barcode, @Bezeichnu"& _ 
+                "ng, @Bezeichnung1, @Beschreibung, @Einheit, @PreisATS, @PreisEuro, @PreisATS_Bru"& _ 
+                "tto, @LagerArtikel, @EKPreis, @LEKPreis, @Seriennummer, @LieferantNR, @SetArtike"& _ 
+                "l, @ArtKatNr, @MWST, @Gewicht, @Picture, @HerstellerNr, @ProduktAktiv, @ShopURL,"& _ 
+                " @HerstellerURL, @Modifikationen, @HerstellerRabatt, @HerstellerRabattText, @Ang"& _ 
+                "elegtAn, @BruttoGewicht, @NettoGewicht, @TaraGewicht, @AngelegtAm, @NichtBestell"& _ 
                 "bar, @ProduktAktivOnline)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EAN"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EAN"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Barcode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Barcode"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezeichnung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezeichnung1"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung1"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Beschreibung"
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Beschreibung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Einheit"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Einheit"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisEuro"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisEuro"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS_Brutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS_Brutto"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LagerArtikel"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LagerArtikel"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EKPreis"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LEKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LEKPreis"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Seriennummer"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Seriennummer"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNR"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LieferantNR"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SetArtikel"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "SetArtikel"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtKatNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtKatNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MWST"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "MWST"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Gewicht"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Gewicht"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Picture"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Picture"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ProduktAktiv"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktiv"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ShopURL"
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ShopURL"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerURL"
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Text
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerURL"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Modifikationen"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Modifikationen"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerRabatt"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabatt"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerRabattText"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabattText"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAn"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAn"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@BruttoGewicht"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "BruttoGewicht"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NettoGewicht"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NettoGewicht"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TaraGewicht"
             param.DbType = Global.System.Data.DbType.[Double]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "TaraGewicht"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAm"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAm"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NichtBestellbar"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NichtBestellbar"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ProduktAktivOnline"
             param.DbType = Global.System.Data.DbType.[SByte]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktivOnline"
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE       grartikel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                EAN = @EAN, Barcode = @Barcode, Bezeic" & _
-                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung" & _
-                ", Einheit = @Einheit, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PreisATS = @PreisATS, PreisEuro" & _
-                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel," & _
-                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Seriennumm" & _
-                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat" & _
-                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Pic" & _
-                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho" & _
-                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Modi" & _
-                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa" & _
-                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                  " & _
-                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht" & _
-                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         ProduktAktivOnline = @ProduktAktivOnline" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE       " & _
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                EAN = @EAN, Barcode = @Barcode, Bezeic"& _ 
+                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung"& _ 
+                ", Einheit = @Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PreisATS = @PreisATS, PreisEuro"& _ 
+                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel,"& _ 
+                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Seriennumm"& _ 
+                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat"& _ 
+                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pic"& _ 
+                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho"& _ 
+                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Modi"& _ 
+                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa"& _ 
+                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht"& _ 
+                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline = @ProduktAktivOnline"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
                 " (ArtNr = @Original_ArtNr)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10481,7 +10487,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EAN"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10489,7 +10495,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Barcode"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10497,7 +10503,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10505,7 +10511,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung1"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10513,7 +10519,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Beschreibung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10521,28 +10527,28 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Einheit"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisEuro"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisEuro"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS_Brutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS_Brutto"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10550,21 +10556,21 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LagerArtikel"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EKPreis"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LEKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LEKPreis"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10572,14 +10578,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Seriennummer"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNR"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LieferantNR"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10587,21 +10593,21 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "SetArtikel"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtKatNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtKatNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MWST"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "MWST"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10609,7 +10615,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 10
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Gewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10617,14 +10623,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Picture"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10632,7 +10638,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktiv"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10640,7 +10646,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ShopURL"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10648,7 +10654,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerURL"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10656,14 +10662,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Modifikationen"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerRabatt"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabatt"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10671,42 +10677,42 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabattText"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAn"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAn"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@BruttoGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "BruttoGewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NettoGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NettoGewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TaraGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "TaraGewicht"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAm"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAm"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10714,7 +10720,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NichtBestellbar"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10722,55 +10728,55 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktivOnline"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtNr"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
             Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
         End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `ArtNr`, `EAN`, `Barcode`, `Bezeichnung`, `Bezeichnung1`, `Beschreibung`, " & _
-                "`Einheit`, `PreisATS`, `PreisEuro`, `PreisATS_Brutto`, `LagerArtikel`, `EKPreis`" & _
-                ", `LEKPreis`, `Seriennummer`, `LieferantNR`, `SetArtikel`, `ArtKatNr`, `MWST`, `" & _
-                "Gewicht`, `Picture`, `HerstellerNr`, `ProduktAktiv`, `ShopURL`, `HerstellerURL`," & _
-                " `Modifikationen`, `HerstellerRabatt`, `HerstellerRabattText`, `AngelegtAn`, `Br" & _
-                "uttoGewicht`, `NettoGewicht`, `TaraGewicht`, `AngelegtAm`, `NichtBestellbar`, `P" & _
+            Me._commandCollection(0).CommandText = "SELECT `ArtNr`, `EAN`, `Barcode`, `Bezeichnung`, `Bezeichnung1`, `Beschreibung`, "& _ 
+                "`Einheit`, `PreisATS`, `PreisEuro`, `PreisATS_Brutto`, `LagerArtikel`, `EKPreis`"& _ 
+                ", `LEKPreis`, `Seriennummer`, `LieferantNR`, `SetArtikel`, `ArtKatNr`, `MWST`, `"& _ 
+                "Gewicht`, `Picture`, `HerstellerNr`, `ProduktAktiv`, `ShopURL`, `HerstellerURL`,"& _ 
+                " `Modifikationen`, `HerstellerRabatt`, `HerstellerRabattText`, `AngelegtAn`, `Br"& _ 
+                "uttoGewicht`, `NettoGewicht`, `TaraGewicht`, `AngelegtAm`, `NichtBestellbar`, `P"& _ 
                 "roduktAktivOnline` FROM `grartikel`"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE       grartikel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                EAN = @EAN, Barcode = @Barcode, Bezeic" & _
-                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung" & _
-                ", Einheit = @Einheit, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PreisATS = @PreisATS, PreisEuro" & _
-                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel," & _
-                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Seriennumm" & _
-                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat" & _
-                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Pic" & _
-                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho" & _
-                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Modi" & _
-                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa" & _
-                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                  " & _
-                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht" & _
-                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         ProduktAktivOnline = @ProduktAktivOnline" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE       " & _
+            Me._commandCollection(1).CommandText = "UPDATE       grartikel"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                EAN = @EAN, Barcode = @Barcode, Bezeic"& _ 
+                "hnung = @Bezeichnung, Bezeichnung1 = @Bezeichnung1, Beschreibung = @Beschreibung"& _ 
+                ", Einheit = @Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PreisATS = @PreisATS, PreisEuro"& _ 
+                " = @PreisEuro, PreisATS_Brutto = @PreisATS_Brutto, LagerArtikel = @LagerArtikel,"& _ 
+                " EKPreis = @EKPreis, LEKPreis = @LEKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Seriennumm"& _ 
+                "er = @Seriennummer, LieferantNR = @LieferantNR, SetArtikel = @SetArtikel, ArtKat"& _ 
+                "Nr = @ArtKatNr, MWST = @MWST, Gewicht = @Gewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Pic"& _ 
+                "ture = @Picture, HerstellerNr = @HerstellerNr, ProduktAktiv = @ProduktAktiv, Sho"& _ 
+                "pURL = @ShopURL, HerstellerURL = @HerstellerURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Modi"& _ 
+                "fikationen = @Modifikationen, HerstellerRabatt = @HerstellerRabatt, HerstellerRa"& _ 
+                "battText = @HerstellerRabattText, AngelegtAn = @AngelegtAn, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       BruttoGewicht = @BruttoGewicht, NettoGewicht = @NettoGewicht, TaraGewicht"& _ 
+                " = @TaraGewicht, AngelegtAm = @AngelegtAm, NichtBestellbar = @NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ProduktAktivOnline = @ProduktAktivOnline"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
                 " (ArtNr = @Original_ArtNr)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10778,7 +10784,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EAN"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10786,7 +10792,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Barcode"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10794,7 +10800,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10802,7 +10808,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Bezeichnung1"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10810,7 +10816,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Beschreibung"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10818,28 +10824,28 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Einheit"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisEuro"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisEuro"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PreisATS_Brutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "PreisATS_Brutto"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10847,21 +10853,21 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LagerArtikel"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "EKPreis"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LEKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LEKPreis"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10869,14 +10875,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Seriennummer"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNR"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "LieferantNR"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10884,21 +10890,21 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "SetArtikel"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtKatNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtKatNr"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MWST"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "MWST"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10906,7 +10912,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 10
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Gewicht"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10914,14 +10920,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Picture"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerNr"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10929,7 +10935,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktiv"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10937,7 +10943,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ShopURL"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10945,7 +10951,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerURL"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10953,14 +10959,14 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "Modifikationen"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@HerstellerRabatt"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabatt"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -10968,42 +10974,42 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "HerstellerRabattText"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAn"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAn"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@BruttoGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "BruttoGewicht"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NettoGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NettoGewicht"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TaraGewicht"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "TaraGewicht"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AngelegtAm"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "AngelegtAm"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -11011,7 +11017,7 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "NichtBestellbar"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -11019,88 +11025,88 @@ Namespace dsArtikelTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ProduktAktivOnline"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = True
+            param.IsNullable = true
             param.SourceColumn = "ArtNr"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(1).Parameters.Add(param)
         End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
-        Public Overridable Overloads Function Fill(ByVal dataTable As dsArtikel.grartikelDataTable) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsArtikel.grartikelDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = True) Then
-                dataTable.Clear()
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
-        Public Overridable Overloads Function GetData() As dsArtikel.grartikelDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As dsArtikel.grartikelDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
-        Public Overridable Overloads Function Update(ByVal dataTable As dsArtikel.grartikelDataTable) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As dsArtikel.grartikelDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
-        Public Overridable Overloads Function Update(ByVal dataSet As dsArtikel) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As dsArtikel) As Integer
             Return Me.Adapter.Update(dataSet, "grartikel")
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
-        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
-        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
-        Public Overridable Overloads Function Delete(ByVal Original_ArtNr As Integer) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ArtNr, Integer)
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_ArtNr As Integer) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ArtNr,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open()
+                Me.Adapter.DeleteCommand.Connection.Open
             End If
-            Try
+            Try 
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close()
+                    Me.Adapter.DeleteCommand.Connection.Close
                 End If
             End Try
         End Function

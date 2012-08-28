@@ -682,9 +682,9 @@ WHERE        (ID = @Original_ID)</CommandText>
                     <CommandText>SELECT        ofadressen.IDNR, ofadressen.Name, ofadressen.Vorname, ofadressen.Firma, ofadressen.Adresse, grland.Name AS Land, grplz.PLZ, grplz.Ort, 
                          `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste
 FROM            ofadressen INNER JOIN
-                         `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR INNER JOIN
                          grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr INNER JOIN
-                         grland ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr
+                         grland ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr LEFT OUTER JOIN
+                         `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR
 ORDER BY ofadressen.IDNR</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -1284,23 +1284,23 @@ ORDER BY ofadressen.IDNR</CommandText>
       <xs:selector xpath=".//mstns:ofAdressenliste" />
       <xs:field xpath="mstns:IDNR" />
     </xs:unique>
-    <xs:keyref name="ofAdressen_ofadressen-zahlungsmethoden" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-zahlungsmethoden" msprop:rel_Generator_ChildPropName="_Getofadressen_zahlungsmethodenRows" msprop:rel_Generator_UserParentTable="ofAdressen" msprop:rel_Generator_UserRelationName="ofAdressen_ofadressen-zahlungsmethoden" msprop:rel_Generator_RelationVarName="_relationofAdressen_ofadressen_zahlungsmethoden" msprop:rel_Generator_ParentPropName="ofAdressenRow" msdata:UpdateRule="None" msdata:DeleteRule="None">
+    <xs:keyref name="ofAdressen_ofadressen-zahlungsmethoden" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-zahlungsmethoden" msprop:rel_Generator_ChildPropName="_Getofadressen_zahlungsmethodenRows" msprop:rel_Generator_ParentPropName="ofAdressenRow" msprop:rel_Generator_UserRelationName="ofAdressen_ofadressen-zahlungsmethoden" msprop:rel_Generator_RelationVarName="_relationofAdressen_ofadressen_zahlungsmethoden" msprop:rel_Generator_UserParentTable="ofAdressen" msdata:UpdateRule="None" msdata:DeleteRule="None">
       <xs:selector xpath=".//mstns:ofadressen-zahlungsmethoden" />
       <xs:field xpath="mstns:IdNr" />
     </xs:keyref>
-    <xs:keyref name="FK_ofAdressen_ofadressen-zahlungsbedingungen" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-zahlungsbedingungen" msprop:rel_Generator_ChildPropName="_Getofadressen_zahlungsbedingungenRows" msprop:rel_Generator_UserParentTable="ofAdressen" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-zahlungsbedingungen" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_zahlungsbedingungen" msprop:rel_Generator_ParentPropName="ofAdressenRow">
+    <xs:keyref name="FK_ofAdressen_ofadressen-zahlungsbedingungen" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-zahlungsbedingungen" msprop:rel_Generator_ChildPropName="_Getofadressen_zahlungsbedingungenRows" msprop:rel_Generator_ParentPropName="ofAdressenRow" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-zahlungsbedingungen" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_zahlungsbedingungen" msprop:rel_Generator_UserParentTable="ofAdressen">
       <xs:selector xpath=".//mstns:ofadressen-zahlungsbedingungen" />
       <xs:field xpath="mstns:IdNr" />
     </xs:keyref>
-    <xs:keyref name="FK_ofAdressen_ofadressen-transportmethoden" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-transportmethoden" msprop:rel_Generator_ChildPropName="_Getofadressen_transportmethodenRows" msprop:rel_Generator_UserParentTable="ofAdressen" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-transportmethoden" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_transportmethoden" msprop:rel_Generator_ParentPropName="ofAdressenRow">
+    <xs:keyref name="FK_ofAdressen_ofadressen-transportmethoden" refer="Constraint1" msprop:rel_Generator_UserChildTable="ofadressen-transportmethoden" msprop:rel_Generator_ChildPropName="_Getofadressen_transportmethodenRows" msprop:rel_Generator_ParentPropName="ofAdressenRow" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-transportmethoden" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_transportmethoden" msprop:rel_Generator_UserParentTable="ofAdressen">
       <xs:selector xpath=".//mstns:ofadressen-transportmethoden" />
       <xs:field xpath="mstns:IdNr" />
     </xs:keyref>
-    <xs:keyref name="FK_ofAdressen_ofadressen-weitere" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="ofadressen-weitere" msprop:rel_Generator_ChildPropName="_Getofadressen_weitereRows" msprop:rel_Generator_UserParentTable="ofAdressen" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-weitere" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_weitere" msprop:rel_Generator_ParentPropName="ofAdressenRow">
+    <xs:keyref name="FK_ofAdressen_ofadressen-weitere" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="ofadressen-weitere" msprop:rel_Generator_ChildPropName="_Getofadressen_weitereRows" msprop:rel_Generator_ParentPropName="ofAdressenRow" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-weitere" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_weitere" msprop:rel_Generator_UserParentTable="ofAdressen">
       <xs:selector xpath=".//mstns:ofadressen-weitere" />
       <xs:field xpath="mstns:IDNR" />
     </xs:keyref>
-    <xs:keyref name="FK_ofAdressen_ofadressen-settings" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="ofadressen-settings" msprop:rel_Generator_ChildPropName="_Getofadressen_settingsRows" msprop:rel_Generator_UserParentTable="ofAdressen" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-settings" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_settings" msprop:rel_Generator_ParentPropName="ofAdressenRow">
+    <xs:keyref name="FK_ofAdressen_ofadressen-settings" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="ofadressen-settings" msprop:rel_Generator_ChildPropName="_Getofadressen_settingsRows" msprop:rel_Generator_ParentPropName="ofAdressenRow" msprop:rel_Generator_UserRelationName="FK_ofAdressen_ofadressen-settings" msprop:rel_Generator_RelationVarName="_relationFK_ofAdressen_ofadressen_settings" msprop:rel_Generator_UserParentTable="ofAdressen">
       <xs:selector xpath=".//mstns:ofadressen-settings" />
       <xs:field xpath="mstns:IDNR" />
     </xs:keyref>
