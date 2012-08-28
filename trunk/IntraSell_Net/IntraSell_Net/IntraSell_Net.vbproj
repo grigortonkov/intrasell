@@ -109,6 +109,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsEinstellungen.vb">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsVorgaenge.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,12 +212,6 @@
       <DependentUpon>Setup.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Infrastructure\Setup.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Kunden\FormKunden.Designer.vb">
-      <DependentUpon>FormKunden.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Kunden\FormKunden.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Kunden\Kunden.Designer.vb">
@@ -332,9 +329,6 @@
     <EmbeddedResource Include="Forms\Infrastructure\Setup.resx">
       <DependentUpon>Setup.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Kunden\FormKunden.resx">
-      <DependentUpon>FormKunden.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden\Kunden.resx">
       <DependentUpon>Kunden.vb</DependentUpon>
     </EmbeddedResource>
@@ -434,9 +428,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Vorlagen\1. ANFRAGE.dot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Vorlagen\1. ANFRAGEN.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Vorlagen\10. Checklist für Verladungen.dot">

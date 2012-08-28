@@ -55,16 +55,6 @@ Public Class Main
         f.Show()
     End Sub
 
-    Private Sub FormKundenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormKundenToolStripMenuItem.Click
-        Try
-            Dim f As FormKunden = New FormKunden
-            f.MdiParent = Me
-            f.Show()
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-    End Sub
-
     Private Sub VorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangToolStripMenuItem.Click
         Try
             Vorgang.MdiParent = Me
