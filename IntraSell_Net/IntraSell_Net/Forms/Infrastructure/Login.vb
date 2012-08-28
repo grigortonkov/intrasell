@@ -23,6 +23,22 @@ Public Class Login
     End Sub
 
     Private Sub Login_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'hide login window if no user in db with pwd 
+        Dim rs As MySql.Data.MySqlClient.MySqlDataReader
+        rs = openRecordset("select distinct passwort p from ofMitarbeiter")
+        If rs.Read Then
+            If rs.IsDBNull("p") Then
+                writeLog("Weiter ohne Anmedlung ...")
+                rs.Close()
+                Me.Close()
+            End If
+        Else
+            writeLog("Weiter ohne Anmedlung ...")
+            rs.Close()
+            Me.Close()
+        End If
+        rs.Close()
+
         'Load last User name 
         'load zuletzt angemeldeter benutzer
         readLastUsername()
