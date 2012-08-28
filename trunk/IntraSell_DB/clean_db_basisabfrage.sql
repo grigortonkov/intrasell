@@ -1,0 +1,3 @@
+select concat ('DELETE FROM intrasell_daten_2.`', table_name, '`;') from information_schema.tables where table_schema like 'intrasell%'
+and table_name not in ('addins','buchvorgaengeausdrucke', 'buchvorgaengestatus', 'buchvorgangeigenschaft', 'buchvorgangtyp', 'granrede', 'grartikel-lagerort', 'grblz', 'grservices', 'grPLZ', 'grLAND',
+ 'grtransportmethode', 'grwaehrung', 'grzahlungsbedingung', 'grzahlungsmethode', 'language', 'ofdictionarysets', 'ofdictionary', 'ofvars', 'treeviewtable', 'treecats', 'webadminmenu', 'webfaq');
