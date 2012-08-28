@@ -13309,12 +13309,12 @@ Namespace dsAdressenTableAdapters
             Me._commandCollection(0).CommandText = "SELECT        ofadressen.IDNR, ofadressen.Name, ofadressen.Vorname, ofadressen.Fi"& _ 
                 "rma, ofadressen.Adresse, grland.Name AS Land, grplz.PLZ, grplz.Ort, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisli"& _ 
-                "ste"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ofadressen INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `ofadressen"& _ 
-                "-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz."& _ 
-                "IdNr INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grland ON ofadressen.Land = grland.IdN"& _ 
-                "r AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY "& _ 
-                "ofadressen.IDNR"
+                "ste"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ofadressen INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz ON of"& _ 
+                "adressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               grland ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grl"& _ 
+                "and.IdNr AND ofadressen.Land = grland.IdNr LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDE"& _ 
+                "R BY ofadressen.IDNR"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
