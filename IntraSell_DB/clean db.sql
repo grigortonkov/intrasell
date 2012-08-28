@@ -13,11 +13,12 @@ DELETE FROM   tradeboardkundenanfrage ;
 DELETE FROM   tradeboardkundenanfrage ;
 DELETE FROM   tradeboardlieferantenanfrageartikel ;
 DELETE FROM   tradeboardlieferantenanfrage ;
+DELETE FROM   tradeboardgeschaeft ;
 
 DELETE FROM   tradeboardlieferantenangebot ;
 DELETE FROM   tradeboardlieferantenangebotfoto ;
 DELETE FROM   transportanfrage ;
-
+DELETE FROM   transportauftrag ;
 
 
 DELETE FROM `buchauftrag-artikel`;
@@ -35,6 +36,10 @@ DELETE FROM buchlieferschein;
 
 DELETE FROM `buchlieferantAuftrag-artikel`;
 DELETE FROM buchlieferantAuftrag;
+
+DELETE FROM `buchVorgang-artikel`;
+DELETE FROM buchVorgang;
+
 
 
 DELETE FROM  buchvorgaengeausdruckelog;
@@ -66,4 +71,3 @@ DELETE FROM   ofmitarbeiter where IDNR > 2;
 DELETE FROM   lieferantenadressen where IdNr > 5;
 DELETE FROM   ofadressen where Idnr > 1;
 DELETE FROM   grartikel where ArtNr > 10;
-DELETE FROM   grplz;
