@@ -15,10 +15,10 @@ Module ModuleUpdate
     Const MSG_UPDATE_COMPLETE As String = "Upgrade ist fertig. Nun konnen Sie mit Ihrer Arbeit fortfahren."
     Const MSG_UPTODATE As String = "Zur Zeit gibt es keine Aktualiserungen."
 
-    'Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/files/update.txt" 'From Downloads
-    Const INTRASELL_UPDATE As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update.txt" ' From SVN
+
+    Const INTRASELL_UPDATE As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/updateNet.txt" ' From SVN
     Const INTRASELL_UPDATE_DLL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/Unzip32.dll" ' From SVN
-    Const INTRASELL_BASE_URL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/"
+    Const INTRASELL_BASE_URL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/"
     Public Const INTRASELL_MYSQL_BINARIES As String = "http://intrasell.googlecode.com/svn/trunk/IntraSell_Net/MySql/MySQL Server 5.1.zip" ' From SVN
 
     Private Const ERROR_SUCCESS As Long = 0
@@ -86,7 +86,8 @@ Module ModuleUpdate
 
     'Update IntraSell 
     'Download update.txt, parse the files do download andd update them 
-    Public Sub UpdateIntraSell(silentMode As Boolean)
+    Public Function UpdateIntraSell(silentMode As Boolean) As Boolean 'Return True if Update OK 
+        UpdateIntraSell = False
 
         Dim updateTxtlokal As String = GetAppPath() & "update.txt"
         Dim updateFolder As String = GetAppPath() & "update"
@@ -134,68 +135,77 @@ Module ModuleUpdate
                         strfName = GetAppPath() & strfName1
                         If Dir(strfName) = "" Then
                             needUpdate = True
-                            If Not MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
-                                Exit Sub
-                            Else
-                                ' download new update file
-                                Call writeLog("start download of " & strfName)
-                                resultDownload = DownloadFile(strLine, strfName)
-                                Call writeLog("end download of " & strfName)
-                                Call writeLog("resultDownload= " & resultDownload)
-
-                                If resultDownload Then
-
-                                    Call writeLog("create update folder")
-                                    ' create temp directory "update"
-                                    If Dir(updateFolder, vbDirectory) = "" Then
-                                        MkDir(updateFolder)
-                                    End If
-                                    '' unzip
-                                    '' check dll exists, if not exists download
-                                    'If Dir(App.Path & "\Unzip32.dll") = "" Then
-                                    '    rUnzipDLL = DownloadFile(INTRASELL_UPDATE_DLL, App.Path & "\Unzip32.dll")
-                                    'End If
-
-                                    'Call writeLog("register unzip dll")
-
-                                    Call writeLog("unzip")
-                                    With oUnZip
-                                        .ZipFileName = strfName
-                                        .ExtractDir = updateFolder
-                                        .OverWriteFiles = True
-                                        ' Keep Directory Structure of Zip ?
-                                        .HonorDirectories = False
-                                        ' Unzip and Display any errors as required
-                                        If oUnZip.Unzip(strfName, updateFolder) <> 0 Then
-                                            MsgBox(oUnZip.GetLastMessage())
-                                        End If
-                                    End With
-
-                                    ' archive & copy new file
-                                    Dim backUpFolder As String = GetAppPath() & "archive\" & strfName1
-                                    If Dir(backUpFolder, vbDirectory) = "" Then MkDir(backUpFolder)
-
-                                    For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
-                                        Dim fItemName As String = Replace(fItem, updateFolder & "\", "")  ' = System.IO.File(fItem)
-                                        If Dir(GetAppPath() & fItemName) <> "" Then
-                                            Call writeLog("archive files: " & fItemName)
-                                            Call FileCopy(GetAppPath() & fItemName, GetAppPath() & "archive\" & strfName1 & "\" & fItemName)
-                                        End If
-                                        Call writeLog("copy files: " & fItemName)
-                                        Call FileCopy(updateFolder & "\" & fItemName, GetAppPath() & fItemName)
-                                    Next
-
-                                    FileSystem.Kill(updateFolder & "\*.*")
-                                    FileSystem.RmDir(updateFolder)
-                                    showUpgradeMsg = True
-
-                                Else
-                                    writeLog(Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1))
-                                    If Not silentMode Then
-                                        MsgBox(Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), vbCritical, MSG_TITLE)
-                                    End If
+                            If Not silentMode Then
+                                'Last chance for the user to cancel the update 
+                                If Not MsgBox(Replace(MSG_PROMT_FOR_UPDATE, "@ZIP", strfName1), vbOKCancel, MSG_TITLE) = vbOK Then
+                                    Exit Function
                                 End If
                             End If
+
+                            ' End If
+
+                            ' download new update file
+                            Call writeLog("start download of " & strfName)
+                            resultDownload = DownloadFile(strLine, strfName)
+                            Call writeLog("end download of " & strfName)
+                            Call writeLog("resultDownload= " & resultDownload)
+
+                            If resultDownload Then
+
+                                Call writeLog("create update folder")
+                                ' create temp directory "update"
+                                If Dir(updateFolder, vbDirectory) = "" Then
+                                    MkDir(updateFolder)
+                                End If
+                                '' unzip
+                                '' check dll exists, if not exists download
+                                'If Dir(App.Path & "\Unzip32.dll") = "" Then
+                                '    rUnzipDLL = DownloadFile(INTRASELL_UPDATE_DLL, App.Path & "\Unzip32.dll")
+                                'End If
+
+                                'Call writeLog("register unzip dll")
+
+                                Call writeLog("unzip")
+                                With oUnZip
+                                    .ZipFileName = strfName
+                                    .ExtractDir = updateFolder
+                                    .OverWriteFiles = True
+                                    ' Keep Directory Structure of Zip ?
+                                    .HonorDirectories = False
+                                    ' Unzip and Display any errors as required
+                                    If oUnZip.Unzip(strfName, updateFolder) <> 0 Then
+                                        If Not silentMode Then
+                                            MsgBox(oUnZip.GetLastMessage())
+                                        End If
+
+                                    End If
+                                End With
+
+                                ' archive & copy new file
+                                Dim backUpFolder As String = GetAppPath() & "archive\" & strfName1
+                                If Dir(backUpFolder, vbDirectory) = "" Then MkDir(backUpFolder)
+
+                                For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
+                                    Dim fItemName As String = Replace(fItem, updateFolder & "\", "")  ' = System.IO.File(fItem)
+                                    If Dir(GetAppPath() & fItemName) <> "" Then
+                                        Call writeLog("archive files: " & fItemName)
+                                        Call FileCopy(GetAppPath() & fItemName, GetAppPath() & "archive\" & strfName1 & "\" & fItemName)
+                                    End If
+                                    Call writeLog("copy files: " & fItemName)
+                                    Call FileCopy(updateFolder & "\" & fItemName, GetAppPath() & fItemName)
+                                Next
+
+                                FileSystem.Kill(updateFolder & "\*.*")
+                                FileSystem.RmDir(updateFolder)
+                                showUpgradeMsg = True
+
+                            Else
+                                writeLog(Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1))
+                                If Not silentMode Then
+                                    MsgBox(Replace(MSG_ERROR_ZIP_MISED, "@ZIP", strfName1), vbCritical, MSG_TITLE)
+                                End If
+                            End If
+
                         End If
                     End While
 
@@ -228,31 +238,18 @@ Module ModuleUpdate
                     MsgBox(MSG_ERROR_UPDATETXT, vbCritical, MSG_TITLE)
                 End If
             End If
-
-            Exit Sub
+            UpdateIntraSell = True
+            Exit Function
 
         Catch err As Exception
-
+            UpdateIntraSell = False
             Call writeLog("UpdateIntraSell errLine:" + err.Message)
 
             If Not silentMode Then
                 MsgBox("Unerwarteter Fehler:" & err.Message, vbCritical, MSG_TITLE)
             End If
-
-            'If Dir(strfName) <> "" Then FileSystem.Kill(strfName)
-
-            'fld = fso.GetFolder(App.Path & "\update")
-            'fld.Delete(True)
-
-            'fld = fso.GetFolder(App.Path & "\archive\" & strfName1)
-            'fld.Delete(True)
-
-            'If Dir(App.Path & "\update.txt") <> "" Then FileSystem.Kill(App.Path & "\update.txt")
-
-            'fso = Nothing
-            'fld = Nothing
-            'fItem = Nothing
+ 
         End Try
-    End Sub
+    End Function
 
 End Module

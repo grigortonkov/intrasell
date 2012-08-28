@@ -17,9 +17,8 @@ Module ModuleSetup
     'Start MySQL Process 
     'Check if Connection is possible 
     'DONE
-    Sub SetUpMySqlServer()
-
-
+    Function SetUpMySqlServer(Optional silent As Boolean = False) As Boolean 'True if Setup OK
+        SetUpMySqlServer = False
         'START  
         writeLog("Setup MySQL START")
 
@@ -28,8 +27,10 @@ Module ModuleSetup
         Try
             Dim gotConnection As Boolean = VarValue("ADMIN") = "WebShop"
             If gotConnection Then
-                MsgBox("MySQL Verbindung ist OK, Sie benötigen keine neue Installation!", vbExclamation)
-                Exit Sub
+                If Not silent Then
+                    MsgBox("MySQL Verbindung ist OK, Sie benötigen keine neue Installation!", vbExclamation)
+                End If
+                Exit Function
             End If
         Catch ex As Exception
             'continue 
@@ -49,9 +50,14 @@ Module ModuleSetup
             writeLog("File wurde bereits heruntergeladen " + mySqlZIP)
         End If
 
-        If MsgBox("Möchten Sie den MySQL Server jetzt installieren?", vbYesNo) = vbYes Then
+        If Not silent Then
+            If MsgBox("Möchten Sie den MySQL Server jetzt installieren?", vbYesNo) = vbYes Then
+                ExtractZipFile(mySqlZIP, Nothing, MYSQL_SETUP_FOLDER)
+            End If
+        Else
             ExtractZipFile(mySqlZIP, Nothing, MYSQL_SETUP_FOLDER)
         End If
+
 
         'Start MySQL Process 
         Shell(MYSQL_PROCESS_NAME, AppWinStyle.NormalFocus, True, 10)
@@ -62,14 +68,21 @@ Module ModuleSetup
         Try
             Dim gotConnection As Boolean = VarValue("ADMIN") = "WebShop"
             If gotConnection Then
+                SetUpMySqlServer = True
                 writeLog("Setup MySQL erfolgreich.")
-                MsgBox("MySQL Verbindung ist OK!", MsgBoxStyle.OkOnly)
+                If Not silent Then
+                    MsgBox("MySQL Verbindung ist OK!", MsgBoxStyle.OkOnly)
+                End If
+
             End If
         Catch ex As Exception
+            SetUpMySqlServer = False
             writeLog("Setup MySQL FAILED. Fehler: " + ex.Message)
-            MsgBox("MySQL Verbindung konnte nicht hergestellt werden!", vbCritical)
+            If Not silent Then
+                MsgBox("MySQL Verbindung konnte nicht hergestellt werden!", vbCritical)
+            End If
         End Try
         'DONE
         writeLog("Setup MySQL DONE")
-    End Sub
+    End Function
 End Module

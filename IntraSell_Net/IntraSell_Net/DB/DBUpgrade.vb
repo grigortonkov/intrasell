@@ -15,8 +15,8 @@ Module DBUpgrade
     ' ProcessAllSQLFiles
     ' REads all SQL Files and runs the statements against the database 
     '====================================================
-    Public Sub ProcessAllSQLFiles()
-
+    Public Function ProcessAllSQLFiles() As Boolean 'True if no errors 
+        ProcessAllSQLFiles = False
         writeLog("SQL PROCESSING START")
 
         Dim sqlMakeTable As String
@@ -54,11 +54,10 @@ Module DBUpgrade
             Else
                 rs.Close()
             End If
-
-
         Next
+        ProcessAllSQLFiles = True
         writeLog("SQL PROCESSING END")
-    End Sub
+    End Function
 
     '====================================================
     ' processSQLFile - process the sql commands in the file
