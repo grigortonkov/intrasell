@@ -11,6 +11,9 @@ Public Module ModuleCommons
     'Return current Applikation Path for Exe, IntraSell
     Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.EXE") As String
         If appPath Is Nothing Then
+            If Not Application.ExecutablePath.Contains("IntraSell_Net.EXE") Then
+                Throw New Exception("If you run from different Application, please set ModuleCommons.appPath to your Path")
+            End If
             Return Application.ExecutablePath.Replace(exeFilename, "")
         Else
             Return appPath
