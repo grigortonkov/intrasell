@@ -4,7 +4,7 @@ Option Explicit On
 Imports IntraSell_DLL
 
 Module ModuleSetup
-    Const MYSQL_SETUP_FOLDER As String = "C:\\"
+    Const MYSQL_SETUP_FOLDER As String = "C:\"
     Const MYSQL_PROCESS_NAME As String = MYSQL_SETUP_FOLDER & "MySQL Server 5.1\\startup.bat"
 
     '

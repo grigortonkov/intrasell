@@ -100,13 +100,17 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodedUITest1.vb" />
     <Compile Include="DBTest.vb" />
-    <Compile Include="ModuleBuchVorgangDruckTest.vb" />
-    <Compile Include="ModuleBuchVorgangXMLTest.vb" />
-    <Compile Include="ModuleCommonsTest.vb" />
-    <Compile Include="ModulePreiseTest.vb" />
+    <Compile Include="Data\grartikelTableAdapterTest.vb" />
+    <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />
+    <Compile Include="Modules\ModuleCommonsTest.vb" />
+    <Compile Include="Modules\ModulePreiseTest.vb" />
+    <Compile Include="Modules\ModuleSetupTest.vb" />
+    <Compile Include="ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
     <Compile Include="UIMap.Designer.vb">
       <DependentUpon>UIMap.uitest</DependentUpon>
     </Compile>
@@ -115,8 +119,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="GenericTest1.GenericTest">
+    <None Include="Modules\ClassDiagram1.cd" />
+    <None Include="OrderedTestSetup.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="UIMap.uitest" />
