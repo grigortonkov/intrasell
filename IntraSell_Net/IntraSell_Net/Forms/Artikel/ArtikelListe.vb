@@ -94,6 +94,7 @@ Public Class Artikelliste
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
+            Artikel.MdiParent = Me.MdiParent
             Artikel.Show()
             Artikel.FilterBy("ArtNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
         Catch ex As Exception
