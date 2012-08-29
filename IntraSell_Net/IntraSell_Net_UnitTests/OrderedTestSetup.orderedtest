@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="OrderedTest1" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\orderedtest1.orderedtest" id="d5cd304e-5669-4150-9577-c359afd1d150" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="61e68f2f-a494-b6eb-8c86-e0a8531326b2" name="SetUpMySqlServerTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="e8256a12-d05d-2bd5-b0e5-9002f1286161" name="UpdateIntraSellTest1" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="2346824b-8b92-5cbb-df9a-29f305052fd0" name="UpdateIntraSellTest2" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="21faad7e-93ee-b749-f0e8-b078a53fe066" name="GrArtikelInsertUpdateTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>
