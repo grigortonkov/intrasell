@@ -50,15 +50,29 @@ Public Class Kunden
         End Try
     End Sub
 
+#Region "New"
+    Dim AddingNewFlag As Boolean = False
     Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
-            'Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , )
+            AddingNewFlag = True
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
-   
+    Private Sub BindingSource_CurrentChanged(ByVal sender As System.Object, _
+                              ByVal e As System.EventArgs) _
+                              Handles ofAdressenBindingSource.CurrentChanged
+        Try
+            If AddingNewFlag = True Then
+                AddingNewFlag = False
+                Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
 
     'Save Data 
     Private Sub OfAdressenBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
@@ -125,6 +139,7 @@ Public Class Kunden
     End Sub
 
 #End Region
+
 
 
 End Class
