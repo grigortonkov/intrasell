@@ -103,6 +103,7 @@
     <Compile Include="DBTest.vb" />
     <Compile Include="Data\grartikelTableAdapterTest.vb" />
     <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
+    <Compile Include="FunctionsVarsTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />
     <Compile Include="Modules\ModuleCommonsTest.vb" />

@@ -167,15 +167,16 @@ Public Module FunctionsVars
                 nID = CLng(rs("m"))
                 If Err.Number > 0 Then
                     nID = 1
-                    'Exit Function
                 End If
             Else 'is null
                 nID = 1
             End If
         End If
+        rs.Close()
+
         If concurencyCheck Then
             'check that do not colides with last called varvalues
-            Dim varName As String : varName = "letzteNummer_" & TableName
+            Dim varName As String = "letzteNummer_" & TableName
 
             If Not ExistsVarValue(varName) Then
                 Call InsertVarValue(varName, CType(nID, String))
