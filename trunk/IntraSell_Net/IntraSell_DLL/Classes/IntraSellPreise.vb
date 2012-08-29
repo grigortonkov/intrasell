@@ -212,6 +212,7 @@ Public Class IntraSellPreise
     '*****************************************************************
     '*****************************************************************
     Public Function getEKPreis(ByVal ArtNr As Integer) As Double
+
         Dim ekLieferant As Double = makeEKPreisVonLieferant(ArtNr)
 
         Dim sql As String, rs As MySqlDataReader
@@ -220,13 +221,13 @@ Public Class IntraSellPreise
         rs = openRecordset_(sql)
         getEKPreis = 0
         If rs.Read Then
-            If CDbl(rs("EKPreis")) <= 0 Then 'not defined
+            If IsNull(rs("EKPreis")) Then
                 getEKPreis = ekLieferant
             Else
-                If IsNull(rs("EKPreis")) Then
-                    getEKPreis = 0
+                getEKPreis = CDbl(rs("EKPreis"))
+                If CDbl(rs("EKPreis")) <= 0 Then 'not defined
+                    getEKPreis = ekLieferant
                 Else
-                    getEKPreis = CDbl(rs("EKPreis"))
                 End If
             End If
         End If
@@ -636,14 +637,15 @@ Public Class IntraSellPreise
         bis = 9999999
 
         'if kundengruppe defined
-        rs = openRecordset_("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")", "")
+        rs = openRecordset("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] " & _
+                           " where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")")
         If rs.Read Then 'kundengruppe is definiert
             von = CInt(rs("VorgangNrKreisvon"))
             bis = CInt(rs("VorgangNrKreisbis"))
             rs.Close()
             'End If
-            rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & _
-             "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc", dbOpenDynaset)
+            rs = openRecordset("select * from " & getVorgangTableForType(Typ) & _
+             "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc")
             'rs.Sort = "nummer"
             'Set rs = rs.openRecordset()
             If Not rs.Read Then
@@ -654,16 +656,16 @@ Public Class IntraSellPreise
             End If
             rs.Close()
         Else
+            rs.Close()
             'wenn keine gruppe definiert ' standart vorgang
-            Dim letzteNummer As String
-            Dim vname As String = getVarNameForType(Typ)
 
-            letzteNummer = vars.varValue(vname)
+            Dim vname As String = getVarNameForType(Typ)
+            Dim letzteNummer As String = vars.varValue(vname)
             'Die Nummer erhöhen
             Call vars.SetVarValue(vname, CInt(letzteNummer) + 1)
 
             'prüfen ob die Nummer besetzt ist
-            rs = openRecordset_("select * from " & getVorgangTableForType(Typ) & " where nummer =" & CStr(CInt(letzteNummer) + 1))
+            rs = openRecordset("select * from " & getVorgangTableForType(Typ) & " where nummer =" & CStr(CInt(letzteNummer) + 1))
             If Not rs.Read Then
                 getNewVorgangNummer = CStr(CInt(letzteNummer) + 1)
             Else 'wieder erhöhen
@@ -677,7 +679,13 @@ Public Class IntraSellPreise
     '======================================================================================
     '======================================================================================
     Public Function getMWSTArtikel(ByVal ArtNr As String) As Double
-        getMWSTArtikel = CDbl(vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr))
+        Dim artMWST = vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr)
+        If IsNull(artMWST) Then
+            getMWSTArtikel = CDbl(VarValue_Default("DEFAULT_MWST", "20")) '20 % default value 
+        Else
+            getMWSTArtikel = CDbl(artMWST)
+        End If
+
     End Function
 
     '======================================================================================

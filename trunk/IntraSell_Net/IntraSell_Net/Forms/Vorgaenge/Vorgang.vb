@@ -94,15 +94,49 @@ Public Class Vorgang
     End Sub
 
 
+#Region "New"
+     
 
-    Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
-        'neuen vorgang erstellen
-        If MessageBox.Show("Wollen Sie einen neuen Vorgang erstellen?", "Vorgang erstellen", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-            'Nummer und Datum setzen 
 
-        End If
+    Dim addingnewflag As Boolean = False
+    Private Sub bindingnavigatoraddnewitem_click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+        Try
+            'neuen vorgang erstellen
+            If messagebox.show("wollen sie einen neuen vorgang erstellen?", "vorgang erstellen", messageboxbuttons.yesno) = windows.forms.dialogresult.yes Then
+                'nummer und datum setzen 
+            End If
 
+            addingnewflag = True
+        Catch ex As exception
+            handleapperror(ex)
+        End Try
     End Sub
+
+    Private Sub bindingsource_currentchanged(ByVal sender As System.Object, _
+                              ByVal e As System.EventArgs) _
+                              Handles BuchvorgangBindingSource.CurrentChanged
+        Try
+            If addingnewflag = True Then
+                addingnewflag = False
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+
+    'setzte die Vorgangnummer für neue 
+    Private Sub TypComboBox_Leave(sender As System.Object, e As System.EventArgs) Handles TypComboBox.Leave
+        If String.IsNullOrEmpty(Me.NummerTextBox.Text) Then
+            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.Text, Me.KundNrAdressenControl.IDNR)
+            Me.DatumDateTimePicker.Value = DateTime.Now
+        End If
+    End Sub
+
+#End Region
+
+
+
 
     Private Sub AusgedrucktCheckBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles AusgedrucktCheckBox.CheckedChanged
 
@@ -377,7 +411,7 @@ Public Class Vorgang
 
             Dim KundNr As String = Me.KundNrAdressenControl.IDNR
 
-            Dim rs As MySqlDataReader = openRecordset("select * from grArtikel where  ArtNr= " & ArtNr)
+            Dim rs As MySqlDataReader = openRecordset("select * from grArtikel where ArtNr= " & ArtNr)
 
             Dim VKPreis As Double = 0
             If rs.Read Then

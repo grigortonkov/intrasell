@@ -64,6 +64,7 @@
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
+            Kunden.MdiParent = Me.MdiParent
             Kunden.Show()
             Kunden.FilterBy("IDNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
         Catch ex As Exception

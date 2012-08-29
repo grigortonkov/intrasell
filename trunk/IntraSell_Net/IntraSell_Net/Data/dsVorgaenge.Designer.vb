@@ -5077,8 +5077,11 @@ Partial Public Class dsVorgaenge
             Me.columnNotizIntern.MaxLength = 2000
             Me.columnNotizExtern.MaxLength = 2000
             Me.columnBezahlt.AllowDBNull = false
+            Me.columnBezahlt.DefaultValue = CType(false,Boolean)
             Me.columnAusgedruckt.AllowDBNull = false
+            Me.columnAusgedruckt.DefaultValue = CType(false,Boolean)
             Me.columnAbgeschlossen.AllowDBNull = false
+            Me.columnAbgeschlossen.DefaultValue = CType(false,Boolean)
             Me.columnZahlungsbedungung.MaxLength = 250
             Me.columnTransportMethode.MaxLength = 250
             Me.columnZahlungsMethode.MaxLength = 250

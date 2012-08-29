@@ -45,7 +45,7 @@ Public Module ModuleCommons
 
     'Proxy Function IsNull for easy conversion of old VB 6 Code
     Function IsNull(ByRef any As Object) As Boolean
-        Return IsNothing(any)
+        Return IsNothing(any) Or IsDBNull(any)
     End Function
 
 
