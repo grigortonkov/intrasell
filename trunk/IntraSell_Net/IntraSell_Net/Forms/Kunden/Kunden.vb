@@ -50,6 +50,16 @@ Public Class Kunden
         End Try
     End Sub
 
+    Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+        Try
+            'Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , )
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+   
+
     'Save Data 
     Private Sub OfAdressenBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
 
@@ -91,18 +101,6 @@ Public Class Kunden
     End Sub
 
 
-#End Region
-
-
-    Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-
-    End Sub
-
 
     Private Sub PLZComboBox_Validating(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles PLZComboBox.Validating
         Try
@@ -125,4 +123,8 @@ Public Class Kunden
         End Try
 
     End Sub
+
+#End Region
+
+
 End Class

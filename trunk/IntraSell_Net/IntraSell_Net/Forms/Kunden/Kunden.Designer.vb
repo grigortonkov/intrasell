@@ -44,7 +44,6 @@ Partial Class Kunden
         Dim MobilLabel As System.Windows.Forms.Label
         Dim EmailLabel As System.Windows.Forms.Label
         Dim WebLabel As System.Windows.Forms.Label
-        Dim AngelegtAnLabel As System.Windows.Forms.Label
         Dim MAAusenLabel As System.Windows.Forms.Label
         Dim MAInnenLabel As System.Windows.Forms.Label
         Dim PasswortLabel As System.Windows.Forms.Label
@@ -100,7 +99,6 @@ Partial Class Kunden
         Me.AbbuchungCheckBox = New System.Windows.Forms.CheckBox()
         Me.MAInnenComboBox = New System.Windows.Forms.ComboBox()
         Me.MAAusenComboBox = New System.Windows.Forms.ComboBox()
-        Me.AngelegtAnDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.ExportCheckBox = New System.Windows.Forms.CheckBox()
         Me.BHReferenzTextBox = New System.Windows.Forms.TextBox()
         Me.EUNummer2TextBox = New System.Windows.Forms.TextBox()
@@ -201,7 +199,6 @@ Partial Class Kunden
         MobilLabel = New System.Windows.Forms.Label()
         EmailLabel = New System.Windows.Forms.Label()
         WebLabel = New System.Windows.Forms.Label()
-        AngelegtAnLabel = New System.Windows.Forms.Label()
         MAAusenLabel = New System.Windows.Forms.Label()
         MAInnenLabel = New System.Windows.Forms.Label()
         PasswortLabel = New System.Windows.Forms.Label()
@@ -431,19 +428,10 @@ Partial Class Kunden
         WebLabel.TabIndex = 47
         WebLabel.Text = "Web:"
         '
-        'AngelegtAnLabel
-        '
-        AngelegtAnLabel.AutoSize = True
-        AngelegtAnLabel.Location = New System.Drawing.Point(6, 56)
-        AngelegtAnLabel.Name = "AngelegtAnLabel"
-        AngelegtAnLabel.Size = New System.Drawing.Size(68, 13)
-        AngelegtAnLabel.TabIndex = 51
-        AngelegtAnLabel.Text = "Angelegt An:"
-        '
         'MAAusenLabel
         '
         MAAusenLabel.AutoSize = True
-        MAAusenLabel.Location = New System.Drawing.Point(6, 81)
+        MAAusenLabel.Location = New System.Drawing.Point(6, 55)
         MAAusenLabel.Name = "MAAusenLabel"
         MAAusenLabel.Size = New System.Drawing.Size(61, 13)
         MAAusenLabel.TabIndex = 53
@@ -452,7 +440,7 @@ Partial Class Kunden
         'MAInnenLabel
         '
         MAInnenLabel.AutoSize = True
-        MAInnenLabel.Location = New System.Drawing.Point(6, 108)
+        MAInnenLabel.Location = New System.Drawing.Point(6, 82)
         MAInnenLabel.Name = "MAInnenLabel"
         MAInnenLabel.Size = New System.Drawing.Size(53, 13)
         MAInnenLabel.TabIndex = 55
@@ -470,7 +458,7 @@ Partial Class Kunden
         'NextIDNRLabel
         '
         NextIDNRLabel.AutoSize = True
-        NextIDNRLabel.Location = New System.Drawing.Point(6, 182)
+        NextIDNRLabel.Location = New System.Drawing.Point(6, 109)
         NextIDNRLabel.Name = "NextIDNRLabel"
         NextIDNRLabel.Size = New System.Drawing.Size(60, 13)
         NextIDNRLabel.TabIndex = 63
@@ -479,7 +467,7 @@ Partial Class Kunden
         'MandantLabel
         '
         MandantLabel.AutoSize = True
-        MandantLabel.Location = New System.Drawing.Point(6, 209)
+        MandantLabel.Location = New System.Drawing.Point(6, 136)
         MandantLabel.Name = "MandantLabel"
         MandantLabel.Size = New System.Drawing.Size(52, 13)
         MandantLabel.TabIndex = 65
@@ -873,8 +861,6 @@ Partial Class Kunden
         Me.TabPage2.Controls.Add(MAInnenLabel)
         Me.TabPage2.Controls.Add(Me.MAAusenComboBox)
         Me.TabPage2.Controls.Add(MAAusenLabel)
-        Me.TabPage2.Controls.Add(Me.AngelegtAnDateTimePicker)
-        Me.TabPage2.Controls.Add(AngelegtAnLabel)
         Me.TabPage2.Controls.Add(Me.ExportCheckBox)
         Me.TabPage2.Controls.Add(UIDLabel)
         Me.TabPage2.Controls.Add(Me.BHReferenzTextBox)
@@ -901,7 +887,7 @@ Partial Class Kunden
         'MandantTextBox
         '
         Me.MandantTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "mandant", True))
-        Me.MandantTextBox.Location = New System.Drawing.Point(115, 206)
+        Me.MandantTextBox.Location = New System.Drawing.Point(115, 133)
         Me.MandantTextBox.Name = "MandantTextBox"
         Me.MandantTextBox.Size = New System.Drawing.Size(200, 20)
         Me.MandantTextBox.TabIndex = 66
@@ -910,7 +896,7 @@ Partial Class Kunden
         '
         Me.NextIDNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "nextIDNR", True))
         Me.NextIDNRComboBox.FormattingEnabled = True
-        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 179)
+        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 106)
         Me.NextIDNRComboBox.Name = "NextIDNRComboBox"
         Me.NextIDNRComboBox.Size = New System.Drawing.Size(200, 21)
         Me.NextIDNRComboBox.TabIndex = 64
@@ -918,7 +904,7 @@ Partial Class Kunden
         'HasMenuCheckBox
         '
         Me.HasMenuCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "hasMenu", True))
-        Me.HasMenuCheckBox.Location = New System.Drawing.Point(236, 22)
+        Me.HasMenuCheckBox.Location = New System.Drawing.Point(193, 20)
         Me.HasMenuCheckBox.Name = "HasMenuCheckBox"
         Me.HasMenuCheckBox.Size = New System.Drawing.Size(73, 24)
         Me.HasMenuCheckBox.TabIndex = 60
@@ -928,7 +914,7 @@ Partial Class Kunden
         'AbbuchungCheckBox
         '
         Me.AbbuchungCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Abbuchung", True))
-        Me.AbbuchungCheckBox.Location = New System.Drawing.Point(158, 22)
+        Me.AbbuchungCheckBox.Location = New System.Drawing.Point(115, 20)
         Me.AbbuchungCheckBox.Name = "AbbuchungCheckBox"
         Me.AbbuchungCheckBox.Size = New System.Drawing.Size(102, 24)
         Me.AbbuchungCheckBox.TabIndex = 58
@@ -939,7 +925,7 @@ Partial Class Kunden
         '
         Me.MAInnenComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "MAInnen", True))
         Me.MAInnenComboBox.FormattingEnabled = True
-        Me.MAInnenComboBox.Location = New System.Drawing.Point(115, 105)
+        Me.MAInnenComboBox.Location = New System.Drawing.Point(115, 79)
         Me.MAInnenComboBox.Name = "MAInnenComboBox"
         Me.MAInnenComboBox.Size = New System.Drawing.Size(200, 21)
         Me.MAInnenComboBox.TabIndex = 56
@@ -948,24 +934,15 @@ Partial Class Kunden
         '
         Me.MAAusenComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "MAAusen", True))
         Me.MAAusenComboBox.FormattingEnabled = True
-        Me.MAAusenComboBox.Location = New System.Drawing.Point(115, 78)
+        Me.MAAusenComboBox.Location = New System.Drawing.Point(115, 52)
         Me.MAAusenComboBox.Name = "MAAusenComboBox"
         Me.MAAusenComboBox.Size = New System.Drawing.Size(200, 21)
         Me.MAAusenComboBox.TabIndex = 54
         '
-        'AngelegtAnDateTimePicker
-        '
-        Me.AngelegtAnDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "AngelegtAn", True))
-        Me.AngelegtAnDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.AngelegtAnDateTimePicker.Location = New System.Drawing.Point(115, 52)
-        Me.AngelegtAnDateTimePicker.Name = "AngelegtAnDateTimePicker"
-        Me.AngelegtAnDateTimePicker.Size = New System.Drawing.Size(200, 20)
-        Me.AngelegtAnDateTimePicker.TabIndex = 52
-        '
         'ExportCheckBox
         '
         Me.ExportCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Export", True))
-        Me.ExportCheckBox.Location = New System.Drawing.Point(79, 22)
+        Me.ExportCheckBox.Location = New System.Drawing.Point(36, 20)
         Me.ExportCheckBox.Name = "ExportCheckBox"
         Me.ExportCheckBox.Size = New System.Drawing.Size(73, 24)
         Me.ExportCheckBox.TabIndex = 50
@@ -1366,7 +1343,7 @@ Partial Class Kunden
         Me.AdresseTextBox.Location = New System.Drawing.Point(379, 109)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.AdresseTextBox.TabIndex = 28
+        Me.AdresseTextBox.TabIndex = 36
         '
         'LandComboBox
         '
@@ -1414,7 +1391,7 @@ Partial Class Kunden
         Me.TelTextBox.Location = New System.Drawing.Point(379, 162)
         Me.TelTextBox.Name = "TelTextBox"
         Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TelTextBox.TabIndex = 36
+        Me.TelTextBox.TabIndex = 37
         '
         'Tel2TextBox
         '
@@ -1471,7 +1448,7 @@ Partial Class Kunden
         Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(83, 318)
         Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
         Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
-        Me.GeburtstagDateTimePicker.TabIndex = 68
+        Me.GeburtstagDateTimePicker.TabIndex = 28
         '
         'Ofadressen_zahlungsmethodenTableAdapter
         '
@@ -1696,7 +1673,6 @@ Partial Class Kunden
     Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
     Friend WithEvents WebTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ExportCheckBox As System.Windows.Forms.CheckBox
-    Friend WithEvents AngelegtAnDateTimePicker As System.Windows.Forms.DateTimePicker
     Friend WithEvents MAAusenComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents MAInnenComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents AbbuchungCheckBox As System.Windows.Forms.CheckBox

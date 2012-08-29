@@ -48,4 +48,7 @@ Public Class Artikel
     End Sub
 
 
+    Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+
+    End Sub
 End Class
