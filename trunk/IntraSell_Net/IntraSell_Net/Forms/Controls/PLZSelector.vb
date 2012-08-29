@@ -1,8 +1,9 @@
 ﻿Public Class PLZSelector
-    Public txtLand As TextBox
-    Public txtPLZ As TextBox
-    Public txtOrt As TextBox
+    Public Land As ComboBox
+    Public PLZ As ComboBox
+    Public Ort As ComboBox
 
+ 
     Private Sub PLZSelector_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
@@ -27,17 +28,19 @@
 
     Private Sub btnUebernehmen_Click(sender As System.Object, e As System.EventArgs) Handles btnUebernehmen.Click
         Try
-
-            If Not txtLand Is Nothing Then
-                txtLand.Text = Me.dgPLZ.SelectedRows(0).Cells(4).Value
+            Dim r = Me.dgPLZ.SelectedRows(0)
+            If Not Land Is Nothing Then
+                Land.SelectedValue = r.Cells(4).Value
+                Land.Text = r.Cells(1).Value
             End If
 
-            If Not txtPLZ Is Nothing Then
-                txtPLZ.Text = Me.dgPLZ.SelectedRows(0).Cells(2).Value
+            If Not PLZ Is Nothing Then
+                PLZ.Text = r.Cells(2).Value
+                PLZ.SelectedValue = r.Cells(0).Value
             End If
 
-            If Not txtOrt Is Nothing Then
-                txtOrt.Text = Me.dgPLZ.SelectedRows(0).Cells(3).Value
+            If Not Ort Is Nothing Then
+                Ort.Text = r.Cells(3).Value
             End If
 
             Me.Close()

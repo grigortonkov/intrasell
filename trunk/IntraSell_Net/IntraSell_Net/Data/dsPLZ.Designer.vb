@@ -1061,6 +1061,16 @@ Partial Public Class dsPLZ
         
         Private columngrLandIDNR As Global.System.Data.DataColumn
         
+        Private columnISO2 As Global.System.Data.DataColumn
+        
+        Private columnISO3 As Global.System.Data.DataColumn
+        
+        Private columnlanguage_Code As Global.System.Data.DataColumn
+        
+        Private columnCurrency As Global.System.Data.DataColumn
+        
+        Private columnPLZPraefix As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1137,6 +1147,46 @@ Partial Public Class dsPLZ
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ISO2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnISO2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ISO3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnISO3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property language_CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnlanguage_Code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CurrencyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCurrency
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PLZPraefixColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPLZPraefix
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1173,9 +1223,9 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddgrLandPlzRow(ByVal IdNr As String, ByVal Name As String, ByVal PLZ As String, ByVal Ort As String, ByVal grLandIDNR As Integer) As grLandPlzRow
+        Public Overloads Function AddgrLandPlzRow(ByVal IdNr As String, ByVal Name As String, ByVal PLZ As String, ByVal Ort As String, ByVal grLandIDNR As Integer, ByVal ISO2 As String, ByVal ISO3 As String, ByVal language_Code As String, ByVal Currency As String, ByVal PLZPraefix As String) As grLandPlzRow
             Dim rowgrLandPlzRow As grLandPlzRow = CType(Me.NewRow,grLandPlzRow)
-            Dim columnValuesArray() As Object = New Object() {IdNr, Name, PLZ, Ort, grLandIDNR}
+            Dim columnValuesArray() As Object = New Object() {IdNr, Name, PLZ, Ort, grLandIDNR, ISO2, ISO3, language_Code, Currency, PLZPraefix}
             rowgrLandPlzRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowgrLandPlzRow)
             Return rowgrLandPlzRow
@@ -1209,6 +1259,11 @@ Partial Public Class dsPLZ
             Me.columnPLZ = MyBase.Columns("PLZ")
             Me.columnOrt = MyBase.Columns("Ort")
             Me.columngrLandIDNR = MyBase.Columns("grLandIDNR")
+            Me.columnISO2 = MyBase.Columns("ISO2")
+            Me.columnISO3 = MyBase.Columns("ISO3")
+            Me.columnlanguage_Code = MyBase.Columns("language_Code")
+            Me.columnCurrency = MyBase.Columns("Currency")
+            Me.columnPLZPraefix = MyBase.Columns("PLZPraefix")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1224,6 +1279,16 @@ Partial Public Class dsPLZ
             MyBase.Columns.Add(Me.columnOrt)
             Me.columngrLandIDNR = New Global.System.Data.DataColumn("grLandIDNR", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columngrLandIDNR)
+            Me.columnISO2 = New Global.System.Data.DataColumn("ISO2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnISO2)
+            Me.columnISO3 = New Global.System.Data.DataColumn("ISO3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnISO3)
+            Me.columnlanguage_Code = New Global.System.Data.DataColumn("language_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlanguage_Code)
+            Me.columnCurrency = New Global.System.Data.DataColumn("Currency", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCurrency)
+            Me.columnPLZPraefix = New Global.System.Data.DataColumn("PLZPraefix", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPLZPraefix)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIdNr}, true))
             Me.columnIdNr.AllowDBNull = false
             Me.columnIdNr.Unique = true
@@ -1232,6 +1297,11 @@ Partial Public Class dsPLZ
             Me.columnPLZ.MaxLength = 20
             Me.columnOrt.MaxLength = 255
             Me.columngrLandIDNR.AllowDBNull = false
+            Me.columnISO2.MaxLength = 22
+            Me.columnISO3.MaxLength = 3
+            Me.columnlanguage_Code.MaxLength = 3
+            Me.columnCurrency.MaxLength = 50
+            Me.columnPLZPraefix.MaxLength = 2
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1844,6 +1914,81 @@ Partial Public Class dsPLZ
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ISO2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrLandPlz.ISO2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO2' in table 'grLandPlz' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrLandPlz.ISO2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ISO3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrLandPlz.ISO3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ISO3' in table 'grLandPlz' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrLandPlz.ISO3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property language_Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrLandPlz.language_CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'language_Code' in table 'grLandPlz' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrLandPlz.language_CodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Currency() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrLandPlz.CurrencyColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Currency' in table 'grLandPlz' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrLandPlz.CurrencyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PLZPraefix() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrLandPlz.PLZPraefixColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PLZPraefix' in table 'grLandPlz' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrLandPlz.PLZPraefixColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsNameNull() As Boolean
             Return Me.IsNull(Me.tablegrLandPlz.NameColumn)
         End Function
@@ -1876,6 +2021,66 @@ Partial Public Class dsPLZ
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetOrtNull()
             Me(Me.tablegrLandPlz.OrtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsISO2Null() As Boolean
+            Return Me.IsNull(Me.tablegrLandPlz.ISO2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetISO2Null()
+            Me(Me.tablegrLandPlz.ISO2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsISO3Null() As Boolean
+            Return Me.IsNull(Me.tablegrLandPlz.ISO3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetISO3Null()
+            Me(Me.tablegrLandPlz.ISO3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Islanguage_CodeNull() As Boolean
+            Return Me.IsNull(Me.tablegrLandPlz.language_CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Setlanguage_CodeNull()
+            Me(Me.tablegrLandPlz.language_CodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCurrencyNull() As Boolean
+            Return Me.IsNull(Me.tablegrLandPlz.CurrencyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCurrencyNull()
+            Me(Me.tablegrLandPlz.CurrencyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPLZPraefixNull() As Boolean
+            Return Me.IsNull(Me.tablegrLandPlz.PLZPraefixColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPLZPraefixNull()
+            Me(Me.tablegrLandPlz.PLZPraefixColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -3405,6 +3610,11 @@ Namespace dsPLZTableAdapters
             tableMapping.ColumnMappings.Add("PLZ", "PLZ")
             tableMapping.ColumnMappings.Add("Ort", "Ort")
             tableMapping.ColumnMappings.Add("grLandIDNR", "grLandIDNR")
+            tableMapping.ColumnMappings.Add("ISO2", "ISO2")
+            tableMapping.ColumnMappings.Add("ISO3", "ISO3")
+            tableMapping.ColumnMappings.Add("language_Code", "language_Code")
+            tableMapping.ColumnMappings.Add("Currency", "Currency")
+            tableMapping.ColumnMappings.Add("PLZPraefix", "PLZPraefix")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -3422,8 +3632,10 @@ Namespace dsPLZTableAdapters
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        grland.IdNr AS grLandIDNR, grplz.IdNr, grland.Name, grplz.PLZ, grpl"& _ 
-                "z.Ort"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            grplz INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grland ON grpl"& _ 
-                "z.Land = grland.IdNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY grland.Name, grplz.PLZ, grplz.Ort"
+                "z.Ort, grland.ISO2, grland.ISO3, grland.language_Code, grland.Currency, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
+                "                   grland.PLZPraefix"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            grplz INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
+                "                 grland ON grplz.Land = grland.IdNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY grland.Name, grplz"& _ 
+                ".PLZ, grplz.Ort"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

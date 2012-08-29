@@ -1,4 +1,6 @@
-﻿Public Class Kunden
+﻿Imports IntraSell_DLL
+
+Public Class Kunden
 
     'Die Datensätze filtern
     Public Sub FilterBy(Expression As String)
@@ -22,14 +24,17 @@
 #Region "Events "
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
- 
+
 
         Try
+            Me.GrlandTableAdapter.FillBy(Me.DsPLZ.grland)
+            Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
+
             Me.OfAdressenTableAdapter.Fill(Me.DataSetKunden.ofadressen)
             Me.Ofadressen_settingsTableAdapter.Fill(Me.DataSetKunden._ofadressen_settings)
             Me.PreislistenTableAdapter.Fill(Me.DataSetKunden.Preislisten)
             Me.KundengruppenTableAdapter.Fill(Me.DataSetKunden.Kundengruppen)
-            Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
+
 
             Me.Ofadressen_weitereTableAdapter.Fill(Me.DataSetKunden._ofadressen_weitere)
 
@@ -59,7 +64,7 @@
             Me.Ofadressen_zahlungsmethodenBindingSource.EndEdit()
             Me.Ofadressen_transportmethodenBindingSource.EndEdit()
 
-         
+
             Me.OfAdressenTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_settingsTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_weitereTableAdapter.Update(Me.DataSetKunden)
@@ -73,21 +78,21 @@
 
     End Sub
 
-
-    Private Sub btnPLZ_Click(sender As System.Object, e As System.EventArgs)
+    Private Sub ButtonPLZSelect_Click(sender As System.Object, e As System.EventArgs) Handles ButtonPLZSelect.Click
         Try
             Dim plz As PLZSelector = New PLZSelector
-            'plz.txtOrt = Me.OrtComboBox
-            'plz.txtPLZ = Me.PLZComboBox
-            plz.txtLand = Me.LandTextBox
+            plz.Ort = Me.OrtComboBox
+            plz.PLZ = Me.PLZComboBox
+            plz.Land = Me.LandComboBox
             plz.ShowDialog()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
+
 #End Region
- 
+
 
     Private Sub FillToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
@@ -98,5 +103,26 @@
 
     End Sub
 
- 
+
+    Private Sub PLZComboBox_Validating(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles PLZComboBox.Validating
+        Try
+            Me.OrtComboBox.Text = firstRow("select Ort from grPLZ where PLZ ='" & PLZComboBox.Text & "'")
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
+
+    Private Sub OrtComboBox_Validating(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles OrtComboBox.Validating
+        Try
+            'Enter new PLZ + Ort if not Existing 
+            Dim newValue As String = IntraSellKunden.getPLZCreateIfNeeded(Me.LandComboBox.SelectedValue, Me.OrtComboBox.Text, Me.PLZComboBox.Text)
+            Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
+            Me.PLZComboBox.SelectedValue = newValue
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
 End Class

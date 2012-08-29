@@ -172,7 +172,8 @@ ORDER BY Name</CommandText>
               <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        grland.IdNr AS grLandIDNR, grplz.IdNr, grland.Name, grplz.PLZ, grplz.Ort
+                    <CommandText>SELECT        grland.IdNr AS grLandIDNR, grplz.IdNr, grland.Name, grplz.PLZ, grplz.Ort, grland.ISO2, grland.ISO3, grland.language_Code, grland.Currency, 
+                         grland.PLZPraefix
 FROM            grplz INNER JOIN
                          grland ON grplz.Land = grland.IdNr
 ORDER BY grland.Name, grplz.PLZ, grplz.Ort</CommandText>
@@ -187,6 +188,11 @@ ORDER BY grland.Name, grplz.PLZ, grplz.Ort</CommandText>
               <Mapping SourceColumn="PLZ" DataSetColumn="PLZ" />
               <Mapping SourceColumn="Ort" DataSetColumn="Ort" />
               <Mapping SourceColumn="grLandIDNR" DataSetColumn="grLandIDNR" />
+              <Mapping SourceColumn="ISO2" DataSetColumn="ISO2" />
+              <Mapping SourceColumn="ISO3" DataSetColumn="ISO3" />
+              <Mapping SourceColumn="language_Code" DataSetColumn="language_Code" />
+              <Mapping SourceColumn="Currency" DataSetColumn="Currency" />
+              <Mapping SourceColumn="PLZPraefix" DataSetColumn="PLZPraefix" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -328,6 +334,41 @@ ORDER BY grland.Name, grplz.PLZ, grplz.Ort</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="grLandIDNR" msprop:Generator_ColumnVarNameInTable="columngrLandIDNR" msprop:Generator_ColumnPropNameInRow="grLandIDNR" msprop:Generator_ColumnPropNameInTable="grLandIDNRColumn" msprop:Generator_UserColumnName="grLandIDNR" type="xs:int" />
+              <xs:element name="ISO2" msprop:Generator_ColumnVarNameInTable="columnISO2" msprop:Generator_ColumnPropNameInRow="ISO2" msprop:Generator_ColumnPropNameInTable="ISO2Column" msprop:Generator_UserColumnName="ISO2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISO3" msprop:Generator_ColumnVarNameInTable="columnISO3" msprop:Generator_ColumnPropNameInRow="ISO3" msprop:Generator_ColumnPropNameInTable="ISO3Column" msprop:Generator_UserColumnName="ISO3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="language_Code" msprop:Generator_ColumnVarNameInTable="columnlanguage_Code" msprop:Generator_ColumnPropNameInRow="language_Code" msprop:Generator_ColumnPropNameInTable="language_CodeColumn" msprop:Generator_UserColumnName="language_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Currency" msprop:Generator_ColumnVarNameInTable="columnCurrency" msprop:Generator_ColumnPropNameInRow="Currency" msprop:Generator_ColumnPropNameInTable="CurrencyColumn" msprop:Generator_UserColumnName="Currency" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PLZPraefix" msprop:Generator_ColumnVarNameInTable="columnPLZPraefix" msprop:Generator_ColumnPropNameInRow="PLZPraefix" msprop:Generator_ColumnPropNameInTable="PLZPraefixColumn" msprop:Generator_UserColumnName="PLZPraefix" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -348,7 +389,7 @@ ORDER BY grland.Name, grplz.PLZ, grplz.Ort</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="grplz_ibfk_1" msdata:parent="grland" msdata:child="grplz" msdata:parentkey="IdNr" msdata:childkey="Land" msprop:Generator_UserChildTable="grplz" msprop:Generator_ChildPropName="GetgrplzRows" msprop:Generator_UserParentTable="grland" msprop:Generator_UserRelationName="grplz_ibfk_1" msprop:Generator_RelationVarName="relationgrplz_ibfk_1" msprop:Generator_ParentPropName="grlandRow" />
+      <msdata:Relationship name="grplz_ibfk_1" msdata:parent="grland" msdata:child="grplz" msdata:parentkey="IdNr" msdata:childkey="Land" msprop:Generator_UserChildTable="grplz" msprop:Generator_ChildPropName="GetgrplzRows" msprop:Generator_ParentPropName="grlandRow" msprop:Generator_UserRelationName="grplz_ibfk_1" msprop:Generator_RelationVarName="relationgrplz_ibfk_1" msprop:Generator_UserParentTable="grland" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
