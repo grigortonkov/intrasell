@@ -48,7 +48,30 @@ Public Class Artikel
     End Sub
 
 
+#Region "New"
+    Dim AddingNewFlag As Boolean = False
     Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
-
+        Try
+            AddingNewFlag = True
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
+
+    Private Sub BindingSource_CurrentChanged(ByVal sender As System.Object, _
+                              ByVal e As System.EventArgs) _
+                              Handles GrartikelBindingSource.CurrentChanged
+        Try
+            If AddingNewFlag = True Then
+                AddingNewFlag = False
+                Me.ArtNrTextBox.Text = nextId("grArtikel", "ArtNr", , False)
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
+
+
+ 
 End Class
