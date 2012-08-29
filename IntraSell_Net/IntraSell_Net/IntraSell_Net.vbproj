@@ -112,6 +112,9 @@
     <Compile Include="Data\dsEinstellungen.vb">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsPLZ.vb">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsVorgaenge.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

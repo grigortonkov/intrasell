@@ -633,7 +633,7 @@ Partial Class Artikel
         '
         'LieferantNRComboBox
         '
-        Me.LieferantNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "LieferantNR", True))
+        Me.LieferantNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.GrartikelBindingSource, "LieferantNR", True))
         Me.LieferantNRComboBox.FormattingEnabled = True
         Me.LieferantNRComboBox.Location = New System.Drawing.Point(486, 62)
         Me.LieferantNRComboBox.Name = "LieferantNRComboBox"
@@ -652,7 +652,7 @@ Partial Class Artikel
         '
         'ArtKatNrComboBox
         '
-        Me.ArtKatNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "ArtKatNr", True))
+        Me.ArtKatNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.GrartikelBindingSource, "ArtKatNr", True))
         Me.ArtKatNrComboBox.FormattingEnabled = True
         Me.ArtKatNrComboBox.Location = New System.Drawing.Point(486, 35)
         Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
@@ -685,7 +685,7 @@ Partial Class Artikel
         '
         'HerstellerNrComboBox
         '
-        Me.HerstellerNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "HerstellerNr", True))
+        Me.HerstellerNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.GrartikelBindingSource, "HerstellerNr", True))
         Me.HerstellerNrComboBox.FormattingEnabled = True
         Me.HerstellerNrComboBox.Location = New System.Drawing.Point(486, 90)
         Me.HerstellerNrComboBox.Name = "HerstellerNrComboBox"

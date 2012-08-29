@@ -44,12 +44,9 @@ Partial Class Kunden
         Dim MobilLabel As System.Windows.Forms.Label
         Dim EmailLabel As System.Windows.Forms.Label
         Dim WebLabel As System.Windows.Forms.Label
-        Dim ExportLabel As System.Windows.Forms.Label
         Dim AngelegtAnLabel As System.Windows.Forms.Label
         Dim MAAusenLabel As System.Windows.Forms.Label
         Dim MAInnenLabel As System.Windows.Forms.Label
-        Dim AbbuchungLabel As System.Windows.Forms.Label
-        Dim HasMenuLabel As System.Windows.Forms.Label
         Dim PasswortLabel As System.Windows.Forms.Label
         Dim NextIDNRLabel As System.Windows.Forms.Label
         Dim MandantLabel As System.Windows.Forms.Label
@@ -89,6 +86,7 @@ Partial Class Kunden
         Me.FirmenKontoIdTextBox = New System.Windows.Forms.TextBox()
         Me.FKofAdressenofadressensettingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Language_codeComboBox = New System.Windows.Forms.ComboBox()
+        Me.PasswortTextBox = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.cbKundengruppe = New System.Windows.Forms.ComboBox()
@@ -98,7 +96,6 @@ Partial Class Kunden
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.MandantTextBox = New System.Windows.Forms.TextBox()
         Me.NextIDNRComboBox = New System.Windows.Forms.ComboBox()
-        Me.PasswortTextBox = New System.Windows.Forms.TextBox()
         Me.HasMenuCheckBox = New System.Windows.Forms.CheckBox()
         Me.AbbuchungCheckBox = New System.Windows.Forms.CheckBox()
         Me.MAInnenComboBox = New System.Windows.Forms.ComboBox()
@@ -163,7 +160,8 @@ Partial Class Kunden
         Me.Name1TextBox = New System.Windows.Forms.TextBox()
         Me.FirmaTextBox = New System.Windows.Forms.TextBox()
         Me.AdresseTextBox = New System.Windows.Forms.TextBox()
-        Me.LandTextBox = New System.Windows.Forms.TextBox()
+        Me.LandComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrlandBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PLZComboBox = New System.Windows.Forms.ComboBox()
         Me.OrtComboBox = New System.Windows.Forms.ComboBox()
         Me.TelTextBox = New System.Windows.Forms.TextBox()
@@ -178,6 +176,10 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsbedingungenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_zahlungsbedingungenTableAdapter()
         Me.Ofadressen_transportmethodenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_transportmethodenTableAdapter()
         Me.Ofadressen_weitereTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_weitereTableAdapter()
+        Me.ButtonPLZSelect = New System.Windows.Forms.Button()
+        Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
+        Me.FillByToolStrip = New System.Windows.Forms.ToolStrip()
+        Me.FillByToolStripButton = New System.Windows.Forms.ToolStripButton()
         IDNRLabel = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
         BrancheLabel = New System.Windows.Forms.Label()
@@ -199,12 +201,9 @@ Partial Class Kunden
         MobilLabel = New System.Windows.Forms.Label()
         EmailLabel = New System.Windows.Forms.Label()
         WebLabel = New System.Windows.Forms.Label()
-        ExportLabel = New System.Windows.Forms.Label()
         AngelegtAnLabel = New System.Windows.Forms.Label()
         MAAusenLabel = New System.Windows.Forms.Label()
         MAInnenLabel = New System.Windows.Forms.Label()
-        AbbuchungLabel = New System.Windows.Forms.Label()
-        HasMenuLabel = New System.Windows.Forms.Label()
         PasswortLabel = New System.Windows.Forms.Label()
         NextIDNRLabel = New System.Windows.Forms.Label()
         MandantLabel = New System.Windows.Forms.Label()
@@ -239,6 +238,8 @@ Partial Class Kunden
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FillByToolStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'IDNRLabel
@@ -334,16 +335,16 @@ Partial Class Kunden
         'AdresseLabel
         '
         AdresseLabel.AutoSize = True
-        AdresseLabel.Location = New System.Drawing.Point(325, 56)
+        AdresseLabel.Location = New System.Drawing.Point(325, 109)
         AdresseLabel.Name = "AdresseLabel"
-        AdresseLabel.Size = New System.Drawing.Size(48, 13)
+        AdresseLabel.Size = New System.Drawing.Size(45, 13)
         AdresseLabel.TabIndex = 27
-        AdresseLabel.Text = "Adresse:"
+        AdresseLabel.Text = "Strasse:"
         '
         'LandLabel
         '
         LandLabel.AutoSize = True
-        LandLabel.Location = New System.Drawing.Point(325, 82)
+        LandLabel.Location = New System.Drawing.Point(325, 56)
         LandLabel.Name = "LandLabel"
         LandLabel.Size = New System.Drawing.Size(34, 13)
         LandLabel.TabIndex = 29
@@ -352,7 +353,7 @@ Partial Class Kunden
         'PLZLabel
         '
         PLZLabel.AutoSize = True
-        PLZLabel.Location = New System.Drawing.Point(325, 108)
+        PLZLabel.Location = New System.Drawing.Point(325, 82)
         PLZLabel.Name = "PLZLabel"
         PLZLabel.Size = New System.Drawing.Size(30, 13)
         PLZLabel.TabIndex = 31
@@ -361,7 +362,7 @@ Partial Class Kunden
         'OrtLabel
         '
         OrtLabel.AutoSize = True
-        OrtLabel.Location = New System.Drawing.Point(325, 135)
+        OrtLabel.Location = New System.Drawing.Point(441, 83)
         OrtLabel.Name = "OrtLabel"
         OrtLabel.Size = New System.Drawing.Size(24, 13)
         OrtLabel.TabIndex = 33
@@ -430,15 +431,6 @@ Partial Class Kunden
         WebLabel.TabIndex = 47
         WebLabel.Text = "Web:"
         '
-        'ExportLabel
-        '
-        ExportLabel.AutoSize = True
-        ExportLabel.Location = New System.Drawing.Point(6, 27)
-        ExportLabel.Name = "ExportLabel"
-        ExportLabel.Size = New System.Drawing.Size(40, 13)
-        ExportLabel.TabIndex = 49
-        ExportLabel.Text = "Export:"
-        '
         'AngelegtAnLabel
         '
         AngelegtAnLabel.AutoSize = True
@@ -466,28 +458,10 @@ Partial Class Kunden
         MAInnenLabel.TabIndex = 55
         MAInnenLabel.Text = "MAInnen:"
         '
-        'AbbuchungLabel
-        '
-        AbbuchungLabel.AutoSize = True
-        AbbuchungLabel.Location = New System.Drawing.Point(6, 137)
-        AbbuchungLabel.Name = "AbbuchungLabel"
-        AbbuchungLabel.Size = New System.Drawing.Size(65, 13)
-        AbbuchungLabel.TabIndex = 57
-        AbbuchungLabel.Text = "Abbuchung:"
-        '
-        'HasMenuLabel
-        '
-        HasMenuLabel.AutoSize = True
-        HasMenuLabel.Location = New System.Drawing.Point(6, 167)
-        HasMenuLabel.Name = "HasMenuLabel"
-        HasMenuLabel.Size = New System.Drawing.Size(57, 13)
-        HasMenuLabel.TabIndex = 59
-        HasMenuLabel.Text = "has Menu:"
-        '
         'PasswortLabel
         '
         PasswortLabel.AutoSize = True
-        PasswortLabel.Location = New System.Drawing.Point(6, 195)
+        PasswortLabel.Location = New System.Drawing.Point(530, 17)
         PasswortLabel.Name = "PasswortLabel"
         PasswortLabel.Size = New System.Drawing.Size(53, 13)
         PasswortLabel.TabIndex = 61
@@ -496,7 +470,7 @@ Partial Class Kunden
         'NextIDNRLabel
         '
         NextIDNRLabel.AutoSize = True
-        NextIDNRLabel.Location = New System.Drawing.Point(6, 221)
+        NextIDNRLabel.Location = New System.Drawing.Point(6, 182)
         NextIDNRLabel.Name = "NextIDNRLabel"
         NextIDNRLabel.Size = New System.Drawing.Size(60, 13)
         NextIDNRLabel.TabIndex = 63
@@ -505,7 +479,7 @@ Partial Class Kunden
         'MandantLabel
         '
         MandantLabel.AutoSize = True
-        MandantLabel.Location = New System.Drawing.Point(6, 248)
+        MandantLabel.Location = New System.Drawing.Point(6, 209)
         MandantLabel.Name = "MandantLabel"
         MandantLabel.Size = New System.Drawing.Size(52, 13)
         MandantLabel.TabIndex = 65
@@ -617,7 +591,7 @@ Partial Class Kunden
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl1.Location = New System.Drawing.Point(0, 356)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 358)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(794, 317)
@@ -631,6 +605,8 @@ Partial Class Kunden
         Me.TabPage1.Controls.Add(Me.FirmenKontoIdTextBox)
         Me.TabPage1.Controls.Add(Language_codeLabel)
         Me.TabPage1.Controls.Add(Me.Language_codeComboBox)
+        Me.TabPage1.Controls.Add(Me.PasswortTextBox)
+        Me.TabPage1.Controls.Add(PasswortLabel)
         Me.TabPage1.Controls.Add(Me.Label15)
         Me.TabPage1.Controls.Add(Me.Label14)
         Me.TabPage1.Controls.Add(Me.cbKundengruppe)
@@ -823,6 +799,14 @@ Partial Class Kunden
         Me.Language_codeComboBox.Size = New System.Drawing.Size(121, 21)
         Me.Language_codeComboBox.TabIndex = 14
         '
+        'PasswortTextBox
+        '
+        Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Passwort", True))
+        Me.PasswortTextBox.Location = New System.Drawing.Point(603, 14)
+        Me.PasswortTextBox.Name = "PasswortTextBox"
+        Me.PasswortTextBox.Size = New System.Drawing.Size(134, 20)
+        Me.PasswortTextBox.TabIndex = 62
+        '
         'Label15
         '
         Me.Label15.AutoSize = True
@@ -879,17 +863,12 @@ Partial Class Kunden
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(ExportLabel)
         Me.TabPage2.Controls.Add(Me.MandantTextBox)
         Me.TabPage2.Controls.Add(MandantLabel)
         Me.TabPage2.Controls.Add(Me.NextIDNRComboBox)
         Me.TabPage2.Controls.Add(NextIDNRLabel)
-        Me.TabPage2.Controls.Add(Me.PasswortTextBox)
-        Me.TabPage2.Controls.Add(PasswortLabel)
         Me.TabPage2.Controls.Add(Me.HasMenuCheckBox)
-        Me.TabPage2.Controls.Add(HasMenuLabel)
         Me.TabPage2.Controls.Add(Me.AbbuchungCheckBox)
-        Me.TabPage2.Controls.Add(AbbuchungLabel)
         Me.TabPage2.Controls.Add(Me.MAInnenComboBox)
         Me.TabPage2.Controls.Add(MAInnenLabel)
         Me.TabPage2.Controls.Add(Me.MAAusenComboBox)
@@ -922,7 +901,7 @@ Partial Class Kunden
         'MandantTextBox
         '
         Me.MandantTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "mandant", True))
-        Me.MandantTextBox.Location = New System.Drawing.Point(115, 245)
+        Me.MandantTextBox.Location = New System.Drawing.Point(115, 206)
         Me.MandantTextBox.Name = "MandantTextBox"
         Me.MandantTextBox.Size = New System.Drawing.Size(200, 20)
         Me.MandantTextBox.TabIndex = 66
@@ -931,35 +910,29 @@ Partial Class Kunden
         '
         Me.NextIDNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "nextIDNR", True))
         Me.NextIDNRComboBox.FormattingEnabled = True
-        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 218)
+        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 179)
         Me.NextIDNRComboBox.Name = "NextIDNRComboBox"
         Me.NextIDNRComboBox.Size = New System.Drawing.Size(200, 21)
         Me.NextIDNRComboBox.TabIndex = 64
         '
-        'PasswortTextBox
-        '
-        Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Passwort", True))
-        Me.PasswortTextBox.Location = New System.Drawing.Point(115, 192)
-        Me.PasswortTextBox.Name = "PasswortTextBox"
-        Me.PasswortTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.PasswortTextBox.TabIndex = 62
-        '
         'HasMenuCheckBox
         '
         Me.HasMenuCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "hasMenu", True))
-        Me.HasMenuCheckBox.Location = New System.Drawing.Point(115, 162)
+        Me.HasMenuCheckBox.Location = New System.Drawing.Point(236, 22)
         Me.HasMenuCheckBox.Name = "HasMenuCheckBox"
-        Me.HasMenuCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.HasMenuCheckBox.Size = New System.Drawing.Size(73, 24)
         Me.HasMenuCheckBox.TabIndex = 60
+        Me.HasMenuCheckBox.Text = "Menü"
         Me.HasMenuCheckBox.UseVisualStyleBackColor = True
         '
         'AbbuchungCheckBox
         '
         Me.AbbuchungCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Abbuchung", True))
-        Me.AbbuchungCheckBox.Location = New System.Drawing.Point(115, 132)
+        Me.AbbuchungCheckBox.Location = New System.Drawing.Point(158, 22)
         Me.AbbuchungCheckBox.Name = "AbbuchungCheckBox"
-        Me.AbbuchungCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.AbbuchungCheckBox.Size = New System.Drawing.Size(102, 24)
         Me.AbbuchungCheckBox.TabIndex = 58
+        Me.AbbuchungCheckBox.Text = "Abbuchung"
         Me.AbbuchungCheckBox.UseVisualStyleBackColor = True
         '
         'MAInnenComboBox
@@ -983,6 +956,7 @@ Partial Class Kunden
         'AngelegtAnDateTimePicker
         '
         Me.AngelegtAnDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "AngelegtAn", True))
+        Me.AngelegtAnDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.AngelegtAnDateTimePicker.Location = New System.Drawing.Point(115, 52)
         Me.AngelegtAnDateTimePicker.Name = "AngelegtAnDateTimePicker"
         Me.AngelegtAnDateTimePicker.Size = New System.Drawing.Size(200, 20)
@@ -991,10 +965,11 @@ Partial Class Kunden
         'ExportCheckBox
         '
         Me.ExportCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.ofAdressenBindingSource, "Export", True))
-        Me.ExportCheckBox.Location = New System.Drawing.Point(115, 22)
+        Me.ExportCheckBox.Location = New System.Drawing.Point(79, 22)
         Me.ExportCheckBox.Name = "ExportCheckBox"
-        Me.ExportCheckBox.Size = New System.Drawing.Size(200, 24)
+        Me.ExportCheckBox.Size = New System.Drawing.Size(73, 24)
         Me.ExportCheckBox.TabIndex = 50
+        Me.ExportCheckBox.Text = " Export"
         Me.ExportCheckBox.UseVisualStyleBackColor = True
         '
         'BHReferenzTextBox
@@ -1388,36 +1363,50 @@ Partial Class Kunden
         'AdresseTextBox
         '
         Me.AdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Adresse", True))
-        Me.AdresseTextBox.Location = New System.Drawing.Point(379, 56)
+        Me.AdresseTextBox.Location = New System.Drawing.Point(379, 109)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
         Me.AdresseTextBox.TabIndex = 28
         '
-        'LandTextBox
+        'LandComboBox
         '
-        Me.LandTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Land", True))
-        Me.LandTextBox.Location = New System.Drawing.Point(379, 82)
-        Me.LandTextBox.Name = "LandTextBox"
-        Me.LandTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.LandTextBox.TabIndex = 30
+        Me.LandComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Land", True))
+        Me.LandComboBox.DataSource = Me.GrlandBindingSource
+        Me.LandComboBox.DisplayMember = "Name"
+        Me.LandComboBox.Location = New System.Drawing.Point(379, 56)
+        Me.LandComboBox.Name = "LandComboBox"
+        Me.LandComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.LandComboBox.TabIndex = 30
+        Me.LandComboBox.ValueMember = "IdNr"
+        '
+        'GrlandBindingSource
+        '
+        Me.GrlandBindingSource.DataMember = "grland"
+        Me.GrlandBindingSource.DataSource = Me.DsPLZ
         '
         'PLZComboBox
         '
-        Me.PLZComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "PLZ", True))
+        Me.PLZComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "PLZ", True))
+        Me.PLZComboBox.DataSource = Me.GrLandPlzBindingSource
+        Me.PLZComboBox.DisplayMember = "PLZ"
         Me.PLZComboBox.FormattingEnabled = True
-        Me.PLZComboBox.Location = New System.Drawing.Point(379, 108)
+        Me.PLZComboBox.Location = New System.Drawing.Point(379, 82)
         Me.PLZComboBox.Name = "PLZComboBox"
-        Me.PLZComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.PLZComboBox.Size = New System.Drawing.Size(54, 21)
         Me.PLZComboBox.TabIndex = 32
+        Me.PLZComboBox.ValueMember = "IdNr"
         '
         'OrtComboBox
         '
         Me.OrtComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Ort", True))
+        Me.OrtComboBox.DataSource = Me.GrLandPlzBindingSource
+        Me.OrtComboBox.DisplayMember = "Ort"
         Me.OrtComboBox.FormattingEnabled = True
-        Me.OrtComboBox.Location = New System.Drawing.Point(379, 135)
+        Me.OrtComboBox.Location = New System.Drawing.Point(466, 83)
         Me.OrtComboBox.Name = "OrtComboBox"
-        Me.OrtComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.OrtComboBox.Size = New System.Drawing.Size(113, 21)
         Me.OrtComboBox.TabIndex = 34
+        Me.OrtComboBox.ValueMember = "Ort"
         '
         'TelTextBox
         '
@@ -1478,6 +1467,7 @@ Partial Class Kunden
         'GeburtstagDateTimePicker
         '
         Me.GeburtstagDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "Geburtstag", True))
+        Me.GeburtstagDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(83, 318)
         Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
         Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
@@ -1499,11 +1489,42 @@ Partial Class Kunden
         '
         Me.Ofadressen_weitereTableAdapter.ClearBeforeFill = True
         '
+        'ButtonPLZSelect
+        '
+        Me.ButtonPLZSelect.Location = New System.Drawing.Point(585, 81)
+        Me.ButtonPLZSelect.Name = "ButtonPLZSelect"
+        Me.ButtonPLZSelect.Size = New System.Drawing.Size(33, 23)
+        Me.ButtonPLZSelect.TabIndex = 69
+        Me.ButtonPLZSelect.Text = "..."
+        Me.ButtonPLZSelect.UseVisualStyleBackColor = True
+        '
+        'GrlandTableAdapter
+        '
+        Me.GrlandTableAdapter.ClearBeforeFill = True
+        '
+        'FillByToolStrip
+        '
+        Me.FillByToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillByToolStripButton})
+        Me.FillByToolStrip.Location = New System.Drawing.Point(0, 25)
+        Me.FillByToolStrip.Name = "FillByToolStrip"
+        Me.FillByToolStrip.Size = New System.Drawing.Size(794, 25)
+        Me.FillByToolStrip.TabIndex = 70
+        Me.FillByToolStrip.Text = "FillByToolStrip"
+        '
+        'FillByToolStripButton
+        '
+        Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.FillByToolStripButton.Name = "FillByToolStripButton"
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
+        Me.FillByToolStripButton.Text = "FillBy"
+        '
         'Kunden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(794, 673)
+        Me.ClientSize = New System.Drawing.Size(794, 675)
+        Me.Controls.Add(Me.FillByToolStrip)
+        Me.Controls.Add(Me.ButtonPLZSelect)
         Me.Controls.Add(IDNRLabel)
         Me.Controls.Add(Me.IDNRTextBox)
         Me.Controls.Add(StatusLabel)
@@ -1527,7 +1548,7 @@ Partial Class Kunden
         Me.Controls.Add(AdresseLabel)
         Me.Controls.Add(Me.AdresseTextBox)
         Me.Controls.Add(LandLabel)
-        Me.Controls.Add(Me.LandTextBox)
+        Me.Controls.Add(Me.LandComboBox)
         Me.Controls.Add(PLZLabel)
         Me.Controls.Add(Me.PLZComboBox)
         Me.Controls.Add(OrtLabel)
@@ -1572,7 +1593,7 @@ Partial Class Kunden
         Me.Controls.SetChildIndex(OrtLabel, 0)
         Me.Controls.SetChildIndex(Me.PLZComboBox, 0)
         Me.Controls.SetChildIndex(PLZLabel, 0)
-        Me.Controls.SetChildIndex(Me.LandTextBox, 0)
+        Me.Controls.SetChildIndex(Me.LandComboBox, 0)
         Me.Controls.SetChildIndex(LandLabel, 0)
         Me.Controls.SetChildIndex(Me.AdresseTextBox, 0)
         Me.Controls.SetChildIndex(AdresseLabel, 0)
@@ -1596,6 +1617,8 @@ Partial Class Kunden
         Me.Controls.SetChildIndex(StatusLabel, 0)
         Me.Controls.SetChildIndex(Me.IDNRTextBox, 0)
         Me.Controls.SetChildIndex(IDNRLabel, 0)
+        Me.Controls.SetChildIndex(Me.ButtonPLZSelect, 0)
+        Me.Controls.SetChildIndex(Me.FillByToolStrip, 0)
         CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
@@ -1620,6 +1643,9 @@ Partial Class Kunden
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FillByToolStrip.ResumeLayout(False)
+        Me.FillByToolStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1659,7 +1685,7 @@ Partial Class Kunden
     Friend WithEvents Name1TextBox As System.Windows.Forms.TextBox
     Friend WithEvents FirmaTextBox As System.Windows.Forms.TextBox
     Friend WithEvents AdresseTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents LandTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents LandComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents PLZComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents OrtComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents TelTextBox As System.Windows.Forms.TextBox
@@ -1741,4 +1767,9 @@ Partial Class Kunden
     Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents ButtonPLZSelect As System.Windows.Forms.Button
+    Friend WithEvents GrlandTableAdapter As IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter
+    Friend WithEvents FillByToolStrip As System.Windows.Forms.ToolStrip
+    Friend WithEvents FillByToolStripButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents GrlandBindingSource As System.Windows.Forms.BindingSource
 End Class
