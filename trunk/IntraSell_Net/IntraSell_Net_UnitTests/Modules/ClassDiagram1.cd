@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IntraSell_Net_UnitTests.CodedUITest1" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEACAAAAAAAAAAAAAAAACACAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>CodedUITest1.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.DBTest" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>DBTest.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.ModuleBuchVorgangDruckTest" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQABAA=</HashCode>
+      <FileName>ModuleBuchVorgangDruckTest.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.ModuleBuchVorgangXMLTest" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>ModuleBuchVorgangXMLTest.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.ModuleCommonsTest" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIAA=</HashCode>
+      <FileName>ModuleCommonsTest.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.IntraSell_Net_UnitTests.UIMap" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAIAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIMap.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.IntraSell_Net_UnitTests.UIIntraSellNet01AlphabWindow" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.IntraSell_Net_UnitTests.UIMenuStrip1MenuBar" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAIAICAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.IntraSell_Net_UnitTests.UIStammdatenMenuItem" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net_UnitTests.IntraSell_Net_UnitTests.UIIntraSellNet01AlphabTitleBar" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
