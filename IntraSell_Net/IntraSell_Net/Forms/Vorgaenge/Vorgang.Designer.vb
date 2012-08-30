@@ -114,6 +114,15 @@ Partial Class Vorgang
         Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbschliessenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StornoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KonvertierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorlagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KassaBuchungToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SendeEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -145,12 +154,13 @@ Partial Class Vorgang
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'NummerLabel
         '
         NummerLabel.AutoSize = True
-        NummerLabel.Location = New System.Drawing.Point(9, 58)
+        NummerLabel.Location = New System.Drawing.Point(17, 95)
         NummerLabel.Name = "NummerLabel"
         NummerLabel.Size = New System.Drawing.Size(49, 13)
         NummerLabel.TabIndex = 1
@@ -159,7 +169,7 @@ Partial Class Vorgang
         'TypLabel
         '
         TypLabel.AutoSize = True
-        TypLabel.Location = New System.Drawing.Point(9, 31)
+        TypLabel.Location = New System.Drawing.Point(17, 68)
         TypLabel.Name = "TypLabel"
         TypLabel.Size = New System.Drawing.Size(28, 13)
         TypLabel.TabIndex = 3
@@ -168,7 +178,7 @@ Partial Class Vorgang
         'KundNrLabel
         '
         KundNrLabel.AutoSize = True
-        KundNrLabel.Location = New System.Drawing.Point(9, 117)
+        KundNrLabel.Location = New System.Drawing.Point(17, 154)
         KundNrLabel.Name = "KundNrLabel"
         KundNrLabel.Size = New System.Drawing.Size(41, 13)
         KundNrLabel.TabIndex = 5
@@ -177,7 +187,7 @@ Partial Class Vorgang
         'DatumLabel
         '
         DatumLabel.AutoSize = True
-        DatumLabel.Location = New System.Drawing.Point(9, 88)
+        DatumLabel.Location = New System.Drawing.Point(17, 125)
         DatumLabel.Name = "DatumLabel"
         DatumLabel.Size = New System.Drawing.Size(41, 13)
         DatumLabel.TabIndex = 7
@@ -213,7 +223,7 @@ Partial Class Vorgang
         'SummeLabel
         '
         SummeLabel.AutoSize = True
-        SummeLabel.Location = New System.Drawing.Point(9, 184)
+        SummeLabel.Location = New System.Drawing.Point(17, 221)
         SummeLabel.Name = "SummeLabel"
         SummeLabel.Size = New System.Drawing.Size(45, 13)
         SummeLabel.TabIndex = 15
@@ -249,7 +259,7 @@ Partial Class Vorgang
         'SummeMWSTLabel
         '
         SummeMWSTLabel.AutoSize = True
-        SummeMWSTLabel.Location = New System.Drawing.Point(9, 210)
+        SummeMWSTLabel.Location = New System.Drawing.Point(17, 247)
         SummeMWSTLabel.Name = "SummeMWSTLabel"
         SummeMWSTLabel.Size = New System.Drawing.Size(82, 13)
         SummeMWSTLabel.TabIndex = 35
@@ -258,7 +268,7 @@ Partial Class Vorgang
         'SummeBruttoLabel
         '
         SummeBruttoLabel.AutoSize = True
-        SummeBruttoLabel.Location = New System.Drawing.Point(9, 236)
+        SummeBruttoLabel.Location = New System.Drawing.Point(17, 273)
         SummeBruttoLabel.Name = "SummeBruttoLabel"
         SummeBruttoLabel.Size = New System.Drawing.Size(76, 13)
         SummeBruttoLabel.TabIndex = 37
@@ -285,7 +295,7 @@ Partial Class Vorgang
         'KundNr2Label
         '
         KundNr2Label.AutoSize = True
-        KundNr2Label.Location = New System.Drawing.Point(9, 144)
+        KundNr2Label.Location = New System.Drawing.Point(17, 181)
         KundNr2Label.Name = "KundNr2Label"
         KundNr2Label.Size = New System.Drawing.Size(73, 13)
         KundNr2Label.TabIndex = 43
@@ -321,7 +331,7 @@ Partial Class Vorgang
         'WaehrungLabel1
         '
         WaehrungLabel1.AutoSize = True
-        WaehrungLabel1.Location = New System.Drawing.Point(12, 262)
+        WaehrungLabel1.Location = New System.Drawing.Point(20, 299)
         WaehrungLabel1.Name = "WaehrungLabel1"
         WaehrungLabel1.Size = New System.Drawing.Size(54, 13)
         WaehrungLabel1.TabIndex = 52
@@ -369,7 +379,7 @@ Partial Class Vorgang
         Me.BuchvorgangBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.BuchvorgangBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
         Me.BuchvorgangBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.BuchvorgangBindingNavigatorSaveItem})
-        Me.BuchvorgangBindingNavigator.Location = New System.Drawing.Point(0, 0)
+        Me.BuchvorgangBindingNavigator.Location = New System.Drawing.Point(0, 24)
         Me.BuchvorgangBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BuchvorgangBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.BuchvorgangBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -476,7 +486,7 @@ Partial Class Vorgang
         'NummerTextBox
         '
         Me.NummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Nummer", True))
-        Me.NummerTextBox.Location = New System.Drawing.Point(123, 55)
+        Me.NummerTextBox.Location = New System.Drawing.Point(131, 92)
         Me.NummerTextBox.Name = "NummerTextBox"
         Me.NummerTextBox.Size = New System.Drawing.Size(131, 20)
         Me.NummerTextBox.TabIndex = 2
@@ -485,7 +495,7 @@ Partial Class Vorgang
         '
         Me.TypComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.BuchvorgangBindingSource, "Typ", True))
         Me.TypComboBox.FormattingEnabled = True
-        Me.TypComboBox.Location = New System.Drawing.Point(123, 28)
+        Me.TypComboBox.Location = New System.Drawing.Point(131, 65)
         Me.TypComboBox.Name = "TypComboBox"
         Me.TypComboBox.Size = New System.Drawing.Size(131, 21)
         Me.TypComboBox.TabIndex = 1
@@ -494,7 +504,7 @@ Partial Class Vorgang
         '
         Me.DatumDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BuchvorgangBindingSource, "Datum", True))
         Me.DatumDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DatumDateTimePicker.Location = New System.Drawing.Point(123, 84)
+        Me.DatumDateTimePicker.Location = New System.Drawing.Point(131, 121)
         Me.DatumDateTimePicker.Name = "DatumDateTimePicker"
         Me.DatumDateTimePicker.Size = New System.Drawing.Size(131, 20)
         Me.DatumDateTimePicker.TabIndex = 3
@@ -529,7 +539,7 @@ Partial Class Vorgang
         'SummeTextBox
         '
         Me.SummeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Summe", True))
-        Me.SummeTextBox.Location = New System.Drawing.Point(123, 181)
+        Me.SummeTextBox.Location = New System.Drawing.Point(131, 218)
         Me.SummeTextBox.Name = "SummeTextBox"
         Me.SummeTextBox.ReadOnly = True
         Me.SummeTextBox.Size = New System.Drawing.Size(131, 20)
@@ -594,7 +604,7 @@ Partial Class Vorgang
         'SummeMWSTTextBox
         '
         Me.SummeMWSTTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeMWST", True))
-        Me.SummeMWSTTextBox.Location = New System.Drawing.Point(123, 207)
+        Me.SummeMWSTTextBox.Location = New System.Drawing.Point(131, 244)
         Me.SummeMWSTTextBox.Name = "SummeMWSTTextBox"
         Me.SummeMWSTTextBox.ReadOnly = True
         Me.SummeMWSTTextBox.Size = New System.Drawing.Size(131, 20)
@@ -604,7 +614,7 @@ Partial Class Vorgang
         'SummeBruttoTextBox
         '
         Me.SummeBruttoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "SummeBrutto", True))
-        Me.SummeBruttoTextBox.Location = New System.Drawing.Point(123, 233)
+        Me.SummeBruttoTextBox.Location = New System.Drawing.Point(131, 270)
         Me.SummeBruttoTextBox.Name = "SummeBruttoTextBox"
         Me.SummeBruttoTextBox.ReadOnly = True
         Me.SummeBruttoTextBox.Size = New System.Drawing.Size(131, 20)
@@ -828,10 +838,10 @@ Partial Class Vorgang
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(355, 24)
+        Me.TabControl1.Location = New System.Drawing.Point(355, 52)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(675, 351)
+        Me.TabControl1.Size = New System.Drawing.Size(675, 323)
         Me.TabControl1.TabIndex = 10
         '
         'TabPage1
@@ -858,7 +868,7 @@ Partial Class Vorgang
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(667, 325)
+        Me.TabPage1.Size = New System.Drawing.Size(667, 297)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Status"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -883,7 +893,7 @@ Partial Class Vorgang
         '
         Me.WaehrungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Waehrung", True))
         Me.WaehrungComboBox.FormattingEnabled = True
-        Me.WaehrungComboBox.Location = New System.Drawing.Point(123, 259)
+        Me.WaehrungComboBox.Location = New System.Drawing.Point(131, 296)
         Me.WaehrungComboBox.Name = "WaehrungComboBox"
         Me.WaehrungComboBox.Size = New System.Drawing.Size(131, 21)
         Me.WaehrungComboBox.TabIndex = 9
@@ -896,7 +906,7 @@ Partial Class Vorgang
         '
         Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
         Me.KundNr2AdressenControl.IDNR = 0
-        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(123, 141)
+        Me.KundNr2AdressenControl.Location = New System.Drawing.Point(131, 178)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
         Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
         Me.KundNr2AdressenControl.TabIndex = 5
@@ -905,10 +915,68 @@ Partial Class Vorgang
         '
         Me.KundNrAdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
         Me.KundNrAdressenControl.IDNR = 0
-        Me.KundNrAdressenControl.Location = New System.Drawing.Point(123, 110)
+        Me.KundNrAdressenControl.Location = New System.Drawing.Point(131, 147)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
         Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
         Me.KundNrAdressenControl.TabIndex = 4
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1042, 24)
+        Me.MenuStrip1.TabIndex = 53
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'VorgangToolStripMenuItem
+        '
+        Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
+        Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
+        Me.VorgangToolStripMenuItem.Text = "&Vorgang"
+        '
+        'AbschliessenToolStripMenuItem
+        '
+        Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
+        '
+        'StornoToolStripMenuItem
+        '
+        Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.StornoToolStripMenuItem.Text = "&Storno"
+        '
+        'ExportierenToolStripMenuItem
+        '
+        Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
+        '
+        'KonvertierenToolStripMenuItem
+        '
+        Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
+        '
+        'VorlagenToolStripMenuItem
+        '
+        Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
+        '
+        'KassaBuchungToolStripMenuItem
+        '
+        Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
+        '
+        'SendeEmailToolStripMenuItem
+        '
+        Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'Vorgang
         '
@@ -936,6 +1004,8 @@ Partial Class Vorgang
         Me.Controls.Add(SummeBruttoLabel)
         Me.Controls.Add(Me.SummeBruttoTextBox)
         Me.Controls.Add(Me.BuchvorgangBindingNavigator)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Vorgang"
         Me.Text = "Vorgang"
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).EndInit()
@@ -952,6 +1022,8 @@ Partial Class Vorgang
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1026,4 +1098,13 @@ Partial Class Vorgang
     Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents VorgangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AbschliessenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents StornoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents KonvertierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorlagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents KassaBuchungToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SendeEmailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

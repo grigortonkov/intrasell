@@ -128,7 +128,7 @@ Public Class Vorgang
     'setzte die Vorgangnummer für neue 
     Private Sub TypComboBox_Leave(sender As System.Object, e As System.EventArgs) Handles TypComboBox.Leave
         If String.IsNullOrEmpty(Me.NummerTextBox.Text) Then
-            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.Text, Me.KundNrAdressenControl.IDNR)
+            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.SelectedValue, Me.KundNrAdressenControl.IDNR)
             Me.DatumDateTimePicker.Value = DateTime.Now
         End If
     End Sub
@@ -145,7 +145,7 @@ Public Class Vorgang
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
         'Start printing for the Vorgang 
         'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
-        OpenAusdruck_inWord_XML(Me.TypComboBox.Text, Me.NummerTextBox.Text, "Vorlagen/17. Rechnung.dot", "WORD", False, Nothing)
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, "Vorlagen/17. Rechnung.dot", "WORD", False, Nothing)
     End Sub
 
 #Region "Events for the Artikel Grid"
@@ -230,7 +230,6 @@ Public Class Vorgang
         writeLog("Buchvorgang_artikelBindingSource_CurrentChanged")
     End Sub
 
-#End Region
 
     Private Sub Recalculate()
         Dim summeNetto As Double = 0.0, summeBrutto As Double = 0.0, MWST As Double = 0.0
@@ -289,6 +288,646 @@ Public Class Vorgang
         Me.SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
         Me.SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
     End Sub
+
+
+
+#End Region
+
+#Region "Menu"
+
+
+    Private Sub AbschliessenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AbschliessenToolStripMenuItem.Click
+        btnAbschliessen_Click()
+    End Sub
+
+    Private Sub StornoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StornoToolStripMenuItem.Click
+        btnStorno_Click()
+    End Sub
+
+    Private Sub ExportierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub KonvertierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub VorlagenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
+
+    End Sub
+
+
+    Private Sub SendeEmailToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
+
+    End Sub
+#End Region
+
+
+#Region "buchRechnung old code"
+
+    'Option Compare Database
+    'Option Explicit
+
+    '    Const CONST_ARTNR_FREIER_ARTIKEL = 1000
+
+    '    Private Sub Bezahlt_AfterUpdate()
+    '        If Me.Bezahlt = True Then
+    '            Call btnKassa_Click()
+    '        End If
+    '    End Sub
+
+    '    'Erstellt eine neue Rechnung mirnur eine Position für die Akontobezahlung
+    '    Private Sub btnAkonto_Click()
+    '        On Error GoTo err
+    '        Dim isP As IntraSell.IntraSellPreise
+    '        isP = IntraSellPreise
+    '        Dim Typ As String : Typ = Me.txtVorgangType
+    '        Dim Nummer As String : Nummer = Me.Nummer
+    '        Dim ArtNr As String : ArtNr = CONST_ARTNR_FREIER_ARTIKEL
+
+    '        Dim betragAkonto As String : betragAkonto = InputBox("Geben Sie bitte den Betrag ein:", "Betrag")
+    '        If Not IsNumeric(betragAkonto) Then
+    '            MsgBox(betragAkonto & " ist keine Zahl!", vbExclamation)
+    '            Exit Sub
+    '        End If
+
+    '        Dim betragAkontoNetto As String : betragAkontoNetto = RoundUp(betragAkonto / (1 + getMWSTArtikel(ArtNr) / 100), VARVALUE_DEFAULT("PREIS_GENAUIGKEIT", 2) * 1)
+
+
+
+    '        Dim newNummer As String
+    '        newNummer = isP.convertFromTo("AR", "AR", Me.Nummer & "", Me.KundNr & "")
+
+    '        Dim sql As String
+    '        sql = "delete from [buchRech-Artikel] where rechnr = " & newNummer
+    '        DoCmd.SetWarnings(False)
+    '        DoCmd.RunSQL(sql)
+
+    '        'Akonto position erfasen
+    '        betragAkontoNetto = Replace(betragAkontoNetto, ",", ".")
+    '        betragAkonto = Replace(betragAkonto, ",", ".")
+    '        sql = "insert into [buchRech-Artikel] (rechNr, ArtNr, Bezeichnung, PreisATS, PreisATS_Brutto, Stk) " & _
+    '              " values (" & newNummer & ", " & ArtNr & ", ""Akonto für Rechnung " & Nummer & """," & betragAkontoNetto & "," & betragAkonto & ", 1)"
+    '        DoCmd.RunSQL(sql)
+    '        DoCmd.SetWarnings(True)
+
+    '        setSummeVorgang(Typ, newNummer, "")
+
+    '        Call openVorgangFunctionByNummer(Typ, newNummer)
+
+    '        Exit Sub
+    'err:
+    '        MsgBox("Ein unerwarteter Fehler ist passiert!" + err.Description, vbCritical)
+
+    '    End Sub
+
+    '    Private Sub btnCalcSheet_Click()
+
+    '        ' If Me.MitarbeiterEK = 0 Or Me.MitarbeiterEK & "" = "" Then
+    '        '     MsgBox "Mitarbeiter EK wurde noch  nicht gewählt!"
+    '        '     Exit Sub
+    '        ' End If
+
+
+    '        'If Me.MitarbeiterVK = 0 Or Me.MitarbeiterVK & "" = "" Then
+    '        '     MsgBox "Mitarbeiter VK wurde noch nicht gewählt!"
+    '        '     Exit Sub
+    '        ' End If
+
+
+    '        DoCmd.OpenForm("calcSheet", , , "VorgangTyp='" & Me.txtVorgangType & "' and AuftragNr=" & Me.Nummer)
+    '        Forms("calcSheet").AuftragNrSel = Me.Nummer
+    '        Forms("calcSheet").Vorgangtyp = Me.txtVorgangType
+
+    '    End Sub
+
+    '    Private Sub btnKassa_Click()
+    '        If Me.txtVorgangType = "AR" And Me.Bezahlt = 0 Then
+    '            If MsgBox("Haben Sie den Betrag in der Höhe von " & Me.summeATSPlusMWST & " eingehoben?", vbYesNo) = vbYes Then
+    '                'Me.Bezahlt = True
+    '                DoCmd.SetWarnings(False)
+    '                DoCmd.RunSQL("update " & getVorgangTableForType(Me.txtVorgangType) & " set bezahlt = -1 where Nummer = " & Me.Nummer)
+    '                DoCmd.SetWarnings(True)
+    '                Me.Requery()
+    '                'kassabuch
+    '                Call makeKassaBuchEintrag(Now(), Me.txtVorgangType, Me.txtVorgangType & "-" & Me.Nummer, Me.summeATSPlusMWST)
+    '            End If
+    '        End If
+    '    End Sub
+
+    '    Private Sub btnKonvertieren_Click()
+    '        DoCmd.OpenForm("buchVorgaengeKonvertieren")
+    '        Forms("buchVorgaengeKonvertieren").txtVorgangTypFrom = Me.txtVorgangType
+    '        Forms("buchVorgaengeKonvertieren").txtVorgangNummerFrom = Me.Nummer
+    '        Forms("buchVorgaengeKonvertieren").KundNr = Me.KundNr
+
+    '        If Me.txtVorgangType = "AR" Then
+    '            Forms("buchVorgaengeKonvertieren").cbVorgangAbschliessen = 0
+    '        End If
+
+    '    End Sub
+
+    '    Private Sub btnMore_Click()
+    '        If Me.btnMore.Caption = "+" Then
+    '            showMore(True)
+    '     Me.[Rech-Artikel].Width = 24000
+    '            Me.btnMore.Caption = "-"
+
+    '        Else
+    '            showMore(False)
+    '     Me.[Rech-Artikel].Width = 11640
+    '            Me.btnMore.Caption = "+"
+    '        End If
+    '    End Sub
+
+    '    Private Sub showMore(show As Boolean)
+    '            Call showMoreFields(Me.[Rech-Artikel].Form, True)
+
+    '        btnAbschliessen.Visible = show
+    '        btnKassa.Visible = show
+    '        btnStorno.Visible = show
+    '        btnOffeneVorgänge.Visible = show
+    '        btnKonvertieren.Visible = show
+    '        drucken.Visible = show
+    '        btn_BankBeleg.Visible = show
+    '        btnToWord.Visible = show
+    '        btnVorlagen.Visible = show
+    '        btn_Aufklebar.Visible = show
+    '        cbDateinameVorlage.Visible = Not show
+
+    '    End Sub
+
+    '    Private Sub btnMoreEigenschaften_Click()
+    '        DoCmd.OpenForm("buchVorgaengeEigenschaften", , , "VorgangTyp='" & Me.txtVorgangType & "' and Nummer=" & Me.Nummer)
+    '    End Sub
+
+
+
+    '    Private Sub btnTransportAuftrag_Click()
+    '        'Dim frmName As String: frmName = "transportAuftrag"
+    '        'DoCmd.OpenForm frmName, , , "AuftragNr=" & Me.Nummer
+    '        'Forms(frmName).AuftragNr = Me.Nummer
+    '        openCreateTA(Me.Nummer)
+    '    End Sub
+
+    '    Private Sub btnVorlagen_Click()
+
+    '        DoCmd.OpenForm("buchVorgaengeAusdruck")
+    '        Forms("buchVorgaengeAusdruck").RecordSource = Me.RecordSource
+    '        Forms("buchVorgaengeAusdruck").Vorgangtyp = Me.txtVorgangType
+    '        Forms("buchVorgaengeAusdruck").Filter = "Nummer = " & Me.Nummer
+    '        Forms("buchVorgaengeAusdruck").FilterOn = True
+    '        Forms("buchVorgaengeAusdruck").cbDateiname.Requery()
+    '    End Sub
+
+    '    Private Sub cbDateinameVorlage_Click()
+    '        'automatisierungsfunction
+    '        Call btnVorlagen_Click() 'offnet auswahl form
+    '        'simuliert click
+    '        Forms("buchVorgaengeAusdruck").cbDateiname = Me.cbDateinameVorlage
+    '        'druckt
+
+    '        'Call Forms("buchVorgaengeAusdruck").VorgaengeAusdruck_automateDruck
+    '        'If err.Number > 0 Then
+    '        '    MsgBox err.Description & " in modul cbDateinameVorlage_DblClick"
+    '        '    err.Clear
+    '        'End If
+    '        'On Error GoTo 0
+    '    End Sub
+
+
+    '    Private Sub cbDateinameVorlage_DblClick(Cancel As Integer)
+    '        'this functions is not used , because on click is overriding it
+    '        'automatisierungsfunction
+    '        Call btnVorlagen_Click() 'offnet auswahl form
+    '        'simuliert click
+    '        Forms("buchVorgaengeAusdruck").cbDateiname = Me.cbDateinameVorlage
+    '        'druckt
+    '        On Error Resume Next
+    '        Call Forms("buchVorgaengeAusdruck").VorgaengeAusdruck_automateDruck()
+    '        If err.Number > 0 Then
+    '            MsgBox(err.Description & " in modul cbDateinameVorlage_DblClick")
+    '            err.Clear()
+    '        End If
+    '        On Error GoTo 0
+
+    '    End Sub
+
+    '    Private Sub cbVorgang_Change()
+
+
+    '        If Me.cbVorgang = "DRUCK" Then  ';Ausdrucken;
+    '            Call drucken_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "DRUCK_WORD" Then  ';Ausdrucken mit Word;
+    '            Call btnToWord_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "SERIENDRUCK" Then  ';Ausdrucken mit Word;
+    '            DoCmd.OpenForm("buchVorgaengeAusdruckSerie")
+    '            Forms("buchVorgaengeAusdruckSerie").Nummer = Me.Nummer
+    '            Forms("buchVorgaengeAusdruckSerie").Vorgangtyp = Me.txtVorgangType
+    '        End If
+
+    '        If Me.cbVorgang = "VORLAGEN" Then  ';Ausdruck mit Vorlage;
+    '            Call btnVorlagen_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "DRUCKADRKLEBER" Then  ';Ausdruck Adresskleber;
+    '            Call btn_Aufklebar_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "DRUCK_ZAHLSCHEIN" Then  ';Ausdruck Zahlschein;
+    '            Call btn_BankBeleg_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "ABSCH" Then  ';Abschliessen;
+    '            Call btnAbschliessen_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "VORG" Then  ';offene Vorgänge;
+    '            Call btnOffeneVorgänge_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "STORNO" Then  ';Sortnieren;
+    '            Call btnStorno_Click()
+    '            Exit Sub
+    '        End If
+
+    '        If Me.cbVorgang = "KASSA" Then  ';Kassa buchen;
+    '            Call btnKassa_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "KONVERT" Then  ';Konvertieren
+    '            Call btnKonvertieren_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "SENDMAIL" Then  ';Konvertieren
+    '            Call btnSendMail_Click()
+    '        End If
+
+    '        If Me.cbVorgang = "GLS" Then  ';Konvertieren
+    '            Call transferQuery("_export_GLS_File", varValue("GLS_EXPORT_FILENAME"))
+    '        End If
+
+
+
+
+    '    End Sub
+
+    '    Sub btnSendMail_Click()
+    '        Call sendVorgang_Email(Me.txtVorgangType, Me.Nummer, "")
+    '    End Sub
+
+
+    '    Private Sub cbVorgang_Enter()
+    '        Me.AllowEdits = True
+    '    End Sub
+
+    '    Private Sub Datum_DblClick(Cancel As Integer)
+    '        DoCmd.OpenForm("Kalender")
+    '        Forms("Kalender").fieldToUpdate = Me.Datum
+    '    End Sub
+
+    '    Private Sub Form_Activate()
+    '        Call translate(Me.Name)
+    '    End Sub
+
+    '    Private Sub btn_Aufklebar_Click()
+
+    '        DoCmd.OpenReport("rpt_Abkleber", acViewPreview, , "IDNR= " & Me.KundNr)
+    '    End Sub
+
+    '    Private Sub btn_BankBeleg_Click()
+    '        DoCmd.OpenReport("rpt_BankBeleg", acViewPreview, , "Nummer= " & Me.Nummer)
+    '    End Sub
+
+    Private Sub btnAbschliessen_Click()
+        Call VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
+        'Event einfügen
+        EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
+       
+    End Sub
+
+
+    '    Private Sub btnAbschliessenUndSchliessen_Click()
+    '        Call btnAbschliessen_Click()
+    '        DoCmd.Close(acForm, Me.Name)
+    '    End Sub
+
+    '    Private Sub btnabgeschlossen_Click()
+    'Call sendabgeschlossen(Me!abgeschlossen, Me![Rech-Artikel].Form![summeATSPlusMWST], Me.KundNr, Me.Nummer)
+    '    End Sub
+
+
+
+    '    Private Sub setStatus(IDNR As Integer)
+
+    '        Dim rs As Recordset
+    '        rs = CurrentDb.openRecordset("ofAdresse", dbOpenDynaset, dbSeeChanges)
+
+    '        rs.FindFirst("IDNR = " & IDNR)
+
+    '        rs.Edit()
+    '        rs!Status = "Kunde"
+    '        rs.Update()
+
+
+    '    End Sub
+
+    '    Private Sub btnChangeZB_Click()
+    '        Me.ZahlungsBedungung.RowSource = "Select methode, nr from grZahlungsbedingung"
+    '        Me.ZahlungsMethode.RowSource = "Select methode from grZahlungsmethode"
+    '        Me.TransportMethode.RowSource = "Select methode from grTransportMethode"
+    '        Me.ZahlungsBedungung.Requery()
+    '        Me.ZahlungsMethode.Requery()
+    '        Me.TransportMethode.Requery()
+    '    End Sub
+
+    '    Private Sub btnNeueRechnung_Click()
+    '        Call neueRechnung(Me.Caption)
+    '        Me.Rech_Artikel.Requery() 'for access 2010
+    '        On Error GoTo exit1
+    '        DoCmd.GoToRecord(acDataForm, Me.Name, acPrevious)
+    '        DoCmd.GoToRecord(acDataForm, Me.Name, acNext)
+    'exit1:
+    '    End Sub
+
+
+
+
+    '    Private Sub btnOffeneVorgänge_Click()
+    '        openVorgänge(Me.KundNr, Me.Nummer, Me.txtVorgangType)
+    '        On Error Resume Next
+    '        Forms![buchVorgänge]![btnÜnernehmen].Visible = False
+    '        Forms![buchVorgänge]![btnAbbrechen].Visible = False
+    '        On Error GoTo 0
+    '    End Sub
+
+    Private Sub btnStorno_Click()
+
+        If Storno(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
+            Me.Close()
+        End If
+
+    End Sub
+
+    '    Private Sub btnSuchen_Click()
+    '        DoCmd.OpenForm("buchRechnungListe")
+    '        Forms("buchRechnungListe").RecordSource = Me.RecordSource
+    '    End Sub
+
+    '    Private Sub btnVorcherige_Click()
+    '        On Error GoTo Err_btnVorcherige_Click
+
+    '        DoCmd.GoToRecord, , acPrevious
+
+    'Exit_btnVorcherige_Click:
+    '        Exit Sub
+
+    'Err_btnVorcherige_Click:
+    '        'Me.Caption = err.Description
+    '        Debug.Print(err.Description)
+    '        Resume Exit_btnVorcherige_Click
+
+    '    End Sub
+
+
+
+    '    Private Sub drucken_Click()
+    '        'save record first
+    '        SaveCurrentRecord()
+    '        Call OpenAusdruck(Me.txtVorgangType, Me.Nummer, """" & Me.txtVorgangType & """00/000000")
+    '        'Me![checkBox_ausgedruckt] = True
+    '        DoCmd.SetWarnings(False)
+    '        DoCmd.RunSQL("update " & getVorgangTableForType(Me.txtVorgangType) & " set ausgedrukt = -1 where Nummer = " & Me.Nummer)
+    '        DoCmd.SetWarnings(True)
+
+    '        'Wenn es eine Rechnung ist dann auch als closed kennzeichnen
+    '        'If Me.txtVorgangType = "AR" Then
+    '        '   Me.checkbox_abgeschlossen = True
+    '        'End If
+
+    '    End Sub
+
+    '    Private Sub Form_Close()
+    '        DoCmd.Close(acForm, "buchVorgänge")
+    '    End Sub
+
+
+
+
+
+    '    Private Sub Form_Current()
+    '        If Me.KundNr >= 0 Then
+    '            If Not needsMWST(Me.KundNr) Then
+    '                Me.txtMessages = "Die Rechnung hat keine MWST!"
+    '            End If
+    '        End If
+    '        Call checkForStorno(Me.Form)
+    '        Call initDokSys()
+    '        'record source
+    '        Me.ZahlungsBedungung.RowSource = "SELECT grZahlungsbedingung.Methode,  IdNr FROM [ofAdressen-Zahlungsbedingungen] INNER JOIN grZahlungsbedingung ON [ofAdressen-Zahlungsbedingungen].Bedingung = grZahlungsbedingung.Nr " & _
+    '        " GROUP BY grZahlungsbedingung.Methode, [ofAdressen-Zahlungsbedingungen].IdNr HAVING ((([ofAdressen-Zahlungsbedingungen].IdNr)=" & Me.KundNr & "));"
+    '        Me.ZahlungsBedungung.Requery()
+
+    '        Me.ZahlungsMethode.RowSource = "SELECT  Methode FROM [ofAdressen-Zahlungsmethoden] GROUP BY  Methode,  IdNr " & _
+    '        " HAVING IDNR   = " & Me.KundNr & "  ORDER BY  Methode;"
+    '        Me.ZahlungsMethode.Requery()
+
+    '        Me.TransportMethode.RowSource = "SELECT t1.Methode, t1.IdNr FROM [ofAdressen-Transportmethoden] AS t1 GROUP BY t1.Methode, t1.IdNr " & _
+    '        " HAVING t1.IDNR  = " & Me.KundNr & " ORDER BY t1.Methode;"
+    '        Me.TransportMethode.Requery()
+
+    '        If Me.txtVorgangType = "AR" Then
+    '            btnKassa.Visible = True
+    '            btnAkonto.Visible = True
+    '        Else
+    '            btnKassa.Visible = False
+    '            btnAkonto.Visible = False
+    '        End If
+
+    '    End Sub
+
+
+
+    '    Private Sub initDokSys()
+    '        On Error GoTo err1
+    '        'Dokumente init
+    '        Dim f As Form
+    '        f = Me.AddIn_DokSys_Sub.Form
+    '        Call f.InitForm(getVorgangTableForType(Me.txtVorgangType.Value), Me.Nummer.Value)
+    '        Exit Sub
+
+    'err1:
+    '        'do nothing
+    '    End Sub
+
+    '    Private Sub Form_Open(Cancel As Integer)
+    '        Call checkForStorno(Me.Form)
+    '        If varValue("STORNO_BUTTON") = "FALSE" Then
+    '            btnStorno.Visible = False
+    '        End If
+
+    '    End Sub
+
+    '    Private Sub Form_Timer()
+    '        'Call checkForStorno(Me.Form)
+    '    End Sub
+
+
+
+    '    Private Sub KundNr2_Enter()
+    '        Me.KundNr2.Requery()
+    '    End Sub
+
+    '    Public Sub lblNeuBerechnen_Click()
+    '        On Error Resume Next ' dont show data ws changed by another user
+    '        setSummeVorgang(Me.txtVorgangType, Me.Nummer, Me.Name)
+    '        Me.Requery()
+    '        On Error GoTo 0
+    '    End Sub
+
+    '    Private Sub nächste_Click()
+    '        On Error GoTo Err_btnVorcherige_Click
+
+    '        DoCmd.GoToRecord, , acNext
+
+    'Exit_btnVorcherige_Click:
+    '        Exit Sub
+
+    'Err_btnVorcherige_Click:
+    '        'Me.Caption = err.Description
+    '        Debug.Print(err.Description)
+    '        Resume Exit_btnVorcherige_Click
+    '    End Sub
+
+
+
+    '    Private Sub Notiz_Dirty(Cancel As Integer)
+    '        Dim freieZeichen As Integer
+    '        freieZeichen = 2000 - Len(Notiz & "")
+    '        Me.Caption1.Caption = freieZeichen & " Zeichen frei."
+    '    End Sub
+
+
+    '    Private Sub NotizIntern_Dirty(Cancel As Integer)
+    '        Dim freieZeichen As Integer
+    '        freieZeichen = 2000 - Len(NotizIntern & "")
+    '        Me.Caption1.Caption = freieZeichen & " Zeichen frei."
+    '    End Sub
+
+    '    Private Sub Notizextern_Dirty(Cancel As Integer)
+    '        Dim freieZeichen As Integer
+    '        freieZeichen = 2000 - Len(NotizExtern & "")
+    '        Me.Caption1.Caption = freieZeichen & " Zeichen frei."
+    '    End Sub
+
+
+    '    Private Sub Nummer_DblClick(Cancel As Integer)
+    '        MsgBox(Nummer)
+    '    End Sub
+    '    Private Sub openVorg_Click()
+    '        On Error GoTo Err_openVorg_Click
+
+    '        Dim stDocName As String
+    '        Dim stLinkCriteria As String
+
+    '        stDocName = "buchVorgänge"
+
+    '        stLinkCriteria = "[IDNR]=" & Me![KundNr]
+    '        DoCmd.OpenForm(stDocName, , , stLinkCriteria)
+
+
+
+
+    'Exit_openVorg_Click:
+    '        Exit Sub
+
+    'Err_openVorg_Click:
+    '        MsgBox(err.Description)
+    '        Resume Exit_openVorg_Click
+
+    '    End Sub
+
+
+
+
+    '    Private Sub Waehrung_AfterUpdate()
+    '        'pruefe ob DS existiert und sonst lege einen an für die EUR Berechnungen
+    '        Dim kurs As String : kurs = InputBox("Bitte Wechselkurs zum EUR eingeben:", "Kurs", 1)
+    '        Dim sql As String : sql = "select * from buchvorgaengeWaehrung where vorgangTyp = '" + Me.txtVorgangType + "' and Nummer =  " & Me.Nummer
+    '        Dim rs As Recordset
+    '        rs = CurrentDb.openRecordset(sql)
+    '        If rs.EOF Then
+    '            sql = "insert into buchvorgaengeWaehrung (VorgangTyp, Nummer, Wechselkurs, Waehrung) " & _
+    '                  " values ( '" + Me.txtVorgangType + "'," & Me.Nummer & "," & Replace(kurs, ",", ".") & ", 'EUR')"
+
+    '        Else
+    '            sql = "update buchvorgaengeWaehrung set Wechselkurs = " & Replace(kurs, ",", ".") & _
+    '                  " where id  = " & rs("ID")
+    '        End If
+    '        DoCmd.SetWarnings(False)
+    '        DoCmd.RunSQL(sql)
+    '        DoCmd.SetWarnings(True)
+
+    '    End Sub
+
+    '    Private Sub Woher_DblClick(Cancel As Integer)
+    '        On Error Resume Next
+    '        If IsNumeric(Right(Left(Me.Woher, 3), 1)) Then
+    '            Call openVorgangFunctionByNummer(Left(Me.Woher, 2), Mid(Me.Woher, 3))
+    '        Else 'Typ with 3 letters
+    '            Call openVorgangFunctionByNummer(Left(Me.Woher, 3), Mid(Me.Woher, 4))
+    '        End If
+    '        On Error GoTo 0
+    '    End Sub
+
+    '    Private Sub Wohin_DblClick(Cancel As Integer)
+    '        On Error Resume Next
+    '        If IsNumeric(Right(Left(Me.Wohin, 3), 1)) Then
+    '            Call openVorgangFunctionByNummer(Left(Me.Wohin, 2), Mid(Me.Wohin, 3))
+    '        Else 'Typ with 3 letters
+    '            Call openVorgangFunctionByNummer(Left(Me.Wohin, 3), Mid(Me.Wohin, 4))
+    '        End If
+    '        On Error GoTo 0
+    '    End Sub
+
+    '    Private Sub ZahlungsBedungung_Click()
+    '        ZahlungsBedungung.Requery()
+    '    End Sub
+    '    Private Sub btnToWord_Click()
+    '        OpenAusdruck_inWord(Me.txtVorgangType, Me.Nummer, """" & Me.txtVorgangType & """00/000000")
+    '    End Sub
+
+
+    '    'VERLADETAG
+
+    '    Private Sub VerladeTag_AfterUpdate()
+    '        Call btnVerladeTag_Click()
+    '    End Sub
+
+    '    Private Sub VerladeTag_DblClick(Cancel As Integer)
+    '        DoCmd.OpenForm("Kalender")
+    '        Forms("Kalender").fieldToUpdate = Me.VerladeTag
+    '    End Sub
+
+    '    Private Sub btnVerladeTag_Click()
+    '        ' Me.VerladeTag = InputBox("Verladetag:")
+    '        If (Me.VerladeTag <> "") Then
+    '            Call addVorgangEigenschaft(Me.txtVorgangType.Value, Me.Nummer.Value, "Verladetag", Me.VerladeTag)
+    '        End If
+    '    End Sub
+
+
+
+
+
+#End Region
+
+
+#Region "buchRechArtikel old code"
 
 
 
@@ -660,6 +1299,6 @@ Public Class Vorgang
 
 
 
-
+#End Region
 
 End Class
