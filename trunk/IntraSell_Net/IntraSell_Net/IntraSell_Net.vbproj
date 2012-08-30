@@ -257,6 +257,7 @@
     <Compile Include="Modules\ModuleBuchVorgangXML.vb" />
     <Compile Include="Modules\ModuleDictionary.vb" />
     <Compile Include="Modules\ModuleDOS.vb" />
+    <Compile Include="Modules\ModuleEvents.vb" />
     <Compile Include="Modules\ModuleGlobals.vb" />
     <Compile Include="Modules\ModuleKassabuch.vb" />
     <Compile Include="Modules\ModuleLager.vb" />

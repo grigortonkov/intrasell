@@ -38,6 +38,7 @@ Public Module ModuleCommons
     'Proxy Function RunSQL  for easy conversion of old Access Code
     Function RunSQL(ByVal sql As String) As Object
         writeLog("RunSQL for sql:" + sql)
+        FixAccessSQL(CurrentDB.ConnectionString, sql)
         Dim d As New MySqlCommand(sql, CurrentDB)
         Return d.ExecuteScalar()
 
@@ -52,6 +53,7 @@ Public Module ModuleCommons
     'New Function openDataTable  for easy conversion of old Access Code
     Function OpenDataTable(ByVal sql As String) As DataTable
         writeLog("openDataTable for sql:" + sql)
+        FixAccessSQL(CurrentDB.ConnectionString, sql)
         Dim da As New MySqlDataAdapter(sql, CurrentDB)
         Dim ds As New DataSet
         Dim rs As DataTable

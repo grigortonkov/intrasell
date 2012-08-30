@@ -87,11 +87,11 @@ Module ModuleBuchVorgang
     '=======================================================
     Private Sub FindeOffeneVorgaenge(Where As String, Typ As String, IDNR As String)
 
-        Dim sql As String = " INSERT INTO buchVorgaenge (Typ, RechNr, KundNr, Datum, Summe, Bezahlt, Ausgedrukt, anElba )" & _
+        Dim sql As String = " INSERT INTO buchVorgaenge (Typ, RechNr, KundNr, Datum, Summe, Bezahlt, Ausgedrukt, abgeschlossen )" & _
                 " SELECT '" & Typ & "' AS t, Nummer, KundNr, Datum, Summe, Bezahlt, 0, 0 " & _
                 " FROM " & Where & _
                 " WHERE KundNr = " & IDNR & _
-                " AND Wohin is Null AND anElba=0;"
+                " AND Wohin is Null AND abgeschlossen=0;"
 
 
         Call writeLog("TRY " & sql)
@@ -171,7 +171,7 @@ Module ModuleBuchVorgang
     '    'AR darf wenn ausgedruckt nicht mehr verändert werden
     '    'Andere Vorgänge dürfen nachdem sie abgeschloßen sind nicht mehr verändert werden
     '    If IsNull(formVorgang![Nummer]) _
-    '        Or formVorgang![checkbox_anElba] <> 0 _
+    '        Or formVorgang![checkbox_abgeschlossen] <> 0 _
     '        Or (formVorgang![checkBox_ausgedruckt] <> 0 And formVorgang![txtVorgangType] = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG")) Then
     '        Debug.Print("Nur stornieren erlaubt!")
     '        formVorgang.Rech_Artikel.Locked = True
@@ -207,55 +207,58 @@ Module ModuleBuchVorgang
         Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
 
-            Dim sql, rs
-            sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
+            Dim sql As String
+            Dim rs As MySqlDataReader
+
+            sql = "select *  from " & getVorgangTableForType(VorgangTyp) & " where Typ='" & VorgangTyp & "' and nummer =" & VorgangNummer
             rs = openRecordset(sql)
-            Dim Abgeschlossen As Boolean
-            If rs.EOF Then
+            Dim Abgeschlossen, Bezahlt As Boolean
+            If Not rs.Read Then
                 Exit Function
             Else
                 Abgeschlossen = rs("abgeschlossen")
+                Bezahlt = rs("Bezahlt")
             End If
+            rs.close()
 
-
-            If MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " # " & VorgangNummer & " stornieren?", vbYesNo) = vbYes Then
-
+            If MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " - " & VorgangNummer & " stornieren?", vbYesNo) = vbYes Then
 
 
                 If Abgeschlossen <> 0 Then 'abgeschlossen
 
-                    If VorgangTyp = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then 'Lierschein
+                    If VorgangTyp = VarValue_Default("VORGANG_TYP_FUER_LAGER_ABGANG", "AR") Then 'Lieferschein
                         Call lagerEingang(VorgangNummer, VorgangTyp)
                     End If
 
-                    'If VorgangTyp = "RE" Or VorgangTyp = "RÜ" Then 'retourwaren oder rüestschein
-                    '        Call lagerAusgang(vorgangNummer, VorgangTyp)
-                    'End If
+                    If VorgangTyp = VarValue_Default("VORGANG_TYP_FUER_LAGER_EINGANG", "RÜ") Then
+                        Call lagerAusgang(VorgangNummer, VorgangTyp)
+                    End If
 
-                    If VorgangTyp = "AR" And rs("Bezahlt") Then
+                    If VorgangTyp = "AR" And bezahlt Then
                         Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & VorgangNummer, -1 * getSummeVorgang(VorgangTyp, VorgangNummer))
                     End If
                 End If
 
 
                 'delete eigenschaften
-                sql = "delete from [buchvorgaengeeigenschaften] where VorgangTyp='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
+                sql = "delete from [buchvorgaengeeigenschaften] where VorgangTyp='" & VorgangTyp & "' and Nummer =" & VorgangNummer
                 RunSQL(sql)
 
                 'delete pos
-                sql = "delete from [" & getVorgangArtikelTableForType(VorgangTyp) & "] where RechNr =" & VorgangNummer
+                sql = "delete from [" & getVorgangArtikelTableForType(VorgangTyp) & "] where Typ='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
                 RunSQL(sql)
 
                 'delete vorgang
-                sql = "delete from " & getVorgangTableForType(VorgangTyp) & " where nummer =" & VorgangNummer
+                sql = "delete from " & getVorgangTableForType(VorgangTyp) & " where Typ='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
                 RunSQL(sql)
 
-                tr.Commit()
-
+               
                 Storno = True
             End If
+            tr.Commit()
 
         Catch ex As Exception
+            writeLog("ERROR in storno " + ex.Message)
             tr.Rollback()
             MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
         End Try
@@ -625,31 +628,33 @@ Module ModuleBuchVorgang
     '    End Sub
 
 
-    '    Public Sub VorgangAbschliessen(Typ As String, Nummer As String)
+    Public Sub VorgangAbschliessen(Typ As String, Nummer As String)
+        Try
 
-    '        Dim Abgeschlossen As Boolean
-    '        Abgeschlossen = firstRow("select anElba from " & getVorgangTableForType(Typ) & " where Nummer = " & Nummer)
 
-    '        If IsNull(Abgeschlossen) Or Abgeschlossen = 0 Then
-    '            If Typ = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then
-    '                Call lagerAusgang(Nummer, Typ)
-    '            End If
+            Dim Abgeschlossen As Boolean = firstRow("select abgeschlossen from " & getVorgangTableForType(Typ) & " where Typ='" & Typ & "' and Nummer = " & Nummer)
 
-    '            'If Me.txtVorgangType = "RE" Or Me.txtVorgangType = "RÜ" Then 'retourwaren oder rüestschein
-    '            '     Call lagerEingang(Me.Nummer, Me.txtVorgangType)
-    '            'End If
+            If IsNull(Abgeschlossen) Or Abgeschlossen = 0 Then
+                If Typ = VarValue_Default("VORGANG_TYP_FUER_LAGER_ABGANG", "AR") Then
+                    Call lagerAusgang(Nummer, Typ)
+                End If
 
-    '            'Me![checkbox_anElba] = True
+                If Typ = VarValue_Default("VORGANG_TYP_FUER_LAGER_EINGANG", "RÜ") Then
+                    Call lagerEingang(Nummer, Typ)
+                End If
 
-    '            RunSQL("update " & getVorgangTableForType(Typ) & " set anElba = -1 where Nummer = " & Nummer
+                RunSQL("update " & getVorgangTableForType(Typ) & " set abgeschlossen = -1 where Typ='" & Typ & "' and Nummer = " & Nummer)
 
-    '        Else
-    '            MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!")
-    '        End If
-    '    End Sub
+                MsgBox("Der Vorgang (Rechnung) wurde erfolgreich abgeschlossen!")
 
-    Private Sub RunSQL(sql As String)
-        Throw New NotImplementedException
+            Else
+                MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)
+            End If
+
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
 

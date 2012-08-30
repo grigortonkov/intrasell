@@ -139,7 +139,7 @@ Module ModuleLager
 
             Dim sql As String, rs As MySqlDataReader
             'check if closed
-            sql = "select  anElba from " & getVorgangTableForType(Vorgangtyp) & " where nummer=" & RechNr
+            sql = "select  abgeschlossen from " & getVorgangTableForType(Vorgangtyp) & " where nummer=" & RechNr
             rs = openRecordset(sql)
 
             If Not rs.Read Then ' error
