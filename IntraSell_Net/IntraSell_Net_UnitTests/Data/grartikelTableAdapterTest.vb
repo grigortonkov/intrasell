@@ -60,7 +60,7 @@ Public Class grartikelTableAdapterTest
     '''A test for Insert
     '''</summary>
     <TestMethod()> _
-    Public Sub GrArtikelInsertUpdateTest()
+    Public Sub GrArtikel_InsertUpdateTest()
         Dim target As grartikelTableAdapter = New grartikelTableAdapter() ' TODO: Initialize to an appropriate value
         Dim ArtNr As Integer = 100
         Dim EAN As String = "EAN100"
@@ -132,7 +132,7 @@ Public Class grartikelTableAdapterTest
     '''A test for Delete
     '''</summary>
     <TestMethod()> _
-    Public Sub GrArtikelDeleteTest()
+    Public Sub GrArtikel_DeleteTest()
         Dim target As grartikelTableAdapter = New grartikelTableAdapter() ' TODO: Initialize to an appropriate value
         Dim Original_ArtNr As Integer = 100
 
