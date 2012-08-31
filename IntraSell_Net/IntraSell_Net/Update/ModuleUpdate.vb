@@ -19,7 +19,7 @@ Module ModuleUpdate
     Const INTRASELL_UPDATE As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/updateNet.txt" ' From SVN
     Const INTRASELL_UPDATE_DLL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/Unzip32.dll" ' From SVN
     Const INTRASELL_BASE_URL As String = "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/"
-    Public Const INTRASELL_MYSQL_BINARIES As String = "http://intrasell.googlecode.com/svn/trunk/IntraSell_Net/MySql/MySQL Server 5.1.zip" ' From SVN
+    Public Const INTRASELL_MYSQL_BINARIES As String = "http://intrasell.googlecode.com/svn/trunk/IntraSell_Net/MySql/MySQL Server 5.1 32bit.zip" ' From SVN
 
     Private Const ERROR_SUCCESS As Long = 0
     Private Const BINDF_GETNEWESTVERSION As Long = &H10
