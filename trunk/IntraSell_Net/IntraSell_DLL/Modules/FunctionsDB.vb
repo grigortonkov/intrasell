@@ -70,5 +70,17 @@ Public Module FunctionsDB
     End Function
 
 
+    'Proxy Function IsNull for easy conversion of old VB 6 Code
+    Function IsNull(ByRef any As Object) As Boolean
+        Return IsNothing(any) Or IsDBNull(any)
+    End Function
+
+    Public Function NVL(ByVal param1 As Object, ByVal param2 As Object) As Object
+        If IsNull(param1) Then
+            NVL = param2
+        Else
+            NVL = param1
+        End If
+    End Function
 
 End Module

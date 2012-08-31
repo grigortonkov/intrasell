@@ -2,6 +2,7 @@
 Option Explicit On
 
 Imports MySql.Data.MySqlClient
+Imports System.Data.DataSet
 
 Public Class IntraSellPreise
 
@@ -459,13 +460,13 @@ Public Class IntraSellPreise
             Dim nextRechnungNummer As String = getNewVorgangNummer(VorgangTypNach, IdNr)
 
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             Else
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             End If
@@ -474,15 +475,15 @@ Public Class IntraSellPreise
 
             'Positionen
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
-                sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
-                       " SELECT " & nextRechnungNummer & ", ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
+                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
-                       " RechNr=" & VorgangNummerVon
+                       " Nummer=" & VorgangNummerVon & " and Typ='" & VorgangTypVon & "'"
             Else
-                sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
-                       " SELECT " & nextRechnungNummer & ", ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
+                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
-                       " RechNr=" & VorgangNummerVon
+                       " Nummer=" & VorgangNummerVon & " and Typ='" & VorgangTypVon & "'"
             End If
 
 

@@ -35,6 +35,22 @@ Public Module ModuleCommons
 
     End Function
 
+    Public Function openRecordsetInMemory(ByVal sql As String) As DataTable
+        FixAccessSQL(CurrentDB.ConnectionString, sql)
+
+        'writeLog("openRecordset for sql:" + sql)
+        If Not CurrentDB.State = ConnectionState.Open Then
+            CurrentDB.Open()
+        End If
+
+        Dim d As New MySqlCommand(sql, CurrentDB)
+        Dim da As New MySqlDataAdapter(d)
+        Dim ds As DataSet = New DataSet("t")
+        da.Fill(ds, "t")
+        Return ds.Tables("t")
+    End Function
+
+
     'Proxy Function RunSQL  for easy conversion of old Access Code
     Function RunSQL(ByVal sql As String) As Object
         writeLog("RunSQL for sql:" + sql)
@@ -44,10 +60,6 @@ Public Module ModuleCommons
 
     End Function
 
-    'Proxy Function IsNull for easy conversion of old VB 6 Code
-    Function IsNull(ByRef any As Object) As Boolean
-        Return IsNothing(any) Or IsDBNull(any)
-    End Function
 
 
     'New Function openDataTable  for easy conversion of old Access Code

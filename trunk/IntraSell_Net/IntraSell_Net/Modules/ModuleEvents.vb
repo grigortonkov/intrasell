@@ -7,7 +7,7 @@ Module ModuleEvents
 
     Public Sub EventErstellen(ByVal nachricht As String)
 
-        RunSQL("insert into ofEvents ( NAchricht) values ('" & nachricht & "')")
+        RunSQL("insert into ofEvents ( Nachricht) values ('" & nachricht & "')")
 
     End Sub
 

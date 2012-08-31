@@ -8,7 +8,7 @@ Module ModuleLager
     Public Const LAGER_AUSGANG = "LA"
 
     'Verbucht die Einträge von der Tabelle lagerLagerBuchung
-    Public Sub buchen(cbDruckeBarcode As Boolean)
+    Public Sub buchen(ByVal cbDruckeBarcode As Boolean)
 
         Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
@@ -107,141 +107,158 @@ Module ModuleLager
     End Sub
 
 
-    Public Sub lagerEingang(ByVal VorgangNr As Integer, ByVal Vorgangtyp As String)
+    Public Sub lagerEingang(ByVal VorgangNr As Integer, ByVal Vorgangtyp As String, Optional ByVal Silent As Boolean = False)
         Call lagerAusgangEingang(VorgangNr, Vorgangtyp, LAGER_EINGANG)
     End Sub
 
 
     'this fuction is called from form Lieferschein
-    Public Sub lagerAusgang(ByVal RechNr As Integer, ByVal Vorgangtyp As String, Optional Silent As Boolean = False)
+    Public Sub lagerAusgang(ByVal RechNr As Integer, ByVal Vorgangtyp As String, Optional ByVal Silent As Boolean = False)
         Call lagerAusgangEingang(RechNr, Vorgangtyp, LAGER_AUSGANG, Silent)
     End Sub
 
     'Lagerbuchung Transaction
-    'Transactionsgesichert
-    Public Sub lagerAusgangEingang(ByVal RechNr As Integer, _
-     ByVal Vorgangtyp As String, _
+    'Transaktionsgesichert
+    Public Sub lagerAusgangEingang(ByVal VorgangNummer As Integer, _
+     ByVal VorgangTyp As String, _
      ByVal BewegungsTyp As String, _
-     Optional Silent As Boolean = False)
-        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
+     Optional ByVal Silent As Boolean = False)
+
+        Dim trAlreadyCreated = False
+
+        Dim tr As MySqlTransaction = Nothing
+        Try
+            CurrentDB.BeginTransaction()
+        Catch ex As Exception
+            If ex.Message.Contains("Nested transactions are not supported") Then
+                trAlreadyCreated = True
+            Else
+                Throw ex
+            End If
+        End Try
+
+
         Try
 
             Call writeLog("BEGIN TRANSACTION")
 
 
             'lagerstand von den betroffenen Artikel aktualisieren
-            Dim tableToUpdate
-            tableToUpdate = getVorgangArtikelTableForType(Vorgangtyp)
+            Dim tableToUpdate = getVorgangArtikelTableForType(VorgangTyp)
 
-            Dim Bewegung As Integer : Bewegung = -1
+            Dim Bewegung As Integer = -1
             If BewegungsTyp = LAGER_EINGANG Then Bewegung = 1
 
 
-            Dim sql As String, rs As MySqlDataReader
+            Dim sql As String
+            Dim rsCheck As MySqlDataReader
             'check if closed
-            sql = "select  abgeschlossen from " & getVorgangTableForType(Vorgangtyp) & " where nummer=" & RechNr
-            rs = openRecordset(sql)
+            sql = "select abgeschlossen from " & getVorgangTableForType(VorgangTyp) & " where nummer=" & VorgangNummer & " and Typ='" & VorgangTyp & "'"
 
-            If Not rs.Read Then ' error
+
+            rsCheck = openRecordset(sql)
+
+
+            If Not rsCheck.Read Then ' error
+                rsCheck.Close()
                 Exit Sub
             Else
-                If rs("abgeschlossen") = True And BewegungsTyp = LAGER_AUSGANG Then
+                If rsCheck("abgeschlossen") = True And BewegungsTyp = LAGER_AUSGANG Then
                     MsgBox("Der Lagerbestand wurde bereits ausgebucht!", vbCritical)
+                    rsCheck.Close()
                     Exit Sub
                 End If
             End If
 
-            rs.Close()
-            rs = Nothing
+            rsCheck.Close()
+            rsCheck = Nothing
 
 
             'lagerstand von alle betroffenen artikeln aktualisieren
             Dim sqlL As String
             sqlL = "select [" & tableToUpdate & "].Id, [" & tableToUpdate & "].Stk, [" & tableToUpdate & "].ArtNr, ArtikelIdentifikation, LagerOrt, GewichtBrutto, GewichtNetto, GewichtTara, Einheiten " & _
                                              "from [" & tableToUpdate & "]  LEFT JOIN [buchvorgang-artikeldetaillager] lb ON [" & tableToUpdate & "].ID = lb.ID " & _
-                                             " Where RechNr = " & RechNr
-            Debug.Print("Lagerbuchung: " & sqlL)
-            rs = openRecordset(sqlL)
+                                             " Where Nummer = " & VorgangNummer & " and typ='" & VorgangTyp & "'"
+            writeLog("Lagerbuchung: " & sqlL)
+            Dim rsM As DataTable = openRecordsetInMemory(sqlL)
 
-            While rs.Read
+            For Each r In rsM.Rows
+
 
                 'kalkulationen im lager basieren auf einstandspreise
-                Dim Einstandspreis : Einstandspreis = Replace(getEinstandsPreis(rs("ArtNr")), ",", ".")
+                Dim Einstandspreis As String = Replace(getEinstandsPreis(r("ArtNr")), ",", ".")
 
-                If rs("LagerOrt") & "" <> "" Then
+                If r("LagerOrt") & "" <> "" Then
                     sql = " INSERT INTO [grArtikel-LagerBewegung] ( Vorgangstyp, Vorgangsnummer, ArtNr, " & IIf(Bewegung = -1, "PreisAusgang, Ausgang", "PreisEingang, Eingang") & ", Datum, " & _
                          " LagerOrt, GewichtBrutto, GewichtNetto, GewichtTara, Einheiten)" & _
-                         " SELECT """ & Vorgangtyp & """, RechNr, [" & tableToUpdate & "].ArtNR, " & Einstandspreis & ", [" & tableToUpdate & "].Stk, Now(), " & _
+                         " SELECT """ & VorgangTyp & """, Nummer, [" & tableToUpdate & "].ArtNR, " & Einstandspreis & ", [" & tableToUpdate & "].Stk, Now(), " & _
                          " LagerOrt, " & Bewegung & "*GewichtBrutto, " & Bewegung & "*GewichtNetto, " & Bewegung & "*GewichtTara, " & Bewegung & "*Einheiten " & _
                          " FROM [" & tableToUpdate & "] LEFT JOIN [buchvorgang-artikeldetaillager] lb ON [" & tableToUpdate & "].ID = lb.ID" & _
-                         " WHERE  [" & tableToUpdate & "].ArtNr = " & rs("ArtNr") & " and RechNr =" & RechNr & " and [" & tableToUpdate & "].id = " & rs("Id")
+                         " WHERE  [" & tableToUpdate & "].ArtNr = " & r("ArtNr") & " and Nummer =" & VorgangNummer & " and [" & tableToUpdate & "].id = " & r("Id")
                 Else
                     sql = " INSERT INTO [grArtikel-LagerBewegung] ( Vorgangstyp, Vorgangsnummer, ArtNr, " & IIf(Bewegung = -1, "PreisAusgang, Ausgang", "PreisEingang, Eingang") & ", Datum)" & _
-                         " SELECT """ & Vorgangtyp & """, RechNr, [" & tableToUpdate & "].ArtNR, " & Einstandspreis & ", [" & tableToUpdate & "].Stk, Now() " & _
+                         " SELECT """ & VorgangTyp & """, Nummer, [" & tableToUpdate & "].ArtNR, " & Einstandspreis & ", [" & tableToUpdate & "].Stk, Now() " & _
                          " FROM [" & tableToUpdate & "] LEFT JOIN lagerlagerbuchung ON [" & tableToUpdate & "].ID = lagerlagerbuchung.ID" & _
-                         " WHERE  [" & tableToUpdate & "].ArtNr = " & rs("ArtNr") & " and RechNr =" & RechNr & " and [" & tableToUpdate & "].id = " & rs("Id")
+                         " WHERE  [" & tableToUpdate & "].ArtNr = " & r("ArtNr") & " and Nummer =" & VorgangNummer & " and [" & tableToUpdate & "].id = " & r("Id")
                 End If
 
                 Call writeLog("TRY " & sql)
                 RunSQL(sql)
                 Call writeLog("DONE " & sql)
 
-                Call CreateLagerbestandAndIncrease(rs("ArtNr"), _
-                 Bewegung * rs("Stk"), _
-                 nvl(rs("LagerOrt"), 0), _
-                 Bewegung * nvl(rs("GewichtBrutto"), 0), _
-                 Bewegung * nvl(rs("GewichtNetto"), 0), _
-                 Bewegung * nvl(rs("GewichtTara"), 0), _
-                 Bewegung * nvl(rs("Einheiten"), 0), _
+                Call CreateLagerbestandAndIncrease(r("ArtNr"), _
+                 Bewegung * r("Stk"), _
+                 NVL(r("LagerOrt"), 0), _
+                 Bewegung * NVL(r("GewichtBrutto"), 0), _
+                 Bewegung * NVL(r("GewichtNetto"), 0), _
+                 Bewegung * NVL(r("GewichtTara"), 0), _
+                 Bewegung * NVL(r("Einheiten"), 0), _
                  0, 0)
                 'Lagerbuchung detail löschen
                 'DoCmd.RunSQL "delete from [buchvorgang-artikeldetaillager] where id = " & rs("Id")
                 'make Barcodebewegung
-                Call makeBCHistory(rs("ArtikelIdentifikation") & "", Vorgangtyp, RechNr, IIf(Bewegung = -1, "Lagerausgang", "Lagereingang"))
+                Call makeBCHistory(r("ArtikelIdentifikation") & "", VorgangTyp, VorgangNummer, IIf(Bewegung = -1, "Lagerausgang", "Lagereingang"))
 
                 'buchSeriennummer aktualisieren (Item)
-                If rs("ArtikelIdentifikation") & "" <> "" Then
+                If r("ArtikelIdentifikation") & "" <> "" Then
                     Dim feldName As String
-                    If Vorgangtyp = "AN" Then feldName = "AngebotsNr"
-                    If Vorgangtyp = "AU" Then feldName = "AuftragsNr"
-                    If Vorgangtyp = "AR" Then feldName = "RechnungsNr"
-                    If Vorgangtyp = "RE" Then feldName = "RetourenNr"
-                    If Vorgangtyp = "LI" Then feldName = "LieferscheinNr"
-                    If Vorgangtyp = "RÜ" Then feldName = "RüstscheinNr"
+                    If VorgangTyp = "AN" Then feldName = "AngebotsNr"
+                    If VorgangTyp = "AU" Then feldName = "AuftragsNr"
+                    If VorgangTyp = "AR" Then feldName = "RechnungsNr"
+                    If VorgangTyp = "RE" Then feldName = "RetourenNr"
+                    If VorgangTyp = "LI" Then feldName = "LieferscheinNr"
+                    If VorgangTyp = "RÜ" Then feldName = "RüstscheinNr"
                     Dim neuerLagerOrt As String
                     If Bewegung = -1 Then 'Ausgang - aber wir wissen nicht wohin
                         neuerLagerOrt = "Null"
                     Else 'beim storno
-                        neuerLagerOrt = nvl(rs("LagerOrt"), 0)
+                        neuerLagerOrt = NVL(r("LagerOrt"), 0)
                     End If
 
-                    sql = "Update buchSeriennummer set LagerOrt=" & neuerLagerOrt & ", " & feldName & "=" & RechNr & " where SerienNr='" & rs("ArtikelIdentifikation") & "'"
+                    sql = "Update buchSeriennummer set LagerOrt=" & neuerLagerOrt & ", " & feldName & "=" & VorgangNummer & " where SerienNr='" & r("ArtikelIdentifikation") & "'"
                     Call writeLog("TRY " & sql)
-
                     RunSQL(sql)
                     Call writeLog("DONE " & sql)
 
                 End If
 
-            End While
-
-            rs.Close()
-            rs = Nothing
+            Next
 
 
             'end transaction
-            tr.Commit()
+            If Not trAlreadyCreated Then
+                writeLog("COMMIT")
+                tr.Commit()
+            End If
 
-            writeLog("COMMIT")
+
             If Not Silent Then MsgBox("Der Lagerbestand wurde mit diesen Artikeln aktualisiert!")
             Exit Sub
 
         Catch ex As Exception
-
-
             tr.Rollback()
-            Call writeLog("ROLLBACK")
-            MsgBox("Die Transaktion wurde storniert!" + Err.Description, vbCritical)
+            Call writeLog("ROLLBACK " + Err.Description)
+            MsgBox("Die Transaktion wurde storniert! " + vbCrLf + Err.Description, vbCritical)
         End Try
 
     End Sub
@@ -284,7 +301,7 @@ Module ModuleLager
         RunSQL(sql)
         Call writeLog("DONE " & sql)
 
-        Dim AktuellerWert : AktuellerWert = getEinstandsPreis(ArtNr, LagerOrt)
+        Dim AktuellerWert = getEinstandsPreis(ArtNr, LagerOrt)
 
 
         'lagerstand von den betroffenen artikeln aktualisieren
@@ -324,11 +341,14 @@ Module ModuleLager
            " Where lagerOrt= " & LagerOrt & " and ArtNR = " & ArtNr)
         ' create new record 'Warning: the Update is done afterwards
         If Not rsExistsLager.Read Then 'no lagerbestand info
+            rsExistsLager.Close()
             sql = "Insert Into [grArtikel-Lagerbestand] (Datum, ArtNR, LagerOrt, LagerBestand, ReserviertStk, MaxStk, GewichtBrutto, GewichtNetto, GewichtTara, Einheiten, AktuellerWert, LagerKosten) " & _
                   " values (Date(), " & ArtNr & " ," & LagerOrt & ",0 , 0, 0, 0, 0, 0, 0, 0, 0)"
             Call writeLog("TRY " & sql)
             RunSQL(sql)
             Call writeLog("DONE " & sql)
+        Else
+            rsExistsLager.Close()
         End If
 
         ' at the end
@@ -349,18 +369,16 @@ Module ModuleLager
 
         'SET ARTIKEL NEU seit 2012
         'dasselbe für alle Unterartikel durchführen
-        Dim sqlUnterArtikel As String : sqlUnterArtikel = "select * from buchSetArtikel where UnterArtNr is not null and ArtNr=" & ArtNr
-        Dim rsUnterArtikel
-        rsUnterArtikel = openRecordset(sqlUnterArtikel)
-        While Not rsUnterArtikel.EOF
+        Dim sqlUnterArtikel As String = "select * from buchSetArtikel where UnterArtNr is not null and ArtNr=" & ArtNr
+        Dim rsUnterArtikel As MySqlDataReader = openRecordset(sqlUnterArtikel)
+        While rsUnterArtikel.Read
             Call CreateLagerbestandAndIncrease(rsUnterArtikel("UnterArtNr"), Stk * rsUnterArtikel("Stk"), LagerOrt, 0, 0, 0, 0, 0, 0)
-            rsUnterArtikel.MoveNext()
         End While
-
+        rsUnterArtikel.Close()
 
     End Sub
 
-    Public Function maxBestand(real1, real2) As Double
+    Public Function maxBestand(ByVal real1, ByVal real2) As Double
         maxBestand = real2
         If real1 > real2 Then
             maxBestand = real1
@@ -429,22 +447,27 @@ Module ModuleLager
 
 
     'Liefert Einstandpreis pro Artikel, ohne Lagerberücksichtigung! nur Lagereingänge!
-    Public Function getEinstandsPreis(ByVal ArtNr, Optional LagerOrt = 0) As Double
+    Public Function getEinstandsPreis(ByVal ArtNr, Optional ByVal LagerOrt = 0) As Double
         If Not IsNumeric(ArtNr) Then
             getEinstandsPreis = 0
             Exit Function
         End If
 
-        Dim rs, sql
+        Dim rs As MySql.Data.MySqlClient.MySqlDataReader
+        Dim Sql As String
+
+        'IIf([Eingang] = 0, 1, [Eingang])
 
         'Methode I nur nach Lager Eingänge!
+        getEinstandsPreis = getEKPreis(ArtNr)
+
         sql = " SELECT [grArtikel-LagerBewegung].ArtNr, " & _
-        " Sum((iif([Eingang]=0,1,[Eingang])*[PreisEingang]-[Ausgang]*[PreisAusgang]))/Sum(([Eingang]-[Ausgang])) AS DurchschnEKPreis, " & _
-        " Sum(([Eingang]*[PreisEingang]))/Sum(([Eingang])) AS DurchschnEKPreisNurEK, " & _
-        " Sum(([Eingang]-[Ausgang])) AS Bestand , " & _
-        " Sum(([Eingang])) AS BestandNurEK " & _
+        " Sum(( CASE [Eingang] WHEN 0 THEN 1 ELSE [Eingang] END  * [PreisEingang]-[Ausgang]*[PreisAusgang]))/Sum([Eingang]-[Ausgang]) AS DurchschnEKPreis, " & _
+        " Sum(([Eingang]*[PreisEingang]))/Sum([Eingang]) AS DurchschnEKPreisNurEK, " & _
+        " Sum([Eingang]-[Ausgang]) AS Bestand , " & _
+        " Sum([Eingang]) AS BestandNurEK " & _
         " FROM [grArtikel-LagerBewegung] " & _
-        " WHERE (VorgangsTyp=""LE"") AND ArtNr = " & ArtNr
+        " WHERE VorgangsTyp='LE' AND ArtNr = " & ArtNr
 
         If LagerOrt & "" <> "0" Then
             sql = sql & " AND LagerOrt = " & LagerOrt
@@ -452,13 +475,11 @@ Module ModuleLager
 
         sql = sql & " GROUP BY [grArtikel-LagerBewegung].ArtNr"
 
-        Debug.Print(sql)
+        writeLog(sql)
         rs = openRecordset(sql)
 
 
-        getEinstandsPreis = getEKPreis(ArtNr)
-
-        If Not rs.EOF Then
+        If rs.Read Then
             If rs("Bestand") <= 0 Then
                 'If rs("BestandNurEK") > 0 Then
                 '    getEinstandsPreis = RoundUp(rs("DurchschnEKPreisNurEK"), 2)
@@ -540,7 +561,7 @@ Module ModuleLager
     End Function
 
     'prüft ob der lagerbestand ist genug um den auftrag zu akzeptieren
-    Function checkIfVorgangLagerBestandOK(Vorgangtyp As String, VorgangNummer As String) As Boolean
+    Function checkIfVorgangLagerBestandOK(ByVal Vorgangtyp As String, ByVal VorgangNummer As String) As Boolean
 
         Dim sql As String, rs As MySqlDataReader
 
@@ -555,7 +576,7 @@ Module ModuleLager
     End Function
 
 
-    Public Function makeLieferantenPreis(ByVal ArtNr As Integer, ByVal LieferantNr As Integer, ByVal EKPreis As Decimal, Optional Bezeichnung As Object = "")
+    Public Function makeLieferantenPreis(ByVal ArtNr As Integer, ByVal LieferantNr As Integer, ByVal EKPreis As Decimal, Optional ByVal Bezeichnung As Object = "")
         makeLieferantenPreis = True
         Err.Clear()
 
@@ -581,7 +602,7 @@ Module ModuleLager
 
 
 
-    Sub Umbuchen(LagerOrt_von As String, LagerOrt_Nach As String)
+    Sub Umbuchen(ByVal LagerOrt_von As String, ByVal LagerOrt_Nach As String)
 
         If MsgBox("Wollen Sie diese Positionen umbuchen?", vbYesNo) = vbNo Then Exit Sub
         Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
