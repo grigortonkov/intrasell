@@ -111,6 +111,7 @@ Public Module ModuleCommons
     Function Forms(ByRef formName As String) As Form
         'return the form by formName 
         writeLog("Forms(" + formName + ") Nicht implementiert!")
+        Return Nothing
     End Function
 
     'Public Function testRS() As Object

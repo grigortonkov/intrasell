@@ -71,7 +71,7 @@ Public Class ModuleBuchVorgangXMLTest
 
 
         'Load in XML Document to check if ok 
-        Dim x As XmlDataDocument = (New Xml.XmlDataDocument())
+        Dim x As XmlDataDocument = New Xml.XmlDataDocument()
         x.LoadXml(actual)
 
         'x = (New Xml.XmlDataDocument())

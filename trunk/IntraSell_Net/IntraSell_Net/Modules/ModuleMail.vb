@@ -59,7 +59,7 @@ Module ModuleMail
         getMailBody = ts.ReadAll
     End Function
 
-    Public Function sendAusdruckPerEmail(ByVal Vorgangtyp As String, _
+    Public Sub sendAusdruckPerEmail(ByVal Vorgangtyp As String, _
                                          ByVal Vorgang_Nummer As String, _
                                          ByVal FormatNummer As String, _
                                          ByVal Dateiname As String, _
@@ -69,18 +69,14 @@ Module ModuleMail
         Call OpenAusdruck_InWord_Filename_RTF(Vorgangtyp, Vorgang_Nummer, FormatNummer, Dateiname)
         Dim htmlBody : htmlBody = getMailBody(OutputFilename)
         'send with outlook
-        Dim Email : Email = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
-        If Email = "" Then
+        Dim Email As String = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
+        If String.IsNullOrWhiteSpace(Email) Then
             Email = InputBox("Email:", "Email")
         End If
 
-        Dim Subject : Subject = getDruckForType(Vorgangtyp) & " Nr. " & Vorgang_Nummer
-
+        Dim Subject As String = getDruckForType(Vorgangtyp) & " Nr. " & Vorgang_Nummer
         Call mailWithOutlook(Subject, Email, "", "", htmlBody, SofortSenden)
 
-    End Function
-
-
-
+    End Sub
 
 End Module

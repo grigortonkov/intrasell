@@ -65,6 +65,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\InterfacePrintable.vb" />
     <Compile Include="Modules\FunctionsDB.vb" />
     <Compile Include="Modules\FunctionsVars.vb" />
     <Compile Include="Classes\IntraSellDB.vb" />
