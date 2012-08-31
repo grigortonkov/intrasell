@@ -1,5 +1,4 @@
-﻿
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
+﻿DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
 DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgang`;
 DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgangTyp`;
 
