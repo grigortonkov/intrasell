@@ -63,7 +63,7 @@ Public Class ModuleBuchVorgangXMLTest
     <TestMethod()> _
     Public Sub VorgangXMLTest()
 
-        Dim VorgangNummer As Long = 1
+        Dim VorgangNummer As Long = "1000000"
         Dim VorgangTyp As String = "AR"
         Dim expected As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim actual As String
@@ -74,8 +74,8 @@ Public Class ModuleBuchVorgangXMLTest
         Dim x As XmlDataDocument = (New Xml.XmlDataDocument())
         x.LoadXml(actual)
 
-        x = (New Xml.XmlDataDocument())
-        x.Load("z:\\Business\\IntraSell_System\\IntraSell_Net\\IntraSell_Net\\bin\\Debug\\tmp\\Vorgang_buchVorgang_AR1.xml")
+        'x = (New Xml.XmlDataDocument())
+        'x.Load("z:\\Business\\IntraSell_System\\IntraSell_Net\\IntraSell_Net\\bin\\Debug\\tmp\\Vorgang_buchVorgang_AR1.xml")
 
         'Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")

@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
+Imports System.ComponentModel
 
 
 
@@ -23,7 +24,7 @@ Public Class ModuleSetupTest
             Return testContextInstance
         End Get
         Set(value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -62,5 +63,24 @@ Public Class ModuleSetupTest
         Dim actual As Boolean = ModuleSetup.SetUpMySqlServer(True)
         Assert.AreEqual(True, actual)
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+    End Sub
+
+    <TestMethod()> _
+    Public Sub KillMySQL()
+        Dim p As Process
+
+        For Each p In Process.GetProcessesByName("mysqld")
+
+            Try
+                p.Kill()
+                p.WaitForExit()
+
+            Catch winException As Win32Exception
+                ' process was terminating or can't be terminated - deal with it
+            Catch invalidException As InvalidOperationException
+            End Try
+        Next
+
+
     End Sub
 End Class

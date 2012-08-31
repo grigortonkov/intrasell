@@ -108,7 +108,7 @@ Module ModuleLager
 
 
     Public Sub lagerEingang(ByVal VorgangNr As Integer, ByVal Vorgangtyp As String, Optional ByVal Silent As Boolean = False)
-        Call lagerAusgangEingang(VorgangNr, Vorgangtyp, LAGER_EINGANG)
+        Call lagerAusgangEingang(VorgangNr, Vorgangtyp, LAGER_EINGANG, Silent)
     End Sub
 
 
@@ -164,7 +164,9 @@ Module ModuleLager
                 Exit Sub
             Else
                 If rsCheck("abgeschlossen") = True And BewegungsTyp = LAGER_AUSGANG Then
-                    MsgBox("Der Lagerbestand wurde bereits ausgebucht!", vbCritical)
+                    If Not Silent Then
+                        MsgBox("Der Lagerbestand wurde bereits ausgebucht!", vbCritical)
+                    End If
                     rsCheck.Close()
                     Exit Sub
                 End If
@@ -252,7 +254,10 @@ Module ModuleLager
             End If
 
 
-            If Not Silent Then MsgBox("Der Lagerbestand wurde mit diesen Artikeln aktualisiert!")
+            If Not Silent Then
+                MsgBox("Der Lagerbestand wurde mit diesen Artikeln aktualisiert!")
+            End If
+
             Exit Sub
 
         Catch ex As Exception

@@ -71,24 +71,25 @@ Module DBUpgrade
         Dim i As Integer
         Dim arrSQL
         Dim errText As String = ""
-        Dim sqlsExecuted As Integer : sqlsExecuted = 0
-        Dim sqlsWithError As Integer : sqlsWithError = 0
+        Dim sqlsExecuted As Integer = 0
+        Dim sqlsWithError As Integer = 0
 
 
         sqlFile = AddIn_dbupgrade_readFile2(filename)
         arrSQL = Split(sqlFile, ";")
 
         For i = 0 To UBound(arrSQL) - 1
-            sql = arrSQL(i)
-
+            sql = Trim(arrSQL(i))
+            sql = Replace(sql, "ï»¿", "")
             If AddIn_dbupgrade_doupgrade(sql, errText) Then
                 'mark as done
-                result = result & errText
+                result = result & errText & vbCrLf
                 sqlsExecuted = sqlsExecuted + 1
             Else
+                result = result & errText & vbCrLf
                 sqlsWithError = sqlsWithError + 1
                 'mark as undone ' write error protokoll
-                Debug.Print(errText)
+                writeLog("Error: " + errText)
             End If
 
         Next i
@@ -103,22 +104,22 @@ Module DBUpgrade
     '====================================================
     ' executes the file content defined in the text file
     '====================================================
-    Function AddIn_dbupgrade_doupgrade(ByVal sqlDML As String, outErrorText As String) As Boolean
+    Function AddIn_dbupgrade_doupgrade(ByVal sqlDML As String, ByRef outErrorText As String) As Boolean
 
         Try
             writeLog("Run SQL: " + sqlDML)
 
             'create NEW DB connection
-            Dim connString As String = VarValue_Default("DB_CONN_STRING", Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            Dim connString As String = VarValue_Default("DB_CONN_STRING_NET", Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
             Dim cConn As MySqlConnection = New MySqlConnection(connString)
             cConn.Open()
 
             Dim cmd As MySqlCommand = cConn.CreateCommand()
             cmd.CommandText = sqlDML
             cmd.ExecuteNonQuery()
-
-            AddIn_dbupgrade_doupgrade = True
             cConn.Close()
+            AddIn_dbupgrade_doupgrade = True
+
             Exit Function
         Catch ex As Exception
             AddIn_dbupgrade_doupgrade = False
