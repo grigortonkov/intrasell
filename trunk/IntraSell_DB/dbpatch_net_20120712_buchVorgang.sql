@@ -79,3 +79,16 @@ CREATE TABLE  `intrasell_daten_2`.`buchvorgang-artikel` (
   CONSTRAINT `buchVorgang-artikel_ibfk_1` FOREIGN KEY (`Nummer`, `Typ`) REFERENCES `buchvorgang` (`Nummer`, `Typ`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `buchVorgang-artikel_ibfk_2` FOREIGN KEY (`ArtNr`) REFERENCES `grartikel` (`ArtNr`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('AR', 'Rechnung','Rechnung');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('AN', 'Angebot','Angebot');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('AU', 'Auftrag','Auftrag');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('LI', 'Lieferschein','Lieferschein');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('RÜ', 'Rüstschein','Rüstschein');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('RE', 'Retourwaren','Retourwaren');
+
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('LIA', 'Lieferantenauftrag','Lieferantenauftrag');
+
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('LA', 'Lagerausgang','Lagerausgang');
+insert into buchVorgangTyp(Typ, Bezeichnung, Druckbezeichnung) values ('LE', 'Lagereingang','Lagereingang');
