@@ -306,7 +306,7 @@ Public Class XML2WORD
     End Function
 
 
-    Sub Class_Initialize()
+    Sub Init()
 
         If nRef = 0 Then
             oWord = New Word.Application()
@@ -317,10 +317,10 @@ Public Class XML2WORD
 
     Public Sub New()
         MyBase.New()
-        Class_Initialize()
+        Init()
     End Sub
 
-    Private Sub Class_Terminate()
+    Private Sub Terminate()
 
         m_oXML = Nothing
         nRef = nRef - 1
@@ -331,7 +331,7 @@ Public Class XML2WORD
     End Sub
 
     Protected Overrides Sub Finalize()
-        Class_Terminate()
+        Terminate()
         MyBase.Finalize()
     End Sub
 End Class
