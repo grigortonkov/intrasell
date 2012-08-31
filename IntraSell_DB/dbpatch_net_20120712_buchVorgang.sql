@@ -1,12 +1,15 @@
-﻿CREATE TABLE  `intrasell_daten_2`.`buchVorgangTyp` (
+﻿
+DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
+DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgang`;
+DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgangTyp`;
+
+
+CREATE TABLE  `intrasell_daten_2`.`buchVorgangTyp` (
   `Typ` varchar(2) NOT NULL DEFAULT 'AR',
   `Bezeichnung` varchar(100) DEFAULT 'Rechnung',
   `Druckbezeichnung`  varchar(100),
    PRIMARY KEY (`Typ`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgang`;
 
 
 CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
