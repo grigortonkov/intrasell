@@ -60,7 +60,7 @@ Public Class grartikel_kategorienTableAdapterTest
     '''A test for Insert
     '''</summary>
     <TestMethod()> _
-    Public Sub InsertTest()
+    Public Sub grartikel_kategorienInsertTest()
         Dim target As grartikel_kategorienTableAdapter = New grartikel_kategorienTableAdapter() ' TODO: Initialize to an appropriate value
         Dim ArtKatNr As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim Name As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -85,7 +85,7 @@ Public Class grartikel_kategorienTableAdapterTest
     '''A test for Update
     '''</summary>
     <TestMethod()> _
-    Public Sub UpdateTest()
+    Public Sub grartikel_kategorienUpdateTest()
         Dim target As grartikel_kategorienTableAdapter = New grartikel_kategorienTableAdapter() ' TODO: Initialize to an appropriate value
         Dim ArtKatNr As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim Name As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -122,7 +122,7 @@ Public Class grartikel_kategorienTableAdapterTest
     '''A test for Update
     '''</summary>
     <TestMethod()> _
-    Public Sub UpdateTest1()
+    Public Sub grartikel_kategorienUpdateTest1()
         Dim target As grartikel_kategorienTableAdapter = New grartikel_kategorienTableAdapter() ' TODO: Initialize to an appropriate value
         Dim Name As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim ArtKatNrParent As Nullable(Of Integer) = New Nullable(Of Integer)() ' TODO: Initialize to an appropriate value
@@ -158,7 +158,7 @@ Public Class grartikel_kategorienTableAdapterTest
     '''A test for Delete
     '''</summary>
     <TestMethod()> _
-    Public Sub DeleteTest()
+    Public Sub grartikel_kategorienDeleteTest()
         Dim target As grartikel_kategorienTableAdapter = New grartikel_kategorienTableAdapter() ' TODO: Initialize to an appropriate value
         Dim Original_ArtKatNr As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim Original_Name As String = String.Empty ' TODO: Initialize to an appropriate value
