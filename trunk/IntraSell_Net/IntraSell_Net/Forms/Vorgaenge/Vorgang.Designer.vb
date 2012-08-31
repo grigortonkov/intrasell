@@ -354,8 +354,6 @@ Partial Class Vorgang
         'TableAdapterManager
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.buchrech_artikelTableAdapter = Nothing
-        Me.TableAdapterManager.buchrechnungTableAdapter = Nothing
         Me.TableAdapterManager.buchvorgaengeausdruckeTableAdapter = Nothing
         Me.TableAdapterManager.buchvorgaengeeigenschaftenTableAdapter = Nothing
         Me.TableAdapterManager.buchvorgaengestatusTableAdapter = Nothing

@@ -1,11 +1,5 @@
 ﻿Partial Class dsVorgaenge
-    Partial Class buchrechnungDataTable
-
-        Private Sub buchrechnungDataTable_buchrechnungRowChanging(sender As System.Object, e As buchrechnungRowChangeEvent) Handles Me.buchrechnungRowChanging
-
-        End Sub
-
-    End Class
+ 
 
     Partial Class _buchvorgang_artikelDataTable
 
