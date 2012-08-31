@@ -604,6 +604,8 @@ Public Class IntraSellPreise
                 Return "letzteGutschriftNummer"
             Case VORGANG_TYP_LAU
                 Return "letzteLieferantAuftragNummer"
+            Case Else
+                Return "letzte" & Typ & "Nummer"
         End Select
     End Function
 
@@ -628,7 +630,10 @@ Public Class IntraSellPreise
                 getDruckForType = "Gutschrift"
             Case VORGANG_TYP_LAU
                 getDruckForType = "Auftrag"
+            Case Else
+                getDruckForType = "Unbekannt"
         End Select
+
     End Function
 
     '=======================================================

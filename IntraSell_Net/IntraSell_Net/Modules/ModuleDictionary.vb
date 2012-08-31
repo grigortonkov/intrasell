@@ -15,12 +15,12 @@ Module ModuleDictionary
 
     Public Function IntraSellDictionary() As IntraSellDictionary
         If dictionary Is Nothing Then   ' init
-            On Error Resume Next
+
             dictionary = New IntraSellDictionary
             If Err.Number <> 0 Then
                 MsgBox("Die IntraSell DLL konnte nicht gefunden werden!" & Err.Description, vbCritical)
                 Err.Number = 0
-                On Error GoTo 0
+
                 Exit Function
             End If
             On Error GoTo 0

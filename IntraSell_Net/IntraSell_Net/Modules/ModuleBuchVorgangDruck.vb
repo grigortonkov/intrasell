@@ -66,13 +66,13 @@ Module ModuleBuchVorgangDruck
         getUID = TableValue("ofAdressen", "Idnr", IDNR, "UID") & ""
     End Function
 
-    Public Function getLand_new(ByVal IDNR) As String
-        'Return IntraSellVorgaengeAusdruck.getLand(IDNR)
-    End Function
+    'Public Function getLand_new(ByVal IDNR) As String
+    '    'Return IntraSellVorgaengeAusdruck.getLand(IDNR)
+    'End Function
 
-    Public Function getUID_new(ByVal IDNR) As String
-        'Return IntraSellVorgaengeAusdruck.getUID(IDNR)
-    End Function
+    'Public Function getUID_new(ByVal IDNR) As String
+    '    'Return IntraSellVorgaengeAusdruck.getUID(IDNR)
+    'End Function
 
     '=======================================================
     ' prueft ob eine weitere adresse vorhanden ist
@@ -488,7 +488,7 @@ Module ModuleBuchVorgangDruck
 
         Dim EmailText
         Dim TextBaustein
-        Dim sibject
+        'Dim sibject
 
         TextBaustein = "'TEXTBAUSTEIN_EMAIL_" & Vorgangtyp & "'"
 
@@ -585,14 +585,11 @@ Module ModuleBuchVorgangDruck
 
         VonForm = getVorgangTableForType(Vorgangtyp)
         VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
-
-
+ 
         rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
-
-
-
+ 
         If Not rs.Read Then
-            MsgBox("Die Daten sind nicht vorhanden!", vbCritical)
+            MsgBox("Es sind keine Daten vorhanden!", vbCritical)
             Exit Function
         End If
 

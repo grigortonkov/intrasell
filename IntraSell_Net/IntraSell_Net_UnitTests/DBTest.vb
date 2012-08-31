@@ -12,9 +12,9 @@ Public Class DBTest
     End Sub
 
 
-    <TestInitialize()> _
-    Public Sub MyTestInitialize()
-        FunctionsDB.CurrentDB = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
-        ModuleCommons.appPath = "z:\Business\IntraSell_System\IntraSell_Net\IntraSell_Net\bin\Debug\"
-    End Sub
+    '<TestInitialize()> _
+    'Public Sub MyTestInitialize()
+    '    FunctionsDB.CurrentDB = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+    '    ModuleCommons.appPath = "z:\Business\IntraSell_System\IntraSell_Net\IntraSell_Net\bin\Debug\"
+    'End Sub
 End Class
