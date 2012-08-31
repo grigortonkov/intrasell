@@ -58,7 +58,7 @@ Public Class ofadressen_zahlungsmethodenTableAdapterTest
     '''A test for Insert
     '''</summary>
     <TestMethod()> _
-    Public Sub InsertTest()
+    Public Sub ofadressen_zahlungsmethodenInsertTest()
         Dim target As ofadressen_zahlungsmethodenTableAdapter = New ofadressen_zahlungsmethodenTableAdapter() ' TODO: Initialize to an appropriate value
         Dim IdNr As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim Methode As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -93,7 +93,7 @@ Public Class ofadressen_zahlungsmethodenTableAdapterTest
     '''A test for Update
     '''</summary>
     <TestMethod()> _
-    Public Sub UpdateTest1()
+    Public Sub ofadressen_zahlungsmethodenUpdateTest1()
         Dim target As ofadressen_zahlungsmethodenTableAdapter = New ofadressen_zahlungsmethodenTableAdapter() ' TODO: Initialize to an appropriate value
         Dim Standart As Byte = 0 ' TODO: Initialize to an appropriate value
         Dim Original_IdNr As Integer = 0 ' TODO: Initialize to an appropriate value
@@ -110,7 +110,7 @@ Public Class ofadressen_zahlungsmethodenTableAdapterTest
     '''A test for Delete
     '''</summary>
     <TestMethod()> _
-    Public Sub DeleteTest()
+    Public Sub ofadressen_zahlungsmethodenDeleteTest()
         Dim target As ofadressen_zahlungsmethodenTableAdapter = New ofadressen_zahlungsmethodenTableAdapter() ' TODO: Initialize to an appropriate value
         Dim Original_IdNr As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim Original_Methode As String = String.Empty ' TODO: Initialize to an appropriate value
