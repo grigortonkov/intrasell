@@ -87,7 +87,7 @@ Module ModuleBuchVorgang
     '=======================================================
     Private Sub FindeOffeneVorgaenge(Where As String, Typ As String, IDNR As String)
 
-        Dim sql As String = " INSERT INTO buchVorgaenge (Typ, RechNr, KundNr, Datum, Summe, Bezahlt, Ausgedrukt, abgeschlossen )" & _
+        Dim sql As String = " INSERT INTO buchVorgaenge (Typ, RechNr, KundNr, Datum, Summe, bezahlt, ausgedruckt, abgeschlossen )" & _
                 " SELECT '" & Typ & "' AS t, Nummer, KundNr, Datum, Summe, Bezahlt, 0, 0 " & _
                 " FROM " & Where & _
                 " WHERE KundNr = " & IDNR & _
@@ -195,7 +195,7 @@ Module ModuleBuchVorgang
     ' storniert einen Vorgang
     ' die Nummer wird auch freigegeben und dann wieder verwendet, aber nur wenn das die letzte nummer ist
     '==============================================================================
-    Public Function VorgangStorno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
+    Public Function VorgangStorno(ByVal VorgangTyp As String, ByVal VorgangNummer As String, Optional silent As Boolean = False) As Boolean
 
         VorgangStorno = False
 
@@ -219,22 +219,26 @@ Module ModuleBuchVorgang
                 Abgeschlossen = rs("abgeschlossen")
                 Bezahlt = rs("Bezahlt")
             End If
-            rs.close()
+            rs.Close()
+            Dim stornieren As Boolean = silent
 
-            If MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " - " & VorgangNummer & " stornieren?", vbYesNo) = vbYes Then
+            If Not silent Then
+                stornieren = MsgBox("Möchten Sie den Vorgang " & VorgangTyp & " - " & VorgangNummer & " stornieren?", vbYesNo) = vbYes
+            End If
 
+            If stornieren Then
 
                 If Abgeschlossen <> 0 Then 'abgeschlossen
 
                     If VorgangTyp = VarValue_Default("VORGANG_TYP_FUER_LAGER_ABGANG", "AR") Then 'Lieferschein
-                        Call lagerEingang(VorgangNummer, VorgangTyp)
+                        Call lagerEingang(VorgangNummer, VorgangTyp, silent)
                     End If
 
                     If VorgangTyp = VarValue_Default("VORGANG_TYP_FUER_LAGER_EINGANG", "RÜ") Then
-                        Call lagerAusgang(VorgangNummer, VorgangTyp)
+                        Call lagerAusgang(VorgangNummer, VorgangTyp, silent)
                     End If
 
-                    If VorgangTyp = "AR" And bezahlt Then
+                    If VorgangTyp = "AR" And Bezahlt Then
                         Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & VorgangNummer, -1 * getSummeVorgang(VorgangTyp, VorgangNummer))
                     End If
                 End If
@@ -260,7 +264,9 @@ Module ModuleBuchVorgang
         Catch ex As Exception
             writeLog("ERROR in storno " + ex.Message)
             tr.Rollback()
-            MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
+            If Not silent Then
+                MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
+            End If
         End Try
 
     End Function
@@ -623,7 +629,7 @@ Module ModuleBuchVorgang
 
 
     'Returns True if Operation Successfull, else False 
-    Public Function VorgangAbschliessen(ByVal Typ As String, ByVal Nummer As String) As Boolean
+    Public Function VorgangAbschliessen(ByVal Typ As String, ByVal Nummer As String, Optional silent As Boolean = False) As Boolean
         VorgangAbschliessen = False
         Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
         Try
@@ -632,26 +638,41 @@ Module ModuleBuchVorgang
 
             If IsNull(Abgeschlossen) Or Abgeschlossen = 0 Then
                 If Typ = VarValue_Default("VORGANG_TYP_FUER_LAGER_ABGANG", "AR") Then
-                    Call lagerAusgang(Nummer, Typ)
+                    Call lagerAusgang(Nummer, Typ, silent)
                 End If
 
                 If Typ = VarValue_Default("VORGANG_TYP_FUER_LAGER_EINGANG", "RÜ") Then
-                    Call lagerEingang(Nummer, Typ)
+                    Call lagerEingang(Nummer, Typ, silent)
                 End If
 
                 RunSQL("update " & getVorgangTableForType(Typ) & " set abgeschlossen = -1 where Typ='" & Typ & "' and Nummer = " & Nummer)
-
-                MsgBox("Der Vorgang (Rechnung) wurde erfolgreich abgeschlossen!")
+                If Not silent Then
+                    MsgBox("Der Vorgang (Rechnung) wurde erfolgreich abgeschlossen!")
+                End If
 
             Else
-                MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)
-            End If
-            tr.Commit()
-            VorgangAbschliessen = True
+                If Not silent Then
+                    MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)
+                End If
+
+                End If
+                tr.Commit()
+                VorgangAbschliessen = True
         Catch ex As Exception
             tr.Rollback()
             VorgangAbschliessen = False
             HandleAppError(ex)
+        End Try
+    End Function
+
+
+
+    Public Function VorgangKonvertieren(ByVal FromOrder As String, ByVal ToOrder As String, ByVal FromNummer As Integer, ByVal NewKundNr As Integer) As String
+        Try
+            Return IntraSellPreise.convertFromTo(FromOrder, ToOrder, FromNummer, NewKundNr)
+        Catch ex As Exception
+            HandleAppError(ex)
+            Return Nothing
         End Try
     End Function
 

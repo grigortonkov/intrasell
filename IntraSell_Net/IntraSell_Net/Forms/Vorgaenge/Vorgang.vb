@@ -701,7 +701,7 @@ Public Class Vorgang
     '        Call OpenAusdruck(Me.txtVorgangType, Me.Nummer, """" & Me.txtVorgangType & """00/000000")
     '        'Me![checkBox_ausgedruckt] = True
     '        DoCmd.SetWarnings(False)
-    '        DoCmd.RunSQL("update " & getVorgangTableForType(Me.txtVorgangType) & " set ausgedrukt = -1 where Nummer = " & Me.Nummer)
+    '        DoCmd.RunSQL("update " & getVorgangTableForType(Me.txtVorgangType) & " set ausgedruckt = -1 where Nummer = " & Me.Nummer)
     '        DoCmd.SetWarnings(True)
 
     '        'Wenn es eine Rechnung ist dann auch als closed kennzeichnen

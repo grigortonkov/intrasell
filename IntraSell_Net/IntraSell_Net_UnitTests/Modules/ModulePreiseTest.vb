@@ -62,7 +62,7 @@ Public Class ModulePreiseTest
     <TestMethod()> _
     Public Sub calculatePreiseTest()
         Dim KundNr = 0
-        Dim ArtNr = 1
+        Dim ArtNr = 100
         Dim Stk = 10
         Dim Preis_Netto, Preis_Brutto, EKPreis As Double
 
@@ -70,9 +70,9 @@ Public Class ModulePreiseTest
         Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
         EKPreis = getEKPreis(ArtNr)
 
-        Assert.AreEqual(CDbl(42.5), Preis_Netto)
-        Assert.AreEqual(CDbl(51.0), Preis_Brutto)
-        Assert.AreEqual(CDbl(0.0), EKPreis)
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
     End Sub
 
     '''<summary>

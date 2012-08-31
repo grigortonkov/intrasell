@@ -100,11 +100,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
+    <Compile Include="Data\buchvorgang_artikelTableAdapterTest.vb" />
     <Compile Include="DBTest.vb" />
     <Compile Include="Data\grartikelTableAdapterTest.vb" />
     <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
     <Compile Include="DLL\FunctionsVarsTest.vb" />
     <Compile Include="DLL\IntraSellPreiseTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />
     <Compile Include="DLL\ModuleCommonsTest.vb" />
@@ -122,10 +125,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="1.OrderedTestSetup.orderedtest">
+    <None Include="1.DBSetup.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="2.Preise.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="3.Vorgang.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="UIMap.uitest" />
+    <None Include="0.ALL.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\XML2Word\XML2Word.vbproj">

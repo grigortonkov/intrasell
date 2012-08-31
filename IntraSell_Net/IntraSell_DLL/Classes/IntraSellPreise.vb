@@ -56,14 +56,19 @@ Public Class IntraSellPreise
 
         sql = "select ArtKatNr from grArtikel where artNr = " & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
-        If Not rs.Read Then Return 0 : Exit Function
+        If Not rs.Read Then
+            rs.Close()
+            Return 0
+            Exit Function
+        End If
 
-        ArtKatNr = CInt(rs("ArtKAtNR"))
+
+        ArtKatNr = CInt(rs("ArtKatNr"))
         rs.Close()
 
-        Dim basisVKPreis = getBasisVKPreis(ArtNr)
+        Dim basisVKPreis As Double = getBasisVKPreis(ArtNr)
 
-        If IdNr = -1 Then ' user ist egal
+        If IdNr = -1 Then ' Kunde wird nicht berücksichtigt
             sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
                   "     (pl.ArtKatNr is null or pl.ArtKatNr =-1 or pl.ArtKatNr =" & ArtKatNr & ")" & _
                   " and (pl.ArtNr is null  or ArtNr =-1  or  artnr = " & ArtNr & ")" & _
@@ -94,23 +99,24 @@ Public Class IntraSellPreise
             getPreis = basisVKPreis
 
 
-            If (vkpreis) > 0 Then
-                getPreis = (vkpreis)
+            If vkpreis > 0 Then
+                getPreis = vkpreis
                 rs.Close()
                 Exit Function
             End If
  
-            If (aufschlagvkpreis) <> 0 Then
+            If aufschlagvkpreis <> 0 Then
                 getPreis = (aufschlagvkpreis + 1) * getBasisVKPreis(ArtNr)
                 Exit Function
             End If
  
-            If (aufschlagekpreis) <> 0 Then
+            If aufschlagekpreis <> 0 Then
                 getPreis = (aufschlagekpreis + 1) * getEKPreis(ArtNr)
                 Exit Function
             End If
 
         Else
+            getPreis = basisVKPreis
             rs.Close()
         End If
 
@@ -178,7 +184,7 @@ Public Class IntraSellPreise
         Dim PreisATS As Decimal
 
         Dim Aufschlag As Double = getAufschlagEKpreisKategorie(ArtKatNr)
-        Dim ekPreis As Double = getEKPreis(ArtNr)
+        Dim EKPreis As Double = getEKPreis(ArtNr)
 
         sql = "select ArtNR, ArtKatNR, PreisATS from grArtikel where artnr=" & ArtNr
         rs = openRecordset_(sql, dbOpenDynaset)
@@ -192,7 +198,7 @@ Public Class IntraSellPreise
 
 
             If Aufschlag <> 0 Then
-                getBasisVKPreis = ekPreis * (1 + Aufschlag)
+                getBasisVKPreis = EKPreis * (1 + Aufschlag)
             Else
                 'If IsNull(PreisATS) Then
                 '    getBasisVKPreis = 0
@@ -422,9 +428,8 @@ Public Class IntraSellPreise
     ' For example Converts one Auftrag to Rechnung
     ' returns the nummer of the created new OrderType or 0 of failed
     '*****************************************************************
-    Public Function convertFromTo(ByVal VorgangTypVon As String, ByVal VorgangTypNach As String, ByVal VorgangNummerVon As Integer, ByVal NewKundNr As Integer) As String
-        Dim benutzeTransaktion As Boolean
-        benutzeTransaktion = False
+    Public Function convertFromTo(ByVal VorgangTypVon As String, ByVal VorgangTypNach As String, ByVal VorgangNummerVon As Integer, ByVal NewKundNr As Integer, Optional silent As Boolean = False) As String
+        Dim benutzeTransaktion As Boolean = False
         ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
         Dim mysqltr As MySqlTransaction = Nothing
         Try
@@ -447,7 +452,7 @@ Public Class IntraSellPreise
             tableNameToProducts = getVorgangArtikelTableForType(VorgangTypNach)
 
             Dim IdNr As Integer
-            sql = "select * from " & tableNameFrom & " where nummer =" & VorgangNummerVon
+            sql = "select * from " & tableNameFrom & " where nummer =" & VorgangNummerVon & " and Typ='" & VorgangTypVon & "'"
             rs = openRecordset_(sql, "")
             If Not rs.Read Then
                 convertFromTo = "0"
@@ -460,28 +465,28 @@ Public Class IntraSellPreise
             Dim nextRechnungNummer As String = getNewVorgangNummer(VorgangTypNach, IdNr)
 
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             Else
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             End If
 
-            Call openRecordset_(sql, "")
+            RunSQL(sql)
 
             'Positionen
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
-                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
-                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, EKpreis, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, Preis_Netto, Stk, Preis_Brutto, MWST, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
+                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, EKpreis, Stk, Preis_Brutto, MWST, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
                        " Nummer=" & VorgangNummerVon & " and Typ='" & VorgangTypVon & "'"
             Else
-                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
-                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
+                sql = "INSERT INTO [" & tableNameToProducts & "] ( Nummer, Typ, ArtNR, Preis_Netto, Stk, Preis_Brutto, MWST, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation ) " & _
+                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "', ArtNR, Preis_Netto, Stk, Preis_Brutto, MWST, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, herkunft, Incoterm,  Spezifikation  " & _
                        " FROM [" & tableNameFromProducts & "] WHERE " & _
                        " Nummer=" & VorgangNummerVon & " and Typ='" & VorgangTypVon & "'"
             End If
@@ -489,7 +494,7 @@ Public Class IntraSellPreise
 
 
             'response.write SQL
-            Call openRecordset_(sql, "")
+            RunSQL(sql)
 
             sql = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
                 " SELECT '" & VorgangTypNach & "', " & nextRechnungNummer & ", Name, [Value] " & _
@@ -512,14 +517,14 @@ Public Class IntraSellPreise
 
             Exit Function
         Catch ex As Exception
-
-            MsgBox("Die Transaktion wurde storniert!" + Err.Description, vbCritical)
+            If Not silent Then
+                MsgBox("Die Transaktion wurde storniert!" + Err.Description, vbCritical)
+            End If
             If benutzeTransaktion Then
                 ' CurrentDB.Rollback()
                 mysqltr.Rollback()
-
             End If
-
+            Throw ex
         End Try
     End Function
 

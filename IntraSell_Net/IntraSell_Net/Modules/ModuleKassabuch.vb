@@ -11,7 +11,7 @@ Module ModuleKassabuch
      ByVal Konto As String, _
      ByVal Beschreibung As String, _
      ByVal Betrag As Double)
-        Dim betragfield : betragfield = "BetragEingang"
+        Dim betragfield = "BetragEingang"
         Dim sql As String
 
         If Betrag < 0 Then betragfield = "BetragAusgang"

@@ -653,8 +653,8 @@ Module ModuleBuchVorgangDruck
             fileContent = Replace(fileContent, "[EAN]", RsArt("EAN"), 1, 1)
             fileContent = Replace(fileContent, "[Bezeichnung]", pad(RsArt("Bezeichnung") & "", BEZEICHNUNG_LAENGE), 1, 1)
             fileContent = Replace(fileContent, "[Beschreibung]", RsArt("Beschreibung") & "", 1, 1)
-            fileContent = Replace(fileContent, "[Preis]", FormatNumber(RsArt("PreisATS"), 2), 1, 1)
-            fileContent = Replace(fileContent, "[PreisBrutto]", FormatNumber(RsArt("PreisATS_Brutto"), 2), 1, 1)
+            fileContent = Replace(fileContent, "[Preis]", FormatNumber(RsArt("Preis_Netto"), 2), 1, 1)
+            fileContent = Replace(fileContent, "[PreisBrutto]", FormatNumber(RsArt("Preis_Brutto"), 2), 1, 1)
             RsArt.MoveNext()
         End While
 
