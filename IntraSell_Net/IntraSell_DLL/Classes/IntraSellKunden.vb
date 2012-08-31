@@ -61,7 +61,7 @@ Public Class IntraSellKunden
         'If IdNr Is Nothing Then calculateUmsatzKunde = 0 : Exit Function
         Dim rs As MySqlDataReader, sql As String
         sql = " SELECT buchRechnung.KundNr, Sum([PreisATS]*[stk]) AS UmsatzKunde" & _
-              " FROM buchRechnung LEFT JOIN [buchRech-Artikel] ON buchRechnung.Nummer = [buchRech-Artikel].RechNr " & _
+              " FROM buchRechnung LEFT JOIN [buchRech-Artikel] ON buchRechnung.Nummer = [buchRech-Artikel].Nummer " & _
               " WHERE buchRechnung.KundNr = " & IdNr & _
               " GROUP BY buchRechnung.KundNr"
         rs = openRecordset(sql)

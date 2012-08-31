@@ -68,7 +68,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\Components\net-20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\Components\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />

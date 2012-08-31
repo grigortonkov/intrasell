@@ -269,7 +269,7 @@ Partial Class Kunden
         'BriefanredeLabel
         '
         BriefanredeLabel.AutoSize = True
-        BriefanredeLabel.Location = New System.Drawing.Point(15, 136)
+        BriefanredeLabel.Location = New System.Drawing.Point(15, 162)
         BriefanredeLabel.Name = "BriefanredeLabel"
         BriefanredeLabel.Size = New System.Drawing.Size(64, 13)
         BriefanredeLabel.TabIndex = 13
@@ -278,7 +278,7 @@ Partial Class Kunden
         'TitelLabel
         '
         TitelLabel.AutoSize = True
-        TitelLabel.Location = New System.Drawing.Point(15, 163)
+        TitelLabel.Location = New System.Drawing.Point(15, 216)
         TitelLabel.Name = "TitelLabel"
         TitelLabel.Size = New System.Drawing.Size(30, 13)
         TitelLabel.TabIndex = 15
@@ -287,7 +287,7 @@ Partial Class Kunden
         'AnredeLabel
         '
         AnredeLabel.AutoSize = True
-        AnredeLabel.Location = New System.Drawing.Point(15, 190)
+        AnredeLabel.Location = New System.Drawing.Point(15, 188)
         AnredeLabel.Name = "AnredeLabel"
         AnredeLabel.Size = New System.Drawing.Size(44, 13)
         AnredeLabel.TabIndex = 17
@@ -296,7 +296,7 @@ Partial Class Kunden
         'NameLabel
         '
         NameLabel.AutoSize = True
-        NameLabel.Location = New System.Drawing.Point(15, 217)
+        NameLabel.Location = New System.Drawing.Point(15, 243)
         NameLabel.Name = "NameLabel"
         NameLabel.Size = New System.Drawing.Size(38, 13)
         NameLabel.TabIndex = 19
@@ -305,7 +305,7 @@ Partial Class Kunden
         'VornameLabel
         '
         VornameLabel.AutoSize = True
-        VornameLabel.Location = New System.Drawing.Point(15, 243)
+        VornameLabel.Location = New System.Drawing.Point(15, 269)
         VornameLabel.Name = "VornameLabel"
         VornameLabel.Size = New System.Drawing.Size(52, 13)
         VornameLabel.TabIndex = 21
@@ -314,7 +314,7 @@ Partial Class Kunden
         'Name1Label
         '
         Name1Label.AutoSize = True
-        Name1Label.Location = New System.Drawing.Point(15, 269)
+        Name1Label.Location = New System.Drawing.Point(15, 295)
         Name1Label.Name = "Name1Label"
         Name1Label.Size = New System.Drawing.Size(44, 13)
         Name1Label.TabIndex = 23
@@ -323,7 +323,7 @@ Partial Class Kunden
         'FirmaLabel
         '
         FirmaLabel.AutoSize = True
-        FirmaLabel.Location = New System.Drawing.Point(15, 295)
+        FirmaLabel.Location = New System.Drawing.Point(15, 136)
         FirmaLabel.Name = "FirmaLabel"
         FirmaLabel.Size = New System.Drawing.Size(35, 13)
         FirmaLabel.TabIndex = 25
@@ -449,7 +449,7 @@ Partial Class Kunden
         'PasswortLabel
         '
         PasswortLabel.AutoSize = True
-        PasswortLabel.Location = New System.Drawing.Point(530, 17)
+        PasswortLabel.Location = New System.Drawing.Point(530, 22)
         PasswortLabel.Name = "PasswortLabel"
         PasswortLabel.Size = New System.Drawing.Size(53, 13)
         PasswortLabel.TabIndex = 61
@@ -548,7 +548,7 @@ Partial Class Kunden
         'Language_codeLabel
         '
         Language_codeLabel.AutoSize = True
-        Language_codeLabel.Location = New System.Drawing.Point(275, 21)
+        Language_codeLabel.Location = New System.Drawing.Point(275, 22)
         Language_codeLabel.Name = "Language_codeLabel"
         Language_codeLabel.Size = New System.Drawing.Size(50, 13)
         Language_codeLabel.TabIndex = 13
@@ -583,7 +583,7 @@ Partial Class Kunden
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(794, 317)
-        Me.TabControl1.TabIndex = 3
+        Me.TabControl1.TabIndex = 23
         '
         'TabPage1
         '
@@ -771,7 +771,7 @@ Partial Class Kunden
         Me.FirmenKontoIdTextBox.Location = New System.Drawing.Point(365, 46)
         Me.FirmenKontoIdTextBox.Name = "FirmenKontoIdTextBox"
         Me.FirmenKontoIdTextBox.Size = New System.Drawing.Size(121, 20)
-        Me.FirmenKontoIdTextBox.TabIndex = 15
+        Me.FirmenKontoIdTextBox.TabIndex = 26
         '
         'FKofAdressenofadressensettingsBindingSource
         '
@@ -785,15 +785,15 @@ Partial Class Kunden
         Me.Language_codeComboBox.Location = New System.Drawing.Point(365, 18)
         Me.Language_codeComboBox.Name = "Language_codeComboBox"
         Me.Language_codeComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.Language_codeComboBox.TabIndex = 14
+        Me.Language_codeComboBox.TabIndex = 25
         '
         'PasswortTextBox
         '
         Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Passwort", True))
-        Me.PasswortTextBox.Location = New System.Drawing.Point(603, 14)
+        Me.PasswortTextBox.Location = New System.Drawing.Point(603, 18)
         Me.PasswortTextBox.Name = "PasswortTextBox"
         Me.PasswortTextBox.Size = New System.Drawing.Size(134, 20)
-        Me.PasswortTextBox.TabIndex = 62
+        Me.PasswortTextBox.TabIndex = 27
         '
         'Label15
         '
@@ -807,7 +807,7 @@ Partial Class Kunden
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(17, 21)
+        Me.Label14.Location = New System.Drawing.Point(17, 22)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(51, 13)
         Me.Label14.TabIndex = 8
@@ -823,7 +823,7 @@ Partial Class Kunden
         Me.cbKundengruppe.Location = New System.Drawing.Point(115, 45)
         Me.cbKundengruppe.Name = "cbKundengruppe"
         Me.cbKundengruppe.Size = New System.Drawing.Size(121, 21)
-        Me.cbKundengruppe.TabIndex = 7
+        Me.cbKundengruppe.TabIndex = 24
         Me.cbKundengruppe.ValueMember = "Gruppe"
         '
         'KundengruppenBindingSource
@@ -841,7 +841,7 @@ Partial Class Kunden
         Me.cbPreisliste.Location = New System.Drawing.Point(115, 18)
         Me.cbPreisliste.Name = "cbPreisliste"
         Me.cbPreisliste.Size = New System.Drawing.Size(121, 21)
-        Me.cbPreisliste.TabIndex = 6
+        Me.cbPreisliste.TabIndex = 23
         Me.cbPreisliste.ValueMember = "PreislisteName"
         '
         'PreislistenBindingSource
@@ -1258,7 +1258,7 @@ Partial Class Kunden
         Me.IDNRTextBox.Location = New System.Drawing.Point(83, 53)
         Me.IDNRTextBox.Name = "IDNRTextBox"
         Me.IDNRTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.IDNRTextBox.TabIndex = 8
+        Me.IDNRTextBox.TabIndex = 0
         '
         'StatusComboBox
         '
@@ -1267,75 +1267,76 @@ Partial Class Kunden
         Me.StatusComboBox.Location = New System.Drawing.Point(83, 79)
         Me.StatusComboBox.Name = "StatusComboBox"
         Me.StatusComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.StatusComboBox.TabIndex = 10
+        Me.StatusComboBox.TabIndex = 1
         '
         'BrancheComboBox
         '
         Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Branche", True))
+        Me.BrancheComboBox.Enabled = False
         Me.BrancheComboBox.FormattingEnabled = True
         Me.BrancheComboBox.Location = New System.Drawing.Point(83, 106)
         Me.BrancheComboBox.Name = "BrancheComboBox"
         Me.BrancheComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.BrancheComboBox.TabIndex = 12
+        Me.BrancheComboBox.TabIndex = 2
         '
         'BriefanredeComboBox
         '
         Me.BriefanredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Briefanrede", True))
         Me.BriefanredeComboBox.FormattingEnabled = True
-        Me.BriefanredeComboBox.Location = New System.Drawing.Point(83, 133)
+        Me.BriefanredeComboBox.Location = New System.Drawing.Point(83, 159)
         Me.BriefanredeComboBox.Name = "BriefanredeComboBox"
         Me.BriefanredeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.BriefanredeComboBox.TabIndex = 14
+        Me.BriefanredeComboBox.TabIndex = 4
         '
         'TitelComboBox
         '
         Me.TitelComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Titel", True))
         Me.TitelComboBox.FormattingEnabled = True
-        Me.TitelComboBox.Location = New System.Drawing.Point(83, 160)
+        Me.TitelComboBox.Location = New System.Drawing.Point(83, 213)
         Me.TitelComboBox.Name = "TitelComboBox"
         Me.TitelComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.TitelComboBox.TabIndex = 16
+        Me.TitelComboBox.TabIndex = 6
         '
         'AnredeComboBox
         '
         Me.AnredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Anrede", True))
         Me.AnredeComboBox.FormattingEnabled = True
-        Me.AnredeComboBox.Location = New System.Drawing.Point(83, 187)
+        Me.AnredeComboBox.Location = New System.Drawing.Point(83, 185)
         Me.AnredeComboBox.Name = "AnredeComboBox"
         Me.AnredeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.AnredeComboBox.TabIndex = 18
+        Me.AnredeComboBox.TabIndex = 5
         '
         'NameTextBox
         '
         Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name", True))
-        Me.NameTextBox.Location = New System.Drawing.Point(83, 214)
+        Me.NameTextBox.Location = New System.Drawing.Point(83, 240)
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.NameTextBox.TabIndex = 20
+        Me.NameTextBox.TabIndex = 7
         '
         'VornameTextBox
         '
         Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Vorname", True))
-        Me.VornameTextBox.Location = New System.Drawing.Point(83, 240)
+        Me.VornameTextBox.Location = New System.Drawing.Point(83, 266)
         Me.VornameTextBox.Name = "VornameTextBox"
         Me.VornameTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.VornameTextBox.TabIndex = 22
+        Me.VornameTextBox.TabIndex = 8
         '
         'Name1TextBox
         '
         Me.Name1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name1", True))
-        Me.Name1TextBox.Location = New System.Drawing.Point(83, 266)
+        Me.Name1TextBox.Location = New System.Drawing.Point(83, 292)
         Me.Name1TextBox.Name = "Name1TextBox"
         Me.Name1TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Name1TextBox.TabIndex = 24
+        Me.Name1TextBox.TabIndex = 9
         '
         'FirmaTextBox
         '
         Me.FirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Firma", True))
-        Me.FirmaTextBox.Location = New System.Drawing.Point(83, 292)
+        Me.FirmaTextBox.Location = New System.Drawing.Point(83, 133)
         Me.FirmaTextBox.Name = "FirmaTextBox"
         Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.FirmaTextBox.TabIndex = 26
+        Me.FirmaTextBox.TabIndex = 3
         '
         'AdresseTextBox
         '
@@ -1343,7 +1344,7 @@ Partial Class Kunden
         Me.AdresseTextBox.Location = New System.Drawing.Point(379, 109)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.AdresseTextBox.TabIndex = 36
+        Me.AdresseTextBox.TabIndex = 14
         '
         'LandComboBox
         '
@@ -1353,7 +1354,7 @@ Partial Class Kunden
         Me.LandComboBox.Location = New System.Drawing.Point(379, 56)
         Me.LandComboBox.Name = "LandComboBox"
         Me.LandComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.LandComboBox.TabIndex = 30
+        Me.LandComboBox.TabIndex = 11
         Me.LandComboBox.ValueMember = "IdNr"
         '
         'GrlandBindingSource
@@ -1370,7 +1371,7 @@ Partial Class Kunden
         Me.PLZComboBox.Location = New System.Drawing.Point(379, 82)
         Me.PLZComboBox.Name = "PLZComboBox"
         Me.PLZComboBox.Size = New System.Drawing.Size(54, 21)
-        Me.PLZComboBox.TabIndex = 32
+        Me.PLZComboBox.TabIndex = 12
         Me.PLZComboBox.ValueMember = "IdNr"
         '
         'OrtComboBox
@@ -1382,7 +1383,7 @@ Partial Class Kunden
         Me.OrtComboBox.Location = New System.Drawing.Point(466, 83)
         Me.OrtComboBox.Name = "OrtComboBox"
         Me.OrtComboBox.Size = New System.Drawing.Size(113, 21)
-        Me.OrtComboBox.TabIndex = 34
+        Me.OrtComboBox.TabIndex = 13
         Me.OrtComboBox.ValueMember = "Ort"
         '
         'TelTextBox
@@ -1391,7 +1392,7 @@ Partial Class Kunden
         Me.TelTextBox.Location = New System.Drawing.Point(379, 162)
         Me.TelTextBox.Name = "TelTextBox"
         Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TelTextBox.TabIndex = 37
+        Me.TelTextBox.TabIndex = 16
         '
         'Tel2TextBox
         '
@@ -1399,7 +1400,7 @@ Partial Class Kunden
         Me.Tel2TextBox.Location = New System.Drawing.Point(379, 188)
         Me.Tel2TextBox.Name = "Tel2TextBox"
         Me.Tel2TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Tel2TextBox.TabIndex = 38
+        Me.Tel2TextBox.TabIndex = 17
         '
         'FaxTextBox
         '
@@ -1407,7 +1408,7 @@ Partial Class Kunden
         Me.FaxTextBox.Location = New System.Drawing.Point(379, 214)
         Me.FaxTextBox.Name = "FaxTextBox"
         Me.FaxTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.FaxTextBox.TabIndex = 40
+        Me.FaxTextBox.TabIndex = 18
         '
         'Fax2TextBox
         '
@@ -1415,7 +1416,7 @@ Partial Class Kunden
         Me.Fax2TextBox.Location = New System.Drawing.Point(379, 240)
         Me.Fax2TextBox.Name = "Fax2TextBox"
         Me.Fax2TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Fax2TextBox.TabIndex = 42
+        Me.Fax2TextBox.TabIndex = 19
         '
         'MobilTextBox
         '
@@ -1423,7 +1424,7 @@ Partial Class Kunden
         Me.MobilTextBox.Location = New System.Drawing.Point(379, 266)
         Me.MobilTextBox.Name = "MobilTextBox"
         Me.MobilTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.MobilTextBox.TabIndex = 44
+        Me.MobilTextBox.TabIndex = 20
         '
         'EmailTextBox
         '
@@ -1431,7 +1432,7 @@ Partial Class Kunden
         Me.EmailTextBox.Location = New System.Drawing.Point(379, 292)
         Me.EmailTextBox.Name = "EmailTextBox"
         Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.EmailTextBox.TabIndex = 46
+        Me.EmailTextBox.TabIndex = 21
         '
         'WebTextBox
         '
@@ -1439,7 +1440,7 @@ Partial Class Kunden
         Me.WebTextBox.Location = New System.Drawing.Point(379, 318)
         Me.WebTextBox.Name = "WebTextBox"
         Me.WebTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.WebTextBox.TabIndex = 48
+        Me.WebTextBox.TabIndex = 22
         '
         'GeburtstagDateTimePicker
         '
@@ -1448,7 +1449,7 @@ Partial Class Kunden
         Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(83, 318)
         Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
         Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
-        Me.GeburtstagDateTimePicker.TabIndex = 28
+        Me.GeburtstagDateTimePicker.TabIndex = 10
         '
         'Ofadressen_zahlungsmethodenTableAdapter
         '
@@ -1471,7 +1472,7 @@ Partial Class Kunden
         Me.ButtonPLZSelect.Location = New System.Drawing.Point(585, 81)
         Me.ButtonPLZSelect.Name = "ButtonPLZSelect"
         Me.ButtonPLZSelect.Size = New System.Drawing.Size(33, 23)
-        Me.ButtonPLZSelect.TabIndex = 69
+        Me.ButtonPLZSelect.TabIndex = 13
         Me.ButtonPLZSelect.Text = "..."
         Me.ButtonPLZSelect.UseVisualStyleBackColor = True
         '
@@ -1492,7 +1493,7 @@ Partial Class Kunden
         '
         Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(35, 22)
         Me.FillByToolStripButton.Text = "FillBy"
         '
         'Kunden

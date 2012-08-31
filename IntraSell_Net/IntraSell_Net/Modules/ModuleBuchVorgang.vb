@@ -104,7 +104,7 @@ Module ModuleBuchVorgang
     ' setzt die mögliche umwandlungen fest
     ' was nach was konvertiert werden kann
     '=======================================================
-    Public Sub VorgängeSetup(formName As String, IDNR As String)
+    Public Sub VorgangeSetup(ByVal formName As String, ByVal IDNR As String)
 
         Dim query As String = "DELETE * FROM buchVorgaenge;"
         RunSQL(query)
@@ -195,9 +195,9 @@ Module ModuleBuchVorgang
     ' storniert einen Vorgang
     ' die Nummer wird auch freigegeben und dann wieder verwendet, aber nur wenn das die letzte nummer ist
     '==============================================================================
-    Public Function Storno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
+    Public Function VorgangStorno(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Boolean
 
-        Storno = False
+        VorgangStorno = False
 
         If IsNull(VorgangNummer) Then
             Exit Function
@@ -252,8 +252,8 @@ Module ModuleBuchVorgang
                 sql = "delete from " & getVorgangTableForType(VorgangTyp) & " where Typ='" & VorgangTyp & "' and  Nummer =" & VorgangNummer
                 RunSQL(sql)
 
-               
-                Storno = True
+
+                VorgangStorno = True
             End If
             tr.Commit()
 
@@ -301,8 +301,8 @@ Module ModuleBuchVorgang
 
                 Dim Summe As Double, SummeBrutto As Double, SummeMWST As Double
                 Summe = rs("Summe")
-                SummeBrutto = nvl(rs("Summe_Brutto"), 0)
-                SummeMWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
+                SummeBrutto = NVL(rs("Summe_Brutto"), 0)
+                SummeMWST = NVL(rs("Summe_Brutto"), 0) - rs("Summe")
 
                 If isFormOpenByCaption(formCaption) Then
                     Dim frm As Vorgang = Functions.getFormByCaption(formCaption)
@@ -311,8 +311,8 @@ Module ModuleBuchVorgang
                         frm.summeNetto = rs("Summe")
                     End If
 
-                    If frm.MWST <> nvl(rs("Summe_Brutto"), 0) - rs("Summe") Or IsNull(frm.MWST) Then
-                        frm.MWST = nvl(rs("Summe_Brutto"), 0) - rs("Summe")
+                    If frm.MWST <> NVL(rs("Summe_Brutto"), 0) - rs("Summe") Or IsNull(frm.MWST) Then
+                        frm.MWST = NVL(rs("Summe_Brutto"), 0) - rs("Summe")
                     End If
 
                     If frm.summeBrutto <> rs("Summe_Brutto") Or IsNull(frm.summeBrutto) Then
@@ -322,8 +322,8 @@ Module ModuleBuchVorgang
                 Else 'DB Update
                     sql = "update  [" & getVorgangTableForType(Vorgangtyp) & "] " & _
                       " set Summe =" & Replace(RoundUp(rs("Summe"), 2), ",", ".") & _
-                      ", SummeMWST =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0) - rs("Summe"), 2), ",", ".") & _
-                      ", SummeBrutto =" & Replace(RoundUp(nvl(rs("Summe_Brutto"), 0), 2), ",", ".") & _
+                      ", SummeMWST =" & Replace(RoundUp(NVL(rs("Summe_Brutto"), 0) - rs("Summe"), 2), ",", ".") & _
+                      ", SummeBrutto =" & Replace(RoundUp(NVL(rs("Summe_Brutto"), 0), 2), ",", ".") & _
                       " where Nummer =" & VorgangNummer
                     'TODO: in MySQL ist der DS gesperrt und dadurch probleme
                     RunSQL(sql)
@@ -373,13 +373,6 @@ Module ModuleBuchVorgang
     End Sub
 
 
-    Function nvl(param1 As Object, param2 As Object) As Object
-        If IsNull(param1) Then
-            nvl = param2
-        Else
-            nvl = param1
-        End If
-    End Function
 
     '    '=======================================================================
     '    'öffnet die maske buchRechnung (funktioniert für alle mögliche vorgänge)
@@ -628,9 +621,12 @@ Module ModuleBuchVorgang
     '    End Sub
 
 
-    Public Sub VorgangAbschliessen(Typ As String, Nummer As String)
-        Try
 
+    'Returns True if Operation Successfull, else False 
+    Public Function VorgangAbschliessen(ByVal Typ As String, ByVal Nummer As String) As Boolean
+        VorgangAbschliessen = False
+        Dim tr As MySqlTransaction = CurrentDB.BeginTransaction
+        Try
 
             Dim Abgeschlossen As Boolean = firstRow("select abgeschlossen from " & getVorgangTableForType(Typ) & " where Typ='" & Typ & "' and Nummer = " & Nummer)
 
@@ -650,12 +646,14 @@ Module ModuleBuchVorgang
             Else
                 MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)
             End If
-
-
+            tr.Commit()
+            VorgangAbschliessen = True
         Catch ex As Exception
+            tr.Rollback()
+            VorgangAbschliessen = False
             HandleAppError(ex)
         End Try
-    End Sub
+    End Function
 
 
 End Module

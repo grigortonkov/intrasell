@@ -604,10 +604,10 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub btnAbschliessen_Click()
-        Call VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
-        'Event einfügen
-        EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
-       
+        If VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
+            'Event einfügen
+            EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
+        End If
     End Sub
 
 
@@ -667,7 +667,7 @@ Public Class Vorgang
 
     Private Sub btnStorno_Click()
 
-        If Storno(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
+        If VorgangStorno(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
             Me.Close()
         End If
 
@@ -1065,17 +1065,31 @@ Public Class Vorgang
             'try to get specialpreis
 
             Dim specialPreis As Double = getPreis(KundNr, ArtNr, Stk)
-            If specialPreis >= 0 Then
+            If specialPreis > 0 Then
                 VKPreis = specialPreis
             End If
 
-            If IsDBNull(Preis_Netto.Value) Then 'Or IsNull(Preis_Netto.Value) Preis_Netto.Value = "0" Or 
+            Dim notDefined As Boolean = False
+            If IsNull(Preis_Netto.Value) Then 'Or IsNull(Preis_Netto.Value) Preis_Netto.Value = "0" Or 
+                notDefined = True
+            ElseIf Preis_Netto.Value = 0 Then
+                notDefined = True
+            End If
+
+            If notDefined Then
                 Preis_Netto.Value = VKPreis
                 Preis_Brutto.Value = calculateBruttoPreis(VKPreis, ArtNr, KundNr)
                 MWST.Value = Preis_Brutto.Value - Preis_Netto.Value
             End If
 
-            If IsDBNull(EKPreis.Value) Then ' Or IsNull(EKPreis.Value) Or EKPreis.Value = 0
+            notDefined = False
+            If IsNull(EKPreis.Value) Then ' Or IsNull(EKPreis.Value) Or EKPreis.Value = 0
+                notDefined = True
+            ElseIf EKPreis.Value = 0 Then
+                notDefined = True
+            End If
+
+            If notDefined Then
                 EKPreis.Value = getEKPreis(ArtNr)
             End If
 

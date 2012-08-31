@@ -27,6 +27,17 @@ Public Class Kunden
 
 
         Try
+            'Branche 
+            FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen   order by Bezeichnung", "Bezeichnung", "BrNr")
+            'Title
+            FillComboBox(Me.TitelComboBox, "select Titel from ofAdressen group by Titel order by Titel", "Titel", "Titel")
+            'anrede 
+            FillComboBox(Me.AnredeComboBox, "select Anrede from grAnrede group by Anrede order by Anrede", "Anrede", "Anrede")
+            'Briefanrede 
+            FillComboBox(Me.BriefanredeComboBox, "select Briefanrede from grAnrede group by Briefanrede order by Briefanrede", "Briefanrede", "Briefanrede")
+            'Satus 
+            FillComboBox(Me.StatusComboBox, "select Status from ofAdressen group by Status order by Status", "Status", "Status")
+
             Me.GrlandTableAdapter.FillBy(Me.DsPLZ.grland)
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
 

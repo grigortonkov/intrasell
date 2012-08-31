@@ -55,7 +55,7 @@ Public Class IntraSellVorgaengeAusdruck
                    " ofAdressen.Anrede , ofAdressen.Anrede + "" "" & ofAdressen.Titel as AnredeTitel, getLand(ofAdressen.Idnr) as land, getUID(ofAdressen.idnr) as uid, Tel, Email, " & VonForm & ".KundNr2" & _
                    " FROM ((ofAdressen RIGHT JOIN " & VonForm & " ON ofAdressen.IDNR = " & VonForm & ".KundNr) " & _
                    " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
-                   " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
+                   " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].Nummer " & _
                    " Where nummer=" & Vorgang_Nummer & "  " & _
                    " GROUP BY '" & Vorgangtyp & "' , ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, " & _
                    " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
@@ -82,7 +82,7 @@ Public Class IntraSellVorgaengeAusdruck
                    " a.Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email, " & VonForm & ".KundNr2 " & _
                    " FROM ((`ofAdressen-Weitere` as a RIGHT JOIN " & VonForm & " ON a.IDNR = " & VonForm & ".KundNr)" & _
                    " LEFT JOIN grPLZ p ON a.PLZ = p.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
-                   " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].RechNr " & _
+                   " ON " & VonForm & ".Nummer = [" & vonForm_Artikel & "].Nummer and " & VonForm & ".Typ = [" & vonForm_Artikel & "].Typ " & _
                    " WHERE nummer=" & Vorgang_Nummer & "  " & _
                    " AND a.Typ = '" & Vorgangtyp & "'" & _
                    " AND a.Id = " & SelectedId & " " & _
