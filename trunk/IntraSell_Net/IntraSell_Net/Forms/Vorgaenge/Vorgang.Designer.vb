@@ -331,7 +331,7 @@ Partial Class Vorgang
         'WaehrungLabel1
         '
         WaehrungLabel1.AutoSize = True
-        WaehrungLabel1.Location = New System.Drawing.Point(20, 299)
+        WaehrungLabel1.Location = New System.Drawing.Point(17, 299)
         WaehrungLabel1.Name = "WaehrungLabel1"
         WaehrungLabel1.Size = New System.Drawing.Size(54, 13)
         WaehrungLabel1.TabIndex = 52
@@ -547,6 +547,7 @@ Partial Class Vorgang
         'BezahltCheckBox
         '
         Me.BezahltCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.BuchvorgangBindingSource, "Bezahlt", True))
+        Me.BezahltCheckBox.Enabled = False
         Me.BezahltCheckBox.Location = New System.Drawing.Point(16, 19)
         Me.BezahltCheckBox.Name = "BezahltCheckBox"
         Me.BezahltCheckBox.Size = New System.Drawing.Size(101, 24)
@@ -557,6 +558,7 @@ Partial Class Vorgang
         'AusgedrucktCheckBox
         '
         Me.AusgedrucktCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.BuchvorgangBindingSource, "Ausgedruckt", True))
+        Me.AusgedrucktCheckBox.Enabled = False
         Me.AusgedrucktCheckBox.Location = New System.Drawing.Point(121, 19)
         Me.AusgedrucktCheckBox.Name = "AusgedrucktCheckBox"
         Me.AusgedrucktCheckBox.Size = New System.Drawing.Size(101, 24)
@@ -567,6 +569,7 @@ Partial Class Vorgang
         'AbgeschlossenCheckBox
         '
         Me.AbgeschlossenCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.BuchvorgangBindingSource, "Abgeschlossen", True))
+        Me.AbgeschlossenCheckBox.Enabled = False
         Me.AbgeschlossenCheckBox.Location = New System.Drawing.Point(228, 19)
         Me.AbgeschlossenCheckBox.Name = "AbgeschlossenCheckBox"
         Me.AbgeschlossenCheckBox.Size = New System.Drawing.Size(101, 24)
@@ -577,6 +580,7 @@ Partial Class Vorgang
         'WoherTextBox
         '
         Me.WoherTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Woher", True))
+        Me.WoherTextBox.Enabled = False
         Me.WoherTextBox.Location = New System.Drawing.Point(127, 142)
         Me.WoherTextBox.Name = "WoherTextBox"
         Me.WoherTextBox.Size = New System.Drawing.Size(200, 20)
@@ -585,6 +589,7 @@ Partial Class Vorgang
         'WohinTextBox
         '
         Me.WohinTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Wohin", True))
+        Me.WohinTextBox.Enabled = False
         Me.WohinTextBox.Location = New System.Drawing.Point(127, 168)
         Me.WohinTextBox.Name = "WohinTextBox"
         Me.WohinTextBox.Size = New System.Drawing.Size(200, 20)
@@ -882,7 +887,7 @@ Partial Class Vorgang
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(667, 325)
+        Me.TabPage2.Size = New System.Drawing.Size(667, 297)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Notizen"
         Me.TabPage2.UseVisualStyleBackColor = True

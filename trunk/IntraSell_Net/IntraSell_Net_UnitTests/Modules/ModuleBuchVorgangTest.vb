@@ -11,6 +11,8 @@ Imports IntraSell_Net
 <TestClass()> _
 Public Class ModuleBuchVorgangTest
 
+    Public Const VORGANG_NUMMER_1 As String = "1000000"
+    Public Const VORGANG_TYP_1 As String = "AR"
 
     Private testContextInstance As TestContext
 
@@ -62,11 +64,11 @@ Public Class ModuleBuchVorgangTest
         If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
             IntraSell_DLL.FunctionsDB.CurrentDB.Open()
         End If
-        Dim Typ As String = "AR"
-        Dim Nummer As String = "1000000"
+        Dim Typ As String = VORGANG_TYP_1
+
         Dim expected As Boolean = True
         Dim actual As Boolean
-        actual = ModuleBuchVorgang.VorgangAbschliessen(Typ, Nummer, True)
+        actual = ModuleBuchVorgang.VorgangAbschliessen(Typ, Vorgang_Nummer_1, True)
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -80,8 +82,8 @@ Public Class ModuleBuchVorgangTest
             IntraSell_DLL.FunctionsDB.CurrentDB.Open()
         End If
 
-        Dim VorgangTyp As String = "AR"
-        Dim VorgangNummer As Integer = "1000000"
+        Dim VorgangTyp As String = VORGANG_TYP_1
+        Dim VorgangNummer As Integer = VORGANG_NUMMER_1
         Dim expected As Boolean = True
         Dim actual As Boolean
         actual = ModuleBuchVorgang.VorgangStorno(VorgangTyp, VorgangNummer, True)
@@ -99,9 +101,9 @@ Public Class ModuleBuchVorgangTest
             IntraSell_DLL.FunctionsDB.CurrentDB.Open()
         End If
 
-        Dim VorgangTyp As String = "AR"
-        Dim VorgangTypTo As String = "AR"
-        Dim VorgangNummer As Integer = "1000000"
+        Dim VorgangTyp As String = VORGANG_TYP_1
+        Dim VorgangTypTo As String = VORGANG_TYP_1
+        Dim VorgangNummer As Integer = Vorgang_Nummer_1
         Dim KundNr As Integer = 100
 
         Dim expected As String = "2001000193"
