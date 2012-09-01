@@ -24,7 +24,7 @@ Module ModuleBuchVorgangDruck
 
         getRecSource = "SELECT '" & VorgangTyp & "'  as VorgangTyp, v.Nummer, a.Idnr, " & _
                         " concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  (select concat(grPLZ.plz, ' ' , grPLZ.ort) from grPLZ WHERE a.PLZ = grPLZ.IdNr) AS PLZOrt, (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Email, " & _
-                        " Sum(Stk*Preis_Netto) AS Summe, Sum(Stk*Preis_Brutto) AS SummeBrutto, v.Datum," & _
+                        " Sum(Stk*Preis_Netto) AS Summe, Sum(Stk*Preis_Brutto) AS SummeBrutto,  Sum(Stk*Preis_Brutto)-Sum(Stk*Preis_Netto) as SummeMWST , v.Datum," & _
                         " v.Notiz as Notiz,  v.KundNr, v.ZahlungsBedungung," & _
                         " v.Zahlungsmethode, v.TransportMethode,  v.Notiz, Woher, Wohin, a.Anrede , concat(a.Anrede,' ', a.Titel) as AnredeTitel," & _
                         " v.KundNr1, v.KundNr2" & _
@@ -79,14 +79,16 @@ Module ModuleBuchVorgangDruck
     '=======================================================
     Function checkIfWeitereVorhanden(ByVal IDNR, ByVal Vorgangtyp) As Integer
         checkIfWeitereVorhanden = 0
-        Dim rs, sql
-        sql = "select count(*) as cnt from [ofAdressen-Weitere] where idnr=" & IDNR & " AND typ = '" & Vorgangtyp & "'"
+        Dim rs As MySqlDataReader
+        Dim Sql As String
+        Sql = "select count(*) as cnt from [ofAdressen-Weitere] where idnr=" & IDNR & " AND Typ = '" & Vorgangtyp & "'"
         rs = openRecordset(sql)
-        If Not rs.EOF Then
+        If rs.Read Then
             checkIfWeitereVorhanden = rs("cnt")
         Else
             checkIfWeitereVorhanden = 0
         End If
+        rs.Close()
     End Function
 
     '=======================================================
@@ -211,9 +213,10 @@ Module ModuleBuchVorgangDruck
         Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, "Vorlagen\\Vorlage_Rechnung.doc")
     End Sub
 
-    Public Sub OpenAusdruck_inWord_Filename(ByVal Vorgangtyp As String, _
-                                            ByVal Vorgang_Nummer As String, _
-                                            ByVal Dateiname As String)
+    Public Sub OpenAusdruck_inWord_Filename(ByVal VorgangTyp As String, _
+                                            ByVal VorgangNummer As String, _
+                                            ByVal Dateiname As String, _
+                                            Optional ByVal silent As Boolean = False)
         Dim App 'As Application
         Dim VorlageFilename
 
@@ -223,8 +226,8 @@ Module ModuleBuchVorgangDruck
         Dim rs As MySqlDataReader
         Dim rsArt As MySqlDataReader
 
-        VonForm = getVorgangTableForType(Vorgangtyp)
-        VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
+        VonForm = getVorgangTableForType(VorgangTyp)
+        VonForm_Artikel = getVorgangArtikelTableForType(VorgangTyp)
 
 
         VorlageFilename = AppFolder() & Dateiname
@@ -234,7 +237,7 @@ Module ModuleBuchVorgangDruck
 
         App.Documents.Open(fileName:=VorlageFilename, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False, Format:=0)
 
-        sql = getRecSource(Vorgangtyp, Vorgang_Nummer)
+        sql = getRecSource(VorgangTyp, VorgangNummer)
         rs = openRecordset(sql)
 
         If Not rs.Read Then
@@ -248,111 +251,126 @@ Module ModuleBuchVorgangDruck
         rs.Close()
 
 
-        If checkIfWeitereVorhanden(idnr, Vorgangtyp) > 0 And Vorgangtyp = "LI" Then
+        If checkIfWeitereVorhanden(idnr, VorgangTyp) > 0 And VorgangTyp = "LI" Then
             If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) Then
-                Dim selectedIdNr As String = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
-                sql = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
+                Dim selectedIdNr As String = selectEineWeitereAdresse(VorgangTyp, VorgangNummer)
+                sql = getRecSource_Weitere(VorgangTyp, VorgangNummer, selectedIdNr)
             End If
         End If
 
 
         rs.Close()
         rs = openRecordset(sql)
+        If rs.Read Then
 
+            Call replaceInWordOnce(App, "[Idnr]", rs("Idnr") & "")
+            Call replaceInWordOnce(App, "[Kundennummer]", rs("Idnr") & "")
 
-        Call replaceInWordOnce(App, "[Idnr]", rs("Idnr") & "")
-        Call replaceInWordOnce(App, "[Kundennummer]", rs("Idnr") & "")
+            Call replaceInWordOnce(App, "[firma]", rs("firma") & "")
+            Call replaceInWordOnce(App, "[name]", rs("namen") & "")
+            Call replaceInWordOnce(App, "[strasse]", rs("adresse") & "")
+            Call replaceInWordOnce(App, "[plz ort]", rs("plzort") & "")
 
-        Call replaceInWordOnce(App, "[firma]", rs("firma") & "")
-        Call replaceInWordOnce(App, "[name]", rs("namen") & "")
-        Call replaceInWordOnce(App, "[strasse]", rs("adresse") & "")
-        Call replaceInWordOnce(App, "[plz ort]", rs("plzort") & "")
+            Call replaceInWordOnce(App, "[Titel]", VorgangTyp & "-" & VorgangNummer)
+            Call replaceInWordOnce(App, "[Datum]", rs("Datum") & "")
+            Call replaceInWordOnce(App, "[Betreuer]", "")
+            Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
 
-        Call replaceInWordOnce(App, "[Titel]", Vorgangtyp & "-" & Vorgang_Nummer)
-        Call replaceInWordOnce(App, "[Datum]", rs("Datum") & "")
-        Call replaceInWordOnce(App, "[Betreuer]", "")
-        Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
+            Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
+            Call replaceInWordOnce(App, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
+            Call replaceInWordOnce(App, "[Transportmethode]", rs("TransportMethode") & "")
 
-        Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
-        Call replaceInWordOnce(App, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
-        Call replaceInWordOnce(App, "[Transportmethode]", rs("TransportMethode") & "")
+            Call replaceInWordOnce(App, "[Netto]", FormatNumber(rs("Summe"), 2))
+            Call replaceInWordOnce(App, "[MWST]", FormatNumber(rs("SummeMWST"), 2))
+            Call replaceInWordOnce(App, "[Total]", FormatNumber(rs("SummeBrutto"), 2))
+        End If
 
-
-
-        Call replaceInWordOnce(App, "[Netto]", FormatNumber(rs("summeATS"), 2))
-        Call replaceInWordOnce(App, "[MWST]", FormatNumber(rs("summeATSBrutto") - rs("summeATS"), 2))
-        Call replaceInWordOnce(App, "[Total]", FormatNumber(rs("summeATSBrutto"), 2))
         rs.Close()
 
         'PART II - Positionen
 
-        sql = "select count(*) as pos from [" & VonForm_Artikel & "] where rechnr=" & Vorgang_Nummer
+        sql = "select count(*) as pos from [" & VonForm_Artikel & "] where Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'"
         rsArt = openRecordset(sql)
         Dim Positionen
-        Positionen = rsArt("pos")
+        If rsArt.Read Then
+
+            Positionen = rsArt("pos")
+            rsArt.Close()
+
+            'copy the artikel line times as needed
+            App.Selection.MoveUp(Unit:=7, Count:=3)
+            App.Selection.Find.ClearFormatting()
+            App.Selection.Find.replacement.ClearFormatting()
+            With App.Selection.Find
+                .Text = "[Stk]"
+                .replacement.Text = "1"
+                .Forward = True
+                .Wrap = 1
+                .Format = False
+                .MatchCase = False
+                .MatchWholeWord = False
+                .MatchWildcards = False
+                .MatchSoundsLike = False
+                .MatchAllWordForms = False
+            End With
 
 
-        'copy the artikel line times as needed
-        App.Selection.MoveUp(Unit:=7, Count:=3)
-        App.Selection.Find.ClearFormatting()
-        App.Selection.Find.replacement.ClearFormatting()
-        With App.Selection.Find
-            .Text = "[Stk]"
-            .replacement.Text = "1"
-            .Forward = True
-            .Wrap = 1
-            .Format = False
-            .MatchCase = False
-            .MatchWholeWord = False
-            .MatchWildcards = False
-            .MatchSoundsLike = False
-            .MatchAllWordForms = False
-        End With
+            Dim foundstk : foundstk = App.Selection.Find.execute
+            App.Selection.EndKey(Unit:=5, Extend:=1)
+            App.Selection.Copy()
+            Dim i
+            If foundstk Then
+                For i = 1 To Positionen
+                    App.Selection.Paste()
+                Next i
+            End If
+            'replace artnr, preis etc.
 
+            sql = "select [" & VonForm_Artikel & "].*, Beschreibung from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr " & _
+                " and Nummer=" & VorgangNummer & " and Typ='" & VorgangTyp & "'"
+            rsArt = openRecordset(sql)
+            While rsArt.Read
+                Call replaceInWordOnce(App, "[Stk]", rsArt("Stk"))
+                Call replaceInWordOnce(App, "[ArtNR]", rsArt("ArtNR"))
+                Call replaceInWordOnce(App, "[Bezeichnung]", rsArt("Bezeichnung") & "")
+                Call replaceInWordOnce(App, "[Beschreibung]", rsArt("Beschreibung") & "")
+                Call replaceInWordOnce(App, "[Preis]", FormatNumber(rsArt("Preis_Netto"), 2))
+                Call replaceInWordOnce(App, "[Preis_Netto]", FormatNumber(rsArt("Preis_Netto"), 2))
+                Call replaceInWordOnce(App, "[Preis_Brutto]", FormatNumber(rsArt("Preis_Brutto"), 2))
+                Call replaceInWordOnce(App, "[MWST]", FormatNumber(rsArt("Mwst"), 2))
+            End While
+            rsArt.Close()
 
-        Dim foundstk : foundstk = App.Selection.Find.execute
-        App.Selection.EndKey(Unit:=5, Extend:=1)
-        App.Selection.Copy()
-        Dim i
-        If foundstk Then
-            For i = 1 To Positionen
-                App.Selection.Paste()
-            Next i
         End If
-        'replace artnr, preis etc.
-
-        sql = "select [" & VonForm_Artikel & "].*, Beschreibung from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr and  rechnr=" & Vorgang_Nummer
-        Debug.Print(sql)
-        rsArt = openRecordset(sql)
-        While rsArt.Read
-            Call replaceInWordOnce(App, "[Stk]", rsArt("Stk"))
-            Call replaceInWordOnce(App, "[ArtNR]", rsArt("ArtNR"))
-            Call replaceInWordOnce(App, "[Bezeichnung]", rsArt("Bezeichnung") & "")
-            Call replaceInWordOnce(App, "[Beschreibung]", rsArt("Beschreibung") & "")
-            Call replaceInWordOnce(App, "[Preis]", FormatNumber(rsArt("PreisATS"), 2))
-        End While
         rsArt.Close()
         'Eigenschaften
 
-        sql = "select  * from buchVorgaengeEigenschaften where Nummer  = " & Vorgang_Nummer & " and  vorgangtyp like '" & Vorgangtyp & "'"
+        sql = "select  * from buchVorgaengeEigenschaften where Nummer  = " & VorgangNummer & " and  vorgangtyp like '" & VorgangTyp & "'"
         Dim rsEig As MySqlDataReader
         rsEig = openRecordset(sql)
         While rsEig.Read
             Call replaceInWordOnce(App, "[" & rsEig("Name") & "]", rsEig("Value") & "")
-
         End While
         rsEig.Close()
 
 
-        Dim saveAsFilename As String = AppFolder() & Vorgangtyp & "_" & Vorgang_Nummer & ".doc"
-        If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
+        Dim saveAsFilename As String = AppFolder() & VorgangTyp & "_" & VorgangNummer & ".doc"
+        If Not silent Then
+            If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
 
+                App.ActiveDocument.SaveAs(fileName:=saveAsFilename, FileFormat:= _
+                    0, LockComments:=False, Password:="", AddToRecentFiles:= _
+                    True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
+                    False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
+                    SaveAsAOCELetter:=False)
+
+            End If
+        Else
             App.ActiveDocument.SaveAs(fileName:=saveAsFilename, FileFormat:= _
-                0, LockComments:=False, Password:="", AddToRecentFiles:= _
-                True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
-                False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
-                SaveAsAOCELetter:=False)
-
+               0, LockComments:=False, Password:="", AddToRecentFiles:= _
+               True, WritePassword:="", ReadOnlyRecommended:=False, EmbedTrueTypeFonts:= _
+               False, SaveNativePictureFormat:=False, SaveFormsData:=False, _
+               SaveAsAOCELetter:=False)
         End If
 
         On Error Resume Next ' vielleicht ist word bereits geschlossen

@@ -61,10 +61,10 @@ Public Class ModuleBuchVorgangDruckTest
     '''</summary>
     <TestMethod()> _
     Public Sub OpenAusdruck_inWord_FilenameTest()
-        Dim Vorgangtyp As String = "AR"
-        Dim Vorgang_Nummer As String = "1"
+        Dim VorgangNummer As Long = ModuleBuchVorgangTest.VORGANG_NUMMER_1
+        Dim VorgangTyp As String = ModuleBuchVorgangTest.VORGANG_TYP_1
         Dim Dateiname As String = "Vorlagen\Vorlage_Rechnung.rtf"
-        ModuleBuchVorgangDruck.OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, Dateiname)
-        Assert.Inconclusive("A method that does not return a value cannot be verified.")
+        ModuleBuchVorgangDruck.OpenAusdruck_inWord_Filename(VorgangTyp, VorgangNummer, Dateiname, True)
+        'Assert.Inconclusive("A method that does not return a value cannot be verified.")
     End Sub
 End Class

@@ -626,7 +626,7 @@ Partial Class Artikel
         Me.SeriennummerCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.GrartikelBindingSource, "Seriennummer", True))
         Me.SeriennummerCheckBox.Location = New System.Drawing.Point(721, 64)
         Me.SeriennummerCheckBox.Name = "SeriennummerCheckBox"
-        Me.SeriennummerCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.SeriennummerCheckBox.Size = New System.Drawing.Size(142, 24)
         Me.SeriennummerCheckBox.TabIndex = 29
         Me.SeriennummerCheckBox.Text = "Seriennummer erford."
         Me.SeriennummerCheckBox.UseVisualStyleBackColor = True

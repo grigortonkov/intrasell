@@ -66,7 +66,10 @@ Module ModuleBuchVorgangXML
         Dim archiveFilename As String
         archiveFilename = Replace(resultFilename, DbFolder() & "tmp\", exportPath)
         archiveFilename = Replace(archiveFilename, "1.doc", ".doc")
-        renameFile(resultFilename, archiveFilename)
+        'nur wenn die datei nicht vorher existiert 
+        If Not FileIO.FileSystem.FileExists(archiveFilename) Then
+            renameFile(resultFilename, archiveFilename)
+        End If
 
         'print or send per email
 

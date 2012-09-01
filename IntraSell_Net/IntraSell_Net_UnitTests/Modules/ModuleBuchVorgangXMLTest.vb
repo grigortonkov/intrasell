@@ -86,14 +86,14 @@ Public Class ModuleBuchVorgangXMLTest
     '''</summary>
     <TestMethod()> _
     Public Sub OpenAusdruck_inWord_XMLTest()
-        Dim VorgangNummer As Long = 1
-        Dim VorgangTyp As String = "AR"
+        Dim VorgangNummer As Long = ModuleBuchVorgangTest.VORGANG_NUMMER_1
+        Dim VorgangTyp As String = ModuleBuchVorgangTest.VORGANG_TYP_1
         Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
         Dim Viewer As String = "NONE" '"WORD"
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
 
-        Dim expected As String = "c:\Vorgang_AR1.doc" ' TODO: Initialize to an appropriate value
+        Dim expected As String = "c:\Vorgang_" & VorgangTyp & VorgangNummer & ".doc" ' TODO: Initialize to an appropriate value
         Dim actual As String
         actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangTyp, VorgangNummer, VorlageFilename, Viewer, SofortSenden, MailText)
 
