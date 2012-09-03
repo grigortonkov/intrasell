@@ -248,6 +248,12 @@
     <Compile Include="Forms\Vorgaenge\Vorgang.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangWizzard.Designer.vb">
+      <DependentUpon>VorgangWizzard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangWizzard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaces\InterfacePrintable.vb" />
     <Compile Include="Modules\Functions.vb" />
     <Compile Include="Modules\FunctionsDemoVersion.vb" />
@@ -350,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vorgaenge\Vorgang.resx">
       <DependentUpon>Vorgang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangWizzard.resx">
+      <DependentUpon>VorgangWizzard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
