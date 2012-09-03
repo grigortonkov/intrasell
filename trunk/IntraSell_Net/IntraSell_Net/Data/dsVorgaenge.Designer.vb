@@ -4445,8 +4445,7 @@ Partial Public Class dsVorgaenge
             MyBase.Columns.Add(Me.columnErstelltAm)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID, Me.columnNummer, Me.columnTyp}, true))
             Me.columnID.AutoIncrement = true
-            Me.columnID.AutoIncrementSeed = -1
-            Me.columnID.AutoIncrementStep = -1
+            Me.columnID.AutoIncrementSeed = 1
             Me.columnID.AllowDBNull = false
             Me.columnNummer.AllowDBNull = false
             Me.columnTyp.AllowDBNull = false

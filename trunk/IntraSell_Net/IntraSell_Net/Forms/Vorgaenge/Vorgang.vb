@@ -96,19 +96,12 @@ Public Class Vorgang
 
 #Region "New"
      
-
-
     Dim addingnewflag As Boolean = False
     Private Sub bindingnavigatoraddnewitem_click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
-            'neuen vorgang erstellen
-            If messagebox.show("wollen sie einen neuen vorgang erstellen?", "vorgang erstellen", messageboxbuttons.yesno) = windows.forms.dialogresult.yes Then
-                'nummer und datum setzen 
-            End If
-
             addingnewflag = True
-        Catch ex As exception
-            handleapperror(ex)
+        Catch ex As Exception
+            HandleAppError(ex)
         End Try
     End Sub
 
@@ -117,6 +110,7 @@ Public Class Vorgang
                               Handles BuchvorgangBindingSource.CurrentChanged
         Try
             If addingnewflag = True Then
+                BeginNew(False)
                 addingnewflag = False
             End If
         Catch ex As Exception
@@ -133,6 +127,37 @@ Public Class Vorgang
         End If
     End Sub
 
+    Private Sub BeginNew(Optional addNew As Boolean = True)
+        Try
+            'neuen vorgang erstellen
+            'If MessageBox.Show("Wollen Sie einen neuen Vorgang erstellen?", "Vorgang erstellen?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+            'Else
+            '    Return
+            'End If
+            If addNew Then Me.BuchvorgangBindingSource.AddNew()
+            VorgangWizzard.ShowDialog()
+            'die Werte Übernehmen 
+            If VorgangWizzard.DialogResult = DialogResult.OK Then
+
+                Me.NummerTextBox.Text = VorgangWizzard.NummerTextBox.Text
+                Me.TypComboBox.Text = VorgangWizzard.TypComboBox.Text
+                Me.TypComboBox.SelectedValue = VorgangWizzard.TypComboBox.SelectedValue
+                Me.KundNrAdressenControl.IDNR = VorgangWizzard.KundNrAdressenControl.IDNR
+                Me.DatumDateTimePicker.Value = VorgangWizzard.DatumDateTimePicker.Value
+
+                'folgende 3 zeilen damit die rows in artikel die parent typ und nummer übernehmen.
+                Me.Validate()
+                Me.BuchvorgangBindingSource.EndEdit()
+                Me.Buchvorgang_artikelBindingSource.EndEdit()
+
+            Else
+                'cancel ?
+            End If
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 #End Region
 
 
@@ -295,7 +320,9 @@ Public Class Vorgang
 
 #Region "Menu"
 
-
+    Private Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
+        BeginNew() 
+    End Sub
     Private Sub AbschliessenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AbschliessenToolStripMenuItem.Click
         btnAbschliessen_Click()
     End Sub
@@ -1314,5 +1341,6 @@ Public Class Vorgang
 
 
 #End Region
+
 
 End Class
