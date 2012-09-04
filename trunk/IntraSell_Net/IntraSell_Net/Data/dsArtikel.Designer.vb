@@ -1322,6 +1322,7 @@ Partial Public Class dsArtikel
             Me.columnProduktAktivOnline = New Global.System.Data.DataColumn("ProduktAktivOnline", GetType(SByte), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProduktAktivOnline)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnArtNr}, true))
+            Me.columnArtNr.AutoIncrementSeed = 1
             Me.columnArtNr.AllowDBNull = false
             Me.columnArtNr.Unique = true
             Me.columnEAN.AllowDBNull = false

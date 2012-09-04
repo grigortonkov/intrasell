@@ -15,6 +15,9 @@ Public Class AdressenControl
     Private Sub AdressenControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         FillComboBox(Me.AdressenComboBox, "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma", "Adr", "IDNR")
         Me.AdressenComboBox.Text = ""
+        'If _IDNR > 0 Then
+        '    Me.AdressenComboBox.SelectedValue = _IDNR
+        'End If
     End Sub
 
     Private Sub AdressenSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelSelectorButton.Click

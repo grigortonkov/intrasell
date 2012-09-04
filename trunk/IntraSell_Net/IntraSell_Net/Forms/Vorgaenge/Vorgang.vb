@@ -336,7 +336,11 @@ Public Class Vorgang
     End Sub
 
     Private Sub KonvertierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
-
+        VorgangKonvertieren.Init(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.KundNrAdressenControl.IDNR)
+        VorgangKonvertieren.ShowDialog()
+        If VorgangKonvertieren.DialogResult = Windows.Forms.DialogResult.OK Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub VorlagenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
@@ -345,7 +349,7 @@ Public Class Vorgang
 
 
     Private Sub SendeEmailToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
-
+        Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
     End Sub
 #End Region
 
@@ -602,11 +606,7 @@ Public Class Vorgang
 
 
     '    End Sub
-
-    '    Sub btnSendMail_Click()
-    '        Call sendVorgang_Email(Me.txtVorgangType, Me.Nummer, "")
-    '    End Sub
-
+ 
 
     '    Private Sub cbVorgang_Enter()
     '        Me.AllowEdits = True

@@ -1493,7 +1493,7 @@ Partial Class Kunden
         '
         Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(35, 22)
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
         Me.FillByToolStripButton.Text = "FillBy"
         '
         'Kunden

@@ -108,14 +108,26 @@ Public Class ofadressenTableAdapterTest
         Dim BHReferenz As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 1 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
+
+        'INSERT 
         actual = target.Insert(IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, Name1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, Export, AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMenu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse, EUNummer, EUNummer1, EUNummer2, BHReferenz)
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
-
+        'UPDATE 
         Status = "Kunde"
         actual = target.Update(Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, Name1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, Export, AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMenu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse, EUNummer, EUNummer1, EUNummer2, BHReferenz, IDNR)
-
         Assert.AreEqual(expected, actual)
+
+        'Weitere Adressen 
+        IDNR = 101 : Vorname = "Theodor" : Name = "Roth"
+        actual = target.Insert(IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, Name1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, Export, AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMenu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse, EUNummer, EUNummer1, EUNummer2, BHReferenz)
+        Assert.AreEqual(expected, actual)
+
+
+        IDNR = 102 : Vorname = "Christina" : Name = "Roth"
+        actual = target.Insert(IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, Name1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, Export, AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMenu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse, EUNummer, EUNummer1, EUNummer2, BHReferenz)
+        Assert.AreEqual(expected, actual)
+
     End Sub
 
    
@@ -132,5 +144,12 @@ Public Class ofadressenTableAdapterTest
         actual = target.Delete(Original_IDNR)
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
+
+        actual = target.Delete(101)
+        Assert.AreEqual(expected, actual)
+
+        actual = target.Delete(102)
+        Assert.AreEqual(expected, actual)
+
     End Sub
 End Class
