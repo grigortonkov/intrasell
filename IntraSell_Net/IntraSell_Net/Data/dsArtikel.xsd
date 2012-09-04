@@ -1259,7 +1259,7 @@ FROM            grartikel INNER JOIN
         <xs:element name="grartikel" msprop:Generator_TableClassName="grartikelDataTable" msprop:Generator_TableVarName="tablegrartikel" msprop:Generator_TablePropName="grartikel" msprop:Generator_RowDeletingName="grartikelRowDeleting" msprop:Generator_UserTableName="grartikel" msprop:Generator_RowChangingName="grartikelRowChanging" msprop:Generator_RowEvHandlerName="grartikelRowChangeEventHandler" msprop:Generator_RowDeletedName="grartikelRowDeleted" msprop:Generator_RowEvArgName="grartikelRowChangeEvent" msprop:Generator_RowChangedName="grartikelRowChanged" msprop:Generator_RowClassName="grartikelRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ArtNr" msprop:Generator_ColumnVarNameInTable="columnArtNr" msprop:Generator_ColumnPropNameInRow="ArtNr" msprop:Generator_ColumnPropNameInTable="ArtNrColumn" msprop:Generator_UserColumnName="ArtNr" type="xs:int" />
+              <xs:element name="ArtNr" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnArtNr" msprop:Generator_ColumnPropNameInRow="ArtNr" msprop:Generator_ColumnPropNameInTable="ArtNrColumn" msprop:Generator_UserColumnName="ArtNr" type="xs:int" />
               <xs:element name="EAN" msprop:Generator_ColumnVarNameInTable="columnEAN" msprop:Generator_ColumnPropNameInRow="EAN" msprop:Generator_ColumnPropNameInTable="EANColumn" msprop:Generator_UserColumnName="EAN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -1781,15 +1781,15 @@ FROM            grartikel INNER JOIN
       <xs:selector xpath=".//mstns:grArtikelliste" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:unique>
-    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_UserParentTable="grartikel">
+    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_ParentPropName="grartikelRow">
       <xs:selector xpath=".//mstns:grartikel-staffelpreise" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:keyref>
-    <xs:keyref name="FK_grartikel_grartikel-htmlinfo" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-htmlinfo" msprop:rel_Generator_ChildPropName="_Getgrartikel_htmlinfoRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-htmlinfo" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_htmlinfo" msprop:rel_Generator_UserParentTable="grartikel">
+    <xs:keyref name="FK_grartikel_grartikel-htmlinfo" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-htmlinfo" msprop:rel_Generator_ChildPropName="_Getgrartikel_htmlinfoRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-htmlinfo" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_htmlinfo" msprop:rel_Generator_ParentPropName="grartikelRow">
       <xs:selector xpath=".//mstns:grartikel-htmlinfo" />
       <xs:field xpath="mstns:ArtNR" />
     </xs:keyref>
-    <xs:keyref name="FK_grartikel-kategorien_grartikel" refer="grartikel-kategorien_Constraint1" msprop:rel_Generator_UserChildTable="grartikel" msprop:rel_Generator_ChildPropName="GetgrartikelRows" msprop:rel_Generator_ParentPropName="_grartikel_kategorienRow" msprop:rel_Generator_UserRelationName="FK_grartikel-kategorien_grartikel" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel" msprop:rel_Generator_UserParentTable="grartikel-kategorien">
+    <xs:keyref name="FK_grartikel-kategorien_grartikel" refer="grartikel-kategorien_Constraint1" msprop:rel_Generator_UserChildTable="grartikel" msprop:rel_Generator_ChildPropName="GetgrartikelRows" msprop:rel_Generator_UserParentTable="grartikel-kategorien" msprop:rel_Generator_UserRelationName="FK_grartikel-kategorien_grartikel" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel" msprop:rel_Generator_ParentPropName="_grartikel_kategorienRow">
       <xs:selector xpath=".//mstns:grartikel" />
       <xs:field xpath="mstns:ArtKatNr" />
     </xs:keyref>

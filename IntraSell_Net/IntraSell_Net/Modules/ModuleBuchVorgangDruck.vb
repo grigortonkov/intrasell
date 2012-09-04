@@ -478,9 +478,6 @@ Module ModuleBuchVorgangDruck
 
     End Sub
 
-
-
-
     Public Function makeArtikelNummer(ArtNr1 As Integer) As String
         makeArtikelNummer = ArtNr1
 
@@ -498,16 +495,14 @@ Module ModuleBuchVorgangDruck
 
     End Function
 
-    Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
-        Dim Subject
-        Dim Email : Email = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
+    Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
+
+        Dim Email As String = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
 
         Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, "SILENT")
 
-        Dim EmailText
-        Dim TextBaustein
-        'Dim sibject
-
+        Dim Subject, EmailText, TextBaustein As String
+  
         TextBaustein = "'TEXTBAUSTEIN_EMAIL_" & Vorgangtyp & "'"
 
         EmailText = TableValue("ofKorespondenz", "Subjekt", TextBaustein, "[TEXT]")
@@ -521,7 +516,7 @@ Module ModuleBuchVorgangDruck
 
 
     Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
-        Dim Email
+        Dim Email As String
         Dim rsEmail
         Dim sql
 
@@ -714,12 +709,7 @@ Module ModuleBuchVorgangDruck
 
     End Function
 
-
-    Function parseVorgangVorlage(ByVal Vorgangtyp As String, _
-                                 ByVal Vorgang_Nummer As String) As String
-
-    End Function
-
+ 
     'adds spaces to the required length
     Function pad(ByVal stringToPad As String, ByVal length As Integer)
         Dim i : i = 0

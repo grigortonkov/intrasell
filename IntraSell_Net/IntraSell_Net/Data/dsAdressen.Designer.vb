@@ -1257,6 +1257,7 @@ Partial Public Class dsAdressen
             Me.columnBHReferenz = New Global.System.Data.DataColumn("BHReferenz", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBHReferenz)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIDNR}, true))
+            Me.columnIDNR.AutoIncrementSeed = 1
             Me.columnIDNR.AllowDBNull = false
             Me.columnIDNR.Unique = true
             Me.columnStatus.MaxLength = 10

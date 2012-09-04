@@ -66,8 +66,8 @@ Public Class grartikelTableAdapterTest
         Dim EAN As String = "EAN100"
         Dim Barcode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Bezeichnung As String = "Artikel 100"
-        Dim Bezeichnung1 As String = "Artikel 100"
-        Dim Beschreibung As String = "Artikel 100 Beschreibung"
+        Dim Bezeichnung1 As String = "Artikel Bezeichnung1"
+        Dim Beschreibung As String = "Artikel Beschreibung"
         Dim Einheit As String = "KG"
 
         Dim PreisATS As Nullable(Of [Decimal]) = 100
@@ -125,6 +125,17 @@ Public Class grartikelTableAdapterTest
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
 
+        'Weitere INSERTS 
+
+        ArtNr = ArtNr + 1 : EAN = "EAN" & ArtNr : Bezeichnung = "Bezeichnung " & ArtNr : PreisATS = 10
+        actual = target.Insert(ArtNr, EAN, Barcode, Bezeichnung, Bezeichnung1, Beschreibung, Einheit, PreisATS, PreisEuro, PreisATS_Brutto, LagerArtikel, EKPreis, LEKPreis, Seriennummer, LieferantNR, SetArtikel, ArtKatNr, MWST, Gewicht, Picture, HerstellerNr, ProduktAktiv, ShopURL, HerstellerURL, Modifikationen, HerstellerRabatt, HerstellerRabattText, AngelegtAn, BruttoGewicht, NettoGewicht, TaraGewicht, AngelegtAm, NichtBestellbar, ProduktAktivOnline)
+        Assert.AreEqual(expected, actual)
+
+        ArtNr = ArtNr + 1 : EAN = "EAN" & ArtNr : Bezeichnung = "Bezeichnung " & ArtNr : PreisATS = 20
+        actual = target.Insert(ArtNr, EAN, Barcode, Bezeichnung, Bezeichnung1, Beschreibung, Einheit, PreisATS, PreisEuro, PreisATS_Brutto, LagerArtikel, EKPreis, LEKPreis, Seriennummer, LieferantNR, SetArtikel, ArtKatNr, MWST, Gewicht, Picture, HerstellerNr, ProduktAktiv, ShopURL, HerstellerURL, Modifikationen, HerstellerRabatt, HerstellerRabattText, AngelegtAn, BruttoGewicht, NettoGewicht, TaraGewicht, AngelegtAm, NichtBestellbar, ProduktAktivOnline)
+        Assert.AreEqual(expected, actual)
+
+
 
     End Sub
  
@@ -140,6 +151,13 @@ Public Class grartikelTableAdapterTest
         Dim actual As Integer
         actual = target.Delete(Original_ArtNr)
         Assert.AreEqual(expected, actual)
-        'Assert.Inconclusive("Verify the correctness of this test method.")
+
+
+        actual = target.Delete(Original_ArtNr + 1)
+        Assert.AreEqual(expected, actual)
+
+
+        actual = target.Delete(Original_ArtNr + 2)
+        Assert.AreEqual(expected, actual)
     End Sub
 End Class

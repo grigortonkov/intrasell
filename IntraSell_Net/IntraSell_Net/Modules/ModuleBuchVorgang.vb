@@ -471,160 +471,149 @@ Module ModuleBuchVorgang
     '        Resume Exit_ntnRechnung_Click
     '    End Function
 
-    '    '=======================================================
-    '    'öffnet die maske buchRechnung (für alle möglich vorgänge) und positioniert die maske an dem bestimmten vorgang
-    '    '=======================================================
-    '    Public Function openVorgangFunctionByNummer(ByVal VorgangType As String, ByVal Nummer As Integer) As Vorgang
-    '        On Error GoTo Err_ntnRechnung_Click
+    '=======================================================
+    'öffnet die maske buchRechnung (für alle möglich vorgänge) und positioniert die maske an dem bestimmten vorgang
+    '=======================================================
+    Public Function openVorgangFunctionByNummer(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Vorgang
+        Try
+
+            If VorgangNummer < 1 Then
+                Throw New Exception("Ungültige Vorgangsnummer!")
+            End If
+
+            If VorgangTyp = "" Then
+                Throw New Exception("Ungültiger Vorgangstyp!")
+            End If
+
+            ' OpenForm "buchRechnung"
+            Dim frm As Vorgang = New Vorgang
+            frm.MdiParent = Main
+
+            Dim fltr As String = "Nummer=" & VorgangNummer & " and Typ='" & VorgangTyp & "'"
+
+            frm.FilterBy(fltr)
+            frm.Show()
+            ''Set frm = Forms("buchRechnung")
+            'frm.Caption = VorgangType & Nummer
+            'frm.txtVorgangType = VorgangType
+
+            'frm.RecordSource = getVorgangTableForType(VorgangType)
+            'frm.Rech_Artikel.Form.RecordSource = getVorgangArtikelTableForType(VorgangType)
 
 
 
-    '        If Nummer < 1 Or VorgangType = "" Then
-    '            MsgBox("Keine gültige Vorgangsnummer!", vbCritical)
-    '            Exit Function
-    '        End If
+            'frm.KundNr2.RowSource = "SELECT q.ID, [Firma] & "" "" & [Name] & "" "" & [Adresse] & "" "" & "" "" & [PLZ] & ""-"" & [Ort] AS Auswahl " & _
+            '                        " FROM qry_Adressfelder_und_Weitere q " & _
+            '                        " WHERE q.IDNR=(select kundnr from " & getVorgangTableForType(VorgangType) & " where Nummer = " & Nummer & ");"
 
-    '        ' OpenForm "buchRechnung"
-
-
-    '        Dim frm As Vorgang = New Vorgang
-
-    '        'Set frm = Forms("buchRechnung")
-    '        frm.Caption = VorgangType & Nummer
-    '        frm.txtVorgangType = VorgangType
-
-    '        frm.RecordSource = getVorgangTableForType(VorgangType)
-    '        frm.Rech_Artikel.Form.RecordSource = getVorgangArtikelTableForType(VorgangType)
+            'frm.cbDateinameVorlage.RowSource = "SELECT a.Dateiname " & _
+            '                " FROM buchVorgaengeAusdrucke a LEFT JOIN buchVorgaengeAusdruckeLog l ON a.Dateiname = l.Dateiname " & _
+            '                " GROUP BY a.Dateiname, a.Bereich " & _
+            '                " HAVING a.Bereich = ""VORGANG_" & VorgangType & """" & _
+            '                " ORDER BY Count(l.ID) DESC , a.Dateiname;"
 
 
+            'frm.Filter = "Nummer=" & Nummer
+            'frm.FilterOn = True
 
-    '        frm.KundNr2.RowSource = "SELECT q.ID, [Firma] & "" "" & [Name] & "" "" & [Adresse] & "" "" & "" "" & [PLZ] & ""-"" & [Ort] AS Auswahl " & _
-    '                                " FROM qry_Adressfelder_und_Weitere q " & _
-    '                                " WHERE q.IDNR=(select kundnr from " & getVorgangTableForType(VorgangType) & " where Nummer = " & Nummer & ");"
+            'frm.txtVorgangType = VorgangType
+            'frm.Status.RowSource = "SELECT Status FROM buchVorgaengeStatus  Where Vorgangtyp ='" & VorgangType & "'"
 
-    '        frm.cbDateinameVorlage.RowSource = "SELECT a.Dateiname " & _
-    '                        " FROM buchVorgaengeAusdrucke a LEFT JOIN buchVorgaengeAusdruckeLog l ON a.Dateiname = l.Dateiname " & _
-    '                        " GROUP BY a.Dateiname, a.Bereich " & _
-    '                        " HAVING a.Bereich = ""VORGANG_" & VorgangType & """" & _
-    '                        " ORDER BY Count(l.ID) DESC , a.Dateiname;"
+            'frm.subformEigenschaften.Form.RecordSource = "select * from buchVorgaengeEigenschaften where vorgangtyp = '" & VorgangType & "'"
+            'frm.cbDateinameVorlage.Requery()
 
+            'If VorgangTyp = "LAU" Then  'Im Lieferanten Modus
+            '    Call setInLAUMode(frm)
+            'End If
 
-    '        frm.Filter = "Nummer=" & Nummer
-    '        frm.FilterOn = True
-
-    '        frm.txtVorgangType = VorgangType
-    '        frm.Status.RowSource = "SELECT Status FROM buchVorgaengeStatus  Where Vorgangtyp ='" & VorgangType & "'"
-
-    '        frm.subformEigenschaften.Form.RecordSource = "select * from buchVorgaengeEigenschaften where vorgangtyp = '" & VorgangType & "'"
-    '        frm.cbDateinameVorlage.Requery()
-
-    '        If VorgangType = "LAU" Then  'Im Lieferanten Modus
-    '            Call setInLAUMode(frm)
-    '        End If
-
-    '        frm.Visible = True
-    '        ''access stürzt ab
-    '        'nach der ArtNr, EAN Sortieren
-    '        ''frm.Rech_Artikel.Form.OrderBy = "Lookup_cbArtNr.EAN"
-    '        ''frm.Rech_Artikel.Form.OrderByOn = True
-
-    '        On Error GoTo errInCollection
-    '        frmCollection.Add(frm, frm.Caption)
-    '        On Error GoTo 0
-    '        openVorgangFunctionByNummer = frm
-    '        Exit Function
-
-    'errInCollection:
-    '        frmCollection.Remove(frm.Caption)
-    '        frmCollection.Add(frm, frm.Caption)
-    '        openVorgangFunctionByNummer = frm
-    '        Exit Function
-
-    'Exit_ntnRechnung_Click:
-    '        Exit Function
-
-    'Err_ntnRechnung_Click:
-    '        MsgBox(Err.Description)
-    '        Resume Exit_ntnRechnung_Click
-    '    End Function
-
-    '    Sub setInLAUMode(ByRef frm As Vorgang)
-    '        frm.[buchAdresseKopf].LinkMasterFields = "LieferantNr"
-    '        frm.[buchAdresseKopf].Form.RecordSource = "select * from qry_AdressfelderLieferant"
-    '        frm.[buchAdresseKopf].Form.KundNr.RowSource = "SELECT IDNR, Firma FROM lieferantenAdressen"
-    '        frm.[buchAdresseKopf].Form.KundNr.Requery()
-    '    End Sub
-
-    '    Public Function addVorgangEigenschaft(ByVal Vorgangtyp As String, _
-    '     ByVal VorgangNummer As String, _
-    '    ByVal Eigenschaft As String, _
-    '    ByVal Wert As String)
+            frm.Visible = True
+            ''access stürzt ab
+            'nach der ArtNr, EAN Sortieren
+            ''frm.Rech_Artikel.Form.OrderBy = "Lookup_cbArtNr.EAN"
+            ''frm.Rech_Artikel.Form.OrderByOn = True
 
 
-    '        'fur interdel
-    '        If UCase(Eigenschaft) = UCase("VerladeTag") Then
+            openVorgangFunctionByNummer = frm
+            Exit Function
 
-    '            OpenQuery("tradeBoard_GeschaefteEinstellen")
-    '            'Geschaeft einstellen
+        Catch ex As Exception
+            HandleAppError(ex)
+            openVorgangFunctionByNummer = Nothing
+        End Try
+        Exit Function
+ 
+    End Function
 
-    '        End If
+    'Sub setInLAUMode(ByRef frm As Vorgang)
+    '    frm.[buchAdresseKopf].LinkMasterFields = "LieferantNr"
+    '    frm.[buchAdresseKopf].Form.RecordSource = "select * from qry_AdressfelderLieferant"
+    '    frm.[buchAdresseKopf].Form.KundNr.RowSource = "SELECT IDNR, Firma FROM lieferantenAdressen"
+    '    frm.[buchAdresseKopf].Form.KundNr.Requery()
+    'End Sub
 
-
-    '        Dim sql As String
-    '        sql = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
-    '             " values ('" & Vorgangtyp & "', " & VorgangNummer & ", '" & Eigenschaft & "', '" & Wert & "')"
-
-
-    '        RunSQL(sql)
-
-
-
-
-
-
-    '    End Function
-
-
-    '    Public Sub setStandartBedingung(ByVal VorgangType As String, ByVal VorgangNummer As Integer, ByVal KundNr As String)
+    Public Sub addVorgangEigenschaft(ByVal Vorgangtyp As String, _
+     ByVal VorgangNummer As String, _
+    ByVal Eigenschaft As String, _
+    ByVal Wert As String)
 
 
-    '        Dim zb, zm, tm
-    '        zb = TableValue("grZahlungsbedingung", "Nr", TableValue("[ofAdressen-Zahlungsbedingungen]", "Idnr", KundNr, "Bedingung"), "Methode")
-
-    '        zm = TableValue("[ofAdressen-ZahlungsMethoden]", "Idnr", KundNr, "Methode")
-
-    '        tm = TableValue("[ofAdressen-TransportMethoden]", "Idnr", KundNr, "Methode")
-
-    '        If InStr(zb, "vorhanden") > 0 Then zb = ""
-    '        If InStr(zm, "vorhanden") > 0 Then zm = ""
-    '        If InStr(tm, "vorhanden") > 0 Then tm = ""
-
-    '        Dim sql As String
-    '        sql = "Update " & getVorgangTableForType(VorgangType) & " set ZahlungsBedungung='" & zb & "'," & _
-    '        " Zahlungsmethode='" & zm & "', TransportMethode='" & tm & "'  where Nummer=" & VorgangNummer
+        ''fur interdel
+        'If UCase(Eigenschaft) = UCase("VerladeTag") Then
+        '    OpenQuery("tradeBoard_GeschaefteEinstellen")
+        '    'Geschaeft einstellen
+        'End If
 
 
-    '        RunSQL(sql)
+        Dim sql As String
+        sql = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
+             " values ('" & Vorgangtyp & "', " & VorgangNummer & ", '" & Eigenschaft & "', '" & Wert & "')"
 
 
-    '    End Sub
+        RunSQL(sql)
+
+    End Sub
 
 
-    '    Public Sub ArtikelAuflisten(Typ As String, Nummer As String)
-    '        Dim Source
+    Public Sub setStandartBedingung(ByVal VorgangType As String, ByVal VorgangNummer As Integer, ByVal KundNr As String)
 
-    '        Dim tbl As String : tbl = getVorgangArtikelTableForType(Typ)
 
-    '        Source = " SELECT DISTINCTROW [ArtNR], " & _
-    '                 " [Stk], [PreisATS], " & _
-    '                 " [Bezeichnung], " & _
-    '                 " [PreisATS_Brutto] FROM [" & tbl & "] WHERE RechNr = " & _
-    '                   Nummer & ";"
-    '        OpenForm("buchVorgänge-Uebersicht")
+        Dim zb, zm, tm
+        zb = TableValue("grZahlungsbedingung", "Nr", TableValue("[ofAdressen-Zahlungsbedingungen]", "Idnr", KundNr, "Bedingung"), "Methode")
+
+        zm = TableValue("[ofAdressen-ZahlungsMethoden]", "Idnr", KundNr, "Methode")
+
+        tm = TableValue("[ofAdressen-TransportMethoden]", "Idnr", KundNr, "Methode")
+
+        If InStr(zb, "vorhanden") > 0 Then zb = ""
+        If InStr(zm, "vorhanden") > 0 Then zm = ""
+        If InStr(tm, "vorhanden") > 0 Then tm = ""
+
+        Dim sql As String
+        sql = "Update " & getVorgangTableForType(VorgangType) & " set ZahlungsBedungung='" & zb & "'," & _
+        " Zahlungsmethode='" & zm & "', TransportMethode='" & tm & "'  where Nummer=" & VorgangNummer
+
+
+        RunSQL(sql)
+
+
+    End Sub
+
+
+    'Public Sub ArtikelAuflisten(Typ As String, Nummer As String)
+    '    Dim Source
+
+    '    Dim tbl As String : tbl = getVorgangArtikelTableForType(Typ)
+
+    '    Source = " SELECT DISTINCTROW [ArtNR], " & _
+    '             " [Stk], [PreisATS], " & _
+    '             " [Bezeichnung], " & _
+    '             " [PreisATS_Brutto] FROM [" & tbl & "] WHERE RechNr = " & _
+    '               Nummer & ";"
+    '    OpenForm("buchVorgänge-Uebersicht")
     '         Forms![buchVorgänge-Uebersicht]![listArtikel].ColumnWidths = "2cm;2cm;2cm;5cm;2cm;"
     '         Forms![buchVorgänge-Uebersicht]![listArtikel].RowSource = Source
     '         Forms![buchVorgänge-Uebersicht]![listArtikel].Requery
-    '    End Sub
+    'End Sub
 
 
 
