@@ -341,6 +341,7 @@ Public Class Vorgang
         If VorgangKonvertieren.DialogResult = Windows.Forms.DialogResult.OK Then
             Me.Close()
         End If
+        VorgangKonvertieren.Dispose()
     End Sub
 
     Private Sub VorlagenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
