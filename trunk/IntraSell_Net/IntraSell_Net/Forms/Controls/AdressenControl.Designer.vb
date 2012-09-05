@@ -30,7 +30,7 @@ Partial Class AdressenControl
         '
         'ArtikelSelectorButton
         '
-        Me.ArtikelSelectorButton.Location = New System.Drawing.Point(102, 1)
+        Me.ArtikelSelectorButton.Location = New System.Drawing.Point(133, 1)
         Me.ArtikelSelectorButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ArtikelSelectorButton.Name = "ArtikelSelectorButton"
         Me.ArtikelSelectorButton.Size = New System.Drawing.Size(20, 23)
@@ -49,7 +49,7 @@ Partial Class AdressenControl
         Me.AdressenComboBox.Location = New System.Drawing.Point(0, 1)
         Me.AdressenComboBox.Margin = New System.Windows.Forms.Padding(0, 1, 1, 1)
         Me.AdressenComboBox.Name = "AdressenComboBox"
-        Me.AdressenComboBox.Size = New System.Drawing.Size(100, 21)
+        Me.AdressenComboBox.Size = New System.Drawing.Size(131, 21)
         Me.AdressenComboBox.TabIndex = 38
         '
         'FlowLayoutPanel1
@@ -59,7 +59,7 @@ Partial Class AdressenControl
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(136, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(155, 25)
         Me.FlowLayoutPanel1.TabIndex = 40
         '
         'AdressenControl
@@ -68,7 +68,7 @@ Partial Class AdressenControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "AdressenControl"
-        Me.Size = New System.Drawing.Size(136, 25)
+        Me.Size = New System.Drawing.Size(155, 25)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 

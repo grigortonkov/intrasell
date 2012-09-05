@@ -346,6 +346,9 @@ Public Class Vorgang
 
     Private Sub VorlagenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
 
+        VorgangDruck.Init(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.KundNrAdressenControl.IDNR)
+        VorgangDruck.ShowDialog()
+        VorgangDruck.Dispose()
     End Sub
 
 

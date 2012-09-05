@@ -915,7 +915,7 @@ Partial Class Vorgang
         Me.KundNr2AdressenControl.IDNR = 0
         Me.KundNr2AdressenControl.Location = New System.Drawing.Point(126, 149)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
-        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(155, 25)
         Me.KundNr2AdressenControl.TabIndex = 5
         '
         'KundNrAdressenControl
@@ -925,7 +925,7 @@ Partial Class Vorgang
         Me.KundNrAdressenControl.IDNR = 0
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(126, 118)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(155, 25)
         Me.KundNrAdressenControl.TabIndex = 4
         '
         'MenuStrip1
@@ -934,7 +934,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(72, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -942,8 +942,8 @@ Partial Class Vorgang
         '
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
-        Me.VorgangToolStripMenuItem.Text = "&Vorgang"
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
+        Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '

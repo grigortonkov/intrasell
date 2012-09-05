@@ -75,8 +75,8 @@ Public Module ModuleCommons
 
     End Function
 
-    'Fills one combo with result from query 
-    Public Sub FillComboBox(ByRef combo As ComboBox, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
+    'Fills one combo or list with result from query 
+    Public Sub FillComboBox(ByRef combo As ListControl, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
         Try
 
             Dim strSQL As String = query '"SELECT * FROM Disk"
@@ -93,7 +93,7 @@ Public Module ModuleCommons
                     .ValueMember = valueMember '"Disk_Key"
                 End If
 
-                .SelectedIndex = 0
+                .SelectedIndex = -1
             End With
 
         Catch ex As Exception

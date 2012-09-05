@@ -42,7 +42,7 @@ Module ModuleDOS
     End Sub
 
 
-    Public Sub renameFile(ByVal oldfilename As String, ByVal newfilename As String)
+    Public Sub RenameFile(ByVal oldfilename As String, ByVal newfilename As String)
         Dim fs = CreateObject("Scripting.FileSystemObject")
         Try
             Call fs.deleteFile(newfilename)

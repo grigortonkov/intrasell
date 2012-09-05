@@ -585,7 +585,6 @@ Module ModuleBuchVorgangDruck
     Public Function OpenAusdruck_InWord_Filename_RTF( _
         ByVal Vorgangtyp As String, _
         ByVal Vorgang_Nummer As String, _
-        ByVal FormatNummer As String, _
         ByVal Dateiname As String, _
         Optional Silent As Boolean = False)
 
