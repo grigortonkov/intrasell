@@ -236,6 +236,12 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangDruck.Designer.vb">
+      <DependentUpon>VorgangDruck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangDruck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Vorgaenge\VorgangKonvertieren.Designer.vb">
       <DependentUpon>VorgangKonvertieren.vb</DependentUpon>
     </Compile>
@@ -356,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangDruck.resx">
+      <DependentUpon>VorgangDruck.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vorgaenge\VorgangKonvertieren.resx">
       <DependentUpon>VorgangKonvertieren.vb</DependentUpon>

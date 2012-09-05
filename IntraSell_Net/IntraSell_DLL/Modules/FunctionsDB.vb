@@ -43,6 +43,7 @@ Public Module FunctionsDB
         sql = Replace(sql, "]", "`")
         sql = Replace(sql, "Date()", "CURRENT_DATE")
         sql = Replace(sql, "Now()", "CURRENT_TIMESTAMP")
+        sql = Replace(sql, "\", "\\")
         'End If
 
     End Sub

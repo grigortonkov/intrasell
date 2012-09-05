@@ -12,7 +12,7 @@ Module ModuleBuchVorgangXML
     End Function
 
     ' Generates new MS Wor File using XML2WORD
-    ' Viewer = WORD,  OUTLOOK or PDF
+    ' Viewer = WORD, XML,  OUTLOOK or PDF
     ' Returns the filename of the XML File
     Function OpenAusdruck_inWord_XML( _
                                 ByVal VorgangTyp As String, _
@@ -68,7 +68,7 @@ Module ModuleBuchVorgangXML
         archiveFilename = Replace(archiveFilename, "1.doc", ".doc")
         'nur wenn die datei nicht vorher existiert 
         If Not FileIO.FileSystem.FileExists(archiveFilename) Then
-            renameFile(resultFilename, archiveFilename)
+            RenameFile(resultFilename, archiveFilename)
         End If
 
         'print or send per email
@@ -85,16 +85,14 @@ Module ModuleBuchVorgangXML
 
         If Viewer = "WORD" Then
             DokumentInWordZeigen(archiveFilename)
-        End If
-
-        If Viewer = "PDF" Then
+        ElseIf Viewer = "PDF" Then
             SaveWordAsPDF(archiveFilename)
-        End If
-
-        If Viewer = "OUTLOOK" Then
+        ElseIf Viewer = "OUTLOOK" Then
             Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
             Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
             mailWithOutlook(MailBetreff, KundenEmail, resultFilename, MailText, "", SofortSenden)
+        ElseIf Viewer = "XML" Then
+            Shell(VarValue_Default("XMLVIEWER", "IExplre.exe") & " " & fileName)
         End If
 
         OpenAusdruck_inWord_XML = archiveFilename
