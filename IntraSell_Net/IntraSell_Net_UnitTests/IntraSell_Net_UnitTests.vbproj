@@ -107,12 +107,12 @@
     <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
     <Compile Include="DLL\FunctionsVarsTest.vb" />
     <Compile Include="DLL\IntraSellPreiseTest.vb" />
-    <Compile Include="DLL\Modules\ModuleBuchVorgangTest.vb" />
-    <Compile Include="DLL\Modules\ModuleBuchVorgangDruckTest.vb" />
-    <Compile Include="DLL\Modules\ModuleBuchVorgangXMLTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />
     <Compile Include="DLL\ModuleCommonsTest.vb" />
-    <Compile Include="DLL\Modules\ModulePreiseTest.vb" />
-    <Compile Include="DLL\Modules\ModuleSetupTest.vb" />
+    <Compile Include="Modules\ModulePreiseTest.vb" />
+    <Compile Include="Modules\ModuleSetupTest.vb" />
     <Compile Include="Data\ofadressenTableAdapterTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
