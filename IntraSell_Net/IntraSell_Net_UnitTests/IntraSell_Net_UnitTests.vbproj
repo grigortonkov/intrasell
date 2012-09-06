@@ -117,12 +117,6 @@
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
-    <Compile Include="UIMap.Designer.vb">
-      <DependentUpon>UIMap.uitest</DependentUpon>
-    </Compile>
-    <Compile Include="UIMap.vb">
-      <DependentUpon>UIMap.uitest</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="1.DBSetup.orderedtest">
@@ -134,7 +128,6 @@
     <None Include="3.Vorgang.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="UIMap.uitest" />
     <None Include="0.ALL.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

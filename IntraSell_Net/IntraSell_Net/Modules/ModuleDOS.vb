@@ -43,9 +43,12 @@ Module ModuleDOS
 
 
     Public Sub RenameFile(ByVal oldfilename As String, ByVal newfilename As String)
+        'FileSystem.Rename(oldfilename, newfilename)
         Dim fs = CreateObject("Scripting.FileSystemObject")
         Try
-            Call fs.deleteFile(newfilename)
+            If fs.FileExists(newfilename) Then
+                Call fs.deleteFile(newfilename) 'Try to delete existing file first 
+            End If
         Catch ex As Exception
             HandleAppError(ex)
         End Try

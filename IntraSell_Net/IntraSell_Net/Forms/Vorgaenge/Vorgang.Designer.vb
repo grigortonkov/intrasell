@@ -39,7 +39,7 @@ Partial Class Vorgang
         Dim LieferantNrLabel As System.Windows.Forms.Label
         Dim MitarbeiterNrLabel As System.Windows.Forms.Label
         Dim KundNr2Label As System.Windows.Forms.Label
-        Dim ZahlungsbedungungLabel1 As System.Windows.Forms.Label
+        Dim ZahlungsbedingungLabel1 As System.Windows.Forms.Label
         Dim TransportMethodeLabel1 As System.Windows.Forms.Label
         Dim ZahlungsMethodeLabel1 As System.Windows.Forms.Label
         Dim WaehrungLabel1 As System.Windows.Forms.Label
@@ -104,7 +104,7 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ZahlungsbedungungComboBox = New System.Windows.Forms.ComboBox()
+        Me.ZahlungsbedingungComboBox = New System.Windows.Forms.ComboBox()
         Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -140,7 +140,7 @@ Partial Class Vorgang
         LieferantNrLabel = New System.Windows.Forms.Label()
         MitarbeiterNrLabel = New System.Windows.Forms.Label()
         KundNr2Label = New System.Windows.Forms.Label()
-        ZahlungsbedungungLabel1 = New System.Windows.Forms.Label()
+        ZahlungsbedingungLabel1 = New System.Windows.Forms.Label()
         TransportMethodeLabel1 = New System.Windows.Forms.Label()
         ZahlungsMethodeLabel1 = New System.Windows.Forms.Label()
         WaehrungLabel1 = New System.Windows.Forms.Label()
@@ -302,14 +302,14 @@ Partial Class Vorgang
         KundNr2Label.TabIndex = 43
         KundNr2Label.Text = "Lieferadresse:"
         '
-        'ZahlungsbedungungLabel1
+        'ZahlungsbedingungLabel1
         '
-        ZahlungsbedungungLabel1.AutoSize = True
-        ZahlungsbedungungLabel1.Location = New System.Drawing.Point(13, 92)
-        ZahlungsbedungungLabel1.Name = "ZahlungsbedungungLabel1"
-        ZahlungsbedungungLabel1.Size = New System.Drawing.Size(108, 13)
-        ZahlungsbedungungLabel1.TabIndex = 49
-        ZahlungsbedungungLabel1.Text = "Zahlungsbedungung:"
+        ZahlungsbedingungLabel1.AutoSize = True
+        ZahlungsbedingungLabel1.Location = New System.Drawing.Point(13, 92)
+        ZahlungsbedingungLabel1.Name = "ZahlungsbedingungLabel1"
+        ZahlungsbedingungLabel1.Size = New System.Drawing.Size(104, 13)
+        ZahlungsbedingungLabel1.TabIndex = 49
+        ZahlungsbedingungLabel1.Text = "Zahlungsbedingung:"
         '
         'TransportMethodeLabel1
         '
@@ -401,7 +401,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -814,14 +814,14 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.Visible = False
         '
-        'ZahlungsbedungungComboBox
+        'ZahlungsbedingungComboBox
         '
-        Me.ZahlungsbedungungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
-        Me.ZahlungsbedungungComboBox.FormattingEnabled = True
-        Me.ZahlungsbedungungComboBox.Location = New System.Drawing.Point(127, 89)
-        Me.ZahlungsbedungungComboBox.Name = "ZahlungsbedungungComboBox"
-        Me.ZahlungsbedungungComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ZahlungsbedungungComboBox.TabIndex = 51
+        Me.ZahlungsbedingungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
+        Me.ZahlungsbedingungComboBox.FormattingEnabled = True
+        Me.ZahlungsbedingungComboBox.Location = New System.Drawing.Point(127, 89)
+        Me.ZahlungsbedingungComboBox.Name = "ZahlungsbedingungComboBox"
+        Me.ZahlungsbedingungComboBox.Size = New System.Drawing.Size(200, 21)
+        Me.ZahlungsbedingungComboBox.TabIndex = 51
         '
         'TransportMethodeComboBox
         '
@@ -863,9 +863,9 @@ Partial Class Vorgang
         Me.TabPage1.Controls.Add(LieferantNrLabel)
         Me.TabPage1.Controls.Add(Me.TransportMethodeComboBox)
         Me.TabPage1.Controls.Add(Me.StatusComboBox)
-        Me.TabPage1.Controls.Add(ZahlungsbedungungLabel1)
+        Me.TabPage1.Controls.Add(ZahlungsbedingungLabel1)
         Me.TabPage1.Controls.Add(StatusLabel)
-        Me.TabPage1.Controls.Add(Me.ZahlungsbedungungComboBox)
+        Me.TabPage1.Controls.Add(Me.ZahlungsbedingungComboBox)
         Me.TabPage1.Controls.Add(Me.WohinTextBox)
         Me.TabPage1.Controls.Add(WohinLabel)
         Me.TabPage1.Controls.Add(Me.WoherTextBox)
@@ -934,7 +934,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -942,55 +942,55 @@ Partial Class Vorgang
         '
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'Vorgang
@@ -1081,7 +1081,7 @@ Partial Class Vorgang
     Friend WithEvents MitarbeiterNrComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Buchvorgang_artikelBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Buchvorgang_artikelDataGridView As System.Windows.Forms.DataGridView
-    Friend WithEvents ZahlungsbedungungComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents ZahlungsbedingungComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents TransportMethodeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ZahlungsMethodeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents KundNrAdressenControl As IntraSell_Net.AdressenControl

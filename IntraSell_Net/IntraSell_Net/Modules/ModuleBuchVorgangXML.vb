@@ -11,8 +11,8 @@ Module ModuleBuchVorgangXML
         XML2WORD = dbFolder & "..\components\XML2WordGT\TestXML2Word.exe"
     End Function
 
-    ' Generates new MS Wor File using XML2WORD
-    ' Viewer = WORD, XML,  OUTLOOK or PDF
+    ' Generates new MS Word File using XML2WORD
+    ' Viewer = WORD, XML, OUTLOOK or PDF
     ' Returns the filename of the XML File
     Function OpenAusdruck_inWord_XML( _
                                 ByVal VorgangTyp As String, _
@@ -85,21 +85,24 @@ Module ModuleBuchVorgangXML
 
         If Viewer = "WORD" Then
             DokumentInWordZeigen(archiveFilename)
+
         ElseIf Viewer = "PDF" Then
             SaveWordAsPDF(archiveFilename)
+
         ElseIf Viewer = "OUTLOOK" Then
             Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
             Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
             mailWithOutlook(MailBetreff, KundenEmail, resultFilename, MailText, "", SofortSenden)
+
         ElseIf Viewer = "XML" Then
-            Shell(VarValue_Default("XMLVIEWER", "IExplre.exe") & " " & fileName)
+            Shell(VarValue_Default("XMLVIEWER", "IExplore.exe") & " " & fileName)
         End If
 
         OpenAusdruck_inWord_XML = archiveFilename
 
         'Save as document in DokSys if DokSys exists
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), VorgangNummer & "", fileName)
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), VorgangNummer & "", archiveFilename)
+        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), fileName)
+        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), archiveFilename)
 
         Application.UseWaitCursor = False
 

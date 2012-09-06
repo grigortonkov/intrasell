@@ -1,7 +1,11 @@
-﻿Module ModuleMessages
+﻿Imports IntraSell_DLL
+
+Module ModuleMessages
     Public Sub HandleAppError(ByVal Err As Exception)
         If Not Err Is Nothing Then
             UserMessage("Unerwarteter Fehler", Err.Message, MsgBoxStyle.Critical)
+            WriteLog("Application Error: " + Err.Message)
+            WriteLog("Stacktrace: " + Err.StackTrace)
         End If
     End Sub
 
