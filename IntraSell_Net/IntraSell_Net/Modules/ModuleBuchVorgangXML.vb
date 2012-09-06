@@ -43,66 +43,55 @@ Module ModuleBuchVorgangXML
             MkDir(GetAppPath() & "tmp")
         End If
 
-        Dim fileName As String = DbFolder() & "tmp\Vorgang_" & VonForm & "_" & VorgangTyp & VorgangNummer & ".xml"
+        Dim FileNameXMLDoc As String = DbFolder() & "tmp\Vorgang_" & VonForm & "_" & VorgangTyp & VorgangNummer & ".xml"
 
-        saveXML(xml, fileName)
+        saveXML(xml, FileNameXMLDoc)
 
-        Dim resultFilenamePrefix As String = "Vorgang_" & VorgangTyp & VorgangNummer
-        Dim resultFilename As String = DbFolder() & "tmp\" & resultFilenamePrefix & "1.doc"
+        Dim ResultFilenamePrefix As String = "Vorgang_" & VorgangTyp & VorgangNummer
+        Dim ResultFilename As String = DbFolder() & "tmp\" & ResultFilenamePrefix & "1.doc"
 
 
         'merge with word template
         Dim Vorlage As String = DbFolder() & VorlageFilename
-        Dim exportPath As String = DbFolder() & "tmp\"
+        Dim ExportPath As String = DbFolder() & "tmp\"
 
-        'http://code.google.com/p/intrasell/issues/detail?id=91&q=interdel
-        exportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, exportPath) 'hier kann der Administrator den Speicherplatz bestimmern
+        ExportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, ExportPath) 'hier kann der Administrator den Speicherplatz bestimmern
 
         'Shell XML2WORD & " """ & filename & """ """ & vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """", vbNormalFocus
         'SynchShell(XML2WORD() & " """ & fileName & """ """ & Vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """")
-        CallXML2WORD(fileName, Vorlage, exportPath, resultFilenamePrefix)
+        CallXML2WORD(FileNameXMLDoc, Vorlage, ExportPath, ResultFilenamePrefix)
 
         'rename file to remove the 1 at the end
-        Dim archiveFilename As String
-        archiveFilename = Replace(resultFilename, DbFolder() & "tmp\", exportPath)
-        archiveFilename = Replace(archiveFilename, "1.doc", ".doc")
+        Dim ArchiveFilename As String = Replace(ResultFilename, DbFolder() & "tmp\", ExportPath)
+        ArchiveFilename = Replace(ArchiveFilename, "1.doc", ".doc")
         'nur wenn die datei nicht vorher existiert 
-        If Not FileIO.FileSystem.FileExists(archiveFilename) Then
-            RenameFile(resultFilename, archiveFilename)
+        If Not FileIO.FileSystem.FileExists(ArchiveFilename) Then
+            RenameFile(ResultFilename, ArchiveFilename)
         End If
 
         'print or send per email
 
 
-        If False Then
-            If MsgBox("Wurde die Datei  " & archiveFilename & " erstellt ? " & Chr(13) & Chr(10) & _
-                    "Nach der Erstellung bitte af OK klicken!", vbYesNo) = vbNo Then
-                Return Nothing
-                Exit Function
-            End If
-        End If
-
-
         If Viewer = "WORD" Then
-            DokumentInWordZeigen(archiveFilename)
+            DokumentInWordZeigen(ArchiveFilename)
 
         ElseIf Viewer = "PDF" Then
-            SaveWordAsPDF(archiveFilename)
+            SaveWordAsPDF(ArchiveFilename)
 
         ElseIf Viewer = "OUTLOOK" Then
             Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
             Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
-            mailWithOutlook(MailBetreff, KundenEmail, resultFilename, MailText, "", SofortSenden)
+            mailWithOutlook(MailBetreff, KundenEmail, ResultFilename, MailText, "", SofortSenden)
 
         ElseIf Viewer = "XML" Then
-            Shell(VarValue_Default("XMLVIEWER", "IExplore.exe") & " " & fileName)
+            Shell(VarValue_Default("XMLVIEWER", "IExplore.exe") & " " & FileNameXMLDoc)
         End If
 
-        OpenAusdruck_inWord_XML = archiveFilename
+        OpenAusdruck_inWord_XML = ArchiveFilename
 
         'Save as document in DokSys if DokSys exists
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), fileName)
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), archiveFilename)
+        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), FileNameXMLDoc)
+        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), ArchiveFilename)
 
         Application.UseWaitCursor = False
 

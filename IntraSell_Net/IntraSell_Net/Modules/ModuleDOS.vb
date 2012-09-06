@@ -52,7 +52,7 @@ Module ModuleDOS
         Catch ex As Exception
             HandleAppError(ex)
         End Try
-
+        Threading.Thread.Sleep(3000) 'warte 3 sek. bis die datei von ms word freigegeben wurde 
         Call fs.MoveFile(oldfilename, newfilename)
     End Sub
 
