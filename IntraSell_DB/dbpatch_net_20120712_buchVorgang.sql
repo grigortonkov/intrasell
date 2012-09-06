@@ -23,7 +23,7 @@ CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
   `Bezahlt` tinyint(1) NOT NULL,
   `Ausgedruckt` tinyint(1) NOT NULL,
   `Abgeschlossen` tinyint(1) NOT NULL,
-  `Zahlungsbedungung` varchar(250) DEFAULT NULL,
+  `Zahlungsbedingung` varchar(250) DEFAULT NULL,
   `TransportMethode` varchar(250) DEFAULT NULL,
   `ZahlungsMethode` varchar(250) DEFAULT NULL,
   `Woher` varchar(250) DEFAULT NULL,
