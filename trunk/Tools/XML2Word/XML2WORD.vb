@@ -8,6 +8,7 @@ Imports Microsoft.Office.Interop
 ''' </summary>
 ''' <remarks></remarks> 
 Public Class XML2WORD
+    Const NOT_FOUND As String = "-"
 
     Dim m_oXML As XmlDataDocument
     Dim m_sSource As String
@@ -136,6 +137,9 @@ Public Class XML2WORD
         Dim bTablesProcessed() As Boolean
         Dim nTable As Short
 
+        If oWord Is Nothing Then
+            oWord = New Word.Application()
+        End If
         oWord.Visible = showAppWindow 'True
 
         If m_oXML Is Nothing Then
@@ -225,7 +229,7 @@ Public Class XML2WORD
                                     End If
                                 Next n
                                 If oXMLFieldNode Is Nothing Then
-                                    oWordFieldRange.Text = "Unresolved fieldname"
+                                    oWordFieldRange.Text = NOT_FOUND
                                 Else
                                     If nRow = 0 Then
                                         bRowColFound = False
@@ -264,11 +268,11 @@ Public Class XML2WORD
                             bTablesProcessed(nTable) = True
                         Else
                             If oXMLFieldNode Is Nothing Then
-                                oWordFieldRange.Text = "Unresolved fieldname"
+                                oWordFieldRange.Text = NOT_FOUND
                             Else
                                 Try
                                     If oXMLFieldNode.ChildNodes.Item(0) Is Nothing Then
-                                        oWordFieldRange.Text = "-"
+                                        oWordFieldRange.Text = NOT_FOUND
                                     Else
                                         oWordFieldRange.Text = oXMLFieldNode.ChildNodes.Item(0).InnerText
                                     End If
