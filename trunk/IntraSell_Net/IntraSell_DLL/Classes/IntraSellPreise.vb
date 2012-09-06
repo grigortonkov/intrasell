@@ -465,13 +465,13 @@ Public Class IntraSellPreise
             Dim nextRechnungNummer As String = getNewVorgangNummer(VorgangTypNach, IdNr)
 
             If VorgangTypNach = VORGANG_TYP_LAU And VorgangTypVon <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             Else
-                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
+                sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
+                      " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
                       " WHERE Nummer = " & VorgangNummerVon
             End If

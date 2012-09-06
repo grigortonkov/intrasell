@@ -25,7 +25,7 @@ Module ModuleBuchVorgangDruck
         getRecSource = "SELECT '" & VorgangTyp & "'  as VorgangTyp, v.Nummer, a.Idnr, " & _
                         " concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  (select concat(grPLZ.plz, ' ' , grPLZ.ort) from grPLZ WHERE a.PLZ = grPLZ.IdNr) AS PLZOrt, (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Email, " & _
                         " Sum(Stk*Preis_Netto) AS Summe, Sum(Stk*Preis_Brutto) AS SummeBrutto,  Sum(Stk*Preis_Brutto)-Sum(Stk*Preis_Netto) as SummeMWST , v.Datum," & _
-                        " v.Notiz as Notiz,  v.KundNr, v.ZahlungsBedungung," & _
+                        " v.Notiz as Notiz,  v.KundNr, v.ZahlungsBedingung," & _
                         " v.Zahlungsmethode, v.TransportMethode,  v.Notiz, Woher, Wohin, a.Anrede , concat(a.Anrede,' ', a.Titel) as AnredeTitel," & _
                         " v.KundNr1, v.KundNr2" & _
                         " FROM ofAdressen as a RIGHT JOIN " & VonForm & " as v ON a.IDNR = v.KundNr" & _
@@ -34,7 +34,7 @@ Module ModuleBuchVorgangDruck
                         " LEFT JOIN `ofAdressen-Weitere` as a2 ON a1.IDNR = v.KundNr2 " & _
                         " WHERE v.nummer = " & VorgangNummer & "" & _
                         " GROUP BY  '" & VorgangTyp & "' , v.Nummer, a.Idnr, concat(a.Name, ' ', a.Vorname), a.Firma, a.Adresse," & _
-                        " v.Datum, v.Notiz, v.KundNr, v.ZahlungsBedungung, v.Zahlungsmethode, v.TransportMethode ," & _
+                        " v.Datum, v.Notiz, v.KundNr, v.ZahlungsBedingung, v.Zahlungsmethode, v.TransportMethode ," & _
                         " v.Notiz, v.Woher, v.Wohin, a.Anrede, concat(a.Anrede,' ', a.Titel), a.Tel, a.Email, v.KundNr1, v.KundNr2;"
 
         Debug.Print("Print for SQL: " + getRecSource)
@@ -276,7 +276,7 @@ Module ModuleBuchVorgangDruck
             Call replaceInWordOnce(App, "[Betreuer]", "")
             Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
 
-            Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
+            Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "")
             Call replaceInWordOnce(App, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
             Call replaceInWordOnce(App, "[Transportmethode]", rs("TransportMethode") & "")
 
@@ -639,7 +639,7 @@ Module ModuleBuchVorgangDruck
         fileContent = Replace(fileContent, "[Betreuer]", "")
         fileContent = Replace(fileContent, "[Email]", rs("Email") & "")
 
-        fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
+        fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "")
         fileContent = Replace(fileContent, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
         fileContent = Replace(fileContent, "[Transportmethode]", rs("TransportMethode") & "")
 

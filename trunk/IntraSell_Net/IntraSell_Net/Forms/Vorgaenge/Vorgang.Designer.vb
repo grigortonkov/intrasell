@@ -816,7 +816,7 @@ Partial Class Vorgang
         '
         'ZahlungsbedingungComboBox
         '
-        Me.ZahlungsbedingungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedungung", True))
+        Me.ZahlungsbedingungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedingung", True))
         Me.ZahlungsbedingungComboBox.FormattingEnabled = True
         Me.ZahlungsbedingungComboBox.Location = New System.Drawing.Point(127, 89)
         Me.ZahlungsbedingungComboBox.Name = "ZahlungsbedingungComboBox"

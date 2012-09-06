@@ -51,7 +51,7 @@ Public Class IntraSellVorgaengeAusdruck
         getRecSource = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname as Namen , ofAdressen.Firma, ofAdressen.Adresse, " & _
                    " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort] AS plzort, " & _
                    " Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto," & VonForm & ".Datum,  FIRST(" & VonForm & ".Notiz) as Notiz, " & _
-                   " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
+                   " Sum([Stk]*[PreisEuro]) AS summeEuro, " & VonForm & ".KundNr, ZahlungsBedingung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
                    " ofAdressen.Anrede , ofAdressen.Anrede + "" "" & ofAdressen.Titel as AnredeTitel, getLand(ofAdressen.Idnr) as land, getUID(ofAdressen.idnr) as uid, Tel, Email, " & VonForm & ".KundNr2" & _
                    " FROM ((ofAdressen RIGHT JOIN " & VonForm & " ON ofAdressen.IDNR = " & VonForm & ".KundNr) " & _
                    " LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
@@ -59,7 +59,7 @@ Public Class IntraSellVorgaengeAusdruck
                    " Where nummer=" & Vorgang_Nummer & "  " & _
                    " GROUP BY '" & Vorgangtyp & "' , ofAdressen.Idnr, ofAdressen.Name & "" "" & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, " & _
                    " " & VonForm & ".Nummer, [grPLZ].[plz] & "" "" & [grPLZ].[ort], " & VonForm & ".Datum, " & _
-                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
+                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedingung, Zahlungsmethode, TransportMethode, Woher, Wohin," & _
                    " ofAdressen.Anrede, ofAdressen.Anrede + "" "" & ofAdressen.Titel, getLand(ofAdressen.Idnr), getUID(ofAdressen.idnr), Tel, Email, " & VonForm & ".KundNr2;"
 
     End Function
@@ -78,7 +78,7 @@ Public Class IntraSellVorgaengeAusdruck
         getRecSource_Weitere = "SELECT '" & Vorgangtyp & "'  as VorgangTyp, a.Idnr, a.Name & "" "" &   a.Vorname as Namen, a.Firma, a.Adresse, " & _
                    " " & VonForm & ".Nummer, concat(p.plz,' ',p.ort) AS plzort, " & _
                    " Sum(Stk*Preis_Netto) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, " & VonForm & ".Datum, " & VonForm & ".Notiz, " & _
-                   " " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
+                   " " & VonForm & ".KundNr, ZahlungsBedingung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
                    " a.Anrede, getLand(" & VonForm & ".KundNr) as land, getUID(" & VonForm & ".KundNr) as uid, Tel, Email, " & VonForm & ".KundNr2 " & _
                    " FROM ((`ofAdressen-Weitere` as a RIGHT JOIN " & VonForm & " ON a.IDNR = " & VonForm & ".KundNr)" & _
                    " LEFT JOIN grPLZ p ON a.PLZ = p.IdNr) INNER JOIN [" & vonForm_Artikel & "] " & _
@@ -88,7 +88,7 @@ Public Class IntraSellVorgaengeAusdruck
                    " AND a.Id = " & SelectedId & " " & _
                    " GROUP BY '" & Vorgangtyp & "' , a.Idnr, a.Name & "" "" & a.vorname,  a.Firma, a.Adresse, " & _
                    " " & VonForm & ".Nummer, p.plz & "" "" & p.[ort], " & VonForm & ".Datum, " & _
-                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
+                   " " & VonForm & ".Notiz, " & VonForm & ".KundNr, ZahlungsBedingung, Zahlungsmethode, TransportMethode,  " & VonForm & ".Notiz, Woher, Wohin," & _
                    " a.Anrede, Tel, Email, " & VonForm & ".KundNr2;"
         Debug.Print(getRecSource_Weitere)
     End Function
@@ -280,7 +280,7 @@ Public Class IntraSellVorgaengeAusdruck
     '        Call replaceInWordOnce(App, "[Betreuer]", "")
     '        Call replaceInWordOnce(App, "[Email]", rs("Email") & "")
 
-    '        Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "")
+    '        Call replaceInWordOnce(App, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "")
     '        Call replaceInWordOnce(App, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
     '        Call replaceInWordOnce(App, "[Transportmethode]", rs("TransportMethode") & "")
 
@@ -651,7 +651,7 @@ Public Class IntraSellVorgaengeAusdruck
     '        fileContent = Replace(fileContent, "[Betreuer]", "", , , vbTextCompare)
     '        fileContent = Replace(fileContent, "[Email]", rs("Email") & "", , , vbTextCompare)
 
-    '        fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedungung") & "", , , vbTextCompare)
+    '        fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "", , , vbTextCompare)
     '        fileContent = Replace(fileContent, "[Zahlungsmethode]", rs("ZahlungsMethode") & "", , , vbTextCompare)
     '        fileContent = Replace(fileContent, "[Transportmethode]", rs("TransportMethode") & "", , , vbTextCompare)
 

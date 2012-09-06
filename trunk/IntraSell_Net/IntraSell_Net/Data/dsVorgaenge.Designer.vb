@@ -3469,7 +3469,7 @@ Partial Public Class dsVorgaenge
         
         Private columnAbgeschlossen As Global.System.Data.DataColumn
         
-        Private columnZahlungsbedungung As Global.System.Data.DataColumn
+        Private columnZahlungsbedingung As Global.System.Data.DataColumn
         
         Private columnTransportMethode As Global.System.Data.DataColumn
         
@@ -3620,9 +3620,9 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZahlungsbedungungColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ZahlungsbedingungColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnZahlungsbedungung
+                Return Me.columnZahlungsbedingung
             End Get
         End Property
         
@@ -3771,7 +3771,7 @@ Partial Public Class dsVorgaenge
                     ByVal Bezahlt As Boolean,  _
                     ByVal Ausgedruckt As Boolean,  _
                     ByVal Abgeschlossen As Boolean,  _
-                    ByVal Zahlungsbedungung As String,  _
+                    ByVal Zahlungsbedingung As String,  _
                     ByVal TransportMethode As String,  _
                     ByVal ZahlungsMethode As String,  _
                     ByVal Woher As String,  _
@@ -3785,7 +3785,7 @@ Partial Public Class dsVorgaenge
                     ByVal Waehrung As String,  _
                     ByVal ErstelltAm As Date) As buchvorgangRow
             Dim rowbuchvorgangRow As buchvorgangRow = CType(Me.NewRow,buchvorgangRow)
-            Dim columnValuesArray() As Object = New Object() {Nummer, Nothing, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedungung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm}
+            Dim columnValuesArray() As Object = New Object() {Nummer, Nothing, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm}
             If (Not (parentbuchvorgangtypRowBybuchVorgangTyp_ibfk_1) Is Nothing) Then
                 columnValuesArray(1) = parentbuchvorgangtypRowBybuchVorgangTyp_ibfk_1(0)
             End If
@@ -3828,7 +3828,7 @@ Partial Public Class dsVorgaenge
             Me.columnBezahlt = MyBase.Columns("Bezahlt")
             Me.columnAusgedruckt = MyBase.Columns("Ausgedruckt")
             Me.columnAbgeschlossen = MyBase.Columns("Abgeschlossen")
-            Me.columnZahlungsbedungung = MyBase.Columns("Zahlungsbedungung")
+            Me.columnZahlungsbedingung = MyBase.Columns("Zahlungsbedingung")
             Me.columnTransportMethode = MyBase.Columns("TransportMethode")
             Me.columnZahlungsMethode = MyBase.Columns("ZahlungsMethode")
             Me.columnWoher = MyBase.Columns("Woher")
@@ -3868,8 +3868,8 @@ Partial Public Class dsVorgaenge
             MyBase.Columns.Add(Me.columnAusgedruckt)
             Me.columnAbgeschlossen = New Global.System.Data.DataColumn("Abgeschlossen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAbgeschlossen)
-            Me.columnZahlungsbedungung = New Global.System.Data.DataColumn("Zahlungsbedungung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZahlungsbedungung)
+            Me.columnZahlungsbedingung = New Global.System.Data.DataColumn("Zahlungsbedingung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZahlungsbedingung)
             Me.columnTransportMethode = New Global.System.Data.DataColumn("TransportMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTransportMethode)
             Me.columnZahlungsMethode = New Global.System.Data.DataColumn("ZahlungsMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -3909,7 +3909,7 @@ Partial Public Class dsVorgaenge
             Me.columnAusgedruckt.DefaultValue = CType(false,Boolean)
             Me.columnAbgeschlossen.AllowDBNull = false
             Me.columnAbgeschlossen.DefaultValue = CType(false,Boolean)
-            Me.columnZahlungsbedungung.MaxLength = 250
+            Me.columnZahlungsbedingung.MaxLength = 250
             Me.columnTransportMethode.MaxLength = 250
             Me.columnZahlungsMethode.MaxLength = 250
             Me.columnWoher.MaxLength = 250
@@ -4913,7 +4913,7 @@ Partial Public Class dsVorgaenge
         
         Private columnAbgeschlossen As Global.System.Data.DataColumn
         
-        Private columnZahlungsbedungung As Global.System.Data.DataColumn
+        Private columnZahlungsbedingung As Global.System.Data.DataColumn
         
         Private columnTransportMethode As Global.System.Data.DataColumn
         
@@ -5080,9 +5080,9 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZahlungsbedungungColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ZahlungsbedingungColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnZahlungsbedungung
+                Return Me.columnZahlungsbedingung
             End Get
         End Property
         
@@ -5295,7 +5295,7 @@ Partial Public Class dsVorgaenge
                     ByVal Bezahlt As Boolean,  _
                     ByVal Ausgedruckt As Boolean,  _
                     ByVal Abgeschlossen As Boolean,  _
-                    ByVal Zahlungsbedungung As String,  _
+                    ByVal Zahlungsbedingung As String,  _
                     ByVal TransportMethode As String,  _
                     ByVal ZahlungsMethode As String,  _
                     ByVal Woher As String,  _
@@ -5317,7 +5317,7 @@ Partial Public Class dsVorgaenge
                     ByVal PLZ As String,  _
                     ByVal Ort As String) As buchVorgangListeRow
             Dim rowbuchVorgangListeRow As buchVorgangListeRow = CType(Me.NewRow,buchVorgangListeRow)
-            Dim columnValuesArray() As Object = New Object() {Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedungung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Firma, Name, Vorname, Kundengruppe, Preisliste, Land, PLZ, Ort}
+            Dim columnValuesArray() As Object = New Object() {Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Firma, Name, Vorname, Kundengruppe, Preisliste, Land, PLZ, Ort}
             rowbuchVorgangListeRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowbuchVorgangListeRow)
             Return rowbuchVorgangListeRow
@@ -5357,7 +5357,7 @@ Partial Public Class dsVorgaenge
             Me.columnBezahlt = MyBase.Columns("Bezahlt")
             Me.columnAusgedruckt = MyBase.Columns("Ausgedruckt")
             Me.columnAbgeschlossen = MyBase.Columns("Abgeschlossen")
-            Me.columnZahlungsbedungung = MyBase.Columns("Zahlungsbedungung")
+            Me.columnZahlungsbedingung = MyBase.Columns("Zahlungsbedingung")
             Me.columnTransportMethode = MyBase.Columns("TransportMethode")
             Me.columnZahlungsMethode = MyBase.Columns("ZahlungsMethode")
             Me.columnWoher = MyBase.Columns("Woher")
@@ -5405,8 +5405,8 @@ Partial Public Class dsVorgaenge
             MyBase.Columns.Add(Me.columnAusgedruckt)
             Me.columnAbgeschlossen = New Global.System.Data.DataColumn("Abgeschlossen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAbgeschlossen)
-            Me.columnZahlungsbedungung = New Global.System.Data.DataColumn("Zahlungsbedungung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZahlungsbedungung)
+            Me.columnZahlungsbedingung = New Global.System.Data.DataColumn("Zahlungsbedingung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZahlungsbedingung)
             Me.columnTransportMethode = New Global.System.Data.DataColumn("TransportMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTransportMethode)
             Me.columnZahlungsMethode = New Global.System.Data.DataColumn("ZahlungsMethode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -5459,7 +5459,7 @@ Partial Public Class dsVorgaenge
             Me.columnBezahlt.AllowDBNull = false
             Me.columnAusgedruckt.AllowDBNull = false
             Me.columnAbgeschlossen.AllowDBNull = false
-            Me.columnZahlungsbedungung.MaxLength = 250
+            Me.columnZahlungsbedingung.MaxLength = 250
             Me.columnTransportMethode.MaxLength = 250
             Me.columnZahlungsMethode.MaxLength = 250
             Me.columnWoher.MaxLength = 250
@@ -7723,16 +7723,16 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zahlungsbedungung() As String
+        Public Property Zahlungsbedingung() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablebuchvorgang.ZahlungsbedungungColumn),String)
+                    Return CType(Me(Me.tablebuchvorgang.ZahlungsbedingungColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Zahlungsbedungung' in table 'buchvorgang' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Zahlungsbedingung' in table 'buchvorgang' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablebuchvorgang.ZahlungsbedungungColumn) = value
+                Me(Me.tablebuchvorgang.ZahlungsbedingungColumn) = value
             End Set
         End Property
         
@@ -7977,14 +7977,14 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZahlungsbedungungNull() As Boolean
-            Return Me.IsNull(Me.tablebuchvorgang.ZahlungsbedungungColumn)
+        Public Function IsZahlungsbedingungNull() As Boolean
+            Return Me.IsNull(Me.tablebuchvorgang.ZahlungsbedingungColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZahlungsbedungungNull()
-            Me(Me.tablebuchvorgang.ZahlungsbedungungColumn) = Global.System.Convert.DBNull
+        Public Sub SetZahlungsbedingungNull()
+            Me(Me.tablebuchvorgang.ZahlungsbedingungColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8854,16 +8854,16 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zahlungsbedungung() As String
+        Public Property Zahlungsbedingung() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn),String)
+                    Return CType(Me(Me.tablebuchVorgangListe.ZahlungsbedingungColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Zahlungsbedungung' in table 'buchVorgangListe' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Zahlungsbedingung' in table 'buchVorgangListe' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn) = value
+                Me(Me.tablebuchVorgangListe.ZahlungsbedingungColumn) = value
             End Set
         End Property
         
@@ -9213,14 +9213,14 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZahlungsbedungungNull() As Boolean
-            Return Me.IsNull(Me.tablebuchVorgangListe.ZahlungsbedungungColumn)
+        Public Function IsZahlungsbedingungNull() As Boolean
+            Return Me.IsNull(Me.tablebuchVorgangListe.ZahlungsbedingungColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZahlungsbedungungNull()
-            Me(Me.tablebuchVorgangListe.ZahlungsbedungungColumn) = Global.System.Convert.DBNull
+        Public Sub SetZahlungsbedingungNull()
+            Me(Me.tablebuchVorgangListe.ZahlungsbedingungColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -16525,7 +16525,7 @@ Namespace dsVorgaengeTableAdapters
             tableMapping.ColumnMappings.Add("Bezahlt", "Bezahlt")
             tableMapping.ColumnMappings.Add("Ausgedruckt", "Ausgedruckt")
             tableMapping.ColumnMappings.Add("Abgeschlossen", "Abgeschlossen")
-            tableMapping.ColumnMappings.Add("Zahlungsbedungung", "Zahlungsbedungung")
+            tableMapping.ColumnMappings.Add("Zahlungsbedingung", "Zahlungsbedingung")
             tableMapping.ColumnMappings.Add("TransportMethode", "TransportMethode")
             tableMapping.ColumnMappings.Add("ZahlungsMethode", "ZahlungsMethode")
             tableMapping.ColumnMappings.Add("Woher", "Woher")
@@ -16549,8 +16549,8 @@ Namespace dsVorgaengeTableAdapters
                 "zExtern` = @Original_NotizExtern)) AND ((@IsNull_Summe = 1 AND `Summe` IS NULL) "& _ 
                 "OR (`Summe` = @Original_Summe)) AND (`Bezahlt` = @Original_Bezahlt) AND (`Ausged"& _ 
                 "ruckt` = @Original_Ausgedruckt) AND (`Abgeschlossen` = @Original_Abgeschlossen) "& _ 
-                "AND ((@IsNull_Zahlungsbedungung = 1 AND `Zahlungsbedungung` IS NULL) OR (`Zahlun"& _ 
-                "gsbedungung` = @Original_Zahlungsbedungung)) AND ((@IsNull_TransportMethode = 1 "& _ 
+                "AND ((@IsNull_Zahlungsbedingung = 1 AND `Zahlungsbedingung` IS NULL) OR (`Zahlun"& _ 
+                "gsbedingung` = @Original_Zahlungsbedingung)) AND ((@IsNull_TransportMethode = 1 "& _ 
                 "AND `TransportMethode` IS NULL) OR (`TransportMethode` = @Original_TransportMeth"& _ 
                 "ode)) AND ((@IsNull_ZahlungsMethode = 1 AND `ZahlungsMethode` IS NULL) OR (`Zahl"& _ 
                 "ungsMethode` = @Original_ZahlungsMethode)) AND ((@IsNull_Woher = 1 AND `Woher` I"& _ 
@@ -16691,20 +16691,20 @@ Namespace dsVorgaengeTableAdapters
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Zahlungsbedungung"
+            param.ParameterName = "@IsNull_Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedungung"
+            param.SourceColumn = "Zahlungsbedingung"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             param.SourceColumnNullMapping = true
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Zahlungsbedungung"
+            param.ParameterName = "@Original_Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedungung"
+            param.SourceColumn = "Zahlungsbedingung"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -16906,10 +16906,10 @@ Namespace dsVorgaengeTableAdapters
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang` (`Nummer`, `Typ`, `KundNr`, `Datum`, `Notiz`, `NotizInt"& _ 
                 "ern`, `NotizExtern`, `Summe`, `Bezahlt`, `Ausgedruckt`, `Abgeschlossen`, `Zahlun"& _ 
-                "gsbedungung`, `TransportMethode`, `ZahlungsMethode`, `Woher`, `Wohin`, `Status`,"& _ 
+                "gsbedingung`, `TransportMethode`, `ZahlungsMethode`, `Woher`, `Wohin`, `Status`,"& _ 
                 " `SummeMWST`, `SummeBrutto`, `LieferantNr`, `MitarbeiterNr`, `KundNr2`, `Waehrun"& _ 
                 "g`, `ErstelltAm`) VALUES (@Nummer, @Typ, @KundNr, @Datum, @Notiz, @NotizIntern, "& _ 
-                "@NotizExtern, @Summe, @Bezahlt, @Ausgedruckt, @Abgeschlossen, @Zahlungsbedungung"& _ 
+                "@NotizExtern, @Summe, @Bezahlt, @Ausgedruckt, @Abgeschlossen, @Zahlungsbedingung"& _ 
                 ", @TransportMethode, @ZahlungsMethode, @Woher, @Wohin, @Status, @SummeMWST, @Sum"& _ 
                 "meBrutto, @LieferantNr, @MitarbeiterNr, @KundNr2, @Waehrung, @ErstelltAm)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
@@ -16991,11 +16991,11 @@ Namespace dsVorgaengeTableAdapters
             param.SourceColumn = "Abgeschlossen"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Zahlungsbedungung"
+            param.ParameterName = "@Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedungung"
+            param.SourceColumn = "Zahlungsbedingung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TransportMethode"
@@ -17086,7 +17086,7 @@ Namespace dsVorgaengeTableAdapters
             Me._adapter.UpdateCommand.CommandText = "UPDATE       buchvorgang"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                KundNr = @KundNr, Datum = @Datum, No"& _ 
                 "tiz = @Notiz, NotizIntern = @NotizIntern, NotizExtern = @NotizExtern, Summe = @S"& _ 
                 "umme, Bezahlt = @Bezahlt, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Ausgedruckt = @Ausgedruckt,"& _ 
-                " Abgeschlossen = @Abgeschlossen, Zahlungsbedungung = @Zahlungsbedungung, Transpo"& _ 
+                " Abgeschlossen = @Abgeschlossen, Zahlungsbedingung = @Zahlungsbedingung, Transpo"& _ 
                 "rtMethode = @TransportMethode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ZahlungsMethode = @Zah"& _ 
                 "lungsMethode, Woher = @Woher, Wohin = @Wohin, Status = @Status, SummeMWST = @Sum"& _ 
                 "meMWST, SummeBrutto = @SummeBrutto, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         LieferantNr = @Li"& _ 
@@ -17164,12 +17164,12 @@ Namespace dsVorgaengeTableAdapters
             param.SourceColumn = "Abgeschlossen"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Zahlungsbedungung"
+            param.ParameterName = "@Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 250
             param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedungung"
+            param.SourceColumn = "Zahlungsbedingung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TransportMethode"
@@ -17294,7 +17294,7 @@ Namespace dsVorgaengeTableAdapters
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT `Nummer`, `Typ`, `KundNr`, `Datum`, `Notiz`, `NotizIntern`, `NotizExtern`,"& _ 
-                " `Summe`, `Bezahlt`, `Ausgedruckt`, `Abgeschlossen`, `Zahlungsbedungung`, `Trans"& _ 
+                " `Summe`, `Bezahlt`, `Ausgedruckt`, `Abgeschlossen`, `Zahlungsbedingung`, `Trans"& _ 
                 "portMethode`, `ZahlungsMethode`, `Woher`, `Wohin`, `Status`, `SummeMWST`, `Summe"& _ 
                 "Brutto`, `LieferantNr`, `MitarbeiterNr`, `KundNr2`, `Waehrung`, `ErstelltAm` FRO"& _ 
                 "M `buchvorgang`"
@@ -17369,7 +17369,7 @@ Namespace dsVorgaengeTableAdapters
                     ByVal Original_Bezahlt As Byte,  _
                     ByVal Original_Ausgedruckt As Byte,  _
                     ByVal Original_Abgeschlossen As Byte,  _
-                    ByVal Original_Zahlungsbedungung As String,  _
+                    ByVal Original_Zahlungsbedingung As String,  _
                     ByVal Original_TransportMethode As String,  _
                     ByVal Original_ZahlungsMethode As String,  _
                     ByVal Original_Woher As String,  _
@@ -17421,12 +17421,12 @@ Namespace dsVorgaengeTableAdapters
             Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Bezahlt,Byte)
             Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_Ausgedruckt,Byte)
             Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Abgeschlossen,Byte)
-            If (Original_Zahlungsbedungung Is Nothing) Then
+            If (Original_Zahlungsbedingung Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Zahlungsbedungung,String)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Zahlungsbedingung,String)
             End If
             If (Original_TransportMethode Is Nothing) Then
                 Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
@@ -17541,7 +17541,7 @@ Namespace dsVorgaengeTableAdapters
                     ByVal Bezahlt As Byte,  _
                     ByVal Ausgedruckt As Byte,  _
                     ByVal Abgeschlossen As Byte,  _
-                    ByVal Zahlungsbedungung As String,  _
+                    ByVal Zahlungsbedingung As String,  _
                     ByVal TransportMethode As String,  _
                     ByVal ZahlungsMethode As String,  _
                     ByVal Woher As String,  _
@@ -17585,10 +17585,10 @@ Namespace dsVorgaengeTableAdapters
             Me.Adapter.InsertCommand.Parameters(8).Value = CType(Bezahlt,Byte)
             Me.Adapter.InsertCommand.Parameters(9).Value = CType(Ausgedruckt,Byte)
             Me.Adapter.InsertCommand.Parameters(10).Value = CType(Abgeschlossen,Byte)
-            If (Zahlungsbedungung Is Nothing) Then
+            If (Zahlungsbedingung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Zahlungsbedungung,String)
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Zahlungsbedingung,String)
             End If
             If (TransportMethode Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
@@ -17679,7 +17679,7 @@ Namespace dsVorgaengeTableAdapters
                     ByVal Bezahlt As Object,  _
                     ByVal Ausgedruckt As Object,  _
                     ByVal Abgeschlossen As Object,  _
-                    ByVal Zahlungsbedungung As String,  _
+                    ByVal Zahlungsbedingung As String,  _
                     ByVal TransportMethode As String,  _
                     ByVal ZahlungsMethode As String,  _
                     ByVal Woher As String,  _
@@ -17731,10 +17731,10 @@ Namespace dsVorgaengeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Abgeschlossen,Object)
             End If
-            If (Zahlungsbedungung Is Nothing) Then
+            If (Zahlungsbedingung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Zahlungsbedungung,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Zahlungsbedingung,String)
             End If
             If (TransportMethode Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
@@ -19634,7 +19634,7 @@ Namespace dsVorgaengeTableAdapters
             tableMapping.ColumnMappings.Add("Bezahlt", "Bezahlt")
             tableMapping.ColumnMappings.Add("Ausgedruckt", "Ausgedruckt")
             tableMapping.ColumnMappings.Add("Abgeschlossen", "Abgeschlossen")
-            tableMapping.ColumnMappings.Add("Zahlungsbedungung", "Zahlungsbedungung")
+            tableMapping.ColumnMappings.Add("Zahlungsbedingung", "Zahlungsbedingung")
             tableMapping.ColumnMappings.Add("TransportMethode", "TransportMethode")
             tableMapping.ColumnMappings.Add("ZahlungsMethode", "ZahlungsMethode")
             tableMapping.ColumnMappings.Add("Woher", "Woher")
@@ -19674,7 +19674,7 @@ Namespace dsVorgaengeTableAdapters
             Me._commandCollection(0).CommandText = "SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgan"& _ 
                 "g.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
                 "                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Aus"& _ 
-                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedingung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvo"& _ 
                 "rgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
                 "                      buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorg"& _ 
@@ -19694,7 +19694,7 @@ Namespace dsVorgaengeTableAdapters
                 "GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da"& _ 
                 "tum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
                 "                     buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedr"& _ 
-                "uckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "uckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedingung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
                 "           buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvorgan"& _ 
                 "g.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
                 "                  buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorgang."& _ 
@@ -19874,7 +19874,7 @@ Namespace dsVorgaengeTableAdapters
                 "ummer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         concat(grPLZ.plz, ' ', grPLZ.ort) AS plzort, S"& _ 
                 "UM(Stk * Preis_Netto) AS summeATS, SUM(Stk * Preis_Brutto) AS summeATSBrutto, bu"& _ 
                 "chVorgang.Datum, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchVorgang.Notiz AS Notiz, buchVorg"& _ 
-                "ang.KundNr, ZahlungsBedungung, Zahlungsmethode, TransportMethode, buchVorgang.No"& _ 
+                "ang.KundNr, ZahlungsBedingung, Zahlungsmethode, TransportMethode, buchVorgang.No"& _ 
                 "tiz, Woher, Wohin, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofAdressen.Anrede, concat(ofAdress"& _ 
                 "en.Anrede, ' ', ofAdressen.Titel) AS AnredeTitel,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             "& _ 
                 "(SELECT        name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            grLand"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
@@ -19886,7 +19886,7 @@ Namespace dsVorgaengeTableAdapters
                 "mmer = `buchVorgang-Artikel`.Nummer"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY 'AR', ofAdressen.Idnr, concat(ofAd"& _ 
                 "ressen.Name, ' ', ofAdressen.Vorname), ofAdressen.Firma, ofAdressen.Adresse, buc"& _ 
                 "hVorgang.Nummer, concat(grPLZ.plz, ' ', "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grPLZ.ort), b"& _ 
-                "uchVorgang.Datum, buchVorgang.Notiz, buchVorgang.KundNr, ZahlungsBedungung, Zahl"& _ 
+                "uchVorgang.Datum, buchVorgang.Notiz, buchVorgang.KundNr, ZahlungsBedingung, Zahl"& _ 
                 "ungsmethode, TransportMethode, buchVorgang.Notiz, Woher, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
                 "    Wohin, ofAdressen.Anrede, concat(ofAdressen.Anrede, ' ', ofAdressen.Titel), "& _ 
                 "Tel, Email, buchVorgang.KundNr2"
@@ -19952,7 +19952,7 @@ Namespace dsVorgaengeTableAdapters
             CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).CommandText = "SELECT        buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgan"& _ 
                 "g.Datum, buchvorgang.Notiz, buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
                 "                         buchvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Aus"& _ 
-                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "gedruckt, buchvorgang.Abgeschlossen, buchvorgang.Zahlungsbedingung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               buchvorgang.TransportMethode, buchvorgang.ZahlungsMethode, buchvo"& _ 
                 "rgang.Woher, buchvorgang.Wohin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
                 "                      buchvorgang.SummeBrutto, buchvorgang.LieferantNr, buchvorg"& _ 
@@ -19966,7 +19966,7 @@ Namespace dsVorgaengeTableAdapters
                 "mmer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Datum, buchvorgang.Notiz,"& _ 
                 " buchvorgang.NotizIntern, buchvorgang.NotizExtern, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         bu"& _ 
                 "chvorgang.Summe, buchvorgang.Bezahlt, buchvorgang.Ausgedruckt, buchvorgang.Abges"& _ 
-                "chlossen, buchvorgang.Zahlungsbedungung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchvorgang."& _ 
+                "chlossen, buchvorgang.Zahlungsbedingung, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchvorgang."& _ 
                 "TransportMethode, buchvorgang.ZahlungsMethode, buchvorgang.Woher, buchvorgang.Wo"& _ 
                 "hin, buchvorgang.Status, buchvorgang.SummeMWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchv"& _ 
                 "organg.SummeBrutto, buchvorgang.LieferantNr, buchvorgang.MitarbeiterNr, buchvorg"& _ 

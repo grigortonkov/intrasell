@@ -55,7 +55,7 @@ Partial Class VorgangListe
         Me.SummeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SummeMWSTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SummeBruttoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ZahlungsbedungungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TransportMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ZahlungsMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WoherDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -226,7 +226,7 @@ Partial Class VorgangListe
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.VorgangListeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.VorgangListeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.VorgangListeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NummerDataGridViewTextBoxColumn, Me.TypDataGridViewTextBoxColumn, Me.KundNrDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.Land, Me.FirmaDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.BezahltDataGridViewCheckBoxColumn, Me.AusgedrucktDataGridViewCheckBoxColumn, Me.AbgeschlossenDataGridViewCheckBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.WaehrungDataGridViewTextBoxColumn, Me.SummeDataGridViewTextBoxColumn, Me.SummeMWSTDataGridViewTextBoxColumn, Me.SummeBruttoDataGridViewTextBoxColumn, Me.ZahlungsbedungungDataGridViewTextBoxColumn, Me.TransportMethodeDataGridViewTextBoxColumn, Me.ZahlungsMethodeDataGridViewTextBoxColumn, Me.WoherDataGridViewTextBoxColumn, Me.WohinDataGridViewTextBoxColumn, Me.LieferantNrDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.KundNr2DataGridViewTextBoxColumn, Me.ErstelltAmDataGridViewTextBoxColumn, Me.NotizDataGridViewTextBoxColumn})
+        Me.VorgangListeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NummerDataGridViewTextBoxColumn, Me.TypDataGridViewTextBoxColumn, Me.KundNrDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.Land, Me.FirmaDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.BezahltDataGridViewCheckBoxColumn, Me.AusgedrucktDataGridViewCheckBoxColumn, Me.AbgeschlossenDataGridViewCheckBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.WaehrungDataGridViewTextBoxColumn, Me.SummeDataGridViewTextBoxColumn, Me.SummeMWSTDataGridViewTextBoxColumn, Me.SummeBruttoDataGridViewTextBoxColumn, Me.ZahlungsbedingungDataGridViewTextBoxColumn, Me.TransportMethodeDataGridViewTextBoxColumn, Me.ZahlungsMethodeDataGridViewTextBoxColumn, Me.WoherDataGridViewTextBoxColumn, Me.WohinDataGridViewTextBoxColumn, Me.LieferantNrDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.KundNr2DataGridViewTextBoxColumn, Me.ErstelltAmDataGridViewTextBoxColumn, Me.NotizDataGridViewTextBoxColumn})
         Me.VorgangListeDataGridView.DataSource = Me.BuchVorgangListeBindingSource
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
@@ -363,12 +363,12 @@ Partial Class VorgangListe
         Me.SummeBruttoDataGridViewTextBoxColumn.Name = "SummeBruttoDataGridViewTextBoxColumn"
         Me.SummeBruttoDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'ZahlungsbedungungDataGridViewTextBoxColumn
+        'ZahlungsbedingungDataGridViewTextBoxColumn
         '
-        Me.ZahlungsbedungungDataGridViewTextBoxColumn.DataPropertyName = "Zahlungsbedungung"
-        Me.ZahlungsbedungungDataGridViewTextBoxColumn.HeaderText = "Zahlungsbedungung"
-        Me.ZahlungsbedungungDataGridViewTextBoxColumn.Name = "ZahlungsbedungungDataGridViewTextBoxColumn"
-        Me.ZahlungsbedungungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.DataPropertyName = "Zahlungsbedingung"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.HeaderText = "Zahlungsbedingung"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.Name = "ZahlungsbedingungDataGridViewTextBoxColumn"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.ReadOnly = True
         '
         'TransportMethodeDataGridViewTextBoxColumn
         '
@@ -788,7 +788,7 @@ Partial Class VorgangListe
     Friend WithEvents SummeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SummeMWSTDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SummeBruttoDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ZahlungsbedungungDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ZahlungsbedingungDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TransportMethodeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ZahlungsMethodeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents WoherDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
