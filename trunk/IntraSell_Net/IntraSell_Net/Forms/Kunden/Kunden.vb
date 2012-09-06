@@ -1,6 +1,7 @@
 ﻿Imports IntraSell_DLL
 
 Public Class Kunden
+    Implements InterfacePrintable
 
     'Die Datensätze filtern
     Public Sub FilterBy(Expression As String)
@@ -19,6 +20,11 @@ Public Class Kunden
             HandleAppError(ex)
         End Try
 
+    End Sub
+
+    Public Sub Print(ByVal sender As Object) Implements InterfacePrintable.Print
+        'Start printing 
+        'TODO IMPLEMENT OpenAusdruck_inWord_XML(Me.IDNRTextBox.Text, "Vorlagen/0. BRIEF.dot", "WORD", False, Nothing)
     End Sub
 
 #Region "Events "

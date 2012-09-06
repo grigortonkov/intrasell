@@ -1,9 +1,10 @@
 ﻿Imports IntraSell_DLL
 
 Public Class Artikel
+    Implements InterfacePrintable
 
     'Die Datensätze filtern
-    Public Sub FilterBy(Expression As String)
+    Public Sub FilterBy(ByVal Expression As String)
         Try
             Me.GrartikelBindingSource.Filter = Expression
         Catch ex As Exception
@@ -22,7 +23,7 @@ Public Class Artikel
     'End Sub
 
 
-    Private Sub GrartikelBindingNavigatorSaveItem_Click_1(sender As System.Object, e As System.EventArgs) Handles GrartikelBindingNavigatorSaveItem.Click
+    Private Sub GrartikelBindingNavigatorSaveItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GrartikelBindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.GrartikelBindingSource.EndEdit()
@@ -33,7 +34,7 @@ Public Class Artikel
         End Try
     End Sub
 
-    Private Sub Artikel_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub Artikel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Me.Grartikel_kategorienTableAdapter.Fill(Me.DsArtikel._grartikel_kategorien)
             Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
@@ -47,10 +48,13 @@ Public Class Artikel
         End Try
     End Sub
 
+    Public Sub Print(ByVal sender As Object) Implements InterfacePrintable.Print
+        'TODO Implement
+    End Sub
 
 #Region "New"
     Dim AddingNewFlag As Boolean = False
-    Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
             AddingNewFlag = True
         Catch ex As Exception
@@ -73,5 +77,5 @@ Public Class Artikel
 #End Region
 
 
- 
+
 End Class
