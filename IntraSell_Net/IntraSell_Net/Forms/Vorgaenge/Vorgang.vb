@@ -668,10 +668,10 @@ Public Class Vorgang
     '    End Sub
 
     '    Private Sub btnChangeZB_Click()
-    '        Me.ZahlungsBedungung.RowSource = "Select methode, nr from grZahlungsbedingung"
+    '        Me.ZahlungsBedingung.RowSource = "Select methode, nr from grZahlungsbedingung"
     '        Me.ZahlungsMethode.RowSource = "Select methode from grZahlungsmethode"
     '        Me.TransportMethode.RowSource = "Select methode from grTransportMethode"
-    '        Me.ZahlungsBedungung.Requery()
+    '        Me.ZahlungsBedingung.Requery()
     '        Me.ZahlungsMethode.Requery()
     '        Me.TransportMethode.Requery()
     '    End Sub
@@ -759,9 +759,9 @@ Public Class Vorgang
     '        Call checkForStorno(Me.Form)
     '        Call initDokSys()
     '        'record source
-    '        Me.ZahlungsBedungung.RowSource = "SELECT grZahlungsbedingung.Methode,  IdNr FROM [ofAdressen-Zahlungsbedingungen] INNER JOIN grZahlungsbedingung ON [ofAdressen-Zahlungsbedingungen].Bedingung = grZahlungsbedingung.Nr " & _
+    '        Me.ZahlungsBedingung.RowSource = "SELECT grZahlungsbedingung.Methode,  IdNr FROM [ofAdressen-Zahlungsbedingungen] INNER JOIN grZahlungsbedingung ON [ofAdressen-Zahlungsbedingungen].Bedingung = grZahlungsbedingung.Nr " & _
     '        " GROUP BY grZahlungsbedingung.Methode, [ofAdressen-Zahlungsbedingungen].IdNr HAVING ((([ofAdressen-Zahlungsbedingungen].IdNr)=" & Me.KundNr & "));"
-    '        Me.ZahlungsBedungung.Requery()
+    '        Me.ZahlungsBedingung.Requery()
 
     '        Me.ZahlungsMethode.RowSource = "SELECT  Methode FROM [ofAdressen-Zahlungsmethoden] GROUP BY  Methode,  IdNr " & _
     '        " HAVING IDNR   = " & Me.KundNr & "  ORDER BY  Methode;"
@@ -925,8 +925,8 @@ Public Class Vorgang
     '        On Error GoTo 0
     '    End Sub
 
-    '    Private Sub ZahlungsBedungung_Click()
-    '        ZahlungsBedungung.Requery()
+    '    Private Sub ZahlungsBedingung_Click()
+    '        ZahlungsBedingung.Requery()
     '    End Sub
     '    Private Sub btnToWord_Click()
     '        OpenAusdruck_inWord(Me.txtVorgangType, Me.Nummer, """" & Me.txtVorgangType & """00/000000")

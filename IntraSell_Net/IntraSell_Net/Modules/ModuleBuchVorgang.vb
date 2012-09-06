@@ -40,14 +40,14 @@ Module ModuleBuchVorgang
     '            'SAVE FORM
     '            Call SaveCurrentRecord()
 
-    '            frm.ZahlungsBedungung.Requery()
+    '            frm.ZahlungsBedingung.Requery()
     '            frm.TransportMethode.Requery()
     '            frm.ZahlungsMethode.Requery()
 
     '            'Setze die standart werte ( erste Zeile in Stammdaten)
     '            Dim txt
     '            txt = TABLEVALUE("grZahlungsbedingung", "Nr", TABLEVALUE("[ofAdressen-Zahlungsbedingungen]", "Idnr", frm.KundNr, "Bedingung"), "Methode")
-    '            If InStr(txt, "Variable") < 1 Then frm!ZahlungsBedungung = txt ' setzen nur wenn vorhanden
+    '            If InStr(txt, "Variable") < 1 Then frm!ZahlungsBedingung = txt ' setzen nur wenn vorhanden
     '            txt = TABLEVALUE("[ofAdressen-ZahlungsMethoden]", "Idnr", frm.KundNr, "Methode")
     '            If InStr(txt, "Variable") < 1 Then frm!ZahlungsMethode = txt
     '            txt = TABLEVALUE("[ofAdressen-TransportMethoden]", "Idnr", frm.KundNr, "Methode")
@@ -589,7 +589,7 @@ Module ModuleBuchVorgang
         If InStr(tm, "vorhanden") > 0 Then tm = ""
 
         Dim sql As String
-        sql = "Update " & getVorgangTableForType(VorgangType) & " set ZahlungsBedungung='" & zb & "'," & _
+        sql = "Update " & getVorgangTableForType(VorgangType) & " set ZahlungsBedingung='" & zb & "'," & _
         " Zahlungsmethode='" & zm & "', TransportMethode='" & tm & "'  where Nummer=" & VorgangNummer
 
 

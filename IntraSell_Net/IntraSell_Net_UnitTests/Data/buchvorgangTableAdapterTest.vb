@@ -137,7 +137,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Bezahlt As Byte = 0 ' TODO: Initialize to an appropriate value
         Dim Ausgedruckt As Byte = 0 ' TODO: Initialize to an appropriate value
         Dim Abgeschlossen As Byte = 0 ' TODO: Initialize to an appropriate value
-        Dim Zahlungsbedungung As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim Zahlungsbedingung As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim TransportMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim ZahlungsMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Woher As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -152,7 +152,7 @@ Public Class buchvorgangTableAdapterTest
         Dim ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Insert(Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedungung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm)
+        actual = target.Insert(Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -172,7 +172,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Bezahlt As Object = Nothing ' TODO: Initialize to an appropriate value
         Dim Ausgedruckt As Object = Nothing ' TODO: Initialize to an appropriate value
         Dim Abgeschlossen As Object = Nothing ' TODO: Initialize to an appropriate value
-        Dim Zahlungsbedungung As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim Zahlungsbedingung As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim TransportMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim ZahlungsMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Woher As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -189,7 +189,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Original_Typ As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Update(KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedungung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Original_Nummer, Original_Typ)
+        actual = target.Update(KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Original_Nummer, Original_Typ)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -211,7 +211,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Original_Bezahlt As Byte = 0 ' TODO: Initialize to an appropriate value
         Dim Original_Ausgedruckt As Byte = 0 ' TODO: Initialize to an appropriate value
         Dim Original_Abgeschlossen As Byte = 0 ' TODO: Initialize to an appropriate value
-        Dim Original_Zahlungsbedungung As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim Original_Zahlungsbedingung As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Original_TransportMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Original_ZahlungsMethode As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim Original_Woher As String = String.Empty ' TODO: Initialize to an appropriate value
@@ -226,7 +226,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Original_ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Delete(Original_Nummer, Original_Typ, Original_KundNr, Original_Datum, Original_Notiz, Original_NotizIntern, Original_NotizExtern, Original_Summe, Original_Bezahlt, Original_Ausgedruckt, Original_Abgeschlossen, Original_Zahlungsbedungung, Original_TransportMethode, Original_ZahlungsMethode, Original_Woher, Original_Wohin, Original_Status, Original_SummeMWST, Original_SummeBrutto, Original_LieferantNr, Original_MitarbeiterNr, Original_KundNr2, Original_Waehrung, Original_ErstelltAm)
+        actual = target.Delete(Original_Nummer, Original_Typ, Original_KundNr, Original_Datum, Original_Notiz, Original_NotizIntern, Original_NotizExtern, Original_Summe, Original_Bezahlt, Original_Ausgedruckt, Original_Abgeschlossen, Original_Zahlungsbedingung, Original_TransportMethode, Original_ZahlungsMethode, Original_Woher, Original_Wohin, Original_Status, Original_SummeMWST, Original_SummeBrutto, Original_LieferantNr, Original_MitarbeiterNr, Original_KundNr2, Original_Waehrung, Original_ErstelltAm)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
