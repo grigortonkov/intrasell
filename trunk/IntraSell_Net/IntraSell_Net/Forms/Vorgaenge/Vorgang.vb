@@ -177,7 +177,7 @@ Public Class Vorgang
 
 
     Private Sub Buchvorgang_artikelDataGridView_CellValueChanged(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles Buchvorgang_artikelDataGridView.CellValueChanged
-        writeLog("Buchvorgang_artikelDataGridView_CellValueChanged")
+        'writeLog("Buchvorgang_artikelDataGridView_CellValueChanged")
         If loading Then Exit Sub
 
         loading = True

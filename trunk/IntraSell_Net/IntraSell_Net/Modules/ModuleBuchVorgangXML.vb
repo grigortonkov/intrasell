@@ -6,6 +6,10 @@ Imports GriTon.XML2Word
 
 Module ModuleBuchVorgangXML
 
+    Const VIEWER_WORD As String = "WORD"
+    Const VIEWER_XML As String = "XML"
+    Const VIEWER_OUTLOOK As String = "OUTLOOK"
+    Const VIEWER_PDF As String = "PDF"
 
     Function XML2WORD() As String
         XML2WORD = dbFolder & "..\components\XML2WordGT\TestXML2Word.exe"
@@ -13,7 +17,7 @@ Module ModuleBuchVorgangXML
 
     ' Generates new MS Word File using XML2WORD
     ' Viewer = WORD, XML, OUTLOOK or PDF
-    ' Returns the filename of the XML File
+    ' Returns the filename of the MS Word File
     Function OpenAusdruck_inWord_XML( _
                                 ByVal VorgangTyp As String, _
                                 ByVal VorgangNummer As Long, _
@@ -24,17 +28,15 @@ Module ModuleBuchVorgangXML
 
         Application.UseWaitCursor = True
 
-        Dim VonForm As String
-        Dim VonForm_Artikel As String
-
-        VonForm = getVorgangTableForType(VorgangTyp)
-        VonForm_Artikel = getVorgangArtikelTableForType(VorgangTyp)
-
+        Dim VonForm As String = getVorgangTableForType(VorgangTyp)
+        Dim VonForm_Artikel As String = getVorgangArtikelTableForType(VorgangTyp)
+        Dim Data As String = VorgangXML(VorgangNummer, VorgangTyp)
 
         'jetzt XML erstellen
+
         Dim xml As String
         xml = "<DOCUMENT>" & vbCrLf
-        xml = xml & VorgangXML(VorgangNummer, VorgangTyp) & vbCrLf
+        xml = xml & data & vbCrLf
         xml = xml & "</DOCUMENT>"
 
         'Create TMP Folder 
@@ -55,10 +57,8 @@ Module ModuleBuchVorgangXML
         Dim Vorlage As String = DbFolder() & VorlageFilename
         Dim ExportPath As String = DbFolder() & "tmp\"
 
-        ExportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, ExportPath) 'hier kann der Administrator den Speicherplatz bestimmern
+        ExportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, ExportPath) 'hier kann der Administrator den Speicherplatz bestimmen
 
-        'Shell XML2WORD & " """ & filename & """ """ & vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """", vbNormalFocus
-        'SynchShell(XML2WORD() & " """ & fileName & """ """ & Vorlage & """ " & exportPath & " """ & resultFilenamePrefix & """")
         CallXML2WORD(FileNameXMLDoc, Vorlage, ExportPath, ResultFilenamePrefix)
 
         'rename file to remove the 1 at the end
@@ -70,31 +70,28 @@ Module ModuleBuchVorgangXML
         End If
 
         'print or send per email
-
-
-        If Viewer = "WORD" Then
+        If Viewer = VIEWER_WORD Then
             DokumentInWordZeigen(ArchiveFilename)
 
-        ElseIf Viewer = "PDF" Then
+        ElseIf Viewer = VIEWER_PDF Then
             SaveWordAsPDF(ArchiveFilename)
 
-        ElseIf Viewer = "OUTLOOK" Then
+        ElseIf Viewer = VIEWER_OUTLOOK Then
             Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
             Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
             mailWithOutlook(MailBetreff, KundenEmail, ResultFilename, MailText, "", SofortSenden)
 
-        ElseIf Viewer = "XML" Then
+        ElseIf Viewer = VIEWER_XML Then
             Shell(VarValue_Default("XMLVIEWER", "IExplore.exe") & " " & FileNameXMLDoc)
         End If
 
-        OpenAusdruck_inWord_XML = ArchiveFilename
-
         'Save as document in DokSys if DokSys exists
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), FileNameXMLDoc)
-        Call SaveDokumenteInDokSys(getVorgangTableForType(VorgangTyp), CStr(VorgangNummer), ArchiveFilename)
+        Call SaveDokumenteInDokSys(VonForm, CStr(VorgangNummer), FileNameXMLDoc) 'XML output
+        Call SaveDokumenteInDokSys(VonForm, CStr(VorgangNummer), ArchiveFilename) 'Word output
 
         Application.UseWaitCursor = False
 
+        OpenAusdruck_inWord_XML = ArchiveFilename
     End Function
 
     'Erstellt XML für einen Vorgang

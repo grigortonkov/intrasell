@@ -102,9 +102,21 @@ Public Class buchvorgangTableAdapterTest
         rp.MWST = 200
         rp.Preis_Brutto = 1200
 
+        Dim rp1 As IntraSell_Net.dsVorgaenge._buchvorgang_artikelRow = DsVorgaenge._buchvorgang_artikel.NewRow()
+        rp1.ID = 2
+        rp1.Typ = r.Typ
+        rp1.Stk = 2
+        rp1.Nummer = r.Nummer
+        rp1.ArtNr = 101
+        rp1.Bezeichnung = "Zweite Position"
+        rp1.Preis_Netto = 2000
+        rp1.MWST = 400
+        rp1.Preis_Brutto = 2400
+
 
         DsVorgaenge.buchvorgang.AddbuchvorgangRow(r)
         DsVorgaenge._buchvorgang_artikel.Rows.Add(rp)
+        DsVorgaenge._buchvorgang_artikel.Rows.Add(rp1)
         DsVorgaenge.WriteXml("c:\test.xml")
 
 
