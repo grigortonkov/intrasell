@@ -401,7 +401,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -934,7 +934,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -942,55 +942,55 @@ Partial Class Vorgang
         '
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'Vorgang
