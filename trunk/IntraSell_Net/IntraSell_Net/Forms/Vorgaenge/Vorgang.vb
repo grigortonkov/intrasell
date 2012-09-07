@@ -66,16 +66,23 @@ Public Class Vorgang
 
     End Sub
 
-    Sub LadeKundenSpezifischeDaten()
+    Sub LadeKundenSpezifischeDaten(ByVal comp As String)
 
         Dim IDNR As String = Me.KundNrAdressenControl.IDNR : If IDNR Is Nothing Then IDNR = "-1"
         Dim VorgangNummer As String = Me.NummerTextBox.Text
         Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
-
-        FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
-        FillComboBox(Me.ZahlungsbedingungComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsbedingungen` INNER JOIN grZahlungsbedingung ON  Bedingung = Nr " & _
-              " WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") GROUP BY Methode", "Methode")
-        FillComboBox(Me.TransportMethodeComboBox, "SELECT Methode FROM `ofAdressen-Transportmethoden` WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
+        If comp = "ZahlungsMethodeComboBox" Then
+            FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (" & IDNR & ") " & _
+                         " or IdNr in (select KundNr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
+        End If
+        If comp = "ZahlungsbedingungComboBox" Then
+            FillComboBox(Me.ZahlungsbedingungComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsbedingungen` INNER JOIN grZahlungsbedingung ON Bedingung = Nr " & _
+                          " WHERE IdNr in (" & IDNR & ") or IdNr in (select KundNr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") GROUP BY Methode", "Methode")
+        End If
+        If comp = "TransportMethodeComboBox" Then
+            FillComboBox(Me.TransportMethodeComboBox, "SELECT Methode FROM `ofAdressen-Transportmethoden` WHERE IdNr in (" & IDNR & ") or " & _
+                         " IdNr in (select KundNr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
+        End If
 
     End Sub
 
@@ -203,12 +210,18 @@ Public Class Vorgang
     Private Sub AbgeschlossenCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbgeschlossenCheckBox.CheckedChanged
         CheckAbgeschlossen()
     End Sub
-
-
-    Private Sub NummerTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NummerTextBox.TextChanged
-        LadeKundenSpezifischeDaten()
+ 
+    Private Sub ZahlungsMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsMethodeComboBox.DropDown
+        LadeKundenSpezifischeDaten("ZahlungsMethodeComboBox")
     End Sub
 
+    Private Sub ZahlungsbedingungComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsbedingungComboBox.DropDown
+        LadeKundenSpezifischeDaten("ZahlungsbedingungComboBox")
+    End Sub
+
+    Private Sub TransportMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles TransportMethodeComboBox.DropDown
+        LadeKundenSpezifischeDaten("TransportMethodeComboBox")
+    End Sub
 
 #Region "Events for the Artikel Grid"
 
@@ -1385,4 +1398,5 @@ Public Class Vorgang
 #End Region
 
   
+ 
 End Class

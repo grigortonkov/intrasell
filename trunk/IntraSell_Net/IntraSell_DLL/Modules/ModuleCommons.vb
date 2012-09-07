@@ -83,7 +83,10 @@ Public Module ModuleCommons
             Dim da As New MySqlDataAdapter(strSQL, CurrentDB)
             Dim ds As New DataSet
             da.Fill(ds, "t")
-
+            'clear all items first 
+            'If Not combo.DataSource Is Nothing Then
+            '    combo.DataSource = Nothing
+            'End If
             With combo
                 .DataSource = ds.Tables("t")
                 .DisplayMember = displayMember '"Disk_Name"
