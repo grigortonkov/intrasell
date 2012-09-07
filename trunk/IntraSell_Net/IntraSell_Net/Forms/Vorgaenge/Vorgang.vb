@@ -183,11 +183,15 @@ Public Class Vorgang
 #End Region
 
 
+    Private Sub AusdruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
+        Print(sender)
+    End Sub
 
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
         'Start printing for the Vorgang 
         'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
         OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, "Vorlagen/17. Rechnung.dot", "WORD", False, Nothing)
+        Me.AusgedrucktCheckBox.Checked = True
     End Sub
 
     Private Sub CheckAbgeschlossen()
@@ -209,6 +213,11 @@ Public Class Vorgang
 
     Private Sub AbgeschlossenCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbgeschlossenCheckBox.CheckedChanged
         CheckAbgeschlossen()
+    End Sub
+
+
+    Private Sub StatusComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles StatusComboBox.DropDown
+        FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus where VorgangTyp = '" & Me.TypComboBox.SelectedValue & "' Group by Status", "Status")
     End Sub
 
     Private Sub ZahlungsMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsMethodeComboBox.DropDown
