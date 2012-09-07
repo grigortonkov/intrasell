@@ -49,7 +49,8 @@ Module ModulePreise
     ' Call the DLL
     Public Function getDruckForType(ByVal Typ As String) As String
 
-        getDruckForType = getDruckForType(Typ)
+        'getDruckForType = IntraSellPreise.getDruckForType(Typ)
+        getDruckForType = CStr(firstRow("select Druckbezeichnung from buchVorgangTyp where Typ='" & Typ & "'"))
         'Boote Marian - unterstützung für Akonto und Schlussrechnung
         If CStr(firstRow("select 1 from qryBuchRechAkonto")) = "1" Then
             Return "Schuss-" & getDruckForType

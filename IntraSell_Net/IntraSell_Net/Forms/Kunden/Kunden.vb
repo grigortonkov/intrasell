@@ -33,6 +33,12 @@ Public Class Kunden
 
 
         Try
+
+            Me.GrtransportmethodeTableAdapter.Fill(Me.DsStammdaten.grtransportmethode)
+            Me.GrzahlungsbedingungTableAdapter.Fill(Me.DsStammdaten.grzahlungsbedingung)
+            Me.GrzahlungsmethodeTableAdapter.Fill(Me.DsStammdaten.grzahlungsmethode)
+
+
             'Branche 
             FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen   order by Bezeichnung", "Bezeichnung", "BrNr")
             'Title
