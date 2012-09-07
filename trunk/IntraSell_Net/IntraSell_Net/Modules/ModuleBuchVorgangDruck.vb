@@ -517,10 +517,10 @@ Module ModuleBuchVorgangDruck
 
     Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
         Dim Email As String
-        Dim rsEmail
+        Dim rsEmail As MySqlDataReader
         Dim sql
 
-        sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Nummer = " & VorgangNummer & ")"
+        sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Typ ='" & VorgangTyp & "' and Nummer = " & VorgangNummer & ")"
 
         If VorgangTyp = "LAU" Then
             sql = "select Email from lieferantenAdressen where idnr in (select LieferantNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Nummer = " & VorgangNummer & ")"
@@ -529,7 +529,7 @@ Module ModuleBuchVorgangDruck
         rsEmail = openRecordset(sql)
 
         Email = "kunden Email"
-        If Not rsEmail.EOF Then
+        If rsEmail.Read Then
             Email = rsEmail("Email")
         End If
         rsEmail.Close()

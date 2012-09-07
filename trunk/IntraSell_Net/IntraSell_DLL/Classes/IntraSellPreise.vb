@@ -613,26 +613,27 @@ Public Class IntraSellPreise
     'liefert den namen für den Ausdruck zurück
     '=======================================================
     Public Function getDruckForType(ByVal Typ As String) As String
-        Select Case Typ
-            Case "AN"
-                getDruckForType = "Angebot"
-            Case "AU"
-                getDruckForType = "Auftrag"
-            Case "RÜ"
-                getDruckForType = "Rüstschein"
-            Case "LI"
-                getDruckForType = "Lieferschein"
-            Case "AR"
-                getDruckForType = "Rechnung"
-            Case "RE"
-                getDruckForType = "Rutourwaren"
-            Case "GU"
-                getDruckForType = "Gutschrift"
-            Case VORGANG_TYP_LAU
-                getDruckForType = "Auftrag"
-            Case Else
-                getDruckForType = "Unbekannt"
-        End Select
+        getDruckForType = CStr(firstRow("select Druckbezeichnung from buchVorgangTyp where Typ='" & Typ & "'"))
+        'Select Case Typ
+        '    Case "AN"
+        '        getDruckForType = "Angebot"
+        '    Case "AU"
+        '        getDruckForType = "Auftrag"
+        '    Case "RÜ"
+        '        getDruckForType = "Rüstschein"
+        '    Case "LI"
+        '        getDruckForType = "Lieferschein"
+        '    Case "AR"
+        '        getDruckForType = "Rechnung"
+        '    Case "RE"
+        '        getDruckForType = "Rutourwaren"
+        '    Case "GU"
+        '        getDruckForType = "Gutschrift"
+        '    Case VORGANG_TYP_LAU
+        '        getDruckForType = "Auftrag"
+        '    Case Else
+        '        getDruckForType = "Unbekannt"
+        'End Select
 
     End Function
 

@@ -66,25 +66,36 @@ Public Class Vorgang
 
     End Sub
 
+    Sub LadeKundenSpezifischeDaten()
+
+        Dim IDNR As String = Me.KundNrAdressenControl.IDNR : If IDNR Is Nothing Then IDNR = "-1"
+        Dim VorgangNummer As String = Me.NummerTextBox.Text
+        Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
+
+        FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
+        FillComboBox(Me.ZahlungsbedingungComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsbedingungen` INNER JOIN grZahlungsbedingung ON  Bedingung = Nr " & _
+              " WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") GROUP BY Methode", "Methode")
+        FillComboBox(Me.TransportMethodeComboBox, "SELECT Methode FROM `ofAdressen-Transportmethoden` WHERE IdNr in (" & IDNR & ") or IdNr in (select idnr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
+
+    End Sub
+
     Private Sub Rechnung_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsArtikel.grArtikelliste' table. You can move, or remove it, as needed.
-        Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
+   
         Try
             loading = True
 
+            Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang)
             Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel)
 
             FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus Group by Status", "Status")
-            FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
+            FillComboBox(Me.TypComboBox, "select Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
             FillComboBox(Me.WaehrungComboBox, "select zeichen from grWaehrung Group by zeichen", "zeichen")
 
-            FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (select idnr from buchVorgang where nummer = " & Me.NummerTextBox.Text & ") ORDER BY Methode", "Methode")
-            FillComboBox(Me.ZahlungsbedingungComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsbedingungen` INNER JOIN grZahlungsbedingung ON  Bedingung = Nr " & _
-                  " WHERE IdNr in (select idnr from buchVorgang where nummer = " & Me.NummerTextBox.Text & ") GROUP BY Methode", "Methode")
-            FillComboBox(Me.TransportMethodeComboBox, "SELECT Methode FROM `ofAdressen-Transportmethoden` WHERE IdNr in (select idnr from buchVorgang where nummer = " & Me.NummerTextBox.Text & ") ORDER BY Methode", "Methode")
-
+            'LadeKundenSpezifischeDaten()
+            'CheckAbgeschlossen()
             loading = False
+
             'Add Handler 
             'Me.DataGridViewTextBoxColumnStk.
         Catch ex As Exception
@@ -113,6 +124,10 @@ Public Class Vorgang
                 BeginNew(False)
                 addingnewflag = False
             End If
+
+            'LadeKundenSpezifischeDaten()
+            'CheckAbgeschlossen()
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -161,17 +176,39 @@ Public Class Vorgang
 #End Region
 
 
-
-
-    Private Sub AusgedrucktCheckBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles AusgedrucktCheckBox.CheckedChanged
-
-    End Sub
-
+   
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
         'Start printing for the Vorgang 
         'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
         OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, "Vorlagen/17. Rechnung.dot", "WORD", False, Nothing)
     End Sub
+
+    Private Sub CheckAbgeschlossen()
+
+        'Set true false depending on the abschliessen value 
+        Dim enable As Boolean = Not Me.AbgeschlossenCheckBox.Checked
+
+        '       Dim row = Me.BuchvorgangBindingSource.Position
+
+        '        enable = Not Me.DsVorgaenge.Tables("buchVorgang").Rows(row).Item("abgeschlossen")
+
+        Buchvorgang_artikelDataGridView.Enabled = enable
+        KundNr2AdressenControl.Enabled = enable
+        TabControl1.Enabled = enable
+        WaehrungComboBox.Enabled = enable
+
+    End Sub
+
+
+    Private Sub AbgeschlossenCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbgeschlossenCheckBox.CheckedChanged
+        CheckAbgeschlossen()
+    End Sub
+
+
+    Private Sub NummerTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NummerTextBox.TextChanged
+        LadeKundenSpezifischeDaten()
+    End Sub
+
 
 #Region "Events for the Artikel Grid"
 
@@ -317,6 +354,7 @@ Public Class Vorgang
 
 
 #End Region
+
 
 #Region "Menu"
 
@@ -1346,5 +1384,5 @@ Public Class Vorgang
 
 #End Region
 
-
+  
 End Class
