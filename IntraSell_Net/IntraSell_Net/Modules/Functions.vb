@@ -33,12 +33,12 @@ Module Functions
 
 
     Public Function makeSQLDate(ByVal dat As Date) As String
-        makeSQLDate = "#" & Month(dat) & "/" & Microsoft.VisualBasic.Day(dat) & "/" & Year(dat) & "#"
+        makeSQLDate = "'" & Year(dat) & "-" & Month(dat) & "-" & Microsoft.VisualBasic.Day(dat) & "'"
     End Function
 
 
-    Public Function toSQLDate(da As Date) As String
-        toSQLDate = "#" & Month(da) & "/" & Microsoft.VisualBasic.Day(da) & "/" & Year(da) & "#"
+    Public Function toSQLDate(dat As Date) As String
+        toSQLDate = "'" & Year(dat) & "-" & Month(dat) & "-" & Microsoft.VisualBasic.Day(dat) & "'"
     End Function
 
 
