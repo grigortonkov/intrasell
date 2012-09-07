@@ -117,6 +117,7 @@ Partial Class Vorgang
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerVorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AusdruckenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbschliessenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StornoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -934,13 +935,13 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(219, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'VorgangToolStripMenuItem
         '
-        Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
+        Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
         Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
@@ -950,6 +951,12 @@ Partial Class Vorgang
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
         Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
+        '
+        'AusdruckenToolStripMenuItem
+        '
+        Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
@@ -1124,4 +1131,5 @@ Partial Class Vorgang
     Friend WithEvents KassaBuchungToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SendeEmailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NeuerVorgangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AusdruckenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
