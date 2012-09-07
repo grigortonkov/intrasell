@@ -87,7 +87,7 @@ Public Class Vorgang
     End Sub
 
     Private Sub Rechnung_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-   
+
         Try
             loading = True
 
@@ -113,7 +113,7 @@ Public Class Vorgang
 
 
 #Region "New"
-     
+
     Dim addingnewflag As Boolean = False
     Private Sub bindingnavigatoraddnewitem_click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
@@ -183,7 +183,7 @@ Public Class Vorgang
 #End Region
 
 
-   
+
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
         'Start printing for the Vorgang 
         'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
@@ -210,7 +210,7 @@ Public Class Vorgang
     Private Sub AbgeschlossenCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbgeschlossenCheckBox.CheckedChanged
         CheckAbgeschlossen()
     End Sub
- 
+
     Private Sub ZahlungsMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsMethodeComboBox.DropDown
         LadeKundenSpezifischeDaten("ZahlungsMethodeComboBox")
     End Sub
@@ -372,7 +372,7 @@ Public Class Vorgang
 #Region "Menu"
 
     Private Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
-        BeginNew() 
+        BeginNew()
     End Sub
     Private Sub AbschliessenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AbschliessenToolStripMenuItem.Click
         btnAbschliessen_Click()
@@ -383,7 +383,7 @@ Public Class Vorgang
     End Sub
 
     Private Sub ExportierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
-
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Nothing, "XML", False, Nothing)
     End Sub
 
     Private Sub KonvertierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
@@ -405,6 +405,10 @@ Public Class Vorgang
 
     Private Sub SendeEmailToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
         Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
+    End Sub
+
+    Private Sub KassaBuchungToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KassaBuchungToolStripMenuItem.Click
+        btnKassa_Click()
     End Sub
 #End Region
 
@@ -487,19 +491,33 @@ Public Class Vorgang
 
     '    End Sub
 
-    '    Private Sub btnKassa_Click()
-    '        If Me.txtVorgangType = "AR" And Me.Bezahlt = 0 Then
-    '            If MsgBox("Haben Sie den Betrag in der Höhe von " & Me.summeATSPlusMWST & " eingehoben?", vbYesNo) = vbYes Then
-    '                'Me.Bezahlt = True
-    '                DoCmd.SetWarnings(False)
-    '                DoCmd.RunSQL("update " & getVorgangTableForType(Me.txtVorgangType) & " set bezahlt = -1 where Nummer = " & Me.Nummer)
-    '                DoCmd.SetWarnings(True)
-    '                Me.Requery()
-    '                'kassabuch
-    '                Call makeKassaBuchEintrag(Now(), Me.txtVorgangType, Me.txtVorgangType & "-" & Me.Nummer, Me.summeATSPlusMWST)
-    '            End If
-    '        End If
-    '    End Sub
+    Private Sub btnKassa_Click()
+        Dim tr As MySqlTransaction
+        Try
+
+            Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
+            If VorgangTyp = "AR" And Not Me.BezahltCheckBox.Checked Then
+                If MsgBox("Haben Sie den Betrag in der Höhe von " & Me.SummeBruttoTextBox.Text & " eingehoben?", vbYesNo) = vbYes Then
+                    tr = CurrentDB.BeginTransaction
+                    'Me.Bezahlt = True
+                    RunSQL("update " & getVorgangTableForType(VorgangTyp) & " set bezahlt = -1 where Typ='" & VorgangTyp & "' and  Nummer=" & Me.NummerTextBox.Text)
+                    'kassabuch
+                    Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & Me.NummerTextBox.Text, Me.SummeBruttoTextBox.Text)
+                    Me.BezahltCheckBox.Checked = True
+                    tr.Commit()
+                End If
+
+            Else
+                If Not VorgangTyp = "AR" Then
+                    MsgBox("Die Funktion ist nur für Rechnungen vorgesehen.", vbInformation)
+                End If
+            End If
+
+        Catch ex As Exception
+            If Not tr Is Nothing Then tr.Rollback()
+            HandleAppError(ex)
+        End Try
+    End Sub
 
     '    Private Sub btnKonvertieren_Click()
     '        DoCmd.OpenForm("buchVorgaengeKonvertieren")
@@ -661,7 +679,7 @@ Public Class Vorgang
 
 
     '    End Sub
- 
+
 
     '    Private Sub cbVorgang_Enter()
     '        Me.AllowEdits = True
@@ -688,6 +706,7 @@ Public Class Vorgang
     Private Sub btnAbschliessen_Click()
         If VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
             'Event einfügen
+            Me.AbgeschlossenCheckBox.Checked = True
             EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
         End If
     End Sub
@@ -1397,6 +1416,7 @@ Public Class Vorgang
 
 #End Region
 
-  
- 
+
+
+
 End Class

@@ -64,7 +64,7 @@ Public Class VorgangKonvertieren
 
             'abschliessen
             If Me.CheckBoxAbschliessen.Checked Then
-                VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
+                VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, True)
             End If
             'end if
 

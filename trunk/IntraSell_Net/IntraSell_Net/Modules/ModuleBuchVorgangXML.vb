@@ -32,6 +32,8 @@ Module ModuleBuchVorgangXML
         Dim VonForm_Artikel As String = getVorgangArtikelTableForType(VorgangTyp)
         Dim Data As String = VorgangXML(VorgangNummer, VorgangTyp)
 
+        Dim ArchiveFilename As String = Nothing
+
         'jetzt XML erstellen
 
         Dim xml As String
@@ -49,46 +51,55 @@ Module ModuleBuchVorgangXML
 
         saveXML(xml, FileNameXMLDoc)
 
-        Dim ResultFilenamePrefix As String = "Vorgang_" & VorgangTyp & VorgangNummer
-        Dim ResultFilename As String = DbFolder() & "tmp\" & ResultFilenamePrefix & "1.doc"
+        If Not VorlageFilename Is Nothing Then
+            Dim ResultFilenamePrefix As String = "Vorgang_" & VorgangTyp & VorgangNummer
+            Dim ResultFilename As String = DbFolder() & "tmp\" & ResultFilenamePrefix & "1.doc"
 
 
-        'merge with word template
-        Dim Vorlage As String = DbFolder() & VorlageFilename
-        Dim ExportPath As String = DbFolder() & "tmp\"
+            'merge with word template
+            Dim Vorlage As String = DbFolder() & VorlageFilename
+            Dim ExportPath As String = DbFolder() & "tmp\"
 
-        ExportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, ExportPath) 'hier kann der Administrator den Speicherplatz bestimmen
+            ExportPath = VarValue_Default("SPEICHERPLATZ_VORGANG_" & VorgangTyp, ExportPath) 'hier kann der Administrator den Speicherplatz bestimmen
 
-        CallXML2WORD(FileNameXMLDoc, Vorlage, ExportPath, ResultFilenamePrefix)
+            CallXML2WORD(FileNameXMLDoc, Vorlage, ExportPath, ResultFilenamePrefix)
 
-        'rename file to remove the 1 at the end
-        Dim ArchiveFilename As String = Replace(ResultFilename, DbFolder() & "tmp\", ExportPath)
-        ArchiveFilename = Replace(ArchiveFilename, "1.doc", ".doc")
-        'nur wenn die datei nicht vorher existiert 
-        If Not FileIO.FileSystem.FileExists(ArchiveFilename) Then
-            RenameFile(ResultFilename, ArchiveFilename)
+            'rename file to remove the 1 at the end
+            ArchiveFilename = Replace(ResultFilename, DbFolder() & "tmp\", ExportPath)
+            ArchiveFilename = Replace(ArchiveFilename, "1.doc", ".doc")
+            'nur wenn die datei nicht vorher existiert 
+            If Not FileIO.FileSystem.FileExists(ArchiveFilename) Then
+                RenameFile(ResultFilename, ArchiveFilename)
+            End If
+
         End If
 
         'print or send per email
         If Viewer = VIEWER_WORD Then
-            DokumentInWordZeigen(ArchiveFilename)
+            If Not ArchiveFilename Is Nothing Then
+                DokumentInWordZeigen(ArchiveFilename)
+            End If
 
         ElseIf Viewer = VIEWER_PDF Then
-            SaveWordAsPDF(ArchiveFilename)
-
+            If Not ArchiveFilename Is Nothing Then
+                SaveWordAsPDF(ArchiveFilename)
+            End If
         ElseIf Viewer = VIEWER_OUTLOOK Then
-            Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
-            Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
-            mailWithOutlook(MailBetreff, KundenEmail, ResultFilename, MailText, "", SofortSenden)
+            If Not ArchiveFilename Is Nothing Then
+                Dim KundenEmail As String = "" & getKundenEmail(VorgangTyp, VorgangNummer)
+                Dim MailBetreff As String = getDruckForType(VorgangTyp) & " #" & VorgangNummer
+                mailWithOutlook(MailBetreff, KundenEmail, ArchiveFilename, MailText, "", SofortSenden)
+            End If
 
         ElseIf Viewer = VIEWER_XML Then
-            Shell(VarValue_Default("XMLVIEWER", "IExplore.exe") & " " & FileNameXMLDoc)
+            Shell(VarValue_Default("XMLVIEWER", "notepad.exe") & " " & FileNameXMLDoc)
         End If
 
         'Save as document in DokSys if DokSys exists
         Call SaveDokumenteInDokSys(VonForm, CStr(VorgangNummer), FileNameXMLDoc) 'XML output
-        Call SaveDokumenteInDokSys(VonForm, CStr(VorgangNummer), ArchiveFilename) 'Word output
-
+        If Not ArchiveFilename Is Nothing Then
+            Call SaveDokumenteInDokSys(VonForm, CStr(VorgangNummer), ArchiveFilename) 'Word output
+        End If
         Application.UseWaitCursor = False
 
         OpenAusdruck_inWord_XML = ArchiveFilename

@@ -44,7 +44,7 @@ Public Class VorgangListe
 
             'filter dataset 
             If Me.TypComboBox.Text.Length > 0 Then
-                filter = filter & " and Typ = '" + TypComboBox.Text + "%'"
+                filter = filter & " and Typ Like '" + TypComboBox.SelectedValue + "%'"
             End If
 
             If Me.NummerTextBox.Text.Length > 0 Then
