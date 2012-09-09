@@ -15,6 +15,8 @@ Public Class Vorgang
     Const COL_MWST_INDEX As Integer = 9
     Const COL_EKPREIS_INDEX As Integer = 10
 
+    Const DEFAULT_WORD_VORLAGE As String = "Vorlagen/17. Rechnung.dot"
+
     Public Property summeNetto As Integer
         Get
             Return Me.SummeTextBox.Text
@@ -183,14 +185,20 @@ Public Class Vorgang
 #End Region
 
 
+    Private Sub VorlageeditierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlageeditierenToolStripMenuItem.Click
+        DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE, False)
+    End Sub
+
+
     Private Sub AusdruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
         Print(sender)
     End Sub
 
+
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
         'Start printing for the Vorgang 
         'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
-        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, "Vorlagen/17. Rechnung.dot", "WORD", False, Nothing)
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, "WORD", False, Nothing)
         Me.AusgedrucktCheckBox.Checked = True
     End Sub
 

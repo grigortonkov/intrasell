@@ -125,6 +125,7 @@ Partial Class Vorgang
         Me.VorlagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KassaBuchungToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendeEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorlageeditierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -935,13 +936,13 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(219, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'VorgangToolStripMenuItem
         '
-        Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem})
+        Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem, Me.VorlageeditierenToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
         Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
@@ -949,56 +950,62 @@ Partial Class Vorgang
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AusdruckenToolStripMenuItem
         '
         Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
-        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
+        '
+        'VorlageeditierenToolStripMenuItem
+        '
+        Me.VorlageeditierenToolStripMenuItem.Name = "VorlageeditierenToolStripMenuItem"
+        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.VorlageeditierenToolStripMenuItem.Text = "Vorlage &editieren"
         '
         'Vorgang
         '
@@ -1132,4 +1139,5 @@ Partial Class Vorgang
     Friend WithEvents SendeEmailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NeuerVorgangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AusdruckenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorlageeditierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
