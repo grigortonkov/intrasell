@@ -548,7 +548,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cashier.ico" />
+    <Content Include="cashier.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Vorlagen\ISVorgang.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
