@@ -312,13 +312,7 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub Buchvorgang_artikelBindingSource_CurrentChanged(sender As System.Object, e As System.EventArgs) Handles Buchvorgang_artikelBindingSource.CurrentChanged
-        writeLog("Buchvorgang_artikelBindingSource_CurrentChanged")
-    End Sub
 
-    Private Sub Buchvorgang_artikelBindingSource_AddingNew(sender As System.Object, e As System.EventArgs) Handles Buchvorgang_artikelBindingSource.AddingNew
-        'setPosIDIfNotSet()
-    End Sub
     Private Sub setPosIDIfNotSet()
         'set Position 
         Dim rows As Integer = Buchvorgang_artikelDataGridView.RowCount
@@ -363,7 +357,6 @@ Public Class Vorgang
         Me.SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
         Me.SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
     End Sub
-
 
 
 #End Region
