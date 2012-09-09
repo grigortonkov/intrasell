@@ -907,7 +907,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IntraSell_Net"
         "ProductCode" = "8:{FE4B4C8B-FF83-41BB-BAF9-12AED8B1F792}"
-        "PackageCode" = "8:{B42C8275-2C93-4C39-AD0B-C8CF0804862B}"
+        "PackageCode" = "8:{C08E6B89-5CC7-4873-899F-F165C4A94B55}"
         "UpgradeCode" = "8:{13C36C27-4D6D-48B2-A389-BED750CDB661}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1038,7 +1038,7 @@
             "Target" = "8:_6F648CA9844F464891F302C86E786A03"
             "Folder" = "8:_00BD4694E3784AEB8A8AEECF0D53486C"
             "WorkingFolder" = "8:_08E550BCAD824A6292FDA7A0BFF77585"
-            "Icon" = "8:"
+            "Icon" = "8:_AB8ED43E6666468FB413CCFD0C8AEE08"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9C1B9225C01247D6A6877860E8EEAA7C"
