@@ -495,9 +495,9 @@
     <None Include="Vorlagen\15. LIEFERSCHEIN.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Vorlagen\17. RECHNUNG.dot">
+    <Content Include="Vorlagen\17. RECHNUNG.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Vorlagen\2. TRANSPORT ANFRAGE.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -9,12 +9,13 @@ Public Module ModuleCommons
     Public appPath As String = Nothing 'Set by UnitTests 
 
     'Return current Applikation Path for Exe, IntraSell
-    Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.EXE") As String
+    Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.exe") As String
         If appPath Is Nothing Then
-            If Not Application.ExecutablePath.Contains("IntraSell_Net.EXE") Then
-                Throw New Exception("If you run from different Application, please set ModuleCommons.appPath to your Path")
+            If Not Application.ExecutablePath.ToLower().Contains("IntraSell_Net.exe".ToLower()) Then
+                Throw New Exception("If you run from different Application, please set ModuleCommons.appPath to your Path." & vbCrLf & _
+                                    "Current path:" + Application.ExecutablePath)
             End If
-            Return Application.ExecutablePath.Replace(exeFilename, "")
+            Return Application.ExecutablePath.ToLower().Replace(exeFilename.ToLower(), "")
         Else
             Return appPath
         End If
