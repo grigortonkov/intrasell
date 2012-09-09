@@ -5,7 +5,7 @@ Public Class Vorgang
     Implements InterfacePrintable
 
     Dim loading As Boolean = True
-
+    Const COL_ID_INDEX As Integer = 0
     Const COL_STK_INDEX As Integer = 3
     Const COL_ARTNR_COMBO_INDEX As Integer = 4
     Const COL_ARTNR_INDEX As Integer = 5
@@ -240,6 +240,8 @@ Public Class Vorgang
         If loading Then Exit Sub
 
         loading = True
+
+        setPosIDIfNotSet()
         ' e.RowIndex
         ' e.ColumnIndex
         If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Stk" Then
@@ -314,6 +316,19 @@ Public Class Vorgang
         writeLog("Buchvorgang_artikelBindingSource_CurrentChanged")
     End Sub
 
+    Private Sub Buchvorgang_artikelBindingSource_AddingNew(sender As System.Object, e As System.EventArgs) Handles Buchvorgang_artikelBindingSource.AddingNew
+        'setPosIDIfNotSet()
+    End Sub
+    Private Sub setPosIDIfNotSet()
+        'set Position 
+        Dim rows As Integer = Buchvorgang_artikelDataGridView.RowCount
+        If rows > 1 Then
+            If IsNull(Buchvorgang_artikelDataGridView.Rows(rows - 2).Cells(COL_ID_INDEX).Value) Then
+                Buchvorgang_artikelDataGridView.Rows(rows - 2).Cells(COL_ID_INDEX).Value = (rows - 1)
+            End If
+        End If
+    End Sub
+
 
     Private Sub Recalculate()
         Dim summeNetto As Double = 0.0, summeBrutto As Double = 0.0, MWST As Double = 0.0
@@ -338,30 +353,6 @@ Public Class Vorgang
                 Catch ex As Exception
                     Exit Sub 'on any error 
                 End Try
-
-
-                'If Not DataGridView1.Rows(counter) _
-                '    .Cells("Deposits").Value Is Nothing Then
-
-                '    ' Verify that the cell value is not an empty string. 
-                '    If Not DataGridView1.Rows(counter) _
-                '        .Cells("Deposits").Value.ToString().Length = 0 Then
-                '        deposit = Integer.Parse(DataGridView1.Rows(counter) _
-                '            .Cells("Deposits").Value.ToString())
-                '    End If
-                'End If
-
-                'If Not DataGridView1.Rows(counter) _
-                '    .Cells("Withdrawals").Value Is Nothing Then
-                '    If Not DataGridView1.Rows(counter) _
-                '        .Cells("Withdrawals").Value.ToString().Length = 0 Then
-                '        withdrawal = Integer.Parse(DataGridView1.Rows(counter) _
-                '            .Cells("Withdrawals").Value.ToString())
-                '    End If
-                'End If
-
-                'DataGridView1.Rows(counter).Cells("Balance").Value = _
-                '    (balance + deposit + withdrawal).ToString()
             Next
 
         End With

@@ -1502,7 +1502,7 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
         <xs:element name="buchvorgang-artikel" msprop:Generator_TableClassName="_buchvorgang_artikelDataTable" msprop:Generator_TableVarName="_tablebuchvorgang_artikel" msprop:Generator_TablePropName="_buchvorgang_artikel" msprop:Generator_RowDeletingName="_buchvorgang_artikelRowDeleting" msprop:Generator_UserTableName="buchvorgang-artikel" msprop:Generator_RowChangingName="_buchvorgang_artikelRowChanging" msprop:Generator_RowEvHandlerName="_buchvorgang_artikelRowChangeEventHandler" msprop:Generator_RowDeletedName="_buchvorgang_artikelRowDeleted" msprop:Generator_RowEvArgName="_buchvorgang_artikelRowChangeEvent" msprop:Generator_RowChangedName="_buchvorgang_artikelRowChanged" msprop:Generator_RowClassName="_buchvorgang_artikelRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="ID" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
               <xs:element name="Nummer" msprop:Generator_ColumnVarNameInTable="columnNummer" msprop:Generator_ColumnPropNameInRow="Nummer" msprop:Generator_ColumnPropNameInTable="NummerColumn" msprop:Generator_UserColumnName="Nummer" type="xs:int" />
               <xs:element name="Typ" msprop:Generator_ColumnVarNameInTable="columnTyp" msprop:Generator_ColumnPropNameInRow="Typ" msprop:Generator_ColumnPropNameInTable="TypColumn" msprop:Generator_UserColumnName="Typ">
                 <xs:simpleType>
@@ -1820,7 +1820,7 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
       <xs:field xpath="mstns:Nummer" />
       <xs:field xpath="mstns:Typ" />
     </xs:unique>
-    <xs:keyref name="buchVorgang-artikel_ibfk_1" refer="buchvorgang_Constraint1" msprop:rel_Generator_UserChildTable="buchvorgang-artikel" msprop:rel_Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:rel_Generator_ParentPropName="buchvorgangRowParent" msprop:rel_Generator_UserRelationName="buchVorgang-artikel_ibfk_1" msprop:rel_Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_1" msprop:rel_Generator_UserParentTable="buchvorgang">
+    <xs:keyref name="buchVorgang-artikel_ibfk_1" refer="buchvorgang_Constraint1" msprop:rel_Generator_UserChildTable="buchvorgang-artikel" msprop:rel_Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:rel_Generator_UserParentTable="buchvorgang" msprop:rel_Generator_UserRelationName="buchVorgang-artikel_ibfk_1" msprop:rel_Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_1" msprop:rel_Generator_ParentPropName="buchvorgangRowParent">
       <xs:selector xpath=".//mstns:buchvorgang-artikel" />
       <xs:field xpath="mstns:Nummer" />
       <xs:field xpath="mstns:Typ" />
@@ -1828,8 +1828,8 @@ GROUP BY buchvorgang.Nummer, buchvorgang.Typ, buchvorgang.KundNr, buchvorgang.Da
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="buchVorgang-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchvorgang-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchvorgang-artikel" msprop:Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:Generator_ParentPropName="grartikelRow" msprop:Generator_UserRelationName="buchVorgang-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_2" msprop:Generator_UserParentTable="grartikel" />
-      <msdata:Relationship name="buchVorgangTyp_ibfk_1" msdata:parent="buchvorgangtyp" msdata:child="buchvorgang" msdata:parentkey="Typ" msdata:childkey="Typ" msprop:Generator_UserChildTable="buchvorgang" msprop:Generator_ChildPropName="GetbuchvorgangRows" msprop:Generator_UserParentTable="buchvorgangtyp" msprop:Generator_UserRelationName="buchVorgangTyp_ibfk_1" msprop:Generator_RelationVarName="relationbuchVorgangTyp_ibfk_1" msprop:Generator_ParentPropName="buchvorgangtypRow" />
+      <msdata:Relationship name="buchVorgang-artikel_ibfk_2" msdata:parent="grartikel" msdata:child="buchvorgang-artikel" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="buchvorgang-artikel" msprop:Generator_ChildPropName="_Getbuchvorgang_artikelRows" msprop:Generator_UserParentTable="grartikel" msprop:Generator_UserRelationName="buchVorgang-artikel_ibfk_2" msprop:Generator_RelationVarName="_relationbuchVorgang_artikel_ibfk_2" msprop:Generator_ParentPropName="grartikelRow" />
+      <msdata:Relationship name="buchVorgangTyp_ibfk_1" msdata:parent="buchvorgangtyp" msdata:child="buchvorgang" msdata:parentkey="Typ" msdata:childkey="Typ" msprop:Generator_UserChildTable="buchvorgang" msprop:Generator_ChildPropName="GetbuchvorgangRows" msprop:Generator_ParentPropName="buchvorgangtypRow" msprop:Generator_UserRelationName="buchVorgangTyp_ibfk_1" msprop:Generator_RelationVarName="relationbuchVorgangTyp_ibfk_1" msprop:Generator_UserParentTable="buchvorgangtyp" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

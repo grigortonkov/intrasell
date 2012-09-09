@@ -4326,6 +4326,7 @@ Partial Public Class dsVorgaenge
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overloads Function Add_buchvorgang_artikelRow( _
+                    ByVal ID As Integer,  _
                     ByVal Nummer As Integer,  _
                     ByVal Typ As String,  _
                     ByVal _parentgrartikelRowBybuchVorgang_artikel_ibfk_2 As grartikelRow,  _
@@ -4346,7 +4347,7 @@ Partial Public Class dsVorgaenge
                     ByVal Zeitpunkt As Date,  _
                     ByVal ErstelltAm As Date) As _buchvorgang_artikelRow
             Dim row_buchvorgang_artikelRow As _buchvorgang_artikelRow = CType(Me.NewRow,_buchvorgang_artikelRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nummer, Typ, Nothing, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm}
+            Dim columnValuesArray() As Object = New Object() {ID, Nummer, Typ, Nothing, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm}
             If (Not (_parentgrartikelRowBybuchVorgang_artikel_ibfk_2) Is Nothing) Then
                 columnValuesArray(3) = _parentgrartikelRowBybuchVorgang_artikel_ibfk_2(0)
             End If
@@ -4444,7 +4445,6 @@ Partial Public Class dsVorgaenge
             Me.columnErstelltAm = New Global.System.Data.DataColumn("ErstelltAm", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnErstelltAm)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID, Me.columnNummer, Me.columnTyp}, true))
-            Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = 1
             Me.columnID.AllowDBNull = false
             Me.columnNummer.AllowDBNull = false
