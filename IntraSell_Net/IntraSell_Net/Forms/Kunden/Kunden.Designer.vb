@@ -66,12 +66,25 @@ Partial Class Kunden
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Ofadressen_zahlungsmethodenDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.GrzahlungsmethodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsStammdaten = New IntraSell_Net.dsStammdaten()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Ofadressen_zahlungsmethodenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Ofadressen_zahlungsbedingungenDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.GrzahlungsbedingungBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataGridViewCheckBoxColumn2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Ofadressen_zahlungsbedingungenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ofadressen_transportmethodenDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.GrtransportmethodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Ofadressen_transportmethodenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.FirmenKontoIdTextBox = New System.Windows.Forms.TextBox()
         Me.FKofAdressenofadressensettingsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -169,22 +182,9 @@ Partial Class Kunden
         Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
         Me.FillByToolStrip = New System.Windows.Forms.ToolStrip()
         Me.FillByToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.DsStammdaten = New IntraSell_Net.dsStammdaten()
-        Me.GrzahlungsmethodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GrzahlungsmethodeTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grzahlungsmethodeTableAdapter()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.GrzahlungsbedingungBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GrzahlungsbedingungTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grzahlungsbedingungTableAdapter()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.DataGridViewCheckBoxColumn2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.GrtransportmethodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GrtransportmethodeTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grtransportmethodeTableAdapter()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         IDNRLabel = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
         BrancheLabel = New System.Windows.Forms.Label()
@@ -227,10 +227,14 @@ Partial Class Kunden
         Me.TabPage1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.Ofadressen_zahlungsmethodenDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrzahlungsmethodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsStammdaten, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_zahlungsmethodenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_zahlungsbedingungenDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrzahlungsbedingungBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_zahlungsbedingungenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_transportmethodenDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrtransportmethodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_transportmethodenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -244,10 +248,6 @@ Partial Class Kunden
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FillByToolStrip.SuspendLayout()
-        CType(Me.DsStammdaten, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrzahlungsmethodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrzahlungsbedingungBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrtransportmethodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'IDNRLabel
@@ -660,6 +660,40 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_zahlungsmethodenDataGridView.TabIndex = 9
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IdNr"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "IdNr"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Visible = False
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Methode"
+        Me.DataGridViewTextBoxColumn2.DataSource = Me.GrzahlungsmethodeBindingSource
+        Me.DataGridViewTextBoxColumn2.DisplayMember = "Methode"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Methode"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn2.ValueMember = "Methode"
+        '
+        'GrzahlungsmethodeBindingSource
+        '
+        Me.GrzahlungsmethodeBindingSource.DataMember = "grzahlungsmethode"
+        Me.GrzahlungsmethodeBindingSource.DataSource = Me.DsStammdaten
+        '
+        'DsStammdaten
+        '
+        Me.DsStammdaten.DataSetName = "dsStammdaten"
+        Me.DsStammdaten.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "Standart"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "Standart"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
+        '
         'Ofadressen_zahlungsmethodenBindingSource
         '
         Me.Ofadressen_zahlungsmethodenBindingSource.DataMember = "ofAdressen_ofadressen-zahlungsmethoden"
@@ -676,6 +710,35 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsbedingungenDataGridView.Name = "Ofadressen_zahlungsbedingungenDataGridView"
         Me.Ofadressen_zahlungsbedingungenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_zahlungsbedingungenDataGridView.TabIndex = 10
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "IdNr"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "IdNr"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Visible = False
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Bedingung"
+        Me.DataGridViewTextBoxColumn4.DataSource = Me.GrzahlungsbedingungBindingSource
+        Me.DataGridViewTextBoxColumn4.DisplayMember = "Methode"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Bedingung"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn4.ValueMember = "Nr"
+        '
+        'GrzahlungsbedingungBindingSource
+        '
+        Me.GrzahlungsbedingungBindingSource.DataMember = "grzahlungsbedingung"
+        Me.GrzahlungsbedingungBindingSource.DataSource = Me.DsStammdaten
+        '
+        'DataGridViewCheckBoxColumn2
+        '
+        Me.DataGridViewCheckBoxColumn2.DataPropertyName = "Standart"
+        Me.DataGridViewCheckBoxColumn2.HeaderText = "Standart"
+        Me.DataGridViewCheckBoxColumn2.Name = "DataGridViewCheckBoxColumn2"
         '
         'Ofadressen_zahlungsbedingungenBindingSource
         '
@@ -711,6 +774,37 @@ Partial Class Kunden
         Me.Ofadressen_transportmethodenDataGridView.Name = "Ofadressen_transportmethodenDataGridView"
         Me.Ofadressen_transportmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_transportmethodenDataGridView.TabIndex = 12
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "IdNr"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "IdNr"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.Visible = False
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Methode"
+        Me.DataGridViewTextBoxColumn6.DataSource = Me.GrtransportmethodeBindingSource
+        Me.DataGridViewTextBoxColumn6.DisplayMember = "Methode"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Methode"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn6.ValueMember = "Methode"
+        '
+        'GrtransportmethodeBindingSource
+        '
+        Me.GrtransportmethodeBindingSource.DataMember = "grtransportmethode"
+        Me.GrtransportmethodeBindingSource.DataSource = Me.DsStammdaten
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Standart"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Standart"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'Ofadressen_transportmethodenBindingSource
         '
@@ -1427,7 +1521,7 @@ Partial Class Kunden
         Me.ButtonPLZSelect.Location = New System.Drawing.Point(585, 81)
         Me.ButtonPLZSelect.Name = "ButtonPLZSelect"
         Me.ButtonPLZSelect.Size = New System.Drawing.Size(33, 23)
-        Me.ButtonPLZSelect.TabIndex = 13
+        Me.ButtonPLZSelect.TabIndex = 14
         Me.ButtonPLZSelect.Text = "..."
         Me.ButtonPLZSelect.UseVisualStyleBackColor = True
         '
@@ -1448,114 +1542,20 @@ Partial Class Kunden
         '
         Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(35, 22)
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
         Me.FillByToolStripButton.Text = "FillBy"
-        '
-        'DsStammdaten
-        '
-        Me.DsStammdaten.DataSetName = "dsStammdaten"
-        Me.DsStammdaten.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'GrzahlungsmethodeBindingSource
-        '
-        Me.GrzahlungsmethodeBindingSource.DataMember = "grzahlungsmethode"
-        Me.GrzahlungsmethodeBindingSource.DataSource = Me.DsStammdaten
         '
         'GrzahlungsmethodeTableAdapter
         '
         Me.GrzahlungsmethodeTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IdNr"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "IdNr"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Methode"
-        Me.DataGridViewTextBoxColumn2.DataSource = Me.GrzahlungsmethodeBindingSource
-        Me.DataGridViewTextBoxColumn2.DisplayMember = "Methode"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Methode"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DataGridViewTextBoxColumn2.ValueMember = "Methode"
-        '
-        'DataGridViewCheckBoxColumn1
-        '
-        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "Standart"
-        Me.DataGridViewCheckBoxColumn1.HeaderText = "Standart"
-        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
-        '
-        'GrzahlungsbedingungBindingSource
-        '
-        Me.GrzahlungsbedingungBindingSource.DataMember = "grzahlungsbedingung"
-        Me.GrzahlungsbedingungBindingSource.DataSource = Me.DsStammdaten
-        '
         'GrzahlungsbedingungTableAdapter
         '
         Me.GrzahlungsbedingungTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "IdNr"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "IdNr"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.Visible = False
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Bedingung"
-        Me.DataGridViewTextBoxColumn4.DataSource = Me.GrzahlungsbedingungBindingSource
-        Me.DataGridViewTextBoxColumn4.DisplayMember = "Methode"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Bedingung"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DataGridViewTextBoxColumn4.ValueMember = "Nr"
-        '
-        'DataGridViewCheckBoxColumn2
-        '
-        Me.DataGridViewCheckBoxColumn2.DataPropertyName = "Standart"
-        Me.DataGridViewCheckBoxColumn2.HeaderText = "Standart"
-        Me.DataGridViewCheckBoxColumn2.Name = "DataGridViewCheckBoxColumn2"
-        '
-        'GrtransportmethodeBindingSource
-        '
-        Me.GrtransportmethodeBindingSource.DataMember = "grtransportmethode"
-        Me.GrtransportmethodeBindingSource.DataSource = Me.DsStammdaten
-        '
         'GrtransportmethodeTableAdapter
         '
         Me.GrtransportmethodeTableAdapter.ClearBeforeFill = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "IdNr"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "IdNr"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.Visible = False
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Methode"
-        Me.DataGridViewTextBoxColumn6.DataSource = Me.GrtransportmethodeBindingSource
-        Me.DataGridViewTextBoxColumn6.DisplayMember = "Methode"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Methode"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.DataGridViewTextBoxColumn6.ValueMember = "Methode"
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Standart"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Standart"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'Kunden
         '
@@ -1666,10 +1666,14 @@ Partial Class Kunden
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.Ofadressen_zahlungsmethodenDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrzahlungsmethodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsStammdaten, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_zahlungsmethodenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_zahlungsbedingungenDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrzahlungsbedingungBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_zahlungsbedingungenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_transportmethodenDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrtransportmethodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_transportmethodenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FKofAdressenofadressensettingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1685,10 +1689,6 @@ Partial Class Kunden
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FillByToolStrip.ResumeLayout(False)
         Me.FillByToolStrip.PerformLayout()
-        CType(Me.DsStammdaten, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GrzahlungsmethodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GrzahlungsbedingungBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GrtransportmethodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
