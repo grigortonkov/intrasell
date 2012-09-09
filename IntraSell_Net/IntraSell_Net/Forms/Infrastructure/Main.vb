@@ -132,7 +132,11 @@ Public Class Main
     End Sub
 
     Private Sub WikiToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles WikiToolStripMenuItem.Click
-
+        Try
+            System.Diagnostics.Process.Start("http://code.google.com/p/intrasell/w/list")
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
     Private Sub DruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DruckenToolStripMenuItem.Click
@@ -169,4 +173,11 @@ Public Class Main
         Return False
     End Function
 
+    Private Sub BugMeldenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BugMeldenToolStripMenuItem.Click
+        Try
+            System.Diagnostics.Process.Start("http://code.google.com/p/intrasell/issues/list")
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
