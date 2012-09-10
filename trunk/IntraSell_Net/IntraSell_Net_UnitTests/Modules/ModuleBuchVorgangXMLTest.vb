@@ -172,7 +172,7 @@ Public Class ModuleBuchVorgangXMLTest
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
         Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
-        Dim Viewer As String = "PDF" '"WORD"
+        Dim Viewer As String = VIEWER_PDF
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
 
@@ -184,5 +184,25 @@ Public Class ModuleBuchVorgangXMLTest
         'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
+
+    '''<summary>
+    '''A test for OpenAusdruck_inWord_XML
+    '''</summary>
+    <TestMethod()> _
+    Public Sub OpenAusdruck_inWord_OUTLOOK_XMLTest()
+        Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2
+        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_2
+        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim Viewer As String = VIEWER_OUTLOOK
+        Dim SofortSenden As Boolean = True ' TODO: Initialize to an appropriate value
+        Dim MailText As String = "Here is my Mail."
+
+        Dim expected As String = FunctionsVars.VarValue("SPEICHERPLATZ_VORGANG_AR") & "Vorgang_" & VorgangTyp & VorgangNummer & ".doc" ' TODO: Initialize to an appropriate value
+        Dim actual As String
+        actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangTyp, VorgangNummer, VorlageFilename, Viewer, SofortSenden, MailText)
+
+        Assert.AreEqual(expected, actual)
+        'Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
 
 End Class

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <OrderedTest name="3.vorgang" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\3.vorgang.orderedtest" id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Execution id="ee31a9cb-d567-40ee-97f0-0ec19b1160fa" />
+  <Execution id="f2a407b0-eb18-4180-b32b-1765f8bb624c" />
   <TestLinks>
     <TestLink id="983457de-ab4f-7a0a-eeb5-2a27aa8680c8" name="VorgangVarsSetzen" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="e1855d05-b05e-1cc2-9101-f8ce799732e9" name="buchVorgang_Create" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -23,5 +23,6 @@
     <TestLink id="9489f2c1-ea5b-8aa7-dbed-7734542e1c6d" name="OpenAusdruck_inWord_XMLTest_AU" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="b85d3d43-ad3a-7873-597d-f03a556ae6de" name="VorgangKonvertierenTest_AR_LI" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="7c9a2de7-08b7-009d-7ccc-5882a0236023" name="OpenAusdruck_inWord_XMLTest_LI" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="2d0fe0fb-e098-a157-1891-c7cbec875226" name="OpenAusdruck_inWord_OUTLOOK_XMLTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>

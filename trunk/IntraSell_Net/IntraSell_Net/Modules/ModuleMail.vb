@@ -42,11 +42,8 @@ Module ModuleMail
         If cBody <> "" Then objOutlookMsg.Body = cBody
         If cBodyHTML <> "" Then objOutlookMsg.htmlBody = cBodyHTML
 
-        If SofortSenden Then
-            On Error Resume Next
+        If SofortSenden Then 
             objOutlookMsg.send()
-            On Error GoTo 0
-
             objOutlook = Nothing
         End If
 

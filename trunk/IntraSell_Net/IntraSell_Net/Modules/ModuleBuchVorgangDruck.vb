@@ -518,7 +518,7 @@ Module ModuleBuchVorgangDruck
     Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
         Dim Email As String
         Dim rsEmail As MySqlDataReader
-        Dim sql
+        Dim sql As String
 
         sql = "select Email from ofAdressen where idnr in (select KundNr from " & getVorgangTableForType(VorgangTyp) & " WHERE Typ ='" & VorgangTyp & "' and Nummer = " & VorgangNummer & ")"
 
