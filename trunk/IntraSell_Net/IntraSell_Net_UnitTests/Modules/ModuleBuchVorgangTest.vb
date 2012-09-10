@@ -58,13 +58,13 @@ Public Class ModuleBuchVorgangTest
     '
     <TestMethod()> _
     Public Sub VorgangVarsSetzen()
-        FunctionsVars.SetVarValue("letzteAngebotNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteAuftragNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteRechnungsNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteLieferscheinNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteRetourwarenNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteGutschriftNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteLieferantAuftragNummer", "2012001")
+        FunctionsVars.SetVarValue("letzteAngebotNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteAuftragNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteRechnungsNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteLieferscheinNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteRetourwarenNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteGutschriftNummer", "2012000")
+        FunctionsVars.SetVarValue("letzteLieferantAuftragNummer", "2012000")
 
         FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AN", "c:\temp\Angebote\")
         FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AU", "c:\temp\Auftraege\")

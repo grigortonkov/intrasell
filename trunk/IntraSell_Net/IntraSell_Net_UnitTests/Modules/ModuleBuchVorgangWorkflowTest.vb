@@ -69,7 +69,7 @@ Public Class ModuleBuchVorgangWorkflowTest
         Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AN_1
         Dim KundNr As Integer = 100
 
-        Dim expected As String = "2012002"
+        Dim expected As String = buchvorgangTableAdapterTest.VORGANG_NUMMER_AU_1
         Dim actual As String
         actual = ModuleBuchVorgang.VorgangKonvertieren(VorgangTyp, VorgangTypTo, VorgangNummer, KundNr)
         Assert.AreEqual(expected, actual)
@@ -87,10 +87,10 @@ Public Class ModuleBuchVorgangWorkflowTest
 
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AU_1
         Dim VorgangTypTo As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AN_1
+        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AU_1
         Dim KundNr As Integer = 100
 
-        Dim expected As String = "2012002"
+        Dim expected As String = "2012003"
         Dim actual As String
         actual = ModuleBuchVorgang.VorgangKonvertieren(VorgangTyp, VorgangTypTo, VorgangNummer, KundNr)
         Assert.AreEqual(expected, actual)
@@ -111,7 +111,7 @@ Public Class ModuleBuchVorgangWorkflowTest
         Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2
         Dim KundNr As Integer = 100
 
-        Dim expected As String = "2012002"
+        Dim expected As String = buchvorgangTableAdapterTest.VORGANG_NUMMER_LI_1
         Dim actual As String
         actual = ModuleBuchVorgang.VorgangKonvertieren(VorgangTyp, VorgangTypTo, VorgangNummer, KundNr)
         Assert.AreEqual(expected, actual)

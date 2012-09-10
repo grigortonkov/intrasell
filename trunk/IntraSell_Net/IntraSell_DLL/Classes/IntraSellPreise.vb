@@ -468,12 +468,12 @@ Public Class IntraSellPreise
                 sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
-                      " WHERE Nummer = " & VorgangNummerVon
+                      " WHERE Typ='" & VorgangTypVon & "' and Nummer = " & VorgangNummerVon
             Else
                 sql = "INSERT INTO " & tableNameTo & " ( Nummer, Typ, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedruckt, abgeschlossen, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
                       " SELECT " & nextRechnungNummer & ", '" & VorgangTypNach & "' , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedingung, TransportMethode, Zahlungsmethode, KundNr2, '" & VorgangTypVon & VorgangNummerVon & "', SummeMWST, SummeBrutto " & _
                       " FROM " & tableNameFrom & _
-                      " WHERE Nummer = " & VorgangNummerVon
+                      " WHERE Typ='" & VorgangTypVon & "' and Nummer = " & VorgangNummerVon
             End If
 
             RunSQL(sql)
@@ -504,9 +504,9 @@ Public Class IntraSellPreise
 
             'set where the vorgang goes to
             sql = "UPDATE " & tableNameFrom & " SET Wohin = '" & VorgangTypNach & nextRechnungNummer & "'" & _
-                    " WHERE Nummer = " & VorgangNummerVon
+                    " WHERE Typ='" & VorgangTypVon & "' and Nummer = " & VorgangNummerVon
             'response.write SQL
-            Call openRecordset_(sql, "")
+            RunSQL(sql)
             'response.write "Converting was OK!"
             If benutzeTransaktion Then
                 'CurrentDB.CommitTrans()
@@ -681,6 +681,7 @@ Public Class IntraSellPreise
             If Not rs.Read Then
                 getNewVorgangNummer = CStr(CInt(letzteNummer) + 1)
             Else 'wieder erhöhen
+                rs.Close()
                 getNewVorgangNummer = getNewVorgangNummer(Typ, IdNr)
             End If
             rs.Close()
