@@ -186,20 +186,32 @@ Public Class Vorgang
 
 
     Private Sub VorlageeditierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlageeditierenToolStripMenuItem.Click
-        DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE, False)
+        Try
+            DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE, False)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
 
     Private Sub AusdruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
-        Print(sender)
+        Try
+            Print(sender)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
 
     Public Sub Print(sender As Object) Implements InterfacePrintable.Print
-        'Start printing for the Vorgang 
-        'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
-        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, "WORD", False, Nothing)
-        Me.AusgedrucktCheckBox.Checked = True
+        Try
+            'Start printing for the Vorgang 
+            'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
+            OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, ModuleBuchVorgangXML.VIEWER_WORD, False, Nothing)
+            Me.AusgedrucktCheckBox.Checked = True
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
     Private Sub CheckAbgeschlossen()
@@ -384,7 +396,7 @@ Public Class Vorgang
     End Sub
 
     Private Sub ExportierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
-        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Nothing, "XML", False, Nothing)
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Nothing, ModuleBuchVorgangXML.VIEWER_XML, False, Nothing)
     End Sub
 
     Private Sub KonvertierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
@@ -405,7 +417,9 @@ Public Class Vorgang
 
 
     Private Sub SendeEmailToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
-        Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
+        'Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
+
     End Sub
 
     Private Sub KassaBuchungToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KassaBuchungToolStripMenuItem.Click
@@ -493,7 +507,7 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub btnKassa_Click()
-        Dim tr As MySqlTransaction
+        Dim tr As MySqlTransaction = Nothing
         Try
 
             Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
