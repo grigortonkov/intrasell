@@ -1,6 +1,8 @@
 ﻿Option Strict Off
 Option Explicit On
 
+Imports System.IO
+
 Module ModuleDOS
 
 
@@ -41,6 +43,8 @@ Module ModuleDOS
         Application.UseWaitCursor = False
     End Sub
 
+    ' Renames the file
+    ' ceates the folder of the new filename if not existing 
 
     Public Sub RenameFile(ByVal oldfilename As String, ByVal newfilename As String)
         'FileSystem.Rename(oldfilename, newfilename)
@@ -53,7 +57,17 @@ Module ModuleDOS
             HandleAppError(ex)
         End Try
         Threading.Thread.Sleep(3000) 'warte 3 sek. bis die datei von ms word freigegeben wurde 
-        Call fs.MoveFile(oldfilename, newfilename)
+        Try
+            Call fs.MoveFile(oldfilename, newfilename)
+        Catch ex As System.IO.DirectoryNotFoundException 'cannot move because the folder doesnt exist 
+
+            Dim directoryName As String = Path.GetDirectoryName(newfilename)
+            If directoryName.Length > 0 Then
+                Directory.CreateDirectory(directoryName)
+            End If
+
+            Call fs.MoveFile(oldfilename, newfilename)
+        End Try
     End Sub
 
 

@@ -29,7 +29,7 @@ Public Class buchvorgangTableAdapterTest
     Public Const VORGANG_TYP_AN_1 As String = "AN"
 
     Public Const VORGANG_NUMMER_AU_1 As String = "2012001"
-    Public Const VORGANG_TYP_AU_1 As String = "AN"
+    Public Const VORGANG_TYP_AU_1 As String = "AU"
 
     Public Const VORGANG_NUMMER_LI_1 As String = "2012001"
     Public Const VORGANG_TYP_LI_1 As String = "LI"

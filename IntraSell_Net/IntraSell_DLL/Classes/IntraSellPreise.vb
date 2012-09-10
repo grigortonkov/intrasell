@@ -657,7 +657,7 @@ Public Class IntraSellPreise
             rs.Close()
             'End If
             rs = openRecordset("select * from " & getVorgangTableForType(Typ) & _
-             "  where nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc")
+             "  where typ ='" & Typ & "' and nummer>=" & von & " AND nummer<= " & bis & " order by nummer desc")
             'rs.Sort = "nummer"
             'Set rs = rs.openRecordset()
             If Not rs.Read Then
@@ -677,7 +677,7 @@ Public Class IntraSellPreise
             Call vars.SetVarValue(vname, CInt(letzteNummer) + 1)
 
             'prüfen ob die Nummer besetzt ist
-            rs = openRecordset("select * from " & getVorgangTableForType(Typ) & " where nummer =" & CStr(CInt(letzteNummer) + 1))
+            rs = openRecordset("select * from " & getVorgangTableForType(Typ) & " where typ ='" & Typ & "' and nummer =" & CStr(CInt(letzteNummer) + 1))
             If Not rs.Read Then
                 getNewVorgangNummer = CStr(CInt(letzteNummer) + 1)
             Else 'wieder erhöhen
