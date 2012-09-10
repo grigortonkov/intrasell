@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<OrderedTest name="1.DBSetup" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\1.dbsetup.orderedtest" id="d5cd304e-5669-4150-9577-c359afd1d150" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<OrderedTest name="1.dbsetup" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\1.dbsetup.orderedtest" id="d5cd304e-5669-4150-9577-c359afd1d150" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Execution id="e089b66c-ab45-4b7b-a4e3-a58e3c143e82" />
   <TestLinks>
     <TestLink id="280c38c2-2434-0c2b-305c-f490efb3c052" name="KillMySQL" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -13,5 +13,6 @@
     <TestLink id="6f14aab6-5bc9-fddc-923e-783bd21a7aa1" name="ofAdressen_InsertUpdateTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="1341ed13-dca4-0905-5811-2e2b8a1137fe" name="OpenRecordsetTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="7888d8cc-ecec-33fd-bfad-694c1c5b57b0" name="OpenRecordsetInMemoryTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="9938dbce-64a9-3d3e-cc5e-6ff9ffeecc91" name="RenameFileTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>

@@ -15,6 +15,25 @@ Imports IntraSell_DLL
 <TestClass()> _
 Public Class buchvorgangTableAdapterTest
 
+    Public Const VORGANG_NUMMER_AR_1 As String = "2012001"
+    Public Const VORGANG_TYP_AR_1 As String = "AR"
+
+    Public Const VORGANG_NUMMER_AR_2 As String = "2012002"
+    Public Const VORGANG_TYP_AR_2 As String = "AR"
+
+    Public Const VORGANG_NUMMER_AR_3 As String = "2012003"
+    Public Const VORGANG_TYP_AR_3 As String = "AR"
+
+
+    Public Const VORGANG_NUMMER_AN_1 As String = "2012001"
+    Public Const VORGANG_TYP_AN_1 As String = "AN"
+
+    Public Const VORGANG_NUMMER_AU_1 As String = "2012001"
+    Public Const VORGANG_TYP_AU_1 As String = "AN"
+
+    Public Const VORGANG_NUMMER_LI_1 As String = "2012001"
+    Public Const VORGANG_TYP_LI_1 As String = "LI"
+
 
     Private testContextInstance As TestContext
 
@@ -77,8 +96,8 @@ Public Class buchvorgangTableAdapterTest
 
         Dim r As IntraSell_Net.dsVorgaenge.buchvorgangRow = DsVorgaenge.buchvorgang.NewRow()
 
-        r.Nummer = "1000000"
-        r.Typ = "AR"
+        r.Nummer = VORGANG_NUMMER_AR_1
+        r.Typ = VORGANG_TYP_AR_1
         r.Datum = Date.Today
         r.Bezahlt = 0
         r.Ausgedruckt = 0
@@ -122,6 +141,73 @@ Public Class buchvorgangTableAdapterTest
 
         'BuchvorgangBindingSource.EndEdit()
         'Buchvorgang_artikelBindingSource.EndEdit()
+
+        tam.UpdateAll(DsVorgaenge)
+
+        t.Update(DsVorgaenge)
+        ta.Update(DsVorgaenge)
+
+        'tr.Commit()
+
+    End Sub
+
+    <TestMethod()> _
+    Sub buchVorgang_Create_AN()
+        Dim tam As IntraSell_Net.dsVorgaengeTableAdapters.TableAdapterManager = New IntraSell_Net.dsVorgaengeTableAdapters.TableAdapterManager()
+        tam.Connection = IntraSell_DLL.FunctionsDB.CurrentDB
+ 
+        Dim t As buchvorgangTableAdapter = New buchvorgangTableAdapter() ' TODO: Initialize to an appropriate value
+        Dim ta As buchvorgang_artikelTableAdapter = New buchvorgang_artikelTableAdapter() ' TODO: Initialize to an appropriate value
+
+        Dim DsVorgaenge As IntraSell_Net.dsVorgaenge = New IntraSell_Net.dsVorgaenge()
+
+
+        t.Fill(DsVorgaenge.buchvorgang)
+        ta.Fill(DsVorgaenge._buchvorgang_artikel)
+
+        Dim r As IntraSell_Net.dsVorgaenge.buchvorgangRow = DsVorgaenge.buchvorgang.NewRow()
+
+        r.Nummer = VORGANG_NUMMER_AN_1
+        r.Typ = VORGANG_TYP_AN_1
+        r.Datum = Date.Today
+        r.Bezahlt = 0
+        r.Ausgedruckt = 0
+        r.Abgeschlossen = 0
+
+        r.KundNr = 100
+        r.Summe = 3000
+        r.SummeMWST = 600
+        r.SummeBrutto = 3600
+
+
+        Dim rp As IntraSell_Net.dsVorgaenge._buchvorgang_artikelRow = DsVorgaenge._buchvorgang_artikel.NewRow()
+        rp.ID = 1
+        rp.Typ = r.Typ
+        rp.Stk = 1
+        rp.Nummer = r.Nummer
+        rp.ArtNr = 100
+        rp.Bezeichnung = "Erste Position f. Angebot"
+        rp.Preis_Netto = 1000
+        rp.MWST = 200
+        rp.Preis_Brutto = 1200
+
+        Dim rp1 As IntraSell_Net.dsVorgaenge._buchvorgang_artikelRow = DsVorgaenge._buchvorgang_artikel.NewRow()
+        rp1.ID = 2
+        rp1.Typ = r.Typ
+        rp1.Stk = 2
+        rp1.Nummer = r.Nummer
+        rp1.ArtNr = 101
+        rp1.Bezeichnung = "Zweite Position f. Angebot"
+        rp1.Preis_Netto = 2000
+        rp1.MWST = 400
+        rp1.Preis_Brutto = 2400
+
+
+        DsVorgaenge.buchvorgang.AddbuchvorgangRow(r)
+        DsVorgaenge._buchvorgang_artikel.Rows.Add(rp)
+        DsVorgaenge._buchvorgang_artikel.Rows.Add(rp1)
+        DsVorgaenge.WriteXml("c:\test.xml")
+
 
         tam.UpdateAll(DsVorgaenge)
 

@@ -1,15 +1,16 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-Imports IntraSell_DLL
+Imports System.IO
+
 
 
 '''<summary>
-'''This is a test class for ModuleBuchVorgangDruckTest and is intended
-'''to contain all ModuleBuchVorgangDruckTest Unit Tests
+'''This is a test class for ModuleDOSTest and is intended
+'''to contain all ModuleDOSTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class ModuleBuchVorgangDruckTest
+Public Class ModuleDOSTest
 
 
     Private testContextInstance As TestContext
@@ -23,7 +24,7 @@ Public Class ModuleBuchVorgangDruckTest
             Return testContextInstance
         End Get
         Set(value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -32,11 +33,9 @@ Public Class ModuleBuchVorgangDruckTest
     'You can use the following additional attributes as you write your tests:
     '
     'Use ClassInitialize to run code before running the first test in the class
-    <ClassInitialize()> _
-    Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
-        FunctionsDB.CurrentDB = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
-        ModuleCommons.appPath = "z:\Business\IntraSell_System\IntraSell_Net\IntraSell_Net\bin\Debug\"
-    End Sub
+    '<ClassInitialize()>  _
+    'Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
+    'End Sub
     '
     'Use ClassCleanup to run code after all tests in a class have run
     '<ClassCleanup()>  _
@@ -57,14 +56,22 @@ Public Class ModuleBuchVorgangDruckTest
 
 
     '''<summary>
-    '''A test for OpenAusdruck_inWord_Filename
+    '''A test for RenameFile
     '''</summary>
     <TestMethod()> _
-    Public Sub OpenAusdruck_inWord_FilenameTest()
-        Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
-        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim Dateiname As String = "Vorlagen\Vorlage_Rechnung.rtf"
-        ModuleBuchVorgangDruck.OpenAusdruck_inWord_Filename(VorgangTyp, VorgangNummer, Dateiname, True)
+    Public Sub RenameFileTest()
+        Dim oldfilename As String = "C:\file1.txt"
+        Dim newfilename As String = "C:\temp\subfolder\file2.txt"
+
+        'Create File as preparation 
+        Dim f As StreamWriter = New StreamWriter(oldfilename)
+        f.Write("nothing")
+        f.Close()
+
+
+        ModuleDOS.RenameFile(oldfilename, newfilename)
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+
+        File.Delete(newfilename)
     End Sub
 End Class
