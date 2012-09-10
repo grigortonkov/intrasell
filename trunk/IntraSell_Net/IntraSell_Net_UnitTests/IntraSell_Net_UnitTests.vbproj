@@ -107,6 +107,8 @@
     <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
     <Compile Include="DLL\FunctionsVarsTest.vb" />
     <Compile Include="DLL\IntraSellPreiseTest.vb" />
+    <Compile Include="DLL\ModuleDOSTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangWorkflowTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />

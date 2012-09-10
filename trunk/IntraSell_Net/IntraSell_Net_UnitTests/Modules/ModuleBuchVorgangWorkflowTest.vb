@@ -1,7 +1,6 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-Imports IntraSell_DLL
 
 
 
@@ -10,7 +9,7 @@ Imports IntraSell_DLL
 '''to contain all ModuleBuchVorgangTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class ModuleBuchVorgangTest
+Public Class ModuleBuchVorgangWorkflowTest
 
 
 
@@ -25,7 +24,7 @@ Public Class ModuleBuchVorgangTest
             Return testContextInstance
         End Get
         Set(value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -55,38 +54,24 @@ Public Class ModuleBuchVorgangTest
     '
 #End Region
 
-    '
-    <TestMethod()> _
-    Public Sub VorgangVarsSetzen()
-        FunctionsVars.SetVarValue("letzteAngebotNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteAuftragNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteRechnungsNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteLieferscheinNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteRetourwarenNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteGutschriftNummer", "2012001")
-        FunctionsVars.SetVarValue("letzteLieferantAuftragNummer", "2012001")
-
-        FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AN", "c:\temp\Angebote\")
-        FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AU", "c:\temp\Auftraege\")
-        FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AR", "c:\temp\Rechnungen\")
-        FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_LI", "c:\temp\Lieferschein\")
-    End Sub
-
-
-
+ 
     '''<summary>
-    '''A test for VorgangAbschliessen
+    '''A test for VorgangStorno
     '''</summary>
     <TestMethod()> _
-    Public Sub VorgangAbschliessenTest()
+    Public Sub VorgangKonvertierenTest_AN_AU()
         If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
             IntraSell_DLL.FunctionsDB.CurrentDB.Open()
         End If
-        Dim Typ As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
 
-        Dim expected As Boolean = True
-        Dim actual As Boolean
-        actual = ModuleBuchVorgang.VorgangAbschliessen(Typ, buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1, True)
+        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AN_1
+        Dim VorgangTypTo As String = buchvorgangTableAdapterTest.VORGANG_TYP_AU_1
+        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AN_1
+        Dim KundNr As Integer = 100
+
+        Dim expected As String = "2012002"
+        Dim actual As String
+        actual = ModuleBuchVorgang.VorgangKonvertieren(VorgangTyp, VorgangTypTo, VorgangNummer, KundNr)
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -95,33 +80,35 @@ Public Class ModuleBuchVorgangTest
     '''A test for VorgangStorno
     '''</summary>
     <TestMethod()> _
-    Public Sub VorgangStornoTest()
+    Public Sub VorgangKonvertierenTest_AU_AR()
         If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
             IntraSell_DLL.FunctionsDB.CurrentDB.Open()
         End If
 
-        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
-        Dim expected As Boolean = True
-        Dim actual As Boolean
-        actual = ModuleBuchVorgang.VorgangStorno(VorgangTyp, VorgangNummer, True)
-        Assert.AreEqual(expected, actual)
-        'Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-
-    '''<summary>
-    '''A test for VorgangStorno
-    '''</summary>
-    <TestMethod()> _
-    Public Sub VorgangKonvertierenTest()
-        If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
-            IntraSell_DLL.FunctionsDB.CurrentDB.Open()
-        End If
-
-        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
+        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AU_1
         Dim VorgangTypTo As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
+        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AN_1
+        Dim KundNr As Integer = 100
+
+        Dim expected As String = "2012002"
+        Dim actual As String
+        actual = ModuleBuchVorgang.VorgangKonvertieren(VorgangTyp, VorgangTypTo, VorgangNummer, KundNr)
+        Assert.AreEqual(expected, actual)
+        'Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for VorgangStorno
+    '''</summary>
+    <TestMethod()> _
+    Public Sub VorgangKonvertierenTest_AR_LI()
+        If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
+            IntraSell_DLL.FunctionsDB.CurrentDB.Open()
+        End If
+
+        Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_2
+        Dim VorgangTypTo As String = buchvorgangTableAdapterTest.VORGANG_TYP_LI_1
+        Dim VorgangNummer As Integer = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2
         Dim KundNr As Integer = 100
 
         Dim expected As String = "2012002"
