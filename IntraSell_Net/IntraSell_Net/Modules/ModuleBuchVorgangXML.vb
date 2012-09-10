@@ -6,10 +6,10 @@ Imports GriTon.XML2Word
 
 Module ModuleBuchVorgangXML
 
-    Const VIEWER_WORD As String = "WORD"
-    Const VIEWER_XML As String = "XML"
-    Const VIEWER_OUTLOOK As String = "OUTLOOK"
-    Const VIEWER_PDF As String = "PDF"
+    Public Const VIEWER_WORD As String = "WORD"
+    Public Const VIEWER_XML As String = "XML"
+    Public Const VIEWER_OUTLOOK As String = "OUTLOOK"
+    Public Const VIEWER_PDF As String = "PDF"
 
     Function XML2WORD() As String
         XML2WORD = dbFolder & "..\components\XML2WordGT\TestXML2Word.exe"

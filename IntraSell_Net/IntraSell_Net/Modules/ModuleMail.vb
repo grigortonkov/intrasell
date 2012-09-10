@@ -22,12 +22,12 @@ Module ModuleMail
 
         'create object
         objOutlookMsg = objOutlook.createitem(0)
-        objOutlookRecip = objOutlookMsg.recipients
+        'objOutlookRecip = objOutlookMsg.Recipients
         objOutlookAttach = objOutlookMsg.Attachments
 
         objOutlookMsg.display()
         If cName <> "" Then
-            objOutlookRecip.Add(cName)
+            objOutlookMsg.Recipients.Add(cName)
         End If
 
         If cAttach <> "" Then

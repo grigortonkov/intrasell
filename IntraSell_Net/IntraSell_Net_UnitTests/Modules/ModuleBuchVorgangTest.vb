@@ -70,6 +70,9 @@ Public Class ModuleBuchVorgangTest
         FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AU", "c:\temp\Auftraege\")
         FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_AR", "c:\temp\Rechnungen\")
         FunctionsVars.SetVarValue("SPEICHERPLATZ_VORGANG_LI", "c:\temp\Lieferschein\")
+
+        FunctionsVars.SetVarValue("XMLVIEWER", "notepad.exe")
+
     End Sub
 
 

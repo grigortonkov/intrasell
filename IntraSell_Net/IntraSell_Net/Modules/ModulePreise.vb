@@ -46,12 +46,27 @@ Module ModulePreise
         getBestLieferant = IntraSellPreise.getBestLieferant(ArtNr)
     End Function
 
+
     ' Call the DLL
     Public Function getDruckForType(ByVal Typ As String) As String
 
         'getDruckForType = IntraSellPreise.getDruckForType(Typ)
         getDruckForType = CStr(firstRow("select Druckbezeichnung from buchVorgangTyp where Typ='" & Typ & "'"))
         'Boote Marian - unterstützung für Akonto und Schlussrechnung
+        '        qryBuchRechAkonto()
+        '            SELECT 'AR' AS VorgangTyp, qryBuchRech.Nummer, akonto.Nummer AS AkontoNummer, akonto.Datum AS AkontoDatum, akonto.Summe, akonto.SummeMWST, akonto.SummeBrutto, qryBuchRech.Wohin, qryBuchRech.SummeATS-akonto.Summe AS RestSumme, qryBuchRech.SummeATSBrutto-qryBuchRech.SummeATS-akonto.Summemwst AS RestMWST, qryBuchRech.SummeATSBrutto-akonto.SummeBrutto AS RestBrutto
+        'FROM qryBuchRech, buchRechnung AS akonto
+        'GROUP BY 'AR', qryBuchRech.Nummer, akonto.Nummer, akonto.Datum, akonto.Summe, akonto.SummeMWST, akonto.SummeBrutto, qryBuchRech.Wohin, qryBuchRech.SummeATS-akonto.Summe, qryBuchRech.SummeATSBrutto-qryBuchRech.SummeATS-akonto.Summemwst, qryBuchRech.SummeATSBrutto-akonto.SummeBrutto
+        'HAVING (((qryBuchRech.Wohin)="AR" & [akonto].[Nummer]));
+
+        'qryBuchRech
+        '            SELECT 'AR' AS VorgangTyp, ofAdressen.Idnr, ofAdressen.Name & " " & ofAdressen.Vorname AS Namen, ofAdressen.Firma, ofAdressen.Adresse, buchRechnung.Nummer, [grPLZ].[plz] & " " & [grPLZ].[ort] AS plzort, Sum([Stk]*[PreisATS]) AS summeATS, Sum([Stk]*[PreisATS_Brutto]) AS summeATSBrutto, buchRechnung.Datum, First(buchRechnung.Notiz) AS Notiz, Sum([Stk]*[PreisEuro]) AS summeEuro, buchRechnung.KundNr, buchRechnung.ZahlungsBedungung, buchRechnung.Zahlungsmethode, buchRechnung.TransportMethode, buchRechnung.Woher, buchRechnung.Wohin, ofAdressen.Anrede, ofAdressen.Anrede+" " & ofAdressen.Titel AS AnredeTitel, getLand(ofAdressen.Idnr) AS land, getUID(ofAdressen.idnr) AS uid, ofAdressen.Tel, ofAdressen.Email, buchRechnung.KundNr2
+        'FROM ((ofAdressen RIGHT JOIN buchRechnung ON ofAdressen.IDNR = buchRechnung.KundNr) LEFT JOIN grPLZ ON ofAdressen.PLZ = grPLZ.IdNr) INNER JOIN [buchRech-Artikel] ON buchRechnung.Nummer = [buchRech-Artikel].RechNr
+        'WHERE (((buchRechnung.[nummer])=3002))
+        'GROUP BY 'AR', ofAdressen.Idnr, ofAdressen.Name & " " & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, buchRechnung.Nummer, [grPLZ].[plz] & " " & [grPLZ].[ort], buchRechnung.Datum, buchRechnung.KundNr, buchRechnung.ZahlungsBedungung, buchRechnung.Zahlungsmethode, buchRechnung.TransportMethode, buchRechnung.Woher, buchRechnung.Wohin, ofAdressen.Anrede, ofAdressen.Anrede+" " & ofAdressen.Titel, getLand(ofAdressen.Idnr), getUID(ofAdressen.idnr), ofAdressen.Tel, ofAdressen.Email, buchRechnung.KundNr2, buchRechnung.Notiz;
+
+        Exit Function
+        'TODO: Logik für Akonto und SChlussrechnung ist noch offen 
         If CStr(firstRow("select 1 from qryBuchRechAkonto")) = "1" Then
             Return "Schuss-" & getDruckForType
             Exit Function
