@@ -176,7 +176,7 @@ Public Class ModuleBuchVorgangXMLTest
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
 
-        Dim expected As String = "c:\Vorgang_" & VorgangTyp & VorgangNummer & ".doc" ' TODO: Initialize to an appropriate value
+        Dim expected As String = FunctionsVars.VarValue("SPEICHERPLATZ_VORGANG_AR") & "Vorgang_" & VorgangTyp & VorgangNummer & ".doc" ' TODO: Initialize to an appropriate value
         Dim actual As String
         actual = ModuleBuchVorgangXML.OpenAusdruck_inWord_XML(VorgangTyp, VorgangNummer, VorlageFilename, Viewer, SofortSenden, MailText)
 
