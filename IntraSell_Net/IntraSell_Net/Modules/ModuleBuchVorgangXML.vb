@@ -118,7 +118,7 @@ Module ModuleBuchVorgangXML
 
             xml = xml & "<Vorgang>"
 
-            xml = xml + QueryToXML("select * from " & VonForm & " anf where anf.Nummer=" & VorgangNummer & " and Typ = '" & VorgangTyp & "'")
+            xml = xml + QueryToXML("select * from " & VonForm & " anf, buchVorgangTyp vt where vt.Typ = anf.Typ and anf.Nummer=" & VorgangNummer & " and anf.Typ = '" & VorgangTyp & "'")
 
             'xml = xml + QueryToXML("select adr.* from " & VonForm & " a, qry_Adressfelder adr " & _
             '            " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer, "Kunde")

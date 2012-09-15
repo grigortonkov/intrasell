@@ -15,7 +15,7 @@ Public Class Vorgang
     Const COL_MWST_INDEX As Integer = 9
     Const COL_EKPREIS_INDEX As Integer = 10
 
-    Const DEFAULT_WORD_VORLAGE As String = "Vorlagen/17. Rechnung.dot"
+    Const DEFAULT_WORD_VORLAGE As String = "Vorlagen/Vorgang.dot"
 
     Public Property summeNetto As Integer
         Get
