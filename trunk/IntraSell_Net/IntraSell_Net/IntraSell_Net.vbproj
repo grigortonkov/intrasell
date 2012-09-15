@@ -525,6 +525,9 @@
     <None Include="Vorlagen\9. VERKAUFSVERTRAG NICHT EU.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Vorlagen\Vorgang.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Vorlagen\Vorlage_AuftragBestaetigung.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
