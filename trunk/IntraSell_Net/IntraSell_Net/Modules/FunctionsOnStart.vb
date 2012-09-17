@@ -16,11 +16,9 @@ Module FunctionsOnStart
     Public Sub StartIntraSell()
 
         'check if DB connected
-        Dim rs As MySqlDataReader
         Try
+            Dim rs As MySqlDataReader
             rs = openRecordset("select 1 from ofVars")
-            'DoCmd.OpenTable "ofVars", acViewNormal, acReadOnly
-            'DoCmd.Close acTable, "ofvars"
             rs.Close()
         Catch ex As Exception
             'Debug.Print err.Number
@@ -68,6 +66,7 @@ Module FunctionsOnStart
         Call checkBranche()
         '   DoCmd.OpenForm "TreeView" 'programm start formular
 
+        Call CheckUpdates()
     End Sub
 
 
