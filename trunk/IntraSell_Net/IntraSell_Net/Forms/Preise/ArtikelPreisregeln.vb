@@ -5,8 +5,10 @@ Public Class ArtikelPreisregeln
     Private Sub ArtikelPreise_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
         Try
+            'TODO: This line of code loads data into the 'DsPreise._grartikel_vkpreisperselection' table. You can move, or remove it, as needed.
+            Me.Grartikel_vkpreisperselectionTableAdapter.Fill(Me.DsPreise._grartikel_vkpreisperselection)
 
-            Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
+            'Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
 
             Me.ArtKatNrComboBox.Text = ""
@@ -81,9 +83,9 @@ Public Class ArtikelPreisregeln
             'End If
 
             If Not filter Is Nothing Then
-                GrArtikellisteBindingSource.Filter = filter
+                GrartikelvkpreisperselectionBindingSource.Filter = filter
             Else
-                GrArtikellisteBindingSource.Filter = Nothing
+                GrartikelvkpreisperselectionBindingSource.Filter = Nothing
             End If
 
         Catch ex As Exception

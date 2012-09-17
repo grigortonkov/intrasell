@@ -12,7 +12,7 @@ Public Class VorgangListe
 
             FillComboBox(Me.LandComboBox, "SELECT Name from grLand Order by Name", "Name")
             FillComboBox(Me.KundengruppeComboBox, "SELECT Gruppe from `ofAdressen-Kundengruppen` Order by Gruppe", "Gruppe")
-            FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY  PreislisteName;", "PreislisteName")
+            FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName;", "PreislisteName")
             'Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
 
             Me.TypComboBox.Text = ""

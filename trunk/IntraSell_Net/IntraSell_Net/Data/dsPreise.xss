@@ -14,18 +14,6 @@
     <Shape ID="DesignTable:ofadressen" ZOrder="8" X="906" Y="85" Height="305" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_grartikel_grartikel-vkpreisperselection" ZOrder="11" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>394</X>
-          <Y>282</Y>
-        </Point>
-        <Point>
-          <X>465</X>
-          <Y>282</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_grartikel_grartikel-vertriebskosten" ZOrder="10" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -42,18 +30,6 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_ofadressen_grartikel-vkpreisperselection" ZOrder="7" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>906</X>
-          <Y>336</Y>
-        </Point>
-        <Point>
-          <X>765</X>
-          <Y>336</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_grartikel-kategorien_grartikel-vkpreisperselection" ZOrder="6" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -67,6 +43,30 @@
         <Point>
           <X>475</X>
           <Y>470</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_ofadressen_grartikel-vkpreisperselection" ZOrder="7" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>906</X>
+          <Y>336</Y>
+        </Point>
+        <Point>
+          <X>765</X>
+          <Y>336</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_grartikel_grartikel-vkpreisperselection" ZOrder="11" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>394</X>
+          <Y>282</Y>
+        </Point>
+        <Point>
+          <X>465</X>
+          <Y>282</Y>
         </Point>
       </RoutePoints>
     </Connector>

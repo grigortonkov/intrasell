@@ -180,4 +180,13 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+    Private Sub PreisregelnToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PreisregelnToolStripMenuItem.Click
+        Try
+            ArtikelPreisregeln.MdiParent = Me
+            ArtikelPreisregeln.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
