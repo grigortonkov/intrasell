@@ -39,11 +39,11 @@ Partial Public Class dsPreise
     
     Private _relationFK_grartikel_grartikel_vertriebskosten As Global.System.Data.DataRelation
     
-    Private _relationFK_grartikel_kategorien_grartikel_vkpreisperselection As Global.System.Data.DataRelation
+    Private _relationFK_grartikel_grartikel_vkpreisperselection As Global.System.Data.DataRelation
     
     Private _relationFK_ofadressen_grartikel_vkpreisperselection As Global.System.Data.DataRelation
     
-    Private _relationFK_grartikel_grartikel_vkpreisperselection As Global.System.Data.DataRelation
+    Private _relationFK_grartikel_kategorien_grartikel_vkpreisperselection As Global.System.Data.DataRelation
     
     Private _relationFK_grartikel_grartikel_staffelpreise As Global.System.Data.DataRelation
     
@@ -325,9 +325,9 @@ Partial Public Class dsPreise
             End If
         End If
         Me._relationFK_grartikel_grartikel_vertriebskosten = Me.Relations("FK_grartikel_grartikel-vertriebskosten")
-        Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = Me.Relations("FK_grartikel-kategorien_grartikel-vkpreisperselection")
-        Me._relationFK_ofadressen_grartikel_vkpreisperselection = Me.Relations("FK_ofadressen_grartikel-vkpreisperselection")
         Me._relationFK_grartikel_grartikel_vkpreisperselection = Me.Relations("FK_grartikel_grartikel-vkpreisperselection")
+        Me._relationFK_ofadressen_grartikel_vkpreisperselection = Me.Relations("FK_ofadressen_grartikel-vkpreisperselection")
+        Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = Me.Relations("FK_grartikel-kategorien_grartikel-vkpreisperselection")
         Me._relationFK_grartikel_grartikel_staffelpreise = Me.Relations("FK_grartikel_grartikel-staffelpreise")
     End Sub
     
@@ -357,7 +357,7 @@ Partial Public Class dsPreise
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn})
         Me._tablegrartikel_vkpreisperselection.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
@@ -367,7 +367,7 @@ Partial Public Class dsPreise
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn})
         Me._tablegrartikel_vkpreisperselection.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
@@ -379,12 +379,12 @@ Partial Public Class dsPreise
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
         Me._relationFK_grartikel_grartikel_vertriebskosten = New Global.System.Data.DataRelation("FK_grartikel_grartikel-vertriebskosten", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vertriebskosten.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_vertriebskosten)
-        Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn}, false)
-        Me.Relations.Add(Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection)
-        Me._relationFK_ofadressen_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_ofadressen_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tableofadressen.IDNRColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.IDNRColumn}, false)
-        Me.Relations.Add(Me._relationFK_ofadressen_grartikel_vkpreisperselection)
         Me._relationFK_grartikel_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_vkpreisperselection)
+        Me._relationFK_ofadressen_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_ofadressen_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tableofadressen.IDNRColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.IDNRColumn}, false)
+        Me.Relations.Add(Me._relationFK_ofadressen_grartikel_vkpreisperselection)
+        Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn}, false)
+        Me.Relations.Add(Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection)
         Me._relationFK_grartikel_grartikel_staffelpreise = New Global.System.Data.DataRelation("FK_grartikel_grartikel-staffelpreise", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_staffelpreise.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_staffelpreise)
     End Sub
@@ -4003,12 +4003,12 @@ Partial Public Class dsPreise
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _grartikel_kategorienRow() As _grartikel_kategorienRow
+        Public Property grartikelRow() As grartikelRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_grartikel-kategorien_grartikel-vkpreisperselection")),_grartikel_kategorienRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_grartikel_grartikel-vkpreisperselection")),grartikelRow)
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_grartikel-kategorien_grartikel-vkpreisperselection"))
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_grartikel_grartikel-vkpreisperselection"))
             End Set
         End Property
         
@@ -4025,12 +4025,12 @@ Partial Public Class dsPreise
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property grartikelRow() As grartikelRow
+        Public Property _grartikel_kategorienRow() As _grartikel_kategorienRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_grartikel_grartikel-vkpreisperselection")),grartikelRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_grartikel-kategorien_grartikel-vkpreisperselection")),_grartikel_kategorienRow)
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_grartikel_grartikel-vkpreisperselection"))
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_grartikel-kategorien_grartikel-vkpreisperselection"))
             End Set
         End Property
         
@@ -7846,18 +7846,7 @@ Namespace dsPreiseTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `grartikel-vkpreisperselection` WHERE ((`Id` = @Original_Id) AND ((@I"& _ 
-                "sNull_Datum = 1 AND `Datum` IS NULL) OR (`Datum` = @Original_Datum)) AND ((@IsNu"& _ 
-                "ll_VKPreis = 1 AND `VKPreis` IS NULL) OR (`VKPreis` = @Original_VKPreis)) AND (("& _ 
-                "@IsNull_AufschlagVKPreis = 1 AND `AufschlagVKPreis` IS NULL) OR (`AufschlagVKPre"& _ 
-                "is` = @Original_AufschlagVKPreis)) AND ((@IsNull_AufschlagEKPreis = 1 AND `Aufsc"& _ 
-                "hlagEKPreis` IS NULL) OR (`AufschlagEKPreis` = @Original_AufschlagEKPreis)) AND "& _ 
-                "((@IsNull_PreislisteName = 1 AND `PreislisteName` IS NULL) OR (`PreislisteName` "& _ 
-                "= @Original_PreislisteName)) AND ((@IsNull_ArtKatNr = 1 AND `ArtKatNr` IS NULL) "& _ 
-                "OR (`ArtKatNr` = @Original_ArtKatNr)) AND ((@IsNull_ArtNr = 1 AND `ArtNr` IS NUL"& _ 
-                "L) OR (`ArtNr` = @Original_ArtNr)) AND ((@IsNull_IDNR = 1 AND `IDNR` IS NULL) OR"& _ 
-                " (`IDNR` = @Original_IDNR)) AND ((@IsNull_StkAb = 1 AND `StkAb` IS NULL) OR (`St"& _ 
-                "kAb` = @Original_StkAb)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `grartikel-vkpreisperselection`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Id = @Original_Id)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_Id"
@@ -7865,159 +7854,6 @@ Namespace dsPreiseTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "Id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Datum"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Datum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_VKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "VKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_VKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "VKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AufschlagVKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagVKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AufschlagVKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagVKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AufschlagEKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AufschlagEKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreislisteName"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreislisteName"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreislisteName"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "PreislisteName"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_StkAb"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "StkAb"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_StkAb"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "StkAb"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
@@ -8092,21 +7928,11 @@ Namespace dsPreiseTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `grartikel-vkpreisperselection` SET `Datum` = @Datum, `VKPreis` = @VKPreis"& _ 
-                ", `AufschlagVKPreis` = @AufschlagVKPreis, `AufschlagEKPreis` = @AufschlagEKPreis"& _ 
-                ", `PreislisteName` = @PreislisteName, `ArtKatNr` = @ArtKatNr, `ArtNr` = @ArtNr, "& _ 
-                "`IDNR` = @IDNR, `StkAb` = @StkAb WHERE ((`Id` = @Original_Id) AND ((@IsNull_Datu"& _ 
-                "m = 1 AND `Datum` IS NULL) OR (`Datum` = @Original_Datum)) AND ((@IsNull_VKPreis"& _ 
-                " = 1 AND `VKPreis` IS NULL) OR (`VKPreis` = @Original_VKPreis)) AND ((@IsNull_Au"& _ 
-                "fschlagVKPreis = 1 AND `AufschlagVKPreis` IS NULL) OR (`AufschlagVKPreis` = @Ori"& _ 
-                "ginal_AufschlagVKPreis)) AND ((@IsNull_AufschlagEKPreis = 1 AND `AufschlagEKPrei"& _ 
-                "s` IS NULL) OR (`AufschlagEKPreis` = @Original_AufschlagEKPreis)) AND ((@IsNull_"& _ 
-                "PreislisteName = 1 AND `PreislisteName` IS NULL) OR (`PreislisteName` = @Origina"& _ 
-                "l_PreislisteName)) AND ((@IsNull_ArtKatNr = 1 AND `ArtKatNr` IS NULL) OR (`ArtKa"& _ 
-                "tNr` = @Original_ArtKatNr)) AND ((@IsNull_ArtNr = 1 AND `ArtNr` IS NULL) OR (`Ar"& _ 
-                "tNr` = @Original_ArtNr)) AND ((@IsNull_IDNR = 1 AND `IDNR` IS NULL) OR (`IDNR` ="& _ 
-                " @Original_IDNR)) AND ((@IsNull_StkAb = 1 AND `StkAb` IS NULL) OR (`StkAb` = @Or"& _ 
-                "iginal_StkAb)))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       `grartikel-vkpreisperselection`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Datum = @Datum, "& _ 
+                "VKPreis = @VKPreis, AufschlagVKPreis = @AufschlagVKPreis, AufschlagEKPreis = @Au"& _ 
+                "fschlagEKPreis, PreislisteName = @PreislisteName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Art"& _ 
+                "KatNr = @ArtKatNr, ArtNr = @ArtNr, IDNR = @IDNR, StkAb = @StkAb"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (I"& _ 
+                "d = @Original_Id)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Datum"
@@ -8124,14 +7950,14 @@ Namespace dsPreiseTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AufschlagVKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "AufschlagVKPreis"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AufschlagEKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
+            param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
             param.IsNullable = true
             param.SourceColumn = "AufschlagEKPreis"
@@ -8140,6 +7966,7 @@ Namespace dsPreiseTableAdapters
             param.ParameterName = "@PreislisteName"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "PreislisteName"
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -8177,159 +8004,6 @@ Namespace dsPreiseTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "Id"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Datum"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Datum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_VKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "VKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_VKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "VKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AufschlagVKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagVKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AufschlagVKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagVKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AufschlagEKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AufschlagEKPreis"
-            param.DbType = Global.System.Data.DbType.[Double]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Double]
-            param.IsNullable = true
-            param.SourceColumn = "AufschlagEKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PreislisteName"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PreislisteName"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PreislisteName"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "PreislisteName"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtKatNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtKatNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_StkAb"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "StkAb"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_StkAb"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "StkAb"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
@@ -8409,71 +8083,8 @@ Namespace dsPreiseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer, ByVal Original_Datum As Global.System.Nullable(Of Date), ByVal Original_VKPreis As Global.System.Nullable(Of Decimal), ByVal Original_AufschlagVKPreis As Global.System.Nullable(Of Double), ByVal Original_AufschlagEKPreis As Global.System.Nullable(Of Double), ByVal Original_PreislisteName As String, ByVal Original_ArtKatNr As Global.System.Nullable(Of Integer), ByVal Original_ArtNr As Global.System.Nullable(Of Integer), ByVal Original_IDNR As Global.System.Nullable(Of Integer), ByVal Original_StkAb As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Id,Integer)
-            If (Original_Datum.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Datum.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (Original_VKPreis.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_VKPreis.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AufschlagVKPreis.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_AufschlagVKPreis.Value,Double)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AufschlagEKPreis.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_AufschlagEKPreis.Value,Double)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PreislisteName Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_PreislisteName,String)
-            End If
-            If (Original_ArtKatNr.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_ArtKatNr.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ArtNr.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_ArtNr.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IDNR.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_IDNR.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (Original_StkAb.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_StkAb.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8558,26 +8169,7 @@ Namespace dsPreiseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Datum As Global.System.Nullable(Of Date),  _
-                    ByVal VKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal AufschlagVKPreis As Global.System.Nullable(Of Double),  _
-                    ByVal AufschlagEKPreis As Global.System.Nullable(Of Double),  _
-                    ByVal PreislisteName As String,  _
-                    ByVal ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal ArtNr As Global.System.Nullable(Of Integer),  _
-                    ByVal IDNR As Global.System.Nullable(Of Integer),  _
-                    ByVal StkAb As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Id As Integer,  _
-                    ByVal Original_Datum As Global.System.Nullable(Of Date),  _
-                    ByVal Original_VKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_AufschlagVKPreis As Global.System.Nullable(Of Double),  _
-                    ByVal Original_AufschlagEKPreis As Global.System.Nullable(Of Double),  _
-                    ByVal Original_PreislisteName As String,  _
-                    ByVal Original_ArtKatNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ArtNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_IDNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_StkAb As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Update(ByVal Datum As Global.System.Nullable(Of Date), ByVal VKPreis As Global.System.Nullable(Of Decimal), ByVal AufschlagVKPreis As Global.System.Nullable(Of Decimal), ByVal AufschlagEKPreis As Global.System.Nullable(Of Decimal), ByVal PreislisteName As String, ByVal ArtKatNr As Global.System.Nullable(Of Integer), ByVal ArtNr As Global.System.Nullable(Of Integer), ByVal IDNR As Global.System.Nullable(Of Integer), ByVal StkAb As Global.System.Nullable(Of Integer), ByVal Original_Id As Integer) As Integer
             If (Datum.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Datum.Value,Date)
             Else
@@ -8589,12 +8181,12 @@ Namespace dsPreiseTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (AufschlagVKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(AufschlagVKPreis.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(AufschlagVKPreis.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (AufschlagEKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(AufschlagEKPreis.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(AufschlagEKPreis.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
@@ -8624,69 +8216,6 @@ Namespace dsPreiseTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
             Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Id,Integer)
-            If (Original_Datum.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Datum.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_VKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_VKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AufschlagVKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_AufschlagVKPreis.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AufschlagEKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_AufschlagEKPreis.Value,Double)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PreislisteName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PreislisteName,String)
-            End If
-            If (Original_ArtKatNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_ArtKatNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ArtNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_ArtNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IDNR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_IDNR.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            If (Original_StkAb.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_StkAb.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
-            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

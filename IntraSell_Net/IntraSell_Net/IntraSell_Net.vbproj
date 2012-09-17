@@ -115,6 +115,11 @@
     <Compile Include="Data\dsPLZ.vb">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsPreise.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPreise.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsStammdaten.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +244,12 @@
     </Compile>
     <Compile Include="Forms\Infrastructure\Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Preise\ArtikelPreisregeln.Designer.vb">
+      <DependentUpon>ArtikelPreisregeln.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Preise\ArtikelPreisregeln.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Vorgaenge\VorgangDruck.Designer.vb">
@@ -368,6 +379,9 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Preise\ArtikelPreisregeln.resx">
+      <DependentUpon>ArtikelPreisregeln.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vorgaenge\VorgangDruck.resx">
       <DependentUpon>VorgangDruck.vb</DependentUpon>
     </EmbeddedResource>
@@ -435,6 +449,17 @@
     </None>
     <None Include="Data\dsPLZ.xss">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPreise.xsc">
+      <DependentUpon>dsPreise.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPreise.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPreise.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsPreise.xss">
+      <DependentUpon>dsPreise.xsd</DependentUpon>
     </None>
     <None Include="Data\dsStammdaten.xsc">
       <DependentUpon>dsStammdaten.xsd</DependentUpon>
@@ -525,7 +550,7 @@
     <None Include="Vorlagen\9. VERKAUFSVERTRAG NICHT EU.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Vorlagen\Vorgang.dot">
+    <Content Include="Vorlagen\VORGANG.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Vorlagen\Vorlage_AuftragBestaetigung.rtf">
