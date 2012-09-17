@@ -7,7 +7,7 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="False" ViewPortX="57" ViewPortY="75" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:grartikel-vertriebskosten" ZOrder="2" X="436" Y="622" Height="267" Width="289" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="216" />
-    <Shape ID="DesignTable:grartikel-vkpreisperselection" ZOrder="8" X="505" Y="173" Height="267" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="216" />
+    <Shape ID="DesignTable:grartikel-vkpreisperselection" ZOrder="8" X="505" Y="144" Height="379" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="311" />
     <Shape ID="DesignTable:grartikel" ZOrder="7" X="200" Y="133" Height="229" Width="194" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
     <Shape ID="DesignTable:grartikel-staffelpreise" ZOrder="6" X="81" Y="515" Height="153" Width="270" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:grartikel-kategorien" ZOrder="10" X="840" Y="447" Height="305" Width="262" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
@@ -50,11 +50,11 @@
       <RoutePoints>
         <Point>
           <X>394</X>
-          <Y>252</Y>
+          <Y>251</Y>
         </Point>
         <Point>
           <X>505</X>
-          <Y>252</Y>
+          <Y>251</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -62,11 +62,11 @@
       <RoutePoints>
         <Point>
           <X>906</X>
-          <Y>306</Y>
+          <Y>305</Y>
         </Point>
         <Point>
           <X>805</X>
-          <Y>306</Y>
+          <Y>305</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -82,7 +82,7 @@
         </Point>
         <Point>
           <X>515</X>
-          <Y>440</Y>
+          <Y>523</Y>
         </Point>
       </RoutePoints>
     </Connector>

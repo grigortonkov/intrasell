@@ -44,23 +44,28 @@ Public Class ArtikelPreisregeln
             End If
 
             If Me.BezeichnungTextBox.Text.Length > 0 Then
-                filter += " and (EAN Like '" + BezeichnungTextBox.Text + "%'  or Bezeichnung Like '" + BezeichnungTextBox.Text + "%' or Bezeichnung1 Like '" + BezeichnungTextBox.Text + "%' or Beschreibung Like '" + BezeichnungTextBox.Text + "%') "
+                filter += " and ( EAN Like '" + BezeichnungTextBox.Text + "%'  or Bezeichnung Like '" + BezeichnungTextBox.Text + "%' or Bezeichnung1 Like '" + BezeichnungTextBox.Text + "%' or Beschreibung Like '" + BezeichnungTextBox.Text + "%') "
             End If
 
-            If Me.ArtKatNrComboBox.Text.Length > 0 Then
-                filter += " and Kategorie = '" + ArtKatNrComboBox.Text + "'"
+            If Me.ArtKatNrComboBox.SelectedValue > 0 Then
+                filter += " and ArtKatNr =  " & CStr(ArtKatNrComboBox.SelectedValue)
+            End If
+
+
+            If Me.AdressenControl1.IDNR > 0 Then
+                filter += " and IDNR =  " & CStr(Me.AdressenControl1.IDNR)
             End If
 
             If Me.PreisVonTextBox.Text.Length > 0 And IsNumeric(PreisVonTextBox.Text) Then
-                filter += " and PreisATS >= " + PreisVonTextBox.Text + ""
+                filter += " and VKPreis  >= " + PreisVonTextBox.Text + ""
             End If
 
             If Me.PreisBisTextBox.Text.Length > 0 And IsNumeric(PreisBisTextBox.Text) Then
-                filter += " and PreisATS <= " + PreisVonTextBox.Text + ""
+                filter += " and VKPreis <= " + PreisVonTextBox.Text + ""
             End If
 
             If Me.LagerArtikelCheckBox.CheckState <> CheckState.Indeterminate Then
-                filter += " and LagerArtikel = " + IIf(LagerArtikelCheckBox.CheckState = CheckState.Checked, "True", "False")
+                filter += " and ArtNr in ( Select a.ArtNr from grArtikel a where a.LagerArtikel = " + IIf(LagerArtikelCheckBox.CheckState = CheckState.Checked, "True", "False") & ")"
             End If
 
             If Me.SeriennummerCheckBox.CheckState <> CheckState.Indeterminate Then

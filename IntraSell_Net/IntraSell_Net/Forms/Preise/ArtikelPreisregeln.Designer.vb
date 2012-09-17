@@ -35,18 +35,6 @@ Partial Class ArtikelPreisregeln
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GrartikelvkpreisperselectionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsPreise = New IntraSell_Net.dsPreise()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
@@ -60,7 +48,7 @@ Partial Class ArtikelPreisregeln
         Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
         Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Grartikel_vkpreisperselectionTableAdapter = New IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GrartikelBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
@@ -74,34 +62,48 @@ Partial Class ArtikelPreisregeln
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.GrartikelvkpreisperselectionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsPreise = New IntraSell_Net.dsPreise()
+        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Grartikel_vkpreisperselectionTableAdapter = New IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         SetArtikelLabel = New System.Windows.Forms.Label()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
-        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GrartikelBindingNavigator.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrartikelBindingNavigator.SuspendLayout()
+        CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SetArtikelLabel
         '
         SetArtikelLabel.AutoSize = True
-        SetArtikelLabel.Location = New System.Drawing.Point(157, 145)
+        SetArtikelLabel.Location = New System.Drawing.Point(157, 172)
         SetArtikelLabel.Name = "SetArtikelLabel"
         SetArtikelLabel.Size = New System.Drawing.Size(0, 13)
         SetArtikelLabel.TabIndex = 70
         '
         'FilterButton
         '
-        Me.FilterButton.Location = New System.Drawing.Point(15, 364)
+        Me.FilterButton.Location = New System.Drawing.Point(25, 201)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
         Me.FilterButton.TabIndex = 11
@@ -111,7 +113,7 @@ Partial Class ArtikelPreisregeln
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 151)
+        Me.Label1.Location = New System.Drawing.Point(12, 178)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(33, 13)
         Me.Label1.TabIndex = 2
@@ -119,22 +121,22 @@ Partial Class ArtikelPreisregeln
         '
         'PreisVonTextBox
         '
-        Me.PreisVonTextBox.Location = New System.Drawing.Point(98, 148)
+        Me.PreisVonTextBox.Location = New System.Drawing.Point(98, 175)
         Me.PreisVonTextBox.Name = "PreisVonTextBox"
         Me.PreisVonTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PreisVonTextBox.TabIndex = 3
+        Me.PreisVonTextBox.TabIndex = 6
         '
         'PreisBisTextBox
         '
-        Me.PreisBisTextBox.Location = New System.Drawing.Point(172, 148)
+        Me.PreisBisTextBox.Location = New System.Drawing.Point(172, 175)
         Me.PreisBisTextBox.Name = "PreisBisTextBox"
         Me.PreisBisTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PreisBisTextBox.TabIndex = 4
+        Me.PreisBisTextBox.TabIndex = 7
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(156, 151)
+        Me.Label2.Location = New System.Drawing.Point(156, 178)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(10, 13)
         Me.Label2.TabIndex = 5
@@ -143,7 +145,7 @@ Partial Class ArtikelPreisregeln
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 97)
+        Me.Label3.Location = New System.Drawing.Point(12, 124)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(80, 13)
         Me.Label3.TabIndex = 6
@@ -154,25 +156,25 @@ Partial Class ArtikelPreisregeln
         Me.KundengruppeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.KundengruppeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.KundengruppeComboBox.FormattingEnabled = True
-        Me.KundengruppeComboBox.Location = New System.Drawing.Point(98, 94)
+        Me.KundengruppeComboBox.Location = New System.Drawing.Point(98, 121)
         Me.KundengruppeComboBox.Name = "KundengruppeComboBox"
         Me.KundengruppeComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.KundengruppeComboBox.TabIndex = 3
+        Me.KundengruppeComboBox.TabIndex = 4
         '
         'PreislisteComboBox
         '
         Me.PreislisteComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.PreislisteComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PreislisteComboBox.FormattingEnabled = True
-        Me.PreislisteComboBox.Location = New System.Drawing.Point(98, 121)
+        Me.PreislisteComboBox.Location = New System.Drawing.Point(98, 148)
         Me.PreislisteComboBox.Name = "PreislisteComboBox"
         Me.PreislisteComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.PreislisteComboBox.TabIndex = 4
+        Me.PreislisteComboBox.TabIndex = 5
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 124)
+        Me.Label4.Location = New System.Drawing.Point(12, 151)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(51, 13)
         Me.Label4.TabIndex = 8
@@ -191,85 +193,6 @@ Partial Class ArtikelPreisregeln
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(818, 728)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
         '
-        'IdColumn
-        '
-        Me.IdColumn.DataPropertyName = "Id"
-        Me.IdColumn.HeaderText = "Id"
-        Me.IdColumn.Name = "IdColumn"
-        Me.IdColumn.Visible = False
-        '
-        'IDNRColumn
-        '
-        Me.IDNRColumn.DataPropertyName = "IDNR"
-        Me.IDNRColumn.HeaderText = "IDNR"
-        Me.IDNRColumn.Name = "IDNRColumn"
-        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'ArtNrColumn
-        '
-        Me.ArtNrColumn.DataPropertyName = "ArtNr"
-        Me.ArtNrColumn.HeaderText = "ArtNr"
-        Me.ArtNrColumn.Name = "ArtNrColumn"
-        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'ArtKatNrColumn
-        '
-        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
-        Me.ArtKatNrColumn.HeaderText = "ArtKatNr"
-        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
-        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'PreislisteNameColumn
-        '
-        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
-        Me.PreislisteNameColumn.HeaderText = "PreislisteName"
-        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
-        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'StkAbColumn
-        '
-        Me.StkAbColumn.DataPropertyName = "StkAb"
-        Me.StkAbColumn.HeaderText = "StkAb"
-        Me.StkAbColumn.Name = "StkAbColumn"
-        '
-        'VKPreisColumn
-        '
-        Me.VKPreisColumn.DataPropertyName = "VKPreis"
-        Me.VKPreisColumn.HeaderText = "VKPreis"
-        Me.VKPreisColumn.Name = "VKPreisColumn"
-        '
-        'AufschlagVKPreisColumn
-        '
-        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
-        Me.AufschlagVKPreisColumn.HeaderText = "AufschlagVKPreis"
-        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
-        '
-        'AufschlagEKPreisColumn
-        '
-        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
-        Me.AufschlagEKPreisColumn.HeaderText = "AufschlagEKPreis"
-        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
-        '
-        'DatumColumn
-        '
-        Me.DatumColumn.DataPropertyName = "Datum"
-        Me.DatumColumn.HeaderText = "Datum"
-        Me.DatumColumn.Name = "DatumColumn"
-        '
-        'GrartikelvkpreisperselectionBindingSource
-        '
-        Me.GrartikelvkpreisperselectionBindingSource.DataMember = "grartikel-vkpreisperselection"
-        Me.GrartikelvkpreisperselectionBindingSource.DataSource = Me.DsPreise
-        '
-        'DsPreise
-        '
-        Me.DsPreise.DataSetName = "dsPreise"
-        Me.DsPreise.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'SplitContainer
         '
         Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
@@ -278,6 +201,8 @@ Partial Class ArtikelPreisregeln
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
         Me.SplitContainer.Panel1.Controls.Add(Me.BezeichnungTextBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.LagerArtikelCheckBox)
@@ -328,66 +253,72 @@ Partial Class ArtikelPreisregeln
         '
         Me.LagerArtikelCheckBox.Checked = True
         Me.LagerArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.LagerArtikelCheckBox.Location = New System.Drawing.Point(98, 205)
+        Me.LagerArtikelCheckBox.Location = New System.Drawing.Point(89, 440)
         Me.LagerArtikelCheckBox.Name = "LagerArtikelCheckBox"
         Me.LagerArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.LagerArtikelCheckBox.TabIndex = 5
+        Me.LagerArtikelCheckBox.TabIndex = 8
         Me.LagerArtikelCheckBox.Text = "Lager Artikel"
         Me.LagerArtikelCheckBox.UseVisualStyleBackColor = True
+        Me.LagerArtikelCheckBox.Visible = False
         '
         'SeriennummerCheckBox
         '
         Me.SeriennummerCheckBox.Checked = True
         Me.SeriennummerCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.SeriennummerCheckBox.Location = New System.Drawing.Point(98, 233)
+        Me.SeriennummerCheckBox.Location = New System.Drawing.Point(89, 468)
         Me.SeriennummerCheckBox.Name = "SeriennummerCheckBox"
         Me.SeriennummerCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SeriennummerCheckBox.TabIndex = 6
+        Me.SeriennummerCheckBox.TabIndex = 9
         Me.SeriennummerCheckBox.Text = "Seriennummer erford."
         Me.SeriennummerCheckBox.UseVisualStyleBackColor = True
+        Me.SeriennummerCheckBox.Visible = False
         '
         'SetArtikelCheckBox
         '
         Me.SetArtikelCheckBox.Checked = True
         Me.SetArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.SetArtikelCheckBox.Location = New System.Drawing.Point(98, 259)
+        Me.SetArtikelCheckBox.Location = New System.Drawing.Point(89, 494)
         Me.SetArtikelCheckBox.Name = "SetArtikelCheckBox"
         Me.SetArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SetArtikelCheckBox.TabIndex = 7
+        Me.SetArtikelCheckBox.TabIndex = 10
         Me.SetArtikelCheckBox.Text = "Set Artikel"
         Me.SetArtikelCheckBox.UseVisualStyleBackColor = True
+        Me.SetArtikelCheckBox.Visible = False
         '
         'ProduktAktivCheckBox
         '
         Me.ProduktAktivCheckBox.Checked = True
         Me.ProduktAktivCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.ProduktAktivCheckBox.Location = New System.Drawing.Point(98, 286)
+        Me.ProduktAktivCheckBox.Location = New System.Drawing.Point(89, 521)
         Me.ProduktAktivCheckBox.Name = "ProduktAktivCheckBox"
         Me.ProduktAktivCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.ProduktAktivCheckBox.TabIndex = 8
+        Me.ProduktAktivCheckBox.TabIndex = 11
         Me.ProduktAktivCheckBox.Text = "Produkt Aktiv"
         Me.ProduktAktivCheckBox.UseVisualStyleBackColor = True
+        Me.ProduktAktivCheckBox.Visible = False
         '
         'NichtBestellbarCheckBox
         '
         Me.NichtBestellbarCheckBox.Checked = True
         Me.NichtBestellbarCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.NichtBestellbarCheckBox.Location = New System.Drawing.Point(98, 312)
+        Me.NichtBestellbarCheckBox.Location = New System.Drawing.Point(89, 547)
         Me.NichtBestellbarCheckBox.Name = "NichtBestellbarCheckBox"
         Me.NichtBestellbarCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.NichtBestellbarCheckBox.TabIndex = 9
+        Me.NichtBestellbarCheckBox.TabIndex = 12
         Me.NichtBestellbarCheckBox.Text = "Nicht Bestellbar"
         Me.NichtBestellbarCheckBox.UseVisualStyleBackColor = True
+        Me.NichtBestellbarCheckBox.Visible = False
         '
         'ProduktAktivOnlineCheckBox
         '
         Me.ProduktAktivOnlineCheckBox.Checked = True
         Me.ProduktAktivOnlineCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.ProduktAktivOnlineCheckBox.Location = New System.Drawing.Point(98, 342)
+        Me.ProduktAktivOnlineCheckBox.Location = New System.Drawing.Point(89, 577)
         Me.ProduktAktivOnlineCheckBox.Name = "ProduktAktivOnlineCheckBox"
         Me.ProduktAktivOnlineCheckBox.Size = New System.Drawing.Size(123, 20)
-        Me.ProduktAktivOnlineCheckBox.TabIndex = 10
+        Me.ProduktAktivOnlineCheckBox.TabIndex = 13
         Me.ProduktAktivOnlineCheckBox.Text = "Produkt Aktiv Online"
+        Me.ProduktAktivOnlineCheckBox.Visible = False
         '
         'Label6
         '
@@ -424,9 +355,23 @@ Partial Class ArtikelPreisregeln
         Me.Label5.TabIndex = 10
         Me.Label5.Text = "Kategorie:"
         '
-        'Grartikel_vkpreisperselectionTableAdapter
+        'SplitContainer1
         '
-        Me.Grartikel_vkpreisperselectionTableAdapter.ClearBeforeFill = True
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GrartikelBindingNavigator)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer1.Size = New System.Drawing.Size(818, 762)
+        Me.SplitContainer1.SplitterDistance = 30
+        Me.SplitContainer1.TabIndex = 14
         '
         'GrartikelBindingNavigator
         '
@@ -539,23 +484,105 @@ Partial Class ArtikelPreisregeln
         Me.BindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorSaveItem.Text = "Save Data"
         '
-        'SplitContainer1
+        'Label9
         '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 95)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(38, 13)
+        Me.Label9.TabIndex = 77
+        Me.Label9.Text = "Kunde"
         '
-        'SplitContainer1.Panel1
+        'GrartikelvkpreisperselectionBindingSource
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.GrartikelBindingNavigator)
+        Me.GrartikelvkpreisperselectionBindingSource.DataMember = "grartikel-vkpreisperselection"
+        Me.GrartikelvkpreisperselectionBindingSource.DataSource = Me.DsPreise
         '
-        'SplitContainer1.Panel2
+        'DsPreise
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer1.Size = New System.Drawing.Size(818, 762)
-        Me.SplitContainer1.SplitterDistance = 30
-        Me.SplitContainer1.TabIndex = 14
+        Me.DsPreise.DataSetName = "dsPreise"
+        Me.DsPreise.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'IdColumn
+        '
+        Me.IdColumn.DataPropertyName = "Id"
+        Me.IdColumn.HeaderText = "Id"
+        Me.IdColumn.Name = "IdColumn"
+        Me.IdColumn.Visible = False
+        '
+        'IDNRColumn
+        '
+        Me.IDNRColumn.DataPropertyName = "IDNR"
+        Me.IDNRColumn.HeaderText = "Kunde"
+        Me.IDNRColumn.Name = "IDNRColumn"
+        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ArtNrColumn
+        '
+        Me.ArtNrColumn.DataPropertyName = "ArtNr"
+        Me.ArtNrColumn.HeaderText = "ArtNr"
+        Me.ArtNrColumn.Name = "ArtNrColumn"
+        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ArtKatNrColumn
+        '
+        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
+        Me.ArtKatNrColumn.HeaderText = "ArtKatNr"
+        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
+        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'PreislisteNameColumn
+        '
+        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
+        Me.PreislisteNameColumn.HeaderText = "PreislisteName"
+        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
+        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StkAbColumn
+        '
+        Me.StkAbColumn.DataPropertyName = "StkAb"
+        Me.StkAbColumn.HeaderText = "StkAb"
+        Me.StkAbColumn.Name = "StkAbColumn"
+        '
+        'VKPreisColumn
+        '
+        Me.VKPreisColumn.DataPropertyName = "VKPreis"
+        Me.VKPreisColumn.HeaderText = "VKPreis"
+        Me.VKPreisColumn.Name = "VKPreisColumn"
+        '
+        'AufschlagVKPreisColumn
+        '
+        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
+        Me.AufschlagVKPreisColumn.HeaderText = "AufschlagVKPreis"
+        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
+        '
+        'AufschlagEKPreisColumn
+        '
+        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
+        Me.AufschlagEKPreisColumn.HeaderText = "AufschlagEKPreis"
+        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
+        '
+        'DatumColumn
+        '
+        Me.DatumColumn.DataPropertyName = "Datum"
+        Me.DatumColumn.HeaderText = "Datum"
+        Me.DatumColumn.Name = "DatumColumn"
+        '
+        'Grartikel_vkpreisperselectionTableAdapter
+        '
+        Me.Grartikel_vkpreisperselectionTableAdapter.ClearBeforeFill = True
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(98, 90)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 3
         '
         'ArtikelPreisregeln
         '
@@ -567,21 +594,21 @@ Partial Class ArtikelPreisregeln
         Me.Text = "Preisregeln"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.Panel1.ResumeLayout(False)
         Me.SplitContainer.Panel1.PerformLayout()
         Me.SplitContainer.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.ResumeLayout(False)
-        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GrartikelBindingNavigator.ResumeLayout(False)
-        Me.GrartikelBindingNavigator.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrartikelBindingNavigator.ResumeLayout(False)
+        Me.GrartikelBindingNavigator.PerformLayout()
+        CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -610,16 +637,6 @@ Partial Class ArtikelPreisregeln
     Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
     Friend WithEvents DsPreise As IntraSell_Net.dsPreise
     Friend WithEvents GrartikelvkpreisperselectionBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents IdColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents IDNRColumn As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents ArtNrColumn As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents ArtKatNrColumn As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents PreislisteNameColumn As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents StkAbColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents VKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AufschlagVKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AufschlagEKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DatumColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Grartikel_vkpreisperselectionTableAdapter As IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter
     Friend WithEvents GrartikelBindingNavigator As System.Windows.Forms.BindingNavigator
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
@@ -635,4 +652,16 @@ Partial Class ArtikelPreisregeln
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents IdColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents IDNRColumn As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents ArtNrColumn As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents ArtKatNrColumn As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents PreislisteNameColumn As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents StkAbColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents VKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AufschlagVKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AufschlagEKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DatumColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AdressenControl1 As IntraSell_Net.AdressenControl
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 End Class
