@@ -271,6 +271,7 @@ Module ModuleUpdate
     End Sub
 
     Private Sub UpdateIntraSellSilent()
+        Thread.Sleep(10000) ' Nach 10 sekunden erst
         Call UpdateIntraSell(True)
     End Sub
 
