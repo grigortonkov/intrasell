@@ -10,10 +10,12 @@ Public Class ArtikelPreisregeln
 
             'Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
+            FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName;", "PreislisteName")
 
             Me.ArtKatNrComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
+
 
         Catch ex As Exception
             HandleAppError(ex)
