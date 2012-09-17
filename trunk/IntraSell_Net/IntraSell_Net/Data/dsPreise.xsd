@@ -1365,25 +1365,20 @@ WHERE        (Id = @Original_Id)</CommandText>
       <xs:selector xpath=".//mstns:ofadressen" />
       <xs:field xpath="mstns:IDNR" />
     </xs:unique>
-    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="grartikel_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_ParentPropName="grartikelRow">
+    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="grartikel_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_UserParentTable="grartikel">
       <xs:selector xpath=".//mstns:grartikel-staffelpreise" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:keyref>
-    <xs:keyref name="FK_grartikel_grartikel-vkpreisperselection" refer="grartikel_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-vkpreisperselection" msprop:rel_Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-vkpreisperselection" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_vkpreisperselection" msprop:rel_Generator_ParentPropName="grartikelRow">
-      <xs:selector xpath=".//mstns:grartikel-vkpreisperselection" />
-      <xs:field xpath="mstns:ArtNr" />
-    </xs:keyref>
-    <xs:keyref name="FK_ofadressen_grartikel-vkpreisperselection" refer="ofadressen_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-vkpreisperselection" msprop:rel_Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:rel_Generator_UserParentTable="ofadressen" msprop:rel_Generator_UserRelationName="FK_ofadressen_grartikel-vkpreisperselection" msprop:rel_Generator_RelationVarName="_relationFK_ofadressen_grartikel_vkpreisperselection" msprop:rel_Generator_ParentPropName="ofadressenRow">
-      <xs:selector xpath=".//mstns:grartikel-vkpreisperselection" />
-      <xs:field xpath="mstns:IDNR" />
-    </xs:keyref>
-    <xs:keyref name="FK_grartikel-kategorien_grartikel-vkpreisperselection" refer="grartikel-kategorien_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-vkpreisperselection" msprop:rel_Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:rel_Generator_UserParentTable="grartikel-kategorien" msprop:rel_Generator_UserRelationName="FK_grartikel-kategorien_grartikel-vkpreisperselection" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel_vkpreisperselection" msprop:rel_Generator_ParentPropName="_grartikel_kategorienRow">
-      <xs:selector xpath=".//mstns:grartikel-vkpreisperselection" />
-      <xs:field xpath="mstns:ArtKatNr" />
-    </xs:keyref>
-    <xs:keyref name="FK_grartikel_grartikel-vertriebskosten" refer="grartikel_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-vertriebskosten" msprop:rel_Generator_ChildPropName="_Getgrartikel_vertriebskostenRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-vertriebskosten" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_vertriebskosten" msprop:rel_Generator_ParentPropName="grartikelRow">
+    <xs:keyref name="FK_grartikel_grartikel-vertriebskosten" refer="grartikel_Constraint1" msprop:rel_Generator_UserChildTable="grartikel-vertriebskosten" msprop:rel_Generator_ChildPropName="_Getgrartikel_vertriebskostenRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-vertriebskosten" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_vertriebskosten" msprop:rel_Generator_UserParentTable="grartikel">
       <xs:selector xpath=".//mstns:grartikel-vertriebskosten" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:keyref>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_grartikel_grartikel-vkpreisperselection" msdata:parent="grartikel" msdata:child="grartikel-vkpreisperselection" msdata:parentkey="ArtNr" msdata:childkey="ArtNr" msprop:Generator_UserChildTable="grartikel-vkpreisperselection" msprop:Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:Generator_ParentPropName="grartikelRow" msprop:Generator_UserRelationName="FK_grartikel_grartikel-vkpreisperselection" msprop:Generator_RelationVarName="_relationFK_grartikel_grartikel_vkpreisperselection" msprop:Generator_UserParentTable="grartikel" />
+      <msdata:Relationship name="FK_ofadressen_grartikel-vkpreisperselection" msdata:parent="ofadressen" msdata:child="grartikel-vkpreisperselection" msdata:parentkey="IDNR" msdata:childkey="IDNR" msprop:Generator_UserChildTable="grartikel-vkpreisperselection" msprop:Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:Generator_ParentPropName="ofadressenRow" msprop:Generator_UserRelationName="FK_ofadressen_grartikel-vkpreisperselection" msprop:Generator_RelationVarName="_relationFK_ofadressen_grartikel_vkpreisperselection" msprop:Generator_UserParentTable="ofadressen" />
+      <msdata:Relationship name="FK_grartikel-kategorien_grartikel-vkpreisperselection" msdata:parent="grartikel-kategorien" msdata:child="grartikel-vkpreisperselection" msdata:parentkey="ArtKatNr" msdata:childkey="ArtKatNr" msprop:Generator_UserChildTable="grartikel-vkpreisperselection" msprop:Generator_ChildPropName="_Getgrartikel_vkpreisperselectionRows" msprop:Generator_ParentPropName="_grartikel_kategorienRow" msprop:Generator_UserRelationName="FK_grartikel-kategorien_grartikel-vkpreisperselection" msprop:Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel_vkpreisperselection" msprop:Generator_UserParentTable="grartikel-kategorien" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>

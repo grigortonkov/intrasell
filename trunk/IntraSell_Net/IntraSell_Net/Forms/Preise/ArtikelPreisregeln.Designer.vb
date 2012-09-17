@@ -24,6 +24,7 @@ Partial Class ArtikelPreisregeln
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim SetArtikelLabel As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ArtikelPreisregeln))
         Me.FilterButton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PreisVonTextBox = New System.Windows.Forms.TextBox()
@@ -34,6 +35,16 @@ Partial Class ArtikelPreisregeln
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
+        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GrartikelvkpreisperselectionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPreise = New IntraSell_Net.dsPreise()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
@@ -50,16 +61,20 @@ Partial Class ArtikelPreisregeln
         Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Grartikel_vkpreisperselectionTableAdapter = New IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter()
-        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GrartikelBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripTextBox1 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.BindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         SetArtikelLabel = New System.Windows.Forms.Label()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +83,12 @@ Partial Class ArtikelPreisregeln
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
+        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrartikelBindingNavigator.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SetArtikelLabel
@@ -167,8 +188,77 @@ Partial Class ArtikelPreisregeln
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(818, 728)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
+        '
+        'IdColumn
+        '
+        Me.IdColumn.DataPropertyName = "Id"
+        Me.IdColumn.HeaderText = "Id"
+        Me.IdColumn.Name = "IdColumn"
+        Me.IdColumn.Visible = False
+        '
+        'IDNRColumn
+        '
+        Me.IDNRColumn.DataPropertyName = "IDNR"
+        Me.IDNRColumn.HeaderText = "IDNR"
+        Me.IDNRColumn.Name = "IDNRColumn"
+        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ArtNrColumn
+        '
+        Me.ArtNrColumn.DataPropertyName = "ArtNr"
+        Me.ArtNrColumn.HeaderText = "ArtNr"
+        Me.ArtNrColumn.Name = "ArtNrColumn"
+        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ArtKatNrColumn
+        '
+        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
+        Me.ArtKatNrColumn.HeaderText = "ArtKatNr"
+        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
+        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'PreislisteNameColumn
+        '
+        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
+        Me.PreislisteNameColumn.HeaderText = "PreislisteName"
+        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
+        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StkAbColumn
+        '
+        Me.StkAbColumn.DataPropertyName = "StkAb"
+        Me.StkAbColumn.HeaderText = "StkAb"
+        Me.StkAbColumn.Name = "StkAbColumn"
+        '
+        'VKPreisColumn
+        '
+        Me.VKPreisColumn.DataPropertyName = "VKPreis"
+        Me.VKPreisColumn.HeaderText = "VKPreis"
+        Me.VKPreisColumn.Name = "VKPreisColumn"
+        '
+        'AufschlagVKPreisColumn
+        '
+        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
+        Me.AufschlagVKPreisColumn.HeaderText = "AufschlagVKPreis"
+        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
+        '
+        'AufschlagEKPreisColumn
+        '
+        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
+        Me.AufschlagEKPreisColumn.HeaderText = "AufschlagEKPreis"
+        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
+        '
+        'DatumColumn
+        '
+        Me.DatumColumn.DataPropertyName = "Datum"
+        Me.DatumColumn.HeaderText = "Datum"
+        Me.DatumColumn.Name = "DatumColumn"
         '
         'GrartikelvkpreisperselectionBindingSource
         '
@@ -213,9 +303,9 @@ Partial Class ArtikelPreisregeln
         '
         'SplitContainer.Panel2
         '
-        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 238
+        Me.SplitContainer.Panel2.Controls.Add(Me.SplitContainer1)
+        Me.SplitContainer.Size = New System.Drawing.Size(1075, 762)
+        Me.SplitContainer.SplitterDistance = 253
         Me.SplitContainer.TabIndex = 11
         '
         'Label7
@@ -338,80 +428,140 @@ Partial Class ArtikelPreisregeln
         '
         Me.Grartikel_vkpreisperselectionTableAdapter.ClearBeforeFill = True
         '
-        'IdColumn
+        'GrartikelBindingNavigator
         '
-        Me.IdColumn.DataPropertyName = "Id"
-        Me.IdColumn.HeaderText = "Id"
-        Me.IdColumn.Name = "IdColumn"
-        Me.IdColumn.Visible = False
+        Me.GrartikelBindingNavigator.AddNewItem = Me.ToolStripButton1
+        Me.GrartikelBindingNavigator.BindingSource = Me.GrartikelvkpreisperselectionBindingSource
+        Me.GrartikelBindingNavigator.CountItem = Me.ToolStripLabel1
+        Me.GrartikelBindingNavigator.DeleteItem = Me.ToolStripButton2
+        Me.GrartikelBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator1, Me.ToolStripTextBox1, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton5, Me.ToolStripButton6, Me.ToolStripSeparator3, Me.ToolStripButton1, Me.ToolStripButton2, Me.BindingNavigatorSaveItem})
+        Me.GrartikelBindingNavigator.Location = New System.Drawing.Point(0, 0)
+        Me.GrartikelBindingNavigator.MoveFirstItem = Me.ToolStripButton3
+        Me.GrartikelBindingNavigator.MoveLastItem = Me.ToolStripButton6
+        Me.GrartikelBindingNavigator.MoveNextItem = Me.ToolStripButton5
+        Me.GrartikelBindingNavigator.MovePreviousItem = Me.ToolStripButton4
+        Me.GrartikelBindingNavigator.Name = "GrartikelBindingNavigator"
+        Me.GrartikelBindingNavigator.PositionItem = Me.ToolStripTextBox1
+        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(818, 25)
+        Me.GrartikelBindingNavigator.TabIndex = 13
+        Me.GrartikelBindingNavigator.Text = "BindingNavigator1"
         '
-        'IDNRColumn
+        'ToolStripButton1
         '
-        Me.IDNRColumn.DataPropertyName = "IDNR"
-        Me.IDNRColumn.HeaderText = "IDNR"
-        Me.IDNRColumn.Name = "IDNRColumn"
-        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Add new"
         '
-        'ArtNrColumn
+        'ToolStripLabel1
         '
-        Me.ArtNrColumn.DataPropertyName = "ArtNr"
-        Me.ArtNrColumn.HeaderText = "ArtNr"
-        Me.ArtNrColumn.Name = "ArtNrColumn"
-        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(35, 22)
+        Me.ToolStripLabel1.Text = "of {0}"
+        Me.ToolStripLabel1.ToolTipText = "Total number of items"
         '
-        'ArtKatNrColumn
+        'ToolStripButton2
         '
-        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
-        Me.ArtKatNrColumn.HeaderText = "ArtKatNr"
-        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
-        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Delete"
         '
-        'PreislisteNameColumn
+        'ToolStripButton3
         '
-        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
-        Me.PreislisteNameColumn.HeaderText = "PreislisteName"
-        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
-        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton3.Text = "Move first"
         '
-        'StkAbColumn
+        'ToolStripButton4
         '
-        Me.StkAbColumn.DataPropertyName = "StkAb"
-        Me.StkAbColumn.HeaderText = "StkAb"
-        Me.StkAbColumn.Name = "StkAbColumn"
+        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton4.Text = "Move previous"
         '
-        'VKPreisColumn
+        'ToolStripSeparator1
         '
-        Me.VKPreisColumn.DataPropertyName = "VKPreis"
-        Me.VKPreisColumn.HeaderText = "VKPreis"
-        Me.VKPreisColumn.Name = "VKPreisColumn"
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'AufschlagVKPreisColumn
+        'ToolStripTextBox1
         '
-        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
-        Me.AufschlagVKPreisColumn.HeaderText = "AufschlagVKPreis"
-        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
+        Me.ToolStripTextBox1.AccessibleName = "Position"
+        Me.ToolStripTextBox1.AutoSize = False
+        Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
+        Me.ToolStripTextBox1.Size = New System.Drawing.Size(50, 23)
+        Me.ToolStripTextBox1.Text = "0"
+        Me.ToolStripTextBox1.ToolTipText = "Current position"
         '
-        'AufschlagEKPreisColumn
+        'ToolStripSeparator2
         '
-        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
-        Me.AufschlagEKPreisColumn.HeaderText = "AufschlagEKPreis"
-        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'DatumColumn
+        'ToolStripButton5
         '
-        Me.DatumColumn.DataPropertyName = "Datum"
-        Me.DatumColumn.HeaderText = "Datum"
-        Me.DatumColumn.Name = "DatumColumn"
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton5.Text = "Move next"
+        '
+        'ToolStripButton6
+        '
+        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.RightToLeftAutoMirrorImage = True
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton6.Text = "Move last"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorSaveItem
+        '
+        Me.BindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorSaveItem.Image = CType(resources.GetObject("BindingNavigatorSaveItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorSaveItem.Name = "BindingNavigatorSaveItem"
+        Me.BindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorSaveItem.Text = "Save Data"
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GrartikelBindingNavigator)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer1.Size = New System.Drawing.Size(818, 762)
+        Me.SplitContainer1.SplitterDistance = 30
+        Me.SplitContainer1.TabIndex = 14
         '
         'ArtikelPreisregeln
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 762)
+        Me.ClientSize = New System.Drawing.Size(1075, 762)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "ArtikelPreisregeln"
         Me.Text = "Preisregeln"
@@ -424,6 +574,14 @@ Partial Class ArtikelPreisregeln
         Me.SplitContainer.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.ResumeLayout(False)
+        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrartikelBindingNavigator.ResumeLayout(False)
+        Me.GrartikelBindingNavigator.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -452,7 +610,6 @@ Partial Class ArtikelPreisregeln
     Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
     Friend WithEvents DsPreise As IntraSell_Net.dsPreise
     Friend WithEvents GrartikelvkpreisperselectionBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents Grartikel_vkpreisperselectionTableAdapter As IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter
     Friend WithEvents IdColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IDNRColumn As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents ArtNrColumn As System.Windows.Forms.DataGridViewComboBoxColumn
@@ -463,4 +620,19 @@ Partial Class ArtikelPreisregeln
     Friend WithEvents AufschlagVKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AufschlagEKPreisColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DatumColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Grartikel_vkpreisperselectionTableAdapter As IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter
+    Friend WithEvents GrartikelBindingNavigator As System.Windows.Forms.BindingNavigator
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripTextBox1 As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton6 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
 End Class

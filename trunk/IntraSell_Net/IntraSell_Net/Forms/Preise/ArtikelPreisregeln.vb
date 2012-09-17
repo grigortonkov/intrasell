@@ -3,14 +3,21 @@
 Public Class ArtikelPreisregeln
 
     Private Sub ArtikelPreise_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
+      
         Try
-            'TODO: This line of code loads data into the 'DsPreise._grartikel_vkpreisperselection' table. You can move, or remove it, as needed.
+            'Fill grid combos first 
+            FillComboBoxInDG(Me.IDNRColumn, AdressenControl.SQL, "Adr", "IDNR")
+            FillComboBoxInDG(Me.ArtNrColumn, ArtikelControl.SQL, "Art", "ArtNR")
+            FillComboBoxInDG(Me.ArtKatNrColumn, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
+            FillComboBoxInDG(Me.PreislisteNameColumn, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName", "PreislisteName")
+
+            'Fill grid data 
             Me.Grartikel_vkpreisperselectionTableAdapter.Fill(Me.DsPreise._grartikel_vkpreisperselection)
 
             'Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
-            FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName;", "PreislisteName")
+            FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName", "PreislisteName")
+
 
             Me.ArtKatNrComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
@@ -98,12 +105,23 @@ Public Class ArtikelPreisregeln
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
-            Artikel.MdiParent = Me.MdiParent
-            Artikel.Show()
-            Artikel.FilterBy("ArtNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
+            ' Artikel.MdiParent = Me.MdiParent
+            ' Artikel.Show()
+            'Artikel.FilterBy("ArtNR=" & OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
 
+    End Sub
+
+
+    Private Sub BindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
+        Try
+            Me.Validate()
+            Me.GrartikelvkpreisperselectionBindingSource.EndEdit() 
+            Me.Grartikel_vkpreisperselectionTableAdapter.Update(Me.DsPreise)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 End Class

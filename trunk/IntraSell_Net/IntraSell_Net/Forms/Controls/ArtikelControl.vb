@@ -1,5 +1,6 @@
 ﻿Imports IntraSell_DLL
 Public Class ArtikelControl
+    Public Const SQL = "SELECT ArtNr, concat(EAN, ' - ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN"
     Private _ArtNr As Integer
 
     Public Property ArtNr() As Integer
@@ -13,7 +14,7 @@ Public Class ArtikelControl
     End Property
 
     Private Sub ArtikelControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        FillComboBox(Me.ArtikelComboBox, "SELECT ArtNr, concat(EAN, ' - ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN", "Art", "ArtNr")
+        FillComboBox(Me.ArtikelComboBox, SQL, "Art", "ArtNr")
         Me.ArtikelComboBox.Text = ""
     End Sub
 

@@ -39,13 +39,13 @@ Partial Public Class dsPreise
     
     Private _relationFK_grartikel_grartikel_vertriebskosten As Global.System.Data.DataRelation
     
+    Private _relationFK_grartikel_grartikel_staffelpreise As Global.System.Data.DataRelation
+    
     Private _relationFK_grartikel_grartikel_vkpreisperselection As Global.System.Data.DataRelation
     
     Private _relationFK_ofadressen_grartikel_vkpreisperselection As Global.System.Data.DataRelation
     
     Private _relationFK_grartikel_kategorien_grartikel_vkpreisperselection As Global.System.Data.DataRelation
-    
-    Private _relationFK_grartikel_grartikel_staffelpreise As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -325,10 +325,10 @@ Partial Public Class dsPreise
             End If
         End If
         Me._relationFK_grartikel_grartikel_vertriebskosten = Me.Relations("FK_grartikel_grartikel-vertriebskosten")
+        Me._relationFK_grartikel_grartikel_staffelpreise = Me.Relations("FK_grartikel_grartikel-staffelpreise")
         Me._relationFK_grartikel_grartikel_vkpreisperselection = Me.Relations("FK_grartikel_grartikel-vkpreisperselection")
         Me._relationFK_ofadressen_grartikel_vkpreisperselection = Me.Relations("FK_ofadressen_grartikel-vkpreisperselection")
         Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = Me.Relations("FK_grartikel-kategorien_grartikel-vkpreisperselection")
-        Me._relationFK_grartikel_grartikel_staffelpreise = Me.Relations("FK_grartikel_grartikel-staffelpreise")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -357,21 +357,6 @@ Partial Public Class dsPreise
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn})
-        Me._tablegrartikel_vkpreisperselection.Constraints.Add(fkc)
-        fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
-        fkc.DeleteRule = Global.System.Data.Rule.Cascade
-        fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_ofadressen_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tableofadressen.IDNRColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.IDNRColumn})
-        Me._tablegrartikel_vkpreisperselection.Constraints.Add(fkc)
-        fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
-        fkc.DeleteRule = Global.System.Data.Rule.Cascade
-        fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn})
-        Me._tablegrartikel_vkpreisperselection.Constraints.Add(fkc)
-        fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
-        fkc.DeleteRule = Global.System.Data.Rule.Cascade
-        fkc.UpdateRule = Global.System.Data.Rule.Cascade
         fkc = New Global.System.Data.ForeignKeyConstraint("FK_grartikel_grartikel-staffelpreise", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_staffelpreise.ArtNrColumn})
         Me._tablegrartikel_staffelpreise.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
@@ -379,14 +364,14 @@ Partial Public Class dsPreise
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
         Me._relationFK_grartikel_grartikel_vertriebskosten = New Global.System.Data.DataRelation("FK_grartikel_grartikel-vertriebskosten", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vertriebskosten.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_vertriebskosten)
+        Me._relationFK_grartikel_grartikel_staffelpreise = New Global.System.Data.DataRelation("FK_grartikel_grartikel-staffelpreise", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_staffelpreise.ArtNrColumn}, false)
+        Me.Relations.Add(Me._relationFK_grartikel_grartikel_staffelpreise)
         Me._relationFK_grartikel_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_vkpreisperselection)
         Me._relationFK_ofadressen_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_ofadressen_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tableofadressen.IDNRColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.IDNRColumn}, false)
         Me.Relations.Add(Me._relationFK_ofadressen_grartikel_vkpreisperselection)
         Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("FK_grartikel-kategorien_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me._tablegrartikel_kategorien.ArtKatNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtKatNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_kategorien_grartikel_vkpreisperselection)
-        Me._relationFK_grartikel_grartikel_staffelpreise = New Global.System.Data.DataRelation("FK_grartikel_grartikel-staffelpreise", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_staffelpreise.ArtNrColumn}, false)
-        Me.Relations.Add(Me._relationFK_grartikel_grartikel_staffelpreise)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4976,21 +4961,21 @@ Partial Public Class dsPreise
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function _Getgrartikel_vkpreisperselectionRows() As _grartikel_vkpreisperselectionRow()
-            If (Me.Table.ChildRelations("FK_grartikel_grartikel-vkpreisperselection") Is Nothing) Then
-                Return New _grartikel_vkpreisperselectionRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_grartikel_grartikel-vkpreisperselection")),_grartikel_vkpreisperselectionRow())
-            End If
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function _Getgrartikel_vertriebskostenRows() As _grartikel_vertriebskostenRow()
             If (Me.Table.ChildRelations("FK_grartikel_grartikel-vertriebskosten") Is Nothing) Then
                 Return New _grartikel_vertriebskostenRow(-1) {}
             Else
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_grartikel_grartikel-vertriebskosten")),_grartikel_vertriebskostenRow())
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function _Getgrartikel_vkpreisperselectionRows() As _grartikel_vkpreisperselectionRow()
+            If (Me.Table.ChildRelations("FK_grartikel_grartikel-vkpreisperselection") Is Nothing) Then
+                Return New _grartikel_vkpreisperselectionRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_grartikel_grartikel-vkpreisperselection")),_grartikel_vkpreisperselectionRow())
             End If
         End Function
     End Class

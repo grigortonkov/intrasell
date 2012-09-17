@@ -1,5 +1,6 @@
 ﻿Imports IntraSell_DLL
 Public Class AdressenControl
+    Public Const SQL = "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma"
     Private _IDNR As Integer
 
     Public Property IDNR() As Integer
@@ -13,7 +14,7 @@ Public Class AdressenControl
     End Property
 
     Private Sub AdressenControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        FillComboBox(Me.AdressenComboBox, "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma", "Adr", "IDNR")
+        FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
         Me.AdressenComboBox.Text = ""
         'If _IDNR > 0 Then
         '    Me.AdressenComboBox.SelectedValue = _IDNR
