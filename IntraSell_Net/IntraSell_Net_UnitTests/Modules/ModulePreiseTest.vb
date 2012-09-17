@@ -54,7 +54,7 @@ Public Class ModulePreiseTest
     '
 #End Region
 
-    'Manu 
+    'Many
 
     '''<summary>
     '''A test for getPreis
@@ -203,4 +203,85 @@ Public Class ModulePreiseTest
         Assert.AreEqual(expected, actual)
         'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
+
+
+#Region "Tests mit Regeln"
+
+    '''<summary>
+    '''A test for getPreis
+    '''</summary>
+    <TestMethod()> _
+    Public Sub Preisregeln_calculatePreiseTest()
+        Dim KundNr = 0
+        Dim ArtNr = 100
+        Dim Stk = 10
+        Dim Preis_Netto, Preis_Brutto, EKPreis As Double
+
+        Preis_Netto = getPreis(KundNr, ArtNr, Stk)
+        Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
+        EKPreis = getEKPreis(ArtNr)
+
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
+
+
+        'Test Regel 1 
+        KundNr = 1
+        ArtNr = 100
+        Stk = 1
+
+        Preis_Netto = getPreis(KundNr, ArtNr, Stk)
+        Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
+        EKPreis = getEKPreis(ArtNr)
+
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
+
+
+
+        'Test Regel 4
+        KundNr = 100
+        ArtNr = 100
+        Stk = 1
+
+        Preis_Netto = getPreis(KundNr, ArtNr, Stk)
+        Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
+        EKPreis = getEKPreis(ArtNr)
+
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
+
+        'Test Regel 5
+        KundNr = 100
+        ArtNr = 100
+        Stk = 5
+
+        Preis_Netto = getPreis(KundNr, ArtNr, Stk)
+        Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
+        EKPreis = getEKPreis(ArtNr)
+
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
+
+
+        'Test Regel 6
+        KundNr = 100
+        ArtNr = 100
+        Stk = 20
+
+        Preis_Netto = getPreis(KundNr, ArtNr, Stk)
+        Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
+        EKPreis = getEKPreis(ArtNr)
+
+        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(50), CStr(EKPreis))
+
+
+    End Sub
+#End Region
 End Class
