@@ -106,6 +106,36 @@ Public Module ModuleCommons
 
     End Sub
 
+
+    Public Sub FillComboBoxInDG(ByRef combo As DataGridViewComboBoxColumn, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
+        Try
+
+            Dim strSQL As String = query
+            Dim da As New MySqlDataAdapter(strSQL, CurrentDB)
+            Dim ds As New DataSet
+            da.Fill(ds, "t")
+            'clear all items first 
+            'If Not combo.DataSource Is Nothing Then
+            '    combo.DataSource = Nothing
+            'End If
+            With combo
+                .DataSource = ds.Tables("t")
+                .DisplayMember = displayMember '"Disk_Name"
+                If valueMember Is Nothing Then
+                    .ValueMember = displayMember '"Disk_Key"
+                Else
+                    .ValueMember = valueMember '"Disk_Key"
+                End If
+
+                '.SelectedIndex = -1
+            End With
+
+        Catch ex As Exception
+            Debug.Write("Fehler in FillComboBox: " & ex.Message)
+        End Try
+
+    End Sub
+
     Sub OpenForm(ByRef formName As String)
         'TODO 
         writeLog("OpenForm für formName '" + formName + "' ist noch nicht implementiert!")
