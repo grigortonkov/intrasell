@@ -108,6 +108,7 @@
     <Compile Include="DLL\FunctionsVarsTest.vb" />
     <Compile Include="DLL\IntraSellPreiseTest.vb" />
     <Compile Include="DLL\ModuleDOSTest.vb" />
+    <Compile Include="Data\grartikel_vkpreisperselectionTableAdapterTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangWorkflowTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
@@ -131,6 +132,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="0.ALL.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="4.Preisregeln.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

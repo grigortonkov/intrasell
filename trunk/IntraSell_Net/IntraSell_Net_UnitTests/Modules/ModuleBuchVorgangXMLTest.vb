@@ -88,7 +88,7 @@ Public Class ModuleBuchVorgangXMLTest
     Public Sub OpenAusdruck_inWord_XMLTest()
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim VorlageFilename As String = "Vorlagen/Vorgang.dot"
         Dim Viewer As String = "NONE" '"WORD"
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
@@ -109,7 +109,7 @@ Public Class ModuleBuchVorgangXMLTest
     Public Sub OpenAusdruck_inWord_XMLTest_AN()
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AN_1
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AN_1
-        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim VorlageFilename As String = "Vorlagen/Vorgang.dot"
         Dim Viewer As String = "NONE" '"WORD"
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
@@ -149,7 +149,7 @@ Public Class ModuleBuchVorgangXMLTest
     Public Sub OpenAusdruck_inWord_XMLTest_LI()
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_LI_1
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_LI_1
-        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim VorlageFilename As String = "Vorlagen/Vorgang.dot"
         Dim Viewer As String = "NONE" '"WORD"
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
@@ -171,7 +171,7 @@ Public Class ModuleBuchVorgangXMLTest
     Public Sub OpenAusdruck_inWord_PDF_XMLTest()
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_1
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_1
-        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim VorlageFilename As String = "Vorlagen/Vorgang.dot"
         Dim Viewer As String = VIEWER_PDF
         Dim SofortSenden As Boolean = False ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
@@ -192,7 +192,7 @@ Public Class ModuleBuchVorgangXMLTest
     Public Sub OpenAusdruck_inWord_OUTLOOK_XMLTest()
         Dim VorgangNummer As Long = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2
         Dim VorgangTyp As String = buchvorgangTableAdapterTest.VORGANG_TYP_AR_2
-        Dim VorlageFilename As String = "Vorlagen/17. RECHNUNG.dot"
+        Dim VorlageFilename As String = "Vorlagen/Vorgang.dot"
         Dim Viewer As String = VIEWER_OUTLOOK
         Dim SofortSenden As Boolean = True ' TODO: Initialize to an appropriate value
         Dim MailText As String = "Here is my Mail."
