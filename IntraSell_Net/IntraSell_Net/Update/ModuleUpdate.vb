@@ -1,8 +1,9 @@
 ﻿Option Strict On
-Option Explicit On 
+Option Explicit On
 
 Imports IntraSell_DLL
 Imports System.IO
+Imports System.Threading
 
 Module ModuleUpdate
     ' =======================================================================
@@ -192,7 +193,15 @@ Module ModuleUpdate
                                         Call FileCopy(GetAppPath() & fItemName, GetAppPath() & "archive\" & strfName1 & "\" & fItemName)
                                     End If
                                     Call writeLog("copy files: " & fItemName)
+                                    If fItemName.Contains("IntraSell_Net.exe") Then ' update itselfes 
+                                        Call Rename(GetAppPath() & fItemName, GetAppPath() & fItemName & "_" & Date.Now.ToFileTime & ".bak")
+                                    End If
                                     Call FileCopy(updateFolder & "\" & fItemName, GetAppPath() & fItemName)
+                                    If fItemName.Contains("IntraSell_Net.exe") Then
+                                        If Not silentMode Then ' update itselfes 
+                                            MsgBox("Es wird empfohlen das Programm jetzt neu zu starten!")
+                                        End If
+                                    End If
                                 Next
 
                                 FileSystem.Kill(updateFolder & "\*.*")
@@ -248,8 +257,23 @@ Module ModuleUpdate
             If Not silentMode Then
                 MsgBox("Unerwarteter Fehler:" & err.Message, vbCritical, MSG_TITLE)
             End If
- 
+
         End Try
     End Function
+
+#Region "CheckUpdates"
+
+    'Silently upgrades 
+    Sub CheckUpdates()
+        ' Thread erstellen.
+        Dim CheckUpdatesThread As New Thread(AddressOf UpdateIntraSellSilent)
+        CheckUpdatesThread.Start()
+    End Sub
+
+    Private Sub UpdateIntraSellSilent()
+        Call UpdateIntraSell(True)
+    End Sub
+
+#End Region
 
 End Module
