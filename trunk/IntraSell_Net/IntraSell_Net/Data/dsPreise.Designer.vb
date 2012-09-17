@@ -903,6 +903,14 @@ Partial Public Class dsPreise
         
         Private columnStkAb As Global.System.Data.DataColumn
         
+        Private columnEAN As Global.System.Data.DataColumn
+        
+        Private columnBezeichnung As Global.System.Data.DataColumn
+        
+        Private columnBezeichnung1 As Global.System.Data.DataColumn
+        
+        Private columnBeschreibung As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1019,6 +1027,38 @@ Partial Public Class dsPreise
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EANColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEAN
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BezeichnungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBezeichnung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Bezeichnung1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBezeichnung1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BeschreibungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBeschreibung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1055,9 +1095,9 @@ Partial Public Class dsPreise
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Add_grartikel_vkpreisperselectionRow(ByVal Datum As Date, ByVal VKPreis As Decimal, ByVal AufschlagVKPreis As Double, ByVal AufschlagEKPreis As Double, ByVal PreislisteName As String, ByVal _parent_grartikel_kategorienRowByFK_grartikel_kategorien_grartikel_vkpreisperselection As _grartikel_kategorienRow, ByVal _parentgrartikelRowByFK_grartikel_grartikel_vkpreisperselection As grartikelRow, ByVal _parentofadressenRowByFK_ofadressen_grartikel_vkpreisperselection As ofadressenRow, ByVal StkAb As Integer) As _grartikel_vkpreisperselectionRow
+        Public Overloads Function Add_grartikel_vkpreisperselectionRow(ByVal Datum As Date, ByVal VKPreis As Decimal, ByVal AufschlagVKPreis As Double, ByVal AufschlagEKPreis As Double, ByVal PreislisteName As String, ByVal _parent_grartikel_kategorienRowByFK_grartikel_kategorien_grartikel_vkpreisperselection As _grartikel_kategorienRow, ByVal _parentgrartikelRowByFK_grartikel_grartikel_vkpreisperselection As grartikelRow, ByVal _parentofadressenRowByFK_ofadressen_grartikel_vkpreisperselection As ofadressenRow, ByVal StkAb As Integer, ByVal EAN As String, ByVal Bezeichnung As String, ByVal Bezeichnung1 As String, ByVal Beschreibung As String) As _grartikel_vkpreisperselectionRow
             Dim row_grartikel_vkpreisperselectionRow As _grartikel_vkpreisperselectionRow = CType(Me.NewRow,_grartikel_vkpreisperselectionRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Datum, VKPreis, AufschlagVKPreis, AufschlagEKPreis, PreislisteName, Nothing, Nothing, Nothing, StkAb}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Datum, VKPreis, AufschlagVKPreis, AufschlagEKPreis, PreislisteName, Nothing, Nothing, Nothing, StkAb, EAN, Bezeichnung, Bezeichnung1, Beschreibung}
             If (Not (_parent_grartikel_kategorienRowByFK_grartikel_kategorien_grartikel_vkpreisperselection) Is Nothing) Then
                 columnValuesArray(6) = _parent_grartikel_kategorienRowByFK_grartikel_kategorien_grartikel_vkpreisperselection(0)
             End If
@@ -1105,6 +1145,10 @@ Partial Public Class dsPreise
             Me.columnArtNr = MyBase.Columns("ArtNr")
             Me.columnIDNR = MyBase.Columns("IDNR")
             Me.columnStkAb = MyBase.Columns("StkAb")
+            Me.columnEAN = MyBase.Columns("EAN")
+            Me.columnBezeichnung = MyBase.Columns("Bezeichnung")
+            Me.columnBezeichnung1 = MyBase.Columns("Bezeichnung1")
+            Me.columnBeschreibung = MyBase.Columns("Beschreibung")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1130,6 +1174,14 @@ Partial Public Class dsPreise
             MyBase.Columns.Add(Me.columnIDNR)
             Me.columnStkAb = New Global.System.Data.DataColumn("StkAb", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStkAb)
+            Me.columnEAN = New Global.System.Data.DataColumn("EAN", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEAN)
+            Me.columnBezeichnung = New Global.System.Data.DataColumn("Bezeichnung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBezeichnung)
+            Me.columnBezeichnung1 = New Global.System.Data.DataColumn("Bezeichnung1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBezeichnung1)
+            Me.columnBeschreibung = New Global.System.Data.DataColumn("Beschreibung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBeschreibung)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId}, true))
             Me.columnId.AutoIncrement = true
             Me.columnId.AutoIncrementSeed = -1
@@ -1137,6 +1189,9 @@ Partial Public Class dsPreise
             Me.columnId.AllowDBNull = false
             Me.columnId.Unique = true
             Me.columnPreislisteName.MaxLength = 50
+            Me.columnEAN.MaxLength = 50
+            Me.columnBezeichnung.MaxLength = 50
+            Me.columnBezeichnung1.MaxLength = 50
             Me.ExtendedProperties.Add("Generator_TableVarName", "_tablegrartikel_vkpreisperselection")
             Me.ExtendedProperties.Add("Generator_UserTableName", "grartikel-vkpreisperselection")
         End Sub
@@ -3988,6 +4043,69 @@ Partial Public Class dsPreise
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property EAN() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tablegrartikel_vkpreisperselection.EANColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'EAN' in table 'grartikel-vkpreisperselection' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tablegrartikel_vkpreisperselection.EANColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Bezeichnung() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tablegrartikel_vkpreisperselection.BezeichnungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Bezeichnung' in table 'grartikel-vkpreisperselection' is DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tablegrartikel_vkpreisperselection.BezeichnungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Bezeichnung1() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tablegrartikel_vkpreisperselection.Bezeichnung1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Bezeichnung1' in table 'grartikel-vkpreisperselection' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tablegrartikel_vkpreisperselection.Bezeichnung1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Beschreibung() As String
+            Get
+                Try 
+                    Return CType(Me(Me._tablegrartikel_vkpreisperselection.BeschreibungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Beschreibung' in table 'grartikel-vkpreisperselection' is D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me._tablegrartikel_vkpreisperselection.BeschreibungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property grartikelRow() As grartikelRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_grartikel_grartikel-vkpreisperselection")),grartikelRow)
@@ -4125,6 +4243,54 @@ Partial Public Class dsPreise
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetStkAbNull()
             Me(Me._tablegrartikel_vkpreisperselection.StkAbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEANNull() As Boolean
+            Return Me.IsNull(Me._tablegrartikel_vkpreisperselection.EANColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEANNull()
+            Me(Me._tablegrartikel_vkpreisperselection.EANColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBezeichnungNull() As Boolean
+            Return Me.IsNull(Me._tablegrartikel_vkpreisperselection.BezeichnungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBezeichnungNull()
+            Me(Me._tablegrartikel_vkpreisperselection.BezeichnungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBezeichnung1Null() As Boolean
+            Return Me.IsNull(Me._tablegrartikel_vkpreisperselection.Bezeichnung1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBezeichnung1Null()
+            Me(Me._tablegrartikel_vkpreisperselection.Bezeichnung1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBeschreibungNull() As Boolean
+            Return Me.IsNull(Me._tablegrartikel_vkpreisperselection.BeschreibungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBeschreibungNull()
+            Me(Me._tablegrartikel_vkpreisperselection.BeschreibungColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7828,6 +7994,10 @@ Namespace dsPreiseTableAdapters
             tableMapping.ColumnMappings.Add("ArtNr", "ArtNr")
             tableMapping.ColumnMappings.Add("IDNR", "IDNR")
             tableMapping.ColumnMappings.Add("StkAb", "StkAb")
+            tableMapping.ColumnMappings.Add("EAN", "EAN")
+            tableMapping.ColumnMappings.Add("Bezeichnung", "Bezeichnung")
+            tableMapping.ColumnMappings.Add("Bezeichnung1", "Bezeichnung1")
+            tableMapping.ColumnMappings.Add("Beschreibung", "Beschreibung")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -8006,9 +8176,19 @@ Namespace dsPreiseTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `Id`, `Datum`, `VKPreis`, `AufschlagVKPreis`, `AufschlagEKPreis`, `Preisli"& _ 
-                "steName`, `ArtKatNr`, `ArtNr`, `IDNR`, `StkAb` FROM `grartikel-vkpreisperselecti"& _ 
-                "on`"
+            Me._commandCollection(0).CommandText = "SELECT        `grartikel-vkpreisperselection`.Id, `grartikel-vkpreisperselection`"& _ 
+                ".ArtKatNr, `grartikel-vkpreisperselection`.ArtNr, `grartikel-vkpreisperselection"& _ 
+                "`.IDNR, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `grartikel-vkpreisperselection`.PreislisteNam"& _ 
+                "e, `grartikel-vkpreisperselection`.StkAb, `grartikel-vkpreisperselection`.Datum,"& _ 
+                " `grartikel-vkpreisperselection`.VKPreis, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `grartikel-"& _ 
+                "vkpreisperselection`.AufschlagVKPreis, `grartikel-vkpreisperselection`.Aufschlag"& _ 
+                "EKPreis, grartikel.EAN, grartikel.Bezeichnung, grartikel.Bezeichnung1, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  grartikel.Beschreibung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `grartikel-vkpreispers"& _ 
+                "election` LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel ON `grartikel-vkpr"& _ 
+                "eisperselection`.ArtNr = grartikel.ArtNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY `grartikel-vkpreisperselectio"& _ 
+                "n`.ArtKatNr, `grartikel-vkpreisperselection`.ArtNr, `grartikel-vkpreisperselecti"& _ 
+                "on`.IDNR, `grartikel-vkpreisperselection`.PreislisteName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     `grartikel-vkpreisperselection`.StkAb"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
