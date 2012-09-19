@@ -263,8 +263,8 @@ Public Class ModulePreiseTest
         Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
         EKPreis = getEKPreis(ArtNr)
 
-        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
-        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(90.0), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(108), CStr(Preis_Brutto))
         Assert.AreEqual(CStr(50), CStr(EKPreis))
 
 
@@ -277,8 +277,8 @@ Public Class ModulePreiseTest
         Preis_Brutto = calculateBruttoPreis(Preis_Netto, ArtNr, KundNr)
         EKPreis = getEKPreis(ArtNr)
 
-        Assert.AreEqual(CStr(101.0), CStr(Preis_Netto))
-        Assert.AreEqual(CStr(121.2), CStr(Preis_Brutto))
+        Assert.AreEqual(CStr(80), CStr(Preis_Netto))
+        Assert.AreEqual(CStr(96), CStr(Preis_Brutto))
         Assert.AreEqual(CStr(50), CStr(EKPreis))
 
 
