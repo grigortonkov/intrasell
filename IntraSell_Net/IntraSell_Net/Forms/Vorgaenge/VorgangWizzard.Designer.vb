@@ -89,7 +89,7 @@ Partial Class VorgangWizzard
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
-        Me.TableLayoutPanel1.TabIndex = 0
+        Me.TableLayoutPanel1.TabIndex = 4
         '
         'OK_Button
         '
@@ -98,7 +98,7 @@ Partial Class VorgangWizzard
         Me.OK_Button.Location = New System.Drawing.Point(3, 3)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(67, 23)
-        Me.OK_Button.TabIndex = 4
+        Me.OK_Button.TabIndex = 5
         Me.OK_Button.Text = "OK"
         '
         'Cancel_Button
@@ -108,7 +108,7 @@ Partial Class VorgangWizzard
         Me.Cancel_Button.Location = New System.Drawing.Point(76, 3)
         Me.Cancel_Button.Name = "Cancel_Button"
         Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
-        Me.Cancel_Button.TabIndex = 5
+        Me.Cancel_Button.TabIndex = 6
         Me.Cancel_Button.Text = "Cancel"
         '
         'NummerTextBox
@@ -142,7 +142,7 @@ Partial Class VorgangWizzard
         Me.KundNrAdressenControl.IDNR = 0
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(134, 25)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(131, 25)
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(172, 25)
         Me.KundNrAdressenControl.TabIndex = 0
         '
         'VorgangWizzard
