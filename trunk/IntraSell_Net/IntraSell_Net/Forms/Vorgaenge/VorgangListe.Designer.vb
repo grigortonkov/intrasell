@@ -137,7 +137,7 @@ Partial Class VorgangListe
         Me.FilterButton.Location = New System.Drawing.Point(14, 490)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
-        Me.FilterButton.TabIndex = 5
+        Me.FilterButton.TabIndex = 19
         Me.FilterButton.Text = "Filter anwenden"
         Me.FilterButton.UseVisualStyleBackColor = True
         '
@@ -155,14 +155,14 @@ Partial Class VorgangListe
         Me.PLZVonTextBox.Location = New System.Drawing.Point(95, 313)
         Me.PLZVonTextBox.Name = "PLZVonTextBox"
         Me.PLZVonTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PLZVonTextBox.TabIndex = 1
+        Me.PLZVonTextBox.TabIndex = 12
         '
         'PLZBisTextBox
         '
         Me.PLZBisTextBox.Location = New System.Drawing.Point(169, 313)
         Me.PLZBisTextBox.Name = "PLZBisTextBox"
         Me.PLZBisTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.PLZBisTextBox.TabIndex = 2
+        Me.PLZBisTextBox.TabIndex = 13
         '
         'Label2
         '
@@ -190,7 +190,7 @@ Partial Class VorgangListe
         Me.KundengruppeComboBox.Location = New System.Drawing.Point(95, 339)
         Me.KundengruppeComboBox.Name = "KundengruppeComboBox"
         Me.KundengruppeComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.KundengruppeComboBox.TabIndex = 3
+        Me.KundengruppeComboBox.TabIndex = 14
         '
         'PreislisteComboBox
         '
@@ -200,7 +200,7 @@ Partial Class VorgangListe
         Me.PreislisteComboBox.Location = New System.Drawing.Point(95, 366)
         Me.PreislisteComboBox.Name = "PreislisteComboBox"
         Me.PreislisteComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.PreislisteComboBox.TabIndex = 4
+        Me.PreislisteComboBox.TabIndex = 15
         '
         'Label4
         '
@@ -249,7 +249,7 @@ Partial Class VorgangListe
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.VorgangListeDataGridView.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.VorgangListeDataGridView.Size = New System.Drawing.Size(766, 762)
-        Me.VorgangListeDataGridView.TabIndex = 6
+        Me.VorgangListeDataGridView.TabIndex = 20
         '
         'NummerDataGridViewTextBoxColumn
         '
@@ -509,14 +509,14 @@ Partial Class VorgangListe
         Me.SummeVonTextBox.Location = New System.Drawing.Point(94, 176)
         Me.SummeVonTextBox.Name = "SummeVonTextBox"
         Me.SummeVonTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.SummeVonTextBox.TabIndex = 40
+        Me.SummeVonTextBox.TabIndex = 6
         '
         'SummeBisTextBox
         '
         Me.SummeBisTextBox.Location = New System.Drawing.Point(168, 176)
         Me.SummeBisTextBox.Name = "SummeBisTextBox"
         Me.SummeBisTextBox.Size = New System.Drawing.Size(52, 20)
-        Me.SummeBisTextBox.TabIndex = 41
+        Me.SummeBisTextBox.TabIndex = 7
         '
         'Label14
         '
@@ -533,7 +533,7 @@ Partial Class VorgangListe
         Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
         Me.AdressenControl1.Name = "AdressenControl1"
         Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 39
+        Me.AdressenControl1.TabIndex = 9
         '
         'ArtikelControl1
         '
@@ -541,7 +541,7 @@ Partial Class VorgangListe
         Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
         Me.ArtikelControl1.Name = "ArtikelControl1"
         Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl1.TabIndex = 38
+        Me.ArtikelControl1.TabIndex = 5
         '
         'StatusComboBox
         '
@@ -549,7 +549,7 @@ Partial Class VorgangListe
         Me.StatusComboBox.Location = New System.Drawing.Point(96, 65)
         Me.StatusComboBox.Name = "StatusComboBox"
         Me.StatusComboBox.Size = New System.Drawing.Size(124, 21)
-        Me.StatusComboBox.TabIndex = 36
+        Me.StatusComboBox.TabIndex = 2
         '
         'BezahltCheckBox
         '
@@ -558,7 +558,7 @@ Partial Class VorgangListe
         Me.BezahltCheckBox.Location = New System.Drawing.Point(95, 400)
         Me.BezahltCheckBox.Name = "BezahltCheckBox"
         Me.BezahltCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.BezahltCheckBox.TabIndex = 27
+        Me.BezahltCheckBox.TabIndex = 16
         Me.BezahltCheckBox.Text = "bezahlt"
         Me.BezahltCheckBox.UseVisualStyleBackColor = True
         '
@@ -569,7 +569,7 @@ Partial Class VorgangListe
         Me.AusgedrucktCheckBox.Location = New System.Drawing.Point(95, 430)
         Me.AusgedrucktCheckBox.Name = "AusgedrucktCheckBox"
         Me.AusgedrucktCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AusgedrucktCheckBox.TabIndex = 28
+        Me.AusgedrucktCheckBox.TabIndex = 17
         Me.AusgedrucktCheckBox.Text = "ausgedruckt"
         Me.AusgedrucktCheckBox.UseVisualStyleBackColor = True
         '
@@ -580,7 +580,7 @@ Partial Class VorgangListe
         Me.AbgeschlossenCheckBox.Location = New System.Drawing.Point(95, 460)
         Me.AbgeschlossenCheckBox.Name = "AbgeschlossenCheckBox"
         Me.AbgeschlossenCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AbgeschlossenCheckBox.TabIndex = 29
+        Me.AbgeschlossenCheckBox.TabIndex = 18
         Me.AbgeschlossenCheckBox.Text = "abgeschlosen"
         Me.AbgeschlossenCheckBox.UseVisualStyleBackColor = True
         '
@@ -598,7 +598,7 @@ Partial Class VorgangListe
         Me.NummerTextBox.Location = New System.Drawing.Point(95, 39)
         Me.NummerTextBox.Name = "NummerTextBox"
         Me.NummerTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.NummerTextBox.TabIndex = 25
+        Me.NummerTextBox.TabIndex = 1
         '
         'TypComboBox
         '
@@ -608,7 +608,7 @@ Partial Class VorgangListe
         Me.TypComboBox.Location = New System.Drawing.Point(95, 12)
         Me.TypComboBox.Name = "TypComboBox"
         Me.TypComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.TypComboBox.TabIndex = 23
+        Me.TypComboBox.TabIndex = 0
         '
         'Label11
         '
@@ -625,7 +625,7 @@ Partial Class VorgangListe
         Me.DatumUntil.Location = New System.Drawing.Point(96, 118)
         Me.DatumUntil.Name = "DatumUntil"
         Me.DatumUntil.Size = New System.Drawing.Size(125, 20)
-        Me.DatumUntil.TabIndex = 22
+        Me.DatumUntil.TabIndex = 4
         '
         'DatumVon
         '
@@ -633,7 +633,7 @@ Partial Class VorgangListe
         Me.DatumVon.Location = New System.Drawing.Point(95, 92)
         Me.DatumVon.Name = "DatumVon"
         Me.DatumVon.Size = New System.Drawing.Size(125, 20)
-        Me.DatumVon.TabIndex = 20
+        Me.DatumVon.TabIndex = 3
         '
         'Label9
         '
@@ -652,7 +652,7 @@ Partial Class VorgangListe
         Me.MitarbeiterComboBox.Location = New System.Drawing.Point(95, 203)
         Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
         Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.MitarbeiterComboBox.TabIndex = 15
+        Me.MitarbeiterComboBox.TabIndex = 8
         '
         'Label8
         '
@@ -671,7 +671,7 @@ Partial Class VorgangListe
         Me.LieferantComboBox.Location = New System.Drawing.Point(95, 259)
         Me.LieferantComboBox.Name = "LieferantComboBox"
         Me.LieferantComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LieferantComboBox.TabIndex = 13
+        Me.LieferantComboBox.TabIndex = 10
         '
         'Label7
         '
@@ -699,7 +699,7 @@ Partial Class VorgangListe
         Me.LandComboBox.Location = New System.Drawing.Point(95, 286)
         Me.LandComboBox.Name = "LandComboBox"
         Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LandComboBox.TabIndex = 0
+        Me.LandComboBox.TabIndex = 11
         '
         'Label5
         '

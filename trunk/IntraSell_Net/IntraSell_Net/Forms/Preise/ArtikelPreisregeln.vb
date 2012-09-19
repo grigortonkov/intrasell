@@ -39,8 +39,8 @@ Public Class ArtikelPreisregeln
             'filter dataset 
             filter = "1=1 "
 
-            If Me.ArtNrTextBox.Text.Length > 0 And IsNumeric(ArtNrTextBox.Text) Then
-                filter += " and ArtNr = " + ArtNrTextBox.Text
+            If Me.ArtikelControl.ArtNr > 0 And IsNumeric(Me.ArtikelControl.ArtNr) Then
+                filter += " and ArtNr = " + CStr(Me.ArtikelControl.ArtNr)
             End If
 
             If Me.BezeichnungTextBox.Text.Length > 0 Then
