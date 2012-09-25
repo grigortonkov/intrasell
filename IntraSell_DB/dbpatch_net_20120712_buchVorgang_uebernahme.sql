@@ -1,8 +1,7 @@
-﻿
-Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedungung,
+Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AN', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
+SELECT 'AN', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchangebot b;
@@ -18,10 +17,10 @@ SELECT 'AN',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brut
 FROM `buchangebot-artikel` b;
 
 
-Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedungung,
+Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AU', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
+SELECT 'AU', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchAuftrag b;
@@ -37,10 +36,10 @@ SELECT 'AU',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brut
 FROM `buchAuftrag-artikel` b;
 
 
-Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedungung,
+Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AR', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
+SELECT 'AR', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchRechnung b;
@@ -56,10 +55,10 @@ SELECT 'AR',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brut
 FROM `buchRech-artikel` b;
 
 
-Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedungung,
+Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'LI', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
+SELECT 'LI', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchLieferschein b;
