@@ -1,6 +1,7 @@
 ﻿Imports IntraSell_DLL
 Public Class AdressenControl
-    Public Const SQL = "SELECT IDNR, concat(Firma, ', ', Name, ', ', Vorname) as Adr FROM ofAdressen ORDER BY Firma"
+    Public Const SQL = "SELECT IDNR, concat(IFNULL(concat(Firma, ', '),''), IFNULL(concat(Name, ', '),''), IFNULL(Vorname,'')) as Adr " &
+                       " FROM ofAdressen where Firma is not null or name is not null or Vorname is not null ORDER BY Firma, Name, Vorname"
     Private _IDNR As Integer
 
     Public Property IDNR() As Integer

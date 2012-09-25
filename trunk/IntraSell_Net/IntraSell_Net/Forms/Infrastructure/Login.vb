@@ -27,7 +27,7 @@ Public Class Login
         Dim rs As MySql.Data.MySqlClient.MySqlDataReader
         rs = openRecordset("select distinct passwort p from ofMitarbeiter")
         If rs.Read Then
-            If rs.IsDBNull("p") Then
+            If rs.IsDBNull(0) Then
                 writeLog("Weiter ohne Anmedlung ...")
                 rs.Close()
                 Me.Close()

@@ -3916,6 +3916,7 @@ Partial Public Class dsVorgaenge
             Me.columnWohin.MaxLength = 250
             Me.columnStatus.MaxLength = 50
             Me.columnWaehrung.MaxLength = 3
+            Me.columnErstelltAm.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7905,11 +7906,7 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ErstelltAm() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ErstelltAm' in table 'buchvorgang' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
             End Get
             Set
                 Me(Me.tablebuchvorgang.ErstelltAmColumn) = value
@@ -8117,18 +8114,6 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetWaehrungNull()
             Me(Me.tablebuchvorgang.WaehrungColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsErstelltAmNull() As Boolean
-            Return Me.IsNull(Me.tablebuchvorgang.ErstelltAmColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetErstelltAmNull()
-            Me(Me.tablebuchvorgang.ErstelltAmColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17293,11 +17278,11 @@ Namespace dsVorgaengeTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `Nummer`, `Typ`, `KundNr`, `Datum`, `Notiz`, `NotizIntern`, `NotizExtern`,"& _ 
-                " `Summe`, `Bezahlt`, `Ausgedruckt`, `Abgeschlossen`, `Zahlungsbedingung`, `Trans"& _ 
-                "portMethode`, `ZahlungsMethode`, `Woher`, `Wohin`, `Status`, `SummeMWST`, `Summe"& _ 
-                "Brutto`, `LieferantNr`, `MitarbeiterNr`, `KundNr2`, `Waehrung`, `ErstelltAm` FRO"& _ 
-                "M `buchvorgang`"
+            Me._commandCollection(0).CommandText = "SELECT        Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe,"& _ 
+                " Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBru"& _ 
+                "tto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
+                "buchvorgang"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Datum > '1/1/2000')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Nummer, Typ, Datum"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
