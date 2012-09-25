@@ -1,7 +1,7 @@
 Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AN', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
+SELECT 'AN', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchangebot b;
@@ -14,13 +14,14 @@ Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt )
 SELECT 'AN',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brutto`,
  b.`ArtikelIdentifikation`, b.`EKPreis`, IfNull(b.`Bezeichnung`,'-'), b.`LieferantNR`, b.`PositionStatus`,
  b.`Referenz`, b.`Packung`, b.`Herkunft`, b.`Incoterm`, b.`Spezifikation`, b.`Zeitpunkt`
-FROM `buchangebot-artikel` b;
+FROM `buchangebot-artikel` b
+where RechNr is not null;
 
 
 Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AU', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
+SELECT 'AU', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchAuftrag b;
@@ -33,13 +34,14 @@ Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt )
 SELECT 'AU',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brutto`,
  b.`ArtikelIdentifikation`, b.`EKPreis`, IfNull(b.`Bezeichnung`,'-'), b.`LieferantNR`, b.`PositionStatus`,
  b.`Referenz`, b.`Packung`, b.`Herkunft`, b.`Incoterm`, b.`Spezifikation`, b.`Zeitpunkt`
-FROM `buchAuftrag-artikel` b;
+FROM `buchAuftrag-artikel` b
+where RechNr is not null;
 
 
 Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'AR', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
+SELECT 'AR', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchRechnung b;
@@ -52,13 +54,14 @@ Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt )
 SELECT 'AR',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brutto`,
  b.`ArtikelIdentifikation`, b.`EKPreis`, IfNull(b.`Bezeichnung`,'-'), b.`LieferantNR`, b.`PositionStatus`,
  b.`Referenz`, b.`Packung`, b.`Herkunft`, b.`Incoterm`, b.`Spezifikation`, b.`Zeitpunkt`
-FROM `buchRech-artikel` b;
+FROM `buchRech-artikel` b
+where RechNr is not null;
 
 
 Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
-SELECT 'LI', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedingung`,
+SELECT 'LI', b.`Nummer`, b.`KundNr`, b.`Datum`, b.`Notiz`, b.`Summe`, b.`Bezahlt`, b.`Ausgedrukt`, b.`anElba`, b.`ZahlungsBedungung`,
   b.`Woher`, b.`Wohin`, b.`TransportMethode`, b.`ZahlungsMethode`, b.`Status`,
   b.`NotizIntern`, b.`NotizExtern`, b.`SummeMWST`, b.`SummeBrutto`, b.`LieferantNr`, b.`MitarbeiterNr`,b.`KundNr2`, b.`Waehrung`
 FROM buchLieferschein b;
@@ -71,4 +74,5 @@ Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt )
 SELECT 'LI',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brutto`,
  b.`ArtikelIdentifikation`, b.`EKPreis`, IfNull(b.`Bezeichnung`,'-'), b.`LieferantNR`, b.`PositionStatus`,
  b.`Referenz`, b.`Packung`, b.`Herkunft`, b.`Incoterm`, b.`Spezifikation`, b.`Zeitpunkt`
-FROM `buchLieferschein-artikel` b;
+FROM `buchLieferschein-artikel` b
+where RechNr is not null and ArtNr is not null;
