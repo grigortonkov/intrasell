@@ -2,8 +2,38 @@
 
 Public Class ArtikelPreisregeln
 
+    'Handle Errors old data in the table for example -1 in ArtKAtNr
+    Private Sub DataGridView1_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles PreiseDataGridView.DataError
+
+        writeLog("Error happened " & e.Context.ToString())
+
+        If (e.Context = DataGridViewDataErrorContexts.Commit) _
+            Then
+            writeLog("Commit error")
+        End If
+        If (e.Context = DataGridViewDataErrorContexts.CurrentCellChange) Then
+            writeLog("Cell change")
+        End If
+        If (e.Context = DataGridViewDataErrorContexts.Parsing) Then
+            writeLog("parsing error")
+        End If
+        If (e.Context = _
+            DataGridViewDataErrorContexts.LeaveControl) Then
+            writeLog("leave control error")
+        End If
+
+        If (TypeOf (e.Exception) Is ConstraintException) Then
+            Dim view As DataGridView = CType(sender, DataGridView)
+            view.Rows(e.RowIndex).ErrorText = "an error"
+            view.Rows(e.RowIndex).Cells(e.ColumnIndex) _
+                .ErrorText = "an error"
+
+            e.ThrowException = False
+        End If
+    End Sub
+
     Private Sub ArtikelPreise_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-      
+
         Try
             'Fill grid combos first 
             FillComboBoxInDG(Me.IDNRColumn, AdressenControl.SQL, "Adr", "IDNR")
@@ -12,8 +42,11 @@ Public Class ArtikelPreisregeln
             FillComboBoxInDG(Me.PreislisteNameColumn, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName", "PreislisteName")
 
             'Fill grid data 
-            Me.Grartikel_vkpreisperselectionTableAdapter.Fill(Me.DsPreise._grartikel_vkpreisperselection)
-
+            Try
+                Me.Grartikel_vkpreisperselectionTableAdapter.Fill(Me.DsPreise._grartikel_vkpreisperselection)
+            Catch ex As Exception
+                ' HandleAppError(ex)
+            End Try
             'Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
             FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName", "PreislisteName")
@@ -108,7 +141,7 @@ Public Class ArtikelPreisregeln
     End Sub
 
     'KundenDetail öffnen 
-    Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
+    Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles PreiseDataGridView.RowHeaderMouseDoubleClick
         Try
             ' Artikel.MdiParent = Me.MdiParent
             ' Artikel.Show()

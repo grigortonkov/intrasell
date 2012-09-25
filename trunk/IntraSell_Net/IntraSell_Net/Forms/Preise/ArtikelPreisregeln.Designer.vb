@@ -34,10 +34,21 @@ Partial Class ArtikelPreisregeln
         Me.KundengruppeComboBox = New System.Windows.Forms.ComboBox()
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
+        Me.PreiseDataGridView = New System.Windows.Forms.DataGridView()
+        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GrartikelvkpreisperselectionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPreise = New IntraSell_Net.dsPreise()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.ArtikelControl = New IntraSell_Net.ArtikelControl()
         Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -66,19 +77,8 @@ Partial Class ArtikelPreisregeln
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.Grartikel_vkpreisperselectionTableAdapter = New IntraSell_Net.dsPreiseTableAdapters.grartikel_vkpreisperselectionTableAdapter()
-        Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ArtNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.ArtKatNrColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.IDNRColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.PreislisteNameColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.StkAbColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagVKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AufschlagEKPreisColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatumColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ArtikelControl = New IntraSell_Net.ArtikelControl()
         SetArtikelLabel = New System.Windows.Forms.Label()
-        CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PreiseDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,18 +180,92 @@ Partial Class ArtikelPreisregeln
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Preisliste:"
         '
-        'OfAdressenlisteDataGridView
+        'PreiseDataGridView
         '
-        Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
-        Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
-        Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdColumn, Me.ArtNrColumn, Me.ArtKatNrColumn, Me.IDNRColumn, Me.PreislisteNameColumn, Me.StkAbColumn, Me.VKPreisColumn, Me.AufschlagVKPreisColumn, Me.AufschlagEKPreisColumn, Me.DatumColumn})
-        Me.OfAdressenlisteDataGridView.DataSource = Me.GrartikelvkpreisperselectionBindingSource
-        Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
-        Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(818, 728)
-        Me.OfAdressenlisteDataGridView.TabIndex = 6
+        Me.PreiseDataGridView.AllowUserToOrderColumns = True
+        Me.PreiseDataGridView.AutoGenerateColumns = False
+        Me.PreiseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PreiseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdColumn, Me.ArtNrColumn, Me.ArtKatNrColumn, Me.IDNRColumn, Me.PreislisteNameColumn, Me.StkAbColumn, Me.VKPreisColumn, Me.AufschlagVKPreisColumn, Me.AufschlagEKPreisColumn, Me.DatumColumn})
+        Me.PreiseDataGridView.DataSource = Me.GrartikelvkpreisperselectionBindingSource
+        Me.PreiseDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PreiseDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.PreiseDataGridView.Name = "PreiseDataGridView"
+        Me.PreiseDataGridView.Size = New System.Drawing.Size(818, 728)
+        Me.PreiseDataGridView.TabIndex = 6
+        '
+        'IdColumn
+        '
+        Me.IdColumn.DataPropertyName = "Id"
+        Me.IdColumn.HeaderText = "Id"
+        Me.IdColumn.Name = "IdColumn"
+        Me.IdColumn.Visible = False
+        '
+        'ArtNrColumn
+        '
+        Me.ArtNrColumn.DataPropertyName = "ArtNr"
+        Me.ArtNrColumn.HeaderText = "Artikel"
+        Me.ArtNrColumn.Name = "ArtNrColumn"
+        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ArtKatNrColumn
+        '
+        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
+        Me.ArtKatNrColumn.HeaderText = "Kategorie"
+        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
+        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'IDNRColumn
+        '
+        Me.IDNRColumn.DataPropertyName = "IDNR"
+        Me.IDNRColumn.HeaderText = "Kunde"
+        Me.IDNRColumn.Name = "IDNRColumn"
+        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.IDNRColumn.Width = 150
+        '
+        'PreislisteNameColumn
+        '
+        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
+        Me.PreislisteNameColumn.HeaderText = "Preisliste"
+        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
+        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'StkAbColumn
+        '
+        Me.StkAbColumn.DataPropertyName = "StkAb"
+        Me.StkAbColumn.HeaderText = "Stk ab"
+        Me.StkAbColumn.Name = "StkAbColumn"
+        Me.StkAbColumn.Width = 75
+        '
+        'VKPreisColumn
+        '
+        Me.VKPreisColumn.DataPropertyName = "VKPreis"
+        Me.VKPreisColumn.HeaderText = "VK Preis"
+        Me.VKPreisColumn.Name = "VKPreisColumn"
+        Me.VKPreisColumn.Width = 75
+        '
+        'AufschlagVKPreisColumn
+        '
+        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
+        Me.AufschlagVKPreisColumn.HeaderText = "Aufschlag VK Preis"
+        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
+        Me.AufschlagVKPreisColumn.Width = 75
+        '
+        'AufschlagEKPreisColumn
+        '
+        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
+        Me.AufschlagEKPreisColumn.HeaderText = "Aufschlag EK Preis"
+        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
+        Me.AufschlagEKPreisColumn.Width = 75
+        '
+        'DatumColumn
+        '
+        Me.DatumColumn.DataPropertyName = "Datum"
+        Me.DatumColumn.HeaderText = "Datum"
+        Me.DatumColumn.Name = "DatumColumn"
         '
         'GrartikelvkpreisperselectionBindingSource
         '
@@ -242,6 +316,14 @@ Partial Class ArtikelPreisregeln
         Me.SplitContainer.Size = New System.Drawing.Size(1075, 762)
         Me.SplitContainer.SplitterDistance = 253
         Me.SplitContainer.TabIndex = 11
+        '
+        'ArtikelControl
+        '
+        Me.ArtikelControl.ArtNr = 0
+        Me.ArtikelControl.Location = New System.Drawing.Point(98, 10)
+        Me.ArtikelControl.Name = "ArtikelControl"
+        Me.ArtikelControl.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl.TabIndex = 0
         '
         'AdressenControl1
         '
@@ -388,7 +470,7 @@ Partial Class ArtikelPreisregeln
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.PreiseDataGridView)
         Me.SplitContainer1.Size = New System.Drawing.Size(818, 762)
         Me.SplitContainer1.SplitterDistance = 30
         Me.SplitContainer1.TabIndex = 14
@@ -508,88 +590,6 @@ Partial Class ArtikelPreisregeln
         '
         Me.Grartikel_vkpreisperselectionTableAdapter.ClearBeforeFill = True
         '
-        'IdColumn
-        '
-        Me.IdColumn.DataPropertyName = "Id"
-        Me.IdColumn.HeaderText = "Id"
-        Me.IdColumn.Name = "IdColumn"
-        Me.IdColumn.Visible = False
-        '
-        'ArtNrColumn
-        '
-        Me.ArtNrColumn.DataPropertyName = "ArtNr"
-        Me.ArtNrColumn.HeaderText = "Artikel"
-        Me.ArtNrColumn.Name = "ArtNrColumn"
-        Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'ArtKatNrColumn
-        '
-        Me.ArtKatNrColumn.DataPropertyName = "ArtKatNr"
-        Me.ArtKatNrColumn.HeaderText = "Kategorie"
-        Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
-        Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'IDNRColumn
-        '
-        Me.IDNRColumn.DataPropertyName = "IDNR"
-        Me.IDNRColumn.HeaderText = "Kunde"
-        Me.IDNRColumn.Name = "IDNRColumn"
-        Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.IDNRColumn.Width = 150
-        '
-        'PreislisteNameColumn
-        '
-        Me.PreislisteNameColumn.DataPropertyName = "PreislisteName"
-        Me.PreislisteNameColumn.HeaderText = "Preisliste"
-        Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
-        Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'StkAbColumn
-        '
-        Me.StkAbColumn.DataPropertyName = "StkAb"
-        Me.StkAbColumn.HeaderText = "Stk ab"
-        Me.StkAbColumn.Name = "StkAbColumn"
-        Me.StkAbColumn.Width = 75
-        '
-        'VKPreisColumn
-        '
-        Me.VKPreisColumn.DataPropertyName = "VKPreis"
-        Me.VKPreisColumn.HeaderText = "VK Preis"
-        Me.VKPreisColumn.Name = "VKPreisColumn"
-        Me.VKPreisColumn.Width = 75
-        '
-        'AufschlagVKPreisColumn
-        '
-        Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
-        Me.AufschlagVKPreisColumn.HeaderText = "Aufschlag VK Preis"
-        Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
-        Me.AufschlagVKPreisColumn.Width = 75
-        '
-        'AufschlagEKPreisColumn
-        '
-        Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
-        Me.AufschlagEKPreisColumn.HeaderText = "Aufschlag EK Preis"
-        Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
-        Me.AufschlagEKPreisColumn.Width = 75
-        '
-        'DatumColumn
-        '
-        Me.DatumColumn.DataPropertyName = "Datum"
-        Me.DatumColumn.HeaderText = "Datum"
-        Me.DatumColumn.Name = "DatumColumn"
-        '
-        'ArtikelControl
-        '
-        Me.ArtikelControl.ArtNr = 0
-        Me.ArtikelControl.Location = New System.Drawing.Point(98, 10)
-        Me.ArtikelControl.Name = "ArtikelControl"
-        Me.ArtikelControl.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl.TabIndex = 0
-        '
         'ArtikelPreisregeln
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -599,7 +599,7 @@ Partial Class ArtikelPreisregeln
         Me.Name = "ArtikelPreisregeln"
         Me.Text = "Preisregeln"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PreiseDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrartikelvkpreisperselectionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPreise, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.Panel1.ResumeLayout(False)
@@ -627,7 +627,7 @@ Partial Class ArtikelPreisregeln
     Friend WithEvents KundengruppeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents PreislisteComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents OfAdressenlisteDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents PreiseDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents SplitContainer As System.Windows.Forms.SplitContainer
     Friend WithEvents ArtKatNrComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
