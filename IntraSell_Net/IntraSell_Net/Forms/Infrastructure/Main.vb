@@ -115,6 +115,8 @@ Public Class Main
 
     Private Sub UpdateToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles UpdateToolStripMenuItem.Click
         Try
+            Log.MdiParent = Me
+            Log.Show()
             UpdateIntraSell(False)
             ProcessAllSQLFiles()
         Catch ex As Exception

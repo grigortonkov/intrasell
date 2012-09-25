@@ -5,8 +5,11 @@ Public Class VorgangListe
 
 
         Try
-
-            Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe)
+            Try
+                Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe)
+            Catch ex As Exception
+                HandleAppError(ex)
+            End Try
             FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
             FillComboBox(Me.StatusComboBox, "SELECT Status from buchVorgaengeStatus Group by Status", "Status")
 
@@ -55,9 +58,9 @@ Public Class VorgangListe
                 filter = filter & " and Status Like '" + StatusComboBox.Text + "%'"
             End If
 
-            If ArtikelControl1.ArtNr > 0 Then
-                filter = filter & " and ArtNr Like '" + ArtikelControl1.Text + "%'"
-            End If
+            ' If ArtikelControl1.ArtNr > 0 Then
+            'filter = filter & " and ArtNr Like '" + ArtikelControl1.Text + "%'"
+            'End If
 
             If AdressenControl1.IDNR > 0 Then
                 filter = filter & " and KundNr = " + CStr(AdressenControl1.IDNR)

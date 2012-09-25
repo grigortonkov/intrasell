@@ -31,8 +31,10 @@ Partial Class Log
         Me.LogTextBox.Location = New System.Drawing.Point(0, 0)
         Me.LogTextBox.Multiline = True
         Me.LogTextBox.Name = "LogTextBox"
+        Me.LogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.LogTextBox.Size = New System.Drawing.Size(784, 362)
         Me.LogTextBox.TabIndex = 1
+        Me.LogTextBox.Text = "Log File Inhalt"
         '
         'Log
         '
