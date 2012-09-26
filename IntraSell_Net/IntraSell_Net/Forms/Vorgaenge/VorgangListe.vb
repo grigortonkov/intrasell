@@ -12,7 +12,6 @@ Public Class VorgangListe
  
         Try
             LoadFilter()
-
             LoadData()
 
             FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
@@ -50,6 +49,7 @@ Public Class VorgangListe
             SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumVon.Name, Me.DatumVon.Value)
             SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumUntil.Name, Me.DatumUntil.Value)
             SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.TypComboBox.Name, Me.TypComboBox.SelectedValue)
+            SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.NummerTextBox.Name, Me.NummerTextBox.Text)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -60,6 +60,7 @@ Public Class VorgangListe
             Me.DatumVon.Value = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumVon.Name, Me.DatumVon.MinDate)
             Me.DatumUntil.Value = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumUntil.Name, Me.DatumUntil.MaxDate)
             Me.TypComboBox.SelectedValue = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.TypComboBox.Name, Me.TypComboBox.SelectedValue)
+            Me.NummerTextBox.Text = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.NummerTextBox.Name, Me.NummerTextBox.Text)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -76,7 +77,7 @@ Public Class VorgangListe
             End If
 
             If Me.NummerTextBox.Text.Length > 0 Then
-                filter = filter & " and Nummer Like '" + NummerTextBox.Text + "%'"
+                filter = filter & " and Nummer = " & NummerTextBox.Text
             End If
 
             If Me.StatusComboBox.Text.Length > 0 Then
@@ -110,6 +111,7 @@ Public Class VorgangListe
             If Me.PLZVonTextBox.Text.Length > 0 Then
                 filter = filter & " and PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
+
             If Me.PLZBisTextBox.Text.Length > 0 Then
                 filter = filter & " and PLZ <= '" + PLZVonTextBox.Text + "%'"
             End If
