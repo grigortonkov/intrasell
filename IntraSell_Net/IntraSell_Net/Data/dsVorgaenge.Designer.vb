@@ -3495,8 +3495,6 @@ Partial Public Class dsVorgaenge
         
         Private columnErstelltAm As Global.System.Data.DataColumn
         
-        Private Shared columnErstelltAm_defaultValue As Date = Date.Parse("2000-01-01T00:00:00")
-        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -3918,7 +3916,7 @@ Partial Public Class dsVorgaenge
             Me.columnWohin.MaxLength = 250
             Me.columnStatus.MaxLength = 50
             Me.columnWaehrung.MaxLength = 3
-            Me.columnErstelltAm.DefaultValue = CType(buchvorgangDataTable.columnErstelltAm_defaultValue,Date)
+            Me.columnErstelltAm.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7908,11 +7906,7 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ErstelltAm() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ErstelltAm' in table 'buchvorgang' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
             End Get
             Set
                 Me(Me.tablebuchvorgang.ErstelltAmColumn) = value
@@ -8120,18 +8114,6 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetWaehrungNull()
             Me(Me.tablebuchvorgang.WaehrungColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsErstelltAmNull() As Boolean
-            Return Me.IsNull(Me.tablebuchvorgang.ErstelltAmColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetErstelltAmNull()
-            Me(Me.tablebuchvorgang.ErstelltAmColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17694,7 +17676,7 @@ Namespace dsVorgaengeTableAdapters
                     ByVal MitarbeiterNr As Global.System.Nullable(Of Integer),  _
                     ByVal KundNr2 As Global.System.Nullable(Of Integer),  _
                     ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Global.System.Nullable(Of Date),  _
+                    ByVal ErstelltAm As Date,  _
                     ByVal Original_Nummer As Integer,  _
                     ByVal Original_Typ As String) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(KundNr,Integer)
@@ -17794,11 +17776,7 @@ Namespace dsVorgaengeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Waehrung,String)
             End If
-            If (ErstelltAm.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ErstelltAm.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ErstelltAm,Date)
             Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Nummer,Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")
@@ -19708,16 +19686,25 @@ Namespace dsVorgaengeTableAdapters
                 "MitarbeiterNr, buchvorgang.KundNr2, buchvorgang.Waehrung, buchvorgang.ErstelltAm"& _ 
                 ", "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Firma, ofadressen.Name, ofadressen.Vorna"& _ 
                 "me, `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisliste, grland"& _ 
-                ".Name, grplz.PLZ, grplz.Ort"
+                ".Name, grplz.PLZ, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz.Ort"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"HAVING        (buchvorga"& _ 
+                "ng.Datum >= @DatumVon)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@DatumVon"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "Datum"
+            Me._commandCollection(0).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsVorgaenge.buchVorgangListeDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsVorgaenge.buchVorgangListeDataTable, ByVal DatumVon As Date) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DatumVon,Date)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -19729,8 +19716,9 @@ Namespace dsVorgaengeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsVorgaenge.buchVorgangListeDataTable
+        Public Overloads Overridable Function GetData(ByVal DatumVon As Date) As dsVorgaenge.buchVorgangListeDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DatumVon,Date)
             Dim dataTable As dsVorgaenge.buchVorgangListeDataTable = New dsVorgaenge.buchVorgangListeDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

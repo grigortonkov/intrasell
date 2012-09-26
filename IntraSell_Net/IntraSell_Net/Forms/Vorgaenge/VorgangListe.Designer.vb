@@ -72,8 +72,6 @@ Partial Class VorgangListe
         Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
         Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
         Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
@@ -93,6 +91,8 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -527,22 +527,6 @@ Partial Class VorgangListe
         Me.Label14.TabIndex = 43
         Me.Label14.Text = "-"
         '
-        'AdressenControl1
-        '
-        Me.AdressenControl1.IDNR = 0
-        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 9
-        '
-        'ArtikelControl1
-        '
-        Me.ArtikelControl1.ArtNr = 0
-        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl1.TabIndex = 5
-        '
         'StatusComboBox
         '
         Me.StatusComboBox.FormattingEnabled = True
@@ -623,6 +607,8 @@ Partial Class VorgangListe
         '
         Me.DatumUntil.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DatumUntil.Location = New System.Drawing.Point(96, 118)
+        Me.DatumUntil.MaxDate = New Date(2020, 12, 31, 0, 0, 0, 0)
+        Me.DatumUntil.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.DatumUntil.Name = "DatumUntil"
         Me.DatumUntil.Size = New System.Drawing.Size(125, 20)
         Me.DatumUntil.TabIndex = 4
@@ -631,6 +617,8 @@ Partial Class VorgangListe
         '
         Me.DatumVon.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DatumVon.Location = New System.Drawing.Point(95, 92)
+        Me.DatumVon.MaxDate = New Date(2020, 1, 1, 0, 0, 0, 0)
+        Me.DatumVon.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.DatumVon.Name = "DatumVon"
         Me.DatumVon.Size = New System.Drawing.Size(125, 20)
         Me.DatumVon.TabIndex = 3
@@ -713,6 +701,22 @@ Partial Class VorgangListe
         'BuchVorgangListeTableAdapter
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 9
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.ArtNr = 0
+        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl1.TabIndex = 5
         '
         'VorgangListe
         '

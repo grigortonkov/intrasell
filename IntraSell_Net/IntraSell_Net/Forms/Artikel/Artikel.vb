@@ -36,8 +36,12 @@ Public Class Artikel
 
     Private Sub Artikel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            Me.Grartikel_kategorienTableAdapter.Fill(Me.DsArtikel._grartikel_kategorien)
-            Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
+            Try
+                Me.Grartikel_kategorienTableAdapter.Fill(Me.DsArtikel._grartikel_kategorien)
+                Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
+            Catch ex As Exception
+                HandleAppError(ex)
+            End Try
 
             FillComboBox(Me.LieferantNRComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
             FillComboBox(Me.HerstellerNrComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
