@@ -1,22 +1,26 @@
 ﻿Imports IntraSell_DLL
 Public Class VorgangListe
 
-    Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
-
+    Sub LoadData()
         Try
-            Try
-                Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe)
-            Catch ex As Exception
-                HandleAppError(ex)
-            End Try
+            Me.BuchVorgangListeTableAdapter.Fill(Me.DsVorgaenge.buchVorgangListe, Me.DatumVon.Value)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+    Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+ 
+        Try
+            LoadFilter()
+
+            LoadData()
+
             FillComboBox(Me.TypComboBox, "SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
             FillComboBox(Me.StatusComboBox, "SELECT Status from buchVorgaengeStatus Group by Status", "Status")
-
             FillComboBox(Me.LandComboBox, "SELECT Name from grLand Order by Name", "Name")
             FillComboBox(Me.KundengruppeComboBox, "SELECT Gruppe from `ofAdressen-Kundengruppen` Order by Gruppe", "Gruppe")
             FillComboBox(Me.PreislisteComboBox, "SELECT PreislisteName FROM `grArtikel-VKPreisPerSelection` GROUP BY PreislisteName ORDER BY PreislisteName;", "PreislisteName")
-            'Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
+
 
             Me.TypComboBox.Text = ""
             Me.StatusComboBox.Text = ""
@@ -24,6 +28,8 @@ Public Class VorgangListe
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
 
+            LoadFilter()
+            FilterButton_Click(Nothing, Nothing)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -39,11 +45,30 @@ Public Class VorgangListe
         End Try
     End Sub
 
+    Private Sub SaveFilter()
+        Try
+            SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumVon.Name, Me.DatumVon.Value)
+            SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumUntil.Name, Me.DatumUntil.Value)
+            SetVarValue(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.TypComboBox.Name, Me.TypComboBox.SelectedValue)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub LoadFilter()
+        Try
+            Me.DatumVon.Value = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumVon.Name, Me.DatumVon.MinDate)
+            Me.DatumUntil.Value = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumUntil.Name, Me.DatumUntil.MaxDate)
+            Me.TypComboBox.SelectedValue = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.TypComboBox.Name, Me.TypComboBox.SelectedValue)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
             Dim filter As String = "1=1"
-
 
             'filter dataset 
             If Me.TypComboBox.Text.Length > 0 Then
@@ -122,6 +147,7 @@ Public Class VorgangListe
                 BuchVorgangListeBindingSource.Filter = Nothing
             End If
 
+            SaveFilter()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -144,4 +170,7 @@ Public Class VorgangListe
 
     End Sub
 
+    Private Sub DatumVon_ValueChanged(sender As System.Object, e As System.EventArgs) Handles DatumVon.ValueChanged
+        LoadData()
+    End Sub
 End Class

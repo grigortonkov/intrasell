@@ -3,19 +3,18 @@
     Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
         Try
-            'TODO: This line of code loads data into the 'DsPLZ.grland' table. You can move, or remove it, as needed.
+
             Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
-            'TODO: This line of code loads data into the 'DsAdressen.Preislisten' table. You can move, or remove it, as needed.
             Me.PreislistenTableAdapter.Fill(Me.DsAdressen.Preislisten)
-            'TODO: This line of code loads data into the 'DsAdressen.Kundengruppen' table. You can move, or remove it, as needed.
             Me.KundengruppenTableAdapter.Fill(Me.DsAdressen.Kundengruppen)
 
-            Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
+
 
             Me.LandComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
 
+            Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

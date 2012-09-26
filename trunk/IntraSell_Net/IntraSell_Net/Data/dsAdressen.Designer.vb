@@ -4098,12 +4098,6 @@ Partial Public Class dsAdressen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByIDNR(ByVal IDNR As Integer) As ofAdressenlisteRow
-            Return CType(Me.Rows.Find(New Object() {IDNR}),ofAdressenlisteRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As ofAdressenlisteDataTable = CType(MyBase.Clone,ofAdressenlisteDataTable)
             cln.InitVars
@@ -4154,9 +4148,7 @@ Partial Public Class dsAdressen
             MyBase.Columns.Add(Me.columnPreisliste)
             Me.columnLand = New Global.System.Data.DataColumn("Land", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLand)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIDNR}, true))
             Me.columnIDNR.AllowDBNull = false
-            Me.columnIDNR.Unique = true
             Me.columnName.MaxLength = 50
             Me.columnVorname.MaxLength = 50
             Me.columnFirma.MaxLength = 255
