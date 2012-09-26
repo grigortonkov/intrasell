@@ -27,8 +27,10 @@ Module ModuleSetup
         Try
             Dim gotConnection As Boolean = VarValue("ADMIN") = "WebShop"
             If gotConnection Then
+                Dim msg As String = "MySQL Verbindung ist OK, Sie benötigen keine neue Installation!"
+                writeLog(msg)
                 If Not silent Then
-                    MsgBox("MySQL Verbindung ist OK, Sie benötigen keine neue Installation!", vbExclamation)
+                    MsgBox(msg, vbExclamation)
                 End If
                 Exit Function
             End If
@@ -64,12 +66,12 @@ Module ModuleSetup
         'Check if Connection is possible 
         ' wait 5 secs
         Threading.Thread.Sleep(5000)
-        writeLog("Check connection ...")
+        writeLog("Check db connection ...")
         Try
             Dim gotConnection As Boolean = VarValue("ADMIN") = "WebShop"
             If gotConnection Then
                 SetUpMySqlServer = True
-                writeLog("Setup MySQL erfolgreich.")
+                writeLog("Setup MySQL OK.")
                 If Not silent Then
                     MsgBox("MySQL Verbindung ist OK!", MsgBoxStyle.OkOnly)
                 End If

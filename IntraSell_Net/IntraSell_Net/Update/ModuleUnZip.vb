@@ -54,6 +54,7 @@ Module ModuleUnZip
                 zf.Close()
             End If
         End Try
+        Threading.Thread.Sleep(5000) 'Warte 5 Sekunden bis die ZIP Tatsächelich fertig ist 
         writeLog("Extract ZipFile DONE")
     End Sub
 

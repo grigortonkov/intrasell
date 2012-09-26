@@ -3495,6 +3495,8 @@ Partial Public Class dsVorgaenge
         
         Private columnErstelltAm As Global.System.Data.DataColumn
         
+        Private Shared columnErstelltAm_defaultValue As Date = Date.Parse("2000-01-01T00:00:00")
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -3916,7 +3918,7 @@ Partial Public Class dsVorgaenge
             Me.columnWohin.MaxLength = 250
             Me.columnStatus.MaxLength = 50
             Me.columnWaehrung.MaxLength = 3
-            Me.columnErstelltAm.AllowDBNull = false
+            Me.columnErstelltAm.DefaultValue = CType(buchvorgangDataTable.columnErstelltAm_defaultValue,Date)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7906,7 +7908,11 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ErstelltAm() As Date
             Get
-                Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
+                Try 
+                    Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ErstelltAm' in table 'buchvorgang' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tablebuchvorgang.ErstelltAmColumn) = value
@@ -8114,6 +8120,18 @@ Partial Public Class dsVorgaenge
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetWaehrungNull()
             Me(Me.tablebuchvorgang.WaehrungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsErstelltAmNull() As Boolean
+            Return Me.IsNull(Me.tablebuchvorgang.ErstelltAmColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetErstelltAmNull()
+            Me(Me.tablebuchvorgang.ErstelltAmColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17676,7 +17694,7 @@ Namespace dsVorgaengeTableAdapters
                     ByVal MitarbeiterNr As Global.System.Nullable(Of Integer),  _
                     ByVal KundNr2 As Global.System.Nullable(Of Integer),  _
                     ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Date,  _
+                    ByVal ErstelltAm As Global.System.Nullable(Of Date),  _
                     ByVal Original_Nummer As Integer,  _
                     ByVal Original_Typ As String) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(KundNr,Integer)
@@ -17776,7 +17794,11 @@ Namespace dsVorgaengeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Waehrung,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ErstelltAm,Date)
+            If (ErstelltAm.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(ErstelltAm.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            End If
             Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Nummer,Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")

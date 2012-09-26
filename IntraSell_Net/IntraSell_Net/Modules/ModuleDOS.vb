@@ -71,4 +71,82 @@ Module ModuleDOS
     End Sub
 
 
+    Public Function KillFolder(ByVal FullPath As String) As Boolean
+
+        '******************************************
+        'PURPOSE: DELETES A FOLDER, INCLUDING ALL SUB-
+        '         DIRECTORIES, FILES, REGARDLESS OF THEIR
+        '         ATTRIBUTES
+
+        'PARAMETER: FullPath = FullPath of Folder to Delete
+
+        'RETURNS:   True is successful, false otherwise
+
+        'REQUIRES:  'VB6
+        'Reference to Microsoft Scripting Runtime
+        'Caution in use for obvious reasons
+
+        'EXAMPLE:   'KillFolder("D:\MyOldFiles")
+
+        '******************************************
+        Try
+
+
+            Dim oFso = CreateObject("Scripting.FileSystemObject")
+
+            'deletefolder method does not like the "\"
+            'at end of fullpath
+
+            If Right(FullPath, 1) = "\" Then FullPath = Left(FullPath, Len(FullPath) - 1)
+
+            If oFso.FolderExists(FullPath) Then
+
+                'Setting the 2nd parameter to true
+                'forces deletion of read-only files
+                oFso.DeleteFolder(FullPath, True)
+
+                KillFolder = Err.Number = 0 And oFso.FolderExists(FullPath) = False
+            End If
+            Return (True)
+        Catch ex As Exception
+            Return (False)
+        End Try
+    End Function
+
+
+    '====================================================
+    ' ListFilesInFolder
+    '====================================================
+    Public Function ListFilesInFolder(ByVal SourceFolderName As String, ByVal IncludeSubfolders As Boolean, Optional ByVal fileType As String = "sql") As String
+        ' lists information about the files in SourceFolder
+        ' example: ListFilesInFolder "C:\FolderName\", True
+        Dim FSO 'As Scripting.FileSystemObject
+        Dim SourceFolder 'As Scripting.Folder
+        Dim SubFolder 'As Scripting.Folder
+        Dim FileItem 'As Scripting.File
+        Dim allFiles As String = ""
+
+
+        FSO = CreateObject("Scripting.FileSystemObject")
+        SourceFolder = FSO.GetFolder(SourceFolderName)
+
+        For Each FileItem In SourceFolder.Files
+            If Right(FileItem.Name, Len(fileType)) = fileType Then
+                allFiles = allFiles & FileItem.Name & ";"
+            End If
+
+        Next FileItem
+        If IncludeSubfolders Then
+            For Each SubFolder In SourceFolder.SubFolders
+                ListFilesInFolder(SubFolder.Path, True)
+            Next SubFolder
+        End If
+        'Columns("A:H").AutoFit
+        FileItem = Nothing
+        SourceFolder = Nothing
+        FSO = Nothing
+        ListFilesInFolder = allFiles
+    End Function
+
+
 End Module

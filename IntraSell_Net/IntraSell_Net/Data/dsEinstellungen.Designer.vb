@@ -39,6 +39,7 @@ Partial Public Class dsEinstellungen
         AddHandler MyBase.Tables.CollectionChanged, schemaChangedHandler
         AddHandler MyBase.Relations.CollectionChanged, schemaChangedHandler
         Me.EndInit
+        Me.InitExpressions
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -50,6 +51,9 @@ Partial Public Class dsEinstellungen
             Dim schemaChangedHandler1 As Global.System.ComponentModel.CollectionChangeEventHandler = AddressOf Me.SchemaChanged
             AddHandler Me.Tables.CollectionChanged, schemaChangedHandler1
             AddHandler Me.Relations.CollectionChanged, schemaChangedHandler1
+            If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.ExcludeSchema) Then
+                Me.InitExpressions
+            End If
             Return
         End If
         Dim strSchema As String = CType(info.GetValue("XmlSchema", GetType(String)),String)
@@ -69,6 +73,7 @@ Partial Public Class dsEinstellungen
             Me.InitVars
         Else
             Me.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
+            Me.InitExpressions
         End If
         Me.GetSerializationData(info, context)
         Dim schemaChangedHandler As Global.System.ComponentModel.CollectionChangeEventHandler = AddressOf Me.SchemaChanged
@@ -130,6 +135,7 @@ Partial Public Class dsEinstellungen
     Public Overrides Function Clone() As Global.System.Data.DataSet
         Dim cln As dsEinstellungen = CType(MyBase.Clone,dsEinstellungen)
         cln.InitVars
+        cln.InitExpressions
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
     End Function
@@ -204,7 +210,7 @@ Partial Public Class dsEinstellungen
         Me.Namespace = "http://tempuri.org/dsEinstellungen.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableofvars = New ofvarsDataTable()
+        Me.tableofvars = New ofvarsDataTable(false)
         MyBase.Tables.Add(Me.tableofvars)
     End Sub
     
@@ -272,6 +278,12 @@ Partial Public Class dsEinstellungen
         Return type
     End Function
     
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Sub InitExpressions()
+        Me.ofvars.IsBooleanValueColumn.Expression = "Wert='True' or Wert = ' False'"
+    End Sub
+    
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub ofvarsRowChangeEventHandler(ByVal sender As Object, ByVal e As ofvarsRowChangeEvent)
     
@@ -289,13 +301,24 @@ Partial Public Class dsEinstellungen
         
         Private columnWert As Global.System.Data.DataColumn
         
+        Private columnIsBooleanValue As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
+            Me.New(false)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal initExpressions As Boolean)
             MyBase.New
             Me.TableName = "ofvars"
             Me.BeginInit
             Me.InitClass
+            If (initExpressions = true) Then
+                Me.InitExpressions
+            End If
             Me.EndInit
         End Sub
         
@@ -349,6 +372,14 @@ Partial Public Class dsEinstellungen
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IsBooleanValueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsBooleanValue
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -385,9 +416,19 @@ Partial Public Class dsEinstellungen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddofvarsRow(ByVal Id As Integer, ByVal Name As String, ByVal Wert As String, ByVal IsBooleanValue As Boolean) As ofvarsRow
+            Dim rowofvarsRow As ofvarsRow = CType(Me.NewRow,ofvarsRow)
+            Dim columnValuesArray() As Object = New Object() {Id, Name, Wert, IsBooleanValue}
+            rowofvarsRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowofvarsRow)
+            Return rowofvarsRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overloads Function AddofvarsRow(ByVal Id As Integer, ByVal Name As String, ByVal Wert As String) As ofvarsRow
             Dim rowofvarsRow As ofvarsRow = CType(Me.NewRow,ofvarsRow)
-            Dim columnValuesArray() As Object = New Object() {Id, Name, Wert}
+            Dim columnValuesArray() As Object = New Object() {Id, Name, Wert, Nothing}
             rowofvarsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowofvarsRow)
             Return rowofvarsRow
@@ -419,6 +460,7 @@ Partial Public Class dsEinstellungen
             Me.columnId = MyBase.Columns("Id")
             Me.columnName = MyBase.Columns("Name")
             Me.columnWert = MyBase.Columns("Wert")
+            Me.columnIsBooleanValue = MyBase.Columns("IsBooleanValue")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -430,12 +472,15 @@ Partial Public Class dsEinstellungen
             MyBase.Columns.Add(Me.columnName)
             Me.columnWert = New Global.System.Data.DataColumn("Wert", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWert)
+            Me.columnIsBooleanValue = New Global.System.Data.DataColumn("IsBooleanValue", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsBooleanValue)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnName}, true))
             Me.columnId.AllowDBNull = false
             Me.columnName.AllowDBNull = false
             Me.columnName.Unique = true
             Me.columnName.MaxLength = 50
             Me.columnWert.MaxLength = 255
+            Me.columnIsBooleanValue.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -455,6 +500,12 @@ Partial Public Class dsEinstellungen
         Protected Overrides Function GetRowType() As Global.System.Type
             Return GetType(ofvarsRow)
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitExpressions()
+            Me.IsBooleanValueColumn.Expression = "Wert='True' or Wert = ' False'"
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -619,6 +670,21 @@ Partial Public Class dsEinstellungen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IsBooleanValue() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableofvars.IsBooleanValueColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'IsBooleanValue' in table 'ofvars' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofvars.IsBooleanValueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsWertNull() As Boolean
             Return Me.IsNull(Me.tableofvars.WertColumn)
         End Function
@@ -627,6 +693,18 @@ Partial Public Class dsEinstellungen
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetWertNull()
             Me(Me.tableofvars.WertColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIsBooleanValueNull() As Boolean
+            Return Me.IsNull(Me.tableofvars.IsBooleanValueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIsBooleanValueNull()
+            Me(Me.tableofvars.IsBooleanValueColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -930,7 +1008,7 @@ Namespace dsEinstellungenTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
         Public Overloads Overridable Function GetData() As dsEinstellungen.ofvarsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As dsEinstellungen.ofvarsDataTable = New dsEinstellungen.ofvarsDataTable()
+            Dim dataTable As dsEinstellungen.ofvarsDataTable = New dsEinstellungen.ofvarsDataTable(true)
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function

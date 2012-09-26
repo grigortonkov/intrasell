@@ -204,8 +204,10 @@ Module ModuleUpdate
                                     End If
                                 Next
 
-                                FileSystem.Kill(updateFolder & "\*.*")
-                                FileSystem.RmDir(updateFolder)
+                                'TODO remove all subfolders too 
+                                KillFolder(updateFolder)
+                                'FileSystem.Kill(updateFolder & "\*.*")
+                                'FileSystem.RmDir(updateFolder)
                                 showUpgradeMsg = True
 
                             Else

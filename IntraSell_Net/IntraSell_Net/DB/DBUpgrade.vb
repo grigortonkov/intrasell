@@ -152,38 +152,5 @@ Module DBUpgrade
     End Function
 
 
-    '====================================================
-    ' ListFilesInFolder
-    '====================================================
-    Private Function ListFilesInFolder(SourceFolderName As String, IncludeSubfolders As Boolean, Optional fileType As String = "sql") As String
-        ' lists information about the files in SourceFolder
-        ' example: ListFilesInFolder "C:\FolderName\", True
-        Dim FSO 'As Scripting.FileSystemObject
-        Dim SourceFolder 'As Scripting.Folder
-        Dim SubFolder 'As Scripting.Folder
-        Dim FileItem 'As Scripting.File
-        Dim allFiles As String = ""
-
-
-        FSO = CreateObject("Scripting.FileSystemObject")
-        SourceFolder = FSO.GetFolder(SourceFolderName)
-
-        For Each FileItem In SourceFolder.Files
-            If Right(FileItem.Name, Len(fileType)) = fileType Then
-                allFiles = allFiles & FileItem.Name & ";"
-            End If
-
-        Next FileItem
-        If IncludeSubfolders Then
-            For Each SubFolder In SourceFolder.SubFolders
-                ListFilesInFolder(SubFolder.Path, True)
-            Next SubFolder
-        End If
-        'Columns("A:H").AutoFit
-        FileItem = Nothing
-        SourceFolder = Nothing
-        FSO = Nothing
-        ListFilesInFolder = allFiles
-    End Function
-
+   
 End Module
