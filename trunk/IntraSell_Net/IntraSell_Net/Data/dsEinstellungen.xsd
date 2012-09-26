@@ -84,6 +84,7 @@ WHERE        (Id = @Original_Id)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="IsBooleanValue" msdata:ReadOnly="true" msdata:Expression="Wert='True' or Wert = ' False'" msprop:Generator_ColumnVarNameInTable="columnIsBooleanValue" msprop:Generator_ColumnPropNameInRow="IsBooleanValue" msprop:Generator_ColumnPropNameInTable="IsBooleanValueColumn" msprop:Generator_UserColumnName="IsBooleanValue" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

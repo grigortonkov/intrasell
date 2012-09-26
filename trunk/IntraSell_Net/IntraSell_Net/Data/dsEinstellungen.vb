@@ -5,6 +5,11 @@
 
         End Sub
 
+        Function ToBooleanString(ByRef w As Boolean) As String
+            If w = "True" Then Return "True"
+            If w = "Fasle" Then Return "False"
+            Return "Null"
+        End Function
     End Class
 
 End Class
