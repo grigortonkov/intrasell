@@ -1,16 +1,21 @@
 <script language="VB" runat="server">  
 
     Const THUMBNAIL_SIZE = 200
-
+    
     '****************************************************************************
     'CHECKS IF AN IMAGE IS OKAY.. it is needed because somethimes problems on downloading happen
     'local full filename 
     '****************************************************************************
-
-    Function isImageOK(ByVal imageFileName) As Boolean
-        Dim CImage
-        CImage = Server.CreateObject("CImageInfo.GetInfo")
-        Dim FilePath
+    Function InitCImage() As Object
+        If Session("CImage") Is Nothing Then
+            Session("CImage") = Server.CreateObject("CImageInfo.GetInfo")
+        End If
+        InitCImage = Session("CImage")
+    End Function
+    
+    Function isImageOK(ByVal imageFileName As String) As Boolean
+        Dim CImage As Object = InitCImage()
+        Dim FilePath As String
         FilePath = imageFileName 'Type the path of your image file.
         CImage.SetPath(FilePath)
         'Response.Write "Image Type : " & CImage.TypeOfImage & "<br />"
@@ -21,26 +26,28 @@
         Else
             isImageOK = False
         End If
-        CImage = Nothing
+        
     End Function
 
 
 
     'returns html string with image proportional width and height attributes
-    Function makeImageSizeAttributes(ByVal imageFileName, ByVal maxWidth, ByVal maxHeight) As String
+    Function makeImageSizeAttributes(ByVal imageFileName As String, ByVal maxWidth As Int16, ByVal maxHeight As Int16) As String
         'Response.Write "makeImageSizeAttributes start "
         'Response.Write "maxWidth = " & maxWidth
         'Response.Write "maxHeight = " & maxHeight
     
-        Dim CImage
+ 
+        Dim FilePath As String
+        Dim CImage As Object
         Try
-            CImage = Server.CreateObject("CImageInfo.GetInfo")
+            CImage = InitCImage()
+            FilePath = Server.MapPath(imageFileName) 'Type the path of your image file.
+            CImage.SetPath(FilePath)
         Catch
             Return ""
         End Try
-        
-        Dim FilePath As String = Server.MapPath(imageFileName) 'Type the path of your image file.
-        CImage.SetPath(FilePath)
+       
         If showDebug() Then
             Response.Write("Image Type : " & CImage.TypeOfImage & "<br />")
             Response.Write("Image Height : " & CImage.GetHeight & "<br />")
@@ -71,7 +78,6 @@
     
         'else do nothing ' do not increase 
         'Response.End 
-        CImage = Nothing
     End Function
 
  
@@ -86,7 +92,7 @@
     Function makeImgTag(ByVal imageRelativeURL As Object, ByVal bezeichnung As String, ByVal maxSize As String) As String
   
         'will use any thumbnail generator like thumbnail.aspx
-        Dim SHOP_USE_LOCAL_THUMBS As Boolean : SHOP_USE_LOCAL_THUMBS = VARVALUE_DEFAULT("SHOP_USE_LOCAL_THUMBS", "false")
+        Dim SHOP_USE_LOCAL_THUMBS As Boolean = VARVALUE_DEFAULT("SHOP_USE_LOCAL_THUMBS", "false")
    
         If SHOP_USE_LOCAL_THUMBS <> "true" And SHOP_USE_LOCAL_THUMBS <> "false" Then
             SHOP_USE_LOCAL_THUMBS = SETVARVALUE("SHOP_USE_LOCAL_THUMBS", "false")

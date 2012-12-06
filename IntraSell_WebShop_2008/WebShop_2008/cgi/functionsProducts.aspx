@@ -5,7 +5,6 @@
     PRODUCT_IMAGE_SMALL_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_SMALL_MAX_SIZE", 100)
     PRODUCT_SHORT_DESCRIPTION_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_SHORT_DESCRIPTION_MAX_SIZE", 255) 'MAX SIZE FOR SEARCH/LIST, SMALL PRODUCT VIEW 
     
- 
 %>
 
 <script language="VB" runat="server">  
@@ -23,8 +22,6 @@
     Const TAG_IMAGETAGNAME_  As String= "[makeImgTagName" 'usage [makeImgTag:imageName]
     Const TAG_HTMLINFONAME_  As String= "[HTMLInfoName" 'usage [htmlInfoName:name]
     Const TAG_VERWANDTE_PRODUKTE_  As String= "[verwandteProdukte" 'usage [verwandteProdukte:bezeichnung]
-
-    
 
     Const FLENAME_PRODUCT_LIST_COLUMN_DESCRIPTION  As String= "productList_column_description.htm"
     Const FLENAME_PRODUCT_LIST_HEADER As String = "productList_header.htm"
@@ -105,8 +102,8 @@
 
         Dim MC : If UCase(Session("dbType")) = UCase("Access") Then MC = "*" Else MC = "%"
         Dim sql As String, rsQ
-        Dim ArtKatNr_ToSearchInto : ArtKatNr_ToSearchInto = Request("ArtKatNr_ToSearchInto")
-        Dim SearchOnlyInthisCategory : SearchOnlyInthisCategory = Request("SearchOnlyInthisCategory")
+        Dim ArtKatNr_ToSearchInto As String = Request("ArtKatNr_ToSearchInto")
+        Dim SearchOnlyInthisCategory As String = Request("SearchOnlyInthisCategory")
 
         If LCase(SearchOnlyInthisCategory) <> "on" Then
             ArtKatNr_ToSearchInto = 0
