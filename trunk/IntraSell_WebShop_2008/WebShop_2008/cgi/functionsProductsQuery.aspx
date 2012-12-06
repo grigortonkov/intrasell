@@ -8,7 +8,7 @@
     ' new feature 03-12-2004: Line Highlight and Fixed Sorting on Product Keywords 
     '****************************************************************************
 
-    Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the reult lines 
+    Const COUNT_RESULT_LINES = "COUNT_RESULT_LINES" 'xml tag name for the result lines 
 
     ''' <summary>
     ''' makeProductListOnQuery - lists all products depending on the SQL query
@@ -454,7 +454,7 @@
             
             If Not isMobileMode Then
                 tableColumns = tableColumns + 1
-                html = html & "<th width=""400"" height=""52"">"
+                html = html & "<th width=""100%"" height=""52"">"
             End If
             
             html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & _
@@ -472,7 +472,7 @@
                 If Not isMobileMode Then
                     html = html & "<th width=""80"" align=right>"
                 Else
-                    html = html & "/ "
+                    html = html & " / "
                 End If
                 
                 html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
@@ -492,7 +492,7 @@
                     tableColumns = tableColumns + 1
                     html = html & "<th width=""90"">"
                 Else
-                    html = html & "/ "
+                    html = html & " / "
                 End If
                 
                 html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
@@ -511,7 +511,7 @@
                     tableColumns = tableColumns + 1
                     html = html & "<th width=""90"">"
                 Else
-                    html = html & "/ "
+                    html = html & " / "
                 End If
                 
                 html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
@@ -533,7 +533,7 @@
                     tableColumns = tableColumns + 1
                     html = html & "<th width=""80"">"
                 Else
-                    html = html & "/ "
+                    html = html & " / "
                 End If
                 
                 html = html & "<a href=""default.aspx?pageToShow=Produktliste&" & generalLinkParameters & "&filterBy=" & requestFilterBy & "&orderBy=" & _
@@ -583,12 +583,10 @@
                 End If
             End If
             
-            If Not isMobileMode Then
-                tableColumns = tableColumns + 1
-                html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
-            Else
-                html = html & "/" & getTranslation("Bestellen")
-            End If
+           'Bestellen 
+            tableColumns = tableColumns + 1
+            html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
+ 
             
             If isMobileMode Then
                 html = html & "</th>"
@@ -641,7 +639,7 @@
             Dim SHOP_PRODUCTLIST_ROW_COLOR As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR", "#F7F7F7")
             Dim SHOP_PRODUCTLIST_ROW_COLOR_ALT As String = VARVALUE_DEFAULT("SHOP_PRODUCTLIST_ROW_COLOR_ALT", "#FFFFFF")
             Dim SHOP_THUMBNAIL_MAX_SIZE As String = VARVALUE_DEFAULT("SHOP_THUMBNAIL_MAX_SIZE", "100")
-            If isMobileMode Then SHOP_THUMBNAIL_MAX_SIZE = 64
+            If isMobileMode Then SHOP_THUMBNAIL_MAX_SIZE = 128
             
             While (Not rsArtikel.EOF) And (CDbl(swnItems) < CDbl(ITEMPERPAGE))
                 swnItems = swnItems + 1
@@ -775,7 +773,7 @@
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & Firma & "</td>"
                         Else
-                            htmlProductRow = htmlProductRow & "/ " & Firma & " "
+                            htmlProductRow = htmlProductRow & " / " & Firma & " "
                         End If
                         
                     End If
@@ -799,14 +797,14 @@
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & EAN & "</td>"
                         Else
-                            htmlProductRow = htmlProductRow & "/ " & EAN
+                            htmlProductRow = htmlProductRow & " / " & EAN
                         End If
                         
                     Else 'ArtNR 
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & ArtNr & "</td>"
                         Else
-                            htmlProductRow = htmlProductRow & "/ " & ArtNr
+                            htmlProductRow = htmlProductRow & " / " & ArtNr
                         End If
                         
                     End If
@@ -815,7 +813,7 @@
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & LagerInfo & "</td>"
                         Else
-                            htmlProductRow = htmlProductRow & "/ " & LagerInfo
+                            htmlProductRow = htmlProductRow & " / " & LagerInfo
                         End If
                     End If
                     
@@ -823,17 +821,20 @@
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>" & getLagerInfoIcon(ArtNr) & "</td>"
                         Else
-                            htmlProductRow = htmlProductRow & "/ " & getLagerInfoIcon(ArtNr)
+                            'htmlProductRow = htmlProductRow & " / " & getLagerInfoIcon(ArtNr)
                         End If
                     End If
-                    If Not isMobileMode Then
-                        htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>"
-                    End If
                     
-                    htmlProductRow = htmlProductRow & "<a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'><img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Bestellen") & " " & Bezeichnung & "'></a>"
-                    If Not isMobileMode Then
-                        htmlProductRow = htmlProductRow & "</td>"
+                    'Buy Link
+                    htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """>"
+                    htmlProductRow = htmlProductRow & "<a href='default.aspx?pageToShow=PutInWarenkorb&nextPageToShow=warenkorbStep1&ArtNr=" & ArtNr & "'>"
+                    htmlProductRow = htmlProductRow & "<img border=0 src='" & imageFullName("buy.gif") & "' alt='" & getTranslation("Bestellen") & " " & Bezeichnung & "'>"
+                    htmlProductRow = htmlProductRow & "</a>"
+                    
+                    If isMobileMode Then
+                        htmlProductRow = htmlProductRow & " <br/> " & getLagerInfoIcon(ArtNr)
                     End If
+                    htmlProductRow = htmlProductRow & "</td>"
                     
                     If isMobileMode Then
                         htmlProductRow = htmlProductRow & "</td>"
