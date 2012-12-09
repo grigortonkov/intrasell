@@ -112,6 +112,7 @@ start slave;
 ---
 
 == Problembehebung == 
+=== SKIP LOGS ===
 Es kann passieren dass die Replikation nicht mehr funktioniert. 
 Die Gründe können mit dem Befehl: SHOW SLAVE STATUS; erruiert werden. 
 
@@ -121,3 +122,7 @@ START SLAVE;
 SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;
 START SLAVE;
 }}}
+=== Aktuelle Position auslesen, Binary Log lesbar ansehen===
+Die aktuelle Position in einem Log File ansehen. 
+Bsp: 
+mysqlbinlog.exe mysql-bin.000086 >> 86.txt
