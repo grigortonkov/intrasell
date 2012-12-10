@@ -17,6 +17,17 @@ Public Class Vorgang
 
     Const DEFAULT_WORD_VORLAGE As String = "Vorlagen/Vorgang.dot"
 
+    Private _kundNr As Integer = 0
+
+    Public Property KundNr As Integer
+        Get
+            Return _kundNr
+        End Get
+        Set(value As Integer)
+            _kundNr = value
+        End Set
+    End Property
+
     Public Property summeNetto As Integer
         Get
             Return Me.SummeTextBox.Text
@@ -94,8 +105,8 @@ Public Class Vorgang
             loading = True
 
             Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
-            Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang)
-            Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel)
+            Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang, kundNr)
+            Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel, kundNr)
 
             FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus Group by Status", "Status")
             FillComboBox(Me.TypComboBox, "select Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
