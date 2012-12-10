@@ -1,3 +1,6 @@
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+
 Insert into buchVorgang (  Typ,  Nummer ,  KundNr ,  Datum ,  Notiz ,  Summe ,  Bezahlt , Ausgedruckt, abgeschlossen ,  ZahlungsBedingung,
   Woher,  Wohin,  TransportMethode,  ZahlungsMethode, Status,
   NotizIntern, NotizExtern, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2,  Waehrung)
@@ -76,3 +79,6 @@ SELECT 'LI',  b.`ID`, b.`RechNr`, b.`ArtNr`, PreisATS, b.`Stk`, b.`PreisATS_Brut
  b.`Referenz`, b.`Packung`, b.`Herkunft`, b.`Incoterm`, b.`Spezifikation`, b.`Zeitpunkt`
 FROM `buchLieferschein-artikel` b
 where RechNr is not null and ArtNr is not null;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=1 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=1 */;
