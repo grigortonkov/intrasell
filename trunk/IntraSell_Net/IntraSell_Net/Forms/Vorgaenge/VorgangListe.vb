@@ -159,6 +159,7 @@ Public Class VorgangListe
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles VorgangListeDataGridView.RowHeaderMouseDoubleClick
         Try
             Dim fltr As String = "Nummer=" & VorgangListeDataGridView.SelectedRows(0).Cells(0).Value & " and Typ='" & VorgangListeDataGridView.SelectedRows(0).Cells(1).Value & "'"
+            Vorgang.KundNr = VorgangListeDataGridView.SelectedRows(0).Cells(2).Value
             Vorgang.MdiParent = Me.MdiParent
             Vorgang.Show()
             Vorgang.FilterBy(fltr)
