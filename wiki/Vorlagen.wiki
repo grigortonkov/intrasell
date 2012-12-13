@@ -6,9 +6,13 @@ IntraSell kann mit mehreren Vorlagentypen umgehen.
 Die vorlagentypen sind DOT, DOC, RTF, HTML.
 
 
-= HOWTO =
+= Vorlagen erstellen =
+1. Eine bestehende Vorlage kopieren und umbenennen. 
+2. Mit Ms Word oder HTML Editor die Vorlagen je nach Typ editieren. 
+   Unterstützte Tokens (Datenfelder) sind hier TODO zu finden. 
+
 = Vorlagen verwalten = 
-== A. Vorlagen Zentral verwalten == 
+== A. Vorlagen zentral verwalten == 
 
 1. Die Vorlagen am Fileserver abspeichern. 
 Z.bsp: z:\Daten\IntraSell3\IntraSell\Vorlagen
