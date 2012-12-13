@@ -6,10 +6,16 @@ IntraSell kann mit mehreren Vorlagentypen umgehen.
 Die vorlagentypen sind DOT, DOC, RTF, HTML.
 
 
+
 = Vorlagen erstellen =
 1. Eine bestehende Vorlage kopieren und umbenennen. 
 2. Mit Ms Word oder HTML Editor die Vorlagen je nach Typ editieren. 
    Unterstützte Tokens (Datenfelder) sind hier TODO zu finden. 
+
+= Vorlagen erstellen in Access =
+1. Eine bestehender Report kann geändert werden. z.Bsp. AddOn_Rechnung_Firma
+2. Report anschliessend in Access (Rechte Maustaste) exportieren in die dazugehörige Plug In. Somit kann Report auch nach einem Upgrade wieder importiert werden. 
+
 
 = Vorlagen verwalten = 
 == A. Vorlagen zentral verwalten == 
