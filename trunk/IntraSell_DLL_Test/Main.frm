@@ -8,6 +8,14 @@ Begin VB.Form FormMain
    LinkTopic       =   "Form1"
    ScaleHeight     =   5985
    ScaleWidth      =   11415
+   Begin VB.CommandButton Preis 
+      Caption         =   "Preis"
+      Height          =   495
+      Left            =   3120
+      TabIndex        =   7
+      Top             =   4080
+      Width           =   1215
+   End
    Begin VB.TextBox txtConnString 
       Height          =   525
       Left            =   600
@@ -22,7 +30,7 @@ Begin VB.Form FormMain
       Height          =   495
       Left            =   3120
       TabIndex        =   5
-      Top             =   4200
+      Top             =   3480
       Width           =   1095
    End
    Begin VB.Frame Frame2 
@@ -30,7 +38,7 @@ Begin VB.Form FormMain
       Height          =   1215
       Left            =   600
       TabIndex        =   2
-      Top             =   2400
+      Top             =   2040
       Width           =   3855
       Begin VB.TextBox txtNummer 
          Height          =   285
@@ -71,8 +79,28 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Option Explicit
+
 Private Sub Command1_Click()
+    Dim vars
+
     MsgBox vars.varValue("DOMAIN")
+End Sub
+
+Private Sub Preis_Click()
+  
+    Dim Preis As Double
+    'TEST 2
+    Dim preise As IntraSellPreise
+    Set preise = New IntraSellPreise
+    preise.init (Me.txtConnString.Text)
+    'Preis = preise.getPreis(-999, 10258, stk)
+     'Preis = preise.getPreis(0, 10310, 1)
+    Preis = preise.getPreis(0, 123, 1)
+    
+      MsgBox "Preis=" & CStr(Preis)
+     'Destroy
+    preise.destroy
 End Sub
 
 Private Sub TEST_Click()
@@ -98,13 +126,17 @@ Private Sub TEST_Click()
     MsgBox preise.getNewVorgangNummer("AR", 1)
     
     'TEST 3
-    Dim preis As Double
+    Dim Preis As Double
     Dim ii As Integer: ii = 1
-    Dim stk: stk = 1
-    preis = preise.getPreis(ii, ii, stk)
+    Dim stk As Integer: stk = 1
+    Preis = preise.getPreis(ii, ii, stk)
     
-    MsgBox "Preis=" & preis
+    MsgBox "Preis=" & Preis
      
+    'Test 4
+    
+    Preis = preise.getPreis(0, 10310, 10)
+      MsgBox "Preis=" & Preis
      'Destroy
     preise.destroy
      
@@ -113,6 +145,7 @@ End Sub
  
 
 Private Sub CommandRechnung_Click()
+    Dim functionsDB
     'Dim databasePath
     'databasePath = "D:\Business\IntraSoft\IntraSell\IntraSell_Daten_2.08.mdb"
     'databasePath = "c:\mdi\db\IntraSell_Daten_2.07.mdb"
@@ -129,6 +162,7 @@ End Sub
 
 
 Private Sub CommandKunden_Click()
+    Dim functionsDB
     'Dim databasePath: databasePath = "D:\Business\IntraSoft\IntraSell\IntraSell_Daten_2.08.mdb"
     Dim databasePath: databasePath = "c:\mdi\db\IntraSell_Daten_2.07.mdb"
    'functionsDB.ConnStringODBC = "PROVIDER=MSDASQL;dsn=IntraSell_pccenter;uid=;pwd=;"
