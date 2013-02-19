@@ -48,8 +48,8 @@
     Function authenticate(ByVal Email As String, ByVal Password As String) As Object
         Dim SQL As String
         'Find Client 
-        Email = Trim(Left(Email, 50))
-        Password = Trim(Left(Password, 16))
+        Email = Trim(Left(Email, 250))
+        Password = Trim(Left(Password, 50))
         SQL = "SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
         'response.write "<br />" & sql
         Dim rsP = objConnectionExecute(SQL)
