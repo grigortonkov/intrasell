@@ -3493,8 +3493,6 @@ Partial Public Class dsVorgaenge
         
         Private columnWaehrung As Global.System.Data.DataColumn
         
-        Private columnErstelltAm As Global.System.Data.DataColumn
-        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -3715,14 +3713,6 @@ Partial Public Class dsVorgaenge
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ErstelltAmColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnErstelltAm
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3782,10 +3772,9 @@ Partial Public Class dsVorgaenge
                     ByVal LieferantNr As Integer,  _
                     ByVal MitarbeiterNr As Integer,  _
                     ByVal KundNr2 As Integer,  _
-                    ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Date) As buchvorgangRow
+                    ByVal Waehrung As String) As buchvorgangRow
             Dim rowbuchvorgangRow As buchvorgangRow = CType(Me.NewRow,buchvorgangRow)
-            Dim columnValuesArray() As Object = New Object() {Nummer, Nothing, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm}
+            Dim columnValuesArray() As Object = New Object() {Nummer, Nothing, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung}
             If (Not (parentbuchvorgangtypRowBybuchVorgangTyp_ibfk_1) Is Nothing) Then
                 columnValuesArray(1) = parentbuchvorgangtypRowBybuchVorgangTyp_ibfk_1(0)
             End If
@@ -3840,7 +3829,6 @@ Partial Public Class dsVorgaenge
             Me.columnMitarbeiterNr = MyBase.Columns("MitarbeiterNr")
             Me.columnKundNr2 = MyBase.Columns("KundNr2")
             Me.columnWaehrung = MyBase.Columns("Waehrung")
-            Me.columnErstelltAm = MyBase.Columns("ErstelltAm")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3892,8 +3880,6 @@ Partial Public Class dsVorgaenge
             MyBase.Columns.Add(Me.columnKundNr2)
             Me.columnWaehrung = New Global.System.Data.DataColumn("Waehrung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWaehrung)
-            Me.columnErstelltAm = New Global.System.Data.DataColumn("ErstelltAm", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnErstelltAm)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnNummer, Me.columnTyp}, true))
             Me.columnNummer.AllowDBNull = false
             Me.columnTyp.AllowDBNull = false
@@ -3916,7 +3902,6 @@ Partial Public Class dsVorgaenge
             Me.columnWohin.MaxLength = 250
             Me.columnStatus.MaxLength = 50
             Me.columnWaehrung.MaxLength = 3
-            Me.columnErstelltAm.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4091,8 +4076,6 @@ Partial Public Class dsVorgaenge
         Private columnSpezifikation As Global.System.Data.DataColumn
         
         Private columnZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnErstelltAm As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -4282,14 +4265,6 @@ Partial Public Class dsVorgaenge
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ErstelltAmColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnErstelltAm
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4345,10 +4320,9 @@ Partial Public Class dsVorgaenge
                     ByVal Herkunft As String,  _
                     ByVal Incoterm As String,  _
                     ByVal Spezifikation As String,  _
-                    ByVal Zeitpunkt As Date,  _
-                    ByVal ErstelltAm As Date) As _buchvorgang_artikelRow
+                    ByVal Zeitpunkt As Date) As _buchvorgang_artikelRow
             Dim row_buchvorgang_artikelRow As _buchvorgang_artikelRow = CType(Me.NewRow,_buchvorgang_artikelRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nummer, Typ, Nothing, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm}
+            Dim columnValuesArray() As Object = New Object() {ID, Nummer, Typ, Nothing, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt}
             If (Not (_parentgrartikelRowBybuchVorgang_artikel_ibfk_2) Is Nothing) Then
                 columnValuesArray(3) = _parentgrartikelRowBybuchVorgang_artikel_ibfk_2(0)
             End If
@@ -4399,7 +4373,6 @@ Partial Public Class dsVorgaenge
             Me.columnIncoterm = MyBase.Columns("Incoterm")
             Me.columnSpezifikation = MyBase.Columns("Spezifikation")
             Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
-            Me.columnErstelltAm = MyBase.Columns("ErstelltAm")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4443,8 +4416,6 @@ Partial Public Class dsVorgaenge
             MyBase.Columns.Add(Me.columnSpezifikation)
             Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnZeitpunkt)
-            Me.columnErstelltAm = New Global.System.Data.DataColumn("ErstelltAm", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnErstelltAm)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID, Me.columnNummer, Me.columnTyp}, true))
             Me.columnID.AutoIncrementSeed = 1
             Me.columnID.AllowDBNull = false
@@ -4463,7 +4434,6 @@ Partial Public Class dsVorgaenge
             Me.columnHerkunft.MaxLength = 45
             Me.columnIncoterm.MaxLength = 45
             Me.columnSpezifikation.MaxLength = 250
-            Me.columnErstelltAm.AllowDBNull = false
             Me.ExtendedProperties.Add("Generator_TableVarName", "_tablebuchvorgang_artikel")
             Me.ExtendedProperties.Add("Generator_UserTableName", "buchvorgang-artikel")
         End Sub
@@ -7905,17 +7875,6 @@ Partial Public Class dsVorgaenge
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ErstelltAm() As Date
-            Get
-                Return CType(Me(Me.tablebuchvorgang.ErstelltAmColumn),Date)
-            End Get
-            Set
-                Me(Me.tablebuchvorgang.ErstelltAmColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property buchvorgangtypRow() As buchvorgangtypRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("buchVorgangTyp_ibfk_1")),buchvorgangtypRow)
@@ -8398,17 +8357,6 @@ Partial Public Class dsVorgaenge
             End Get
             Set
                 Me(Me._tablebuchvorgang_artikel.ZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ErstelltAm() As Date
-            Get
-                Return CType(Me(Me._tablebuchvorgang_artikel.ErstelltAmColumn),Date)
-            End Get
-            Set
-                Me(Me._tablebuchvorgang_artikel.ErstelltAmColumn) = value
             End Set
         End Property
         
@@ -16507,40 +16455,17 @@ Namespace dsVorgaengeTableAdapters
             tableMapping.ColumnMappings.Add("MitarbeiterNr", "MitarbeiterNr")
             tableMapping.ColumnMappings.Add("KundNr2", "KundNr2")
             tableMapping.ColumnMappings.Add("Waehrung", "Waehrung")
-            tableMapping.ColumnMappings.Add("ErstelltAm", "ErstelltAm")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `buchvorgang` WHERE ((`Nummer` = @Original_Nummer) AND (`Typ` = @Orig"& _ 
-                "inal_Typ) AND (`Datum` = @Original_Datum) AND (`KundNr` = @Original_KundNr) AND "& _ 
-                "((@IsNull_Notiz = 1 AND `Notiz` IS NULL) OR (`Notiz` = @Original_Notiz)) AND ((@"& _ 
-                "IsNull_NotizIntern = 1 AND `NotizIntern` IS NULL) OR (`NotizIntern` = @Original_"& _ 
-                "NotizIntern)) AND ((@IsNull_NotizExtern = 1 AND `NotizExtern` IS NULL) OR (`Noti"& _ 
-                "zExtern` = @Original_NotizExtern)) AND ((@IsNull_Summe = 1 AND `Summe` IS NULL) "& _ 
-                "OR (`Summe` = @Original_Summe)) AND (`Bezahlt` = @Original_Bezahlt) AND (`Ausged"& _ 
-                "ruckt` = @Original_Ausgedruckt) AND (`Abgeschlossen` = @Original_Abgeschlossen) "& _ 
-                "AND ((@IsNull_Zahlungsbedingung = 1 AND `Zahlungsbedingung` IS NULL) OR (`Zahlun"& _ 
-                "gsbedingung` = @Original_Zahlungsbedingung)) AND ((@IsNull_TransportMethode = 1 "& _ 
-                "AND `TransportMethode` IS NULL) OR (`TransportMethode` = @Original_TransportMeth"& _ 
-                "ode)) AND ((@IsNull_ZahlungsMethode = 1 AND `ZahlungsMethode` IS NULL) OR (`Zahl"& _ 
-                "ungsMethode` = @Original_ZahlungsMethode)) AND ((@IsNull_Woher = 1 AND `Woher` I"& _ 
-                "S NULL) OR (`Woher` = @Original_Woher)) AND ((@IsNull_Wohin = 1 AND `Wohin` IS N"& _ 
-                "ULL) OR (`Wohin` = @Original_Wohin)) AND ((@IsNull_Status = 1 AND `Status` IS NU"& _ 
-                "LL) OR (`Status` = @Original_Status)) AND ((@IsNull_SummeMWST = 1 AND `SummeMWST"& _ 
-                "` IS NULL) OR (`SummeMWST` = @Original_SummeMWST)) AND ((@IsNull_SummeBrutto = 1"& _ 
-                " AND `SummeBrutto` IS NULL) OR (`SummeBrutto` = @Original_SummeBrutto)) AND ((@I"& _ 
-                "sNull_LieferantNr = 1 AND `LieferantNr` IS NULL) OR (`LieferantNr` = @Original_L"& _ 
-                "ieferantNr)) AND ((@IsNull_MitarbeiterNr = 1 AND `MitarbeiterNr` IS NULL) OR (`M"& _ 
-                "itarbeiterNr` = @Original_MitarbeiterNr)) AND ((@IsNull_KundNr2 = 1 AND `KundNr2"& _ 
-                "` IS NULL) OR (`KundNr2` = @Original_KundNr2)) AND ((@IsNull_Waehrung = 1 AND `W"& _ 
-                "aehrung` IS NULL) OR (`Waehrung` = @Original_Waehrung)) AND (`ErstelltAm` = @Ori"& _ 
-                "ginal_ErstelltAm))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM buchvorgang" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (Nummer = @Original_Nummer) AND (Typ = @Ori" & _
+                "ginal_Typ)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -16548,717 +16473,391 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Datum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_KundNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Notiz"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Notiz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Notiz"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Notiz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NotizIntern"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NotizIntern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NotizIntern"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "NotizIntern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NotizExtern"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NotizExtern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NotizExtern"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "NotizExtern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Summe"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Summe"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Summe"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Summe"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezahlt"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Bezahlt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Ausgedruckt"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Ausgedruckt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Abgeschlossen"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Abgeschlossen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Zahlungsbedingung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedingung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Zahlungsbedingung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedingung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_TransportMethode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "TransportMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_TransportMethode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "TransportMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ZahlungsMethode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ZahlungsMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ZahlungsMethode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "ZahlungsMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Woher"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Woher"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Woher"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Woher"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Wohin"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Wohin"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Wohin"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Wohin"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Status"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Status"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_SummeMWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "SummeMWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SummeMWST"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "SummeMWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_SummeBrutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "SummeBrutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SummeBrutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "SummeBrutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MitarbeiterNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MitarbeiterNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MitarbeiterNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MitarbeiterNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_KundNr2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_KundNr2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Waehrung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Waehrung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Waehrung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Waehrung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang` (`Nummer`, `Typ`, `Datum`, `KundNr`, `Notiz`, `NotizInt"& _ 
-                "ern`, `NotizExtern`, `Summe`, `Bezahlt`, `Ausgedruckt`, `Abgeschlossen`, `Zahlun"& _ 
-                "gsbedingung`, `TransportMethode`, `ZahlungsMethode`, `Woher`, `Wohin`, `Status`,"& _ 
-                " `SummeMWST`, `SummeBrutto`, `LieferantNr`, `MitarbeiterNr`, `KundNr2`, `Waehrun"& _ 
-                "g`, `ErstelltAm`) VALUES (@Nummer, @Typ, @Datum, @KundNr, @Notiz, @NotizIntern, "& _ 
-                "@NotizExtern, @Summe, @Bezahlt, @Ausgedruckt, @Abgeschlossen, @Zahlungsbedingung"& _ 
-                ", @TransportMethode, @ZahlungsMethode, @Woher, @Wohin, @Status, @SummeMWST, @Sum"& _ 
-                "meBrutto, @LieferantNr, @MitarbeiterNr, @KundNr2, @Waehrung, @ErstelltAm)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO buchvorgang" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (Nummer, Typ, Datum, KundNr, No" & _
+                "tiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlu" & _
+                "ngsbedingung, TransportMethode, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         ZahlungsMethode, Wohe" & _
+                "r, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, W" & _
+                "aehrung)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES        (@Nummer, @Typ, @Datum, @KundNr, @Notiz, @NotizIntern, @" & _
+                "NotizExtern, @Summe, @Bezahlt, @Ausgedruckt, @Abgeschlossen, @Zahlungsbedingung," & _
+                " " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         @TransportMethode, @ZahlungsMethode, @Woher, @Wohin," & _
+                " @Status, @SummeMWST, @SummeBrutto, @LieferantNr, @MitarbeiterNr, @KundNr2, @Wae" & _
+                "hrung)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Datum"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Datum"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Notiz"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "Notiz"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NotizIntern"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "NotizIntern"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NotizExtern"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "NotizExtern"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Summe"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Summe"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezahlt"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Bezahlt"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Ausgedruckt"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Ausgedruckt"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Abgeschlossen"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Abgeschlossen"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Zahlungsbedingung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TransportMethode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "TransportMethode"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ZahlungsMethode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "ZahlungsMethode"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Woher"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Woher"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Wohin"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Wohin"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Status"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Status"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SummeMWST"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "SummeMWST"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SummeBrutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "SummeBrutto"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LieferantNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MitarbeiterNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "MitarbeiterNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr2"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr2"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Waehrung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 3
+            param.IsNullable = True
             param.SourceColumn = "Waehrung"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `buchvorgang` SET `Nummer` = @Nummer, `Typ` = @Typ, `Datum` = @Datum, `Kun"& _ 
-                "dNr` = @KundNr, `Notiz` = @Notiz, `NotizIntern` = @NotizIntern, `NotizExtern` = "& _ 
-                "@NotizExtern, `Summe` = @Summe, `Bezahlt` = @Bezahlt, `Ausgedruckt` = @Ausgedruc"& _ 
-                "kt, `Abgeschlossen` = @Abgeschlossen, `Zahlungsbedingung` = @Zahlungsbedingung, "& _ 
-                "`TransportMethode` = @TransportMethode, `ZahlungsMethode` = @ZahlungsMethode, `W"& _ 
-                "oher` = @Woher, `Wohin` = @Wohin, `Status` = @Status, `SummeMWST` = @SummeMWST, "& _ 
-                "`SummeBrutto` = @SummeBrutto, `LieferantNr` = @LieferantNr, `MitarbeiterNr` = @M"& _ 
-                "itarbeiterNr, `KundNr2` = @KundNr2, `Waehrung` = @Waehrung, `ErstelltAm` = @Erst"& _ 
-                "elltAm WHERE ((`Nummer` = @Original_Nummer) AND (`Typ` = @Original_Typ) AND (`Da"& _ 
-                "tum` = @Original_Datum) AND (`KundNr` = @Original_KundNr) AND ((@IsNull_Notiz = "& _ 
-                "1 AND `Notiz` IS NULL) OR (`Notiz` = @Original_Notiz)) AND ((@IsNull_NotizIntern"& _ 
-                " = 1 AND `NotizIntern` IS NULL) OR (`NotizIntern` = @Original_NotizIntern)) AND "& _ 
-                "((@IsNull_NotizExtern = 1 AND `NotizExtern` IS NULL) OR (`NotizExtern` = @Origin"& _ 
-                "al_NotizExtern)) AND ((@IsNull_Summe = 1 AND `Summe` IS NULL) OR (`Summe` = @Ori"& _ 
-                "ginal_Summe)) AND (`Bezahlt` = @Original_Bezahlt) AND (`Ausgedruckt` = @Original"& _ 
-                "_Ausgedruckt) AND (`Abgeschlossen` = @Original_Abgeschlossen) AND ((@IsNull_Zahl"& _ 
-                "ungsbedingung = 1 AND `Zahlungsbedingung` IS NULL) OR (`Zahlungsbedingung` = @Or"& _ 
-                "iginal_Zahlungsbedingung)) AND ((@IsNull_TransportMethode = 1 AND `TransportMeth"& _ 
-                "ode` IS NULL) OR (`TransportMethode` = @Original_TransportMethode)) AND ((@IsNul"& _ 
-                "l_ZahlungsMethode = 1 AND `ZahlungsMethode` IS NULL) OR (`ZahlungsMethode` = @Or"& _ 
-                "iginal_ZahlungsMethode)) AND ((@IsNull_Woher = 1 AND `Woher` IS NULL) OR (`Woher"& _ 
-                "` = @Original_Woher)) AND ((@IsNull_Wohin = 1 AND `Wohin` IS NULL) OR (`Wohin` ="& _ 
-                " @Original_Wohin)) AND ((@IsNull_Status = 1 AND `Status` IS NULL) OR (`Status` ="& _ 
-                " @Original_Status)) AND ((@IsNull_SummeMWST = 1 AND `SummeMWST` IS NULL) OR (`Su"& _ 
-                "mmeMWST` = @Original_SummeMWST)) AND ((@IsNull_SummeBrutto = 1 AND `SummeBrutto`"& _ 
-                " IS NULL) OR (`SummeBrutto` = @Original_SummeBrutto)) AND ((@IsNull_LieferantNr "& _ 
-                "= 1 AND `LieferantNr` IS NULL) OR (`LieferantNr` = @Original_LieferantNr)) AND ("& _ 
-                "(@IsNull_MitarbeiterNr = 1 AND `MitarbeiterNr` IS NULL) OR (`MitarbeiterNr` = @O"& _ 
-                "riginal_MitarbeiterNr)) AND ((@IsNull_KundNr2 = 1 AND `KundNr2` IS NULL) OR (`Ku"& _ 
-                "ndNr2` = @Original_KundNr2)) AND ((@IsNull_Waehrung = 1 AND `Waehrung` IS NULL) "& _ 
-                "OR (`Waehrung` = @Original_Waehrung)) AND (`ErstelltAm` = @Original_ErstelltAm))"& _ 
-                ""
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       buchvorgang" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                Nummer = @Nummer, Typ = @Typ, Datum " & _
+                "= @Datum, KundNr = @KundNr, Notiz = @Notiz, NotizIntern = @NotizIntern, NotizExt" & _
+                "ern = @NotizExtern, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Summe = @Summe, Bezahlt = @Bezahl" & _
+                "t, Ausgedruckt = @Ausgedruckt, Abgeschlossen = @Abgeschlossen, Zahlungsbedingung" & _
+                " = @Zahlungsbedingung, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         TransportMethode = @TransportM" & _
+                "ethode, ZahlungsMethode = @ZahlungsMethode, Woher = @Woher, Wohin = @Wohin, Stat" & _
+                "us = @Status, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         SummeMWST = @SummeMWST, SummeBrutto = @" & _
+                "SummeBrutto, LieferantNr = @LieferantNr, MitarbeiterNr = @MitarbeiterNr, KundNr2" & _
+                " = @KundNr2, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Waehrung = @Waehrung" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (Numm" & _
+                "er = @Original_Nummer) AND (Typ = @Original_Typ)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Datum"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Datum"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Notiz"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "Notiz"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NotizIntern"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "NotizIntern"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NotizExtern"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2000
+            param.IsNullable = True
             param.SourceColumn = "NotizExtern"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Summe"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Summe"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezahlt"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Bezahlt"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Ausgedruckt"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Ausgedruckt"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Abgeschlossen"
-            param.DbType = Global.System.Data.DbType.[SByte]
+            param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
+            param.Size = 1024
+            param.IsNullable = True
             param.SourceColumn = "Abgeschlossen"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Zahlungsbedingung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Zahlungsbedingung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@TransportMethode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "TransportMethode"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ZahlungsMethode"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "ZahlungsMethode"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Woher"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Woher"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Wohin"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Wohin"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Status"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Status"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SummeMWST"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "SummeMWST"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@SummeBrutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "SummeBrutto"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LieferantNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MitarbeiterNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "MitarbeiterNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr2"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr2"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Waehrung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 3
+            param.IsNullable = True
             param.SourceColumn = "Waehrung"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -17266,1108 +16865,503 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Datum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Datum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_KundNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Notiz"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Notiz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Notiz"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Notiz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NotizIntern"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NotizIntern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NotizIntern"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "NotizIntern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_NotizExtern"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "NotizExtern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_NotizExtern"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "NotizExtern"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Summe"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Summe"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Summe"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Summe"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezahlt"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Bezahlt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Ausgedruckt"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Ausgedruckt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Abgeschlossen"
-            param.DbType = Global.System.Data.DbType.[SByte]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
-            param.IsNullable = true
-            param.SourceColumn = "Abgeschlossen"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Zahlungsbedingung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedingung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Zahlungsbedingung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Zahlungsbedingung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_TransportMethode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "TransportMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_TransportMethode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "TransportMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ZahlungsMethode"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ZahlungsMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ZahlungsMethode"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "ZahlungsMethode"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Woher"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Woher"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Woher"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Woher"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Wohin"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Wohin"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Wohin"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Wohin"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Status"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Status"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_SummeMWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "SummeMWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SummeMWST"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "SummeMWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_SummeBrutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "SummeBrutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_SummeBrutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "SummeBrutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MitarbeiterNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MitarbeiterNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MitarbeiterNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MitarbeiterNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_KundNr2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_KundNr2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "KundNr2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Waehrung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Waehrung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Waehrung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Waehrung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitConnection()
             Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
             Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitCommandCollection()
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe,"& _ 
-                " Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
-                "                      ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBru"& _ 
-                "tto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
-                "buchvorgang"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Datum > '1/1/2000') AND (KundNr = @KundNr)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY "& _ 
-                "Nummer, Typ, Datum"
+            Me._commandCollection(0).CommandText = "SELECT Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahl" & _
+                "t, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMeth" & _
+                "ode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, K" & _
+                "undNr2, Waehrung FROM buchvorgang WHERE (Datum > '1/1/2000') AND (KundNr = @Kund" & _
+                "Nr) ORDER BY Nummer, Typ, Datum"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr"
             Me._commandCollection(0).Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsVorgaenge.buchvorgangDataTable, ByVal KundNr As Integer) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As dsVorgaenge.buchvorgangDataTable, ByVal KundNr As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr, Integer)
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal KundNr As Integer) As dsVorgaenge.buchvorgangDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData(ByVal KundNr As Integer) As dsVorgaenge.buchvorgangDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr, Integer)
             Dim dataTable As dsVorgaenge.buchvorgangDataTable = New dsVorgaenge.buchvorgangDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As dsVorgaenge.buchvorgangDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataTable As dsVorgaenge.buchvorgangDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As dsVorgaenge) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataSet As dsVorgaenge) As Integer
             Return Me.Adapter.Update(dataSet, "buchvorgang")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_Datum As Date,  _
-                    ByVal Original_KundNr As Integer,  _
-                    ByVal Original_Notiz As String,  _
-                    ByVal Original_NotizIntern As String,  _
-                    ByVal Original_NotizExtern As String,  _
-                    ByVal Original_Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Bezahlt As Byte,  _
-                    ByVal Original_Ausgedruckt As Byte,  _
-                    ByVal Original_Abgeschlossen As Byte,  _
-                    ByVal Original_Zahlungsbedingung As String,  _
-                    ByVal Original_TransportMethode As String,  _
-                    ByVal Original_ZahlungsMethode As String,  _
-                    ByVal Original_Woher As String,  _
-                    ByVal Original_Wohin As String,  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Waehrung As String,  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
+        Public Overridable Overloads Function Delete(ByVal Original_Nummer As Integer, ByVal Original_Typ As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Nummer, Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Typ,String)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Typ, String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Datum,Date)
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_KundNr,Integer)
-            If (Original_Notiz Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Notiz,String)
-            End If
-            If (Original_NotizIntern Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_NotizIntern,String)
-            End If
-            If (Original_NotizExtern Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_NotizExtern,String)
-            End If
-            If (Original_Summe.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_Summe.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Bezahlt,Byte)
-            Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_Ausgedruckt,Byte)
-            Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Abgeschlossen,Byte)
-            If (Original_Zahlungsbedingung Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Zahlungsbedingung,String)
-            End If
-            If (Original_TransportMethode Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_TransportMethode,String)
-            End If
-            If (Original_ZahlungsMethode Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_ZahlungsMethode,String)
-            End If
-            If (Original_Woher Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Woher,String)
-            End If
-            If (Original_Wohin Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_Wohin,String)
-            End If
-            If (Original_Status Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_Status,String)
-            End If
-            If (Original_SummeMWST.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_SummeMWST.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (Original_SummeBrutto.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_SummeBrutto.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LieferantNr.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_LieferantNr.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MitarbeiterNr.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_MitarbeiterNr.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            If (Original_KundNr2.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(Original_KundNr2.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Waehrung Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(Original_Waehrung,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal Nummer As Integer,  _
-                    ByVal Typ As String,  _
-                    ByVal Datum As Date,  _
-                    ByVal KundNr As Integer,  _
-                    ByVal Notiz As String,  _
-                    ByVal NotizIntern As String,  _
-                    ByVal NotizExtern As String,  _
-                    ByVal Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Bezahlt As Byte,  _
-                    ByVal Ausgedruckt As Byte,  _
-                    ByVal Abgeschlossen As Byte,  _
-                    ByVal Zahlungsbedingung As String,  _
-                    ByVal TransportMethode As String,  _
-                    ByVal ZahlungsMethode As String,  _
-                    ByVal Woher As String,  _
-                    ByVal Wohin As String,  _
-                    ByVal Status As String,  _
-                    ByVal SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Date) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
+        Public Overridable Overloads Function Insert( _
+                    ByVal Nummer As Integer, _
+                    ByVal Typ As String, _
+                    ByVal Datum As Date, _
+                    ByVal KundNr As Integer, _
+                    ByVal Notiz As String, _
+                    ByVal NotizIntern As String, _
+                    ByVal NotizExtern As String, _
+                    ByVal Summe As Global.System.Nullable(Of Decimal), _
+                    ByVal Bezahlt As Object, _
+                    ByVal Ausgedruckt As Object, _
+                    ByVal Abgeschlossen As Object, _
+                    ByVal Zahlungsbedingung As String, _
+                    ByVal TransportMethode As String, _
+                    ByVal ZahlungsMethode As String, _
+                    ByVal Woher As String, _
+                    ByVal Wohin As String, _
+                    ByVal Status As String, _
+                    ByVal SummeMWST As Global.System.Nullable(Of Decimal), _
+                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal), _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), _
+                    ByVal KundNr2 As Global.System.Nullable(Of Integer), _
+                    ByVal Waehrung As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Nummer, Integer)
             If (Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Typ")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Typ,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Typ, String)
             End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(Datum,Date)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(KundNr,Integer)
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(Datum, Date)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(KundNr, Integer)
             If (Notiz Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Notiz,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Notiz, String)
             End If
             If (NotizIntern Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(NotizIntern,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(NotizIntern, String)
             End If
             If (NotizExtern Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(NotizExtern,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(NotizExtern, String)
             End If
-            If (Summe.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Summe.Value,Decimal)
+            If (Summe.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Summe.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(Bezahlt,Byte)
-            Me.Adapter.InsertCommand.Parameters(9).Value = CType(Ausgedruckt,Byte)
-            Me.Adapter.InsertCommand.Parameters(10).Value = CType(Abgeschlossen,Byte)
+            If (Bezahlt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Bezahlt")
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Bezahlt, Object)
+            End If
+            If (Ausgedruckt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Ausgedruckt")
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Ausgedruckt, Object)
+            End If
+            If (Abgeschlossen Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Abgeschlossen")
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Abgeschlossen, Object)
+            End If
             If (Zahlungsbedingung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Zahlungsbedingung,String)
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Zahlungsbedingung, String)
             End If
             If (TransportMethode Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(TransportMethode,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(TransportMethode, String)
             End If
             If (ZahlungsMethode Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(ZahlungsMethode,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(ZahlungsMethode, String)
             End If
             If (Woher Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Woher,String)
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Woher, String)
             End If
             If (Wohin Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Wohin,String)
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Wohin, String)
             End If
             If (Status Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Status,String)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Status, String)
             End If
-            If (SummeMWST.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(SummeMWST.Value,Decimal)
+            If (SummeMWST.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(SummeMWST.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            If (SummeBrutto.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(SummeBrutto.Value,Decimal)
+            If (SummeBrutto.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(SummeBrutto.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            If (LieferantNr.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(LieferantNr.Value,Integer)
+            If (LieferantNr.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(LieferantNr.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (MitarbeiterNr.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(MitarbeiterNr.Value,Integer)
+            If (MitarbeiterNr.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(MitarbeiterNr.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
-            If (KundNr2.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(KundNr2.Value,Integer)
+            If (KundNr2.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(KundNr2.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             If (Waehrung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(Waehrung,String)
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(Waehrung, String)
             End If
-            Me.Adapter.InsertCommand.Parameters(23).Value = CType(ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Nummer As Integer,  _
-                    ByVal Typ As String,  _
-                    ByVal Datum As Date,  _
-                    ByVal KundNr As Integer,  _
-                    ByVal Notiz As String,  _
-                    ByVal NotizIntern As String,  _
-                    ByVal NotizExtern As String,  _
-                    ByVal Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Bezahlt As Byte,  _
-                    ByVal Ausgedruckt As Byte,  _
-                    ByVal Abgeschlossen As Byte,  _
-                    ByVal Zahlungsbedingung As String,  _
-                    ByVal TransportMethode As String,  _
-                    ByVal ZahlungsMethode As String,  _
-                    ByVal Woher As String,  _
-                    ByVal Wohin As String,  _
-                    ByVal Status As String,  _
-                    ByVal SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Date,  _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_Datum As Date,  _
-                    ByVal Original_KundNr As Integer,  _
-                    ByVal Original_Notiz As String,  _
-                    ByVal Original_NotizIntern As String,  _
-                    ByVal Original_NotizExtern As String,  _
-                    ByVal Original_Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Bezahlt As Byte,  _
-                    ByVal Original_Ausgedruckt As Byte,  _
-                    ByVal Original_Abgeschlossen As Byte,  _
-                    ByVal Original_Zahlungsbedingung As String,  _
-                    ByVal Original_TransportMethode As String,  _
-                    ByVal Original_ZahlungsMethode As String,  _
-                    ByVal Original_Woher As String,  _
-                    ByVal Original_Wohin As String,  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Waehrung As String,  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal Nummer As Integer, _
+                    ByVal Typ As String, _
+                    ByVal Datum As Date, _
+                    ByVal KundNr As Integer, _
+                    ByVal Notiz As String, _
+                    ByVal NotizIntern As String, _
+                    ByVal NotizExtern As String, _
+                    ByVal Summe As Global.System.Nullable(Of Decimal), _
+                    ByVal Bezahlt As Object, _
+                    ByVal Ausgedruckt As Object, _
+                    ByVal Abgeschlossen As Object, _
+                    ByVal Zahlungsbedingung As String, _
+                    ByVal TransportMethode As String, _
+                    ByVal ZahlungsMethode As String, _
+                    ByVal Woher As String, _
+                    ByVal Wohin As String, _
+                    ByVal Status As String, _
+                    ByVal SummeMWST As Global.System.Nullable(Of Decimal), _
+                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal), _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), _
+                    ByVal KundNr2 As Global.System.Nullable(Of Integer), _
+                    ByVal Waehrung As String, _
+                    ByVal Original_Nummer As Integer, _
+                    ByVal Original_Typ As String) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Nummer, Integer)
             If (Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Typ")
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Typ,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Typ, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Datum,Date)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(KundNr,Integer)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Datum, Date)
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(KundNr, Integer)
             If (Notiz Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Notiz,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Notiz, String)
             End If
             If (NotizIntern Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(NotizIntern,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(NotizIntern, String)
             End If
             If (NotizExtern Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(NotizExtern,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(NotizExtern, String)
             End If
-            If (Summe.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Summe.Value,Decimal)
+            If (Summe.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Summe.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Bezahlt,Byte)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Ausgedruckt,Byte)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Abgeschlossen,Byte)
+            If (Bezahlt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Bezahlt")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Bezahlt, Object)
+            End If
+            If (Ausgedruckt Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Ausgedruckt")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Ausgedruckt, Object)
+            End If
+            If (Abgeschlossen Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Abgeschlossen")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Abgeschlossen, Object)
+            End If
             If (Zahlungsbedingung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Zahlungsbedingung,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Zahlungsbedingung, String)
             End If
             If (TransportMethode Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(TransportMethode,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(TransportMethode, String)
             End If
             If (ZahlungsMethode Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(ZahlungsMethode,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(ZahlungsMethode, String)
             End If
             If (Woher Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Woher,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Woher, String)
             End If
             If (Wohin Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Wohin,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Wohin, String)
             End If
             If (Status Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Status,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Status, String)
             End If
-            If (SummeMWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(SummeMWST.Value,Decimal)
+            If (SummeMWST.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(SummeMWST.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            If (SummeBrutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(SummeBrutto.Value,Decimal)
+            If (SummeBrutto.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(SummeBrutto.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
-            If (LieferantNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(LieferantNr.Value,Integer)
+            If (LieferantNr.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(LieferantNr.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
-            If (MitarbeiterNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(MitarbeiterNr.Value,Integer)
+            If (MitarbeiterNr.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(MitarbeiterNr.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
-            If (KundNr2.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(KundNr2.Value,Integer)
+            If (KundNr2.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(KundNr2.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             If (Waehrung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Waehrung,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Waehrung, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(ErstelltAm,Date)
-            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Nummer,Integer)
+            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Nummer, Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Typ,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Typ, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Datum,Date)
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_KundNr,Integer)
-            If (Original_Notiz Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Notiz,String)
-            End If
-            If (Original_NotizIntern Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_NotizIntern,String)
-            End If
-            If (Original_NotizExtern Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_NotizExtern,String)
-            End If
-            If (Original_Summe.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_Summe.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_Bezahlt,Byte)
-            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Ausgedruckt,Byte)
-            Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Abgeschlossen,Byte)
-            If (Original_Zahlungsbedingung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_Zahlungsbedingung,String)
-            End If
-            If (Original_TransportMethode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_TransportMethode,String)
-            End If
-            If (Original_ZahlungsMethode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_ZahlungsMethode,String)
-            End If
-            If (Original_Woher Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(46).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_Woher,String)
-            End If
-            If (Original_Wohin Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(48).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_Wohin,String)
-            End If
-            If (Original_Status Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(50).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_Status,String)
-            End If
-            If (Original_SummeMWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_SummeMWST.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = Global.System.DBNull.Value
-            End If
-            If (Original_SummeBrutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_SummeBrutto.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LieferantNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_LieferantNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MitarbeiterNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_MitarbeiterNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = Global.System.DBNull.Value
-            End If
-            If (Original_KundNr2.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_KundNr2.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Waehrung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_Waehrung,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Datum As Date,  _
-                    ByVal KundNr As Integer,  _
-                    ByVal Notiz As String,  _
-                    ByVal NotizIntern As String,  _
-                    ByVal NotizExtern As String,  _
-                    ByVal Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Bezahlt As Byte,  _
-                    ByVal Ausgedruckt As Byte,  _
-                    ByVal Abgeschlossen As Byte,  _
-                    ByVal Zahlungsbedingung As String,  _
-                    ByVal TransportMethode As String,  _
-                    ByVal ZahlungsMethode As String,  _
-                    ByVal Woher As String,  _
-                    ByVal Wohin As String,  _
-                    ByVal Status As String,  _
-                    ByVal SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Waehrung As String,  _
-                    ByVal ErstelltAm As Date,  _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_Datum As Date,  _
-                    ByVal Original_KundNr As Integer,  _
-                    ByVal Original_Notiz As String,  _
-                    ByVal Original_NotizIntern As String,  _
-                    ByVal Original_NotizExtern As String,  _
-                    ByVal Original_Summe As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Bezahlt As Byte,  _
-                    ByVal Original_Ausgedruckt As Byte,  _
-                    ByVal Original_Abgeschlossen As Byte,  _
-                    ByVal Original_Zahlungsbedingung As String,  _
-                    ByVal Original_TransportMethode As String,  _
-                    ByVal Original_ZahlungsMethode As String,  _
-                    ByVal Original_Woher As String,  _
-                    ByVal Original_Wohin As String,  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_SummeMWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SummeBrutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MitarbeiterNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_KundNr2 As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Waehrung As String,  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Return Me.Update(Original_Nummer, Original_Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Original_Nummer, Original_Typ, Original_Datum, Original_KundNr, Original_Notiz, Original_NotizIntern, Original_NotizExtern, Original_Summe, Original_Bezahlt, Original_Ausgedruckt, Original_Abgeschlossen, Original_Zahlungsbedingung, Original_TransportMethode, Original_ZahlungsMethode, Original_Woher, Original_Wohin, Original_Status, Original_SummeMWST, Original_SummeBrutto, Original_LieferantNr, Original_MitarbeiterNr, Original_KundNr2, Original_Waehrung, Original_ErstelltAm)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal Datum As Date, _
+                    ByVal KundNr As Integer, _
+                    ByVal Notiz As String, _
+                    ByVal NotizIntern As String, _
+                    ByVal NotizExtern As String, _
+                    ByVal Summe As Global.System.Nullable(Of Decimal), _
+                    ByVal Bezahlt As Object, _
+                    ByVal Ausgedruckt As Object, _
+                    ByVal Abgeschlossen As Object, _
+                    ByVal Zahlungsbedingung As String, _
+                    ByVal TransportMethode As String, _
+                    ByVal ZahlungsMethode As String, _
+                    ByVal Woher As String, _
+                    ByVal Wohin As String, _
+                    ByVal Status As String, _
+                    ByVal SummeMWST As Global.System.Nullable(Of Decimal), _
+                    ByVal SummeBrutto As Global.System.Nullable(Of Decimal), _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), _
+                    ByVal KundNr2 As Global.System.Nullable(Of Integer), _
+                    ByVal Waehrung As String, _
+                    ByVal Original_Nummer As Integer, _
+                    ByVal Original_Typ As String) As Integer
+            Return Me.Update(Original_Nummer, Original_Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, Original_Nummer, Original_Typ)
         End Function
     End Class
-    
+
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
     '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"), _
+     Global.System.ComponentModel.ToolboxItem(True), _
+     Global.System.ComponentModel.DataObjectAttribute(True), _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" & _
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"), _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
     Partial Public Class buchvorgang_artikelTableAdapter
         Inherits Global.System.ComponentModel.Component
-        
+
         Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
-        
+
         Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
-        
+
         Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
-        
+
         Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
-        
+
         Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
+            MyBase.New()
+            Me.ClearBeforeFill = True
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
             Get
                 If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
+                    Me.InitAdapter()
                 End If
                 Return Me._adapter
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
             Get
                 If (Me._connection Is Nothing) Then
-                    Me.InitConnection
+                    Me.InitConnection()
                 End If
                 Return Me._connection
             End Get
-            Set
+            Set(value As Global.MySql.Data.MySqlClient.MySqlConnection)
                 Me._connection = value
                 If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
                     Me.Adapter.InsertCommand.Connection = value
@@ -18381,65 +17375,65 @@ Namespace dsVorgaengeTableAdapters
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
+                        CType(Me.CommandCollection(i), Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
             Get
                 Return Me._transaction
             End Get
-            Set
+            Set(value As Global.MySql.Data.MySqlClient.MySqlTransaction)
                 Me._transaction = value
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     Me.CommandCollection(i).Transaction = Me._transaction
                     i = (i + 1)
                 Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
                     Me.Adapter.DeleteCommand.Transaction = Me._transaction
                 End If
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
                     Me.Adapter.InsertCommand.Transaction = Me._transaction
                 End If
-                If ((Not (Me.Adapter) Is Nothing)  _
+                If ((Not (Me.Adapter) Is Nothing) _
                             AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
                     Me.Adapter.UpdateCommand.Transaction = Me._transaction
                 End If
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
             Get
                 If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
+                    Me.InitCommandCollection()
                 End If
                 Return Me._commandCollection
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property ClearBeforeFill() As Boolean
             Get
                 Return Me._clearBeforeFill
             End Get
-            Set
+            Set(value As Boolean)
                 Me._clearBeforeFill = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitAdapter()
             Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
@@ -18464,35 +17458,17 @@ Namespace dsVorgaengeTableAdapters
             tableMapping.ColumnMappings.Add("Incoterm", "Incoterm")
             tableMapping.ColumnMappings.Add("Spezifikation", "Spezifikation")
             tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
-            tableMapping.ColumnMappings.Add("ErstelltAm", "ErstelltAm")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `buchvorgang-artikel` WHERE ((`ID` = @Original_ID) AND (`Nummer` = @O"& _ 
-                "riginal_Nummer) AND (`Typ` = @Original_Typ) AND (`ArtNr` = @Original_ArtNr) AND "& _ 
-                "(`Stk` = @Original_Stk) AND ((@IsNull_EKPreis = 1 AND `EKPreis` IS NULL) OR (`EK"& _ 
-                "Preis` = @Original_EKPreis)) AND (`Preis_Netto` = @Original_Preis_Netto) AND ((@"& _ 
-                "IsNull_Preis_Brutto = 1 AND `Preis_Brutto` IS NULL) OR (`Preis_Brutto` = @Origin"& _ 
-                "al_Preis_Brutto)) AND ((@IsNull_MWST = 1 AND `MWST` IS NULL) OR (`MWST` = @Origi"& _ 
-                "nal_MWST)) AND ((@IsNull_ArtikelIdentifikation = 1 AND `ArtikelIdentifikation` I"& _ 
-                "S NULL) OR (`ArtikelIdentifikation` = @Original_ArtikelIdentifikation)) AND (`Be"& _ 
-                "zeichnung` = @Original_Bezeichnung) AND ((@IsNull_LieferantNr = 1 AND `Lieferant"& _ 
-                "Nr` IS NULL) OR (`LieferantNr` = @Original_LieferantNr)) AND ((@IsNull_Status = "& _ 
-                "1 AND `Status` IS NULL) OR (`Status` = @Original_Status)) AND ((@IsNull_Referenz"& _ 
-                " = 1 AND `Referenz` IS NULL) OR (`Referenz` = @Original_Referenz)) AND ((@IsNull"& _ 
-                "_Packung = 1 AND `Packung` IS NULL) OR (`Packung` = @Original_Packung)) AND ((@I"& _ 
-                "sNull_Herkunft = 1 AND `Herkunft` IS NULL) OR (`Herkunft` = @Original_Herkunft))"& _ 
-                " AND ((@IsNull_Incoterm = 1 AND `Incoterm` IS NULL) OR (`Incoterm` = @Original_I"& _ 
-                "ncoterm)) AND ((@IsNull_Spezifikation = 1 AND `Spezifikation` IS NULL) OR (`Spez"& _ 
-                "ifikation` = @Original_Spezifikation)) AND ((@IsNull_Zeitpunkt = 1 AND `Zeitpunk"& _ 
-                "t` IS NULL) OR (`Zeitpunkt` = @Original_Zeitpunkt)) AND (`ErstelltAm` = @Origina"& _ 
-                "l_ErstelltAm))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `buchvorgang-artikel`" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (ID = @Original_ID) AND (Nummer =" & _
+                " @Original_Nummer) AND (Typ = @Original_Typ)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ID"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "ID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -18500,7 +17476,7 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
@@ -18508,563 +17484,307 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Stk"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Stk"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Preis_Netto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Netto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Preis_Brutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Preis_Brutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MWST"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtikelIdentifikation"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtikelIdentifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtikelIdentifikation"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "ArtikelIdentifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Status"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Status"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Referenz"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Referenz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Referenz"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Referenz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Packung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Packung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Packung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Packung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Herkunft"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Herkunft"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Herkunft"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Herkunft"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Incoterm"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Incoterm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Incoterm"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Incoterm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Spezifikation"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Spezifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Spezifikation"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Spezifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang-artikel` (`Nummer`, `Typ`, `ArtNr`, `Stk`, `EKPreis`, `P"& _ 
-                "reis_Netto`, `Preis_Brutto`, `MWST`, `ArtikelIdentifikation`, `Bezeichnung`, `Li"& _ 
-                "eferantNr`, `Status`, `Referenz`, `Packung`, `Herkunft`, `Incoterm`, `Spezifikat"& _ 
-                "ion`, `Zeitpunkt`, `ErstelltAm`) VALUES (@Nummer, @Typ, @ArtNr, @Stk, @EKPreis, "& _ 
-                "@Preis_Netto, @Preis_Brutto, @MWST, @ArtikelIdentifikation, @Bezeichnung, @Liefe"& _ 
-                "rantNr, @Status, @Referenz, @Packung, @Herkunft, @Incoterm, @Spezifikation, @Zei"& _ 
-                "tpunkt, @ErstelltAm)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang-artikel`" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (Nummer, Typ, ArtNr, " & _
+                "Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnun" & _
+                "g, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "               " & _
+                "          Spezifikation, Zeitpunkt)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES        (@Nummer, @Typ, @ArtNr, @Stk," & _
+                " @EKPreis, @Preis_Netto, @Preis_Brutto, @MWST, @ArtikelIdentifikation, @Bezeichn" & _
+                "ung, @LieferantNr, @Status, @Referenz, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         @Packung, @Her" & _
+                "kunft, @Incoterm, @Spezifikation, @Zeitpunkt)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "ArtNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Stk"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Stk"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "EKPreis"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Preis_Netto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Preis_Netto"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Preis_Brutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Preis_Brutto"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MWST"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "MWST"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtikelIdentifikation"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "ArtikelIdentifikation"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezeichnung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 255
+            param.IsNullable = True
             param.SourceColumn = "Bezeichnung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LieferantNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Status"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Status"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Referenz"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Referenz"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Packung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Packung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Herkunft"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 45
+            param.IsNullable = True
             param.SourceColumn = "Herkunft"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Incoterm"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 45
+            param.IsNullable = True
             param.SourceColumn = "Incoterm"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Spezifikation"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Spezifikation"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Zeitpunkt"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Zeitpunkt"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE `buchvorgang-artikel` SET `Nummer` = @Nummer, `Typ` = @Typ, `ArtNr` = @Art"& _ 
-                "Nr, `Stk` = @Stk, `EKPreis` = @EKPreis, `Preis_Netto` = @Preis_Netto, `Preis_Bru"& _ 
-                "tto` = @Preis_Brutto, `MWST` = @MWST, `ArtikelIdentifikation` = @ArtikelIdentifi"& _ 
-                "kation, `Bezeichnung` = @Bezeichnung, `LieferantNr` = @LieferantNr, `Status` = @"& _ 
-                "Status, `Referenz` = @Referenz, `Packung` = @Packung, `Herkunft` = @Herkunft, `I"& _ 
-                "ncoterm` = @Incoterm, `Spezifikation` = @Spezifikation, `Zeitpunkt` = @Zeitpunkt"& _ 
-                ", `ErstelltAm` = @ErstelltAm WHERE ((`ID` = @Original_ID) AND (`Nummer` = @Origi"& _ 
-                "nal_Nummer) AND (`Typ` = @Original_Typ) AND (`ArtNr` = @Original_ArtNr) AND (`St"& _ 
-                "k` = @Original_Stk) AND ((@IsNull_EKPreis = 1 AND `EKPreis` IS NULL) OR (`EKPrei"& _ 
-                "s` = @Original_EKPreis)) AND (`Preis_Netto` = @Original_Preis_Netto) AND ((@IsNu"& _ 
-                "ll_Preis_Brutto = 1 AND `Preis_Brutto` IS NULL) OR (`Preis_Brutto` = @Original_P"& _ 
-                "reis_Brutto)) AND ((@IsNull_MWST = 1 AND `MWST` IS NULL) OR (`MWST` = @Original_"& _ 
-                "MWST)) AND ((@IsNull_ArtikelIdentifikation = 1 AND `ArtikelIdentifikation` IS NU"& _ 
-                "LL) OR (`ArtikelIdentifikation` = @Original_ArtikelIdentifikation)) AND (`Bezeic"& _ 
-                "hnung` = @Original_Bezeichnung) AND ((@IsNull_LieferantNr = 1 AND `LieferantNr` "& _ 
-                "IS NULL) OR (`LieferantNr` = @Original_LieferantNr)) AND ((@IsNull_Status = 1 AN"& _ 
-                "D `Status` IS NULL) OR (`Status` = @Original_Status)) AND ((@IsNull_Referenz = 1"& _ 
-                " AND `Referenz` IS NULL) OR (`Referenz` = @Original_Referenz)) AND ((@IsNull_Pac"& _ 
-                "kung = 1 AND `Packung` IS NULL) OR (`Packung` = @Original_Packung)) AND ((@IsNul"& _ 
-                "l_Herkunft = 1 AND `Herkunft` IS NULL) OR (`Herkunft` = @Original_Herkunft)) AND"& _ 
-                " ((@IsNull_Incoterm = 1 AND `Incoterm` IS NULL) OR (`Incoterm` = @Original_Incot"& _ 
-                "erm)) AND ((@IsNull_Spezifikation = 1 AND `Spezifikation` IS NULL) OR (`Spezifik"& _ 
-                "ation` = @Original_Spezifikation)) AND ((@IsNull_Zeitpunkt = 1 AND `Zeitpunkt` I"& _ 
-                "S NULL) OR (`Zeitpunkt` = @Original_Zeitpunkt)) AND (`ErstelltAm` = @Original_Er"& _ 
-                "stelltAm))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       `buchvorgang-artikel`" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                Nummer = @Nummer, Typ = @T" & _
+                "yp, ArtNr = @ArtNr, Stk = @Stk, EKPreis = @EKPreis, Preis_Netto = @Preis_Netto, " & _
+                "Preis_Brutto = @Preis_Brutto, MWST = @MWST, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         ArtikelId" & _
+                "entifikation = @ArtikelIdentifikation, Bezeichnung = @Bezeichnung, LieferantNr =" & _
+                " @LieferantNr, Status = @Status, Referenz = @Referenz, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                       " & _
+                "  Packung = @Packung, Herkunft = @Herkunft, Incoterm = @Incoterm, Spezifikation " & _
+                "= @Spezifikation, Zeitpunkt = @Zeitpunkt" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (ID = @Original_ID) AND (" & _
+                "Nummer = @Original_Nummer) AND (Typ = @Original_Typ)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "ArtNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Stk"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Stk"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EKPreis"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "EKPreis"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Preis_Netto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Preis_Netto"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Preis_Brutto"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Preis_Brutto"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MWST"
             param.DbType = Global.System.Data.DbType.[Decimal]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "MWST"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@ArtikelIdentifikation"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "ArtikelIdentifikation"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Bezeichnung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 255
+            param.IsNullable = True
             param.SourceColumn = "Bezeichnung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LieferantNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LieferantNr"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Status"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Status"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Referenz"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Referenz"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Packung"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 50
+            param.IsNullable = True
             param.SourceColumn = "Packung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Herkunft"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 45
+            param.IsNullable = True
             param.SourceColumn = "Herkunft"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Incoterm"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 45
+            param.IsNullable = True
             param.SourceColumn = "Incoterm"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Spezifikation"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 250
+            param.IsNullable = True
             param.SourceColumn = "Spezifikation"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Zeitpunkt"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Zeitpunkt"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ID"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "ID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -19072,7 +17792,7 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Nummer"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Nummer"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
@@ -19080,877 +17800,387 @@ Namespace dsVorgaengeTableAdapters
             param.ParameterName = "@Original_Typ"
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
+            param.Size = 2
+            param.IsNullable = True
             param.SourceColumn = "Typ"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Stk"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Stk"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EKPreis"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EKPreis"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "EKPreis"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Preis_Netto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Netto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Preis_Brutto"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Preis_Brutto"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "Preis_Brutto"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_MWST"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_MWST"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.NewDecimal
-            param.IsNullable = true
-            param.SourceColumn = "MWST"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_ArtikelIdentifikation"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "ArtikelIdentifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ArtikelIdentifikation"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "ArtikelIdentifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Bezeichnung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Bezeichnung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_LieferantNr"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "LieferantNr"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Status"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Status"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Status"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Referenz"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Referenz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Referenz"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Referenz"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Packung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Packung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Packung"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Packung"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Herkunft"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Herkunft"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Herkunft"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Herkunft"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Incoterm"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Incoterm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Incoterm"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Incoterm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Spezifikation"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Spezifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Spezifikation"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Spezifikation"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_ErstelltAm"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Timestamp
-            param.IsNullable = true
-            param.SourceColumn = "ErstelltAm"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitConnection()
             Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
             Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitCommandCollection()
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        `buchvorgang-artikel`.ID, `buchvorgang-artikel`.Nummer, `buchvorgan"& _ 
-                "g-artikel`.Typ, `buchvorgang-artikel`.ArtNr, `buchvorgang-artikel`.Stk, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
-                "                   `buchvorgang-artikel`.EKPreis, `buchvorgang-artikel`.Preis_Ne"& _ 
-                "tto, `buchvorgang-artikel`.Preis_Brutto, `buchvorgang-artikel`.MWST, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                `buchvorgang-artikel`.ArtikelIdentifikation, `buchvorgang-artike"& _ 
-                "l`.Bezeichnung, `buchvorgang-artikel`.LieferantNr, `buchvorgang-artikel`.Status,"& _ 
-                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `buchvorgang-artikel`.Referenz, `buchvorgang-artikel"& _ 
-                "`.Packung, `buchvorgang-artikel`.Herkunft, `buchvorgang-artikel`.Incoterm, `buch"& _ 
-                "vorgang-artikel`.Spezifikation, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `buchvorgang-artikel`"& _ 
-                ".Zeitpunkt, `buchvorgang-artikel`.ErstelltAm"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `buchvorgang-artik"& _ 
-                "el` INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         buchvorgang ON `buchvorgang-artikel`.Nu"& _ 
-                "mmer = buchvorgang.Nummer AND `buchvorgang-artikel`.Typ = buchvorgang.Typ"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE"& _ 
-                "        (buchvorgang.KundNr = @KundNr)"
+            Me._commandCollection(0).CommandText = "SELECT `buchvorgang-artikel`.ID, `buchvorgang-artikel`.Nummer, `buchvorgang-artik" & _
+                "el`.Typ, `buchvorgang-artikel`.ArtNr, `buchvorgang-artikel`.Stk, `buchvorgang-ar" & _
+                "tikel`.EKPreis, `buchvorgang-artikel`.Preis_Netto, `buchvorgang-artikel`.Preis_B" & _
+                "rutto, `buchvorgang-artikel`.MWST, `buchvorgang-artikel`.ArtikelIdentifikation, " & _
+                "`buchvorgang-artikel`.Bezeichnung, `buchvorgang-artikel`.LieferantNr, `buchvorga" & _
+                "ng-artikel`.Status, `buchvorgang-artikel`.Referenz, `buchvorgang-artikel`.Packun" & _
+                "g, `buchvorgang-artikel`.Herkunft, `buchvorgang-artikel`.Incoterm, `buchvorgang-" & _
+                "artikel`.Spezifikation, `buchvorgang-artikel`.Zeitpunkt FROM `buchvorgang-artike" & _
+                "l` INNER JOIN buchvorgang ON `buchvorgang-artikel`.Nummer = buchvorgang.Nummer A" & _
+                "ND `buchvorgang-artikel`.Typ = buchvorgang.Typ WHERE (buchvorgang.KundNr = @Kund" & _
+                "Nr)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@KundNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "KundNr"
             Me._commandCollection(0).Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsVorgaenge._buchvorgang_artikelDataTable, ByVal KundNr As Integer) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As dsVorgaenge._buchvorgang_artikelDataTable, ByVal KundNr As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr, Integer)
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal KundNr As Integer) As dsVorgaenge._buchvorgang_artikelDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData(ByVal KundNr As Integer) As dsVorgaenge._buchvorgang_artikelDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr, Integer)
             Dim dataTable As dsVorgaenge._buchvorgang_artikelDataTable = New dsVorgaenge._buchvorgang_artikelDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As dsVorgaenge._buchvorgang_artikelDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataTable As dsVorgaenge._buchvorgang_artikelDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As dsVorgaenge) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataSet As dsVorgaenge) As Integer
             Return Me.Adapter.Update(dataSet, "buchvorgang-artikel")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_Stk As Decimal,  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Preis_Netto As Decimal,  _
-                    ByVal Original_Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_ArtikelIdentifikation As String,  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_Referenz As String,  _
-                    ByVal Original_Packung As String,  _
-                    ByVal Original_Herkunft As String,  _
-                    ByVal Original_Incoterm As String,  _
-                    ByVal Original_Spezifikation As String,  _
-                    ByVal Original_Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
+        Public Overridable Overloads Function Delete(ByVal Original_ID As Integer, ByVal Original_Nummer As Integer, ByVal Original_Typ As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID, Integer)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Nummer, Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Typ,String)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Typ, String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_ArtNr,Integer)
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Stk,Decimal)
-            If (Original_EKPreis.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_EKPreis.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_Preis_Netto,Decimal)
-            If (Original_Preis_Brutto.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_Preis_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MWST.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_MWST.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ArtikelIdentifikation Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_ArtikelIdentifikation,String)
-            End If
-            If (Original_Bezeichnung Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Bezeichnung")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Bezeichnung,String)
-            End If
-            If (Original_LieferantNr.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_LieferantNr.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Status Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_Status,String)
-            End If
-            If (Original_Referenz Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Referenz,String)
-            End If
-            If (Original_Packung Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Packung,String)
-            End If
-            If (Original_Herkunft Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_Herkunft,String)
-            End If
-            If (Original_Incoterm Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_Incoterm,String)
-            End If
-            If (Original_Spezifikation Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_Spezifikation,String)
-            End If
-            If (Original_Zeitpunkt.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(31).Value = CType(Original_ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal Nummer As Integer,  _
-                    ByVal Typ As String,  _
-                    ByVal ArtNr As Integer,  _
-                    ByVal Stk As Decimal,  _
-                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Preis_Netto As Decimal,  _
-                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal ArtikelIdentifikation As String,  _
-                    ByVal Bezeichnung As String,  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Status As String,  _
-                    ByVal Referenz As String,  _
-                    ByVal Packung As String,  _
-                    ByVal Herkunft As String,  _
-                    ByVal Incoterm As String,  _
-                    ByVal Spezifikation As String,  _
-                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal ErstelltAm As Date) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
+        Public Overridable Overloads Function Insert( _
+                    ByVal Nummer As Integer, _
+                    ByVal Typ As String, _
+                    ByVal ArtNr As Integer, _
+                    ByVal Stk As Decimal, _
+                    ByVal EKPreis As Global.System.Nullable(Of Decimal), _
+                    ByVal Preis_Netto As Decimal, _
+                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal), _
+                    ByVal MWST As Global.System.Nullable(Of Decimal), _
+                    ByVal ArtikelIdentifikation As String, _
+                    ByVal Bezeichnung As String, _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal Status As String, _
+                    ByVal Referenz As String, _
+                    ByVal Packung As String, _
+                    ByVal Herkunft As String, _
+                    ByVal Incoterm As String, _
+                    ByVal Spezifikation As String, _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date)) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Nummer, Integer)
             If (Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Typ")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Typ,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Typ, String)
             End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(ArtNr,Integer)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(Stk,Decimal)
-            If (EKPreis.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(EKPreis.Value,Decimal)
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(ArtNr, Integer)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(Stk, Decimal)
+            If (EKPreis.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(EKPreis.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Preis_Netto,Decimal)
-            If (Preis_Brutto.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Preis_Brutto.Value,Decimal)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Preis_Netto, Decimal)
+            If (Preis_Brutto.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Preis_Brutto.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (MWST.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(MWST.Value,Decimal)
+            If (MWST.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(MWST.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (ArtikelIdentifikation Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ArtikelIdentifikation,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ArtikelIdentifikation, String)
             End If
             If (Bezeichnung Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Bezeichnung,String)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Bezeichnung, String)
             End If
-            If (LieferantNr.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(LieferantNr.Value,Integer)
+            If (LieferantNr.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(LieferantNr.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
             If (Status Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Status,String)
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Status, String)
             End If
             If (Referenz Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Referenz,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Referenz, String)
             End If
             If (Packung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Packung,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Packung, String)
             End If
             If (Herkunft Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Herkunft,String)
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Herkunft, String)
             End If
             If (Incoterm Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Incoterm,String)
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Incoterm, String)
             End If
             If (Spezifikation Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Spezifikation,String)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Spezifikation, String)
             End If
-            If (Zeitpunkt.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Zeitpunkt.Value,Date)
+            If (Zeitpunkt.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Zeitpunkt.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(18).Value = CType(ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Nummer As Integer,  _
-                    ByVal Typ As String,  _
-                    ByVal ArtNr As Integer,  _
-                    ByVal Stk As Decimal,  _
-                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Preis_Netto As Decimal,  _
-                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal ArtikelIdentifikation As String,  _
-                    ByVal Bezeichnung As String,  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Status As String,  _
-                    ByVal Referenz As String,  _
-                    ByVal Packung As String,  _
-                    ByVal Herkunft As String,  _
-                    ByVal Incoterm As String,  _
-                    ByVal Spezifikation As String,  _
-                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal ErstelltAm As Date,  _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_Stk As Decimal,  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Preis_Netto As Decimal,  _
-                    ByVal Original_Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_ArtikelIdentifikation As String,  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_Referenz As String,  _
-                    ByVal Original_Packung As String,  _
-                    ByVal Original_Herkunft As String,  _
-                    ByVal Original_Incoterm As String,  _
-                    ByVal Original_Spezifikation As String,  _
-                    ByVal Original_Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Nummer,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal Nummer As Integer, _
+                    ByVal Typ As String, _
+                    ByVal ArtNr As Integer, _
+                    ByVal Stk As Decimal, _
+                    ByVal EKPreis As Global.System.Nullable(Of Decimal), _
+                    ByVal Preis_Netto As Decimal, _
+                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal), _
+                    ByVal MWST As Global.System.Nullable(Of Decimal), _
+                    ByVal ArtikelIdentifikation As String, _
+                    ByVal Bezeichnung As String, _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal Status As String, _
+                    ByVal Referenz As String, _
+                    ByVal Packung As String, _
+                    ByVal Herkunft As String, _
+                    ByVal Incoterm As String, _
+                    ByVal Spezifikation As String, _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date), _
+                    ByVal Original_ID As Integer, _
+                    ByVal Original_Nummer As Integer, _
+                    ByVal Original_Typ As String) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Nummer, Integer)
             If (Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Typ")
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Typ,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Typ, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(ArtNr,Integer)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Stk,Decimal)
-            If (EKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(EKPreis.Value,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(ArtNr, Integer)
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Stk, Decimal)
+            If (EKPreis.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(EKPreis.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Preis_Netto,Decimal)
-            If (Preis_Brutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Preis_Brutto.Value,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Preis_Netto, Decimal)
+            If (Preis_Brutto.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Preis_Brutto.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (MWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(MWST.Value,Decimal)
+            If (MWST.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(MWST.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (ArtikelIdentifikation Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(ArtikelIdentifikation,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(ArtikelIdentifikation, String)
             End If
             If (Bezeichnung Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Bezeichnung,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Bezeichnung, String)
             End If
-            If (LieferantNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(LieferantNr.Value,Integer)
+            If (LieferantNr.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(LieferantNr.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
             If (Status Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Status,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Status, String)
             End If
             If (Referenz Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Referenz,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Referenz, String)
             End If
             If (Packung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Packung,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Packung, String)
             End If
             If (Herkunft Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Herkunft,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Herkunft, String)
             End If
             If (Incoterm Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Incoterm,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Incoterm, String)
             End If
             If (Spezifikation Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Spezifikation,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Spezifikation, String)
             End If
-            If (Zeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Zeitpunkt.Value,Date)
+            If (Zeitpunkt.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Zeitpunkt.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(ErstelltAm,Date)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_ID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Nummer,Integer)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_ID, Integer)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Nummer, Integer)
             If (Original_Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Typ")
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Typ,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Typ, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_ArtNr,Integer)
-            Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Stk,Decimal)
-            If (Original_EKPreis.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_EKPreis.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Preis_Netto,Decimal)
-            If (Original_Preis_Brutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Preis_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MWST.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_MWST.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ArtikelIdentifikation Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_ArtikelIdentifikation,String)
-            End If
-            If (Original_Bezeichnung Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Bezeichnung")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_Bezeichnung,String)
-            End If
-            If (Original_LieferantNr.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_LieferantNr.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Status Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Status,String)
-            End If
-            If (Original_Referenz Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_Referenz,String)
-            End If
-            If (Original_Packung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_Packung,String)
-            End If
-            If (Original_Herkunft Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_Herkunft,String)
-            End If
-            If (Original_Incoterm Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_Incoterm,String)
-            End If
-            If (Original_Spezifikation Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_Spezifikation,String)
-            End If
-            If (Original_Zeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_ErstelltAm,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal ArtNr As Integer,  _
-                    ByVal Stk As Decimal,  _
-                    ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Preis_Netto As Decimal,  _
-                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal ArtikelIdentifikation As String,  _
-                    ByVal Bezeichnung As String,  _
-                    ByVal LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Status As String,  _
-                    ByVal Referenz As String,  _
-                    ByVal Packung As String,  _
-                    ByVal Herkunft As String,  _
-                    ByVal Incoterm As String,  _
-                    ByVal Spezifikation As String,  _
-                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal ErstelltAm As Date,  _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_Nummer As Integer,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_ArtNr As Integer,  _
-                    ByVal Original_Stk As Decimal,  _
-                    ByVal Original_EKPreis As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Preis_Netto As Decimal,  _
-                    ByVal Original_Preis_Brutto As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MWST As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_ArtikelIdentifikation As String,  _
-                    ByVal Original_Bezeichnung As String,  _
-                    ByVal Original_LieferantNr As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Status As String,  _
-                    ByVal Original_Referenz As String,  _
-                    ByVal Original_Packung As String,  _
-                    ByVal Original_Herkunft As String,  _
-                    ByVal Original_Incoterm As String,  _
-                    ByVal Original_Spezifikation As String,  _
-                    ByVal Original_Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal Original_ErstelltAm As Date) As Integer
-            Return Me.Update(Original_Nummer, Original_Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm, Original_ID, Original_Nummer, Original_Typ, Original_ArtNr, Original_Stk, Original_EKPreis, Original_Preis_Netto, Original_Preis_Brutto, Original_MWST, Original_ArtikelIdentifikation, Original_Bezeichnung, Original_LieferantNr, Original_Status, Original_Referenz, Original_Packung, Original_Herkunft, Original_Incoterm, Original_Spezifikation, Original_Zeitpunkt, Original_ErstelltAm)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal ArtNr As Integer, _
+                    ByVal Stk As Decimal, _
+                    ByVal EKPreis As Global.System.Nullable(Of Decimal), _
+                    ByVal Preis_Netto As Decimal, _
+                    ByVal Preis_Brutto As Global.System.Nullable(Of Decimal), _
+                    ByVal MWST As Global.System.Nullable(Of Decimal), _
+                    ByVal ArtikelIdentifikation As String, _
+                    ByVal Bezeichnung As String, _
+                    ByVal LieferantNr As Global.System.Nullable(Of Integer), _
+                    ByVal Status As String, _
+                    ByVal Referenz As String, _
+                    ByVal Packung As String, _
+                    ByVal Herkunft As String, _
+                    ByVal Incoterm As String, _
+                    ByVal Spezifikation As String, _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date), _
+                    ByVal Original_ID As Integer, _
+                    ByVal Original_Nummer As Integer, _
+                    ByVal Original_Typ As String) As Integer
+            Return Me.Update(Original_Nummer, Original_Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, Original_ID, Original_Nummer, Original_Typ)
         End Function
     End Class
     

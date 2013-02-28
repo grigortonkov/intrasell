@@ -191,4 +191,24 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+
+#Region "Anrufe"
+    Private Sub ListeToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem1.Click
+        Dim f As Anrufliste = New Anrufliste
+        f.MdiParent = Me
+        f.Show()
+    End Sub
+
+    Private Sub AnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AnrufToolStripMenuItem.Click
+        Try
+            Anruf.MdiParent = Me
+            Anruf.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
+
+
 End Class

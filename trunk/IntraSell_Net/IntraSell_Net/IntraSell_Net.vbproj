@@ -101,6 +101,11 @@
     <Compile Include="Data\dsAdressen.vb">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsAnrufe.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsArtikel.vb">
       <DependentUpon>dsArtikel.xsd</DependentUpon>
     </Compile>
@@ -111,6 +116,11 @@
     </Compile>
     <Compile Include="Data\dsEinstellungen.vb">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsMitarbeiter.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\dsPLZ.vb">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
@@ -134,6 +144,18 @@
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB\DBUpgrade.vb" />
+    <Compile Include="Forms\Anrufe\Anruf.Designer.vb">
+      <DependentUpon>Anruf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Anrufe\Anruf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Anrufe\AnrufListe.Designer.vb">
+      <DependentUpon>AnrufListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Anrufe\AnrufListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Artikel\Artikel.Designer.vb">
       <DependentUpon>Artikel.vb</DependentUpon>
     </Compile>
@@ -169,6 +191,12 @@
     </Compile>
     <Compile Include="Forms\Controls\AdressenSelector.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\MitarbeiterControl.Designer.vb">
+      <DependentUpon>MitarbeiterControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\MitarbeiterControl.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Controls\TextBoxLink.Designer.vb">
       <DependentUpon>TextBoxLink.vb</DependentUpon>
@@ -331,6 +359,12 @@
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Anrufe\Anruf.resx">
+      <DependentUpon>Anruf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Anrufe\AnrufListe.resx">
+      <DependentUpon>AnrufListe.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Artikel\Artikel.resx">
       <DependentUpon>Artikel.vb</DependentUpon>
     </EmbeddedResource>
@@ -348,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\AdressenSelector.resx">
       <DependentUpon>AdressenSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\MitarbeiterControl.resx">
+      <DependentUpon>MitarbeiterControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Einstellungen\Vars.resx">
       <DependentUpon>Vars.vb</DependentUpon>
@@ -406,6 +443,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\dsAnrufe.xsc">
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAnrufe.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAnrufe.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAnrufe.xss">
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </None>
     <None Include="Data\dsArtikel.xsc">
       <DependentUpon>dsArtikel.xsd</DependentUpon>
     </None>
@@ -438,6 +486,17 @@
     </None>
     <None Include="Data\dsEinstellungen.xss">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMitarbeiter.xsc">
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMitarbeiter.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMitarbeiter.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsMitarbeiter.xss">
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
     </None>
     <None Include="Data\dsPLZ.xsc">
       <DependentUpon>dsPLZ.xsd</DependentUpon>
