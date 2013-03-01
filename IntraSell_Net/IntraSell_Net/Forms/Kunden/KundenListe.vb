@@ -71,4 +71,38 @@
         End Try
 
     End Sub
+
+    Private Sub AnrufenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AnrufenToolStripMenuItem.Click
+
+    End Sub
+
+#Region "Anrufen"
+
+
+    Private Sub NeuerAnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerAnrufToolStripMenuItem.Click
+        Try
+            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
+            Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
+            Anruf.MdiParent = Me.MdiParent
+            Anruf.Show()
+            'Anruf.FilterBy("AdrNR=" & )
+            Anruf.StarteAnruf(IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub AnrufprotokollToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AnrufprotokollToolStripMenuItem.Click
+        Try
+            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
+            Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
+            Anrufliste.MdiParent = Me.MdiParent
+            Anrufliste.Show()
+            Anrufliste.Anrufprotokoll(IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
+
 End Class

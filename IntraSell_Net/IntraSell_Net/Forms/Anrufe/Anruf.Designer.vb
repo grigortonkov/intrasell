@@ -68,12 +68,13 @@ Partial Class Anruf
         Me.PLZTextBox = New System.Windows.Forms.TextBox()
         Me.OrtTextBox = New System.Windows.Forms.TextBox()
         Me.LandTextBox = New System.Windows.Forms.TextBox()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
+        Me.NAnrufDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.TelTextBox = New System.Windows.Forms.TextBox()
         Me.mobilTextBox = New System.Windows.Forms.TextBox()
         Me.EmailTextBox = New System.Windows.Forms.TextBox()
+        Me.StartStopButton = New System.Windows.Forms.Button()
+        Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         AdrNrLabel = New System.Windows.Forms.Label()
         LAenderungLabel = New System.Windows.Forms.Label()
         LKontaktLabel = New System.Windows.Forms.Label()
@@ -135,7 +136,7 @@ Partial Class Anruf
         'NotizenLabel
         '
         NotizenLabel.AutoSize = True
-        NotizenLabel.Location = New System.Drawing.Point(16, 173)
+        NotizenLabel.Location = New System.Drawing.Point(16, 149)
         NotizenLabel.Name = "NotizenLabel"
         NotizenLabel.Size = New System.Drawing.Size(46, 13)
         NotizenLabel.TabIndex = 11
@@ -171,7 +172,7 @@ Partial Class Anruf
         'FirmaLabel
         '
         FirmaLabel.AutoSize = True
-        FirmaLabel.Location = New System.Drawing.Point(723, 169)
+        FirmaLabel.Location = New System.Drawing.Point(637, 152)
         FirmaLabel.Name = "FirmaLabel"
         FirmaLabel.Size = New System.Drawing.Size(35, 13)
         FirmaLabel.TabIndex = 21
@@ -180,7 +181,7 @@ Partial Class Anruf
         'AdresseLabel
         '
         AdresseLabel.AutoSize = True
-        AdresseLabel.Location = New System.Drawing.Point(723, 195)
+        AdresseLabel.Location = New System.Drawing.Point(637, 178)
         AdresseLabel.Name = "AdresseLabel"
         AdresseLabel.Size = New System.Drawing.Size(48, 13)
         AdresseLabel.TabIndex = 23
@@ -189,7 +190,7 @@ Partial Class Anruf
         'PLZLabel
         '
         PLZLabel.AutoSize = True
-        PLZLabel.Location = New System.Drawing.Point(723, 221)
+        PLZLabel.Location = New System.Drawing.Point(637, 204)
         PLZLabel.Name = "PLZLabel"
         PLZLabel.Size = New System.Drawing.Size(30, 13)
         PLZLabel.TabIndex = 25
@@ -198,7 +199,7 @@ Partial Class Anruf
         'OrtLabel
         '
         OrtLabel.AutoSize = True
-        OrtLabel.Location = New System.Drawing.Point(723, 247)
+        OrtLabel.Location = New System.Drawing.Point(637, 230)
         OrtLabel.Name = "OrtLabel"
         OrtLabel.Size = New System.Drawing.Size(24, 13)
         OrtLabel.TabIndex = 27
@@ -207,7 +208,7 @@ Partial Class Anruf
         'LandLabel
         '
         LandLabel.AutoSize = True
-        LandLabel.Location = New System.Drawing.Point(723, 273)
+        LandLabel.Location = New System.Drawing.Point(637, 256)
         LandLabel.Name = "LandLabel"
         LandLabel.Size = New System.Drawing.Size(34, 13)
         LandLabel.TabIndex = 29
@@ -216,7 +217,7 @@ Partial Class Anruf
         'Label1
         '
         Label1.AutoSize = True
-        Label1.Location = New System.Drawing.Point(723, 303)
+        Label1.Location = New System.Drawing.Point(637, 282)
         Label1.Name = "Label1"
         Label1.Size = New System.Drawing.Size(25, 13)
         Label1.TabIndex = 31
@@ -225,7 +226,7 @@ Partial Class Anruf
         'Label2
         '
         Label2.AutoSize = True
-        Label2.Location = New System.Drawing.Point(723, 329)
+        Label2.Location = New System.Drawing.Point(637, 308)
         Label2.Name = "Label2"
         Label2.Size = New System.Drawing.Size(35, 13)
         Label2.TabIndex = 33
@@ -234,7 +235,7 @@ Partial Class Anruf
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(723, 355)
+        Label3.Location = New System.Drawing.Point(637, 334)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(35, 13)
         Label3.TabIndex = 35
@@ -278,7 +279,7 @@ Partial Class Anruf
         Me.AnruflisteBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.AnruflisteBindingNavigator.Name = "AnruflisteBindingNavigator"
         Me.AnruflisteBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.AnruflisteBindingNavigator.Size = New System.Drawing.Size(986, 25)
+        Me.AnruflisteBindingNavigator.Size = New System.Drawing.Size(911, 25)
         Me.AnruflisteBindingNavigator.TabIndex = 0
         Me.AnruflisteBindingNavigator.Text = "BindingNavigator1"
         '
@@ -380,6 +381,7 @@ Partial Class Anruf
         Me.LAenderungDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "LAenderung", True))
         Me.LAenderungDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.LAenderungDateTimePicker.Location = New System.Drawing.Point(473, 73)
+        Me.LAenderungDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.LAenderungDateTimePicker.Name = "LAenderungDateTimePicker"
         Me.LAenderungDateTimePicker.Size = New System.Drawing.Size(155, 20)
         Me.LAenderungDateTimePicker.TabIndex = 7
@@ -389,6 +391,7 @@ Partial Class Anruf
         Me.LKontaktDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "LKontakt", True))
         Me.LKontaktDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.LKontaktDateTimePicker.Location = New System.Drawing.Point(473, 99)
+        Me.LKontaktDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.LKontaktDateTimePicker.Name = "LKontaktDateTimePicker"
         Me.LKontaktDateTimePicker.Size = New System.Drawing.Size(155, 20)
         Me.LKontaktDateTimePicker.TabIndex = 8
@@ -396,10 +399,10 @@ Partial Class Anruf
         'NotizenTextBox
         '
         Me.NotizenTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Notizen", True))
-        Me.NotizenTextBox.Location = New System.Drawing.Point(139, 169)
+        Me.NotizenTextBox.Location = New System.Drawing.Point(139, 145)
         Me.NotizenTextBox.Multiline = True
         Me.NotizenTextBox.Name = "NotizenTextBox"
-        Me.NotizenTextBox.Size = New System.Drawing.Size(554, 271)
+        Me.NotizenTextBox.Size = New System.Drawing.Size(489, 314)
         Me.NotizenTextBox.TabIndex = 5
         '
         'BeginZeitDateTimePicker
@@ -407,6 +410,7 @@ Partial Class Anruf
         Me.BeginZeitDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "BeginZeit", True))
         Me.BeginZeitDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.BeginZeitDateTimePicker.Location = New System.Drawing.Point(139, 68)
+        Me.BeginZeitDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.BeginZeitDateTimePicker.Name = "BeginZeitDateTimePicker"
         Me.BeginZeitDateTimePicker.ShowUpDown = True
         Me.BeginZeitDateTimePicker.Size = New System.Drawing.Size(155, 20)
@@ -414,9 +418,11 @@ Partial Class Anruf
         '
         'EndeZeitDateTimePicker
         '
+        Me.EndeZeitDateTimePicker.CustomFormat = " "
         Me.EndeZeitDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "EndeZeit", True))
         Me.EndeZeitDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.EndeZeitDateTimePicker.Location = New System.Drawing.Point(139, 94)
+        Me.EndeZeitDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.EndeZeitDateTimePicker.Name = "EndeZeitDateTimePicker"
         Me.EndeZeitDateTimePicker.ShowUpDown = True
         Me.EndeZeitDateTimePicker.Size = New System.Drawing.Size(155, 20)
@@ -436,7 +442,7 @@ Partial Class Anruf
         '
         Me.FirmaTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.FirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Firma", True))
-        Me.FirmaTextBox.Location = New System.Drawing.Point(774, 166)
+        Me.FirmaTextBox.Location = New System.Drawing.Point(688, 149)
         Me.FirmaTextBox.Name = "FirmaTextBox"
         Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
         Me.FirmaTextBox.TabIndex = 22
@@ -446,7 +452,7 @@ Partial Class Anruf
         '
         Me.AdresseTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.AdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Adresse", True))
-        Me.AdresseTextBox.Location = New System.Drawing.Point(774, 192)
+        Me.AdresseTextBox.Location = New System.Drawing.Point(688, 175)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
         Me.AdresseTextBox.TabIndex = 24
@@ -456,7 +462,7 @@ Partial Class Anruf
         '
         Me.PLZTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.PLZTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "PLZ", True))
-        Me.PLZTextBox.Location = New System.Drawing.Point(774, 218)
+        Me.PLZTextBox.Location = New System.Drawing.Point(688, 201)
         Me.PLZTextBox.Name = "PLZTextBox"
         Me.PLZTextBox.Size = New System.Drawing.Size(200, 20)
         Me.PLZTextBox.TabIndex = 26
@@ -466,7 +472,7 @@ Partial Class Anruf
         '
         Me.OrtTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.OrtTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Ort", True))
-        Me.OrtTextBox.Location = New System.Drawing.Point(774, 244)
+        Me.OrtTextBox.Location = New System.Drawing.Point(688, 227)
         Me.OrtTextBox.Name = "OrtTextBox"
         Me.OrtTextBox.Size = New System.Drawing.Size(200, 20)
         Me.OrtTextBox.TabIndex = 28
@@ -476,11 +482,70 @@ Partial Class Anruf
         '
         Me.LandTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.LandTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Land", True))
-        Me.LandTextBox.Location = New System.Drawing.Point(774, 270)
+        Me.LandTextBox.Location = New System.Drawing.Point(688, 253)
         Me.LandTextBox.Name = "LandTextBox"
         Me.LandTextBox.Size = New System.Drawing.Size(200, 20)
         Me.LandTextBox.TabIndex = 30
         Me.LandTextBox.TabStop = False
+        '
+        'NAnrufDateTimePicker
+        '
+        Me.NAnrufDateTimePicker.CustomFormat = " "
+        Me.NAnrufDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "NAnruf", True))
+        Me.NAnrufDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.NAnrufDateTimePicker.Location = New System.Drawing.Point(139, 118)
+        Me.NAnrufDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.NAnrufDateTimePicker.Name = "NAnrufDateTimePicker"
+        Me.NAnrufDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.NAnrufDateTimePicker.TabIndex = 3
+        '
+        'TelTextBox
+        '
+        Me.TelTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.TelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Tel", True))
+        Me.TelTextBox.Location = New System.Drawing.Point(688, 279)
+        Me.TelTextBox.Name = "TelTextBox"
+        Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.TelTextBox.TabIndex = 32
+        Me.TelTextBox.TabStop = False
+        '
+        'mobilTextBox
+        '
+        Me.mobilTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.mobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Mobil", True))
+        Me.mobilTextBox.Location = New System.Drawing.Point(688, 305)
+        Me.mobilTextBox.Name = "mobilTextBox"
+        Me.mobilTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.mobilTextBox.TabIndex = 34
+        Me.mobilTextBox.TabStop = False
+        '
+        'EmailTextBox
+        '
+        Me.EmailTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Email", True))
+        Me.EmailTextBox.Location = New System.Drawing.Point(688, 331)
+        Me.EmailTextBox.Name = "EmailTextBox"
+        Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.EmailTextBox.TabIndex = 36
+        Me.EmailTextBox.TabStop = False
+        '
+        'StartStopButton
+        '
+        Me.StartStopButton.Location = New System.Drawing.Point(19, 173)
+        Me.StartStopButton.Name = "StartStopButton"
+        Me.StartStopButton.Size = New System.Drawing.Size(75, 23)
+        Me.StartStopButton.TabIndex = 37
+        Me.StartStopButton.Text = "Start"
+        Me.StartStopButton.UseVisualStyleBackColor = True
+        '
+        'MitarbeiterControl
+        '
+        Me.MitarbeiterControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.AnruflisteBindingSource, "MitarbeiterNr", True))
+        Me.MitarbeiterControl.IDNR = 0
+        Me.MitarbeiterControl.Location = New System.Drawing.Point(473, 42)
+        Me.MitarbeiterControl.Name = "MitarbeiterControl"
+        Me.MitarbeiterControl.Size = New System.Drawing.Size(155, 25)
+        Me.MitarbeiterControl.TabIndex = 6
         '
         'AdressenControl1
         '
@@ -492,59 +557,12 @@ Partial Class Anruf
         Me.AdressenControl1.Size = New System.Drawing.Size(200, 25)
         Me.AdressenControl1.TabIndex = 0
         '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.AnruflisteBindingSource, "NAnruf", True))
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(139, 118)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(155, 20)
-        Me.DateTimePicker1.TabIndex = 3
-        '
-        'MitarbeiterControl
-        '
-        Me.MitarbeiterControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.AnruflisteBindingSource, "MitarbeiterNr", True))
-        Me.MitarbeiterControl.IDNR = 0
-        Me.MitarbeiterControl.Location = New System.Drawing.Point(473, 42)
-        Me.MitarbeiterControl.Name = "MitarbeiterControl"
-        Me.MitarbeiterControl.Size = New System.Drawing.Size(155, 25)
-        Me.MitarbeiterControl.TabIndex = 6
-        '
-        'TelTextBox
-        '
-        Me.TelTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.TelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Tel", True))
-        Me.TelTextBox.Location = New System.Drawing.Point(774, 300)
-        Me.TelTextBox.Name = "TelTextBox"
-        Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TelTextBox.TabIndex = 32
-        Me.TelTextBox.TabStop = False
-        '
-        'mobilTextBox
-        '
-        Me.mobilTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.mobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Mobil", True))
-        Me.mobilTextBox.Location = New System.Drawing.Point(774, 326)
-        Me.mobilTextBox.Name = "mobilTextBox"
-        Me.mobilTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.mobilTextBox.TabIndex = 34
-        Me.mobilTextBox.TabStop = False
-        '
-        'EmailTextBox
-        '
-        Me.EmailTextBox.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Email", True))
-        Me.EmailTextBox.Location = New System.Drawing.Point(774, 352)
-        Me.EmailTextBox.Name = "EmailTextBox"
-        Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.EmailTextBox.TabIndex = 36
-        Me.EmailTextBox.TabStop = False
-        '
         'Anruf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(986, 471)
+        Me.ClientSize = New System.Drawing.Size(911, 471)
+        Me.Controls.Add(Me.StartStopButton)
         Me.Controls.Add(Label1)
         Me.Controls.Add(Me.TelTextBox)
         Me.Controls.Add(Label2)
@@ -552,7 +570,7 @@ Partial Class Anruf
         Me.Controls.Add(Label3)
         Me.Controls.Add(Me.EmailTextBox)
         Me.Controls.Add(Me.MitarbeiterControl)
-        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.NAnrufDateTimePicker)
         Me.Controls.Add(Me.AdressenControl1)
         Me.Controls.Add(AdrNrLabel)
         Me.Controls.Add(LAenderungLabel)
@@ -619,9 +637,10 @@ Partial Class Anruf
     Friend WithEvents OrtTextBox As System.Windows.Forms.TextBox
     Friend WithEvents LandTextBox As System.Windows.Forms.TextBox
     Friend WithEvents AdressenControl1 As IntraSell_Net.AdressenControl
-    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents NAnrufDateTimePicker As System.Windows.Forms.DateTimePicker
     Friend WithEvents MitarbeiterControl As IntraSell_Net.MitarbeiterControl
     Friend WithEvents TelTextBox As System.Windows.Forms.TextBox
     Friend WithEvents mobilTextBox As System.Windows.Forms.TextBox
     Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents StartStopButton As System.Windows.Forms.Button
 End Class

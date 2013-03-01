@@ -57,6 +57,10 @@ Partial Class Kundenliste
         Me.KundengruppenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter()
         Me.PreislistenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter()
         Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.AnrufenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnrufprotokollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NeuerAnrufToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +72,7 @@ Partial Class Kundenliste
         Me.SplitContainer.SuspendLayout()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'FilterButton
@@ -181,6 +186,9 @@ Partial Class Kundenliste
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.grtransportmethodeTableAdapter = Nothing
+        Me.TableAdapterManager.grzahlungsbedingungTableAdapter = Nothing
+        Me.TableAdapterManager.grzahlungsmethodeTableAdapter = Nothing
         Me.TableAdapterManager.ofadressen_settingsTableAdapter = Nothing
         Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
         Me.TableAdapterManager.ofadressen_weitereTableAdapter = Nothing
@@ -202,7 +210,7 @@ Partial Class Kundenliste
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 738)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
         '
         'DataGridViewTextBoxColumn1
@@ -278,7 +286,8 @@ Partial Class Kundenliste
         'SplitContainer
         '
         Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 24)
         Me.SplitContainer.Name = "SplitContainer"
         '
         'SplitContainer.Panel1
@@ -298,7 +307,7 @@ Partial Class Kundenliste
         'SplitContainer.Panel2
         '
         Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 738)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
@@ -345,12 +354,42 @@ Partial Class Kundenliste
         '
         Me.GrlandTableAdapter.ClearBeforeFill = True
         '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnrufenToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(1008, 24)
+        Me.MenuStrip1.TabIndex = 12
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'AnrufenToolStripMenuItem
+        '
+        Me.AnrufenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnrufprotokollToolStripMenuItem, Me.NeuerAnrufToolStripMenuItem})
+        Me.AnrufenToolStripMenuItem.Name = "AnrufenToolStripMenuItem"
+        Me.AnrufenToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
+        Me.AnrufenToolStripMenuItem.Text = "&Anrufen"
+        '
+        'AnrufprotokollToolStripMenuItem
+        '
+        Me.AnrufprotokollToolStripMenuItem.Name = "AnrufprotokollToolStripMenuItem"
+        Me.AnrufprotokollToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AnrufprotokollToolStripMenuItem.Text = "Anruf&liste"
+        '
+        'NeuerAnrufToolStripMenuItem
+        '
+        Me.NeuerAnrufToolStripMenuItem.Name = "NeuerAnrufToolStripMenuItem"
+        Me.NeuerAnrufToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NeuerAnrufToolStripMenuItem.Text = "&Neuer Anruf"
+        '
         'Kundenliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 762)
         Me.Controls.Add(Me.SplitContainer)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Kundenliste"
         Me.Text = "Kundenliste"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -366,7 +405,10 @@ Partial Class Kundenliste
         Me.SplitContainer.ResumeLayout(False)
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents FilterButton As System.Windows.Forms.Button
@@ -403,4 +445,8 @@ Partial Class Kundenliste
     Friend WithEvents Land As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents AnrufenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AnrufprotokollToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NeuerAnrufToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

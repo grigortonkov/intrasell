@@ -35,22 +35,6 @@ Partial Class Artikelliste
         Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsArtikel = New IntraSell_Net.dsArtikel()
-        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
-        Me.LagerArtikelCheckBox = New System.Windows.Forms.CheckBox()
-        Me.SeriennummerCheckBox = New System.Windows.Forms.CheckBox()
-        Me.SetArtikelCheckBox = New System.Windows.Forms.CheckBox()
-        Me.ProduktAktivCheckBox = New System.Windows.Forms.CheckBox()
-        Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
-        Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
-        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.ArtNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EANDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,6 +69,22 @@ Partial Class Artikelliste
         Me.ProduktAktivDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.AngelegtAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsArtikel = New IntraSell_Net.dsArtikel()
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
+        Me.LagerArtikelCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SeriennummerCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SetArtikelCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ProduktAktivCheckBox = New System.Windows.Forms.CheckBox()
+        Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
+        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         SetArtikelLabel = New System.Windows.Forms.Label()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,176 +202,8 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(888, 757)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'GrArtikellisteBindingSource
-        '
-        Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
-        Me.GrArtikellisteBindingSource.DataSource = Me.DsArtikel
-        '
-        'DsArtikel
-        '
-        Me.DsArtikel.DataSetName = "dsArtikel"
-        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'SplitContainer
-        '
-        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer.Name = "SplitContainer"
-        '
-        'SplitContainer.Panel1
-        '
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
-        Me.SplitContainer.Panel1.Controls.Add(Me.BezeichnungTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.LagerArtikelCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.SeriennummerCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(SetArtikelLabel)
-        Me.SplitContainer.Panel1.Controls.Add(Me.SetArtikelCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ProduktAktivCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.NichtBestellbarCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ProduktAktivOnlineCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ArtNrTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.ArtKatNrComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreisVonTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreisBisTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
-        '
-        'SplitContainer.Panel2
-        '
-        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 238
-        Me.SplitContainer.TabIndex = 11
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 41)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 13)
-        Me.Label7.TabIndex = 76
-        Me.Label7.Text = "EAN/Bez.:"
-        '
-        'BezeichnungTextBox
-        '
-        Me.BezeichnungTextBox.Location = New System.Drawing.Point(98, 38)
-        Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
-        Me.BezeichnungTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.BezeichnungTextBox.TabIndex = 1
-        '
-        'LagerArtikelCheckBox
-        '
-        Me.LagerArtikelCheckBox.Checked = True
-        Me.LagerArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.LagerArtikelCheckBox.Location = New System.Drawing.Point(98, 117)
-        Me.LagerArtikelCheckBox.Name = "LagerArtikelCheckBox"
-        Me.LagerArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.LagerArtikelCheckBox.TabIndex = 5
-        Me.LagerArtikelCheckBox.Text = "Lager Artikel"
-        Me.LagerArtikelCheckBox.UseVisualStyleBackColor = True
-        '
-        'SeriennummerCheckBox
-        '
-        Me.SeriennummerCheckBox.Checked = True
-        Me.SeriennummerCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.SeriennummerCheckBox.Location = New System.Drawing.Point(98, 145)
-        Me.SeriennummerCheckBox.Name = "SeriennummerCheckBox"
-        Me.SeriennummerCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SeriennummerCheckBox.TabIndex = 6
-        Me.SeriennummerCheckBox.Text = "Seriennummer erford."
-        Me.SeriennummerCheckBox.UseVisualStyleBackColor = True
-        '
-        'SetArtikelCheckBox
-        '
-        Me.SetArtikelCheckBox.Checked = True
-        Me.SetArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.SetArtikelCheckBox.Location = New System.Drawing.Point(98, 171)
-        Me.SetArtikelCheckBox.Name = "SetArtikelCheckBox"
-        Me.SetArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.SetArtikelCheckBox.TabIndex = 7
-        Me.SetArtikelCheckBox.Text = "Set Artikel"
-        Me.SetArtikelCheckBox.UseVisualStyleBackColor = True
-        '
-        'ProduktAktivCheckBox
-        '
-        Me.ProduktAktivCheckBox.Checked = True
-        Me.ProduktAktivCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.ProduktAktivCheckBox.Location = New System.Drawing.Point(98, 198)
-        Me.ProduktAktivCheckBox.Name = "ProduktAktivCheckBox"
-        Me.ProduktAktivCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.ProduktAktivCheckBox.TabIndex = 8
-        Me.ProduktAktivCheckBox.Text = "Produkt Aktiv"
-        Me.ProduktAktivCheckBox.UseVisualStyleBackColor = True
-        '
-        'NichtBestellbarCheckBox
-        '
-        Me.NichtBestellbarCheckBox.Checked = True
-        Me.NichtBestellbarCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.NichtBestellbarCheckBox.Location = New System.Drawing.Point(98, 224)
-        Me.NichtBestellbarCheckBox.Name = "NichtBestellbarCheckBox"
-        Me.NichtBestellbarCheckBox.Size = New System.Drawing.Size(123, 24)
-        Me.NichtBestellbarCheckBox.TabIndex = 9
-        Me.NichtBestellbarCheckBox.Text = "Nicht Bestellbar"
-        Me.NichtBestellbarCheckBox.UseVisualStyleBackColor = True
-        '
-        'ProduktAktivOnlineCheckBox
-        '
-        Me.ProduktAktivOnlineCheckBox.Checked = True
-        Me.ProduktAktivOnlineCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.ProduktAktivOnlineCheckBox.Location = New System.Drawing.Point(98, 254)
-        Me.ProduktAktivOnlineCheckBox.Name = "ProduktAktivOnlineCheckBox"
-        Me.ProduktAktivOnlineCheckBox.Size = New System.Drawing.Size(123, 20)
-        Me.ProduktAktivOnlineCheckBox.TabIndex = 10
-        Me.ProduktAktivOnlineCheckBox.Text = "Produkt Aktiv Online"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 15)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(34, 13)
-        Me.Label6.TabIndex = 12
-        Me.Label6.Text = "ArtNr:"
-        '
-        'ArtNrTextBox
-        '
-        Me.ArtNrTextBox.Location = New System.Drawing.Point(98, 12)
-        Me.ArtNrTextBox.Name = "ArtNrTextBox"
-        Me.ArtNrTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.ArtNrTextBox.TabIndex = 0
-        '
-        'ArtKatNrComboBox
-        '
-        Me.ArtKatNrComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ArtKatNrComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ArtKatNrComboBox.FormattingEnabled = True
-        Me.ArtKatNrComboBox.Location = New System.Drawing.Point(98, 64)
-        Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
-        Me.ArtKatNrComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.ArtKatNrComboBox.TabIndex = 2
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 67)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 13)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Kategorie:"
-        '
-        'GrArtikellisteTableAdapter
-        '
-        Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
         '
         'ArtNrDataGridViewTextBoxColumn
         '
@@ -615,11 +447,180 @@ Partial Class Artikelliste
         Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
         Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'GrArtikellisteBindingSource
+        '
+        Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
+        Me.GrArtikellisteBindingSource.DataSource = Me.DsArtikel
+        '
+        'DsArtikel
+        '
+        Me.DsArtikel.DataSetName = "dsArtikel"
+        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'SplitContainer
+        '
+        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.Name = "SplitContainer"
+        '
+        'SplitContainer.Panel1
+        '
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
+        Me.SplitContainer.Panel1.Controls.Add(Me.BezeichnungTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.LagerArtikelCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SeriennummerCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(SetArtikelLabel)
+        Me.SplitContainer.Panel1.Controls.Add(Me.SetArtikelCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ProduktAktivCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.NichtBestellbarCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ProduktAktivOnlineCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ArtNrTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.ArtKatNrComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreisVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreisBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
+        '
+        'SplitContainer.Panel2
+        '
+        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer.Size = New System.Drawing.Size(1125, 757)
+        Me.SplitContainer.SplitterDistance = 233
+        Me.SplitContainer.TabIndex = 11
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 41)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(58, 13)
+        Me.Label7.TabIndex = 76
+        Me.Label7.Text = "EAN/Bez.:"
+        '
+        'BezeichnungTextBox
+        '
+        Me.BezeichnungTextBox.Location = New System.Drawing.Point(98, 38)
+        Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
+        Me.BezeichnungTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.BezeichnungTextBox.TabIndex = 1
+        '
+        'LagerArtikelCheckBox
+        '
+        Me.LagerArtikelCheckBox.Checked = True
+        Me.LagerArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.LagerArtikelCheckBox.Location = New System.Drawing.Point(98, 117)
+        Me.LagerArtikelCheckBox.Name = "LagerArtikelCheckBox"
+        Me.LagerArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.LagerArtikelCheckBox.TabIndex = 5
+        Me.LagerArtikelCheckBox.Text = "Lager Artikel"
+        Me.LagerArtikelCheckBox.UseVisualStyleBackColor = True
+        '
+        'SeriennummerCheckBox
+        '
+        Me.SeriennummerCheckBox.Checked = True
+        Me.SeriennummerCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.SeriennummerCheckBox.Location = New System.Drawing.Point(98, 145)
+        Me.SeriennummerCheckBox.Name = "SeriennummerCheckBox"
+        Me.SeriennummerCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.SeriennummerCheckBox.TabIndex = 6
+        Me.SeriennummerCheckBox.Text = "Seriennummer erford."
+        Me.SeriennummerCheckBox.UseVisualStyleBackColor = True
+        '
+        'SetArtikelCheckBox
+        '
+        Me.SetArtikelCheckBox.Checked = True
+        Me.SetArtikelCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.SetArtikelCheckBox.Location = New System.Drawing.Point(98, 171)
+        Me.SetArtikelCheckBox.Name = "SetArtikelCheckBox"
+        Me.SetArtikelCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.SetArtikelCheckBox.TabIndex = 7
+        Me.SetArtikelCheckBox.Text = "Set Artikel"
+        Me.SetArtikelCheckBox.UseVisualStyleBackColor = True
+        '
+        'ProduktAktivCheckBox
+        '
+        Me.ProduktAktivCheckBox.Checked = True
+        Me.ProduktAktivCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.ProduktAktivCheckBox.Location = New System.Drawing.Point(98, 198)
+        Me.ProduktAktivCheckBox.Name = "ProduktAktivCheckBox"
+        Me.ProduktAktivCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.ProduktAktivCheckBox.TabIndex = 8
+        Me.ProduktAktivCheckBox.Text = "Produkt Aktiv"
+        Me.ProduktAktivCheckBox.UseVisualStyleBackColor = True
+        '
+        'NichtBestellbarCheckBox
+        '
+        Me.NichtBestellbarCheckBox.Checked = True
+        Me.NichtBestellbarCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.NichtBestellbarCheckBox.Location = New System.Drawing.Point(98, 224)
+        Me.NichtBestellbarCheckBox.Name = "NichtBestellbarCheckBox"
+        Me.NichtBestellbarCheckBox.Size = New System.Drawing.Size(123, 24)
+        Me.NichtBestellbarCheckBox.TabIndex = 9
+        Me.NichtBestellbarCheckBox.Text = "Nicht Bestellbar"
+        Me.NichtBestellbarCheckBox.UseVisualStyleBackColor = True
+        '
+        'ProduktAktivOnlineCheckBox
+        '
+        Me.ProduktAktivOnlineCheckBox.Checked = True
+        Me.ProduktAktivOnlineCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.ProduktAktivOnlineCheckBox.Location = New System.Drawing.Point(98, 254)
+        Me.ProduktAktivOnlineCheckBox.Name = "ProduktAktivOnlineCheckBox"
+        Me.ProduktAktivOnlineCheckBox.Size = New System.Drawing.Size(123, 20)
+        Me.ProduktAktivOnlineCheckBox.TabIndex = 10
+        Me.ProduktAktivOnlineCheckBox.Text = "Produkt Aktiv Online"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 15)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(34, 13)
+        Me.Label6.TabIndex = 12
+        Me.Label6.Text = "ArtNr:"
+        '
+        'ArtNrTextBox
+        '
+        Me.ArtNrTextBox.Location = New System.Drawing.Point(98, 12)
+        Me.ArtNrTextBox.Name = "ArtNrTextBox"
+        Me.ArtNrTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.ArtNrTextBox.TabIndex = 0
+        '
+        'ArtKatNrComboBox
+        '
+        Me.ArtKatNrComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ArtKatNrComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ArtKatNrComboBox.FormattingEnabled = True
+        Me.ArtKatNrComboBox.Location = New System.Drawing.Point(98, 64)
+        Me.ArtKatNrComboBox.Name = "ArtKatNrComboBox"
+        Me.ArtKatNrComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.ArtKatNrComboBox.TabIndex = 2
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 67)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Kategorie:"
+        '
+        'GrArtikellisteTableAdapter
+        '
+        Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
+        '
         'Artikelliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 762)
+        Me.ClientSize = New System.Drawing.Size(1125, 757)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "Artikelliste"
         Me.Text = "Artikelliste"

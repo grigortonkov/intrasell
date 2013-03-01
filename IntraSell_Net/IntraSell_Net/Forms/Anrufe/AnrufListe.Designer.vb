@@ -33,18 +33,6 @@ Partial Class Anrufliste
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.AnruflisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
-        Me.OfanrufeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.LandComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.OfanrufeTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.ofanrufeTableAdapter()
-        Me.AnruflisteTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.AnruflisteTableAdapter()
         Me.AnrufNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Firma = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NotizenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,6 +49,18 @@ Partial Class Anrufliste
         Me.Tel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Mobil = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AnruflisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
+        Me.OfanrufeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LandComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.OfanrufeTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.ofanrufeTableAdapter()
+        Me.AnruflisteTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.AnruflisteTableAdapter()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AnruflisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,115 +163,8 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(770, 794)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'AnruflisteBindingSource
-        '
-        Me.AnruflisteBindingSource.DataMember = "Anrufliste"
-        Me.AnruflisteBindingSource.DataSource = Me.DsAnrufe
-        '
-        'DsAnrufe
-        '
-        Me.DsAnrufe.DataSetName = "dsAnrufe"
-        Me.DsAnrufe.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'OfanrufeBindingSource
-        '
-        Me.OfanrufeBindingSource.DataMember = "ofanrufe"
-        Me.OfanrufeBindingSource.DataSource = Me.DsAnrufe
-        '
-        'SplitContainer
-        '
-        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer.Name = "SplitContainer"
-        '
-        'SplitContainer.Panel1
-        '
-        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterControl)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
-        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
-        '
-        'SplitContainer.Panel2
-        '
-        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 238
-        Me.SplitContainer.TabIndex = 11
-        '
-        'MitarbeiterControl
-        '
-        Me.MitarbeiterControl.IDNR = 0
-        Me.MitarbeiterControl.Location = New System.Drawing.Point(98, 175)
-        Me.MitarbeiterControl.Name = "MitarbeiterControl"
-        Me.MitarbeiterControl.Size = New System.Drawing.Size(136, 25)
-        Me.MitarbeiterControl.TabIndex = 6
-        '
-        'AdressenControl1
-        '
-        Me.AdressenControl1.IDNR = 0
-        Me.AdressenControl1.Location = New System.Drawing.Point(98, 40)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 0
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 45)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(38, 13)
-        Me.Label9.TabIndex = 22
-        Me.Label9.Text = "Kunde"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 181)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(59, 13)
-        Me.Label8.TabIndex = 21
-        Me.Label8.Text = "Mitarbeiter:"
-        '
-        'LandComboBox
-        '
-        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.LandComboBox.FormattingEnabled = True
-        Me.LandComboBox.Location = New System.Drawing.Point(98, 68)
-        Me.LandComboBox.Name = "LandComboBox"
-        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LandComboBox.TabIndex = 1
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 71)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Land:"
-        '
-        'OfanrufeTableAdapter
-        '
-        Me.OfanrufeTableAdapter.ClearBeforeFill = True
-        '
-        'AnruflisteTableAdapter
-        '
-        Me.AnruflisteTableAdapter.ClearBeforeFill = True
         '
         'AnrufNrDataGridViewTextBoxColumn
         '
@@ -279,6 +172,7 @@ Partial Class Anrufliste
         Me.AnrufNrDataGridViewTextBoxColumn.HeaderText = "AnrufNr"
         Me.AnrufNrDataGridViewTextBoxColumn.Name = "AnrufNrDataGridViewTextBoxColumn"
         Me.AnrufNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AnrufNrDataGridViewTextBoxColumn.Visible = False
         '
         'Firma
         '
@@ -319,8 +213,8 @@ Partial Class Anrufliste
         '
         'MitarbeiterNrDataGridViewTextBoxColumn
         '
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterNr"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "MitarbeiterNr"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterName"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter"
         Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
         Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
         '
@@ -387,11 +281,119 @@ Partial Class Anrufliste
         Me.Email.Name = "Email"
         Me.Email.ReadOnly = True
         '
+        'AnruflisteBindingSource
+        '
+        Me.AnruflisteBindingSource.DataMember = "Anrufliste"
+        Me.AnruflisteBindingSource.DataSource = Me.DsAnrufe
+        '
+        'DsAnrufe
+        '
+        Me.DsAnrufe.DataSetName = "dsAnrufe"
+        Me.DsAnrufe.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'OfanrufeBindingSource
+        '
+        Me.OfanrufeBindingSource.DataMember = "ofanrufe"
+        Me.OfanrufeBindingSource.DataSource = Me.DsAnrufe
+        '
+        'SplitContainer
+        '
+        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.Name = "SplitContainer"
+        '
+        'SplitContainer.Panel1
+        '
+        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterControl)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
+        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
+        '
+        'SplitContainer.Panel2
+        '
+        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer.Size = New System.Drawing.Size(1012, 794)
+        Me.SplitContainer.SplitterDistance = 238
+        Me.SplitContainer.TabIndex = 11
+        '
+        'MitarbeiterControl
+        '
+        Me.MitarbeiterControl.IDNR = 0
+        Me.MitarbeiterControl.Location = New System.Drawing.Point(98, 175)
+        Me.MitarbeiterControl.Name = "MitarbeiterControl"
+        Me.MitarbeiterControl.Size = New System.Drawing.Size(136, 25)
+        Me.MitarbeiterControl.TabIndex = 6
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(98, 40)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 0
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 45)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(38, 13)
+        Me.Label9.TabIndex = 22
+        Me.Label9.Text = "Kunde"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 181)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(59, 13)
+        Me.Label8.TabIndex = 21
+        Me.Label8.Text = "Mitarbeiter:"
+        '
+        'LandComboBox
+        '
+        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.LandComboBox.FormattingEnabled = True
+        Me.LandComboBox.Location = New System.Drawing.Point(98, 68)
+        Me.LandComboBox.Name = "LandComboBox"
+        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.LandComboBox.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 71)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Land:"
+        '
+        'OfanrufeTableAdapter
+        '
+        Me.OfanrufeTableAdapter.ClearBeforeFill = True
+        '
+        'AnruflisteTableAdapter
+        '
+        Me.AnruflisteTableAdapter.ClearBeforeFill = True
+        '
         'Anrufliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 762)
+        Me.ClientSize = New System.Drawing.Size(1012, 794)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "Anrufliste"
         Me.Text = "Anrufliste"

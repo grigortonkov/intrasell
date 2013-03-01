@@ -190,7 +190,7 @@ Partial Class ArtikelPreisregeln
         Me.PreiseDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PreiseDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.PreiseDataGridView.Name = "PreiseDataGridView"
-        Me.PreiseDataGridView.Size = New System.Drawing.Size(818, 728)
+        Me.PreiseDataGridView.Size = New System.Drawing.Size(833, 728)
         Me.PreiseDataGridView.TabIndex = 6
         '
         'IdColumn
@@ -280,6 +280,7 @@ Partial Class ArtikelPreisregeln
         'SplitContainer
         '
         Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer.Name = "SplitContainer"
         '
@@ -314,7 +315,7 @@ Partial Class ArtikelPreisregeln
         '
         Me.SplitContainer.Panel2.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer.Size = New System.Drawing.Size(1075, 762)
-        Me.SplitContainer.SplitterDistance = 253
+        Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
         'ArtikelControl
@@ -471,7 +472,7 @@ Partial Class ArtikelPreisregeln
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.PreiseDataGridView)
-        Me.SplitContainer1.Size = New System.Drawing.Size(818, 762)
+        Me.SplitContainer1.Size = New System.Drawing.Size(833, 762)
         Me.SplitContainer1.SplitterDistance = 30
         Me.SplitContainer1.TabIndex = 14
         '
@@ -489,7 +490,7 @@ Partial Class ArtikelPreisregeln
         Me.GrartikelBindingNavigator.MovePreviousItem = Me.ToolStripButton4
         Me.GrartikelBindingNavigator.Name = "GrartikelBindingNavigator"
         Me.GrartikelBindingNavigator.PositionItem = Me.ToolStripTextBox1
-        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(818, 25)
+        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(833, 25)
         Me.GrartikelBindingNavigator.TabIndex = 13
         Me.GrartikelBindingNavigator.Text = "BindingNavigator1"
         '
