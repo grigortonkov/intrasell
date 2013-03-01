@@ -72,6 +72,8 @@ Partial Class VorgangListe
         Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
         Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BezahltCheckBox = New System.Windows.Forms.CheckBox()
         Me.AusgedrucktCheckBox = New System.Windows.Forms.CheckBox()
@@ -91,8 +93,6 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
-        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -446,6 +446,7 @@ Partial Class VorgangListe
         'SplitContainer
         '
         Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer.Name = "SplitContainer"
         '
@@ -526,6 +527,22 @@ Partial Class VorgangListe
         Me.Label14.Size = New System.Drawing.Size(10, 13)
         Me.Label14.TabIndex = 43
         Me.Label14.Text = "-"
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 9
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.ArtNr = 0
+        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
+        Me.ArtikelControl1.TabIndex = 5
         '
         'StatusComboBox
         '
@@ -701,22 +718,6 @@ Partial Class VorgangListe
         'BuchVorgangListeTableAdapter
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
-        '
-        'AdressenControl1
-        '
-        Me.AdressenControl1.IDNR = 0
-        Me.AdressenControl1.Location = New System.Drawing.Point(95, 228)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 9
-        '
-        'ArtikelControl1
-        '
-        Me.ArtikelControl1.ArtNr = 0
-        Me.ArtikelControl1.Location = New System.Drawing.Point(96, 144)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.Size = New System.Drawing.Size(127, 26)
-        Me.ArtikelControl1.TabIndex = 5
         '
         'VorgangListe
         '

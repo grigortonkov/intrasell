@@ -1,6 +1,6 @@
 ﻿Imports IntraSell_DLL
 Public Class MitarbeiterControl
-    Public Const SQL = "SELECT IDNR, contIFNULL(concat(Name, ' '),''), IFNULL(Vorname,'')) as Namen " &
+    Public Const SQL = "SELECT IDNR, concat(IFNULL(concat(Name, ' '),''), IFNULL(Vorname,'')) as Namen " &
                        " FROM ofMitarbeiter where name is not null or Vorname is not null ORDER BY Name, Vorname"
     Private _IDNR As Integer
 

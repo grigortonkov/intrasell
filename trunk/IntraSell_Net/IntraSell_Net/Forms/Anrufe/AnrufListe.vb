@@ -25,6 +25,24 @@
 
     End Sub
 
+    Public Sub FilterBy(Expression As Object)
+        Try
+            Me.AnruflisteBindingSource.Filter = Expression
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Public Sub Anrufprotokoll(IDNR As Object)
+        Try
+            AdressenControl1.IDNR = IDNR
+            Call AnrufButton_Click(Nothing, Nothing)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+
     'Filtern
     Private Sub AnrufButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try

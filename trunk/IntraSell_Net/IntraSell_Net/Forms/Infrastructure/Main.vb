@@ -211,4 +211,12 @@ Public Class Main
 #End Region
 
 
+    Private Sub MitarbeiterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MitarbeiterToolStripMenuItem.Click
+        Try
+            Mitarbeiter.MdiParent = Me
+            Mitarbeiter.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
