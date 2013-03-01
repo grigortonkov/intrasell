@@ -91,8 +91,8 @@ Public Class buchvorgangTableAdapterTest
         Dim DsVorgaenge As IntraSell_Net.dsVorgaenge = New IntraSell_Net.dsVorgaenge()
 
 
-        t.Fill(DsVorgaenge.buchvorgang)
-        ta.Fill(DsVorgaenge._buchvorgang_artikel)
+        t.Fill(DsVorgaenge.buchvorgang, 100)
+        ta.Fill(DsVorgaenge._buchvorgang_artikel, 100)
 
         Dim r As IntraSell_Net.dsVorgaenge.buchvorgangRow = DsVorgaenge.buchvorgang.NewRow()
 
@@ -162,8 +162,8 @@ Public Class buchvorgangTableAdapterTest
         Dim DsVorgaenge As IntraSell_Net.dsVorgaenge = New IntraSell_Net.dsVorgaenge()
 
 
-        t.Fill(DsVorgaenge.buchvorgang)
-        ta.Fill(DsVorgaenge._buchvorgang_artikel)
+        t.Fill(DsVorgaenge.buchvorgang, 100)
+        ta.Fill(DsVorgaenge._buchvorgang_artikel, 100)
 
         Dim r As IntraSell_Net.dsVorgaenge.buchvorgangRow = DsVorgaenge.buchvorgang.NewRow()
 
@@ -247,10 +247,9 @@ Public Class buchvorgangTableAdapterTest
         Dim MitarbeiterNr As Nullable(Of Integer) = New Nullable(Of Integer)() ' TODO: Initialize to an appropriate value
         Dim KundNr2 As Nullable(Of Integer) = New Nullable(Of Integer)() ' TODO: Initialize to an appropriate value
         Dim Waehrung As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Insert(Nummer, Typ, KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm)
+        actual = target.Insert(Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -287,7 +286,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Original_Typ As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Update(KundNr, Datum, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, ErstelltAm, Original_Nummer, Original_Typ)
+        actual = target.Update(Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBrutto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung, Original_Nummer, Original_Typ)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -324,7 +323,7 @@ Public Class buchvorgangTableAdapterTest
         Dim Original_ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Delete(Original_Nummer, Original_Typ, Original_KundNr, Original_Datum, Original_Notiz, Original_NotizIntern, Original_NotizExtern, Original_Summe, Original_Bezahlt, Original_Ausgedruckt, Original_Abgeschlossen, Original_Zahlungsbedingung, Original_TransportMethode, Original_ZahlungsMethode, Original_Woher, Original_Wohin, Original_Status, Original_SummeMWST, Original_SummeBrutto, Original_LieferantNr, Original_MitarbeiterNr, Original_KundNr2, Original_Waehrung, Original_ErstelltAm)
+        actual = target.Delete(Original_Nummer, Original_Typ)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub

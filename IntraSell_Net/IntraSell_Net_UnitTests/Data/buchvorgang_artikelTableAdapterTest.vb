@@ -83,7 +83,7 @@ Public Class buchvorgang_artikelTableAdapterTest
         Dim ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Insert(Nummer, Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm)
+        actual = target.Insert(Nummer, Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -116,7 +116,7 @@ Public Class buchvorgang_artikelTableAdapterTest
         Dim Original_Typ As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Update(ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, ErstelltAm, Original_ID, Original_Nummer, Original_Typ)
+        actual = target.Update(ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt, Original_ID, Original_Nummer, Original_Typ)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -149,7 +149,7 @@ Public Class buchvorgang_artikelTableAdapterTest
         Dim Original_ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Delete(Original_ID, Original_Nummer, Original_Typ, Original_ArtNr, Original_Stk, Original_EKPreis, Original_Preis_Netto, Original_Preis_Brutto, Original_MWST, Original_ArtikelIdentifikation, Original_Bezeichnung, Original_LieferantNr, Original_Status, Original_Referenz, Original_Packung, Original_Herkunft, Original_Incoterm, Original_Spezifikation, Original_Zeitpunkt, Original_ErstelltAm)
+        actual = target.Delete(Original_ID, Original_Nummer, Original_Typ)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub

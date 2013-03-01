@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="5.Anrufe" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\5.anrufe.orderedtest" id="89bffdab-90c7-44f4-9fc7-65bda756027a" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="68e2dd76-774f-7b5a-44c0-d0e894a187fb" name="ofAnrufe_InsertTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="b4340dbb-63ed-9f31-9e56-a3803747a0e4" name="ofAnrufe_UpdateTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="03b60667-54d3-304f-890c-538f92161e64" name="ofAnrufe_DeleteTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>
