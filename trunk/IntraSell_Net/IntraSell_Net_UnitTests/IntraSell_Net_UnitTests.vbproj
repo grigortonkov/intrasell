@@ -105,6 +105,7 @@
     <Compile Include="Modules\ModulePreiseTest.vb" />
     <Compile Include="Modules\ModuleSetupTest.vb" />
     <Compile Include="Data\ofadressenTableAdapterTest.vb" />
+    <Compile Include="Data\ofanrufeTableAdapterTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
@@ -123,6 +124,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="4.Preisregeln.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="5.Anrufe.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

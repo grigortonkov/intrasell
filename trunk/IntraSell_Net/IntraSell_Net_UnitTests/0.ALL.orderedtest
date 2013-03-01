@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <OrderedTest name="0.all" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\0.all.orderedtest" id="609cf3b7-f336-4918-bbe9-69b469130fa2" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Execution id="85b84bcb-0fdd-4bd9-a9b3-7e015d803218" />
   <TestLinks>
     <TestLink id="d5cd304e-5669-4150-9577-c359afd1d150" name="1.DBSetup" storage="1.dbsetup.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="421ae980-22cd-4f2a-bdfc-925b06b3e63c" name="2.Preise" storage="2.preise.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" name="3.Vorgang" storage="3.vorgang.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="0059a73c-33ad-48e7-a9bc-e9fc270289be" name="4.Preisregeln" storage="4.preisregeln.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="89bffdab-90c7-44f4-9fc7-65bda756027a" name="5.Anrufe" storage="5.anrufe.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>
