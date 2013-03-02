@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("IntraSell_Net")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012")> 
+<Assembly: AssemblyCopyright("Copyright ©  2012-2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

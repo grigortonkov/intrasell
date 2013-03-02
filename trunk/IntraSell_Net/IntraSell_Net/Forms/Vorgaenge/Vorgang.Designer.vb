@@ -103,7 +103,6 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ZahlungsbedingungComboBox = New System.Windows.Forms.ComboBox()
         Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
@@ -394,6 +393,7 @@ Partial Class Vorgang
         'BindingNavigatorAddNewItem
         '
         Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorAddNewItem.Enabled = False
         Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
@@ -657,7 +657,7 @@ Partial Class Vorgang
         '
         Me.Buchvorgang_artikelDataGridView.AutoGenerateColumns = False
         Me.Buchvorgang_artikelDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Buchvorgang_artikelDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnID, Me.DataGridViewTextBoxColumnNummer, Me.DataGridViewTextBoxColumnTyp, Me.DataGridViewTextBoxColumnStk, Me.ArtNrComboBox, Me.DataGridViewTextBoxColumnArtNr, Me.DataGridViewTextBoxColumnBezeichnung, Me.DataGridViewTextBoxColumnPreisNetto, Me.DataGridViewTextBoxColumnPreisBrutto, Me.DataGridViewTextBoxColumnMWST, Me.DataGridViewTextBoxColumnEKPreis, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20})
+        Me.Buchvorgang_artikelDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnID, Me.DataGridViewTextBoxColumnNummer, Me.DataGridViewTextBoxColumnTyp, Me.DataGridViewTextBoxColumnStk, Me.ArtNrComboBox, Me.DataGridViewTextBoxColumnArtNr, Me.DataGridViewTextBoxColumnBezeichnung, Me.DataGridViewTextBoxColumnPreisNetto, Me.DataGridViewTextBoxColumnPreisBrutto, Me.DataGridViewTextBoxColumnMWST, Me.DataGridViewTextBoxColumnEKPreis, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19})
         Me.Buchvorgang_artikelDataGridView.DataSource = Me.Buchvorgang_artikelBindingSource
         Me.Buchvorgang_artikelDataGridView.Location = New System.Drawing.Point(12, 381)
         Me.Buchvorgang_artikelDataGridView.Name = "Buchvorgang_artikelDataGridView"
@@ -809,13 +809,6 @@ Partial Class Vorgang
         Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
         Me.DataGridViewTextBoxColumn19.Visible = False
         '
-        'DataGridViewTextBoxColumn20
-        '
-        Me.DataGridViewTextBoxColumn20.DataPropertyName = "ErstelltAm"
-        Me.DataGridViewTextBoxColumn20.HeaderText = "ErstelltAm"
-        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-        Me.DataGridViewTextBoxColumn20.Visible = False
-        '
         'ZahlungsbedingungComboBox
         '
         Me.ZahlungsbedingungComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "Zahlungsbedingung", True))
@@ -936,7 +929,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(219, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
