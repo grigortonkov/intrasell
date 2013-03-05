@@ -120,7 +120,7 @@
     <None Include="2.Preise.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="3.Vorgang.orderedtest">
+    <None Include="6.Vorgang.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="0.ALL.orderedtest">
@@ -132,7 +132,7 @@
     <None Include="5.Anrufe.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="6.Mitarbeiter.orderedtest">
+    <None Include="3.Mitarbeiter.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />
