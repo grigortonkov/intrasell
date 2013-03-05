@@ -117,7 +117,7 @@
     <None Include="1.DBSetup.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="2.Preise.orderedtest">
+    <None Include="3.Preise.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="6.Vorgang.orderedtest">
@@ -132,7 +132,13 @@
     <None Include="5.Anrufe.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="3.Mitarbeiter.orderedtest">
+    <None Include="2.Mitarbeiter.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="0.ALL_nosetup.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Copy of 2.Preise.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />
