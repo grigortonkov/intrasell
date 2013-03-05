@@ -23,7 +23,6 @@ Partial Class Mitarbeiter
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Mitarbeiter))
         Dim IDNRLabel As System.Windows.Forms.Label
         Dim PositionLabel As System.Windows.Forms.Label
         Dim AnredeLabel As System.Windows.Forms.Label
@@ -44,22 +43,23 @@ Partial Class Mitarbeiter
         Dim KontoNrLabel As System.Windows.Forms.Label
         Dim UsernameLabel As System.Windows.Forms.Label
         Dim PasswortLabel As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Mitarbeiter))
         Me.DsMitarbeiter = New IntraSell_Net.dsMitarbeiter()
         Me.OfmitarbeiterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OfmitarbeiterTableAdapter = New IntraSell_Net.dsMitarbeiterTableAdapters.ofmitarbeiterTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsMitarbeiterTableAdapters.TableAdapterManager()
         Me.OfmitarbeiterBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
+        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.OfmitarbeiterBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.IDNRTextBox = New System.Windows.Forms.TextBox()
         Me.PositionTextBox = New System.Windows.Forms.TextBox()
@@ -107,6 +107,186 @@ Partial Class Mitarbeiter
         Me.OfmitarbeiterBindingNavigator.SuspendLayout()
         Me.SuspendLayout()
         '
+        'IDNRLabel
+        '
+        IDNRLabel.AutoSize = True
+        IDNRLabel.Location = New System.Drawing.Point(10, 31)
+        IDNRLabel.Name = "IDNRLabel"
+        IDNRLabel.Size = New System.Drawing.Size(37, 13)
+        IDNRLabel.TabIndex = 1
+        IDNRLabel.Text = "IDNR:"
+        '
+        'PositionLabel
+        '
+        PositionLabel.AutoSize = True
+        PositionLabel.Location = New System.Drawing.Point(10, 57)
+        PositionLabel.Name = "PositionLabel"
+        PositionLabel.Size = New System.Drawing.Size(47, 13)
+        PositionLabel.TabIndex = 3
+        PositionLabel.Text = "Position:"
+        '
+        'AnredeLabel
+        '
+        AnredeLabel.AutoSize = True
+        AnredeLabel.Location = New System.Drawing.Point(10, 83)
+        AnredeLabel.Name = "AnredeLabel"
+        AnredeLabel.Size = New System.Drawing.Size(44, 13)
+        AnredeLabel.TabIndex = 5
+        AnredeLabel.Text = "Anrede:"
+        '
+        'NameLabel
+        '
+        NameLabel.AutoSize = True
+        NameLabel.Location = New System.Drawing.Point(10, 109)
+        NameLabel.Name = "NameLabel"
+        NameLabel.Size = New System.Drawing.Size(38, 13)
+        NameLabel.TabIndex = 7
+        NameLabel.Text = "Name:"
+        '
+        'VornameLabel
+        '
+        VornameLabel.AutoSize = True
+        VornameLabel.Location = New System.Drawing.Point(10, 135)
+        VornameLabel.Name = "VornameLabel"
+        VornameLabel.Size = New System.Drawing.Size(52, 13)
+        VornameLabel.TabIndex = 9
+        VornameLabel.Text = "Vorname:"
+        '
+        'GeschlechtLabel
+        '
+        GeschlechtLabel.AutoSize = True
+        GeschlechtLabel.Location = New System.Drawing.Point(10, 161)
+        GeschlechtLabel.Name = "GeschlechtLabel"
+        GeschlechtLabel.Size = New System.Drawing.Size(64, 13)
+        GeschlechtLabel.TabIndex = 11
+        GeschlechtLabel.Text = "Geschlecht:"
+        '
+        'AdresseLabel
+        '
+        AdresseLabel.AutoSize = True
+        AdresseLabel.Location = New System.Drawing.Point(10, 187)
+        AdresseLabel.Name = "AdresseLabel"
+        AdresseLabel.Size = New System.Drawing.Size(48, 13)
+        AdresseLabel.TabIndex = 13
+        AdresseLabel.Text = "Adresse:"
+        '
+        'LandLabel
+        '
+        LandLabel.AutoSize = True
+        LandLabel.Location = New System.Drawing.Point(10, 213)
+        LandLabel.Name = "LandLabel"
+        LandLabel.Size = New System.Drawing.Size(34, 13)
+        LandLabel.TabIndex = 15
+        LandLabel.Text = "Land:"
+        '
+        'PLZLabel
+        '
+        PLZLabel.AutoSize = True
+        PLZLabel.Location = New System.Drawing.Point(10, 239)
+        PLZLabel.Name = "PLZLabel"
+        PLZLabel.Size = New System.Drawing.Size(30, 13)
+        PLZLabel.TabIndex = 17
+        PLZLabel.Text = "PLZ:"
+        '
+        'OrtLabel
+        '
+        OrtLabel.AutoSize = True
+        OrtLabel.Location = New System.Drawing.Point(10, 265)
+        OrtLabel.Name = "OrtLabel"
+        OrtLabel.Size = New System.Drawing.Size(24, 13)
+        OrtLabel.TabIndex = 19
+        OrtLabel.Text = "Ort:"
+        '
+        'TelPrivatLabel
+        '
+        TelPrivatLabel.AutoSize = True
+        TelPrivatLabel.Location = New System.Drawing.Point(306, 31)
+        TelPrivatLabel.Name = "TelPrivatLabel"
+        TelPrivatLabel.Size = New System.Drawing.Size(55, 13)
+        TelPrivatLabel.TabIndex = 21
+        TelPrivatLabel.Text = "Tel Privat:"
+        '
+        'TelFirmaLabel
+        '
+        TelFirmaLabel.AutoSize = True
+        TelFirmaLabel.Location = New System.Drawing.Point(306, 57)
+        TelFirmaLabel.Name = "TelFirmaLabel"
+        TelFirmaLabel.Size = New System.Drawing.Size(53, 13)
+        TelFirmaLabel.TabIndex = 23
+        TelFirmaLabel.Text = "Tel Firma:"
+        '
+        'FaxFirmaLabel
+        '
+        FaxFirmaLabel.AutoSize = True
+        FaxFirmaLabel.Location = New System.Drawing.Point(306, 83)
+        FaxFirmaLabel.Name = "FaxFirmaLabel"
+        FaxFirmaLabel.Size = New System.Drawing.Size(55, 13)
+        FaxFirmaLabel.TabIndex = 25
+        FaxFirmaLabel.Text = "Fax Firma:"
+        '
+        'MobilLabel
+        '
+        MobilLabel.AutoSize = True
+        MobilLabel.Location = New System.Drawing.Point(306, 109)
+        MobilLabel.Name = "MobilLabel"
+        MobilLabel.Size = New System.Drawing.Size(35, 13)
+        MobilLabel.TabIndex = 27
+        MobilLabel.Text = "Mobil:"
+        '
+        'EmailLabel
+        '
+        EmailLabel.AutoSize = True
+        EmailLabel.Location = New System.Drawing.Point(306, 135)
+        EmailLabel.Name = "EmailLabel"
+        EmailLabel.Size = New System.Drawing.Size(35, 13)
+        EmailLabel.TabIndex = 29
+        EmailLabel.Text = "Email:"
+        '
+        'SVNLabel
+        '
+        SVNLabel.AutoSize = True
+        SVNLabel.Location = New System.Drawing.Point(306, 161)
+        SVNLabel.Name = "SVNLabel"
+        SVNLabel.Size = New System.Drawing.Size(32, 13)
+        SVNLabel.TabIndex = 31
+        SVNLabel.Text = "SVN:"
+        '
+        'BankNrLabel
+        '
+        BankNrLabel.AutoSize = True
+        BankNrLabel.Location = New System.Drawing.Point(306, 187)
+        BankNrLabel.Name = "BankNrLabel"
+        BankNrLabel.Size = New System.Drawing.Size(49, 13)
+        BankNrLabel.TabIndex = 33
+        BankNrLabel.Text = "Bank Nr:"
+        '
+        'KontoNrLabel
+        '
+        KontoNrLabel.AutoSize = True
+        KontoNrLabel.Location = New System.Drawing.Point(306, 213)
+        KontoNrLabel.Name = "KontoNrLabel"
+        KontoNrLabel.Size = New System.Drawing.Size(52, 13)
+        KontoNrLabel.TabIndex = 35
+        KontoNrLabel.Text = "Konto Nr:"
+        '
+        'UsernameLabel
+        '
+        UsernameLabel.AutoSize = True
+        UsernameLabel.Location = New System.Drawing.Point(306, 239)
+        UsernameLabel.Name = "UsernameLabel"
+        UsernameLabel.Size = New System.Drawing.Size(58, 13)
+        UsernameLabel.TabIndex = 37
+        UsernameLabel.Text = "Username:"
+        '
+        'PasswortLabel
+        '
+        PasswortLabel.AutoSize = True
+        PasswortLabel.Location = New System.Drawing.Point(306, 265)
+        PasswortLabel.Name = "PasswortLabel"
+        PasswortLabel.Size = New System.Drawing.Size(53, 13)
+        PasswortLabel.TabIndex = 39
+        PasswortLabel.Text = "Passwort:"
+        '
         'DsMitarbeiter
         '
         Me.DsMitarbeiter.DataSetName = "dsMitarbeiter"
@@ -145,6 +325,31 @@ Partial Class Mitarbeiter
         Me.OfmitarbeiterBindingNavigator.TabIndex = 0
         Me.OfmitarbeiterBindingNavigator.Text = "BindingNavigator1"
         '
+        'BindingNavigatorAddNewItem
+        '
+        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
+        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorAddNewItem.Text = "Add new"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Text = "of {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
+        '
+        'BindingNavigatorDeleteItem
+        '
+        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
+        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorDeleteItem.Text = "Delete"
+        '
         'BindingNavigatorMoveFirstItem
         '
         Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -177,17 +382,10 @@ Partial Class Mitarbeiter
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
         '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 15)
-        Me.BindingNavigatorCountItem.Text = "of {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
-        '
         'BindingNavigatorSeparator1
         '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 6)
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorMoveNextItem
         '
@@ -195,7 +393,7 @@ Partial Class Mitarbeiter
         Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 20)
+        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveNextItem.Text = "Move next"
         '
         'BindingNavigatorMoveLastItem
@@ -204,48 +402,21 @@ Partial Class Mitarbeiter
         Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 20)
+        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorMoveLastItem.Text = "Move last"
         '
         'BindingNavigatorSeparator2
         '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 6)
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Add new"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 20)
-        Me.BindingNavigatorDeleteItem.Text = "Delete"
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'OfmitarbeiterBindingNavigatorSaveItem
         '
         Me.OfmitarbeiterBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.OfmitarbeiterBindingNavigatorSaveItem.Image = CType(resources.GetObject("OfmitarbeiterBindingNavigatorSaveItem.Image"), System.Drawing.Image)
         Me.OfmitarbeiterBindingNavigatorSaveItem.Name = "OfmitarbeiterBindingNavigatorSaveItem"
-        Me.OfmitarbeiterBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 23)
+        Me.OfmitarbeiterBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
         Me.OfmitarbeiterBindingNavigatorSaveItem.Text = "Save Data"
-        '
-        'IDNRLabel
-        '
-        IDNRLabel.AutoSize = True
-        IDNRLabel.Location = New System.Drawing.Point(10, 31)
-        IDNRLabel.Name = "IDNRLabel"
-        IDNRLabel.Size = New System.Drawing.Size(37, 13)
-        IDNRLabel.TabIndex = 1
-        IDNRLabel.Text = "IDNR:"
         '
         'IDNRTextBox
         '
@@ -255,15 +426,6 @@ Partial Class Mitarbeiter
         Me.IDNRTextBox.Size = New System.Drawing.Size(173, 20)
         Me.IDNRTextBox.TabIndex = 2
         '
-        'PositionLabel
-        '
-        PositionLabel.AutoSize = True
-        PositionLabel.Location = New System.Drawing.Point(10, 57)
-        PositionLabel.Name = "PositionLabel"
-        PositionLabel.Size = New System.Drawing.Size(47, 13)
-        PositionLabel.TabIndex = 3
-        PositionLabel.Text = "Position:"
-        '
         'PositionTextBox
         '
         Me.PositionTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Position", True))
@@ -271,15 +433,6 @@ Partial Class Mitarbeiter
         Me.PositionTextBox.Name = "PositionTextBox"
         Me.PositionTextBox.Size = New System.Drawing.Size(173, 20)
         Me.PositionTextBox.TabIndex = 4
-        '
-        'AnredeLabel
-        '
-        AnredeLabel.AutoSize = True
-        AnredeLabel.Location = New System.Drawing.Point(10, 83)
-        AnredeLabel.Name = "AnredeLabel"
-        AnredeLabel.Size = New System.Drawing.Size(44, 13)
-        AnredeLabel.TabIndex = 5
-        AnredeLabel.Text = "Anrede:"
         '
         'AnredeTextBox
         '
@@ -289,15 +442,6 @@ Partial Class Mitarbeiter
         Me.AnredeTextBox.Size = New System.Drawing.Size(173, 20)
         Me.AnredeTextBox.TabIndex = 6
         '
-        'NameLabel
-        '
-        NameLabel.AutoSize = True
-        NameLabel.Location = New System.Drawing.Point(10, 109)
-        NameLabel.Name = "NameLabel"
-        NameLabel.Size = New System.Drawing.Size(38, 13)
-        NameLabel.TabIndex = 7
-        NameLabel.Text = "Name:"
-        '
         'NameTextBox
         '
         Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Name", True))
@@ -305,15 +449,6 @@ Partial Class Mitarbeiter
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(173, 20)
         Me.NameTextBox.TabIndex = 8
-        '
-        'VornameLabel
-        '
-        VornameLabel.AutoSize = True
-        VornameLabel.Location = New System.Drawing.Point(10, 135)
-        VornameLabel.Name = "VornameLabel"
-        VornameLabel.Size = New System.Drawing.Size(52, 13)
-        VornameLabel.TabIndex = 9
-        VornameLabel.Text = "Vorname:"
         '
         'VornameTextBox
         '
@@ -323,15 +458,6 @@ Partial Class Mitarbeiter
         Me.VornameTextBox.Size = New System.Drawing.Size(173, 20)
         Me.VornameTextBox.TabIndex = 10
         '
-        'GeschlechtLabel
-        '
-        GeschlechtLabel.AutoSize = True
-        GeschlechtLabel.Location = New System.Drawing.Point(10, 161)
-        GeschlechtLabel.Name = "GeschlechtLabel"
-        GeschlechtLabel.Size = New System.Drawing.Size(64, 13)
-        GeschlechtLabel.TabIndex = 11
-        GeschlechtLabel.Text = "Geschlecht:"
-        '
         'GeschlechtTextBox
         '
         Me.GeschlechtTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Geschlecht", True))
@@ -339,15 +465,6 @@ Partial Class Mitarbeiter
         Me.GeschlechtTextBox.Name = "GeschlechtTextBox"
         Me.GeschlechtTextBox.Size = New System.Drawing.Size(173, 20)
         Me.GeschlechtTextBox.TabIndex = 12
-        '
-        'AdresseLabel
-        '
-        AdresseLabel.AutoSize = True
-        AdresseLabel.Location = New System.Drawing.Point(10, 187)
-        AdresseLabel.Name = "AdresseLabel"
-        AdresseLabel.Size = New System.Drawing.Size(48, 13)
-        AdresseLabel.TabIndex = 13
-        AdresseLabel.Text = "Adresse:"
         '
         'AdresseTextBox
         '
@@ -357,15 +474,6 @@ Partial Class Mitarbeiter
         Me.AdresseTextBox.Size = New System.Drawing.Size(173, 20)
         Me.AdresseTextBox.TabIndex = 14
         '
-        'LandLabel
-        '
-        LandLabel.AutoSize = True
-        LandLabel.Location = New System.Drawing.Point(10, 213)
-        LandLabel.Name = "LandLabel"
-        LandLabel.Size = New System.Drawing.Size(34, 13)
-        LandLabel.TabIndex = 15
-        LandLabel.Text = "Land:"
-        '
         'LandTextBox
         '
         Me.LandTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Land", True))
@@ -373,15 +481,6 @@ Partial Class Mitarbeiter
         Me.LandTextBox.Name = "LandTextBox"
         Me.LandTextBox.Size = New System.Drawing.Size(173, 20)
         Me.LandTextBox.TabIndex = 16
-        '
-        'PLZLabel
-        '
-        PLZLabel.AutoSize = True
-        PLZLabel.Location = New System.Drawing.Point(10, 239)
-        PLZLabel.Name = "PLZLabel"
-        PLZLabel.Size = New System.Drawing.Size(30, 13)
-        PLZLabel.TabIndex = 17
-        PLZLabel.Text = "PLZ:"
         '
         'PLZTextBox
         '
@@ -391,15 +490,6 @@ Partial Class Mitarbeiter
         Me.PLZTextBox.Size = New System.Drawing.Size(173, 20)
         Me.PLZTextBox.TabIndex = 18
         '
-        'OrtLabel
-        '
-        OrtLabel.AutoSize = True
-        OrtLabel.Location = New System.Drawing.Point(10, 265)
-        OrtLabel.Name = "OrtLabel"
-        OrtLabel.Size = New System.Drawing.Size(24, 13)
-        OrtLabel.TabIndex = 19
-        OrtLabel.Text = "Ort:"
-        '
         'OrtTextBox
         '
         Me.OrtTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Ort", True))
@@ -407,15 +497,6 @@ Partial Class Mitarbeiter
         Me.OrtTextBox.Name = "OrtTextBox"
         Me.OrtTextBox.Size = New System.Drawing.Size(173, 20)
         Me.OrtTextBox.TabIndex = 20
-        '
-        'TelPrivatLabel
-        '
-        TelPrivatLabel.AutoSize = True
-        TelPrivatLabel.Location = New System.Drawing.Point(306, 31)
-        TelPrivatLabel.Name = "TelPrivatLabel"
-        TelPrivatLabel.Size = New System.Drawing.Size(55, 13)
-        TelPrivatLabel.TabIndex = 21
-        TelPrivatLabel.Text = "Tel Privat:"
         '
         'TelPrivatTextBox
         '
@@ -425,15 +506,6 @@ Partial Class Mitarbeiter
         Me.TelPrivatTextBox.Size = New System.Drawing.Size(173, 20)
         Me.TelPrivatTextBox.TabIndex = 22
         '
-        'TelFirmaLabel
-        '
-        TelFirmaLabel.AutoSize = True
-        TelFirmaLabel.Location = New System.Drawing.Point(306, 57)
-        TelFirmaLabel.Name = "TelFirmaLabel"
-        TelFirmaLabel.Size = New System.Drawing.Size(53, 13)
-        TelFirmaLabel.TabIndex = 23
-        TelFirmaLabel.Text = "Tel Firma:"
-        '
         'TelFirmaTextBox
         '
         Me.TelFirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "TelFirma", True))
@@ -441,15 +513,6 @@ Partial Class Mitarbeiter
         Me.TelFirmaTextBox.Name = "TelFirmaTextBox"
         Me.TelFirmaTextBox.Size = New System.Drawing.Size(173, 20)
         Me.TelFirmaTextBox.TabIndex = 24
-        '
-        'FaxFirmaLabel
-        '
-        FaxFirmaLabel.AutoSize = True
-        FaxFirmaLabel.Location = New System.Drawing.Point(306, 83)
-        FaxFirmaLabel.Name = "FaxFirmaLabel"
-        FaxFirmaLabel.Size = New System.Drawing.Size(55, 13)
-        FaxFirmaLabel.TabIndex = 25
-        FaxFirmaLabel.Text = "Fax Firma:"
         '
         'FaxFirmaTextBox
         '
@@ -459,15 +522,6 @@ Partial Class Mitarbeiter
         Me.FaxFirmaTextBox.Size = New System.Drawing.Size(173, 20)
         Me.FaxFirmaTextBox.TabIndex = 26
         '
-        'MobilLabel
-        '
-        MobilLabel.AutoSize = True
-        MobilLabel.Location = New System.Drawing.Point(306, 109)
-        MobilLabel.Name = "MobilLabel"
-        MobilLabel.Size = New System.Drawing.Size(35, 13)
-        MobilLabel.TabIndex = 27
-        MobilLabel.Text = "Mobil:"
-        '
         'MobilTextBox
         '
         Me.MobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Mobil", True))
@@ -475,15 +529,6 @@ Partial Class Mitarbeiter
         Me.MobilTextBox.Name = "MobilTextBox"
         Me.MobilTextBox.Size = New System.Drawing.Size(173, 20)
         Me.MobilTextBox.TabIndex = 28
-        '
-        'EmailLabel
-        '
-        EmailLabel.AutoSize = True
-        EmailLabel.Location = New System.Drawing.Point(306, 135)
-        EmailLabel.Name = "EmailLabel"
-        EmailLabel.Size = New System.Drawing.Size(35, 13)
-        EmailLabel.TabIndex = 29
-        EmailLabel.Text = "Email:"
         '
         'EmailTextBox
         '
@@ -493,15 +538,6 @@ Partial Class Mitarbeiter
         Me.EmailTextBox.Size = New System.Drawing.Size(173, 20)
         Me.EmailTextBox.TabIndex = 30
         '
-        'SVNLabel
-        '
-        SVNLabel.AutoSize = True
-        SVNLabel.Location = New System.Drawing.Point(306, 161)
-        SVNLabel.Name = "SVNLabel"
-        SVNLabel.Size = New System.Drawing.Size(32, 13)
-        SVNLabel.TabIndex = 31
-        SVNLabel.Text = "SVN:"
-        '
         'SVNTextBox
         '
         Me.SVNTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "SVN", True))
@@ -509,15 +545,6 @@ Partial Class Mitarbeiter
         Me.SVNTextBox.Name = "SVNTextBox"
         Me.SVNTextBox.Size = New System.Drawing.Size(173, 20)
         Me.SVNTextBox.TabIndex = 32
-        '
-        'BankNrLabel
-        '
-        BankNrLabel.AutoSize = True
-        BankNrLabel.Location = New System.Drawing.Point(306, 187)
-        BankNrLabel.Name = "BankNrLabel"
-        BankNrLabel.Size = New System.Drawing.Size(49, 13)
-        BankNrLabel.TabIndex = 33
-        BankNrLabel.Text = "Bank Nr:"
         '
         'BankNrTextBox
         '
@@ -527,15 +554,6 @@ Partial Class Mitarbeiter
         Me.BankNrTextBox.Size = New System.Drawing.Size(173, 20)
         Me.BankNrTextBox.TabIndex = 34
         '
-        'KontoNrLabel
-        '
-        KontoNrLabel.AutoSize = True
-        KontoNrLabel.Location = New System.Drawing.Point(306, 213)
-        KontoNrLabel.Name = "KontoNrLabel"
-        KontoNrLabel.Size = New System.Drawing.Size(52, 13)
-        KontoNrLabel.TabIndex = 35
-        KontoNrLabel.Text = "Konto Nr:"
-        '
         'KontoNrTextBox
         '
         Me.KontoNrTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "KontoNr", True))
@@ -543,15 +561,6 @@ Partial Class Mitarbeiter
         Me.KontoNrTextBox.Name = "KontoNrTextBox"
         Me.KontoNrTextBox.Size = New System.Drawing.Size(173, 20)
         Me.KontoNrTextBox.TabIndex = 36
-        '
-        'UsernameLabel
-        '
-        UsernameLabel.AutoSize = True
-        UsernameLabel.Location = New System.Drawing.Point(306, 239)
-        UsernameLabel.Name = "UsernameLabel"
-        UsernameLabel.Size = New System.Drawing.Size(58, 13)
-        UsernameLabel.TabIndex = 37
-        UsernameLabel.Text = "Username:"
         '
         'UsernameTextBox
         '
@@ -561,20 +570,12 @@ Partial Class Mitarbeiter
         Me.UsernameTextBox.Size = New System.Drawing.Size(173, 20)
         Me.UsernameTextBox.TabIndex = 38
         '
-        'PasswortLabel
-        '
-        PasswortLabel.AutoSize = True
-        PasswortLabel.Location = New System.Drawing.Point(306, 265)
-        PasswortLabel.Name = "PasswortLabel"
-        PasswortLabel.Size = New System.Drawing.Size(53, 13)
-        PasswortLabel.TabIndex = 39
-        PasswortLabel.Text = "Passwort:"
-        '
         'PasswortTextBox
         '
         Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Passwort", True))
         Me.PasswortTextBox.Location = New System.Drawing.Point(376, 262)
         Me.PasswortTextBox.Name = "PasswortTextBox"
+        Me.PasswortTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.PasswortTextBox.Size = New System.Drawing.Size(173, 20)
         Me.PasswortTextBox.TabIndex = 40
         '

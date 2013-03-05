@@ -32,23 +32,35 @@
         Try
 
             If Not txtArtNr Is Nothing Then
-                txtArtNr.Text = Me.dgPLZ.SelectedRows(0).Cells(0).Value
+                txtArtNr.Text = Me.dgArtikel.SelectedRows(0).Cells(0).Value
             End If
 
             If Not txtEAN Is Nothing Then
-                txtEAN.Text = Me.dgPLZ.SelectedRows(0).Cells(1).Value
+                txtEAN.Text = Me.dgArtikel.SelectedRows(0).Cells(1).Value
             End If
 
             If Not txtBezeichnung Is Nothing Then
-                txtBezeichnung.Text = Me.dgPLZ.SelectedRows(0).Cells(2).Value
+                txtBezeichnung.Text = Me.dgArtikel.SelectedRows(0).Cells(2).Value
             End If
 
             If Not ArtikelComboBox Is Nothing Then
-                ArtikelComboBox.SelectedValue = Me.dgPLZ.SelectedRows(0).Cells(0).Value
+                ArtikelComboBox.SelectedValue = Me.dgArtikel.SelectedRows(0).Cells(0).Value
             End If
 
             Me.Close()
 
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub btnDetails_Click(sender As System.Object, e As System.EventArgs) Handles btnDetails.Click
+        Try
+            Dim idnr = Me.dgArtikel.SelectedRows(0).Cells(0).Value
+            Dim k As Artikel = New Artikel
+            k.MdiParent = CType(Me, Form).MdiParent
+            k.Show()
+            k.FilterBy("ArtNr=" & idnr)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

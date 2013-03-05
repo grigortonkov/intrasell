@@ -41,4 +41,16 @@
             HandleAppError(ex)
         End Try
     End Sub
+ 
+    Private Sub btnDetails_Click(sender As System.Object, e As System.EventArgs) Handles btnDetails.Click
+        Try
+            Dim idnr = Me.dgAdressen.SelectedRows(0).Cells(0).Value
+            Dim k As Kunden = New Kunden
+            k.MdiParent = CType(Me, Form).MdiParent
+            k.Show()
+            k.FilterBy("IDNR=" & IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

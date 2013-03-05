@@ -113,7 +113,7 @@ Public Class VorgangListe
             End If
 
             If Me.PLZBisTextBox.Text.Length > 0 Then
-                filter = filter & " and PLZ <= '" + PLZVonTextBox.Text + "%'"
+                filter = filter & " and PLZ <= '" + PLZBisTextBox.Text + "%'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then

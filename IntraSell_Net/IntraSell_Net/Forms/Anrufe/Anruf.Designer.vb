@@ -75,6 +75,7 @@ Partial Class Anruf
         Me.StartStopButton = New System.Windows.Forms.Button()
         Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
         Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.AdressenAnlageControl1 = New IntraSell_Net.AdressenAnlageControl()
         AdrNrLabel = New System.Windows.Forms.Label()
         LAenderungLabel = New System.Windows.Forms.Label()
         LKontaktLabel = New System.Windows.Forms.Label()
@@ -263,6 +264,7 @@ Partial Class Anruf
         Me.TableAdapterManager.ofadressenTableAdapter = Nothing
         Me.TableAdapterManager.ofanrufeTableAdapter = Nothing
         Me.TableAdapterManager.ofmitarbeiterTableAdapter = Nothing
+        Me.TableAdapterManager.oftermineTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAnrufeTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'AnruflisteBindingNavigator
@@ -557,11 +559,19 @@ Partial Class Anruf
         Me.AdressenControl1.Size = New System.Drawing.Size(200, 25)
         Me.AdressenControl1.TabIndex = 0
         '
+        'AdressenAnlageControl1
+        '
+        Me.AdressenAnlageControl1.Location = New System.Drawing.Point(688, 23)
+        Me.AdressenAnlageControl1.Name = "AdressenAnlageControl1"
+        Me.AdressenAnlageControl1.Size = New System.Drawing.Size(200, 114)
+        Me.AdressenAnlageControl1.TabIndex = 38
+        '
         'Anruf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(911, 471)
+        Me.Controls.Add(Me.AdressenAnlageControl1)
         Me.Controls.Add(Me.StartStopButton)
         Me.Controls.Add(Label1)
         Me.Controls.Add(Me.TelTextBox)
@@ -643,4 +653,5 @@ Partial Class Anruf
     Friend WithEvents mobilTextBox As System.Windows.Forms.TextBox
     Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
     Friend WithEvents StartStopButton As System.Windows.Forms.Button
+    Friend WithEvents AdressenAnlageControl1 As IntraSell_Net.AdressenAnlageControl
 End Class

@@ -8768,17 +8768,19 @@ Namespace dsAnrufeTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ofanrufe.AnrufNr, ofanrufe.AdrNr, ofanrufe.LAenderung, ofanrufe.LKo"& _ 
-                "ntakt, ofanrufe.NAnruf, ofanrufe.Notizen, ofanrufe.MitarbeiterNr, ofanrufe.Begin"& _ 
-                "Zeit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofanrufe.EndeZeit, ofanrufe.Verrechnung, ofadre"& _ 
-                "ssen.Firma, ofadressen.Adresse, ofadressen.PLZ, ofadressen.Ort, grland.Name AS L"& _ 
-                "and, ofadressen.Tel, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Fax, ofadressen.Mobil"& _ 
-                ", ofadressen.Email, ofadressen.Web, ofmitarbeiter.Name AS MitarbeiterName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
-                "           ofmitarbeiter RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofanrufe ON "& _ 
-                "ofmitarbeiter.IDNR = ofanrufe.MitarbeiterNr LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "      ofadressen LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grland ON ofadressen."& _ 
-                "Land = grland.IdNr AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grlan"& _ 
-                "d.IdNr ON ofanrufe.AdrNr = ofadressen.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY ofanrufe.AnrufNr DESC"
+            Me._commandCollection(0).CommandText = "SELECT     ofanrufe.AnrufNr, ofanrufe.AdrNr, ofanrufe.LAenderung, ofanrufe.LKonta"& _ 
+                "kt, ofanrufe.NAnruf, ofanrufe.Notizen, ofanrufe.MitarbeiterNr, ofanrufe.BeginZei"& _ 
+                "t, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofanrufe.EndeZeit, ofanrufe.Verrechnung, ofadressen.F"& _ 
+                "irma, ofadressen.Adresse, grplz.PLZ, ofadressen.Ort, grland.Name AS Land, ofadre"& _ 
+                "ssen.Tel, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofadressen.Fax, ofadressen.Mobil, ofadressen.E"& _ 
+                "mail, ofadressen.Web, ofmitarbeiter.Name AS MitarbeiterName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         grland"& _ 
+                " RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofadressen LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "           grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr "& _ 
+                "ON grland.IdNr = ofadressen.Land AND grland.IdNr = ofadressen.Land AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "               grland.IdNr = ofadressen.Land RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "     ofmitarbeiter RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofanrufe ON ofmitarbe"& _ 
+                "iter.IDNR = ofanrufe.MitarbeiterNr ON ofadressen.IDNR = ofanrufe.AdrNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
+                " ofanrufe.AnrufNr DESC"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

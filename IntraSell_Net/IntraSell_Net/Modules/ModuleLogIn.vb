@@ -50,5 +50,51 @@ Module ModuleLogIn
     'End Sub
 
 
+    Public Function LoginUser(ByVal username As String, ByVal passwort As String) As Boolean
+        Try
+
+            'check if mitarbeiter login ok
+
+            writeLog("Check user name and passwort.")
+
+
+            Dim rs As MySqlDataReader
+            Dim sql As String
+            sql = "select idnr from ofMitarbeiter where Username = '" & username & "' and Passwort = '" & passwort & "'"
+            rs = openRecordset(sql)
+            If rs.Read Then
+                ModuleGlobals.MitarbeiterID = CInt(rs("IDNR"))
+                rs.Close()
+                Call saveLastUsername()
+                'Die Einstellung für den User setzen falls noch nicht passiert
+                If VarValue("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID) = "" Then
+                    Call InsertVarValue("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID, "ENG")
+                End If
+
+                OpenForm("treeView")
+                OpenForm("Main")
+
+                'DoCmd.Close(acForm, "mainLogin")
+                'Call executeMacro(ModuleGlobals.MitarbeiterID)
+                Return True
+                Exit Function
+            End If
+            rs.Close()
+
+            'else admin login
+            writeLog("Admin mode")
+            'If passwort & "" <> VarValue("adminpass") Then
+            '    UsernameTextBox.ForeColor = Color.Red
+            '    PasswordTextBox.ForeColor = Color.Red
+            'Else
+            '    OpenForm("Main")
+            '    'DoCmd.Close(acForm, "mainLogin")
+            'End If
+
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Function
 
 End Module

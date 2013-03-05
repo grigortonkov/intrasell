@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=localhost;User Id=root;password=a1060;Persist Security Info=True;database=intrasell_daten_2</Value>
     </Setting>
+    <Setting Name="LOG_FILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">IntraSell.log</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
