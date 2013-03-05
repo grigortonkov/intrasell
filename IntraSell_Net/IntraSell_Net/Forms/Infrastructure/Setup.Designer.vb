@@ -33,6 +33,9 @@ Partial Class Setup
         Me.ButtonConnect = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.ButtonSetUpMySQL = New System.Windows.Forms.Button()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -46,11 +49,14 @@ Partial Class Setup
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(284, 168)
+        Me.TabControl1.Size = New System.Drawing.Size(284, 205)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.TextBox5)
+        Me.TabPage1.Controls.Add(Me.Label4)
+        Me.TabPage1.Controls.Add(Me.TextBox4)
         Me.TabPage1.Controls.Add(Me.TextBox3)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.TextBox2)
@@ -61,7 +67,7 @@ Partial Class Setup
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(276, 142)
+        Me.TabPage1.Size = New System.Drawing.Size(276, 179)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Verbinde Server"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -72,7 +78,7 @@ Partial Class Setup
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox3.Size = New System.Drawing.Size(140, 20)
-        Me.TextBox3.TabIndex = 2
+        Me.TextBox3.TabIndex = 3
         Me.TextBox3.Text = "efox2004"
         '
         'Label3
@@ -89,7 +95,7 @@ Partial Class Setup
         Me.TextBox2.Location = New System.Drawing.Point(82, 43)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(140, 20)
-        Me.TextBox2.TabIndex = 1
+        Me.TextBox2.TabIndex = 2
         Me.TextBox2.Text = "webshop"
         '
         'Label2
@@ -105,7 +111,7 @@ Partial Class Setup
         '
         Me.TextBox1.Location = New System.Drawing.Point(82, 17)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(140, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(97, 20)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "localhost"
         '
@@ -120,10 +126,10 @@ Partial Class Setup
         '
         'ButtonConnect
         '
-        Me.ButtonConnect.Location = New System.Drawing.Point(82, 105)
+        Me.ButtonConnect.Location = New System.Drawing.Point(82, 126)
         Me.ButtonConnect.Name = "ButtonConnect"
         Me.ButtonConnect.Size = New System.Drawing.Size(140, 23)
-        Me.ButtonConnect.TabIndex = 3
+        Me.ButtonConnect.TabIndex = 5
         Me.ButtonConnect.Text = "Verbindung herstellen"
         Me.ButtonConnect.UseVisualStyleBackColor = True
         '
@@ -147,11 +153,36 @@ Partial Class Setup
         Me.ButtonSetUpMySQL.Text = "Neuen MySQL Server installieren"
         Me.ButtonSetUpMySQL.UseVisualStyleBackColor = True
         '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(183, 17)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(39, 20)
+        Me.TextBox4.TabIndex = 1
+        Me.TextBox4.Text = "3306"
+        '
+        'TextBox5
+        '
+        Me.TextBox5.Location = New System.Drawing.Point(82, 95)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(140, 20)
+        Me.TextBox5.TabIndex = 4
+        Me.TextBox5.Text = "intrasell_daten_2"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(14, 98)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(63, 13)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Datenbank:"
+        '
         'Setup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 168)
+        Me.ClientSize = New System.Drawing.Size(284, 205)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Setup"
         Me.Text = "Setup"
@@ -173,4 +204,7 @@ Partial Class Setup
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 End Class
