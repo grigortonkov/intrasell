@@ -5,10 +5,8 @@ Imports MySql.Data.MySqlClient
 Public Module FunctionsDB
     'should be initilized by calling application. E.g.: 
     'ModuleCommons.conn = new  MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
-    Public CurrentDB As New MySqlConnection ' (Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
-    'Public ConnStringODBC As String
-    'Public CurrentDB As MySqlConnection
-
+    Public CurrentDB As New MySqlConnection
+     
     'for compatibility reasons
     Public Const dbOpenDynaset = 0
     Public Const dbSeeChanges = 0
@@ -60,6 +58,11 @@ Public Module FunctionsDB
             'DoCmd.SetWarnings True
             Return Nothing
             Exit Function
+        End If
+
+        'Reopen Connection 
+        If Not CurrentDB.State = Data.ConnectionState.Open Then
+            CurrentDB.Open()
         End If
 
         Dim d As New MySqlCommand(sql, CurrentDB)
