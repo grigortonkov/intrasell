@@ -51,7 +51,6 @@
 
     Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles AnruflisteBindingSource.AddingNew
         Try
-
             Me.MitarbeiterControl.IDNR = ModuleGlobals.MitarbeiterID
             Me.BeginZeitDateTimePicker.Value = DateTime.Now
 
@@ -64,7 +63,7 @@
     End Sub
 
     Private Sub AdressenControl1_Load(sender As System.Object, e As System.EventArgs) Handles AdressenControl1.Leave
-        Me.TelTextBox.Text = "got number?"
+
     End Sub
 
     Private Sub StartStopButton_Click(sender As System.Object, e As System.EventArgs) Handles StartStopButton.Click
@@ -80,4 +79,13 @@
     Private Sub NAnrufDateTimePicker_ValueChanged(sender As System.Object, e As System.EventArgs) Handles NAnrufDateTimePicker.ValueChanged
         NAnrufDateTimePicker.Format = DateTimePickerFormat.Short
     End Sub
+
+    Private Sub AdressenAnlageControl1_OnNewIdnrCreated(IDNR As System.Int32) Handles AdressenAnlageControl1.OnNewIdnrCreated
+        'reload
+        Me.AdressenControl1.Refresh()
+        Me.AdressenControl1.IDNR = IDNR
+        'Save Text 
+        Me.NotizenTextBox.Text += vbNewLine & "Adresse:" & vbNewLine & AdressenAnlageControl1.AdresseTextBox.Text
+    End Sub
+ 
 End Class

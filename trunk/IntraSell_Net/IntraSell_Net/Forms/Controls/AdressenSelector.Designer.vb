@@ -40,6 +40,7 @@ Partial Class AdressenSelector
         Me.OfAdressenlisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsAdressen = New IntraSell_Net.dsAdressen()
         Me.OfAdressenlisteTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter()
+        Me.btnDetails = New System.Windows.Forms.Button()
         CType(Me.dgAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,7 +64,7 @@ Partial Class AdressenSelector
         '
         'btnUebernehmen
         '
-        Me.btnUebernehmen.Location = New System.Drawing.Point(417, 7)
+        Me.btnUebernehmen.Location = New System.Drawing.Point(279, 6)
         Me.btnUebernehmen.Name = "btnUebernehmen"
         Me.btnUebernehmen.Size = New System.Drawing.Size(132, 23)
         Me.btnUebernehmen.TabIndex = 2
@@ -168,11 +169,21 @@ Partial Class AdressenSelector
         '
         Me.OfAdressenlisteTableAdapter.ClearBeforeFill = True
         '
+        'btnDetails
+        '
+        Me.btnDetails.Location = New System.Drawing.Point(417, 6)
+        Me.btnDetails.Name = "btnDetails"
+        Me.btnDetails.Size = New System.Drawing.Size(132, 23)
+        Me.btnDetails.TabIndex = 3
+        Me.btnDetails.Text = "Details"
+        Me.btnDetails.UseVisualStyleBackColor = True
+        '
         'AdressenSelector
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(561, 262)
+        Me.Controls.Add(Me.btnDetails)
         Me.Controls.Add(Me.dgAdressen)
         Me.Controls.Add(Me.btnUebernehmen)
         Me.Controls.Add(Me.txtSuche)
@@ -203,4 +214,5 @@ Partial Class AdressenSelector
     Friend WithEvents KundengruppeDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PreislisteDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LandDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btnDetails As System.Windows.Forms.Button
 End Class

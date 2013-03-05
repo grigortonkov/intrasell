@@ -38,7 +38,7 @@
                 filter += " and PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
             If Me.PLZbisTextBox.Text.Length > 0 Then
-                filter += " and PLZ <= '" + PLZVonTextBox.Text + "%'"
+                filter += " and PLZ <= '" + PLZBisTextBox.Text + "%'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then

@@ -156,6 +156,12 @@
     <Compile Include="Forms\Anrufe\AnrufListe.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Controls\AdressenAnlageControl.Designer.vb">
+      <DependentUpon>AdressenAnlageControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenAnlageControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Artikel\Artikel.Designer.vb">
       <DependentUpon>Artikel.vb</DependentUpon>
     </Compile>
@@ -377,6 +383,9 @@
     <EmbeddedResource Include="Forms\Artikel\ArtikelListe.resx">
       <DependentUpon>ArtikelListe.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenAnlageControl.resx">
+      <DependentUpon>AdressenAnlageControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
       <DependentUpon>ArtikelControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -451,7 +460,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\dsAnrufe.xsc">
       <DependentUpon>dsAnrufe.xsd</DependentUpon>
     </None>

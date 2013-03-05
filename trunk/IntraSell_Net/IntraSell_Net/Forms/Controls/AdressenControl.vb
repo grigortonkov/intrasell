@@ -41,4 +41,23 @@ Public Class AdressenControl
             HandleAppError(ex)
         End Try
     End Sub
+
+    'reload data 
+    Public Shadows Sub Refresh()
+        Parent.Refresh()
+        FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
+        Me.AdressenComboBox.Text = ""
+    End Sub
+
+    Private Sub AdressenComboBox_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles AdressenComboBox.MouseDoubleClick
+        Try
+            Dim k As Kunden = New Kunden
+            k.MdiParent = CType(Me.Parent, Form).MdiParent
+            k.Show()
+            k.FilterBy("IDNR=" & IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+ 
 End Class

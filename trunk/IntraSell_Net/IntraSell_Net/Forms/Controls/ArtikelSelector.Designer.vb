@@ -26,10 +26,7 @@ Partial Class ArtikelSelector
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSuche = New System.Windows.Forms.TextBox()
         Me.btnUebernehmen = New System.Windows.Forms.Button()
-        Me.dgPLZ = New System.Windows.Forms.DataGridView()
-        Me.GrartikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsArtikel = New IntraSell_Net.dsArtikel()
-        Me.GrartikelTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grartikelTableAdapter()
+        Me.dgArtikel = New System.Windows.Forms.DataGridView()
         Me.ArtNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EANDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BezeichnungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,7 +59,11 @@ Partial Class ArtikelSelector
         Me.AngelegtAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NichtBestellbarDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.dgPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrartikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsArtikel = New IntraSell_Net.dsArtikel()
+        Me.GrartikelTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grartikelTableAdapter()
+        Me.btnDetails = New System.Windows.Forms.Button()
+        CType(Me.dgArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrartikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -85,40 +86,26 @@ Partial Class ArtikelSelector
         '
         'btnUebernehmen
         '
-        Me.btnUebernehmen.Location = New System.Drawing.Point(417, 7)
+        Me.btnUebernehmen.Location = New System.Drawing.Point(279, 7)
         Me.btnUebernehmen.Name = "btnUebernehmen"
         Me.btnUebernehmen.Size = New System.Drawing.Size(132, 23)
         Me.btnUebernehmen.TabIndex = 2
         Me.btnUebernehmen.Text = "Auswahl übernehmen"
         Me.btnUebernehmen.UseVisualStyleBackColor = True
         '
-        'dgPLZ
+        'dgArtikel
         '
-        Me.dgPLZ.AllowUserToAddRows = False
-        Me.dgPLZ.AllowUserToDeleteRows = False
-        Me.dgPLZ.AutoGenerateColumns = False
-        Me.dgPLZ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgPLZ.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn})
-        Me.dgPLZ.DataSource = Me.GrartikelBindingSource
-        Me.dgPLZ.Location = New System.Drawing.Point(12, 36)
-        Me.dgPLZ.Name = "dgPLZ"
-        Me.dgPLZ.ReadOnly = True
-        Me.dgPLZ.Size = New System.Drawing.Size(537, 214)
-        Me.dgPLZ.TabIndex = 3
-        '
-        'GrartikelBindingSource
-        '
-        Me.GrartikelBindingSource.DataMember = "grartikel"
-        Me.GrartikelBindingSource.DataSource = Me.DsArtikel
-        '
-        'DsArtikel
-        '
-        Me.DsArtikel.DataSetName = "dsArtikel"
-        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'GrartikelTableAdapter
-        '
-        Me.GrartikelTableAdapter.ClearBeforeFill = True
+        Me.dgArtikel.AllowUserToAddRows = False
+        Me.dgArtikel.AllowUserToDeleteRows = False
+        Me.dgArtikel.AutoGenerateColumns = False
+        Me.dgArtikel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgArtikel.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn})
+        Me.dgArtikel.DataSource = Me.GrartikelBindingSource
+        Me.dgArtikel.Location = New System.Drawing.Point(12, 36)
+        Me.dgArtikel.Name = "dgArtikel"
+        Me.dgArtikel.ReadOnly = True
+        Me.dgArtikel.Size = New System.Drawing.Size(537, 214)
+        Me.dgArtikel.TabIndex = 3
         '
         'ArtNrDataGridViewTextBoxColumn
         '
@@ -371,18 +358,42 @@ Partial Class ArtikelSelector
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.ReadOnly = True
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Visible = False
         '
+        'GrartikelBindingSource
+        '
+        Me.GrartikelBindingSource.DataMember = "grartikel"
+        Me.GrartikelBindingSource.DataSource = Me.DsArtikel
+        '
+        'DsArtikel
+        '
+        Me.DsArtikel.DataSetName = "dsArtikel"
+        Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'GrartikelTableAdapter
+        '
+        Me.GrartikelTableAdapter.ClearBeforeFill = True
+        '
+        'btnDetails
+        '
+        Me.btnDetails.Location = New System.Drawing.Point(417, 7)
+        Me.btnDetails.Name = "btnDetails"
+        Me.btnDetails.Size = New System.Drawing.Size(132, 23)
+        Me.btnDetails.TabIndex = 3
+        Me.btnDetails.Text = "Details"
+        Me.btnDetails.UseVisualStyleBackColor = True
+        '
         'ArtikelSelector
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(561, 262)
-        Me.Controls.Add(Me.dgPLZ)
+        Me.Controls.Add(Me.btnDetails)
+        Me.Controls.Add(Me.dgArtikel)
         Me.Controls.Add(Me.btnUebernehmen)
         Me.Controls.Add(Me.txtSuche)
         Me.Controls.Add(Me.Label1)
         Me.Name = "ArtikelSelector"
         Me.Text = "Artikel Selector"
-        CType(Me.dgPLZ, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgArtikel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrartikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -392,7 +403,7 @@ Partial Class ArtikelSelector
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtSuche As System.Windows.Forms.TextBox
     Friend WithEvents btnUebernehmen As System.Windows.Forms.Button
-    Friend WithEvents dgPLZ As System.Windows.Forms.DataGridView
+    Friend WithEvents dgArtikel As System.Windows.Forms.DataGridView
     Friend WithEvents DsArtikel As IntraSell_Net.dsArtikel
     Friend WithEvents GrartikelBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents GrartikelTableAdapter As IntraSell_Net.dsArtikelTableAdapters.grartikelTableAdapter
@@ -428,4 +439,5 @@ Partial Class ArtikelSelector
     Friend WithEvents AngelegtAmDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NichtBestellbarDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents ProduktAktivOnlineDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btnDetails As System.Windows.Forms.Button
 End Class

@@ -4,6 +4,8 @@ Public Class Main
 
     Private Sub Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
+            ModuleLog.Init(Global.IntraSell_Net.My.MySettings.Default.LOG_FILENAME)
+
             writeLog("Start IntraSell")
             'Init Connection 
             FunctionsDB.CurrentDB = New MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
