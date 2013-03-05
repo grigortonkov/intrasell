@@ -88,6 +88,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\AdressenAnlageControlTest.vb" />
     <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
     <Compile Include="Data\buchvorgang_artikelTableAdapterTest.vb" />
     <Compile Include="DBTest.vb" />
@@ -97,6 +98,7 @@
     <Compile Include="DLL\IntraSellPreiseTest.vb" />
     <Compile Include="DLL\ModuleDOSTest.vb" />
     <Compile Include="Data\grartikel_vkpreisperselectionTableAdapterTest.vb" />
+    <Compile Include="Modules\LoginTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangWorkflowTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
     <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
@@ -106,6 +108,7 @@
     <Compile Include="Modules\ModuleSetupTest.vb" />
     <Compile Include="Data\ofadressenTableAdapterTest.vb" />
     <Compile Include="Data\ofanrufeTableAdapterTest.vb" />
+    <Compile Include="Data\ofmitarbeiterTableAdapterTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
@@ -129,6 +132,10 @@
     <None Include="5.Anrufe.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="6.Mitarbeiter.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Shadow Include="Test References\IntraSell_Net.accessor" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\XML2Word\XML2Word.vbproj">

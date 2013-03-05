@@ -33,10 +33,10 @@ Public Class buchvorgang_artikelTableAdapterTest
     '
     'You can use the following additional attributes as you write your tests:
     '
-    'Use ClassInitialize to run code before running the first test in the class
-    '<ClassInitialize()>  _
-    'Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
-    'End Sub
+    <ClassInitialize()> _
+    Public Shared Sub MyClassInitialize(ByVal testContext As TestContext)
+        DBTest.MyClassInitialize(testContext)
+    End Sub
     '
     'Use ClassCleanup to run code after all tests in a class have run
     '<ClassCleanup()>  _
