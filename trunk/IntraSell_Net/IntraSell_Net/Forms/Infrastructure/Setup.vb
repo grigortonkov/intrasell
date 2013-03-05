@@ -2,7 +2,7 @@
 Imports System.Xml
 Public Class Setup
 
-    Dim CONN_STRING_TEMPLATE = "server=#SERVER#;User Id=#USERNAME#;password=#PASSWORD#;Persist Security Info=True;database=intrasell_daten_2"
+    Dim CONN_STRING_TEMPLATE = "Server=#SERVER#;Port=#PORT#;User Id=#USERNAME#;password=#PASSWORD#;Persist Security Info=True;Database=#DATABASE#;"
 
     Private Sub ButtonSetUpMySQL_Click(sender As System.Object, e As System.EventArgs) Handles ButtonSetUpMySQL.Click
         SetUpMySqlServer()
@@ -17,7 +17,8 @@ Public Class Setup
         Me.TextBox1.Text = extract(connStr, "server")
         Me.TextBox2.Text = extract(connStr, "User Id")
         Me.TextBox3.Text = extract(connStr, "password")
-
+        Me.TextBox4.Text = extract(connStr, "Port")
+        Me.TextBox5.Text = extract(connStr, "database")
     End Sub
 
 
@@ -27,7 +28,8 @@ Public Class Setup
         cTest = Replace(cTest, "#SERVER#", Me.TextBox1.Text)
         cTest = Replace(cTest, "#USERNAME#", Me.TextBox2.Text)
         cTest = Replace(cTest, "#PASSWORD#", Me.TextBox3.Text)
-
+        cTest = Replace(cTest, "#PORT#", Me.TextBox4.Text)
+        cTest = Replace(cTest, "#DATABASE#", Me.TextBox5.Text)
         'CHECK CONN 
         Dim c As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection(cTest)
         Try
@@ -107,6 +109,8 @@ Public Class Setup
         Me.TextBox1.ForeColor = IIf(p1, Color.Green, Color.Red)
         Me.TextBox2.ForeColor = Me.TextBox1.ForeColor
         Me.TextBox3.ForeColor = Me.TextBox1.ForeColor
+        Me.TextBox4.ForeColor = Me.TextBox1.ForeColor
+        Me.TextBox5.ForeColor = Me.TextBox1.ForeColor
     End Sub
 
 End Class
