@@ -3,11 +3,7 @@
     Public AdressenComboBox As ComboBox
 
     Private Sub PLZSelector_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsAdressen.ofAdressenliste' table. You can move, or remove it, as needed.
-        Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
-        'TODO: This line of code loads data into the 'DsArtikel.grartikel' table. You can move, or remove it, as needed.
-        Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
-        Try
+        Try 
             Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
         Catch ex As Exception
             HandleAppError(ex)
