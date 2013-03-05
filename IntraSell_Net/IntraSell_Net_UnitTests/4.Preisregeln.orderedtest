@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<OrderedTest name="4.Preisregeln" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\4.preisregeln.orderedtest" id="0059a73c-33ad-48e7-a9bc-e9fc270289be" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<OrderedTest name="4.preisregeln" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\4.preisregeln.orderedtest" id="0059a73c-33ad-48e7-a9bc-e9fc270289be" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Execution id="a86cb310-cc26-47e2-9b70-a2a90c7c1de5" />
   <TestLinks>
+    <TestLink id="d221a883-2ea0-1d0f-ba2f-5b66b06a546f" name="calculateBruttoPreis0Test" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="d289aaad-4486-bde4-7ec8-2281c24761a9" name="Preisregeln_InsertTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="8633e040-6ffa-1adb-e989-b23f332f1556" name="Preisregeln_UpdateTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="0d004b9c-53a9-f71c-1e5c-5edcefd534cd" name="Preisregeln_DeleteTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
