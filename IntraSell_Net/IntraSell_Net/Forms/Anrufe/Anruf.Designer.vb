@@ -76,6 +76,7 @@ Partial Class Anruf
         Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
         Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         Me.AdressenAnlageControl1 = New IntraSell_Net.AdressenAnlageControl()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         AdrNrLabel = New System.Windows.Forms.Label()
         LAenderungLabel = New System.Windows.Forms.Label()
         LKontaktLabel = New System.Windows.Forms.Label()
@@ -654,4 +655,5 @@ Partial Class Anruf
     Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
     Friend WithEvents StartStopButton As System.Windows.Forms.Button
     Friend WithEvents AdressenAnlageControl1 As IntraSell_Net.AdressenAnlageControl
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 End Class

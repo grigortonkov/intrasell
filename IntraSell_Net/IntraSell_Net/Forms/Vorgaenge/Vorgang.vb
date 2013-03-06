@@ -179,7 +179,7 @@ Public Class Vorgang
                 Me.TypComboBox.SelectedValue = VorgangWizzard.TypComboBox.SelectedValue
                 Me.KundNrAdressenControl.IDNR = VorgangWizzard.KundNrAdressenControl.IDNR
                 Me.DatumDateTimePicker.Value = VorgangWizzard.DatumDateTimePicker.Value
-
+                Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID
                 'folgende 3 zeilen damit die rows in artikel die parent typ und nummer übernehmen.
                 Me.Validate()
                 Me.BuchvorgangBindingSource.EndEdit()
