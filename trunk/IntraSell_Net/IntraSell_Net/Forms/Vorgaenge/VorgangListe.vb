@@ -143,6 +143,10 @@ Public Class VorgangListe
             End If
 
 
+            If Me.MitarbeiterComboBox.IDNR > 0 Then
+                filter = filter & " and MitarbeiterNr = '" & CStr(MitarbeiterComboBox.IDNR) & "'"
+            End If
+
             If Not filter Is Nothing Then
                 BuchVorgangListeBindingSource.Filter = filter
             Else

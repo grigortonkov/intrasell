@@ -93,4 +93,9 @@ Public Class AdressenAnlageControl
             Me.AdresseTextBox.Text = ""
         End If
     End Sub
+
+    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
+        'open herold    
+        System.Diagnostics.Process.Start("http://www.herold.at")
+    End Sub
 End Class

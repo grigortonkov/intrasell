@@ -2,6 +2,7 @@
     'Implements InterfacePrintable
 
 
+
     Private Sub Anruf_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DsAnrufe.Anrufliste' table. You can move, or remove it, as needed.
         Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
@@ -68,12 +69,18 @@
 
     Private Sub StartStopButton_Click(sender As System.Object, e As System.EventArgs) Handles StartStopButton.Click
         If Me.StartStopButton.Text = "Start" Then
+            Timer1.Start()
             Me.StartStopButton.Text = "Stop"
             BeginZeitDateTimePicker.Value = Date.Now
         Else
+            Timer1.Stop()
             Me.StartStopButton.Text = "Start"
             EndeZeitDateTimePicker.Value = Date.Now
         End If
+    End Sub
+
+    Sub TimeTicks() Handles Timer1.Tick
+        EndeZeitDateTimePicker.Value = Date.Now
     End Sub
 
     Private Sub NAnrufDateTimePicker_ValueChanged(sender As System.Object, e As System.EventArgs) Handles NAnrufDateTimePicker.ValueChanged

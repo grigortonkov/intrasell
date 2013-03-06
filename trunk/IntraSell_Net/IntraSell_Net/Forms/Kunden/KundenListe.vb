@@ -30,6 +30,10 @@
             'filter dataset 
             filter = "1=1 "
 
+            If Me.txtFirmaName.Text.Length > 0 Then
+                filter += " and ( Firma Like '" + txtFirmaName.Text + "%' or Name Like '" + txtFirmaName.Text + "%' or Vorname Like '" + txtFirmaName.Text + "%')"
+            End If
+
             If Me.LandComboBox.Text.Length > 0 Then
                 filter += " and Land Like '" + LandComboBox.Text + "%'"
             End If

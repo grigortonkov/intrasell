@@ -78,7 +78,7 @@ Partial Class Vorgang
         Me.SummeMWSTTextBox = New System.Windows.Forms.TextBox()
         Me.SummeBruttoTextBox = New System.Windows.Forms.TextBox()
         Me.LieferantNrComboBox = New System.Windows.Forms.ComboBox()
-        Me.MitarbeiterNrComboBox = New System.Windows.Forms.ComboBox()
+        Me.MitarbeiterNrComboBox = New IntraSell_Net.MitarbeiterControl()
         Me.Buchvorgang_artikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Buchvorgang_artikelDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -641,8 +641,8 @@ Partial Class Vorgang
         '
         'MitarbeiterNrComboBox
         '
-        Me.MitarbeiterNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "MitarbeiterNr", True))
-        Me.MitarbeiterNrComboBox.FormattingEnabled = True
+        Me.MitarbeiterNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "MitarbeiterNr", True))
+        Me.MitarbeiterNrComboBox.IDNR = 0
         Me.MitarbeiterNrComboBox.Location = New System.Drawing.Point(127, 248)
         Me.MitarbeiterNrComboBox.Name = "MitarbeiterNrComboBox"
         Me.MitarbeiterNrComboBox.Size = New System.Drawing.Size(200, 21)
@@ -1087,7 +1087,7 @@ Partial Class Vorgang
     Friend WithEvents SummeMWSTTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SummeBruttoTextBox As System.Windows.Forms.TextBox
     Friend WithEvents LieferantNrComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents MitarbeiterNrComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents MitarbeiterNrComboBox As MitarbeiterControl
     Friend WithEvents Buchvorgang_artikelBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Buchvorgang_artikelDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents ZahlungsbedingungComboBox As System.Windows.Forms.ComboBox

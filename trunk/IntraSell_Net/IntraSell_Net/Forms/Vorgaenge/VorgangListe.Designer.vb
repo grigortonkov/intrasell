@@ -85,7 +85,7 @@ Partial Class VorgangListe
         Me.DatumUntil = New System.Windows.Forms.DateTimePicker()
         Me.DatumVon = New System.Windows.Forms.DateTimePicker()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.MitarbeiterComboBox = New System.Windows.Forms.ComboBox()
+        Me.MitarbeiterComboBox = New MitarbeiterControl
         Me.Label8 = New System.Windows.Forms.Label()
         Me.LieferantComboBox = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -651,9 +651,6 @@ Partial Class VorgangListe
         '
         'MitarbeiterComboBox
         '
-        Me.MitarbeiterComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.MitarbeiterComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.MitarbeiterComboBox.FormattingEnabled = True
         Me.MitarbeiterComboBox.Location = New System.Drawing.Point(95, 203)
         Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
         Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
@@ -757,7 +754,7 @@ Partial Class VorgangListe
     Friend WithEvents BuchVorgangListeTableAdapter As IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents MitarbeiterComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents MitarbeiterComboBox As MitarbeiterControl
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents LieferantComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
