@@ -1,8 +1,26 @@
 ﻿Imports IntraSell_DLL
-Public Class AdressenControl
-    Public Const SQL = "SELECT IDNR, concat(IFNULL(concat(Firma, ', '),''), IFNULL(concat(Name, ', '),''), IFNULL(Vorname,'')) as Adr " &
-                       " FROM ofAdressen where Firma is not null or name is not null or Vorname is not null ORDER BY Firma, Name, Vorname"
+Public Class AdressenWeitereControl
+    Public Const SQL = "SELECT ID, IDNR, concat(IFNULL(concat(Firma, ', '),''), IFNULL(concat(Name, ', '),''), IFNULL(Vorname,'')) as Adr " &
+                       " FROM `ofAdressen-Weitere` " & _
+                       " where IDNR=:IDNR and (Firma is not null or name is not null or Vorname is not null)" & _
+                       " ORDER BY Firma, Name, Vorname"
+
+    Private SQLcurrent As String
+    Private _ID As Integer
+
+    Public Property ID() As Integer
+        Get
+            Return _ID
+        End Get
+        Set(value As Integer)
+            _ID = value
+            Me.AdressenComboBox.SelectedValue = _ID
+        End Set
+    End Property
+
+
     Private _IDNR As Integer
+
 
     Public Property IDNR() As Integer
         Get
@@ -10,12 +28,22 @@ Public Class AdressenControl
         End Get
         Set(value As Integer)
             _IDNR = value
-            Me.AdressenComboBox.SelectedValue = _IDNR
+            reloadCombo()
+            'Me.AdressenComboBox.Text = ""
+            If _ID > 0 Then
+                Me.AdressenComboBox.SelectedValue = _ID
+            End If
         End Set
     End Property
 
+    Private Sub reloadCombo()
+        If SQLcurrent <> Replace(SQL, ":IDNR", _IDNR) Then
+            SQLcurrent = Replace(SQL, ":IDNR", _IDNR)
+            FillComboBox(Me.AdressenComboBox, SQLcurrent, "Adr", "ID")
+        End If
+    End Sub
     Private Sub AdressenControl_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
+        reloadCombo()
         Me.AdressenComboBox.Text = ""
     End Sub
 
@@ -32,7 +60,7 @@ Public Class AdressenControl
     Private Sub AdressenComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles AdressenComboBox.SelectedIndexChanged
         Try
             If VarType(AdressenComboBox.SelectedValue) = VariantType.Integer Then
-                IDNR = AdressenComboBox.SelectedValue
+                ID = AdressenComboBox.SelectedValue
             End If
         Catch ex As Exception
             HandleAppError(ex)
@@ -42,19 +70,8 @@ Public Class AdressenControl
     'reload data 
     Public Shadows Sub Refresh()
         Parent.Refresh()
-        FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
+        reloadCombo()
         Me.AdressenComboBox.Text = ""
-    End Sub
-
-    Private Sub AdressenComboBox_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles AdressenComboBox.MouseDoubleClick
-        Try
-            Dim k As Kunden = New Kunden
-            k.MdiParent = CType(Me.Parent, Form).MdiParent
-            k.Show()
-            k.FilterBy("IDNR=" & IDNR)
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
     End Sub
  
 End Class
