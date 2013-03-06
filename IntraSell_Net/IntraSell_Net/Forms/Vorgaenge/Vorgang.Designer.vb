@@ -111,7 +111,7 @@ Partial Class Vorgang
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.WaehrungComboBox = New System.Windows.Forms.ComboBox()
         Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
-        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenControl()
+        Me.KundNr2AdressenControl = New IntraSell_Net.AdressenWeitereControl()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -906,7 +906,9 @@ Partial Class Vorgang
         '
         'KundNr2AdressenControl
         '
+        Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("ID", Me.BuchvorgangBindingSource, "KundNr2", True))
         Me.KundNr2AdressenControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.BuchvorgangBindingSource, "KundNr", True))
+        Me.KundNr2AdressenControl.ID = 0
         Me.KundNr2AdressenControl.IDNR = 0
         Me.KundNr2AdressenControl.Location = New System.Drawing.Point(126, 149)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
@@ -1092,7 +1094,7 @@ Partial Class Vorgang
     Friend WithEvents TransportMethodeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents ZahlungsMethodeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents KundNrAdressenControl As IntraSell_Net.AdressenControl
-    Friend WithEvents KundNr2AdressenControl As IntraSell_Net.AdressenControl
+    Friend WithEvents KundNr2AdressenControl As IntraSell_Net.AdressenWeitereControl
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage

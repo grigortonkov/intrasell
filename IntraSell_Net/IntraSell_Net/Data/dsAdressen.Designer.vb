@@ -49,6 +49,8 @@ Partial Public Class dsAdressen
     
     Private tablegrtransportmethode As grtransportmethodeDataTable
     
+    Private tableDataTable1 As DataTable1DataTable
+    
     Private _relationFK_ofAdressen_ofadressen_settings As Global.System.Data.DataRelation
     
     Private _relationFK_ofAdressen_ofadressen_weitere As Global.System.Data.DataRelation
@@ -123,6 +125,9 @@ Partial Public Class dsAdressen
             End If
             If (Not (ds.Tables("grtransportmethode")) Is Nothing) Then
                 MyBase.Tables.Add(New grtransportmethodeDataTable(ds.Tables("grtransportmethode")))
+            End If
+            If (Not (ds.Tables("DataTable1")) Is Nothing) Then
+                MyBase.Tables.Add(New DataTable1DataTable(ds.Tables("DataTable1")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -263,6 +268,16 @@ Partial Public Class dsAdressen
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DataTable1() As DataTable1DataTable
+        Get
+            Return Me.tableDataTable1
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -363,6 +378,9 @@ Partial Public Class dsAdressen
             End If
             If (Not (ds.Tables("grtransportmethode")) Is Nothing) Then
                 MyBase.Tables.Add(New grtransportmethodeDataTable(ds.Tables("grtransportmethode")))
+            End If
+            If (Not (ds.Tables("DataTable1")) Is Nothing) Then
+                MyBase.Tables.Add(New DataTable1DataTable(ds.Tables("DataTable1")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -468,6 +486,12 @@ Partial Public Class dsAdressen
                 Me.tablegrtransportmethode.InitVars
             End If
         End If
+        Me.tableDataTable1 = CType(MyBase.Tables("DataTable1"),DataTable1DataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDataTable1) Is Nothing) Then
+                Me.tableDataTable1.InitVars
+            End If
+        End If
         Me._relationFK_ofAdressen_ofadressen_settings = Me.Relations("FK_ofAdressen_ofadressen-settings")
         Me._relationFK_ofAdressen_ofadressen_weitere = Me.Relations("FK_ofAdressen_ofadressen-weitere")
         Me._relationFK_ofAdressen_ofadressen_transportmethoden = Me.Relations("FK_ofAdressen_ofadressen-transportmethoden")
@@ -507,6 +531,8 @@ Partial Public Class dsAdressen
         MyBase.Tables.Add(Me.tablegrzahlungsmethode)
         Me.tablegrtransportmethode = New grtransportmethodeDataTable()
         MyBase.Tables.Add(Me.tablegrtransportmethode)
+        Me.tableDataTable1 = New DataTable1DataTable()
+        MyBase.Tables.Add(Me.tableDataTable1)
         Dim fkc As Global.System.Data.ForeignKeyConstraint
         fkc = New Global.System.Data.ForeignKeyConstraint("FK_ofAdressen_ofadressen-settings", New Global.System.Data.DataColumn() {Me.tableofadressen.IDNRColumn}, New Global.System.Data.DataColumn() {Me._tableofadressen_settings.IDNRColumn})
         Me._tableofadressen_settings.Constraints.Add(fkc)
@@ -621,6 +647,12 @@ Partial Public Class dsAdressen
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializeDataTable1() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Sub SchemaChanged(ByVal sender As Object, ByVal e As Global.System.ComponentModel.CollectionChangeEventArgs)
         If (e.Action = Global.System.ComponentModel.CollectionChangeAction.Remove) Then
             Me.InitVars
@@ -712,6 +744,9 @@ Partial Public Class dsAdressen
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub grtransportmethodeRowChangeEventHandler(ByVal sender As Object, ByVal e As grtransportmethodeRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub DataTable1RowChangeEventHandler(ByVal sender As Object, ByVal e As DataTable1RowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -5090,6 +5125,245 @@ Partial Public Class dsAdressen
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DataTable1DataTable
+        Inherits Global.System.Data.TypedTableBase(Of DataTable1Row)
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DataTable1"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DataTable1Row
+            Get
+                Return CType(Me.Rows(index),DataTable1Row)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event DataTable1RowChanging As DataTable1RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event DataTable1RowChanged As DataTable1RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event DataTable1RowDeleting As DataTable1RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event DataTable1RowDeleted As DataTable1RowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddDataTable1Row(ByVal row As DataTable1Row)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddDataTable1Row() As DataTable1Row
+            Dim rowDataTable1Row As DataTable1Row = CType(Me.NewRow,DataTable1Row)
+            Dim columnValuesArray(-1) As Object
+            rowDataTable1Row.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDataTable1Row)
+            Return rowDataTable1Row
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DataTable1DataTable = CType(MyBase.Clone,DataTable1DataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DataTable1DataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewDataTable1Row() As DataTable1Row
+            Return CType(Me.NewRow,DataTable1Row)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DataTable1Row(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DataTable1Row)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DataTable1RowChangedEvent) Is Nothing) Then
+                RaiseEvent DataTable1RowChanged(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DataTable1RowChangingEvent) Is Nothing) Then
+                RaiseEvent DataTable1RowChanging(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DataTable1RowDeletedEvent) Is Nothing) Then
+                RaiseEvent DataTable1RowDeleted(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DataTable1RowDeletingEvent) Is Nothing) Then
+                RaiseEvent DataTable1RowDeleting(Me, New DataTable1RowChangeEvent(CType(e.Row,DataTable1Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveDataTable1Row(ByVal row As DataTable1Row)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As dsAdressen = New dsAdressen()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DataTable1DataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class ofadressenRow
@@ -7723,6 +7997,22 @@ Partial Public Class dsAdressen
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class DataTable1Row
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDataTable1 As DataTable1DataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDataTable1 = CType(Me.Table,DataTable1DataTable)
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -8140,6 +8430,42 @@ Partial Public Class dsAdressen
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As grtransportmethodeRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class DataTable1RowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DataTable1Row
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As DataTable1Row, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As DataTable1Row
             Get
                 Return Me.eventRow
             End Get
@@ -11153,33 +11479,7 @@ Namespace dsAdressenTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `ofadressen-weitere` WHERE ((`ID` = @Original_ID) AND ((@IsNull_Anred"& _ 
-                "e = 1 AND `Anrede` IS NULL) OR (`Anrede` = @Original_Anrede)) AND ((@IsNull_Typ "& _ 
-                "= 1 AND `Typ` IS NULL) OR (`Typ` = @Original_Typ)) AND ((@IsNull_Branche = 1 AND"& _ 
-                " `Branche` IS NULL) OR (`Branche` = @Original_Branche)) AND ((@IsNull_IDNR = 1 A"& _ 
-                "ND `IDNR` IS NULL) OR (`IDNR` = @Original_IDNR)) AND ((@IsNull_Land = 1 AND `Lan"& _ 
-                "d` IS NULL) OR (`Land` = @Original_Land)) AND ((@IsNull_Name = 1 AND `Name` IS N"& _ 
-                "ULL) OR (`Name` = @Original_Name)) AND ((@IsNull_Vorname = 1 AND `Vorname` IS NU"& _ 
-                "LL) OR (`Vorname` = @Original_Vorname)) AND ((@IsNull_Name1 = 1 AND `Name1` IS N"& _ 
-                "ULL) OR (`Name1` = @Original_Name1)) AND ((@IsNull_Firma = 1 AND `Firma` IS NULL"& _ 
-                ") OR (`Firma` = @Original_Firma)) AND ((@IsNull_Adresse = 1 AND `Adresse` IS NUL"& _ 
-                "L) OR (`Adresse` = @Original_Adresse)) AND ((@IsNull_PLZ = 1 AND `PLZ` IS NULL) "& _ 
-                "OR (`PLZ` = @Original_PLZ)) AND ((@IsNull_Ort = 1 AND `Ort` IS NULL) OR (`Ort` ="& _ 
-                " @Original_Ort)) AND ((@IsNull_Tel = 1 AND `Tel` IS NULL) OR (`Tel` = @Original_"& _ 
-                "Tel)) AND ((@IsNull_Tel2 = 1 AND `Tel2` IS NULL) OR (`Tel2` = @Original_Tel2)) A"& _ 
-                "ND ((@IsNull_Fax = 1 AND `Fax` IS NULL) OR (`Fax` = @Original_Fax)) AND ((@IsNul"& _ 
-                "l_Mobil = 1 AND `Mobil` IS NULL) OR (`Mobil` = @Original_Mobil)) AND ((@IsNull_E"& _ 
-                "mail = 1 AND `Email` IS NULL) OR (`Email` = @Original_Email)) AND ((@IsNull_Web "& _ 
-                "= 1 AND `Web` IS NULL) OR (`Web` = @Original_Web)) AND ((@IsNull_AngelegtAn = 1 "& _ 
-                "AND `AngelegtAn` IS NULL) OR (`AngelegtAn` = @Original_AngelegtAn)) AND ((@IsNul"& _ 
-                "l_Passwort = 1 AND `Passwort` IS NULL) OR (`Passwort` = @Original_Passwort)) AND"& _ 
-                " ((@IsNull_Geburtstag = 1 AND `Geburtstag` IS NULL) OR (`Geburtstag` = @Original"& _ 
-                "_Geburtstag)) AND ((@IsNull_UID = 1 AND `UID` IS NULL) OR (`UID` = @Original_UID"& _ 
-                ")) AND ((@IsNull_EUNummer = 1 AND `EUNummer` IS NULL) OR (`EUNummer` = @Original"& _ 
-                "_EUNummer)) AND ((@IsNull_EUNummer1 = 1 AND `EUNummer1` IS NULL) OR (`EUNummer1`"& _ 
-                " = @Original_EUNummer1)) AND ((@IsNull_EUNummer2 = 1 AND `EUNummer2` IS NULL) OR"& _ 
-                " (`EUNummer2` = @Original_EUNummer2)) AND ((@IsNull_Titel = 1 AND `Titel` IS NUL"& _ 
-                "L) OR (`Titel` = @Original_Titel)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `ofadressen-weitere`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (ID = @Original_ID)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_ID"
@@ -11187,448 +11487,6 @@ Namespace dsAdressenTableAdapters
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "ID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Anrede"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Anrede"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Anrede"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Anrede"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Typ"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Typ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Typ"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Typ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Branche"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Branche"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Branche"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Branche"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_IDNR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "IDNR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Land"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Land"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Land"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Land"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Name"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Name"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Name"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Vorname"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Vorname"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Vorname"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Vorname"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Name1"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Name1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Name1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Name1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Firma"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Firma"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Firma"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Firma"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Adresse"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Adresse"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Adresse"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Adresse"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_PLZ"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "PLZ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_PLZ"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "PLZ"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Ort"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Ort"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Ort"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Ort"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Tel"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Tel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Tel"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Tel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Tel2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Tel2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Tel2"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Tel2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Fax"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Fax"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Fax"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Fax"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Mobil"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Mobil"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Mobil"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Mobil"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Email"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Email"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Email"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Web"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Web"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Web"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Web"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_AngelegtAn"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "AngelegtAn"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Passwort"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Passwort"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Passwort"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Passwort"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Geburtstag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Geburtstag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Geburtstag"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
-            param.SourceColumn = "Geburtstag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_UID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "UID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_UID"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "UID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EUNummer"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EUNummer"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EUNummer1"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EUNummer1"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer1"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_EUNummer2"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_EUNummer2"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "EUNummer2"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@IsNull_Titel"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
-            param.SourceColumn = "Titel"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
-            param.ParameterName = "@Original_Titel"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
-            param.IsNullable = true
-            param.SourceColumn = "Titel"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
@@ -12123,217 +11981,8 @@ Namespace dsAdressenTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_Anrede As String,  _
-                    ByVal Original_Typ As String,  _
-                    ByVal Original_Branche As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_IDNR As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Land As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Name As String,  _
-                    ByVal Original_Vorname As String,  _
-                    ByVal Original_Name1 As String,  _
-                    ByVal Original_Firma As String,  _
-                    ByVal Original_Adresse As String,  _
-                    ByVal Original_PLZ As String,  _
-                    ByVal Original_Ort As String,  _
-                    ByVal Original_Tel As String,  _
-                    ByVal Original_Tel2 As String,  _
-                    ByVal Original_Fax As String,  _
-                    ByVal Original_Mobil As String,  _
-                    ByVal Original_Email As String,  _
-                    ByVal Original_Web As String,  _
-                    ByVal Original_AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal Original_Passwort As String,  _
-                    ByVal Original_Geburtstag As Global.System.Nullable(Of Date),  _
-                    ByVal Original_UID As String,  _
-                    ByVal Original_EUNummer As String,  _
-                    ByVal Original_EUNummer1 As String,  _
-                    ByVal Original_EUNummer2 As String,  _
-                    ByVal Original_Titel As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_ID As Integer) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
-            If (Original_Anrede Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Anrede,String)
-            End If
-            If (Original_Typ Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Typ,String)
-            End If
-            If (Original_Branche.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Branche.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IDNR.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_IDNR.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Land.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_Land.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Name Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_Name,String)
-            End If
-            If (Original_Vorname Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Vorname,String)
-            End If
-            If (Original_Name1 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Name1,String)
-            End If
-            If (Original_Firma Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_Firma,String)
-            End If
-            If (Original_Adresse Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Adresse,String)
-            End If
-            If (Original_PLZ Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_PLZ,String)
-            End If
-            If (Original_Ort Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_Ort,String)
-            End If
-            If (Original_Tel Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_Tel,String)
-            End If
-            If (Original_Tel2 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_Tel2,String)
-            End If
-            If (Original_Fax Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_Fax,String)
-            End If
-            If (Original_Mobil Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_Mobil,String)
-            End If
-            If (Original_Email Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_Email,String)
-            End If
-            If (Original_Web Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(Original_Web,String)
-            End If
-            If (Original_AngelegtAn.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(Original_AngelegtAn.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Passwort Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(40).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(Original_Passwort,String)
-            End If
-            If (Original_Geburtstag.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(Original_Geburtstag.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(42).Value = Global.System.DBNull.Value
-            End If
-            If (Original_UID Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(44).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(Original_UID,String)
-            End If
-            If (Original_EUNummer Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(45).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(46).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(45).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(Original_EUNummer,String)
-            End If
-            If (Original_EUNummer1 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(47).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(48).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(47).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(48).Value = CType(Original_EUNummer1,String)
-            End If
-            If (Original_EUNummer2 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(49).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(50).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(49).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(50).Value = CType(Original_EUNummer2,String)
-            End If
-            If (Original_Titel Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(51).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(52).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(51).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(52).Value = CType(Original_Titel,String)
-            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -14728,6 +14377,178 @@ Namespace dsAdressenTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class DataTable1TableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+        
+        Private _connection As Global.MySql.Data.MySqlClient.MySqlConnection
+        
+        Private _transaction As Global.MySql.Data.MySqlClient.MySqlTransaction
+        
+        Private _commandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.MySql.Data.MySqlClient.MySqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.MySql.Data.MySqlClient.MySqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.MySql.Data.MySqlClient.MySqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.MySql.Data.MySqlClient.MySqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.MySql.Data.MySqlClient.MySqlDataAdapter()
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.MySql.Data.MySqlClient.MySqlConnection()
+            Me._connection.ConnectionString = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        a.IDNR, a.Land, LandNr, a.PLZ, a.Ort, a.Adresse, a.Name, a.Name1, a"& _ 
+                ".Firma, Email, 'Haupt' AS Typ, Tel, Anrede, a.IDNR AS ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            qry_Ad"& _ 
+                "ressfelder a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"UNION"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT        aw.IDNR, Land, LandNr, PLZ, Ort, Adresse, Nam"& _ 
+                "e, Name1, Firma, Email, Typ, Tel, Anrede, ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            qry_AdressfelderWe"& _ 
+                "itere aw"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As dsAdressen.DataTable1DataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As dsAdressen.DataTable1DataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As dsAdressen.DataTable1DataTable = New dsAdressen.DataTable1DataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
     Partial Public Class QueriesTableAdapter
         Inherits Global.System.ComponentModel.Component
         
@@ -14747,7 +14568,7 @@ Namespace dsAdressenTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.IDbCommand(0) {}
+            Me._commandCollection = New Global.System.Data.IDbCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = New Global.MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
             CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).CommandText = "SELECT        ofadressen.IDNR, ofadressen.Name, ofadressen.Vorname, ofadressen.Fi"& _ 
@@ -14758,6 +14579,17 @@ Namespace dsAdressenTableAdapters
                 " ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY ofadre"& _ 
                 "ssen.IDNR"
             CType(Me._commandCollection(0),Global.MySql.Data.MySqlClient.MySqlCommand).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            CType(Me._commandCollection(1),Global.MySql.Data.MySqlClient.MySqlCommand).Connection = New Global.MySql.Data.MySqlClient.MySqlConnection(Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            CType(Me._commandCollection(1),Global.MySql.Data.MySqlClient.MySqlCommand).CommandText = "SELECT        `ofadressen-weitere`.ID, `ofadressen-weitere`.IDNR, grland.Name AS "& _ 
+                "Land, grplz.PLZ, grplz.Ort, `ofadressen-weitere`.Adresse, `ofadressen-weitere`.N"& _ 
+                "ame, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `ofadressen-weitere`.Name AS Nachname, `ofadress"& _ 
+                "en-weitere`.Vorname, `ofadressen-weitere`.Firma, `ofadressen-weitere`.Email, `of"& _ 
+                "adressen-weitere`.Typ, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `ofadressen-weitere`.Anrede, `"& _ 
+                "ofadressen-weitere`.Tel, `ofadressen-weitere`.Mobil, `ofadressen-weitere`.Name1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            `ofadressen-weitere` LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
+                "grplz ON `ofadressen-weitere`.PLZ = grplz.IdNr LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         grland ON `ofadressen-weitere`.Land = grland.IdNr"
+            CType(Me._commandCollection(1),Global.MySql.Data.MySqlClient.MySqlCommand).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14783,6 +14615,32 @@ Namespace dsAdressenTableAdapters
                 Return New Global.System.Nullable(Of Integer)()
             Else
                 Return New Global.System.Nullable(Of Integer)(CType(returnValue,Integer))
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function ofAdressenWeitereListe() As Object
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = CType(Me.CommandCollection(1),Global.MySql.Data.MySqlClient.MySqlCommand)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
             End If
         End Function
     End Class
@@ -15074,21 +14932,21 @@ Namespace dsAdressenTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._ofadressen_zahlungsmethodenTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsmethoden.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._ofadressen_zahlungsmethodenTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._grzahlungsbedingungTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.grzahlungsbedingung.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._grzahlungsbedingungTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._ofadressen_zahlungsmethodenTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsmethoden.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._ofadressen_zahlungsmethodenTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -15110,15 +14968,6 @@ Namespace dsAdressenTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._ofadressen_weitereTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet._ofadressen_weitere.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -15134,6 +14983,15 @@ Namespace dsAdressenTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._ofadressen_settingsTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -15164,19 +15022,19 @@ Namespace dsAdressenTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._ofadressen_zahlungsmethodenTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsmethoden.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._ofadressen_zahlungsmethodenTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._grzahlungsbedingungTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.grzahlungsbedingung.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._grzahlungsbedingungTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._ofadressen_zahlungsmethodenTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsmethoden.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._ofadressen_zahlungsmethodenTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -15196,14 +15054,6 @@ Namespace dsAdressenTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._ofadressen_weitereTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet._ofadressen_weitere.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -15217,6 +15067,14 @@ Namespace dsAdressenTableAdapters
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._ofadressen_settingsTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -15246,6 +15104,14 @@ Namespace dsAdressenTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
+            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._ofadressen_settingsTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet._ofadressen_settings.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -15259,14 +15125,6 @@ Namespace dsAdressenTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._ofadressen_weitereTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._ofadressen_zahlungsbedingungenTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsbedingungen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._ofadressen_zahlungsbedingungenTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -15286,19 +15144,19 @@ Namespace dsAdressenTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._grzahlungsbedingungTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.grzahlungsbedingung.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._grzahlungsbedingungTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._ofadressen_zahlungsmethodenTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet._ofadressen_zahlungsmethoden.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._ofadressen_zahlungsmethodenTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._grzahlungsbedingungTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.grzahlungsbedingung.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._grzahlungsbedingungTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
