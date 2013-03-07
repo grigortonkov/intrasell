@@ -14,16 +14,20 @@
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
 
-            Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
+            LoadData()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
 
     End Sub
-
+    Sub LoadData()
+        Me.OfAdressenlisteTableAdapter.Fill(Me.DsAdressen.ofAdressenliste)
+    End Sub
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
+            LoadData()
+
             Dim filter As String = Nothing
 
 
@@ -41,7 +45,7 @@
             If Me.PLZVonTextBox.Text.Length > 0 Then
                 filter += " and PLZ >= '" + PLZVonTextBox.Text + "%'"
             End If
-            If Me.PLZbisTextBox.Text.Length > 0 Then
+            If Me.PLZBisTextBox.Text.Length > 0 Then
                 filter += " and PLZ <= '" + PLZBisTextBox.Text + "%'"
             End If
 
@@ -75,10 +79,7 @@
         End Try
 
     End Sub
-
-    Private Sub AnrufenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AnrufenToolStripMenuItem.Click
-
-    End Sub
+ 
 
 #Region "Anrufen"
 

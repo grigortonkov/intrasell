@@ -1419,7 +1419,7 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddofanrufeRow(ByVal AdrNr As Integer, ByVal LAenderung As Date, ByVal LKontakt As Date, ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Integer, ByVal BeginZeit As Date, ByVal EndeZeit As Date, ByVal Verrechnung As Boolean) As ofanrufeRow
+        Public Overloads Function AddofanrufeRow(ByVal AdrNr As Integer, ByVal LAenderung As Date, ByVal LKontakt As Date, ByVal NAnruf As Date, ByVal Notizen As String, ByVal MitarbeiterNr As Integer, ByVal BeginZeit As Date, ByVal EndeZeit As Date, ByVal Verrechnung As Boolean) As ofanrufeRow
             Dim rowofanrufeRow As ofanrufeRow = CType(Me.NewRow,ofanrufeRow)
             Dim columnValuesArray() As Object = New Object() {Nothing, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung}
             rowofanrufeRow.ItemArray = columnValuesArray
@@ -1473,7 +1473,7 @@ Partial Public Class dsAnrufe
             MyBase.Columns.Add(Me.columnLAenderung)
             Me.columnLKontakt = New Global.System.Data.DataColumn("LKontakt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLKontakt)
-            Me.columnNAnruf = New Global.System.Data.DataColumn("NAnruf", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnNAnruf = New Global.System.Data.DataColumn("NAnruf", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNAnruf)
             Me.columnNotizen = New Global.System.Data.DataColumn("Notizen", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNotizen)
@@ -1491,7 +1491,6 @@ Partial Public Class dsAnrufe
             Me.columnAnrufNr.AutoIncrementStep = -1
             Me.columnAnrufNr.AllowDBNull = false
             Me.columnAnrufNr.Unique = true
-            Me.columnNAnruf.MaxLength = 50
             Me.columnVerrechnung.AllowDBNull = false
             Me.columnVerrechnung.DefaultValue = CType(false,Boolean)
         End Sub
@@ -2464,7 +2463,7 @@ Partial Public Class dsAnrufe
                     ByVal AdrNr As Integer,  _
                     ByVal LAenderung As Date,  _
                     ByVal LKontakt As Date,  _
-                    ByVal NAnruf As String,  _
+                    ByVal NAnruf As Date,  _
                     ByVal Notizen As String,  _
                     ByVal MitarbeiterNr As Integer,  _
                     ByVal BeginZeit As Date,  _
@@ -2545,7 +2544,7 @@ Partial Public Class dsAnrufe
             MyBase.Columns.Add(Me.columnLAenderung)
             Me.columnLKontakt = New Global.System.Data.DataColumn("LKontakt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLKontakt)
-            Me.columnNAnruf = New Global.System.Data.DataColumn("NAnruf", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnNAnruf = New Global.System.Data.DataColumn("NAnruf", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNAnruf)
             Me.columnNotizen = New Global.System.Data.DataColumn("Notizen", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNotizen)
@@ -2585,7 +2584,6 @@ Partial Public Class dsAnrufe
             Me.columnAnrufNr.AutoIncrementStep = -1
             Me.columnAnrufNr.AllowDBNull = false
             Me.columnAnrufNr.Unique = true
-            Me.columnNAnruf.MaxLength = 50
             Me.columnVerrechnung.AllowDBNull = false
             Me.columnVerrechnung.DefaultValue = CType(false,Boolean)
             Me.columnFirma.MaxLength = 255
@@ -4194,10 +4192,10 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property NAnruf() As String
+        Public Property NAnruf() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableofanrufe.NAnrufColumn),String)
+                    Return CType(Me(Me.tableofanrufe.NAnrufColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'NAnruf' in table 'ofanrufe' is DBNull.", e)
                 End Try
@@ -5029,10 +5027,10 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property NAnruf() As String
+        Public Property NAnruf() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableAnrufliste.NAnrufColumn),String)
+                    Return CType(Me(Me.tableAnrufliste.NAnrufColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'NAnruf' in table 'Anrufliste' is DBNull.", e)
                 End Try

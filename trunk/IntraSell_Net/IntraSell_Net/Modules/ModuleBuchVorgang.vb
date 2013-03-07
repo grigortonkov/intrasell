@@ -490,6 +490,7 @@ Module ModuleBuchVorgang
             frm.MdiParent = Main
 
             Dim fltr As String = "Nummer=" & VorgangNummer & " and Typ='" & VorgangTyp & "'"
+            frm.KundNr = firstRow("select Kundnr from buchVorgang where " & fltr)
 
             frm.FilterBy(fltr)
             frm.Show()

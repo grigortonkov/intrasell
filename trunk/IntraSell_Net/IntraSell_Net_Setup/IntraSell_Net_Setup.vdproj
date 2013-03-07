@@ -648,7 +648,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XML2Word, Version=1.0.4635.38561, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XML2Word, Version=1.0.4808.36891, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A48229B26A509AEBD07CBDB3FABC2A30"
@@ -907,7 +907,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IntraSell_Net"
         "ProductCode" = "8:{FE4B4C8B-FF83-41BB-BAF9-12AED8B1F792}"
-        "PackageCode" = "8:{C08E6B89-5CC7-4873-899F-F165C4A94B55}"
+        "PackageCode" = "8:{37223B77-64A5-4111-A904-2FC5BFBDD0B0}"
         "UpgradeCode" = "8:{13C36C27-4D6D-48B2-A389-BED750CDB661}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

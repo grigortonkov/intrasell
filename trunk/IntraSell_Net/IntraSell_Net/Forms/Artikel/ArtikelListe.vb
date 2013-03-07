@@ -6,7 +6,7 @@ Public Class Artikelliste
 
         Try
 
-            Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
+            LoadData()
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
 
             Me.ArtKatNrComboBox.Text = ""
@@ -18,10 +18,13 @@ Public Class Artikelliste
         End Try
 
     End Sub
-
+    Sub LoadData()
+        Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
+    End Sub
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
+            LoadData()
             Dim filter As String = Nothing
 
 
