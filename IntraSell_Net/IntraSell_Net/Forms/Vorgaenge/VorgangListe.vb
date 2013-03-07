@@ -69,6 +69,8 @@ Public Class VorgangListe
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
+            LoadData()
+
             Dim filter As String = "1=1"
 
             'filter dataset 
@@ -160,7 +162,7 @@ Public Class VorgangListe
     End Sub
 
     'KundenDetail öffnen 
-    Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles VorgangListeDataGridView.RowHeaderMouseDoubleClick
+    Private Sub VorgangListeDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles VorgangListeDataGridView.RowHeaderMouseDoubleClick
         Try
             Dim fltr As String = "Nummer=" & VorgangListeDataGridView.SelectedRows(0).Cells(0).Value & " and Typ='" & VorgangListeDataGridView.SelectedRows(0).Cells(1).Value & "'"
             Vorgang.KundNr = VorgangListeDataGridView.SelectedRows(0).Cells(2).Value
@@ -180,4 +182,22 @@ Public Class VorgangListe
     Private Sub DatumVon_ValueChanged(sender As System.Object, e As System.EventArgs) Handles DatumVon.ValueChanged
         LoadData()
     End Sub
+
+    'Format 
+    Private Sub DataGridView1_CellFormatting(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellFormattingEventArgs) Handles VorgangListeDataGridView.CellFormatting
+
+        Const AbgeschlossenCheckBox_index As Integer = 10
+        Const BezahltCheckBox_index As Integer = 8
+
+        For Each dr As DataGridViewRow In VorgangListeDataGridView.Rows
+            If dr.Cells(BezahltCheckBox_index).Value = True Then 'Abgeschlossen
+                dr.DefaultCellStyle.BackColor = Color.LemonChiffon
+            End If
+
+            If dr.Cells(AbgeschlossenCheckBox_index).Value = True Then 'Abgeschlossen
+                dr.DefaultCellStyle.BackColor = Color.Gray
+            End If
+        Next
+    End Sub
+
 End Class

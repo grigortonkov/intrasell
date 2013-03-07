@@ -1,12 +1,11 @@
 ﻿Public Class Anrufliste
 
     Private Sub Anrufliste_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsAnrufe.Anrufliste' table. You can move, or remove it, as needed.
-        Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
-        'TODO: This line of code loads data into the 'DsAnrufe.ofanrufe' table. You can move, or remove it, as needed.
-        Me.OfanrufeTableAdapter.Fill(Me.DsAnrufe.ofanrufe)
+
 
         Try
+           
+            LoadData()
 
             'Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
             'Me.PreislistenTableAdapter.Fill(Me.DsAnrufe.Preislisten)
@@ -25,6 +24,10 @@
 
     End Sub
 
+    Sub LoadData()
+        Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
+        Me.OfanrufeTableAdapter.Fill(Me.DsAnrufe.ofanrufe)
+    End Sub
     Public Sub FilterBy(Expression As Object)
         Try
             Me.AnruflisteBindingSource.Filter = Expression
@@ -46,6 +49,8 @@
     'Filtern
     Private Sub AnrufButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
+            LoadData()
+
             Dim filter As String = Nothing
 
 
@@ -81,7 +86,7 @@
             End If
 
             If Not filter Is Nothing Then
-                AnruflisteBindingSource.Filter = filter 
+                AnruflisteBindingSource.Filter = filter
             Else
                 AnruflisteBindingSource.Filter = Nothing
             End If
@@ -106,4 +111,34 @@
     Private Sub OfAdressenlisteDataGridView_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles OfAdressenlisteDataGridView.CellContentClick
 
     End Sub
+
+    'Format 
+    Private Sub DataGridView1_CellFormatting(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellFormattingEventArgs) Handles OfAdressenlisteDataGridView.CellFormatting
+
+        Const NAnruf_index As Integer = 3
+
+        For Each dr As DataGridViewRow In OfAdressenlisteDataGridView.Rows
+            If Not IsDBNull(dr.Cells(NAnruf_index).Value) Then
+                Dim nAnruf As Date = dr.Cells(NAnruf_index).Value
+
+                'Anruf zu spät
+                If nAnruf < DateAndTime.Today.AddDays(-1) Then
+                    dr.DefaultCellStyle.BackColor = Color.Red
+                End If
+
+                'Heute Anrufen 
+                If nAnruf > DateAndTime.Today.AddDays(-1) And nAnruf <= DateAndTime.Today Then 'Abgeschlossen
+                    dr.DefaultCellStyle.BackColor = Color.Lime
+                End If
+
+                'Morgen anrufen 
+                If nAnruf > DateAndTime.Today Then 'Zuzkunft 
+                    dr.DefaultCellStyle.BackColor = Color.Wheat
+                End If
+
+
+            End If
+        Next
+    End Sub
+
 End Class

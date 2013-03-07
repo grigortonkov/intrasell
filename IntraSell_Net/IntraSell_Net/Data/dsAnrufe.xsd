@@ -692,13 +692,7 @@ WHERE        (AnrufNr = @Original_AnrufNr)</CommandText>
               <xs:element name="AdrNr" msprop:Generator_ColumnVarNameInTable="columnAdrNr" msprop:Generator_ColumnPropNameInRow="AdrNr" msprop:Generator_ColumnPropNameInTable="AdrNrColumn" msprop:Generator_UserColumnName="AdrNr" type="xs:int" minOccurs="0" />
               <xs:element name="LAenderung" msprop:Generator_ColumnVarNameInTable="columnLAenderung" msprop:Generator_ColumnPropNameInRow="LAenderung" msprop:Generator_ColumnPropNameInTable="LAenderungColumn" msprop:Generator_UserColumnName="LAenderung" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LKontakt" msprop:Generator_ColumnVarNameInTable="columnLKontakt" msprop:Generator_ColumnPropNameInRow="LKontakt" msprop:Generator_ColumnPropNameInTable="LKontaktColumn" msprop:Generator_UserColumnName="LKontakt" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="NAnruf" msprop:Generator_ColumnVarNameInTable="columnNAnruf" msprop:Generator_ColumnPropNameInRow="NAnruf" msprop:Generator_ColumnPropNameInTable="NAnrufColumn" msprop:Generator_UserColumnName="NAnruf" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="NAnruf" msprop:Generator_ColumnVarNameInTable="columnNAnruf" msprop:Generator_ColumnPropNameInRow="NAnruf" msprop:Generator_ColumnPropNameInTable="NAnrufColumn" msprop:Generator_UserColumnName="NAnruf" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Notizen" msprop:Generator_ColumnVarNameInTable="columnNotizen" msprop:Generator_ColumnPropNameInRow="Notizen" msprop:Generator_ColumnPropNameInTable="NotizenColumn" msprop:Generator_UserColumnName="Notizen" type="xs:string" minOccurs="0" />
               <xs:element name="MitarbeiterNr" msprop:Generator_ColumnVarNameInTable="columnMitarbeiterNr" msprop:Generator_ColumnPropNameInRow="MitarbeiterNr" msprop:Generator_ColumnPropNameInTable="MitarbeiterNrColumn" msprop:Generator_UserColumnName="MitarbeiterNr" type="xs:int" minOccurs="0" />
               <xs:element name="BeginZeit" msprop:Generator_ColumnVarNameInTable="columnBeginZeit" msprop:Generator_ColumnPropNameInRow="BeginZeit" msprop:Generator_ColumnPropNameInTable="BeginZeitColumn" msprop:Generator_UserColumnName="BeginZeit" type="xs:dateTime" minOccurs="0" />
@@ -842,13 +836,7 @@ WHERE        (AnrufNr = @Original_AnrufNr)</CommandText>
               <xs:element name="AdrNr" msprop:Generator_ColumnVarNameInTable="columnAdrNr" msprop:Generator_ColumnPropNameInRow="AdrNr" msprop:Generator_ColumnPropNameInTable="AdrNrColumn" msprop:Generator_UserColumnName="AdrNr" type="xs:int" minOccurs="0" />
               <xs:element name="LAenderung" msprop:Generator_ColumnVarNameInTable="columnLAenderung" msprop:Generator_ColumnPropNameInRow="LAenderung" msprop:Generator_ColumnPropNameInTable="LAenderungColumn" msprop:Generator_UserColumnName="LAenderung" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LKontakt" msprop:Generator_ColumnVarNameInTable="columnLKontakt" msprop:Generator_ColumnPropNameInRow="LKontakt" msprop:Generator_ColumnPropNameInTable="LKontaktColumn" msprop:Generator_UserColumnName="LKontakt" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="NAnruf" msprop:Generator_ColumnVarNameInTable="columnNAnruf" msprop:Generator_ColumnPropNameInRow="NAnruf" msprop:Generator_ColumnPropNameInTable="NAnrufColumn" msprop:Generator_UserColumnName="NAnruf" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="NAnruf" msprop:Generator_ColumnVarNameInTable="columnNAnruf" msprop:Generator_ColumnPropNameInRow="NAnruf" msprop:Generator_ColumnPropNameInTable="NAnrufColumn" msprop:Generator_UserColumnName="NAnruf" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Notizen" msprop:Generator_ColumnVarNameInTable="columnNotizen" msprop:Generator_ColumnPropNameInRow="Notizen" msprop:Generator_ColumnPropNameInTable="NotizenColumn" msprop:Generator_UserColumnName="Notizen" type="xs:string" minOccurs="0" />
               <xs:element name="MitarbeiterNr" msprop:Generator_ColumnVarNameInTable="columnMitarbeiterNr" msprop:Generator_ColumnPropNameInRow="MitarbeiterNr" msprop:Generator_ColumnPropNameInTable="MitarbeiterNrColumn" msprop:Generator_UserColumnName="MitarbeiterNr" type="xs:int" minOccurs="0" />
               <xs:element name="BeginZeit" msprop:Generator_ColumnVarNameInTable="columnBeginZeit" msprop:Generator_ColumnPropNameInRow="BeginZeit" msprop:Generator_ColumnPropNameInTable="BeginZeitColumn" msprop:Generator_UserColumnName="BeginZeit" type="xs:dateTime" minOccurs="0" />
