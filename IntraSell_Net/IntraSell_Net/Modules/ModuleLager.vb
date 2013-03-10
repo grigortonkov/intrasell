@@ -223,7 +223,7 @@ Module ModuleLager
 
                 'buchSeriennummer aktualisieren (Item)
                 If r("ArtikelIdentifikation") & "" <> "" Then
-                    Dim feldName As String
+                    Dim feldName As String = "Unbekannt"
                     If VorgangTyp = "AN" Then feldName = "AngebotsNr"
                     If VorgangTyp = "AU" Then feldName = "AuftragsNr"
                     If VorgangTyp = "AR" Then feldName = "RechnungsNr"

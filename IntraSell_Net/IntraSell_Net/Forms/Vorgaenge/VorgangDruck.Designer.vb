@@ -31,14 +31,14 @@ Partial Class VorgangDruck
         Me.NummerTextBox = New System.Windows.Forms.TextBox()
         Me.TypComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.VorglageListBox = New System.Windows.Forms.ListBox()
+        Me.VorlageListBox = New System.Windows.Forms.ListBox()
         Me.SofortSenden_CheckBox = New System.Windows.Forms.CheckBox()
         Me.WORD_RadioButton = New System.Windows.Forms.RadioButton()
         Me.PDF_RadioButton = New System.Windows.Forms.RadioButton()
         Me.ENGINE_GroupBox = New System.Windows.Forms.GroupBox()
-        Me.EMAIL_RadioButton = New System.Windows.Forms.RadioButton()
-        Me.EMAILATTACHMENT_RadioButton = New System.Windows.Forms.RadioButton()
         Me.XML_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.EMAILATTACHMENT_RadioButton = New System.Windows.Forms.RadioButton()
+        Me.EMAIL_RadioButton = New System.Windows.Forms.RadioButton()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
@@ -135,13 +135,13 @@ Partial Class VorgangDruck
         Me.Label4.TabIndex = 25
         Me.Label4.Text = "Vorlage:"
         '
-        'VorglageListBox
+        'VorlageListBox
         '
-        Me.VorglageListBox.FormattingEnabled = True
-        Me.VorglageListBox.Location = New System.Drawing.Point(80, 112)
-        Me.VorglageListBox.Name = "VorglageListBox"
-        Me.VorglageListBox.Size = New System.Drawing.Size(340, 82)
-        Me.VorglageListBox.TabIndex = 26
+        Me.VorlageListBox.FormattingEnabled = True
+        Me.VorlageListBox.Location = New System.Drawing.Point(80, 112)
+        Me.VorlageListBox.Name = "VorlageListBox"
+        Me.VorlageListBox.Size = New System.Drawing.Size(340, 82)
+        Me.VorlageListBox.TabIndex = 26
         '
         'SofortSenden_CheckBox
         '
@@ -189,15 +189,15 @@ Partial Class VorgangDruck
         Me.ENGINE_GroupBox.TabStop = False
         Me.ENGINE_GroupBox.Text = "Öffne mit"
         '
-        'EMAIL_RadioButton
+        'XML_RadioButton
         '
-        Me.EMAIL_RadioButton.AutoSize = True
-        Me.EMAIL_RadioButton.Location = New System.Drawing.Point(130, 21)
-        Me.EMAIL_RadioButton.Name = "EMAIL_RadioButton"
-        Me.EMAIL_RadioButton.Size = New System.Drawing.Size(50, 17)
-        Me.EMAIL_RadioButton.TabIndex = 33
-        Me.EMAIL_RadioButton.Text = "Email"
-        Me.EMAIL_RadioButton.UseVisualStyleBackColor = True
+        Me.XML_RadioButton.AutoSize = True
+        Me.XML_RadioButton.Location = New System.Drawing.Point(276, 22)
+        Me.XML_RadioButton.Name = "XML_RadioButton"
+        Me.XML_RadioButton.Size = New System.Drawing.Size(47, 17)
+        Me.XML_RadioButton.TabIndex = 35
+        Me.XML_RadioButton.Text = "XML"
+        Me.XML_RadioButton.UseVisualStyleBackColor = True
         '
         'EMAILATTACHMENT_RadioButton
         '
@@ -209,15 +209,15 @@ Partial Class VorgangDruck
         Me.EMAILATTACHMENT_RadioButton.Text = "Email Anlage"
         Me.EMAILATTACHMENT_RadioButton.UseVisualStyleBackColor = True
         '
-        'XML_RadioButton
+        'EMAIL_RadioButton
         '
-        Me.XML_RadioButton.AutoSize = True
-        Me.XML_RadioButton.Location = New System.Drawing.Point(276, 22)
-        Me.XML_RadioButton.Name = "XML_RadioButton"
-        Me.XML_RadioButton.Size = New System.Drawing.Size(47, 17)
-        Me.XML_RadioButton.TabIndex = 35
-        Me.XML_RadioButton.Text = "XML"
-        Me.XML_RadioButton.UseVisualStyleBackColor = True
+        Me.EMAIL_RadioButton.AutoSize = True
+        Me.EMAIL_RadioButton.Location = New System.Drawing.Point(130, 21)
+        Me.EMAIL_RadioButton.Name = "EMAIL_RadioButton"
+        Me.EMAIL_RadioButton.Size = New System.Drawing.Size(50, 17)
+        Me.EMAIL_RadioButton.TabIndex = 33
+        Me.EMAIL_RadioButton.Text = "Email"
+        Me.EMAIL_RadioButton.UseVisualStyleBackColor = True
         '
         'KundNrAdressenControl
         '
@@ -237,7 +237,7 @@ Partial Class VorgangDruck
         Me.ClientSize = New System.Drawing.Size(435, 315)
         Me.Controls.Add(Me.ENGINE_GroupBox)
         Me.Controls.Add(Me.SofortSenden_CheckBox)
-        Me.Controls.Add(Me.VorglageListBox)
+        Me.Controls.Add(Me.VorlageListBox)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.KundNrAdressenControl)
         Me.Controls.Add(NummerLabel)
@@ -267,7 +267,7 @@ Partial Class VorgangDruck
     Friend WithEvents NummerTextBox As System.Windows.Forms.TextBox
     Friend WithEvents TypComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents VorglageListBox As System.Windows.Forms.ListBox
+    Friend WithEvents VorlageListBox As System.Windows.Forms.ListBox
     Friend WithEvents SofortSenden_CheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents WORD_RadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents PDF_RadioButton As System.Windows.Forms.RadioButton

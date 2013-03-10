@@ -52,7 +52,7 @@ Public Class VorgangDruck
         _VorgangNummer = VorgangNummer
         _KundenNr = KundenNr
 
-        FillComboBox(Me.VorglageListBox, _
+        FillComboBox(Me.VorlageListBox, _
              " SELECT a.Dateiname, a.ID FROM buchVorgaengeAusdrucke a LEFT JOIN buchVorgaengeAusdruckeLog l ON a.Dateiname = l.Dateiname " & _
              " GROUP BY a.Dateiname, a.ID, a.Bereich " & _
              " HAVING a.Bereich = 'VORGANG_" & _VorgangTyp & "'" & _
@@ -73,8 +73,8 @@ Public Class VorgangDruck
     'Viewer = WORD, OUTLOOK
     Sub MergeVorlage(ByVal Viewer As String)
         writeLog("mergeVorlage start. Viewer " + Viewer)
-        Dim Dateiname As String = Me.VorglageListBox.SelectedItem("Dateiname")
-        Dim VorlageId As String = Me.VorglageListBox.SelectedValue
+        Dim Dateiname As String = Me.VorlageListBox.SelectedItem("Dateiname")
+        Dim VorlageId As String = Me.VorlageListBox.SelectedValue
         Dim Engine As String = firstRow("select engine from buchVorgaengeAusdrucke where Id = " & VorlageId)
 
         Dim Nummer = Me.NummerTextBox.Text
@@ -104,7 +104,7 @@ Public Class VorgangDruck
 
     End Sub
 
- 
+
     'Private Sub btnEmailAttachment_Click()
     '    'XML Engine Vorgänge können nur als Attachment geschickt werden
     '    mergeVorlage("OUTLOOK")
@@ -131,7 +131,7 @@ Public Class VorgangDruck
     '    writeLog = True
     'End Function
 
- 
+
 
     'Private Sub cbDateiname_DblClick(Cancel As Integer)
     '    If UCase(Right(cbDateiname, 3)) = "HTM" Then
@@ -161,7 +161,7 @@ Public Class VorgangDruck
 
     End Sub
 
-    Private Sub VorglageListBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles VorglageListBox.SelectedIndexChanged
-        Me.OK_Button.Enabled = VorglageListBox.SelectedIndex >= 0
+    Private Sub VorglageListBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles VorlageListBox.SelectedIndexChanged
+        Me.OK_Button.Enabled = VorlageListBox.SelectedIndex >= 0
     End Sub
 End Class

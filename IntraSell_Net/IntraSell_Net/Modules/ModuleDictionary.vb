@@ -20,7 +20,7 @@ Module ModuleDictionary
             If Err.Number <> 0 Then
                 MsgBox("Die IntraSell DLL konnte nicht gefunden werden!" & Err.Description, vbCritical)
                 Err.Number = 0
-
+                Return Nothing
                 Exit Function
             End If
             On Error GoTo 0
@@ -44,15 +44,15 @@ Module ModuleDictionary
     End Sub
 
 
-    Public Function translate(formToTranslate As String)
-        If VarValue("LANGUAGE") = "DEU" Then Exit Function
+    Public Function translate(formToTranslate As String) As Boolean
+        If VarValue("LANGUAGE") = "DEU" Then Return True : Exit Function
 
         If Len(charSet_CYRUNICODE) <= 5 Then Call loadCharsets()
 
         Debug.Print("translate " & formToTranslate)
         Dim frm As Form
-        Dim guiElement As Control
-        Dim subGuiElement
+        'Dim guiElement As Control
+        'Dim subGuiElement
 
         frm = Forms(formToTranslate)
 

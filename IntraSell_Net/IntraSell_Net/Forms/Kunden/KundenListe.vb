@@ -110,4 +110,7 @@
     End Sub
 #End Region
 
+    Private Sub txtFirmaName_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFirmaName.TextChanged
+        FilterButton_Click(Nothing, Nothing)
+    End Sub
 End Class

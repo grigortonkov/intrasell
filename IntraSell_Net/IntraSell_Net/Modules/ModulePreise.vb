@@ -2,6 +2,7 @@
 Option Explicit On
 
 Imports IntraSell_DLL
+
 Module ModulePreise
 
     '===========================================================================
@@ -66,16 +67,16 @@ Module ModulePreise
         'GROUP BY 'AR', ofAdressen.Idnr, ofAdressen.Name & " " & ofAdressen.Vorname, ofAdressen.Firma, ofAdressen.Adresse, buchRechnung.Nummer, [grPLZ].[plz] & " " & [grPLZ].[ort], buchRechnung.Datum, buchRechnung.KundNr, buchRechnung.ZahlungsBedungung, buchRechnung.Zahlungsmethode, buchRechnung.TransportMethode, buchRechnung.Woher, buchRechnung.Wohin, ofAdressen.Anrede, ofAdressen.Anrede+" " & ofAdressen.Titel, getLand(ofAdressen.Idnr), getUID(ofAdressen.idnr), ofAdressen.Tel, ofAdressen.Email, buchRechnung.KundNr2, buchRechnung.Notiz;
 
         Exit Function
-        'TODO: Logik für Akonto und SChlussrechnung ist noch offen 
-        If CStr(firstRow("select 1 from qryBuchRechAkonto")) = "1" Then
-            Return "Schuss-" & getDruckForType
-            Exit Function
-        End If
-        Dim Woher As String = CStr(firstRow("select woher from qryBuchRech"))
-        If Woher <> "" And Left(CStr(Woher), Len(Typ)) = Typ Then
-            Return "Akonto-" & getDruckForType
-            Exit Function
-        End If
+        'TODO: Logik für Akonto und Schlussrechnung ist noch offen 
+        'If CStr(firstRow("select 1 from qryBuchRechAkonto")) = "1" Then
+        '    Return "Schuss-" & getDruckForType
+        '    Exit Function
+        'End If
+        'Dim Woher As String = CStr(firstRow("select woher from qryBuchRech"))
+        'If Woher <> "" And Left(CStr(Woher), Len(Typ)) = Typ Then
+        '    Return "Akonto-" & getDruckForType
+        '    Exit Function
+        'End If
 
     End Function
 

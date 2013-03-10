@@ -30,6 +30,7 @@ Partial Class AdressenControl
         '
         'ArtikelSelectorButton
         '
+        Me.ArtikelSelectorButton.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.ArtikelSelectorButton.Location = New System.Drawing.Point(133, 1)
         Me.ArtikelSelectorButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ArtikelSelectorButton.Name = "ArtikelSelectorButton"

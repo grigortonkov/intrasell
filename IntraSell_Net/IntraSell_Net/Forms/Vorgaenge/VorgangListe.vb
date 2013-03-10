@@ -144,9 +144,12 @@ Public Class VorgangListe
                 filter = filter & " and ausgedruckt=False"
             End If
 
-
             If Me.MitarbeiterComboBox.IDNR > 0 Then
                 filter = filter & " and MitarbeiterNr = '" & CStr(MitarbeiterComboBox.IDNR) & "'"
+            End If
+
+            If Me.NotizTextBox.Text.Length > 0 Then
+                filter = filter & " and ( Notiz Like '%" + NotizTextBox.Text + "%' or NotizExtern Like '%" + NotizTextBox.Text + "%' or  NotizIntern Like '%" + NotizTextBox.Text + "%') "
             End If
 
             If Not filter Is Nothing Then
@@ -200,4 +203,7 @@ Public Class VorgangListe
         Next
     End Sub
 
+    Private Sub NotizTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles NotizTextBox.TextChanged
+        FilterButton_Click(Nothing, Nothing)
+    End Sub
 End Class

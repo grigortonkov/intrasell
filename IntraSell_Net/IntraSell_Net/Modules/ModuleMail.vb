@@ -14,7 +14,7 @@ Module ModuleMail
 
         Dim fn As Object
         Dim objOutlookMsg
-        Dim objOutlookRecip
+        'Dim objOutlookRecip
         Dim objOutlookAttach
 
         Dim objOutlook

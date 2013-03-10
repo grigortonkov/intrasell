@@ -110,7 +110,8 @@ Module DBUpgrade
             writeLog("Run SQL: " + sqlDML)
 
             'create NEW DB connection
-            Dim connString As String = VarValue_Default("DB_CONN_STRING_NET", Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            'Dim connString As String = VarValue_Default("DB_CONN_STRING_NET", Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString)
+            Dim connString As String = Global.IntraSell_Net.My.MySettings.Default.intrasell_daten_2_ConnectionString
             Dim cConn As MySqlConnection = New MySqlConnection(connString)
             cConn.Open()
 

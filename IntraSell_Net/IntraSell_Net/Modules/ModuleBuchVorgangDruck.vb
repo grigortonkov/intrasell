@@ -495,14 +495,14 @@ Module ModuleBuchVorgangDruck
 
     End Function
 
-    Function sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
+    Sub sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
 
         Dim Email As String = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
 
         Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, "SILENT")
 
         Dim Subject, EmailText, TextBaustein As String
-  
+
         TextBaustein = "'TEXTBAUSTEIN_EMAIL_" & Vorgangtyp & "'"
 
         EmailText = TableValue("ofKorespondenz", "Subjekt", TextBaustein, "[TEXT]")
@@ -512,7 +512,7 @@ Module ModuleBuchVorgangDruck
         MsgBox("Not implemented!")
         'DoCmd.SendObject(acSendReport, VarValue("MSACCESS_VORGANG_BERICHTNAME"), , Email, , , Subject, EmailText)
 
-    End Function
+    End Sub
 
 
     Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
@@ -597,11 +597,12 @@ Module ModuleBuchVorgangDruck
 
         VonForm = getVorgangTableForType(Vorgangtyp)
         VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
- 
+
         rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
- 
+
         If Not rs.Read Then
             MsgBox("Es sind keine Daten vorhanden!", vbCritical)
+            Return False
             Exit Function
         End If
 

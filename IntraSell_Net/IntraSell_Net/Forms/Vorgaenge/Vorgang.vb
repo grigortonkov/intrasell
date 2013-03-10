@@ -193,6 +193,29 @@ Public Class Vorgang
             HandleAppError(ex)
         End Try
     End Sub
+
+    'Ein Neuer Vorgang vom Typ Starten 
+    Public Sub BeginNewVorgang(VorgangTyp As String, KundNr As Integer)
+        Try
+            Me.BuchvorgangBindingSource.AddNew()
+
+            Me.KundNrAdressenControl.IDNR = KundNr
+            Me.TypComboBox.SelectedValue = VorgangTyp
+            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(VorgangTyp, KundNr)
+            Me.DatumDateTimePicker.Value = DateTime.Today
+            Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID
+
+            'folgende 3 zeilen damit die rows in artikel die parent typ und nummer übernehmen.
+            Me.Validate()
+            Me.BuchvorgangBindingSource.EndEdit()
+            Me.Buchvorgang_artikelBindingSource.EndEdit()
+
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #End Region
 
 
