@@ -41,15 +41,20 @@ Partial Class AdressenSelector
         Me.DsAdressen = New IntraSell_Net.dsAdressen()
         Me.OfAdressenlisteTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter()
         Me.btnDetails = New System.Windows.Forms.Button()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         CType(Me.dgAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 12)
+        Me.Label1.Location = New System.Drawing.Point(4, 6)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 0
@@ -57,14 +62,14 @@ Partial Class AdressenSelector
         '
         'txtSuche
         '
-        Me.txtSuche.Location = New System.Drawing.Point(57, 9)
+        Me.txtSuche.Location = New System.Drawing.Point(49, 3)
         Me.txtSuche.Name = "txtSuche"
         Me.txtSuche.Size = New System.Drawing.Size(100, 20)
         Me.txtSuche.TabIndex = 1
         '
         'btnUebernehmen
         '
-        Me.btnUebernehmen.Location = New System.Drawing.Point(279, 6)
+        Me.btnUebernehmen.Location = New System.Drawing.Point(271, 0)
         Me.btnUebernehmen.Name = "btnUebernehmen"
         Me.btnUebernehmen.Size = New System.Drawing.Size(132, 23)
         Me.btnUebernehmen.TabIndex = 2
@@ -79,10 +84,11 @@ Partial Class AdressenSelector
         Me.dgAdressen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgAdressen.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDNRDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.FirmaDataGridViewTextBoxColumn, Me.AdresseDataGridViewTextBoxColumn, Me.PLZDataGridViewTextBoxColumn, Me.OrtDataGridViewTextBoxColumn, Me.KundengruppeDataGridViewTextBoxColumn, Me.PreislisteDataGridViewTextBoxColumn, Me.LandDataGridViewTextBoxColumn})
         Me.dgAdressen.DataSource = Me.OfAdressenlisteBindingSource
-        Me.dgAdressen.Location = New System.Drawing.Point(12, 36)
+        Me.dgAdressen.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgAdressen.Location = New System.Drawing.Point(0, 0)
         Me.dgAdressen.Name = "dgAdressen"
         Me.dgAdressen.ReadOnly = True
-        Me.dgAdressen.Size = New System.Drawing.Size(537, 214)
+        Me.dgAdressen.Size = New System.Drawing.Size(544, 263)
         Me.dgAdressen.TabIndex = 3
         '
         'IDNRDataGridViewTextBoxColumn
@@ -171,30 +177,52 @@ Partial Class AdressenSelector
         '
         'btnDetails
         '
-        Me.btnDetails.Location = New System.Drawing.Point(417, 6)
+        Me.btnDetails.Location = New System.Drawing.Point(409, 0)
         Me.btnDetails.Name = "btnDetails"
         Me.btnDetails.Size = New System.Drawing.Size(132, 23)
         Me.btnDetails.TabIndex = 3
         Me.btnDetails.Text = "Details"
         Me.btnDetails.UseVisualStyleBackColor = True
         '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.txtSuche)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnDetails)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.btnUebernehmen)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgAdressen)
+        Me.SplitContainer1.Size = New System.Drawing.Size(544, 292)
+        Me.SplitContainer1.SplitterDistance = 25
+        Me.SplitContainer1.TabIndex = 4
+        '
         'AdressenSelector
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(561, 262)
-        Me.Controls.Add(Me.btnDetails)
-        Me.Controls.Add(Me.dgAdressen)
-        Me.Controls.Add(Me.btnUebernehmen)
-        Me.Controls.Add(Me.txtSuche)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(544, 292)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "AdressenSelector"
         Me.Text = "Adressen Selector"
         CType(Me.dgAdressen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfAdressenlisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -215,4 +243,5 @@ Partial Class AdressenSelector
     Friend WithEvents PreislisteDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LandDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnDetails As System.Windows.Forms.Button
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
 End Class

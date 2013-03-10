@@ -286,10 +286,10 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.Designer.vb">
+    <Compile Include="Mitarbeiter\Mitarbeiter.Designer.vb">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.vb">
+    <Compile Include="Mitarbeiter\Mitarbeiter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Preise\ArtikelPreisregeln.Designer.vb">
@@ -440,7 +440,7 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Mitarbeiter\Mitarbeiter.resx">
+    <EmbeddedResource Include="Mitarbeiter\Mitarbeiter.resx">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Preise\ArtikelPreisregeln.resx">

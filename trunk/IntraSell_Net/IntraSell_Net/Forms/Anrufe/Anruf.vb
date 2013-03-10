@@ -1,4 +1,5 @@
-﻿Public Class Anruf
+﻿Imports IntraSell_DLL
+Public Class Anruf
     'Implements InterfacePrintable
 
 
@@ -12,7 +13,7 @@
     Private Sub AnruflisteBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles AnruflisteBindingNavigatorSaveItem.Click
         Try
             Me.Validate()
-            Me.AnruflisteBindingSource.EndEdit() 
+            Me.AnruflisteBindingSource.EndEdit()
             Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
         Catch ex As Exception
             HandleAppError(ex)
@@ -34,7 +35,7 @@
 
             Me.AnruflisteBindingSource.AddNew()
             Me.AdressenControl1.IDNR = IDNR
-           
+
             BindingNavigatorAddNewItem_Click(Nothing, Nothing)
 
         Catch ex As Exception
@@ -88,11 +89,34 @@
     End Sub
 
     Private Sub AdressenAnlageControl1_OnNewIdnrCreated(IDNR As System.Int32) Handles AdressenAnlageControl1.OnNewIdnrCreated
-        'reload
-        Me.AdressenControl1.Refresh()
-        Me.AdressenControl1.IDNR = IDNR
-        'Save Text 
-        Me.NotizenTextBox.Text += vbNewLine & "Adresse:" & vbNewLine & AdressenAnlageControl1.AdresseTextBox.Text
+        Try
+            'reload
+            Me.AdressenControl1.Refresh()
+            Me.AdressenControl1.IDNR = IDNR
+            'Save Text 
+            Me.NotizenTextBox.Text += vbNewLine & "Adresse:" & vbNewLine & AdressenAnlageControl1.AdresseTextBox.Text
+
+            Me.FirmaTextBox.Text = firstRow("select firma from ofAdressen where idnr = " & IDNR)
+            Me.AdresseTextBox.Text = firstRow("select adresse from ofAdressen where idnr = " & IDNR)
+            Me.PLZTextBox.Text = firstRow("select PLZ from ofAdressen where idnr = " & IDNR)
+            Me.OrtTextBox.Text = firstRow("select Ort from ofAdressen where idnr = " & IDNR)
+            Me.TelTextBox.Text = firstRow("select Tel from ofAdressen where idnr = " & IDNR)
+            Me.mobilTextBox.Text = firstRow("select Mobil from ofAdressen where idnr = " & IDNR)
+            Me.EmailTextBox.Text = firstRow("select Email from ofAdressen where idnr = " & IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
- 
+
+    Private Sub AngebotToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AngebotToolStripMenuItem.Click
+        Try
+            Dim v As Vorgang = New Vorgang
+            v.MdiParent = Me.MdiParent
+            v.Show()
+            v.BeginNewVorgang("AN", Me.AdressenControl1.IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
 End Class

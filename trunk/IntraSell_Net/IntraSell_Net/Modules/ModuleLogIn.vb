@@ -52,15 +52,12 @@ Module ModuleLogIn
 
     Public Function LoginUser(ByVal username As String, ByVal passwort As String) As Boolean
         Try
-
             'check if mitarbeiter login ok
-
             writeLog("Check user name and passwort.")
-
 
             Dim rs As MySqlDataReader
             Dim sql As String
-            sql = "select idnr from ofMitarbeiter where Username = '" & username & "' and Passwort = '" & passwort & "'"
+            sql = "select IDNR from ofMitarbeiter where Username = '" & username & "' and Passwort = '" & passwort & "'"
             rs = openRecordset(sql)
             If rs.Read Then
                 ModuleGlobals.MitarbeiterID = CInt(rs("IDNR"))
@@ -82,6 +79,7 @@ Module ModuleLogIn
             rs.Close()
 
             'else admin login
+            Return True
             writeLog("Admin mode")
             'If passwort & "" <> VarValue("adminpass") Then
             '    UsernameTextBox.ForeColor = Color.Red
@@ -93,6 +91,7 @@ Module ModuleLogIn
 
 
         Catch ex As Exception
+            Return False
             HandleAppError(ex)
         End Try
     End Function

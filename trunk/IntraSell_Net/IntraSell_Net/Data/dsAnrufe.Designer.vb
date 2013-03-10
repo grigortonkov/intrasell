@@ -1267,6 +1267,16 @@ Partial Public Class dsAnrufe
         
         Private columnVerrechnung As Global.System.Data.DataColumn
         
+        Private columnNAnruf1 As Global.System.Data.DataColumn
+        
+        Private columnAngebot As Global.System.Data.DataColumn
+        
+        Private columnWeitereInformationen As Global.System.Data.DataColumn
+        
+        Private columnInformationPer As Global.System.Data.DataColumn
+        
+        Private columnWettbewerb As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1383,6 +1393,46 @@ Partial Public Class dsAnrufe
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NAnruf1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNAnruf1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AngebotColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAngebot
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WeitereInformationenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWeitereInformationen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property InformationPerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInformationPer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WettbewerbColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWettbewerb
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1419,9 +1469,9 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddofanrufeRow(ByVal AdrNr As Integer, ByVal LAenderung As Date, ByVal LKontakt As Date, ByVal NAnruf As Date, ByVal Notizen As String, ByVal MitarbeiterNr As Integer, ByVal BeginZeit As Date, ByVal EndeZeit As Date, ByVal Verrechnung As Boolean) As ofanrufeRow
+        Public Overloads Function AddofanrufeRow(ByVal AdrNr As Integer, ByVal LAenderung As Date, ByVal LKontakt As Date, ByVal NAnruf As Date, ByVal Notizen As String, ByVal MitarbeiterNr As Integer, ByVal BeginZeit As Date, ByVal EndeZeit As Date, ByVal Verrechnung As Boolean, ByVal NAnruf1 As String, ByVal Angebot As Boolean, ByVal WeitereInformationen As Boolean, ByVal InformationPer As String, ByVal Wettbewerb As String) As ofanrufeRow
             Dim rowofanrufeRow As ofanrufeRow = CType(Me.NewRow,ofanrufeRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung}
+            Dim columnValuesArray() As Object = New Object() {Nothing, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, NAnruf1, Angebot, WeitereInformationen, InformationPer, Wettbewerb}
             rowofanrufeRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowofanrufeRow)
             Return rowofanrufeRow
@@ -1460,6 +1510,11 @@ Partial Public Class dsAnrufe
             Me.columnBeginZeit = MyBase.Columns("BeginZeit")
             Me.columnEndeZeit = MyBase.Columns("EndeZeit")
             Me.columnVerrechnung = MyBase.Columns("Verrechnung")
+            Me.columnNAnruf1 = MyBase.Columns("NAnruf1")
+            Me.columnAngebot = MyBase.Columns("Angebot")
+            Me.columnWeitereInformationen = MyBase.Columns("WeitereInformationen")
+            Me.columnInformationPer = MyBase.Columns("InformationPer")
+            Me.columnWettbewerb = MyBase.Columns("Wettbewerb")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1485,6 +1540,16 @@ Partial Public Class dsAnrufe
             MyBase.Columns.Add(Me.columnEndeZeit)
             Me.columnVerrechnung = New Global.System.Data.DataColumn("Verrechnung", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnVerrechnung)
+            Me.columnNAnruf1 = New Global.System.Data.DataColumn("NAnruf1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNAnruf1)
+            Me.columnAngebot = New Global.System.Data.DataColumn("Angebot", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAngebot)
+            Me.columnWeitereInformationen = New Global.System.Data.DataColumn("WeitereInformationen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWeitereInformationen)
+            Me.columnInformationPer = New Global.System.Data.DataColumn("InformationPer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInformationPer)
+            Me.columnWettbewerb = New Global.System.Data.DataColumn("Wettbewerb", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWettbewerb)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAnrufNr}, true))
             Me.columnAnrufNr.AutoIncrement = true
             Me.columnAnrufNr.AutoIncrementSeed = -1
@@ -1493,6 +1558,10 @@ Partial Public Class dsAnrufe
             Me.columnAnrufNr.Unique = true
             Me.columnVerrechnung.AllowDBNull = false
             Me.columnVerrechnung.DefaultValue = CType(false,Boolean)
+            Me.columnNAnruf1.Caption = "NAnruf"
+            Me.columnNAnruf1.MaxLength = 50
+            Me.columnInformationPer.MaxLength = 45
+            Me.columnWettbewerb.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2219,6 +2288,16 @@ Partial Public Class dsAnrufe
         
         Private columnMitarbeiterName As Global.System.Data.DataColumn
         
+        Private columnNAnruf1 As Global.System.Data.DataColumn
+        
+        Private columnAngebot As Global.System.Data.DataColumn
+        
+        Private columnWeitereInformationen As Global.System.Data.DataColumn
+        
+        Private columnInformationPer As Global.System.Data.DataColumn
+        
+        Private columnWettbewerb As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2423,6 +2502,46 @@ Partial Public Class dsAnrufe
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NAnruf1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNAnruf1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AngebotColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAngebot
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WeitereInformationenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWeitereInformationen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property InformationPerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInformationPer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WettbewerbColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWettbewerb
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2479,9 +2598,14 @@ Partial Public Class dsAnrufe
                     ByVal Mobil As String,  _
                     ByVal Email As String,  _
                     ByVal Web As String,  _
-                    ByVal MitarbeiterName As String) As AnruflisteRow
+                    ByVal MitarbeiterName As String,  _
+                    ByVal NAnruf1 As String,  _
+                    ByVal Angebot As Boolean,  _
+                    ByVal WeitereInformationen As Boolean,  _
+                    ByVal InformationPer As String,  _
+                    ByVal Wettbewerb As String) As AnruflisteRow
             Dim rowAnruflisteRow As AnruflisteRow = CType(Me.NewRow,AnruflisteRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Firma, Adresse, PLZ, Ort, Land, Tel, Fax, Mobil, Email, Web, MitarbeiterName}
+            Dim columnValuesArray() As Object = New Object() {Nothing, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Firma, Adresse, PLZ, Ort, Land, Tel, Fax, Mobil, Email, Web, MitarbeiterName, NAnruf1, Angebot, WeitereInformationen, InformationPer, Wettbewerb}
             rowAnruflisteRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowAnruflisteRow)
             Return rowAnruflisteRow
@@ -2531,6 +2655,11 @@ Partial Public Class dsAnrufe
             Me.columnEmail = MyBase.Columns("Email")
             Me.columnWeb = MyBase.Columns("Web")
             Me.columnMitarbeiterName = MyBase.Columns("MitarbeiterName")
+            Me.columnNAnruf1 = MyBase.Columns("NAnruf1")
+            Me.columnAngebot = MyBase.Columns("Angebot")
+            Me.columnWeitereInformationen = MyBase.Columns("WeitereInformationen")
+            Me.columnInformationPer = MyBase.Columns("InformationPer")
+            Me.columnWettbewerb = MyBase.Columns("Wettbewerb")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2578,6 +2707,16 @@ Partial Public Class dsAnrufe
             MyBase.Columns.Add(Me.columnWeb)
             Me.columnMitarbeiterName = New Global.System.Data.DataColumn("MitarbeiterName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMitarbeiterName)
+            Me.columnNAnruf1 = New Global.System.Data.DataColumn("NAnruf1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNAnruf1)
+            Me.columnAngebot = New Global.System.Data.DataColumn("Angebot", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAngebot)
+            Me.columnWeitereInformationen = New Global.System.Data.DataColumn("WeitereInformationen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWeitereInformationen)
+            Me.columnInformationPer = New Global.System.Data.DataColumn("InformationPer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInformationPer)
+            Me.columnWettbewerb = New Global.System.Data.DataColumn("Wettbewerb", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWettbewerb)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAnrufNr}, true))
             Me.columnAnrufNr.AutoIncrement = true
             Me.columnAnrufNr.AutoIncrementSeed = -1
@@ -2597,6 +2736,10 @@ Partial Public Class dsAnrufe
             Me.columnEmail.MaxLength = 50
             Me.columnWeb.MaxLength = 50
             Me.columnMitarbeiterName.MaxLength = 50
+            Me.columnNAnruf1.Caption = "NAnruf"
+            Me.columnNAnruf1.MaxLength = 50
+            Me.columnInformationPer.MaxLength = 45
+            Me.columnWettbewerb.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4278,6 +4421,81 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NAnruf1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableofanrufe.NAnruf1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NAnruf1' in table 'ofanrufe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofanrufe.NAnruf1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Angebot() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableofanrufe.AngebotColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Angebot' in table 'ofanrufe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofanrufe.AngebotColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property WeitereInformationen() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableofanrufe.WeitereInformationenColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'WeitereInformationen' in table 'ofanrufe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofanrufe.WeitereInformationenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property InformationPer() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableofanrufe.InformationPerColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'InformationPer' in table 'ofanrufe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofanrufe.InformationPerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Wettbewerb() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableofanrufe.WettbewerbColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Wettbewerb' in table 'ofanrufe' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofanrufe.WettbewerbColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAdrNrNull() As Boolean
             Return Me.IsNull(Me.tableofanrufe.AdrNrColumn)
         End Function
@@ -4370,6 +4588,66 @@ Partial Public Class dsAnrufe
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetEndeZeitNull()
             Me(Me.tableofanrufe.EndeZeitColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNAnruf1Null() As Boolean
+            Return Me.IsNull(Me.tableofanrufe.NAnruf1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNAnruf1Null()
+            Me(Me.tableofanrufe.NAnruf1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAngebotNull() As Boolean
+            Return Me.IsNull(Me.tableofanrufe.AngebotColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAngebotNull()
+            Me(Me.tableofanrufe.AngebotColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWeitereInformationenNull() As Boolean
+            Return Me.IsNull(Me.tableofanrufe.WeitereInformationenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWeitereInformationenNull()
+            Me(Me.tableofanrufe.WeitereInformationenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsInformationPerNull() As Boolean
+            Return Me.IsNull(Me.tableofanrufe.InformationPerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetInformationPerNull()
+            Me(Me.tableofanrufe.InformationPerColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWettbewerbNull() As Boolean
+            Return Me.IsNull(Me.tableofanrufe.WettbewerbColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWettbewerbNull()
+            Me(Me.tableofanrufe.WettbewerbColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5278,6 +5556,81 @@ Partial Public Class dsAnrufe
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property NAnruf1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAnrufliste.NAnruf1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NAnruf1' in table 'Anrufliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAnrufliste.NAnruf1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Angebot() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableAnrufliste.AngebotColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Angebot' in table 'Anrufliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAnrufliste.AngebotColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property WeitereInformationen() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableAnrufliste.WeitereInformationenColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'WeitereInformationen' in table 'Anrufliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAnrufliste.WeitereInformationenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property InformationPer() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAnrufliste.InformationPerColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'InformationPer' in table 'Anrufliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAnrufliste.InformationPerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Wettbewerb() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableAnrufliste.WettbewerbColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Wettbewerb' in table 'Anrufliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableAnrufliste.WettbewerbColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsAdrNrNull() As Boolean
             Return Me.IsNull(Me.tableAnrufliste.AdrNrColumn)
         End Function
@@ -5502,6 +5855,66 @@ Partial Public Class dsAnrufe
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetMitarbeiterNameNull()
             Me(Me.tableAnrufliste.MitarbeiterNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsNAnruf1Null() As Boolean
+            Return Me.IsNull(Me.tableAnrufliste.NAnruf1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetNAnruf1Null()
+            Me(Me.tableAnrufliste.NAnruf1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAngebotNull() As Boolean
+            Return Me.IsNull(Me.tableAnrufliste.AngebotColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAngebotNull()
+            Me(Me.tableAnrufliste.AngebotColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWeitereInformationenNull() As Boolean
+            Return Me.IsNull(Me.tableAnrufliste.WeitereInformationenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWeitereInformationenNull()
+            Me(Me.tableAnrufliste.WeitereInformationenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsInformationPerNull() As Boolean
+            Return Me.IsNull(Me.tableAnrufliste.InformationPerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetInformationPerNull()
+            Me(Me.tableAnrufliste.InformationPerColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWettbewerbNull() As Boolean
+            Return Me.IsNull(Me.tableAnrufliste.WettbewerbColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWettbewerbNull()
+            Me(Me.tableAnrufliste.WettbewerbColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7287,12 +7700,16 @@ Namespace dsAnrufeTableAdapters
             tableMapping.ColumnMappings.Add("AdrNr", "AdrNr")
             tableMapping.ColumnMappings.Add("LAenderung", "LAenderung")
             tableMapping.ColumnMappings.Add("LKontakt", "LKontakt")
-            tableMapping.ColumnMappings.Add("NAnruf", "NAnruf")
             tableMapping.ColumnMappings.Add("Notizen", "Notizen")
             tableMapping.ColumnMappings.Add("MitarbeiterNr", "MitarbeiterNr")
             tableMapping.ColumnMappings.Add("BeginZeit", "BeginZeit")
             tableMapping.ColumnMappings.Add("EndeZeit", "EndeZeit")
             tableMapping.ColumnMappings.Add("Verrechnung", "Verrechnung")
+            tableMapping.ColumnMappings.Add("NAnruf", "NAnruf1")
+            tableMapping.ColumnMappings.Add("Angebot", "Angebot")
+            tableMapping.ColumnMappings.Add("WeitereInformationen", "WeitereInformationen")
+            tableMapping.ColumnMappings.Add("InformationPer", "InformationPer")
+            tableMapping.ColumnMappings.Add("Wettbewerb", "Wettbewerb")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -7309,9 +7726,11 @@ Namespace dsAnrufeTableAdapters
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (AdrNr, LAenderung, LKontakt, NAnr"& _ 
-                "uf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@A"& _ 
-                "drNr, @LAenderung, @LKontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZeit, @En"& _ 
-                "deZeit, @Verrechnung)"
+                "uf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Angebot, WeitereIn"& _ 
+                "formationen, InformationPer, Wettbewerb)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@AdrNr, @LAenderung, @L"& _ 
+                "Kontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZeit, @EndeZeit, @Verrechnung,"& _ 
+                " @Angebot, @WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @InformationPer, @W"& _ 
+                "ettbewerb)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AdrNr"
@@ -7379,12 +7798,46 @@ Namespace dsAnrufeTableAdapters
             param.IsNullable = true
             param.SourceColumn = "Verrechnung"
             Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Angebot"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "Angebot"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@WeitereInformationen"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "WeitereInformationen"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@InformationPer"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "InformationPer"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Wettbewerb"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
+            param.IsNullable = true
+            param.SourceColumn = "Wettbewerb"
+            Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE       ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                AdrNr = @AdrNr, LAenderung = @LAenderun"& _ 
                 "g, LKontakt = @LKontakt, NAnruf = @NAnruf, Notizen = @Notizen, MitarbeiterNr = @"& _ 
                 "MitarbeiterNr, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BeginZeit = @BeginZeit, EndeZeit = @En"& _ 
-                "deZeit, Verrechnung = @Verrechnung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnrufNr = @Original_AnrufNr)"
+                "deZeit, Verrechnung = @Verrechnung, Angebot = @Angebot, WeitereInformationen = @"& _ 
+                "WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         InformationPer = @InformationPe"& _ 
+                "r, Wettbewerb = @Wettbewerb"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnrufNr = @Original_AnrufNr)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AdrNr"
@@ -7453,6 +7906,38 @@ Namespace dsAnrufeTableAdapters
             param.SourceColumn = "Verrechnung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Angebot"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "Angebot"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@WeitereInformationen"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "WeitereInformationen"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@InformationPer"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "InformationPer"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Wettbewerb"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
+            param.IsNullable = true
+            param.SourceColumn = "Wettbewerb"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_AnrufNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
@@ -7475,8 +7960,9 @@ Namespace dsAnrufeTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT `AnrufNr`, `AdrNr`, `LAenderung`, `LKontakt`, `NAnruf`, `Notizen`, `Mitarb"& _ 
-                "eiterNr`, `BeginZeit`, `EndeZeit`, `Verrechnung` FROM `ofanrufe`"
+            Me._commandCollection(0).CommandText = "SELECT        AnrufNr, AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterN"& _ 
+                "r, BeginZeit, EndeZeit, Verrechnung, Angebot, WeitereInformationen, InformationP"& _ 
+                "er, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Wettbewerb"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ofanrufe"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -7557,7 +8043,7 @@ Namespace dsAnrufeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object) As Integer
+        Public Overloads Overridable Function Insert(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String) As Integer
             If (AdrNr.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(AdrNr.Value,Integer)
             Else
@@ -7603,6 +8089,26 @@ Namespace dsAnrufeTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(8).Value = CType(Verrechnung,Object)
             End If
+            If (Angebot Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Angebot,Object)
+            End If
+            If (WeitereInformationen Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(WeitereInformationen,Object)
+            End If
+            If (InformationPer Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(InformationPer,String)
+            End If
+            If (Wettbewerb Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Wettbewerb,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7622,7 +8128,7 @@ Namespace dsAnrufeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Original_AnrufNr As Integer) As Integer
+        Public Overloads Overridable Function Update(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String, ByVal Original_AnrufNr As Integer) As Integer
             If (AdrNr.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(AdrNr.Value,Integer)
             Else
@@ -7668,7 +8174,27 @@ Namespace dsAnrufeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Verrechnung,Object)
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_AnrufNr,Integer)
+            If (Angebot Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Angebot,Object)
+            End If
+            If (WeitereInformationen Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(WeitereInformationen,Object)
+            End If
+            If (InformationPer Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(InformationPer,String)
+            End If
+            If (Wettbewerb Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Wettbewerb,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_AnrufNr,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8567,7 +9093,6 @@ Namespace dsAnrufeTableAdapters
             tableMapping.ColumnMappings.Add("AdrNr", "AdrNr")
             tableMapping.ColumnMappings.Add("LAenderung", "LAenderung")
             tableMapping.ColumnMappings.Add("LKontakt", "LKontakt")
-            tableMapping.ColumnMappings.Add("NAnruf", "NAnruf")
             tableMapping.ColumnMappings.Add("Notizen", "Notizen")
             tableMapping.ColumnMappings.Add("MitarbeiterNr", "MitarbeiterNr")
             tableMapping.ColumnMappings.Add("BeginZeit", "BeginZeit")
@@ -8584,6 +9109,11 @@ Namespace dsAnrufeTableAdapters
             tableMapping.ColumnMappings.Add("Email", "Email")
             tableMapping.ColumnMappings.Add("Web", "Web")
             tableMapping.ColumnMappings.Add("MitarbeiterName", "MitarbeiterName")
+            tableMapping.ColumnMappings.Add("NAnruf", "NAnruf1")
+            tableMapping.ColumnMappings.Add("Angebot", "Angebot")
+            tableMapping.ColumnMappings.Add("WeitereInformationen", "WeitereInformationen")
+            tableMapping.ColumnMappings.Add("InformationPer", "InformationPer")
+            tableMapping.ColumnMappings.Add("Wettbewerb", "Wettbewerb")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -8600,9 +9130,11 @@ Namespace dsAnrufeTableAdapters
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (AdrNr, LAenderung, LKontakt, NAnr"& _ 
-                "uf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@A"& _ 
-                "drNr, @LAenderung, @LKontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZeit, @En"& _ 
-                "deZeit, @Verrechnung)"
+                "uf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Angebot, WeitereIn"& _ 
+                "formationen, InformationPer, Wettbewerb)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@AdrNr, @LAenderung, @L"& _ 
+                "Kontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZeit, @EndeZeit, @Verrechnung,"& _ 
+                " @Angebot, @WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @InformationPer, @W"& _ 
+                "ettbewerb)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AdrNr"
@@ -8670,12 +9202,46 @@ Namespace dsAnrufeTableAdapters
             param.IsNullable = true
             param.SourceColumn = "Verrechnung"
             Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Angebot"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "Angebot"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@WeitereInformationen"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "WeitereInformationen"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@InformationPer"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "InformationPer"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Wettbewerb"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
+            param.IsNullable = true
+            param.SourceColumn = "Wettbewerb"
+            Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE       ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" SET                AdrNr = @AdrNr, LAenderung = @LAenderu"& _ 
-                "ng, LKontakt = @LKontakt, NAnruf = @NAnruf, Notizen = @Notizen, MitarbeiterNr = "& _ 
-                "@MitarbeiterNr, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BeginZeit = @BeginZeit, EndeZeit = @E"& _ 
-                "ndeZeit, Verrechnung = @Verrechnung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnrufNr = @Original_AnrufNr)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE       ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                AdrNr = @AdrNr, LAenderung = @LAenderun"& _ 
+                "g, LKontakt = @LKontakt, NAnruf = @NAnruf, Notizen = @Notizen, MitarbeiterNr = @"& _ 
+                "MitarbeiterNr, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BeginZeit = @BeginZeit, EndeZeit = @En"& _ 
+                "deZeit, Verrechnung = @Verrechnung, Angebot = @Angebot, WeitereInformationen = @"& _ 
+                "WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         InformationPer = @InformationPe"& _ 
+                "r, Wettbewerb = @Wettbewerb"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnrufNr = @Original_AnrufNr)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AdrNr"
@@ -8744,6 +9310,38 @@ Namespace dsAnrufeTableAdapters
             param.SourceColumn = "Verrechnung"
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Angebot"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "Angebot"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@WeitereInformationen"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
+            param.Size = 1024
+            param.IsNullable = true
+            param.SourceColumn = "WeitereInformationen"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@InformationPer"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 45
+            param.IsNullable = true
+            param.SourceColumn = "InformationPer"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Wettbewerb"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
+            param.IsNullable = true
+            param.SourceColumn = "Wettbewerb"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_AnrufNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
@@ -8766,19 +9364,21 @@ Namespace dsAnrufeTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT     ofanrufe.AnrufNr, ofanrufe.AdrNr, ofanrufe.LAenderung, ofanrufe.LKonta"& _ 
-                "kt, ofanrufe.NAnruf, ofanrufe.Notizen, ofanrufe.MitarbeiterNr, ofanrufe.BeginZei"& _ 
-                "t, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofanrufe.EndeZeit, ofanrufe.Verrechnung, ofadressen.F"& _ 
-                "irma, ofadressen.Adresse, grplz.PLZ, ofadressen.Ort, grland.Name AS Land, ofadre"& _ 
-                "ssen.Tel, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofadressen.Fax, ofadressen.Mobil, ofadressen.E"& _ 
-                "mail, ofadressen.Web, ofmitarbeiter.Name AS MitarbeiterName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         grland"& _ 
-                " RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofadressen LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "           grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr "& _ 
-                "ON grland.IdNr = ofadressen.Land AND grland.IdNr = ofadressen.Land AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "               grland.IdNr = ofadressen.Land RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
-                "     ofmitarbeiter RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      ofanrufe ON ofmitarbe"& _ 
-                "iter.IDNR = ofanrufe.MitarbeiterNr ON ofadressen.IDNR = ofanrufe.AdrNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
-                " ofanrufe.AnrufNr DESC"
+            Me._commandCollection(0).CommandText = "SELECT        ofanrufe.AnrufNr, ofanrufe.AdrNr, ofanrufe.LAenderung, ofanrufe.LKo"& _ 
+                "ntakt, ofanrufe.NAnruf, ofanrufe.Notizen, ofanrufe.MitarbeiterNr, ofanrufe.Begin"& _ 
+                "Zeit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofanrufe.EndeZeit, ofanrufe.Verrechnung, ofadre"& _ 
+                "ssen.Firma, ofadressen.Adresse, grplz.PLZ, ofadressen.Ort, grland.Name AS Land, "& _ 
+                "ofadressen.Tel, ofadressen.Fax, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofadressen.Mobil, ofa"& _ 
+                "dressen.Email, ofadressen.Web, ofmitarbeiter.Name AS MitarbeiterName, ofanrufe.A"& _ 
+                "ngebot, ofanrufe.WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofanrufe.Infor"& _ 
+                "mationPer, ofanrufe.Wettbewerb"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            grland RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "                  ofadressen LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz ON "& _ 
+                "ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr ON grland.IdNr = ofa"& _ 
+                "dressen.Land AND grland.IdNr = ofadressen.Land AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         gr"& _ 
+                "land.IdNr = ofadressen.Land RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofmitarbe"& _ 
+                "iter RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ofanrufe ON ofmitarbeiter.IDNR ="& _ 
+                " ofanrufe.MitarbeiterNr ON ofadressen.IDNR = ofanrufe.AdrNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY ofanrufe.A"& _ 
+                "nrufNr DESC"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

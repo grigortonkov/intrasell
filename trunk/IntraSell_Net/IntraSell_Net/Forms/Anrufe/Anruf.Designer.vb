@@ -39,6 +39,10 @@ Partial Class Anruf
         Dim Label1 As System.Windows.Forms.Label
         Dim Label2 As System.Windows.Forms.Label
         Dim Label3 As System.Windows.Forms.Label
+        Dim ErgebnisLabel As System.Windows.Forms.Label
+        Dim AngebotLabel As System.Windows.Forms.Label
+        Dim InformationPerLabel As System.Windows.Forms.Label
+        Dim WettbewerbLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Anruf))
         Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
         Me.AnruflisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -77,6 +81,12 @@ Partial Class Anruf
         Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         Me.AdressenAnlageControl1 = New IntraSell_Net.AdressenAnlageControl()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.AngebotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AngebotCheckBox = New System.Windows.Forms.CheckBox()
+        Me.WeitereInformationenCheckBox = New System.Windows.Forms.CheckBox()
+        Me.InformationPerComboBox = New System.Windows.Forms.ComboBox()
+        Me.WettbewerbTextBox = New System.Windows.Forms.TextBox()
         AdrNrLabel = New System.Windows.Forms.Label()
         LAenderungLabel = New System.Windows.Forms.Label()
         LKontaktLabel = New System.Windows.Forms.Label()
@@ -93,10 +103,15 @@ Partial Class Anruf
         Label1 = New System.Windows.Forms.Label()
         Label2 = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
+        ErgebnisLabel = New System.Windows.Forms.Label()
+        AngebotLabel = New System.Windows.Forms.Label()
+        InformationPerLabel = New System.Windows.Forms.Label()
+        WettbewerbLabel = New System.Windows.Forms.Label()
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AnruflisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AnruflisteBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.AnruflisteBindingNavigator.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'AdrNrLabel
@@ -111,7 +126,7 @@ Partial Class Anruf
         'LAenderungLabel
         '
         LAenderungLabel.AutoSize = True
-        LAenderungLabel.Location = New System.Drawing.Point(378, 70)
+        LAenderungLabel.Location = New System.Drawing.Point(378, 77)
         LAenderungLabel.Name = "LAenderungLabel"
         LAenderungLabel.Size = New System.Drawing.Size(88, 13)
         LAenderungLabel.TabIndex = 5
@@ -120,7 +135,7 @@ Partial Class Anruf
         'LKontaktLabel
         '
         LKontaktLabel.AutoSize = True
-        LKontaktLabel.Location = New System.Drawing.Point(378, 96)
+        LKontaktLabel.Location = New System.Drawing.Point(378, 102)
         LKontaktLabel.Name = "LKontaktLabel"
         LKontaktLabel.Size = New System.Drawing.Size(82, 13)
         LKontaktLabel.TabIndex = 7
@@ -243,6 +258,41 @@ Partial Class Anruf
         Label3.TabIndex = 35
         Label3.Text = "Email:"
         '
+        'ErgebnisLabel
+        '
+        ErgebnisLabel.AutoSize = True
+        ErgebnisLabel.Location = New System.Drawing.Point(21, 381)
+        ErgebnisLabel.Name = "ErgebnisLabel"
+        ErgebnisLabel.Size = New System.Drawing.Size(51, 13)
+        ErgebnisLabel.TabIndex = 40
+        ErgebnisLabel.Text = "Ergebnis:"
+        '
+        'AngebotLabel
+        '
+        AngebotLabel.AutoSize = True
+        AngebotLabel.Location = New System.Drawing.Point(17, 386)
+        AngebotLabel.Name = "AngebotLabel"
+        AngebotLabel.Size = New System.Drawing.Size(0, 13)
+        AngebotLabel.TabIndex = 40
+        '
+        'InformationPerLabel
+        '
+        InformationPerLabel.AutoSize = True
+        InformationPerLabel.Location = New System.Drawing.Point(277, 423)
+        InformationPerLabel.Name = "InformationPerLabel"
+        InformationPerLabel.Size = New System.Drawing.Size(25, 13)
+        InformationPerLabel.TabIndex = 42
+        InformationPerLabel.Text = "per:"
+        '
+        'WettbewerbLabel
+        '
+        WettbewerbLabel.AutoSize = True
+        WettbewerbLabel.Location = New System.Drawing.Point(17, 454)
+        WettbewerbLabel.Name = "WettbewerbLabel"
+        WettbewerbLabel.Size = New System.Drawing.Size(68, 13)
+        WettbewerbLabel.TabIndex = 44
+        WettbewerbLabel.Text = "Wettbewerb:"
+        '
         'DsAnrufe
         '
         Me.DsAnrufe.DataSetName = "dsAnrufe"
@@ -282,7 +332,7 @@ Partial Class Anruf
         Me.AnruflisteBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.AnruflisteBindingNavigator.Name = "AnruflisteBindingNavigator"
         Me.AnruflisteBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.AnruflisteBindingNavigator.Size = New System.Drawing.Size(911, 25)
+        Me.AnruflisteBindingNavigator.Size = New System.Drawing.Size(896, 25)
         Me.AnruflisteBindingNavigator.TabIndex = 0
         Me.AnruflisteBindingNavigator.Text = "BindingNavigator1"
         '
@@ -405,7 +455,7 @@ Partial Class Anruf
         Me.NotizenTextBox.Location = New System.Drawing.Point(139, 145)
         Me.NotizenTextBox.Multiline = True
         Me.NotizenTextBox.Name = "NotizenTextBox"
-        Me.NotizenTextBox.Size = New System.Drawing.Size(489, 314)
+        Me.NotizenTextBox.Size = New System.Drawing.Size(489, 206)
         Me.NotizenTextBox.TabIndex = 5
         '
         'BeginZeitDateTimePicker
@@ -567,11 +617,76 @@ Partial Class Anruf
         Me.AdressenAnlageControl1.Size = New System.Drawing.Size(200, 114)
         Me.AdressenAnlageControl1.TabIndex = 38
         '
+        'Timer1
+        '
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AngebotToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(318, 15)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(165, 24)
+        Me.MenuStrip1.TabIndex = 39
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'AngebotToolStripMenuItem
+        '
+        Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
+        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.AngebotToolStripMenuItem.Text = "&Angebot"
+        '
+        'AngebotCheckBox
+        '
+        Me.AngebotCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.AnruflisteBindingSource, "Angebot", True))
+        Me.AngebotCheckBox.Location = New System.Drawing.Point(139, 381)
+        Me.AngebotCheckBox.Name = "AngebotCheckBox"
+        Me.AngebotCheckBox.Size = New System.Drawing.Size(104, 24)
+        Me.AngebotCheckBox.TabIndex = 41
+        Me.AngebotCheckBox.Text = "will Angebot"
+        Me.AngebotCheckBox.UseVisualStyleBackColor = True
+        '
+        'WeitereInformationenCheckBox
+        '
+        Me.WeitereInformationenCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.AnruflisteBindingSource, "WeitereInformationen", True))
+        Me.WeitereInformationenCheckBox.Location = New System.Drawing.Point(139, 419)
+        Me.WeitereInformationenCheckBox.Name = "WeitereInformationenCheckBox"
+        Me.WeitereInformationenCheckBox.Size = New System.Drawing.Size(155, 24)
+        Me.WeitereInformationenCheckBox.TabIndex = 42
+        Me.WeitereInformationenCheckBox.Text = "will weitere Informationen"
+        Me.WeitereInformationenCheckBox.UseVisualStyleBackColor = True
+        '
+        'InformationPerComboBox
+        '
+        Me.InformationPerComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "InformationPer", True))
+        Me.InformationPerComboBox.FormattingEnabled = True
+        Me.InformationPerComboBox.Items.AddRange(New Object() {"Keine", "Email", "Fax", "Post"})
+        Me.InformationPerComboBox.Location = New System.Drawing.Point(308, 418)
+        Me.InformationPerComboBox.Name = "InformationPerComboBox"
+        Me.InformationPerComboBox.Size = New System.Drawing.Size(121, 21)
+        Me.InformationPerComboBox.TabIndex = 43
+        '
+        'WettbewerbTextBox
+        '
+        Me.WettbewerbTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Wettbewerb", True))
+        Me.WettbewerbTextBox.Location = New System.Drawing.Point(139, 451)
+        Me.WettbewerbTextBox.Name = "WettbewerbTextBox"
+        Me.WettbewerbTextBox.Size = New System.Drawing.Size(155, 20)
+        Me.WettbewerbTextBox.TabIndex = 45
+        '
         'Anruf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(911, 471)
+        Me.ClientSize = New System.Drawing.Size(896, 488)
+        Me.Controls.Add(WettbewerbLabel)
+        Me.Controls.Add(Me.WettbewerbTextBox)
+        Me.Controls.Add(InformationPerLabel)
+        Me.Controls.Add(Me.InformationPerComboBox)
+        Me.Controls.Add(Me.WeitereInformationenCheckBox)
+        Me.Controls.Add(AngebotLabel)
+        Me.Controls.Add(Me.AngebotCheckBox)
+        Me.Controls.Add(ErgebnisLabel)
         Me.Controls.Add(Me.AdressenAnlageControl1)
         Me.Controls.Add(Me.StartStopButton)
         Me.Controls.Add(Label1)
@@ -608,6 +723,8 @@ Partial Class Anruf
         Me.Controls.Add(LandLabel)
         Me.Controls.Add(Me.LandTextBox)
         Me.Controls.Add(Me.AnruflisteBindingNavigator)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Anruf"
         Me.Text = "Anruf"
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).EndInit()
@@ -615,6 +732,8 @@ Partial Class Anruf
         CType(Me.AnruflisteBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.AnruflisteBindingNavigator.ResumeLayout(False)
         Me.AnruflisteBindingNavigator.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -656,4 +775,10 @@ Partial Class Anruf
     Friend WithEvents StartStopButton As System.Windows.Forms.Button
     Friend WithEvents AdressenAnlageControl1 As IntraSell_Net.AdressenAnlageControl
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents AngebotToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AngebotCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents WeitereInformationenCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents InformationPerComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents WettbewerbTextBox As System.Windows.Forms.TextBox
 End Class

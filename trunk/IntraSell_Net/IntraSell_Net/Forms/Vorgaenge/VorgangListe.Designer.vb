@@ -68,6 +68,8 @@ Partial Class VorgangListe
         Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.NotizTextBox = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.SummeVonTextBox = New System.Windows.Forms.TextBox()
         Me.SummeBisTextBox = New System.Windows.Forms.TextBox()
@@ -85,7 +87,7 @@ Partial Class VorgangListe
         Me.DatumUntil = New System.Windows.Forms.DateTimePicker()
         Me.DatumVon = New System.Windows.Forms.DateTimePicker()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.MitarbeiterComboBox = New MitarbeiterControl
+        Me.MitarbeiterComboBox = New IntraSell_Net.MitarbeiterControl()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.LieferantComboBox = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -134,7 +136,7 @@ Partial Class VorgangListe
         '
         'FilterButton
         '
-        Me.FilterButton.Location = New System.Drawing.Point(14, 490)
+        Me.FilterButton.Location = New System.Drawing.Point(14, 521)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
         Me.FilterButton.TabIndex = 19
@@ -452,6 +454,8 @@ Partial Class VorgangListe
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label15)
+        Me.SplitContainer.Panel1.Controls.Add(Me.NotizTextBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label13)
         Me.SplitContainer.Panel1.Controls.Add(Me.SummeVonTextBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.SummeBisTextBox)
@@ -495,6 +499,22 @@ Partial Class VorgangListe
         Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(8, 493)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(34, 13)
+        Me.Label15.TabIndex = 45
+        Me.Label15.Text = "Notiz:"
+        '
+        'NotizTextBox
+        '
+        Me.NotizTextBox.Location = New System.Drawing.Point(94, 490)
+        Me.NotizTextBox.Name = "NotizTextBox"
+        Me.NotizTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.NotizTextBox.TabIndex = 44
         '
         'Label13
         '
@@ -651,6 +671,7 @@ Partial Class VorgangListe
         '
         'MitarbeiterComboBox
         '
+        Me.MitarbeiterComboBox.IDNR = 0
         Me.MitarbeiterComboBox.Location = New System.Drawing.Point(95, 203)
         Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
         Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
@@ -800,4 +821,6 @@ Partial Class VorgangListe
     Friend WithEvents KundNr2DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ErstelltAmDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NotizDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents NotizTextBox As System.Windows.Forms.TextBox
 End Class

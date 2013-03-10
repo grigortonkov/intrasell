@@ -1,10 +1,14 @@
 ﻿Public Class Anrufliste
 
+    Const AnrufNr_index As Integer = 0
+    Const AdrNr_index As Integer = 1
+    Const NAnruf_index As Integer = 4
+
     Private Sub Anrufliste_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
 
         Try
-           
+
             LoadData()
 
             'Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
@@ -12,6 +16,8 @@
             'Me.KundengruppenTableAdapter.Fill(Me.DsAnrufe.Kundengruppen)
 
 
+            Me.BeginZeitVonDateTimePicker.Value = BeginZeitVonDateTimePicker.MinDate
+            Me.BeginZeitBisDateTimePicker.Value = BeginZeitVonDateTimePicker.MaxDate
 
             Me.LandComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
@@ -56,6 +62,15 @@
 
             'filter dataset 
             filter = "1=1 "
+            'Dim d As String = "30/12/2006 00:00:00" 'example 
+
+            If Me.BeginZeitVonDateTimePicker.Value <> Me.BeginZeitVonDateTimePicker.MinDate Then
+                filter = filter & " and beginZeit >= '" + BeginZeitVonDateTimePicker.Value + "'"
+            End If
+
+            If Me.BeginZeitBisDateTimePicker.Value <> Me.BeginZeitBisDateTimePicker.MaxDate Then
+                filter = filter & " and beginZeit <= '" + BeginZeitBisDateTimePicker.Value + "'"
+            End If
 
             If AdressenControl1.IDNR > 0 Then
                 filter = filter & " and AdrNr = " + CStr(AdressenControl1.IDNR)
@@ -85,6 +100,29 @@
                 filter = filter & " and MitarbeiterNr = " + CStr(MitarbeiterControl.IDNR)
             End If
 
+            If Me.NotizTextBox.Text.Length > 0 Then
+                filter = filter & " and Notizen Like '%" + NotizTextBox.Text + "%'"
+            End If
+
+            If Me.AngebotCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and Angebot=True"
+            ElseIf Me.AngebotCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and Angebot=False"
+            End If
+
+            If Me.InfoCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and WeitereInformationen=True"
+            ElseIf Me.InfoCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and WeitereInformationen=False"
+            End If
+
+            If Me.WettberwerbCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and Wettbewerb is not null"
+            ElseIf Me.WettberwerbCheckBox.CheckState = CheckState.Unchecked Then
+                filter = filter & " and Wettbewerb is null"
+
+            End If
+
             If Not filter Is Nothing Then
                 AnruflisteBindingSource.Filter = filter
             Else
@@ -95,7 +133,7 @@
             HandleAppError(ex)
         End Try
     End Sub
- 
+
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
@@ -108,14 +146,11 @@
 
     End Sub
 
-    Private Sub OfAdressenlisteDataGridView_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles OfAdressenlisteDataGridView.CellContentClick
-
-    End Sub
 
     'Format 
     Private Sub DataGridView1_CellFormatting(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellFormattingEventArgs) Handles OfAdressenlisteDataGridView.CellFormatting
 
-        Const NAnruf_index As Integer = 3
+
 
         For Each dr As DataGridViewRow In OfAdressenlisteDataGridView.Rows
             If Not IsDBNull(dr.Cells(NAnruf_index).Value) Then
@@ -141,4 +176,33 @@
         Next
     End Sub
 
+    Private Sub NotizTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles NotizTextBox.TextChanged
+        AnrufButton_Click(Nothing, Nothing)
+    End Sub
+
+
+
+    'Enable Menu angebot erstellen 
+    Private Sub OfAdressenlisteDataGridView_SelectionChanged(sender As System.Object, e As System.EventArgs) Handles OfAdressenlisteDataGridView.SelectionChanged
+        Try
+            If OfAdressenlisteDataGridView.SelectedRows.Count > 0 Then
+                Me.AngebotToolStripMenuItem.Enabled = OfAdressenlisteDataGridView.SelectedRows.Count > 0 _
+               And OfAdressenlisteDataGridView.SelectedRows(0).Cells(1).Value > 0
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub AngebotToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AngebotToolStripMenuItem.Click
+        Try
+            Dim KundNr = OfAdressenlisteDataGridView.SelectedRows(0).Cells(1).Value
+            Dim v As Vorgang = New Vorgang
+            v.MdiParent = Me.MdiParent
+            v.Show()
+            v.BeginNewVorgang("AN", KundNr)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

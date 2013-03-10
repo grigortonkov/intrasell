@@ -180,6 +180,7 @@ Module ModuleBuchVorgangXML
             VorgangXML = xml
             Application.UseWaitCursor = False
         Catch ex As Exception
+            VorgangXML = Nothing
             HandleAppError(ex)
             Application.UseWaitCursor = False
         End Try
