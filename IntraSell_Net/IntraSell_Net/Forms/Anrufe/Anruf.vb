@@ -12,9 +12,12 @@ Public Class Anruf
 
     Private Sub AnruflisteBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles AnruflisteBindingNavigatorSaveItem.Click
         Try
+            Me.AdressenProfil1.UpdateAll()
+
             Me.Validate()
             Me.AnruflisteBindingSource.EndEdit()
             Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
