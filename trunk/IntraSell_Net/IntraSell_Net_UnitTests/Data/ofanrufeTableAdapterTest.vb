@@ -73,7 +73,7 @@ Public Class ofanrufeTableAdapterTest
         Dim Verrechnung As Object = False
         Dim expected As Integer = 1
         Dim actual As Integer
-        actual = target.Insert(AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung)
+        actual = target.Insert(AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, False, False, "Email", "TopRein")
         Assert.AreEqual(expected, actual)
     End Sub
 
@@ -95,7 +95,7 @@ Public Class ofanrufeTableAdapterTest
         Dim Original_AnrufNr As Integer = 0
         Dim expected As Integer = 0
         Dim actual As Integer
-        actual = target.Update(AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Original_AnrufNr)
+        actual = target.Update(AdrNr, LAenderung, LKontakt, NAnruf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, True, False, "Email", "TopRein", Original_AnrufNr)
         Assert.AreEqual(expected, actual)
     End Sub
 
