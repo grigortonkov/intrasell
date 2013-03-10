@@ -101,6 +101,11 @@
     <Compile Include="Data\dsAdressen.vb">
       <DependentUpon>dsAdressen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsAdressenProfil.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsAnrufe.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,6 +149,12 @@
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB\DBUpgrade.vb" />
+    <Compile Include="Forms\Anrufe\AdressenProfil.Designer.vb">
+      <DependentUpon>AdressenProfil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Anrufe\AdressenProfil.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Anrufe\Anruf.Designer.vb">
       <DependentUpon>Anruf.vb</DependentUpon>
     </Compile>
@@ -286,10 +297,10 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mitarbeiter\Mitarbeiter.Designer.vb">
+    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.Designer.vb">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Mitarbeiter\Mitarbeiter.vb">
+    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Preise\ArtikelPreisregeln.Designer.vb">
@@ -377,6 +388,9 @@
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Anrufe\AdressenProfil.resx">
+      <DependentUpon>AdressenProfil.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Anrufe\Anruf.resx">
       <DependentUpon>Anruf.vb</DependentUpon>
     </EmbeddedResource>
@@ -440,7 +454,7 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mitarbeiter\Mitarbeiter.resx">
+    <EmbeddedResource Include="Forms\Mitarbeiter\Mitarbeiter.resx">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Preise\ArtikelPreisregeln.resx">
@@ -471,6 +485,17 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\dsAdressenProfil.xsc">
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAdressenProfil.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdressenProfil.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAdressenProfil.xss">
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
     </None>
     <None Include="Data\dsAnrufe.xsc">
       <DependentUpon>dsAnrufe.xsd</DependentUpon>
