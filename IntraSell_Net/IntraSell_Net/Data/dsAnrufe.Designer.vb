@@ -7716,8 +7716,8 @@ Namespace dsAnrufeTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NAnruf"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.Size = 50
             param.IsNullable = True
             param.SourceColumn = "NAnruf"
@@ -7823,8 +7823,8 @@ Namespace dsAnrufeTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NAnruf"
-            param.DbType = Global.System.Data.DbType.[String]
-            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
             param.Size = 50
             param.IsNullable = True
             param.SourceColumn = "NAnruf"
@@ -8004,7 +8004,7 @@ Namespace dsAnrufeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
-        Public Overridable Overloads Function Insert(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String) As Integer
+        Public Overridable Overloads Function Insert(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As Global.System.Nullable(Of Date), ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String) As Integer
             If (AdrNr.HasValue = True) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(AdrNr.Value, Integer)
             Else
@@ -8020,10 +8020,10 @@ Namespace dsAnrufeTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (NAnruf Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            If (NAnruf.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(NAnruf.Value, Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(NAnruf, String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
             If (Notizen Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
@@ -8089,7 +8089,7 @@ Namespace dsAnrufeTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
-        Public Overridable Overloads Function Update(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As String, ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String, ByVal Original_AnrufNr As Integer) As Integer
+        Public Overridable Overloads Function Update(ByVal AdrNr As Global.System.Nullable(Of Integer), ByVal LAenderung As Global.System.Nullable(Of Date), ByVal LKontakt As Global.System.Nullable(Of Date), ByVal NAnruf As Global.System.Nullable(Of Date), ByVal Notizen As String, ByVal MitarbeiterNr As Global.System.Nullable(Of Integer), ByVal BeginZeit As Global.System.Nullable(Of Date), ByVal EndeZeit As Global.System.Nullable(Of Date), ByVal Verrechnung As Object, ByVal Angebot As Object, ByVal WeitereInformationen As Object, ByVal InformationPer As String, ByVal Wettbewerb As String, ByVal Original_AnrufNr As Integer) As Integer
             If (AdrNr.HasValue = True) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(AdrNr.Value, Integer)
             Else
@@ -8105,10 +8105,10 @@ Namespace dsAnrufeTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
-            If (NAnruf Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            If (NAnruf.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(NAnruf.Value, Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(NAnruf, String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             End If
             If (Notizen Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value

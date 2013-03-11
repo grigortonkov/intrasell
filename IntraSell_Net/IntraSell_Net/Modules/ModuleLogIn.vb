@@ -64,10 +64,7 @@ Module ModuleLogIn
                 rs.Close()
                 Call saveLastUsername()
                 'Die Einstellung für den User setzen falls noch nicht passiert
-                If VarValue("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID) = "" Then
-                    Call InsertVarValue("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID, "ENG")
-                End If
-
+                VarValue_Default("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID, "DEU")
                 OpenForm("treeView")
                 OpenForm("Main")
 
