@@ -2,62 +2,45 @@
 Public Class Anruf
     'Implements InterfacePrintable
 
-
-
     Private Sub Anruf_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsAnrufe.Anrufliste' table. You can move, or remove it, as needed.
-        Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
-
-    End Sub
-
-    Private Sub AnruflisteBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles AnruflisteBindingNavigatorSaveItem.Click
         Try
-            Me.AdressenProfil1.UpdateAll()
-
-            Me.Validate()
-            Me.AnruflisteBindingSource.EndEdit()
-            Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
-
+            Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
-    Public Sub FilterBy(Expression As Object)
+#Region "New"
+
+
+    'NEW
+    Dim addingnewflag As Boolean = False
+    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+        addingnewflag = True
+    End Sub
+
+    Private Sub AnruflisteBindingSource_currentchanged(ByVal sender As System.Object, _
+                          ByVal e As System.EventArgs) _
+                          Handles AnruflisteBindingSource.CurrentChanged
         Try
-            Me.AnruflisteBindingSource.Filter = Expression
+            If addingnewflag = True Then
+                BeginNew(False)
+                addingnewflag = False
+            End If
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
-    'STarte Anruf für IDNR 
-    Public Sub StarteAnruf(IDNR As Object)
-        Try
-
-
-            Me.AnruflisteBindingSource.AddNew()
-            Me.AdressenControl1.IDNR = IDNR
-
-            BindingNavigatorAddNewItem_Click(Nothing, Nothing)
-
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-    End Sub
-
-    Private Sub BeginZeitDateTimePicker_ValueChanged(sender As System.Object, e As System.EventArgs) Handles BeginZeitDateTimePicker.MouseDown
-        ' BeginZeitDateTimePicker.Value = Date.Now
-    End Sub
-
-    Private Sub EndeZeitDateTimePicker_ValueChanged(sender As System.Object, e As System.EventArgs) Handles EndeZeitDateTimePicker.MouseDown
-        ' EndeZeitDateTimePicker.Value = Date.Now
-    End Sub
-
-    Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles AnruflisteBindingSource.AddingNew
+    Private Sub BeginNew(Optional ByVal addNew As Boolean = True)
         Try
             Me.MitarbeiterControl.IDNR = ModuleGlobals.MitarbeiterID
-            Me.BeginZeitDateTimePicker.Value = DateTime.Now
+
+            Me.BeginZeitDateTimePicker.Format = DateTimePickerFormat.Custom
+            Me.BeginZeitDateTimePicker.CustomFormat = " "
+
+            Me.EndeZeitDateTimePicker.Format = DateTimePickerFormat.Custom
+            Me.EndeZeitDateTimePicker.CustomFormat = " "
 
             Me.NAnrufDateTimePicker.Format = DateTimePickerFormat.Custom
             Me.NAnrufDateTimePicker.CustomFormat = " "
@@ -67,13 +50,53 @@ Public Class Anruf
         End Try
     End Sub
 
-    Private Sub AdressenControl1_Load(sender As System.Object, e As System.EventArgs) Handles AdressenControl1.Leave
 
+    'Starte Anruf für IDNR 
+    Public Sub StarteAnruf(ByVal IDNR As Object)
+        Try
+
+            Me.AnruflisteBindingSource.AddNew()
+            Me.AdressenControl1.IDNR = IDNR
+            BindingNavigatorAddNewItem_Click(Nothing, Nothing)
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
-    Private Sub StartStopButton_Click(sender As System.Object, e As System.EventArgs) Handles StartStopButton.Click
+
+#End Region
+    'SAVE 
+    Private Sub AnruflisteBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AnruflisteBindingNavigatorSaveItem.Click
+        Try
+            Me.AdressenProfil1.UpdateAll()
+
+            Me.Validate()
+            Me.AnruflisteBindingSource.EndEdit()
+            Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
+
+            'Reload 
+            Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    'FILTER
+    Public Sub FilterBy(ByVal Expression As Object)
+        Try
+            Me.AnruflisteBindingSource.Filter = Expression
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+
+
+    Private Sub StartStopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StartStopButton.Click
         If Me.StartStopButton.Text = "Start" Then
             Timer1.Start()
+
             Me.StartStopButton.Text = "Stop"
             BeginZeitDateTimePicker.Value = Date.Now
         Else
@@ -87,11 +110,19 @@ Public Class Anruf
         EndeZeitDateTimePicker.Value = Date.Now
     End Sub
 
-    Private Sub NAnrufDateTimePicker_ValueChanged(sender As System.Object, e As System.EventArgs) Handles NAnrufDateTimePicker.ValueChanged
+    Private Sub NAnrufDateTimePicker_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NAnrufDateTimePicker.ValueChanged
         NAnrufDateTimePicker.Format = DateTimePickerFormat.Short
     End Sub
 
-    Private Sub AdressenAnlageControl1_OnNewIdnrCreated(IDNR As System.Int32) Handles AdressenAnlageControl1.OnNewIdnrCreated
+    Private Sub BeginZeitDateTimePicker_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BeginZeitDateTimePicker.ValueChanged
+        BeginZeitDateTimePicker.Format = DateTimePickerFormat.Time
+    End Sub
+
+    Private Sub EndeZeitDateTimePicker_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EndeZeitDateTimePicker.ValueChanged
+        EndeZeitDateTimePicker.Format = DateTimePickerFormat.Time
+    End Sub
+
+    Private Sub AdressenAnlageControl1_OnNewIdnrCreated(ByVal IDNR As System.Int32) Handles AdressenAnlageControl1.OnNewIdnrCreated
         Try
             'reload
             Me.AdressenControl1.Refresh()
@@ -111,7 +142,7 @@ Public Class Anruf
         End Try
     End Sub
 
-    Private Sub AngebotToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AngebotToolStripMenuItem.Click
+    Private Sub AngebotToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AngebotToolStripMenuItem.Click
         Try
             Dim v As Vorgang = New Vorgang
             v.MdiParent = Me.MdiParent
@@ -122,4 +153,6 @@ Public Class Anruf
         End Try
 
     End Sub
+
+
 End Class

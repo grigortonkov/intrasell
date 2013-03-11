@@ -88,10 +88,11 @@
         Try
             If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
             Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
-            Anruf.MdiParent = Me.MdiParent
-            Anruf.Show()
+            Dim a As Anruf = New Anruf
+            a.MdiParent = Me.MdiParent
+            a.Show()
             'Anruf.FilterBy("AdrNR=" & )
-            Anruf.StarteAnruf(IDNR)
+            a.StarteAnruf(IDNR)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -101,9 +102,11 @@
         Try
             If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
             Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
-            Anrufliste.MdiParent = Me.MdiParent
-            Anrufliste.Show()
-            Anrufliste.Anrufprotokoll(IDNR)
+            Dim a As Anrufliste = New Anrufliste
+
+            a.MdiParent = Me.MdiParent
+            a.Show()
+            a.Anrufprotokoll(IDNR)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
