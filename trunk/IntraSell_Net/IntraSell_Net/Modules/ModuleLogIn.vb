@@ -76,17 +76,8 @@ Module ModuleLogIn
             rs.Close()
 
             'else admin login
-            Return True
-            writeLog("Admin mode")
-            'If passwort & "" <> VarValue("adminpass") Then
-            '    UsernameTextBox.ForeColor = Color.Red
-            '    PasswordTextBox.ForeColor = Color.Red
-            'Else
-            '    OpenForm("Main")
-            '    'DoCmd.Close(acForm, "mainLogin")
-            'End If
-
-
+            Return False
+            writeLog("Login nicht erfolgreich für User " + username)
         Catch ex As Exception
             Return False
             HandleAppError(ex)

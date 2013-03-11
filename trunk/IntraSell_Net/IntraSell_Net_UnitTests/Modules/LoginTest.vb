@@ -65,7 +65,7 @@ Public Class LoginTest
         Dim passwort As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim result As Boolean = LoginUser(username, passwort)
 
-        Assert.IsTrue(result)
+        Assert.IsFalse(result)
     End Sub
 
     <TestMethod(), _
@@ -78,4 +78,25 @@ Public Class LoginTest
         Assert.IsTrue(result)
     End Sub
 
+
+    <TestMethod(), _
+DeploymentItem("IntraSell_Net.exe")> _
+    Public Sub LoginUserTest_NOK()
+        Dim username As String = "MM"
+        Dim passwort As String = ""
+        Dim result As Boolean = LoginUser(username, passwort)
+
+        Assert.IsFalse(result)
+    End Sub
+
+
+    <TestMethod(), _
+DeploymentItem("IntraSell_Net.exe")> _
+    Public Sub LoginUserTest_NOK2()
+        Dim username As String = "MMX"
+        Dim passwort As String = "MMX"
+        Dim result As Boolean = LoginUser(username, passwort)
+
+        Assert.IsFalse(result)
+    End Sub
 End Class

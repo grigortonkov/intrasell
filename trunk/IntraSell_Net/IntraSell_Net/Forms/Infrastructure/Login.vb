@@ -16,6 +16,9 @@ Public Class Login
         ModuleLogIn.saveLastUsername()
         If LoginUser(UsernameTextBox.Text, PasswordTextBox.Text) Then
             Me.Close()
+        Else
+            Me.UsernameTextBox.ForeColor = Color.IndianRed
+            Me.PasswordTextBox.ForeColor = Me.UsernameTextBox.ForeColor
         End If
     End Sub
 
