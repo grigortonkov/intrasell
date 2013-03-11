@@ -61,9 +61,9 @@ Public Class AnrufTest
     '''</summary>
     <TestMethod(), _
      DeploymentItem("IntraSell_Net.exe")> _
-    Public Sub BindingNavigatorAddNewItem_ClickTest()
+    Public Sub Anrufe_BindingNavigatorAddNewItem_ClickTest()
         Dim target As Anruf_Accessor = New Anruf_Accessor()
- 
+
         Dim sender As Object = Nothing ' TODO: Initialize to an appropriate value
         Dim e As EventArgs = Nothing ' TODO: Initialize to an appropriate value
         target.BindingNavigatorAddNewItem_Click(sender, e)
