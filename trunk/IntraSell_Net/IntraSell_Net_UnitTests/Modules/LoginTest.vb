@@ -65,7 +65,7 @@ Public Class LoginTest
         Dim passwort As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim result As Boolean = LoginUser(username, passwort)
 
-        Assert.IsFalse(result)
+        Assert.IsTrue(result)
     End Sub
 
     <TestMethod(), _

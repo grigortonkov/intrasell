@@ -65,7 +65,7 @@ Public Class ofanrufeTableAdapterTest
         Dim AdrNr As Nullable(Of Integer) = 1
         Dim LAenderung As Nullable(Of DateTime) = DateTime.Now
         Dim LKontakt As Nullable(Of DateTime) = DateTime.Now
-        Dim NAnruf As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim NAnruf As Nullable(Of DateTime) = DateTime.Now.AddDays(7)
         Dim Notizen As String = "TODO: Initialize to an appropriate value"
         Dim MitarbeiterNr As Nullable(Of Integer) = New Nullable(Of Integer)()
         Dim BeginZeit As Nullable(Of DateTime) = DateTime.Now
@@ -86,7 +86,7 @@ Public Class ofanrufeTableAdapterTest
         Dim AdrNr As Nullable(Of Integer) = 1
         Dim LAenderung As Nullable(Of DateTime) = DateTime.Now
         Dim LKontakt As Nullable(Of DateTime) = DateTime.Now
-        Dim NAnruf As String = DateTime.Now
+        Dim NAnruf As Nullable(Of DateTime) = DateTime.Now
         Dim Notizen As String = "TODO: Initialize to an appropriate value"
         Dim MitarbeiterNr As Nullable(Of Integer) = New Nullable(Of Integer)() ' TODO: Initialize to an appropriate value
         Dim BeginZeit As Nullable(Of DateTime) = DateTime.Now
@@ -112,4 +112,5 @@ Public Class ofanrufeTableAdapterTest
         Assert.AreEqual(expected, actual)
 
     End Sub
+     
 End Class
