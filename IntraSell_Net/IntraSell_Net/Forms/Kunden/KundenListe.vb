@@ -86,7 +86,7 @@
 
     Private Sub NeuerAnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerAnrufToolStripMenuItem.Click
         Try
-            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
+            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then MsgBox("Bitte eine Zeile auswählen!") : Exit Sub
             Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
             Dim a As Anruf = New Anruf
             a.MdiParent = Me.MdiParent
@@ -100,7 +100,7 @@
 
     Private Sub AnrufprotokollToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AnrufprotokollToolStripMenuItem.Click
         Try
-            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then Exit Sub
+            If OfAdressenlisteDataGridView.SelectedRows.Count <= 0 Then MsgBox("Bitte eine Zeile auswählen!") : Exit Sub
             Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
             Dim a As Anrufliste = New Anrufliste
 
