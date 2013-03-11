@@ -221,4 +221,13 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+    Private Sub BranchenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BranchenToolStripMenuItem.Click
+        Try
+            Branche.MdiParent = Me
+            Branche.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

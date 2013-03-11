@@ -23,7 +23,7 @@ Public Class Vorgang
         Get
             Return _kundNr
         End Get
-        Set(value As Integer)
+        Set(ByVal value As Integer)
             _kundNr = value
         End Set
     End Property
@@ -32,7 +32,7 @@ Public Class Vorgang
         Get
             Return Me.SummeTextBox.Text
         End Get
-        Set(value As Integer)
+        Set(ByVal value As Integer)
             Me.SummeTextBox.Text = value
         End Set
     End Property
@@ -41,7 +41,7 @@ Public Class Vorgang
         Get
             Return Me.SummeMWSTTextBox.Text
         End Get
-        Set(value As Integer)
+        Set(ByVal value As Integer)
             Me.SummeMWSTTextBox.Text = value
         End Set
     End Property
@@ -50,7 +50,7 @@ Public Class Vorgang
         Get
             Return Me.SummeBruttoTextBox.Text
         End Get
-        Set(value As Integer)
+        Set(ByVal value As Integer)
             Me.SummeBruttoTextBox.Text = value
         End Set
     End Property
@@ -58,7 +58,7 @@ Public Class Vorgang
 
 
     'Die Datensätze filtern
-    Public Sub FilterBy(Expression As String)
+    Public Sub FilterBy(ByVal Expression As String)
         Try
             Me.BuchvorgangBindingSource.Filter = Expression
         Catch ex As Exception
@@ -67,7 +67,7 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub BuchvorgangBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BuchvorgangBindingNavigatorSaveItem.Click
+    Private Sub BuchvorgangBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BuchvorgangBindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.BuchvorgangBindingSource.EndEdit()
@@ -99,7 +99,7 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub Rechnung_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub Rechnung_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
             loading = True
@@ -128,7 +128,7 @@ Public Class Vorgang
 #Region "New"
 
     Dim addingnewflag As Boolean = False
-    Private Sub bindingnavigatoraddnewitem_click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+    Private Sub bindingnavigatoraddnewitem_click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
             addingnewflag = True
         Catch ex As Exception
@@ -155,14 +155,14 @@ Public Class Vorgang
 
 
     'setzte die Vorgangnummer für neue 
-    Private Sub TypComboBox_Leave(sender As System.Object, e As System.EventArgs) Handles TypComboBox.Leave
+    Private Sub TypComboBox_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TypComboBox.Leave
         If String.IsNullOrEmpty(Me.NummerTextBox.Text) Then
             Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.SelectedValue, Me.KundNrAdressenControl.IDNR)
             Me.DatumDateTimePicker.Value = DateTime.Now
         End If
     End Sub
 
-    Private Sub BeginNew(Optional addNew As Boolean = True)
+    Private Sub BeginNew(Optional ByVal addNew As Boolean = True)
         Try
             'neuen vorgang erstellen
             'If MessageBox.Show("Wollen Sie einen neuen Vorgang erstellen?", "Vorgang erstellen?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
@@ -195,7 +195,7 @@ Public Class Vorgang
     End Sub
 
     'Ein Neuer Vorgang vom Typ Starten 
-    Public Sub BeginNewVorgang(VorgangTyp As String, KundNr As Integer)
+    Public Sub BeginNewVorgang(ByVal VorgangTyp As String, ByVal KundNr As Integer)
         Try
             Me.BuchvorgangBindingSource.AddNew()
 
@@ -219,7 +219,7 @@ Public Class Vorgang
 #End Region
 
 
-    Private Sub VorlageeditierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlageeditierenToolStripMenuItem.Click
+    Private Sub VorlageeditierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorlageeditierenToolStripMenuItem.Click
         Try
             DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE, False)
         Catch ex As Exception
@@ -228,7 +228,7 @@ Public Class Vorgang
     End Sub
 
 
-    Private Sub AusdruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
+    Private Sub AusdruckenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
         Try
             Print(sender)
         Catch ex As Exception
@@ -237,7 +237,7 @@ Public Class Vorgang
     End Sub
 
 
-    Public Sub Print(sender As Object) Implements InterfacePrintable.Print
+    Public Sub Print(ByVal sender As Object) Implements InterfacePrintable.Print
         Try
             'Start printing for the Vorgang 
             'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
@@ -249,18 +249,22 @@ Public Class Vorgang
     End Sub
 
     Private Sub CheckAbgeschlossen()
+        Try
+            'Set true false depending on the abschliessen value 
+            Dim enable As Boolean = Not Me.AbgeschlossenCheckBox.Checked
 
-        'Set true false depending on the abschliessen value 
-        Dim enable As Boolean = Not Me.AbgeschlossenCheckBox.Checked
+            '       Dim row = Me.BuchvorgangBindingSource.Position
 
-        '       Dim row = Me.BuchvorgangBindingSource.Position
+            '        enable = Not Me.DsVorgaenge.Tables("buchVorgang").Rows(row).Item("abgeschlossen")
 
-        '        enable = Not Me.DsVorgaenge.Tables("buchVorgang").Rows(row).Item("abgeschlossen")
+            Buchvorgang_artikelDataGridView.Enabled = enable
+            KundNr2AdressenControl.Enabled = enable
+            TabControl1.Enabled = enable
+            WaehrungComboBox.Enabled = enable
 
-        Buchvorgang_artikelDataGridView.Enabled = enable
-        KundNr2AdressenControl.Enabled = enable
-        TabControl1.Enabled = enable
-        WaehrungComboBox.Enabled = enable
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
 
     End Sub
 
@@ -270,99 +274,107 @@ Public Class Vorgang
     End Sub
 
 
-    Private Sub StatusComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles StatusComboBox.DropDown
+    Private Sub StatusComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StatusComboBox.DropDown
         FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus where VorgangTyp = '" & Me.TypComboBox.SelectedValue & "' Group by Status", "Status")
     End Sub
 
-    Private Sub ZahlungsMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsMethodeComboBox.DropDown
+    Private Sub ZahlungsMethodeComboBox_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZahlungsMethodeComboBox.DropDown
         LadeKundenSpezifischeDaten("ZahlungsMethodeComboBox")
     End Sub
 
-    Private Sub ZahlungsbedingungComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles ZahlungsbedingungComboBox.DropDown
+    Private Sub ZahlungsbedingungComboBox_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZahlungsbedingungComboBox.DropDown
         LadeKundenSpezifischeDaten("ZahlungsbedingungComboBox")
     End Sub
 
-    Private Sub TransportMethodeComboBox_Enter(sender As System.Object, e As System.EventArgs) Handles TransportMethodeComboBox.DropDown
+    Private Sub TransportMethodeComboBox_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TransportMethodeComboBox.DropDown
         LadeKundenSpezifischeDaten("TransportMethodeComboBox")
     End Sub
 
 #Region "Events for the Artikel Grid"
 
 
-    Private Sub Buchvorgang_artikelDataGridView_CellValueChanged(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles Buchvorgang_artikelDataGridView.CellValueChanged
-        'writeLog("Buchvorgang_artikelDataGridView_CellValueChanged")
-        If loading Then Exit Sub
+    Private Sub Buchvorgang_artikelDataGridView_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles Buchvorgang_artikelDataGridView.CellValueChanged
+        Try
 
-        loading = True
 
-        setPosIDIfNotSet()
-        ' e.RowIndex
-        ' e.ColumnIndex
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Stk" Then
-            Recalculate()
-        End If
+            'writeLog("Buchvorgang_artikelDataGridView_CellValueChanged")
+            If loading Then Exit Sub
 
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Artikel" Then
-            ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX).Value, _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-                                 Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+            loading = True
 
-            Recalculate()
-        End If
+            setPosIDIfNotSet()
+            ' e.RowIndex
+            ' e.ColumnIndex
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Stk" Then
+                Recalculate()
+            End If
 
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "ArtNr" Then
-            ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Artikel" Then
+                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX).Value, _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
+                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
 
-            Recalculate()
-        End If
+                Recalculate()
+            End If
 
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Bezeichnung" Then
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "ArtNr" Then
+                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
 
-            bezeichnung_afterupdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                    Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX), _
-                                    Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX))
+                Recalculate()
+            End If
 
-            'set Preise neu 
-            ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                  Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
-            Recalculate()
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Bezeichnung" Then
 
-        End If
+                bezeichnung_afterupdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
+                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX), _
+                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX))
 
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Netto" Then
-            Preis_Netto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
+                'set Preise neu 
+                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
+                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
+                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+                Recalculate()
 
-            Recalculate()
-        End If
+            End If
 
-        If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Brutto" Then
-            Preis_Brutto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Netto" Then
+                Preis_Netto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
 
-            Recalculate()
-        End If
+                Recalculate()
+            End If
 
-        loading = False
+            If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Brutto" Then
+                Preis_Brutto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
+                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
+
+                Recalculate()
+            End If
+
+            loading = False
+
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
 
     End Sub
 
@@ -379,37 +391,45 @@ Public Class Vorgang
 
 
     Private Sub Recalculate()
-        Dim summeNetto As Double = 0.0, summeBrutto As Double = 0.0, MWST As Double = 0.0
-        Dim dg As DataGridView = Buchvorgang_artikelDataGridView
-        'sum(RoundUp([Stk]*[PreisATS],2)) as Summe, sum(RoundUp([Stk]*[PreisATS_Brutto],2)) as Summe_Brutto
+        Try
 
-        Dim precision As Int16 = VarValue_Default("PREIS_GENAUIGKEIT", 2)
-        With Buchvorgang_artikelDataGridView
-            For counter = 1 To (.Rows.Count - 1)
-                'deposit = 0
-                'withdrawal = 0
 
-                Try
-                    Dim stk As Double = 0, netto As Double = 0, brutto As Double = 0
-                    stk = Double.Parse(dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value)
-                    netto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_NETTO_INDEX).Value.ToString())
-                    brutto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_BRUTTO_INDEX).Value.ToString())
+            Dim summeNetto As Double = 0.0, summeBrutto As Double = 0.0, MWST As Double = 0.0
+            Dim dg As DataGridView = Buchvorgang_artikelDataGridView
+            'sum(RoundUp([Stk]*[PreisATS],2)) as Summe, sum(RoundUp([Stk]*[PreisATS_Brutto],2)) as Summe_Brutto
 
-                    summeNetto += stk * netto
-                    summeBrutto += stk * brutto
+            Dim precision As Int16 = VarValue_Default("PREIS_GENAUIGKEIT", 2)
+            With Buchvorgang_artikelDataGridView
+                For counter = 1 To (.Rows.Count - 1)
+                    'deposit = 0
+                    'withdrawal = 0
 
-                Catch ex As Exception
-                    Exit Sub 'on any error 
-                End Try
-            Next
+                    Try
+                        Dim stk As Double = 0, netto As Double = 0, brutto As Double = 0
+                        stk = Double.Parse(dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value)
+                        netto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_NETTO_INDEX).Value.ToString())
+                        brutto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_BRUTTO_INDEX).Value.ToString())
 
-        End With
+                        summeNetto += stk * netto
+                        summeBrutto += stk * brutto
 
-        MWST = summeBrutto - summeNetto
+                    Catch ex As Exception
+                        Exit Sub 'on any error 
+                    End Try
+                Next
 
-        Me.SummeTextBox.Text = FormatCurrency(summeNetto, precision)
-        Me.SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
-        Me.SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
+            End With
+
+            MWST = summeBrutto - summeNetto
+
+            Me.SummeTextBox.Text = FormatCurrency(summeNetto, precision)
+            Me.SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
+            Me.SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+
     End Sub
 
 
@@ -418,22 +438,22 @@ Public Class Vorgang
 
 #Region "Menu"
 
-    Private Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
+    Private Sub NeuerVorgangToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
         BeginNew()
     End Sub
-    Private Sub AbschliessenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AbschliessenToolStripMenuItem.Click
+    Private Sub AbschliessenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbschliessenToolStripMenuItem.Click
         btnAbschliessen_Click()
     End Sub
 
-    Private Sub StornoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles StornoToolStripMenuItem.Click
+    Private Sub StornoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StornoToolStripMenuItem.Click
         btnStorno_Click()
     End Sub
 
-    Private Sub ExportierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
+    Private Sub ExportierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
         OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Nothing, ModuleBuchVorgangXML.VIEWER_XML, False, Nothing)
     End Sub
 
-    Private Sub KonvertierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
+    Private Sub KonvertierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KonvertierenToolStripMenuItem.Click
         VorgangKonvertieren.Init(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.KundNrAdressenControl.IDNR)
         VorgangKonvertieren.ShowDialog()
         If VorgangKonvertieren.DialogResult = Windows.Forms.DialogResult.OK Then
@@ -442,7 +462,7 @@ Public Class Vorgang
         VorgangKonvertieren.Dispose()
     End Sub
 
-    Private Sub VorlagenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
+    Private Sub VorlagenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
 
         VorgangDruck.Init(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.KundNrAdressenControl.IDNR)
         VorgangDruck.ShowDialog()
@@ -450,13 +470,13 @@ Public Class Vorgang
     End Sub
 
 
-    Private Sub SendeEmailToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
+    Private Sub SendeEmailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
         'Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
         OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
 
     End Sub
 
-    Private Sub KassaBuchungToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KassaBuchungToolStripMenuItem.Click
+    Private Sub KassaBuchungToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles KassaBuchungToolStripMenuItem.Click
         btnKassa_Click()
     End Sub
 #End Region
@@ -1190,12 +1210,12 @@ Public Class Vorgang
 
 
     '    'update preise
-    Private Sub ArtNr_CalculatePreis(ArtNr As String, Stk As Double, _
-                                     Bezeichnung As DataGridViewCell, _
-                                     Preis_Netto As DataGridViewCell, _
-                                     Preis_Brutto As DataGridViewCell, _
-                                     MWST As DataGridViewCell, _
-                                     EKPreis As DataGridViewCell)
+    Private Sub ArtNr_CalculatePreis(ByVal ArtNr As String, ByVal Stk As Double, _
+                                     ByVal Bezeichnung As DataGridViewCell, _
+                                     ByVal Preis_Netto As DataGridViewCell, _
+                                     ByVal Preis_Brutto As DataGridViewCell, _
+                                     ByVal MWST As DataGridViewCell, _
+                                     ByVal EKPreis As DataGridViewCell)
         Try
 
             Dim KundNr As String = Me.KundNrAdressenControl.IDNR
@@ -1284,9 +1304,9 @@ Public Class Vorgang
     '    End Sub
 
 
-    Private Sub bezeichnung_afterupdate(inBezeichnung As DataGridViewCell,
-                                        outArtNrCombo As DataGridViewCell,
-                                        outArtNr As DataGridViewCell)
+    Private Sub bezeichnung_afterupdate(ByVal inBezeichnung As DataGridViewCell,
+                                        ByVal outArtNrCombo As DataGridViewCell,
+                                        ByVal outArtNr As DataGridViewCell)
 
         'bezeichnung_updating = True
         'Me.zeitpunkt = now()
@@ -1345,10 +1365,10 @@ Public Class Vorgang
     '        End If
     '    End Sub
 
-    Private Sub Preis_Netto_AfterUpdate(ArtNr As String, _
-                                            Preis_Netto As DataGridViewCell, _
-                                            Preis_Brutto As DataGridViewCell, _
-                                            MWST As DataGridViewCell)
+    Private Sub Preis_Netto_AfterUpdate(ByVal ArtNr As String, _
+                                            ByVal Preis_Netto As DataGridViewCell, _
+                                            ByVal Preis_Brutto As DataGridViewCell, _
+                                            ByVal MWST As DataGridViewCell)
 
         'Preis_updating = True
         'Me.Zeitpunkt = Now()
@@ -1364,10 +1384,10 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub Preis_Brutto_AfterUpdate(ArtNr As String, _
-                                            Preis_Netto As DataGridViewCell, _
-                                            Preis_Brutto As DataGridViewCell, _
-                                            MWST As DataGridViewCell)
+    Private Sub Preis_Brutto_AfterUpdate(ByVal ArtNr As String, _
+                                            ByVal Preis_Netto As DataGridViewCell, _
+                                            ByVal Preis_Brutto As DataGridViewCell, _
+                                            ByVal MWST As DataGridViewCell)
         MWST.Value = getMWSTArtikel(ArtNr)
         Preis_Brutto.Value = RoundUp(Preis_Brutto.Value, VarValue_Default("PREIS_GENAUIGKEIT", 2) * 1)
         Preis_Netto.Value = RoundUp(Preis_Brutto.Value / (1 + MWST.Value / 100), _
@@ -1461,11 +1481,7 @@ Public Class Vorgang
     '        End If
     '    End Sub
 
-
-
 #End Region
-
-
 
 
 End Class

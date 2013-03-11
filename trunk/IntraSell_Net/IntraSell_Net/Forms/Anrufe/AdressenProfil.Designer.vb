@@ -37,18 +37,21 @@ Partial Class AdressenProfil
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Ofadressen_profilBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.Ofadressen_profilDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.GrbranchenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsBranchen = New IntraSell_Net.dsBranchen()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GrbranchenTableAdapter = New IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.DsAdressenProfil, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_profilBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_profilBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Ofadressen_profilBindingNavigator.SuspendLayout()
         CType(Me.Ofadressen_profilDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DsAdressenProfil
@@ -102,7 +105,7 @@ Partial Class AdressenProfil
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -146,7 +149,7 @@ Partial Class AdressenProfil
         '
         Me.Ofadressen_profilDataGridView.AutoGenerateColumns = False
         Me.Ofadressen_profilDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Ofadressen_profilDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
+        Me.Ofadressen_profilDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
         Me.Ofadressen_profilDataGridView.DataSource = Me.Ofadressen_profilBindingSource
         Me.Ofadressen_profilDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Ofadressen_profilDataGridView.Location = New System.Drawing.Point(0, 25)
@@ -154,20 +157,39 @@ Partial Class AdressenProfil
         Me.Ofadressen_profilDataGridView.Size = New System.Drawing.Size(465, 585)
         Me.Ofadressen_profilDataGridView.TabIndex = 1
         '
-        'DataGridViewTextBoxColumn1
+        'ComboBox1
         '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "ID"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        Me.DataGridViewTextBoxColumn1.Width = 5
+        Me.ComboBox1.DataSource = Me.GrbranchenBindingSource
+        Me.ComboBox1.DisplayMember = "Bezeichnung"
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(223, 1)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(85, 21)
+        Me.ComboBox1.TabIndex = 2
+        Me.ComboBox1.ValueMember = "BrNR"
         '
-        'DataGridViewTextBoxColumn2
+        'GrbranchenBindingSource
         '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "IDNR"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "IDNR"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Visible = False
+        Me.GrbranchenBindingSource.DataMember = "grbranchen"
+        Me.GrbranchenBindingSource.DataSource = Me.DsBranchen
+        '
+        'DsBranchen
+        '
+        Me.DsBranchen.DataSetName = "dsBranchen"
+        Me.DsBranchen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(184, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(33, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Profil:"
+        '
+        'GrbranchenTableAdapter
+        '
+        Me.GrbranchenTableAdapter.ClearBeforeFill = True
         '
         'DataGridViewTextBoxColumn3
         '
@@ -189,24 +211,6 @@ Partial Class AdressenProfil
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.Visible = False
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Unbekannt", "Einzehlhandel"})
-        Me.ComboBox1.Location = New System.Drawing.Point(223, 1)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(85, 21)
-        Me.ComboBox1.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(184, 4)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(33, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Profil:"
-        '
         'AdressenProfil
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -223,6 +227,8 @@ Partial Class AdressenProfil
         Me.Ofadressen_profilBindingNavigator.ResumeLayout(False)
         Me.Ofadressen_profilBindingNavigator.PerformLayout()
         CType(Me.Ofadressen_profilDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -242,8 +248,9 @@ Partial Class AdressenProfil
     Friend WithEvents Ofadressen_profilDataGridView As System.Windows.Forms.DataGridView
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents GrbranchenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents DsBranchen As IntraSell_Net.dsBranchen
+    Friend WithEvents GrbranchenTableAdapter As IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
