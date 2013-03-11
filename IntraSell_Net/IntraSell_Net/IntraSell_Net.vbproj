@@ -154,10 +154,10 @@
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB\DBUpgrade.vb" />
-    <Compile Include="Forms\Anrufe\AdressenProfil.Designer.vb">
+    <Compile Include="Forms\Controls\AdressenProfil.Designer.vb">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Anrufe\AdressenProfil.vb">
+    <Compile Include="Forms\Controls\AdressenProfil.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\Anrufe\Anruf.Designer.vb">
@@ -399,7 +399,7 @@
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Anrufe\AdressenProfil.resx">
+    <EmbeddedResource Include="Forms\Controls\AdressenProfil.resx">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Anrufe\Anruf.resx">
