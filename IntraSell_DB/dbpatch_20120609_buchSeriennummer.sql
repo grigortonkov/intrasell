@@ -1,4 +1,4 @@
-ALTER TABLE `intrasell_daten_2`.`buchseriennummer`
+ALTER TABLE `buchseriennummer`
  ADD COLUMN `AngebotsNr` INT(10),
  ADD COLUMN `AuftragsNr` INT(10),
  ADD COLUMN `Notiz` VARCHAR(255),

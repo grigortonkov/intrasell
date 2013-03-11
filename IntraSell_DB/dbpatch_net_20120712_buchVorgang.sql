@@ -1,9 +1,9 @@
-﻿DROP TABLE IF EXISTS `intrasell_daten_2`.`buchvorgang-artikel`;
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgang`;
-DROP TABLE IF EXISTS `intrasell_daten_2`.`buchVorgangTyp`;
+﻿DROP TABLE IF EXISTS `buchvorgang-artikel`;
+DROP TABLE IF EXISTS `buchVorgang`;
+DROP TABLE IF EXISTS `buchVorgangTyp`;
 
 
-CREATE TABLE  `intrasell_daten_2`.`buchVorgangTyp` (
+CREATE TABLE  `buchVorgangTyp` (
   `Typ` varchar(2) NOT NULL DEFAULT 'AR',
   `Bezeichnung` varchar(100) DEFAULT 'Rechnung',
   `Druckbezeichnung`  varchar(100),
@@ -11,7 +11,7 @@ CREATE TABLE  `intrasell_daten_2`.`buchVorgangTyp` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
+CREATE TABLE  `buchVorgang` (
   `Nummer` int(10) NOT NULL DEFAULT '0',
   `Typ` varchar(2) NOT NULL,
   `KundNr` int(10) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE  `intrasell_daten_2`.`buchVorgang` (
 
 
 
-CREATE TABLE  `intrasell_daten_2`.`buchvorgang-artikel` (
+CREATE TABLE  `buchvorgang-artikel` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `Nummer` int(10) NOT NULL,
   `Typ` varchar(2) NOT NULL,
