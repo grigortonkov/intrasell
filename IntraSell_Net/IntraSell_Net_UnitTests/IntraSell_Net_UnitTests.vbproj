@@ -110,6 +110,7 @@
     <Compile Include="Data\ofadressenTableAdapterTest.vb" />
     <Compile Include="Data\ofanrufeTableAdapterTest.vb" />
     <Compile Include="Data\ofmitarbeiterTableAdapterTest.vb" />
+    <Compile Include="Data\ofadressen_profilTableAdapterTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
@@ -137,6 +138,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="0.ALL_nosetup.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="7.Profil.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />
