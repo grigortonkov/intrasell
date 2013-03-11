@@ -88,6 +88,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Anrufe\AnrufTest.vb" />
     <Compile Include="Modules\AdressenAnlageControlTest.vb" />
     <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
     <Compile Include="Data\buchvorgang_artikelTableAdapterTest.vb" />
@@ -136,9 +137,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="0.ALL_nosetup.orderedtest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Copy of 2.Preise.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />
