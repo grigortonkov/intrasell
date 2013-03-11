@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <OrderedTest name="0.all" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\0.all.orderedtest" id="609cf3b7-f336-4918-bbe9-69b469130fa2" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Execution id="02d54e7e-625b-40dc-beff-fe24f635b139" />
+  <Execution id="c4912764-0d75-44d7-aaee-dd768db12f9e" />
   <TestLinks>
     <TestLink id="d5cd304e-5669-4150-9577-c359afd1d150" name="1.DBSetup" storage="1.dbsetup.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="24ff5a16-daa0-42fa-8cd5-5d027733ef7a" name="6.mitarbeiter" storage="6.mitarbeiter.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
@@ -8,5 +8,6 @@
     <TestLink id="0059a73c-33ad-48e7-a9bc-e9fc270289be" name="4.Preisregeln" storage="4.preisregeln.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="89bffdab-90c7-44f4-9fc7-65bda756027a" name="5.Anrufe" storage="5.anrufe.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" name="3.Vorgang" storage="3.vorgang.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="416c1f37-1862-4cb1-8e7a-d2a32e26f61a" name="7.Profil" storage="7.profil.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>
