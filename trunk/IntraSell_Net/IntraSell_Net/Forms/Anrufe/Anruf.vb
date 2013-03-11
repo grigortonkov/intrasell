@@ -16,6 +16,8 @@ Public Class Anruf
     'NEW
     Dim addingnewflag As Boolean = False
     Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+        'Reload 
+        Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
         addingnewflag = True
     End Sub
 
@@ -24,7 +26,7 @@ Public Class Anruf
                           Handles AnruflisteBindingSource.CurrentChanged
         Try
             If addingnewflag = True Then
-                BeginNew(False)
+                BeginNew()
                 addingnewflag = False
             End If
         Catch ex As Exception
@@ -32,9 +34,11 @@ Public Class Anruf
         End Try
     End Sub
 
-    Private Sub BeginNew(Optional ByVal addNew As Boolean = True)
+    Private Sub BeginNew()
         Try
             Me.MitarbeiterControl.IDNR = ModuleGlobals.MitarbeiterID
+            Me.AdressenControl1.IDNR = Nothing
+            Me.AdressenProfil1.IDNR = Nothing
 
             Me.BeginZeitDateTimePicker.Format = DateTimePickerFormat.Custom
             Me.BeginZeitDateTimePicker.CustomFormat = " "
@@ -56,8 +60,10 @@ Public Class Anruf
         Try
 
             Me.AnruflisteBindingSource.AddNew()
+            BeginNew()
             Me.AdressenControl1.IDNR = IDNR
-            BindingNavigatorAddNewItem_Click(Nothing, Nothing)
+            Me.AdressenProfil1.IDNR = IDNR
+
 
         Catch ex As Exception
             HandleAppError(ex)
@@ -75,8 +81,7 @@ Public Class Anruf
             Me.AnruflisteBindingSource.EndEdit()
             Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
 
-            'Reload 
-            Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -153,6 +158,5 @@ Public Class Anruf
         End Try
 
     End Sub
-
-
+ 
 End Class

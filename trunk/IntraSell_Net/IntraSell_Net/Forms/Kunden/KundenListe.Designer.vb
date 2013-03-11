@@ -387,7 +387,7 @@ Partial Class Kundenliste
         '
         'AnrufenToolStripMenuItem
         '
-        Me.AnrufenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnrufprotokollToolStripMenuItem, Me.NeuerAnrufToolStripMenuItem})
+        Me.AnrufenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerAnrufToolStripMenuItem, Me.AnrufprotokollToolStripMenuItem})
         Me.AnrufenToolStripMenuItem.Name = "AnrufenToolStripMenuItem"
         Me.AnrufenToolStripMenuItem.Size = New System.Drawing.Size(99, 20)
         Me.AnrufenToolStripMenuItem.Text = "Kunde &Anrufen"
