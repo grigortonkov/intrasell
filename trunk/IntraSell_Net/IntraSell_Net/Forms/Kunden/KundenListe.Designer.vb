@@ -23,6 +23,7 @@ Partial Class Kundenliste
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim BrancheLabel As System.Windows.Forms.Label
         Me.FilterButton = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PLZVonTextBox = New System.Windows.Forms.TextBox()
@@ -39,17 +40,10 @@ Partial Class Kundenliste
         Me.OfAdressenlisteTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofAdressenlisteTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Land = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.BrancheComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrbranchenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsBranchen = New IntraSell_Net.dsBranchen()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtFirmaName = New System.Windows.Forms.TextBox()
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
@@ -61,8 +55,21 @@ Partial Class Kundenliste
         Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AnrufenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AnrufprotokollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerAnrufToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnrufprotokollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrbranchenTableAdapter = New IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Land = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Branche = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        BrancheLabel = New System.Windows.Forms.Label()
         CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,17 +79,28 @@ Partial Class Kundenliste
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
+        'BrancheLabel
+        '
+        BrancheLabel.AutoSize = True
+        BrancheLabel.Location = New System.Drawing.Point(12, 139)
+        BrancheLabel.Name = "BrancheLabel"
+        BrancheLabel.Size = New System.Drawing.Size(50, 13)
+        BrancheLabel.TabIndex = 14
+        BrancheLabel.Text = "Branche:"
+        '
         'FilterButton
         '
-        Me.FilterButton.Location = New System.Drawing.Point(15, 136)
+        Me.FilterButton.Location = New System.Drawing.Point(15, 166)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
-        Me.FilterButton.TabIndex = 5
+        Me.FilterButton.TabIndex = 6
         Me.FilterButton.Text = "Filter anwenden"
         Me.FilterButton.UseVisualStyleBackColor = True
         '
@@ -206,7 +224,7 @@ Partial Class Kundenliste
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
         Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.Land, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
+        Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.Land, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.Branche})
         Me.OfAdressenlisteDataGridView.DataSource = Me.OfAdressenlisteBindingSource
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
@@ -214,78 +232,6 @@ Partial Class Kundenliste
         Me.OfAdressenlisteDataGridView.ReadOnly = True
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(990, 738)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDNR"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "IDNR"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Width = 75
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Name"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Vorname"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Vorname"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Firma"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Firma"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Adresse"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Adresse"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "PLZ"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "PLZ"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        Me.DataGridViewTextBoxColumn6.Width = 50
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Ort"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Ort"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        '
-        'Land
-        '
-        Me.Land.DataPropertyName = "Land"
-        Me.Land.HeaderText = "Land"
-        Me.Land.Name = "Land"
-        Me.Land.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Kundengruppe"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Kundengruppe"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.DataPropertyName = "Preisliste"
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Preisliste"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.ReadOnly = True
         '
         'SplitContainer
         '
@@ -296,6 +242,8 @@ Partial Class Kundenliste
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(BrancheLabel)
+        Me.SplitContainer.Panel1.Controls.Add(Me.BrancheComboBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
         Me.SplitContainer.Panel1.Controls.Add(Me.txtFirmaName)
         Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
@@ -316,6 +264,27 @@ Partial Class Kundenliste
         Me.SplitContainer.Size = New System.Drawing.Size(1232, 738)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
+        '
+        'BrancheComboBox
+        '
+        Me.BrancheComboBox.DataSource = Me.GrbranchenBindingSource
+        Me.BrancheComboBox.DisplayMember = "Bezeichnung"
+        Me.BrancheComboBox.FormattingEnabled = True
+        Me.BrancheComboBox.Location = New System.Drawing.Point(98, 136)
+        Me.BrancheComboBox.Name = "BrancheComboBox"
+        Me.BrancheComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.BrancheComboBox.TabIndex = 5
+        Me.BrancheComboBox.ValueMember = "BrNR"
+        '
+        'GrbranchenBindingSource
+        '
+        Me.GrbranchenBindingSource.DataMember = "grbranchen"
+        Me.GrbranchenBindingSource.DataSource = Me.DsBranchen
+        '
+        'DsBranchen
+        '
+        Me.DsBranchen.DataSetName = "dsBranchen"
+        Me.DsBranchen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Label6
         '
@@ -392,17 +361,100 @@ Partial Class Kundenliste
         Me.AnrufenToolStripMenuItem.Size = New System.Drawing.Size(99, 20)
         Me.AnrufenToolStripMenuItem.Text = "Kunde &Anrufen"
         '
-        'AnrufprotokollToolStripMenuItem
-        '
-        Me.AnrufprotokollToolStripMenuItem.Name = "AnrufprotokollToolStripMenuItem"
-        Me.AnrufprotokollToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AnrufprotokollToolStripMenuItem.Text = "Anruf&liste"
-        '
         'NeuerAnrufToolStripMenuItem
         '
         Me.NeuerAnrufToolStripMenuItem.Name = "NeuerAnrufToolStripMenuItem"
-        Me.NeuerAnrufToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NeuerAnrufToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.NeuerAnrufToolStripMenuItem.Text = "&Neuer Anruf"
+        '
+        'AnrufprotokollToolStripMenuItem
+        '
+        Me.AnrufprotokollToolStripMenuItem.Name = "AnrufprotokollToolStripMenuItem"
+        Me.AnrufprotokollToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.AnrufprotokollToolStripMenuItem.Text = "Anruf&liste"
+        '
+        'GrbranchenTableAdapter
+        '
+        Me.GrbranchenTableAdapter.ClearBeforeFill = True
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "IDNR"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "IDNR"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 75
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Name"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Vorname"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Vorname"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Firma"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Firma"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Adresse"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Adresse"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "PLZ"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "PLZ"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        Me.DataGridViewTextBoxColumn6.Width = 50
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Ort"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Ort"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        '
+        'Land
+        '
+        Me.Land.DataPropertyName = "Land"
+        Me.Land.HeaderText = "Land"
+        Me.Land.Name = "Land"
+        Me.Land.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Kundengruppe"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Kundengruppe"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "Preisliste"
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Preisliste"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.ReadOnly = True
+        '
+        'Branche
+        '
+        Me.Branche.DataPropertyName = "Branche"
+        Me.Branche.HeaderText = "Branche"
+        Me.Branche.Name = "Branche"
+        Me.Branche.ReadOnly = True
         '
         'Kundenliste
         '
@@ -425,6 +477,8 @@ Partial Class Kundenliste
         Me.SplitContainer.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer.ResumeLayout(False)
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
@@ -461,6 +515,12 @@ Partial Class Kundenliste
     Friend WithEvents AnrufenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AnrufprotokollToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NeuerAnrufToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtFirmaName As System.Windows.Forms.TextBox
+    Friend WithEvents BrancheComboBox As System.Windows.Forms.ComboBox
+    Friend WithEvents DsBranchen As IntraSell_Net.dsBranchen
+    Friend WithEvents GrbranchenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents GrbranchenTableAdapter As IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -471,6 +531,5 @@ Partial Class Kundenliste
     Friend WithEvents Land As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents txtFirmaName As System.Windows.Forms.TextBox
+    Friend WithEvents Branche As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

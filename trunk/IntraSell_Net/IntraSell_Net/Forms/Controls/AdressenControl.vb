@@ -19,7 +19,7 @@ Public Class AdressenControl
         Me.AdressenComboBox.Text = ""
     End Sub
 
-    Private Sub AdressenSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelSelectorButton.Click
+    Private Sub AdressenSelectorButton_Click(sender As System.Object, e As System.EventArgs) Handles SelectorButton.Click
         Try
             AdressenSelector.Show()
             AdressenSelector.AdressenComboBox = AdressenComboBox
@@ -57,4 +57,7 @@ Public Class AdressenControl
         End Try
     End Sub
  
+    Private Sub JumpButton_Click(sender As System.Object, e As System.EventArgs) Handles JumpButton.Click
+        AdressenComboBox_MouseDoubleClick(Nothing, Nothing)
+    End Sub
 End Class

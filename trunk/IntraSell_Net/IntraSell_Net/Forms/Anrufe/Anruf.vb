@@ -81,7 +81,6 @@ Public Class Anruf
             Me.AnruflisteBindingSource.EndEdit()
             Me.AnruflisteTableAdapter.Update(Me.DsAnrufe)
 
-
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -159,4 +158,12 @@ Public Class Anruf
 
     End Sub
  
+    Private Sub ArchivierenToolStripButton_Click(sender As System.Object, e As System.EventArgs) Handles ArchivierenToolStripButton.Click
+        Try
+            Me.ArchiviertCheckBox.Checked = True
+            AnruflisteTableAdapter.AnrufArchiviertQuery(True, Me.AnrufNrTextBox.Text)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

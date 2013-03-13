@@ -31,8 +31,13 @@
     End Sub
 
     Sub LoadData()
-        Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
-        Me.OfanrufeTableAdapter.Fill(Me.DsAnrufe.ofanrufe)
+        Try
+            Me.AnruflisteTableAdapter.Fill(Me.DsAnrufe.Anrufliste)
+            Me.OfanrufeTableAdapter.Fill(Me.DsAnrufe.ofanrufe)
+            AnruflisteBindingSource.Filter = " (Archiviert is null or Archiviert=false) "
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
     Public Sub FilterBy(Expression As Object)
         Try
@@ -120,7 +125,12 @@
                 filter = filter & " and Wettbewerb is not null"
             ElseIf Me.WettberwerbCheckBox.CheckState = CheckState.Unchecked Then
                 filter = filter & " and Wettbewerb is null"
+            End If
 
+            If Me.ArchiviertCheckBox.CheckState = CheckState.Checked Then
+                filter = filter & " and Archiviert=true"
+            Else
+                filter = filter & " and (Archiviert is null or Archiviert=false)"
             End If
 
             If Not filter Is Nothing Then

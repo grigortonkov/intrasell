@@ -60,6 +60,7 @@ Partial Class Anruf
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.AnruflisteBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
+        Me.ArchivierenToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.LAenderungDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.LKontaktDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.NotizenTextBox = New System.Windows.Forms.TextBox()
@@ -90,6 +91,8 @@ Partial Class Anruf
         Me.AdressenProfil1 = New IntraSell_Net.AdressenProfil()
         Me.MitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
         Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
+        Me.ArchiviertCheckBox = New System.Windows.Forms.CheckBox()
+        Me.AnrufNrTextBox = New System.Windows.Forms.TextBox()
         AdrNrLabel = New System.Windows.Forms.Label()
         LAenderungLabel = New System.Windows.Forms.Label()
         LKontaktLabel = New System.Windows.Forms.Label()
@@ -320,7 +323,7 @@ Partial Class Anruf
         Me.AnruflisteBindingNavigator.BindingSource = Me.AnruflisteBindingSource
         Me.AnruflisteBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.AnruflisteBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.AnruflisteBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.AnruflisteBindingNavigatorSaveItem})
+        Me.AnruflisteBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.AnruflisteBindingNavigatorSaveItem, Me.ArchivierenToolStripButton})
         Me.AnruflisteBindingNavigator.Location = New System.Drawing.Point(0, 0)
         Me.AnruflisteBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.AnruflisteBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -424,6 +427,14 @@ Partial Class Anruf
         Me.AnruflisteBindingNavigatorSaveItem.Name = "AnruflisteBindingNavigatorSaveItem"
         Me.AnruflisteBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
         Me.AnruflisteBindingNavigatorSaveItem.Text = "Save Data"
+        '
+        'ArchivierenToolStripButton
+        '
+        Me.ArchivierenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ArchivierenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ArchivierenToolStripButton.Name = "ArchivierenToolStripButton"
+        Me.ArchivierenToolStripButton.Size = New System.Drawing.Size(71, 22)
+        Me.ArchivierenToolStripButton.Text = "Archivieren"
         '
         'LAenderungDateTimePicker
         '
@@ -725,14 +736,35 @@ Partial Class Anruf
         Me.AdressenControl1.IDNR = 0
         Me.AdressenControl1.Location = New System.Drawing.Point(100, 42)
         Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(155, 25)
+        Me.AdressenControl1.Size = New System.Drawing.Size(174, 25)
         Me.AdressenControl1.TabIndex = 0
+        '
+        'ArchiviertCheckBox
+        '
+        Me.ArchiviertCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.AnruflisteBindingSource, "Archiviert", True))
+        Me.ArchiviertCheckBox.Location = New System.Drawing.Point(100, 534)
+        Me.ArchiviertCheckBox.Name = "ArchiviertCheckBox"
+        Me.ArchiviertCheckBox.Size = New System.Drawing.Size(174, 24)
+        Me.ArchiviertCheckBox.TabIndex = 14
+        Me.ArchiviertCheckBox.Text = "archiviert"
+        Me.ArchiviertCheckBox.UseVisualStyleBackColor = True
+        '
+        'AnrufNrTextBox
+        '
+        Me.AnrufNrTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "AnrufNr", True))
+        Me.AnrufNrTextBox.Location = New System.Drawing.Point(173, 534)
+        Me.AnrufNrTextBox.Name = "AnrufNrTextBox"
+        Me.AnrufNrTextBox.Size = New System.Drawing.Size(82, 20)
+        Me.AnrufNrTextBox.TabIndex = 45
+        Me.AnrufNrTextBox.Visible = False
         '
         'Anruf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(888, 554)
+        Me.Controls.Add(Me.AnrufNrTextBox)
+        Me.Controls.Add(Me.ArchiviertCheckBox)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(WettbewerbLabel)
         Me.Controls.Add(Me.WettbewerbTextBox)
@@ -827,4 +859,7 @@ Partial Class Anruf
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents NAnruf1DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ArchivierenToolStripButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ArchiviertCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents AnrufNrTextBox As System.Windows.Forms.TextBox
 End Class

@@ -20,7 +20,13 @@ Public Class Main
         End Try
     End Sub
 
-
+    Private Sub Main_Close(sender As System.Object, e As System.EventArgs) Handles MyBase.FormClosed
+        Try
+            StopIntraSell()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
     Private Sub KundenToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles KundenToolStripMenuItem1.Click
         Try
             Dim f As Kunden = New Kunden
@@ -196,6 +202,19 @@ Public Class Main
 
 
 #Region "Anrufe"
+
+
+    Private Sub NeuerAnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerAnrufToolStripMenuItem.Click
+        Try
+            Dim a As Anruf = New Anruf
+            a.MdiParent = Me
+            a.Show()
+            a.StarteAnruf(ModuleGlobals.KundenIDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
     Private Sub ListeToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem1.Click
         Dim f As Anrufliste = New Anrufliste
         f.MdiParent = Me
@@ -211,6 +230,8 @@ Public Class Main
         End Try
     End Sub
 #End Region
+
+#Region "Branche"
 
 
     Private Sub MitarbeiterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MitarbeiterToolStripMenuItem.Click
@@ -230,4 +251,5 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+#End Region
 End Class

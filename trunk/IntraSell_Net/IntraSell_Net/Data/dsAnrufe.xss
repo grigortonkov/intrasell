@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:ofadressen" ZOrder="8" X="878" Y="372" Height="533" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="465" />
     <Shape ID="DesignTable:ofanrufe" ZOrder="7" X="266" Y="254" Height="400" Width="205" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="332" />
     <Shape ID="DesignTable:ofmitarbeiter" ZOrder="5" X="552" Y="193" Height="305" Width="222" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:Anrufliste" ZOrder="3" X="509" Y="531" Height="364" Width="202" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="313" />
+    <Shape ID="DesignTable:Anrufliste" ZOrder="3" X="509" Y="531" Height="499" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="429" />
     <Shape ID="DesignTable:oftermine" ZOrder="2" X="160" Y="695" Height="229" Width="202" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
   </Shapes>
   <Connectors>

@@ -159,6 +159,8 @@ Partial Class Kunden
         Me.IDNRTextBox = New System.Windows.Forms.TextBox()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
         Me.BrancheComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrbranchenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsBranchen = New IntraSell_Net.dsBranchen()
         Me.BriefanredeComboBox = New System.Windows.Forms.ComboBox()
         Me.TitelComboBox = New System.Windows.Forms.ComboBox()
         Me.AnredeComboBox = New System.Windows.Forms.ComboBox()
@@ -191,6 +193,7 @@ Partial Class Kunden
         Me.GrzahlungsbedingungTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grzahlungsbedingungTableAdapter()
         Me.GrtransportmethodeTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grtransportmethodeTableAdapter()
         Me.BuchvorgangtypTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangtypTableAdapter()
+        Me.GrbranchenTableAdapter = New IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter()
         IDNRLabel = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
         BrancheLabel = New System.Windows.Forms.Label()
@@ -257,6 +260,8 @@ Partial Class Kunden
         Me.AdressenProfil1.SuspendLayout()
         CType(Me.Ofadressen_profilBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FillByToolStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -1395,13 +1400,25 @@ Partial Class Kunden
         '
         'BrancheComboBox
         '
-        Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Branche", True))
-        Me.BrancheComboBox.Enabled = False
+        Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Branche", True))
+        Me.BrancheComboBox.DataSource = Me.GrbranchenBindingSource
+        Me.BrancheComboBox.DisplayMember = "Bezeichnung"
         Me.BrancheComboBox.FormattingEnabled = True
         Me.BrancheComboBox.Location = New System.Drawing.Point(83, 106)
         Me.BrancheComboBox.Name = "BrancheComboBox"
         Me.BrancheComboBox.Size = New System.Drawing.Size(200, 21)
         Me.BrancheComboBox.TabIndex = 2
+        Me.BrancheComboBox.ValueMember = "BrNR"
+        '
+        'GrbranchenBindingSource
+        '
+        Me.GrbranchenBindingSource.DataMember = "grbranchen"
+        Me.GrbranchenBindingSource.DataSource = Me.DsBranchen
+        '
+        'DsBranchen
+        '
+        Me.DsBranchen.DataSetName = "dsBranchen"
+        Me.DsBranchen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'BriefanredeComboBox
         '
@@ -1617,7 +1634,7 @@ Partial Class Kunden
         '
         Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(35, 22)
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
         Me.FillByToolStripButton.Text = "FillBy"
         '
         'GrzahlungsmethodeTableAdapter
@@ -1635,6 +1652,10 @@ Partial Class Kunden
         'BuchvorgangtypTableAdapter
         '
         Me.BuchvorgangtypTableAdapter.ClearBeforeFill = True
+        '
+        'GrbranchenTableAdapter
+        '
+        Me.GrbranchenTableAdapter.ClearBeforeFill = True
         '
         'Kunden
         '
@@ -1771,6 +1792,8 @@ Partial Class Kunden
         Me.AdressenProfil1.PerformLayout()
         CType(Me.Ofadressen_profilBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FillByToolStrip.ResumeLayout(False)
         Me.FillByToolStrip.PerformLayout()
@@ -1912,4 +1935,7 @@ Partial Class Kunden
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents AdressenProfil1 As IntraSell_Net.AdressenProfil
     Friend WithEvents Ofadressen_profilBindingNavigator As System.Windows.Forms.BindingNavigator
+    Friend WithEvents DsBranchen As IntraSell_Net.dsBranchen
+    Friend WithEvents GrbranchenBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents GrbranchenTableAdapter As IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter
 End Class

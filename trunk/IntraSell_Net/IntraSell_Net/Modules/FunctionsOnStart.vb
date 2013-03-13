@@ -69,6 +69,10 @@ Module FunctionsOnStart
         Call CheckUpdates()
     End Sub
 
+    Public Sub StopIntraSell()
+        StopCheckUpdates()
+    End Sub
+
 
     Public Sub CheckBranche()
         '        Dim rs, sql

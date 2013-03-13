@@ -56,6 +56,7 @@ Partial Class Anrufliste
         Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
         Me.OfanrufeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.ArchiviertCheckBox = New System.Windows.Forms.CheckBox()
         Me.WettberwerbCheckBox = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AngebotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -88,10 +89,10 @@ Partial Class Anrufliste
         '
         'FilterButton
         '
-        Me.FilterButton.Location = New System.Drawing.Point(16, 362)
+        Me.FilterButton.Location = New System.Drawing.Point(16, 376)
         Me.FilterButton.Name = "FilterButton"
         Me.FilterButton.Size = New System.Drawing.Size(209, 44)
-        Me.FilterButton.TabIndex = 12
+        Me.FilterButton.TabIndex = 14
         Me.FilterButton.Text = "Filter anwenden"
         Me.FilterButton.UseVisualStyleBackColor = True
         '
@@ -342,6 +343,7 @@ Partial Class Anrufliste
         '
         'SplitContainer.Panel1
         '
+        Me.SplitContainer.Panel1.Controls.Add(Me.ArchiviertCheckBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.WettberwerbCheckBox)
         Me.SplitContainer.Panel1.Controls.Add(Me.MenuStrip1)
         Me.SplitContainer.Panel1.Controls.Add(Me.InfoCheckBox)
@@ -375,6 +377,15 @@ Partial Class Anrufliste
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
+        'ArchiviertCheckBox
+        '
+        Me.ArchiviertCheckBox.Location = New System.Drawing.Point(98, 346)
+        Me.ArchiviertCheckBox.Name = "ArchiviertCheckBox"
+        Me.ArchiviertCheckBox.Size = New System.Drawing.Size(126, 24)
+        Me.ArchiviertCheckBox.TabIndex = 13
+        Me.ArchiviertCheckBox.Text = "archevierte zeigen"
+        Me.ArchiviertCheckBox.UseVisualStyleBackColor = True
+        '
         'WettberwerbCheckBox
         '
         Me.WettberwerbCheckBox.Checked = True
@@ -382,7 +393,7 @@ Partial Class Anrufliste
         Me.WettberwerbCheckBox.Location = New System.Drawing.Point(98, 316)
         Me.WettberwerbCheckBox.Name = "WettberwerbCheckBox"
         Me.WettberwerbCheckBox.Size = New System.Drawing.Size(126, 24)
-        Me.WettberwerbCheckBox.TabIndex = 48
+        Me.WettberwerbCheckBox.TabIndex = 12
         Me.WettberwerbCheckBox.Text = "hat anderen Anbieter"
         Me.WettberwerbCheckBox.UseVisualStyleBackColor = True
         '
@@ -619,4 +630,5 @@ Partial Class Anrufliste
     Friend WithEvents Mobil As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Email As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents WettberwerbCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents ArchiviertCheckBox As System.Windows.Forms.CheckBox
 End Class
