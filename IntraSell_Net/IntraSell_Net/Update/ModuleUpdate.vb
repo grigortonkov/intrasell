@@ -264,11 +264,10 @@ Module ModuleUpdate
     End Function
 
 #Region "CheckUpdates"
-
+    Dim CheckUpdatesThread As Thread = New Thread(AddressOf UpdateIntraSellSilent)
     'Silently upgrades 
     Sub CheckUpdates()
-        ' Thread erstellen.
-        Dim CheckUpdatesThread As New Thread(AddressOf UpdateIntraSellSilent)
+        ' Thread erstellen. 
         CheckUpdatesThread.Start()
     End Sub
 
@@ -277,6 +276,10 @@ Module ModuleUpdate
         Call UpdateIntraSell(True)
     End Sub
 
+    Public Sub StopCheckUpdates()
+        CheckUpdatesThread.Abort()
+        CheckUpdatesThread = Nothing
+    End Sub
 #End Region
 
 End Module

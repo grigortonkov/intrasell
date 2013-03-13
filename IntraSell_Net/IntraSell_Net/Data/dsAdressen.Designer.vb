@@ -3971,6 +3971,8 @@ Partial Public Class dsAdressen
         
         Private columnLand As Global.System.Data.DataColumn
         
+        Private columnBranche As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -4087,6 +4089,14 @@ Partial Public Class dsAdressen
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BrancheColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBranche
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4123,12 +4133,18 @@ Partial Public Class dsAdressen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddofAdressenlisteRow(ByVal IDNR As Integer, ByVal Name As String, ByVal Vorname As String, ByVal Firma As String, ByVal Adresse As String, ByVal PLZ As String, ByVal Ort As String, ByVal Kundengruppe As String, ByVal Preisliste As String, ByVal Land As String) As ofAdressenlisteRow
+        Public Overloads Function AddofAdressenlisteRow(ByVal IDNR As Integer, ByVal Name As String, ByVal Vorname As String, ByVal Firma As String, ByVal Adresse As String, ByVal PLZ As String, ByVal Ort As String, ByVal Kundengruppe As String, ByVal Preisliste As String, ByVal Land As String, ByVal Branche As String) As ofAdressenlisteRow
             Dim rowofAdressenlisteRow As ofAdressenlisteRow = CType(Me.NewRow,ofAdressenlisteRow)
-            Dim columnValuesArray() As Object = New Object() {IDNR, Name, Vorname, Firma, Adresse, PLZ, Ort, Kundengruppe, Preisliste, Land}
+            Dim columnValuesArray() As Object = New Object() {IDNR, Name, Vorname, Firma, Adresse, PLZ, Ort, Kundengruppe, Preisliste, Land, Branche}
             rowofAdressenlisteRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowofAdressenlisteRow)
             Return rowofAdressenlisteRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByIDNR(ByVal IDNR As Integer) As ofAdressenlisteRow
+            Return CType(Me.Rows.Find(New Object() {IDNR}),ofAdressenlisteRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4158,6 +4174,7 @@ Partial Public Class dsAdressen
             Me.columnKundengruppe = MyBase.Columns("Kundengruppe")
             Me.columnPreisliste = MyBase.Columns("Preisliste")
             Me.columnLand = MyBase.Columns("Land")
+            Me.columnBranche = MyBase.Columns("Branche")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4183,7 +4200,11 @@ Partial Public Class dsAdressen
             MyBase.Columns.Add(Me.columnPreisliste)
             Me.columnLand = New Global.System.Data.DataColumn("Land", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLand)
+            Me.columnBranche = New Global.System.Data.DataColumn("Branche", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBranche)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIDNR}, true))
             Me.columnIDNR.AllowDBNull = false
+            Me.columnIDNR.Unique = true
             Me.columnName.MaxLength = 50
             Me.columnVorname.MaxLength = 50
             Me.columnFirma.MaxLength = 255
@@ -4193,6 +4214,7 @@ Partial Public Class dsAdressen
             Me.columnKundengruppe.MaxLength = 50
             Me.columnPreisliste.MaxLength = 50
             Me.columnLand.MaxLength = 50
+            Me.columnBranche.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7781,6 +7803,21 @@ Partial Public Class dsAdressen
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Branche() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableofAdressenliste.BrancheColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Branche' in table 'ofAdressenliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableofAdressenliste.BrancheColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsNameNull() As Boolean
             Return Me.IsNull(Me.tableofAdressenliste.NameColumn)
         End Function
@@ -7885,6 +7922,18 @@ Partial Public Class dsAdressen
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLandNull()
             Me(Me.tableofAdressenliste.LandColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBrancheNull() As Boolean
+            Return Me.IsNull(Me.tableofAdressenliste.BrancheColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBrancheNull()
+            Me(Me.tableofAdressenliste.BrancheColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -9263,7 +9312,7 @@ Namespace dsAdressenTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(2) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, N"& _ 
@@ -9382,6 +9431,26 @@ Namespace dsAdressenTableAdapters
             param.IsNullable = true
             param.SourceColumn = "Web"
             Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "UPDATE    ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET             Branche = @Branche "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IDNR = @Ori"& _ 
+                "ginal_IDNR)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Branche"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "Branche"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IDNR"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IDNR"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(2).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10011,6 +10080,34 @@ Namespace dsAdressenTableAdapters
             Else
                 command.Parameters(12).Value = CType(Web,String)
             End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateBrancheQuery(ByVal Branche As Global.System.Nullable(Of Integer), ByVal Original_IDNR As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
+            If (Branche.HasValue = true) Then
+                command.Parameters(0).Value = CType(Branche.Value,Integer)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            command.Parameters(1).Value = CType(Original_IDNR,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -13284,6 +13381,7 @@ Namespace dsAdressenTableAdapters
             tableMapping.ColumnMappings.Add("Kundengruppe", "Kundengruppe")
             tableMapping.ColumnMappings.Add("Preisliste", "Preisliste")
             tableMapping.ColumnMappings.Add("Land", "Land")
+            tableMapping.ColumnMappings.Add("Branche", "Branche")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -13303,12 +13401,13 @@ Namespace dsAdressenTableAdapters
             Me._commandCollection(0).CommandText = "SELECT        ofadressen.IDNR, ofadressen.Name, ofadressen.Vorname, ofadressen.Fi"& _ 
                 "rma, ofadressen.Adresse, grland.Name AS Land, grplz.PLZ, grplz.Ort, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               `ofadressen-settings`.Kundengruppe, `ofadressen-settings`.Preisli"& _ 
-                "ste"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ofadressen INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grplz ON of"& _ 
-                "adressen.PLZ = grplz.IdNr AND ofadressen.PLZ = grplz.IdNr INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               grland ON ofadressen.Land = grland.IdNr AND ofadressen.Land = grl"& _ 
-                "and.IdNr AND ofadressen.Land = grland.IdNr LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
-                "     `ofadressen-settings` ON ofadressen.IDNR = `ofadressen-settings`.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDE"& _ 
-                "R BY ofadressen.IDNR"
+                "ste, grbranchen.Bezeichnung AS Branche"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ofadressen INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        grplz ON ofadressen.PLZ = grplz.IdNr AND ofadressen.PLZ "& _ 
+                "= grplz.IdNr INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grland ON ofadressen.Land = gr"& _ 
+                "land.IdNr AND ofadressen.Land = grland.IdNr AND ofadressen.Land = grland.IdNr LE"& _ 
+                "FT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grbranchen ON ofadressen.Branche = grbra"& _ 
+                "nchen.BrNR LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `ofadressen-settings` ON of"& _ 
+                "adressen.IDNR = `ofadressen-settings`.IDNR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY ofadressen.IDNR"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

@@ -36,7 +36,7 @@ Public Class AdressenProfil
         loaded = True
     End Sub
 
-
+    'Profil beim Kunden setzen
     Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedValueChanged
         Try
             If Not loaded Then Exit Sub
@@ -59,6 +59,11 @@ Public Class AdressenProfil
                 DsAdressenProfil._ofadressen_profil.Add_ofadressen_profilRow(row)
             End While
             rs.Close()
+
+            'Neue Branche setzen 
+            sql = "Update ofAdressen set Branche=" & ComboBox1.SelectedValue & _
+                  " where IdNR=" & _IDNR
+            RunSQL(sql)
 
         Catch ex As Exception
             HandleAppError(ex)

@@ -30,12 +30,13 @@ Public Class Kunden
 #Region "Events "
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsVorgaenge.buchvorgangtyp' table. You can move, or remove it, as needed.
-        Me.BuchvorgangtypTableAdapter.Fill(Me.DsVorgaenge.buchvorgangtyp)
+
 
 
         Try
 
+            Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
+            Me.BuchvorgangtypTableAdapter.Fill(Me.DsVorgaenge.buchvorgangtyp)
             Me.GrtransportmethodeTableAdapter.Fill(Me.DsStammdaten.grtransportmethode)
             Me.GrzahlungsbedingungTableAdapter.Fill(Me.DsStammdaten.grzahlungsbedingung)
             Me.GrzahlungsmethodeTableAdapter.Fill(Me.DsStammdaten.grzahlungsmethode)
@@ -89,6 +90,7 @@ Public Class Kunden
                               ByVal e As System.EventArgs) _
                               Handles ofAdressenBindingSource.CurrentChanged
         Try
+            If IsNumeric(IDNRTextBox.Text) Then ModuleGlobals.KundenIDNR = IDNRTextBox.Text
             If AddingNewFlag = True Then
                 AddingNewFlag = False
                 Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)

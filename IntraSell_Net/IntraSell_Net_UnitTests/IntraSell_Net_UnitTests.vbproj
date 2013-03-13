@@ -88,7 +88,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AnruflisteTableAdapterTest.vb" />
     <Compile Include="Forms\Anrufe\AnrufTest.vb" />
+    <Compile Include="Data\grbranchenTableAdapterTest.vb" />
     <Compile Include="Modules\AdressenAnlageControlTest.vb" />
     <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
     <Compile Include="Data\buchvorgang_artikelTableAdapterTest.vb" />

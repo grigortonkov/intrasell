@@ -107,6 +107,7 @@ Partial Class Login
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
         Me.ClientSize = New System.Drawing.Size(401, 192)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
         Me.Controls.Add(Me.PasswordTextBox)

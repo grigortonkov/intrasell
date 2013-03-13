@@ -1,19 +1,20 @@
 ﻿Public Class Kundenliste
 
     Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+   
 
         Try
 
             Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
             Me.PreislistenTableAdapter.Fill(Me.DsAdressen.Preislisten)
             Me.KundengruppenTableAdapter.Fill(Me.DsAdressen.Kundengruppen)
-
+            Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
 
 
             Me.LandComboBox.Text = ""
             Me.KundengruppeComboBox.Text = ""
             Me.PreislisteComboBox.Text = ""
-
+            Me.BrancheComboBox.Text = ""
             LoadData()
         Catch ex As Exception
             HandleAppError(ex)
@@ -55,6 +56,10 @@
 
             If Me.PreislisteComboBox.Text.Length > 0 Then
                 filter += " and Preisliste Like '" + PreislisteComboBox.Text + "%'"
+            End If
+
+            If Me.BrancheComboBox.Text.Length > 0 Then
+                filter += " and Branche Like '" + BrancheComboBox.Text + "%'"
             End If
 
             If Not filter Is Nothing Then
