@@ -87,7 +87,10 @@ Module ModuleUpdate
 
     'Update IntraSell 
     'Download update.txt, parse the files do download andd update them 
-    Public Function UpdateIntraSell(silentMode As Boolean) As Boolean 'Return True if Update OK 
+    ' silentMode - forTests and silent updates 
+    ' customerUpdateURL - for customer upgrades 
+    ' Returns True if Update OK 
+    Public Function UpdateIntraSell(silentMode As Boolean, Optional ByVal customerUpdateURL As String = Nothing) As Boolean
         UpdateIntraSell = False
 
         Dim updateTxtlokal As String = GetAppPath() & "update.txt"
@@ -117,8 +120,14 @@ Module ModuleUpdate
             End If
 
 
+            If customerUpdateURL Is Nothing Then
+                'DefaultDownload für Alle KUNDEN
+                resultDownload = DownloadFile(INTRASELL_UPDATE, updateTxtlokal)
+            Else
+                'download nur für spezielle Kunden
+                resultDownload = DownloadFile(customerUpdateURL, updateTxtlokal)
+            End If
 
-            resultDownload = DownloadFile(INTRASELL_UPDATE, updateTxtlokal)
             Call writeLog("update.txt downloaded")
 
             If resultDownload Then
@@ -132,7 +141,11 @@ Module ModuleUpdate
                         strLine = updateFile.ReadLine
 
                         'Line Input #11, strLine
-                        strfName1 = Replace(strLine, INTRASELL_BASE_URL, "")
+                        'strfName1 = Replace(strLine, INTRASELL_BASE_URL, "")
+                        strfName1 = Nothing
+                        For Each s As String In Split(strLine, "/")
+                            strfName1 = s ' Filename is the last in the URL
+                        Next
                         strfName = GetAppPath() & strfName1
                         If Dir(strfName) = "" Then
                             needUpdate = True
@@ -193,11 +206,11 @@ Module ModuleUpdate
                                         Call FileCopy(GetAppPath() & fItemName, GetAppPath() & "archive\" & strfName1 & "\" & fItemName)
                                     End If
                                     Call writeLog("copy files: " & fItemName)
-                                    If fItemName.Contains("IntraSell_Net.exe") Then ' update itselfes 
+                                    If fItemName.ToLower.Contains(".exe") Or fItemName.ToLower.Contains(".dll") Then ' update itselfes 
                                         Call Rename(GetAppPath() & fItemName, GetAppPath() & fItemName & "_" & Date.Now.ToFileTime & ".bak")
                                     End If
                                     Call FileCopy(updateFolder & "\" & fItemName, GetAppPath() & fItemName)
-                                    If fItemName.Contains("IntraSell_Net.exe") Then
+                                    If fItemName.Contains("n.exe") Or fItemName.ToLower.Contains(".dll") Then
                                         If Not silentMode Then ' update itselfes 
                                             MsgBox("Es wird empfohlen das Programm jetzt neu zu starten!")
                                         End If
@@ -263,6 +276,15 @@ Module ModuleUpdate
         End Try
     End Function
 
+    Public Function UpdateIntraSellForCustomer(ByVal silent As Boolean) As Boolean
+        If ExistsVarValue("INTRASELL_UPDATE_URL_CUSTOMER") Then
+            Dim customerUpdateURL As String = VarValue("INTRASELL_UPDATE_URL_CUSTOMER")
+            Return UpdateIntraSell(silent, customerUpdateURL)
+        Else
+            Return False
+        End If
+
+    End Function
 #Region "CheckUpdates"
     Dim CheckUpdatesThread As Thread = New Thread(AddressOf UpdateIntraSellSilent)
     'Silently upgrades 
