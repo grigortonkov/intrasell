@@ -39,7 +39,7 @@ Public Class AdressenAnlageControl
             Dim Adresse As String = Split(text, vbNewLine)(1)
             Dim PLZORT As String = Split(text, vbNewLine)(2)
             Dim PLZ As String = Split(PLZORT, " ")(0)
-            Dim Ort As String = Replace(PLZORT, PLZ, "")
+            Dim Ort As String = Trim(Replace(PLZORT, PLZ, ""))
             Dim Tel As String = Split(text, vbNewLine)(3)
 
             If Len(Tel) <= 6 Then 'es ist keine Tel Nummer 

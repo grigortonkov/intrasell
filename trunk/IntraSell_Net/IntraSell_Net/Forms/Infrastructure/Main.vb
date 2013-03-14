@@ -127,6 +127,7 @@ Public Class Main
             Log.Show()
             UpdateIntraSell(False)
             ProcessAllSQLFiles()
+            UpdateIntraSellForCustomer(False)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

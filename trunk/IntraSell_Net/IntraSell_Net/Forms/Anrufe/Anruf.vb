@@ -136,7 +136,7 @@ Public Class Anruf
 
             Me.FirmaTextBox.Text = firstRow("select firma from ofAdressen where idnr = " & IDNR)
             Me.AdresseTextBox.Text = firstRow("select adresse from ofAdressen where idnr = " & IDNR)
-            Me.PLZTextBox.Text = firstRow("select PLZ from ofAdressen where idnr = " & IDNR)
+            Me.PLZTextBox.Text = firstRow("select PLZ from grPLZ where idnr in (select PLZ from ofAdressen where idnr = " & IDNR & ")")
             Me.OrtTextBox.Text = firstRow("select Ort from ofAdressen where idnr = " & IDNR)
             Me.TelTextBox.Text = firstRow("select Tel from ofAdressen where idnr = " & IDNR)
             Me.mobilTextBox.Text = firstRow("select Mobil from ofAdressen where idnr = " & IDNR)
