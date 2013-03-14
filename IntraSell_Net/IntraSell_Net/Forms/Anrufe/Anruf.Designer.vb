@@ -347,7 +347,7 @@ Partial Class Anruf
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -433,7 +433,7 @@ Partial Class Anruf
         Me.ArchivierenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ArchivierenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ArchivierenToolStripButton.Name = "ArchivierenToolStripButton"
-        Me.ArchivierenToolStripButton.Size = New System.Drawing.Size(71, 22)
+        Me.ArchivierenToolStripButton.Size = New System.Drawing.Size(65, 22)
         Me.ArchivierenToolStripButton.Text = "Archivieren"
         '
         'LAenderungDateTimePicker
@@ -443,7 +443,7 @@ Partial Class Anruf
         Me.LAenderungDateTimePicker.Location = New System.Drawing.Point(100, 482)
         Me.LAenderungDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.LAenderungDateTimePicker.Name = "LAenderungDateTimePicker"
-        Me.LAenderungDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.LAenderungDateTimePicker.Size = New System.Drawing.Size(126, 20)
         Me.LAenderungDateTimePicker.TabIndex = 12
         '
         'LKontaktDateTimePicker
@@ -453,7 +453,7 @@ Partial Class Anruf
         Me.LKontaktDateTimePicker.Location = New System.Drawing.Point(100, 508)
         Me.LKontaktDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.LKontaktDateTimePicker.Name = "LKontaktDateTimePicker"
-        Me.LKontaktDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.LKontaktDateTimePicker.Size = New System.Drawing.Size(126, 20)
         Me.LKontaktDateTimePicker.TabIndex = 13
         '
         'NotizenTextBox
@@ -473,7 +473,7 @@ Partial Class Anruf
         Me.BeginZeitDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.BeginZeitDateTimePicker.Name = "BeginZeitDateTimePicker"
         Me.BeginZeitDateTimePicker.ShowUpDown = True
-        Me.BeginZeitDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.BeginZeitDateTimePicker.Size = New System.Drawing.Size(126, 20)
         Me.BeginZeitDateTimePicker.TabIndex = 1
         '
         'EndeZeitDateTimePicker
@@ -485,7 +485,7 @@ Partial Class Anruf
         Me.EndeZeitDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.EndeZeitDateTimePicker.Name = "EndeZeitDateTimePicker"
         Me.EndeZeitDateTimePicker.ShowUpDown = True
-        Me.EndeZeitDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.EndeZeitDateTimePicker.Size = New System.Drawing.Size(126, 20)
         Me.EndeZeitDateTimePicker.TabIndex = 3
         '
         'VerrechnungCheckBox
@@ -556,7 +556,7 @@ Partial Class Anruf
         Me.NAnrufDateTimePicker.Location = New System.Drawing.Point(100, 121)
         Me.NAnrufDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.NAnrufDateTimePicker.Name = "NAnrufDateTimePicker"
-        Me.NAnrufDateTimePicker.Size = New System.Drawing.Size(155, 20)
+        Me.NAnrufDateTimePicker.Size = New System.Drawing.Size(126, 20)
         Me.NAnrufDateTimePicker.TabIndex = 4
         '
         'TelTextBox
@@ -591,7 +591,7 @@ Partial Class Anruf
         '
         'StartStopButton
         '
-        Me.StartStopButton.Location = New System.Drawing.Point(261, 70)
+        Me.StartStopButton.Location = New System.Drawing.Point(232, 69)
         Me.StartStopButton.Name = "StartStopButton"
         Me.StartStopButton.Size = New System.Drawing.Size(51, 44)
         Me.StartStopButton.TabIndex = 2
@@ -607,14 +607,14 @@ Partial Class Anruf
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AngebotToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(337, 445)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(73, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(68, 24)
         Me.MenuStrip1.TabIndex = 39
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'AngebotToolStripMenuItem
         '
         Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
-        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.AngebotToolStripMenuItem.Text = "&Angebot"
         '
         'AngebotCheckBox
@@ -652,7 +652,7 @@ Partial Class Anruf
         Me.WettbewerbTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "Wettbewerb", True))
         Me.WettbewerbTextBox.Location = New System.Drawing.Point(100, 222)
         Me.WettbewerbTextBox.Name = "WettbewerbTextBox"
-        Me.WettbewerbTextBox.Size = New System.Drawing.Size(155, 20)
+        Me.WettbewerbTextBox.Size = New System.Drawing.Size(126, 20)
         Me.WettbewerbTextBox.TabIndex = 9
         '
         'TabControl1
@@ -736,12 +736,13 @@ Partial Class Anruf
         Me.AdressenControl1.IDNR = 0
         Me.AdressenControl1.Location = New System.Drawing.Point(100, 42)
         Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(174, 25)
+        Me.AdressenControl1.Size = New System.Drawing.Size(155, 25)
         Me.AdressenControl1.TabIndex = 0
         '
         'ArchiviertCheckBox
         '
         Me.ArchiviertCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.AnruflisteBindingSource, "Archiviert", True))
+        Me.ArchiviertCheckBox.Enabled = False
         Me.ArchiviertCheckBox.Location = New System.Drawing.Point(100, 534)
         Me.ArchiviertCheckBox.Name = "ArchiviertCheckBox"
         Me.ArchiviertCheckBox.Size = New System.Drawing.Size(174, 24)
@@ -752,17 +753,17 @@ Partial Class Anruf
         'AnrufNrTextBox
         '
         Me.AnrufNrTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.AnruflisteBindingSource, "AnrufNr", True))
+        Me.AnrufNrTextBox.Enabled = False
         Me.AnrufNrTextBox.Location = New System.Drawing.Point(173, 534)
         Me.AnrufNrTextBox.Name = "AnrufNrTextBox"
         Me.AnrufNrTextBox.Size = New System.Drawing.Size(82, 20)
         Me.AnrufNrTextBox.TabIndex = 45
-        Me.AnrufNrTextBox.Visible = False
         '
         'Anruf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(888, 554)
+        Me.ClientSize = New System.Drawing.Size(888, 560)
         Me.Controls.Add(Me.AnrufNrTextBox)
         Me.Controls.Add(Me.ArchiviertCheckBox)
         Me.Controls.Add(Me.TabControl1)

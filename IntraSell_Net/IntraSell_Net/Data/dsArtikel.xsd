@@ -1195,15 +1195,15 @@ WHERE        (ArtNr = @Original_ArtNr) AND (EAN = @Original_EAN) AND (@IsNull_Ba
             <MainSource>
               <DbSource ConnectionRef="intrasell_daten_2_ConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeichnung, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, grartikel.PreisATS, 
-                         grartikel.PreisEuro, grartikel.PreisATS_Brutto, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartikel.Seriennummer, grartikel.LieferantNR, 
-                         grartikel.SetArtikel, grartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture, grartikel.HerstellerNr, grartikel.ProduktAktiv, grartikel.ShopURL, 
-                         grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.HerstellerRabatt, grartikel.HerstellerRabattText, grartikel.AngelegtAn, grartikel.BruttoGewicht, 
-                         grartikel.NettoGewicht, grartikel.TaraGewicht, grartikel.AngelegtAm, grartikel.NichtBestellbar, grartikel.ProduktAktivOnline, 
-                         `grartikel-kategorien`.Name AS Kategorie
-FROM            grartikel INNER JOIN
-                         `grartikel-kategorien` ON grartikel.ArtKatNr = `grartikel-kategorien`.ArtKatNr</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT     grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeichnung, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, 
+                      grartikel.PreisATS, grartikel.PreisEuro, grartikel.PreisATS_Brutto, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartikel.Seriennummer, 
+                      grartikel.LieferantNR, grartikel.SetArtikel, grartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture, grartikel.HerstellerNr, 
+                      grartikel.ProduktAktiv, grartikel.ShopURL, grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.HerstellerRabatt, grartikel.HerstellerRabattText, 
+                      grartikel.AngelegtAn, grartikel.BruttoGewicht, grartikel.NettoGewicht, grartikel.TaraGewicht, grartikel.AngelegtAm, grartikel.NichtBestellbar, 
+                      grartikel.ProduktAktivOnline, `grartikel-kategorien`.Name AS Kategorie, CONCAT(grartikel.EAN, ' ', grartikel.Bezeichnung) AS EANBezeichung
+FROM         grartikel INNER JOIN
+                      `grartikel-kategorien` ON grartikel.ArtKatNr = `grartikel-kategorien`.ArtKatNr</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1245,6 +1245,7 @@ FROM            grartikel INNER JOIN
               <Mapping SourceColumn="NichtBestellbar" DataSetColumn="NichtBestellbar" />
               <Mapping SourceColumn="ProduktAktivOnline" DataSetColumn="ProduktAktivOnline" />
               <Mapping SourceColumn="Kategorie" DataSetColumn="Kategorie" />
+              <Mapping SourceColumn="EANBezeichung" DataSetColumn="EANBezeichung" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1629,7 +1630,7 @@ FROM            grartikel INNER JOIN
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ArtNr" msprop:Generator_ColumnVarNameInTable="columnArtNr" msprop:Generator_ColumnPropNameInRow="ArtNr" msprop:Generator_ColumnPropNameInTable="ArtNrColumn" msprop:Generator_UserColumnName="ArtNr" type="xs:int" />
-              <xs:element name="EAN" msprop:Generator_ColumnVarNameInTable="columnEAN" msprop:Generator_ColumnPropNameInRow="EAN" msprop:Generator_ColumnPropNameInTable="EANColumn" msprop:Generator_UserColumnName="EAN" minOccurs="0">
+              <xs:element name="EAN" msprop:Generator_ColumnVarNameInTable="columnEAN" msprop:Generator_ColumnPropNameInRow="EAN" msprop:Generator_ColumnPropNameInTable="EANColumn" msprop:Generator_UserColumnName="EAN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1668,12 +1669,12 @@ FROM            grartikel INNER JOIN
               <xs:element name="PreisATS" msprop:Generator_ColumnVarNameInTable="columnPreisATS" msprop:Generator_ColumnPropNameInRow="PreisATS" msprop:Generator_ColumnPropNameInTable="PreisATSColumn" msprop:Generator_UserColumnName="PreisATS" type="xs:decimal" minOccurs="0" />
               <xs:element name="PreisEuro" msprop:Generator_ColumnVarNameInTable="columnPreisEuro" msprop:Generator_ColumnPropNameInRow="PreisEuro" msprop:Generator_ColumnPropNameInTable="PreisEuroColumn" msprop:Generator_UserColumnName="PreisEuro" type="xs:decimal" minOccurs="0" />
               <xs:element name="PreisATS_Brutto" msprop:Generator_ColumnVarNameInTable="columnPreisATS_Brutto" msprop:Generator_ColumnPropNameInRow="PreisATS_Brutto" msprop:Generator_ColumnPropNameInTable="PreisATS_BruttoColumn" msprop:Generator_UserColumnName="PreisATS_Brutto" type="xs:decimal" minOccurs="0" />
-              <xs:element name="LagerArtikel" msprop:Generator_ColumnVarNameInTable="columnLagerArtikel" msprop:Generator_ColumnPropNameInRow="LagerArtikel" msprop:Generator_ColumnPropNameInTable="LagerArtikelColumn" msprop:Generator_UserColumnName="LagerArtikel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LagerArtikel" msprop:Generator_ColumnVarNameInTable="columnLagerArtikel" msprop:Generator_ColumnPropNameInRow="LagerArtikel" msprop:Generator_ColumnPropNameInTable="LagerArtikelColumn" msprop:Generator_UserColumnName="LagerArtikel" type="xs:boolean" />
               <xs:element name="EKPreis" msprop:Generator_ColumnVarNameInTable="columnEKPreis" msprop:Generator_ColumnPropNameInRow="EKPreis" msprop:Generator_ColumnPropNameInTable="EKPreisColumn" msprop:Generator_UserColumnName="EKPreis" type="xs:decimal" minOccurs="0" />
               <xs:element name="LEKPreis" msprop:Generator_ColumnVarNameInTable="columnLEKPreis" msprop:Generator_ColumnPropNameInRow="LEKPreis" msprop:Generator_ColumnPropNameInTable="LEKPreisColumn" msprop:Generator_UserColumnName="LEKPreis" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Seriennummer" msprop:Generator_ColumnVarNameInTable="columnSeriennummer" msprop:Generator_ColumnPropNameInRow="Seriennummer" msprop:Generator_ColumnPropNameInTable="SeriennummerColumn" msprop:Generator_UserColumnName="Seriennummer" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Seriennummer" msprop:Generator_ColumnVarNameInTable="columnSeriennummer" msprop:Generator_ColumnPropNameInRow="Seriennummer" msprop:Generator_ColumnPropNameInTable="SeriennummerColumn" msprop:Generator_UserColumnName="Seriennummer" type="xs:boolean" />
               <xs:element name="LieferantNR" msprop:Generator_ColumnVarNameInTable="columnLieferantNR" msprop:Generator_ColumnPropNameInRow="LieferantNR" msprop:Generator_ColumnPropNameInTable="LieferantNRColumn" msprop:Generator_UserColumnName="LieferantNR" type="xs:int" minOccurs="0" />
-              <xs:element name="SetArtikel" msprop:Generator_ColumnVarNameInTable="columnSetArtikel" msprop:Generator_ColumnPropNameInRow="SetArtikel" msprop:Generator_ColumnPropNameInTable="SetArtikelColumn" msprop:Generator_UserColumnName="SetArtikel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SetArtikel" msprop:Generator_ColumnVarNameInTable="columnSetArtikel" msprop:Generator_ColumnPropNameInRow="SetArtikel" msprop:Generator_ColumnPropNameInTable="SetArtikelColumn" msprop:Generator_UserColumnName="SetArtikel" type="xs:boolean" />
               <xs:element name="ArtKatNr" msprop:Generator_ColumnVarNameInTable="columnArtKatNr" msprop:Generator_ColumnPropNameInRow="ArtKatNr" msprop:Generator_ColumnPropNameInTable="ArtKatNrColumn" msprop:Generator_UserColumnName="ArtKatNr" type="xs:int" minOccurs="0" />
               <xs:element name="MWST" msprop:Generator_ColumnVarNameInTable="columnMWST" msprop:Generator_ColumnPropNameInRow="MWST" msprop:Generator_ColumnPropNameInTable="MWSTColumn" msprop:Generator_UserColumnName="MWST" type="xs:int" minOccurs="0" />
               <xs:element name="Gewicht" msprop:Generator_ColumnVarNameInTable="columnGewicht" msprop:Generator_ColumnPropNameInRow="Gewicht" msprop:Generator_ColumnPropNameInTable="GewichtColumn" msprop:Generator_UserColumnName="Gewicht" minOccurs="0">
@@ -1691,7 +1692,7 @@ FROM            grartikel INNER JOIN
                 </xs:simpleType>
               </xs:element>
               <xs:element name="HerstellerNr" msprop:Generator_ColumnVarNameInTable="columnHerstellerNr" msprop:Generator_ColumnPropNameInRow="HerstellerNr" msprop:Generator_ColumnPropNameInTable="HerstellerNrColumn" msprop:Generator_UserColumnName="HerstellerNr" type="xs:int" minOccurs="0" />
-              <xs:element name="ProduktAktiv" msprop:Generator_ColumnVarNameInTable="columnProduktAktiv" msprop:Generator_ColumnPropNameInRow="ProduktAktiv" msprop:Generator_ColumnPropNameInTable="ProduktAktivColumn" msprop:Generator_UserColumnName="ProduktAktiv" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ProduktAktiv" msprop:Generator_ColumnVarNameInTable="columnProduktAktiv" msprop:Generator_ColumnPropNameInRow="ProduktAktiv" msprop:Generator_ColumnPropNameInTable="ProduktAktivColumn" msprop:Generator_UserColumnName="ProduktAktiv" type="xs:boolean" />
               <xs:element name="ShopURL" msprop:Generator_ColumnVarNameInTable="columnShopURL" msprop:Generator_ColumnPropNameInRow="ShopURL" msprop:Generator_ColumnPropNameInTable="ShopURLColumn" msprop:Generator_UserColumnName="ShopURL" type="xs:string" minOccurs="0" />
               <xs:element name="HerstellerURL" msprop:Generator_ColumnVarNameInTable="columnHerstellerURL" msprop:Generator_ColumnPropNameInRow="HerstellerURL" msprop:Generator_ColumnPropNameInTable="HerstellerURLColumn" msprop:Generator_UserColumnName="HerstellerURL" type="xs:string" minOccurs="0" />
               <xs:element name="Modifikationen" msprop:Generator_ColumnVarNameInTable="columnModifikationen" msprop:Generator_ColumnPropNameInRow="Modifikationen" msprop:Generator_ColumnPropNameInTable="ModifikationenColumn" msprop:Generator_UserColumnName="Modifikationen" minOccurs="0">
@@ -1714,12 +1715,19 @@ FROM            grartikel INNER JOIN
               <xs:element name="NettoGewicht" msprop:Generator_ColumnVarNameInTable="columnNettoGewicht" msprop:Generator_ColumnPropNameInRow="NettoGewicht" msprop:Generator_ColumnPropNameInTable="NettoGewichtColumn" msprop:Generator_UserColumnName="NettoGewicht" type="xs:double" minOccurs="0" />
               <xs:element name="TaraGewicht" msprop:Generator_ColumnVarNameInTable="columnTaraGewicht" msprop:Generator_ColumnPropNameInRow="TaraGewicht" msprop:Generator_ColumnPropNameInTable="TaraGewichtColumn" msprop:Generator_UserColumnName="TaraGewicht" type="xs:double" minOccurs="0" />
               <xs:element name="AngelegtAm" msprop:Generator_ColumnVarNameInTable="columnAngelegtAm" msprop:Generator_ColumnPropNameInRow="AngelegtAm" msprop:Generator_ColumnPropNameInTable="AngelegtAmColumn" msprop:Generator_UserColumnName="AngelegtAm" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="NichtBestellbar" msprop:Generator_ColumnVarNameInTable="columnNichtBestellbar" msprop:Generator_ColumnPropNameInRow="NichtBestellbar" msprop:Generator_ColumnPropNameInTable="NichtBestellbarColumn" msprop:Generator_UserColumnName="NichtBestellbar" type="xs:boolean" minOccurs="0" />
+              <xs:element name="NichtBestellbar" msprop:Generator_ColumnVarNameInTable="columnNichtBestellbar" msprop:Generator_ColumnPropNameInRow="NichtBestellbar" msprop:Generator_ColumnPropNameInTable="NichtBestellbarColumn" msprop:Generator_UserColumnName="NichtBestellbar" type="xs:boolean" />
               <xs:element name="ProduktAktivOnline" msprop:Generator_ColumnVarNameInTable="columnProduktAktivOnline" msprop:Generator_ColumnPropNameInRow="ProduktAktivOnline" msprop:Generator_ColumnPropNameInTable="ProduktAktivOnlineColumn" msprop:Generator_UserColumnName="ProduktAktivOnline" type="xs:byte" minOccurs="0" />
               <xs:element name="Kategorie" msprop:Generator_ColumnVarNameInTable="columnKategorie" msprop:Generator_ColumnPropNameInRow="Kategorie" msprop:Generator_ColumnPropNameInTable="KategorieColumn" msprop:Generator_UserColumnName="Kategorie" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EANBezeichung" msprop:Generator_ColumnVarNameInTable="columnEANBezeichung" msprop:Generator_ColumnPropNameInRow="EANBezeichung" msprop:Generator_ColumnPropNameInTable="EANBezeichungColumn" msprop:Generator_UserColumnName="EANBezeichung" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1781,15 +1789,15 @@ FROM            grartikel INNER JOIN
       <xs:selector xpath=".//mstns:grArtikelliste" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:unique>
-    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_UserParentTable="grartikel">
+    <xs:keyref name="FK_grartikel_grartikel-staffelpreise" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-staffelpreise" msprop:rel_Generator_ChildPropName="_Getgrartikel_staffelpreiseRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-staffelpreise" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_staffelpreise" msprop:rel_Generator_ParentPropName="grartikelRow">
       <xs:selector xpath=".//mstns:grartikel-staffelpreise" />
       <xs:field xpath="mstns:ArtNr" />
     </xs:keyref>
-    <xs:keyref name="FK_grartikel_grartikel-htmlinfo" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-htmlinfo" msprop:rel_Generator_ChildPropName="_Getgrartikel_htmlinfoRows" msprop:rel_Generator_ParentPropName="grartikelRow" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-htmlinfo" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_htmlinfo" msprop:rel_Generator_UserParentTable="grartikel">
+    <xs:keyref name="FK_grartikel_grartikel-htmlinfo" refer="Constraint1" msprop:rel_Generator_UserChildTable="grartikel-htmlinfo" msprop:rel_Generator_ChildPropName="_Getgrartikel_htmlinfoRows" msprop:rel_Generator_UserParentTable="grartikel" msprop:rel_Generator_UserRelationName="FK_grartikel_grartikel-htmlinfo" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_grartikel_htmlinfo" msprop:rel_Generator_ParentPropName="grartikelRow">
       <xs:selector xpath=".//mstns:grartikel-htmlinfo" />
       <xs:field xpath="mstns:ArtNR" />
     </xs:keyref>
-    <xs:keyref name="FK_grartikel-kategorien_grartikel" refer="grartikel-kategorien_Constraint1" msprop:rel_Generator_UserChildTable="grartikel" msprop:rel_Generator_ChildPropName="GetgrartikelRows" msprop:rel_Generator_ParentPropName="_grartikel_kategorienRow" msprop:rel_Generator_UserRelationName="FK_grartikel-kategorien_grartikel" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel" msprop:rel_Generator_UserParentTable="grartikel-kategorien">
+    <xs:keyref name="FK_grartikel-kategorien_grartikel" refer="grartikel-kategorien_Constraint1" msprop:rel_Generator_UserChildTable="grartikel" msprop:rel_Generator_ChildPropName="GetgrartikelRows" msprop:rel_Generator_UserParentTable="grartikel-kategorien" msprop:rel_Generator_UserRelationName="FK_grartikel-kategorien_grartikel" msprop:rel_Generator_RelationVarName="_relationFK_grartikel_kategorien_grartikel" msprop:rel_Generator_ParentPropName="_grartikel_kategorienRow">
       <xs:selector xpath=".//mstns:grartikel" />
       <xs:field xpath="mstns:ArtKatNr" />
     </xs:keyref>

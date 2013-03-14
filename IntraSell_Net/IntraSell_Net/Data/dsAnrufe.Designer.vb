@@ -9133,40 +9133,39 @@ Namespace dsAnrufeTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO ofanrufe"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (AdrNr, LAenderung, LKontakt, NAnr"& _ 
-                "uf, Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Angebot, WeitereIn"& _ 
-                "formationen, InformationPer, Wettbewerb)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@AdrNr, @LAenderung, @L"& _ 
-                "Kontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZeit, @EndeZeit, @Verrechnung,"& _ 
-                " @Angebot, @WeitereInformationen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @InformationPer, @W"& _ 
-                "ettbewerb)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO ofanrufe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                      (AdrNr, LAenderung, LKontakt, NAnruf," & _
+                " Notizen, MitarbeiterNr, BeginZeit, EndeZeit, Verrechnung, Angebot, WeitereInfor" & _
+                "mationen, InformationPer, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                      Wettbewerb, AnrufNr)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES  " & _
+                "   (@AdrNr, @LAenderung, @LKontakt, @NAnruf, @Notizen, @MitarbeiterNr, @BeginZei" & _
+                "t, @EndeZeit, @Verrechnung, @Angebot, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                      @WeitereInformatio" & _
+                "nen, @InformationPer, @Wettbewerb, @AnrufNr)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@AdrNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "AdrNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LAenderung"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LAenderung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@LKontakt"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "LKontakt"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@NAnruf"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "NAnruf"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9174,28 +9173,28 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.LongText
             param.Size = 1024
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Notizen"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@MitarbeiterNr"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "MitarbeiterNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@BeginZeit"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "BeginZeit"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@EndeZeit"
             param.DbType = Global.System.Data.DbType.DateTime
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "EndeZeit"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9203,7 +9202,7 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Verrechnung"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9211,7 +9210,7 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Angebot"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9219,7 +9218,7 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[Object]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.[Byte]
             param.Size = 1024
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "WeitereInformationen"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9227,7 +9226,7 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 45
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "InformationPer"
             Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9235,8 +9234,15 @@ Namespace dsAnrufeTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Wettbewerb"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@AnrufNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = True
+            param.SourceColumn = "AnrufNr"
             Me._adapter.InsertCommand.Parameters.Add(param)
             Me._adapter.UpdateCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection

@@ -5276,6 +5276,8 @@ Partial Public Class dsArtikel
         
         Private columnKategorie As Global.System.Data.DataColumn
         
+        Private columnEANBezeichung As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -5592,6 +5594,14 @@ Partial Public Class dsArtikel
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EANBezeichungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEANBezeichung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5663,9 +5673,10 @@ Partial Public Class dsArtikel
                     ByVal AngelegtAm As Date,  _
                     ByVal NichtBestellbar As Boolean,  _
                     ByVal ProduktAktivOnline As SByte,  _
-                    ByVal Kategorie As String) As grArtikellisteRow
+                    ByVal Kategorie As String,  _
+                    ByVal EANBezeichung As String) As grArtikellisteRow
             Dim rowgrArtikellisteRow As grArtikellisteRow = CType(Me.NewRow,grArtikellisteRow)
-            Dim columnValuesArray() As Object = New Object() {ArtNr, EAN, Barcode, Bezeichnung, Bezeichnung1, Beschreibung, Einheit, PreisATS, PreisEuro, PreisATS_Brutto, LagerArtikel, EKPreis, LEKPreis, Seriennummer, LieferantNR, SetArtikel, ArtKatNr, MWST, Gewicht, Picture, HerstellerNr, ProduktAktiv, ShopURL, HerstellerURL, Modifikationen, HerstellerRabatt, HerstellerRabattText, AngelegtAn, BruttoGewicht, NettoGewicht, TaraGewicht, AngelegtAm, NichtBestellbar, ProduktAktivOnline, Kategorie}
+            Dim columnValuesArray() As Object = New Object() {ArtNr, EAN, Barcode, Bezeichnung, Bezeichnung1, Beschreibung, Einheit, PreisATS, PreisEuro, PreisATS_Brutto, LagerArtikel, EKPreis, LEKPreis, Seriennummer, LieferantNR, SetArtikel, ArtKatNr, MWST, Gewicht, Picture, HerstellerNr, ProduktAktiv, ShopURL, HerstellerURL, Modifikationen, HerstellerRabatt, HerstellerRabattText, AngelegtAn, BruttoGewicht, NettoGewicht, TaraGewicht, AngelegtAm, NichtBestellbar, ProduktAktivOnline, Kategorie, EANBezeichung}
             rowgrArtikellisteRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowgrArtikellisteRow)
             Return rowgrArtikellisteRow
@@ -5729,6 +5740,7 @@ Partial Public Class dsArtikel
             Me.columnNichtBestellbar = MyBase.Columns("NichtBestellbar")
             Me.columnProduktAktivOnline = MyBase.Columns("ProduktAktivOnline")
             Me.columnKategorie = MyBase.Columns("Kategorie")
+            Me.columnEANBezeichung = MyBase.Columns("EANBezeichung")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5804,19 +5816,28 @@ Partial Public Class dsArtikel
             MyBase.Columns.Add(Me.columnProduktAktivOnline)
             Me.columnKategorie = New Global.System.Data.DataColumn("Kategorie", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnKategorie)
+            Me.columnEANBezeichung = New Global.System.Data.DataColumn("EANBezeichung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEANBezeichung)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnArtNr}, true))
             Me.columnArtNr.AllowDBNull = false
             Me.columnArtNr.Unique = true
+            Me.columnEAN.AllowDBNull = false
             Me.columnEAN.MaxLength = 50
             Me.columnBarcode.MaxLength = 50
             Me.columnBezeichnung.MaxLength = 50
             Me.columnBezeichnung1.MaxLength = 50
             Me.columnEinheit.MaxLength = 50
+            Me.columnLagerArtikel.AllowDBNull = false
+            Me.columnSeriennummer.AllowDBNull = false
+            Me.columnSetArtikel.AllowDBNull = false
             Me.columnGewicht.MaxLength = 10
             Me.columnPicture.MaxLength = 255
+            Me.columnProduktAktiv.AllowDBNull = false
             Me.columnModifikationen.MaxLength = 255
             Me.columnHerstellerRabattText.MaxLength = 50
+            Me.columnNichtBestellbar.AllowDBNull = false
             Me.columnKategorie.MaxLength = 255
+            Me.columnEANBezeichung.MaxLength = 101
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8835,11 +8856,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property EAN() As String
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.EANColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'EAN' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.EANColumn),String)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.EANColumn) = value
@@ -8970,11 +8987,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property LagerArtikel() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.LagerArtikelColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LagerArtikel' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.LagerArtikelColumn),Boolean)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.LagerArtikelColumn) = value
@@ -9015,11 +9028,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Seriennummer() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.SeriennummerColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Seriennummer' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.SeriennummerColumn),Boolean)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.SeriennummerColumn) = value
@@ -9045,11 +9054,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property SetArtikel() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.SetArtikelColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SetArtikel' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.SetArtikelColumn),Boolean)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.SetArtikelColumn) = value
@@ -9135,11 +9140,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property ProduktAktiv() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.ProduktAktivColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProduktAktiv' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.ProduktAktivColumn),Boolean)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.ProduktAktivColumn) = value
@@ -9300,11 +9301,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property NichtBestellbar() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tablegrArtikelliste.NichtBestellbarColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'NichtBestellbar' in table 'grArtikelliste' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrArtikelliste.NichtBestellbarColumn),Boolean)
             End Get
             Set
                 Me(Me.tablegrArtikelliste.NichtBestellbarColumn) = value
@@ -9343,15 +9340,18 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEANNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.EANColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEANNull()
-            Me(Me.tablegrArtikelliste.EANColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property EANBezeichung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablegrArtikelliste.EANBezeichungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'EANBezeichung' in table 'grArtikelliste' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablegrArtikelliste.EANBezeichungColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -9451,18 +9451,6 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsLagerArtikelNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.LagerArtikelColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetLagerArtikelNull()
-            Me(Me.tablegrArtikelliste.LagerArtikelColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsEKPreisNull() As Boolean
             Return Me.IsNull(Me.tablegrArtikelliste.EKPreisColumn)
         End Function
@@ -9487,18 +9475,6 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSeriennummerNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.SeriennummerColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSeriennummerNull()
-            Me(Me.tablegrArtikelliste.SeriennummerColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsLieferantNRNull() As Boolean
             Return Me.IsNull(Me.tablegrArtikelliste.LieferantNRColumn)
         End Function
@@ -9507,18 +9483,6 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetLieferantNRNull()
             Me(Me.tablegrArtikelliste.LieferantNRColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSetArtikelNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.SetArtikelColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSetArtikelNull()
-            Me(Me.tablegrArtikelliste.SetArtikelColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9579,18 +9543,6 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetHerstellerNrNull()
             Me(Me.tablegrArtikelliste.HerstellerNrColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsProduktAktivNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.ProduktAktivColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetProduktAktivNull()
-            Me(Me.tablegrArtikelliste.ProduktAktivColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9715,18 +9667,6 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsNichtBestellbarNull() As Boolean
-            Return Me.IsNull(Me.tablegrArtikelliste.NichtBestellbarColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetNichtBestellbarNull()
-            Me(Me.tablegrArtikelliste.NichtBestellbarColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsProduktAktivOnlineNull() As Boolean
             Return Me.IsNull(Me.tablegrArtikelliste.ProduktAktivOnlineColumn)
         End Function
@@ -9747,6 +9687,18 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetKategorieNull()
             Me(Me.tablegrArtikelliste.KategorieColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEANBezeichungNull() As Boolean
+            Return Me.IsNull(Me.tablegrArtikelliste.EANBezeichungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEANBezeichungNull()
+            Me(Me.tablegrArtikelliste.EANBezeichungColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -19943,6 +19895,7 @@ Namespace dsArtikelTableAdapters
             tableMapping.ColumnMappings.Add("NichtBestellbar", "NichtBestellbar")
             tableMapping.ColumnMappings.Add("ProduktAktivOnline", "ProduktAktivOnline")
             tableMapping.ColumnMappings.Add("Kategorie", "Kategorie")
+            tableMapping.ColumnMappings.Add("EANBezeichung", "EANBezeichung")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -19959,20 +19912,20 @@ Namespace dsArtikelTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeic"& _ 
-                "hnung, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, grarti"& _ 
-                "kel.PreisATS, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.PreisEuro, grartikel.PreisATS"& _ 
-                "_Brutto, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartike"& _ 
-                "l.Seriennummer, grartikel.LieferantNR, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.SetA"& _ 
-                "rtikel, grartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture"& _ 
-                ", grartikel.HerstellerNr, grartikel.ProduktAktiv, grartikel.ShopURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.Her"& _ 
-                "stellerRabatt, grartikel.HerstellerRabattText, grartikel.AngelegtAn, grartikel.B"& _ 
-                "ruttoGewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.NettoGewicht, grartikel.TaraG"& _ 
-                "ewicht, grartikel.AngelegtAm, grartikel.NichtBestellbar, grartikel.ProduktAktivO"& _ 
-                "nline, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `grartikel-kategorien`.Name AS Kategorie"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM"& _ 
-                "            grartikel INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `grartikel-kategorien"& _ 
-                "` ON grartikel.ArtKatNr = `grartikel-kategorien`.ArtKatNr"
+            Me._commandCollection(0).CommandText = "SELECT     grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeichnu"& _ 
+                "ng, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "               grartikel.PreisATS, grartikel.PreisEuro, grartikel.PreisATS_Brutt"& _ 
+                "o, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartikel.Seri"& _ 
+                "ennummer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.LieferantNR, grartikel.SetArtikel, g"& _ 
+                "rartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture, grartik"& _ 
+                "el.HerstellerNr, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.ProduktAktiv, grartikel.ShopU"& _ 
+                "RL, grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.HerstellerRabat"& _ 
+                "t, grartikel.HerstellerRabattText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.AngelegtAn,"& _ 
+                " grartikel.BruttoGewicht, grartikel.NettoGewicht, grartikel.TaraGewicht, grartik"& _ 
+                "el.AngelegtAm, grartikel.NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.Prod"& _ 
+                "uktAktivOnline, `grartikel-kategorien`.Name AS Kategorie, CONCAT(grartikel.EAN, "& _ 
+                "' ', grartikel.Bezeichnung) AS EANBezeichung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         grartikel INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      `grartikel-kategorien` ON grartikel.ArtKatNr = `grartikel"& _ 
+                "-kategorien`.ArtKatNr"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

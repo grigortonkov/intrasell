@@ -161,7 +161,7 @@ Public Class Anruf
     Private Sub ArchivierenToolStripButton_Click(sender As System.Object, e As System.EventArgs) Handles ArchivierenToolStripButton.Click
         Try
             Me.ArchiviertCheckBox.Checked = True
-            AnruflisteTableAdapter.AnrufArchiviertQuery(True, Me.AnrufNrTextBox.Text)
+            AnruflisteTableAdapter.AnrufArchiviertQuery(True, CInt(Me.AnrufNrTextBox.Text))
         Catch ex As Exception
             HandleAppError(ex)
         End Try

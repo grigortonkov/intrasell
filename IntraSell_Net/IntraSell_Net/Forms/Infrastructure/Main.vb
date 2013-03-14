@@ -252,4 +252,14 @@ Public Class Main
         End Try
     End Sub
 #End Region
+
+    Private Sub ArtikelKategorienToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ArtikelKategorienToolStripMenuItem.Click
+           Try
+            ArtikelKategorien.MdiParent = Me
+            ArtikelKategorien.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+
+    End Sub
 End Class

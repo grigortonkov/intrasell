@@ -1,6 +1,6 @@
 ﻿Imports IntraSell_DLL
 Public Class ArtikelControl
-    Public Const SQL = "SELECT ArtNr, concat(EAN, ' - ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN"
+    Public Const SQL = "SELECT ArtNr, concat(EAN, ' ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN, Bezeichnung"
     Private _ArtNr As Integer
 
     Public Property ArtNr() As Integer
@@ -33,6 +33,17 @@ Public Class ArtikelControl
             If VarType(ArtikelComboBox.SelectedValue) = VariantType.Integer Then
                 ArtNr = ArtikelComboBox.SelectedValue
             End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub StammdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StammdatenToolStripMenuItem.Click
+        Try
+            Dim k As Artikel = New Artikel
+            k.MdiParent = Main
+            k.Show()
+            k.FilterBy("ArtNr=" & _ArtNr)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

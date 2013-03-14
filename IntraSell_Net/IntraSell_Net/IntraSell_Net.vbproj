@@ -154,6 +154,12 @@
       <DependentUpon>dsVorgaenge.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB\DBUpgrade.vb" />
+    <Compile Include="Forms\Artikel\ArtikelKategorien.Designer.vb">
+      <DependentUpon>ArtikelKategorien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\ArtikelKategorien.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\AdressenProfil.Designer.vb">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </Compile>
@@ -399,6 +405,9 @@
     <Compile Include="Update\ModuleUpdate.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Artikel\ArtikelKategorien.resx">
+      <DependentUpon>ArtikelKategorien.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\AdressenProfil.resx">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </EmbeddedResource>
