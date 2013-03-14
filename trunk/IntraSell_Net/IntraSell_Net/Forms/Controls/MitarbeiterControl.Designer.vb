@@ -31,7 +31,7 @@ Partial Class MitarbeiterControl
         'MitarbeiterSelectorButton
         '
         Me.MitarbeiterSelectorButton.Enabled = False
-        Me.MitarbeiterSelectorButton.Location = New System.Drawing.Point(133, 1)
+        Me.MitarbeiterSelectorButton.Location = New System.Drawing.Point(128, 1)
         Me.MitarbeiterSelectorButton.Margin = New System.Windows.Forms.Padding(1)
         Me.MitarbeiterSelectorButton.Name = "MitarbeiterSelectorButton"
         Me.MitarbeiterSelectorButton.Size = New System.Drawing.Size(20, 23)
@@ -50,7 +50,7 @@ Partial Class MitarbeiterControl
         Me.MitarbeiterComboBox.Location = New System.Drawing.Point(0, 1)
         Me.MitarbeiterComboBox.Margin = New System.Windows.Forms.Padding(0, 1, 1, 1)
         Me.MitarbeiterComboBox.Name = "MitarbeiterComboBox"
-        Me.MitarbeiterComboBox.Size = New System.Drawing.Size(131, 21)
+        Me.MitarbeiterComboBox.Size = New System.Drawing.Size(126, 21)
         Me.MitarbeiterComboBox.TabIndex = 38
         '
         'FlowLayoutPanel1

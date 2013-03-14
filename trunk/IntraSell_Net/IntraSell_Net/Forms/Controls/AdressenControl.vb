@@ -49,7 +49,7 @@ Public Class AdressenControl
     Private Sub AdressenComboBox_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles AdressenComboBox.MouseDoubleClick
         Try
             Dim k As Kunden = New Kunden
-            k.MdiParent = CType(Me.Parent, Form).MdiParent
+            k.MdiParent = Main
             k.Show()
             k.FilterBy("IDNR=" & IDNR)
         Catch ex As Exception
@@ -57,7 +57,11 @@ Public Class AdressenControl
         End Try
     End Sub
  
-    Private Sub JumpButton_Click(sender As System.Object, e As System.EventArgs) Handles JumpButton.Click
+    Private Sub JumpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        AdressenComboBox_MouseDoubleClick(Nothing, Nothing)
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
         AdressenComboBox_MouseDoubleClick(Nothing, Nothing)
     End Sub
 End Class
