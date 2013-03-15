@@ -195,6 +195,7 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.AllowUserToDeleteRows = False
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
+        Me.OfAdressenlisteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.KategorieDataGridViewTextBoxColumn, Me.BarcodeDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn})
         Me.OfAdressenlisteDataGridView.DataSource = Me.GrArtikellisteBindingSource
@@ -202,7 +203,7 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(888, 757)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(771, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
         '
         'ArtNrDataGridViewTextBoxColumn
@@ -211,6 +212,7 @@ Partial Class Artikelliste
         Me.ArtNrDataGridViewTextBoxColumn.HeaderText = "ArtNr"
         Me.ArtNrDataGridViewTextBoxColumn.Name = "ArtNrDataGridViewTextBoxColumn"
         Me.ArtNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ArtNrDataGridViewTextBoxColumn.Width = 56
         '
         'EANDataGridViewTextBoxColumn
         '
@@ -218,6 +220,7 @@ Partial Class Artikelliste
         Me.EANDataGridViewTextBoxColumn.HeaderText = "EAN"
         Me.EANDataGridViewTextBoxColumn.Name = "EANDataGridViewTextBoxColumn"
         Me.EANDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EANDataGridViewTextBoxColumn.Width = 54
         '
         'KategorieDataGridViewTextBoxColumn
         '
@@ -225,6 +228,7 @@ Partial Class Artikelliste
         Me.KategorieDataGridViewTextBoxColumn.HeaderText = "Kategorie"
         Me.KategorieDataGridViewTextBoxColumn.Name = "KategorieDataGridViewTextBoxColumn"
         Me.KategorieDataGridViewTextBoxColumn.ReadOnly = True
+        Me.KategorieDataGridViewTextBoxColumn.Width = 77
         '
         'BarcodeDataGridViewTextBoxColumn
         '
@@ -232,6 +236,7 @@ Partial Class Artikelliste
         Me.BarcodeDataGridViewTextBoxColumn.HeaderText = "Barcode"
         Me.BarcodeDataGridViewTextBoxColumn.Name = "BarcodeDataGridViewTextBoxColumn"
         Me.BarcodeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BarcodeDataGridViewTextBoxColumn.Width = 72
         '
         'BezeichnungDataGridViewTextBoxColumn
         '
@@ -239,6 +244,7 @@ Partial Class Artikelliste
         Me.BezeichnungDataGridViewTextBoxColumn.HeaderText = "Bezeichnung"
         Me.BezeichnungDataGridViewTextBoxColumn.Name = "BezeichnungDataGridViewTextBoxColumn"
         Me.BezeichnungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BezeichnungDataGridViewTextBoxColumn.Width = 94
         '
         'Bezeichnung1DataGridViewTextBoxColumn
         '
@@ -253,6 +259,7 @@ Partial Class Artikelliste
         Me.BeschreibungDataGridViewTextBoxColumn.HeaderText = "Beschreibung"
         Me.BeschreibungDataGridViewTextBoxColumn.Name = "BeschreibungDataGridViewTextBoxColumn"
         Me.BeschreibungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BeschreibungDataGridViewTextBoxColumn.Width = 97
         '
         'EinheitDataGridViewTextBoxColumn
         '
@@ -260,6 +267,7 @@ Partial Class Artikelliste
         Me.EinheitDataGridViewTextBoxColumn.HeaderText = "Einheit"
         Me.EinheitDataGridViewTextBoxColumn.Name = "EinheitDataGridViewTextBoxColumn"
         Me.EinheitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EinheitDataGridViewTextBoxColumn.Width = 64
         '
         'PreisATSDataGridViewTextBoxColumn
         '
@@ -267,6 +275,7 @@ Partial Class Artikelliste
         Me.PreisATSDataGridViewTextBoxColumn.HeaderText = "Preis"
         Me.PreisATSDataGridViewTextBoxColumn.Name = "PreisATSDataGridViewTextBoxColumn"
         Me.PreisATSDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PreisATSDataGridViewTextBoxColumn.Width = 55
         '
         'MWSTDataGridViewTextBoxColumn
         '
@@ -274,6 +283,7 @@ Partial Class Artikelliste
         Me.MWSTDataGridViewTextBoxColumn.HeaderText = "MWST"
         Me.MWSTDataGridViewTextBoxColumn.Name = "MWSTDataGridViewTextBoxColumn"
         Me.MWSTDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MWSTDataGridViewTextBoxColumn.Width = 66
         '
         'PreisATSBruttoDataGridViewTextBoxColumn
         '
@@ -281,6 +291,7 @@ Partial Class Artikelliste
         Me.PreisATSBruttoDataGridViewTextBoxColumn.HeaderText = "Preis_Brutto"
         Me.PreisATSBruttoDataGridViewTextBoxColumn.Name = "PreisATSBruttoDataGridViewTextBoxColumn"
         Me.PreisATSBruttoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.Width = 89
         '
         'EKPreisDataGridViewTextBoxColumn
         '
@@ -288,6 +299,7 @@ Partial Class Artikelliste
         Me.EKPreisDataGridViewTextBoxColumn.HeaderText = "EKPreis"
         Me.EKPreisDataGridViewTextBoxColumn.Name = "EKPreisDataGridViewTextBoxColumn"
         Me.EKPreisDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EKPreisDataGridViewTextBoxColumn.Width = 69
         '
         'LEKPreisDataGridViewTextBoxColumn
         '
@@ -295,6 +307,7 @@ Partial Class Artikelliste
         Me.LEKPreisDataGridViewTextBoxColumn.HeaderText = "LEKPreis"
         Me.LEKPreisDataGridViewTextBoxColumn.Name = "LEKPreisDataGridViewTextBoxColumn"
         Me.LEKPreisDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LEKPreisDataGridViewTextBoxColumn.Width = 75
         '
         'LieferantNRDataGridViewTextBoxColumn
         '
@@ -302,6 +315,7 @@ Partial Class Artikelliste
         Me.LieferantNRDataGridViewTextBoxColumn.HeaderText = "LieferantNR"
         Me.LieferantNRDataGridViewTextBoxColumn.Name = "LieferantNRDataGridViewTextBoxColumn"
         Me.LieferantNRDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LieferantNRDataGridViewTextBoxColumn.Width = 89
         '
         'ArtKatNrDataGridViewTextBoxColumn
         '
@@ -317,6 +331,7 @@ Partial Class Artikelliste
         Me.PictureDataGridViewTextBoxColumn.HeaderText = "Picture"
         Me.PictureDataGridViewTextBoxColumn.Name = "PictureDataGridViewTextBoxColumn"
         Me.PictureDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PictureDataGridViewTextBoxColumn.Width = 65
         '
         'HerstellerNrDataGridViewTextBoxColumn
         '
@@ -324,6 +339,7 @@ Partial Class Artikelliste
         Me.HerstellerNrDataGridViewTextBoxColumn.HeaderText = "HerstellerNr"
         Me.HerstellerNrDataGridViewTextBoxColumn.Name = "HerstellerNrDataGridViewTextBoxColumn"
         Me.HerstellerNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerNrDataGridViewTextBoxColumn.Width = 87
         '
         'ShopURLDataGridViewTextBoxColumn
         '
@@ -331,6 +347,7 @@ Partial Class Artikelliste
         Me.ShopURLDataGridViewTextBoxColumn.HeaderText = "ShopURL"
         Me.ShopURLDataGridViewTextBoxColumn.Name = "ShopURLDataGridViewTextBoxColumn"
         Me.ShopURLDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ShopURLDataGridViewTextBoxColumn.Width = 79
         '
         'HerstellerURLDataGridViewTextBoxColumn
         '
@@ -338,6 +355,7 @@ Partial Class Artikelliste
         Me.HerstellerURLDataGridViewTextBoxColumn.HeaderText = "HerstellerURL"
         Me.HerstellerURLDataGridViewTextBoxColumn.Name = "HerstellerURLDataGridViewTextBoxColumn"
         Me.HerstellerURLDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerURLDataGridViewTextBoxColumn.Width = 98
         '
         'ModifikationenDataGridViewTextBoxColumn
         '
@@ -345,6 +363,7 @@ Partial Class Artikelliste
         Me.ModifikationenDataGridViewTextBoxColumn.HeaderText = "Modifikationen"
         Me.ModifikationenDataGridViewTextBoxColumn.Name = "ModifikationenDataGridViewTextBoxColumn"
         Me.ModifikationenDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ModifikationenDataGridViewTextBoxColumn.Width = 101
         '
         'HerstellerRabattDataGridViewTextBoxColumn
         '
@@ -352,6 +371,7 @@ Partial Class Artikelliste
         Me.HerstellerRabattDataGridViewTextBoxColumn.HeaderText = "HerstellerRabatt"
         Me.HerstellerRabattDataGridViewTextBoxColumn.Name = "HerstellerRabattDataGridViewTextBoxColumn"
         Me.HerstellerRabattDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerRabattDataGridViewTextBoxColumn.Width = 108
         '
         'HerstellerRabattTextDataGridViewTextBoxColumn
         '
@@ -359,6 +379,7 @@ Partial Class Artikelliste
         Me.HerstellerRabattTextDataGridViewTextBoxColumn.HeaderText = "HerstellerRabattText"
         Me.HerstellerRabattTextDataGridViewTextBoxColumn.Name = "HerstellerRabattTextDataGridViewTextBoxColumn"
         Me.HerstellerRabattTextDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.Width = 129
         '
         'AngelegtAnDataGridViewTextBoxColumn
         '
@@ -374,6 +395,7 @@ Partial Class Artikelliste
         Me.GewichtDataGridViewTextBoxColumn.HeaderText = "Gewicht"
         Me.GewichtDataGridViewTextBoxColumn.Name = "GewichtDataGridViewTextBoxColumn"
         Me.GewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.GewichtDataGridViewTextBoxColumn.Width = 71
         '
         'BruttoGewichtDataGridViewTextBoxColumn
         '
@@ -381,6 +403,7 @@ Partial Class Artikelliste
         Me.BruttoGewichtDataGridViewTextBoxColumn.HeaderText = "BruttoGewicht"
         Me.BruttoGewichtDataGridViewTextBoxColumn.Name = "BruttoGewichtDataGridViewTextBoxColumn"
         Me.BruttoGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BruttoGewichtDataGridViewTextBoxColumn.Width = 99
         '
         'NettoGewichtDataGridViewTextBoxColumn
         '
@@ -388,6 +411,7 @@ Partial Class Artikelliste
         Me.NettoGewichtDataGridViewTextBoxColumn.HeaderText = "NettoGewicht"
         Me.NettoGewichtDataGridViewTextBoxColumn.Name = "NettoGewichtDataGridViewTextBoxColumn"
         Me.NettoGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NettoGewichtDataGridViewTextBoxColumn.Width = 97
         '
         'TaraGewichtDataGridViewTextBoxColumn
         '
@@ -395,6 +419,7 @@ Partial Class Artikelliste
         Me.TaraGewichtDataGridViewTextBoxColumn.HeaderText = "TaraGewicht"
         Me.TaraGewichtDataGridViewTextBoxColumn.Name = "TaraGewichtDataGridViewTextBoxColumn"
         Me.TaraGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TaraGewichtDataGridViewTextBoxColumn.Width = 93
         '
         'SeriennummerDataGridViewCheckBoxColumn
         '
@@ -402,6 +427,7 @@ Partial Class Artikelliste
         Me.SeriennummerDataGridViewCheckBoxColumn.HeaderText = "Seriennummer"
         Me.SeriennummerDataGridViewCheckBoxColumn.Name = "SeriennummerDataGridViewCheckBoxColumn"
         Me.SeriennummerDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.SeriennummerDataGridViewCheckBoxColumn.Width = 80
         '
         'SetArtikelDataGridViewCheckBoxColumn
         '
@@ -409,6 +435,7 @@ Partial Class Artikelliste
         Me.SetArtikelDataGridViewCheckBoxColumn.HeaderText = "SetArtikel"
         Me.SetArtikelDataGridViewCheckBoxColumn.Name = "SetArtikelDataGridViewCheckBoxColumn"
         Me.SetArtikelDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.SetArtikelDataGridViewCheckBoxColumn.Width = 58
         '
         'LagerArtikelDataGridViewCheckBoxColumn
         '
@@ -416,6 +443,7 @@ Partial Class Artikelliste
         Me.LagerArtikelDataGridViewCheckBoxColumn.HeaderText = "LagerArtikel"
         Me.LagerArtikelDataGridViewCheckBoxColumn.Name = "LagerArtikelDataGridViewCheckBoxColumn"
         Me.LagerArtikelDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.LagerArtikelDataGridViewCheckBoxColumn.Width = 69
         '
         'NichtBestellbarDataGridViewCheckBoxColumn
         '
@@ -423,6 +451,7 @@ Partial Class Artikelliste
         Me.NichtBestellbarDataGridViewCheckBoxColumn.HeaderText = "NichtBestellbar"
         Me.NichtBestellbarDataGridViewCheckBoxColumn.Name = "NichtBestellbarDataGridViewCheckBoxColumn"
         Me.NichtBestellbarDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.Width = 84
         '
         'ProduktAktivDataGridViewCheckBoxColumn
         '
@@ -430,6 +459,7 @@ Partial Class Artikelliste
         Me.ProduktAktivDataGridViewCheckBoxColumn.HeaderText = "ProduktAktiv"
         Me.ProduktAktivDataGridViewCheckBoxColumn.Name = "ProduktAktivDataGridViewCheckBoxColumn"
         Me.ProduktAktivDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.ProduktAktivDataGridViewCheckBoxColumn.Width = 74
         '
         'ProduktAktivOnlineDataGridViewTextBoxColumn
         '
@@ -439,6 +469,7 @@ Partial Class Artikelliste
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.ReadOnly = True
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Width = 123
         '
         'AngelegtAmDataGridViewTextBoxColumn
         '
@@ -446,6 +477,7 @@ Partial Class Artikelliste
         Me.AngelegtAmDataGridViewTextBoxColumn.HeaderText = "AngelegtAm"
         Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
         Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AngelegtAmDataGridViewTextBoxColumn.Width = 89
         '
         'GrArtikellisteBindingSource
         '
@@ -492,7 +524,7 @@ Partial Class Artikelliste
         'SplitContainer.Panel2
         '
         Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1125, 757)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
         Me.SplitContainer.SplitterDistance = 233
         Me.SplitContainer.TabIndex = 11
         '
@@ -620,11 +652,10 @@ Partial Class Artikelliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1125, 757)
+        Me.ClientSize = New System.Drawing.Size(1008, 762)
         Me.Controls.Add(Me.SplitContainer)
         Me.Name = "Artikelliste"
         Me.Text = "Artikelliste"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrArtikellisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

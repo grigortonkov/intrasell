@@ -184,6 +184,7 @@ Partial Class ArtikelPreisregeln
         '
         Me.PreiseDataGridView.AllowUserToOrderColumns = True
         Me.PreiseDataGridView.AutoGenerateColumns = False
+        Me.PreiseDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.PreiseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.PreiseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdColumn, Me.ArtNrColumn, Me.ArtKatNrColumn, Me.IDNRColumn, Me.PreislisteNameColumn, Me.StkAbColumn, Me.VKPreisColumn, Me.AufschlagVKPreisColumn, Me.AufschlagEKPreisColumn, Me.DatumColumn})
         Me.PreiseDataGridView.DataSource = Me.GrartikelvkpreisperselectionBindingSource
@@ -207,6 +208,7 @@ Partial Class ArtikelPreisregeln
         Me.ArtNrColumn.Name = "ArtNrColumn"
         Me.ArtNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.ArtNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ArtNrColumn.Width = 61
         '
         'ArtKatNrColumn
         '
@@ -215,6 +217,7 @@ Partial Class ArtikelPreisregeln
         Me.ArtKatNrColumn.Name = "ArtKatNrColumn"
         Me.ArtKatNrColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.ArtKatNrColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ArtKatNrColumn.Width = 77
         '
         'IDNRColumn
         '
@@ -223,7 +226,7 @@ Partial Class ArtikelPreisregeln
         Me.IDNRColumn.Name = "IDNRColumn"
         Me.IDNRColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.IDNRColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.IDNRColumn.Width = 150
+        Me.IDNRColumn.Width = 63
         '
         'PreislisteNameColumn
         '
@@ -232,40 +235,42 @@ Partial Class ArtikelPreisregeln
         Me.PreislisteNameColumn.Name = "PreislisteNameColumn"
         Me.PreislisteNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.PreislisteNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.PreislisteNameColumn.Width = 73
         '
         'StkAbColumn
         '
         Me.StkAbColumn.DataPropertyName = "StkAb"
         Me.StkAbColumn.HeaderText = "Stk ab"
         Me.StkAbColumn.Name = "StkAbColumn"
-        Me.StkAbColumn.Width = 75
+        Me.StkAbColumn.Width = 48
         '
         'VKPreisColumn
         '
         Me.VKPreisColumn.DataPropertyName = "VKPreis"
         Me.VKPreisColumn.HeaderText = "VK Preis"
         Me.VKPreisColumn.Name = "VKPreisColumn"
-        Me.VKPreisColumn.Width = 75
+        Me.VKPreisColumn.Width = 67
         '
         'AufschlagVKPreisColumn
         '
         Me.AufschlagVKPreisColumn.DataPropertyName = "AufschlagVKPreis"
         Me.AufschlagVKPreisColumn.HeaderText = "Aufschlag VK Preis"
         Me.AufschlagVKPreisColumn.Name = "AufschlagVKPreisColumn"
-        Me.AufschlagVKPreisColumn.Width = 75
+        Me.AufschlagVKPreisColumn.Width = 91
         '
         'AufschlagEKPreisColumn
         '
         Me.AufschlagEKPreisColumn.DataPropertyName = "AufschlagEKPreis"
         Me.AufschlagEKPreisColumn.HeaderText = "Aufschlag EK Preis"
         Me.AufschlagEKPreisColumn.Name = "AufschlagEKPreisColumn"
-        Me.AufschlagEKPreisColumn.Width = 75
+        Me.AufschlagEKPreisColumn.Width = 91
         '
         'DatumColumn
         '
         Me.DatumColumn.DataPropertyName = "Datum"
         Me.DatumColumn.HeaderText = "Datum"
         Me.DatumColumn.Name = "DatumColumn"
+        Me.DatumColumn.Width = 63
         '
         'GrartikelvkpreisperselectionBindingSource
         '

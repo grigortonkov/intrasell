@@ -172,6 +172,7 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.AllowUserToDeleteRows = False
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
+        Me.OfAdressenlisteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AnrufNrDataGridViewTextBoxColumn, Me.AdrNrDataGridViewTextBoxColumn, Me.Firma, Me.NotizenDataGridViewTextBoxColumn, Me.NAnrufDataGridViewTextBoxColumn, Me.BeginZeitDataGridViewTextBoxColumn, Me.EndeZeitDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.Angebot, Me.WeitereInformationen, Me.Wettbewerb, Me.Adresse, Me.PLZ, Me.Ort, Me.LAenderungDataGridViewTextBoxColumn, Me.LKontaktDataGridViewTextBoxColumn, Me.Tel, Me.Mobil, Me.Email})
         Me.OfAdressenlisteDataGridView.DataSource = Me.AnruflisteBindingSource
@@ -179,7 +180,7 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.OfAdressenlisteDataGridView.Name = "OfAdressenlisteDataGridView"
         Me.OfAdressenlisteDataGridView.ReadOnly = True
-        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(770, 794)
+        Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
         '
         'AnrufNrDataGridViewTextBoxColumn
@@ -204,6 +205,7 @@ Partial Class Anrufliste
         Me.Firma.HeaderText = "Firma"
         Me.Firma.Name = "Firma"
         Me.Firma.ReadOnly = True
+        Me.Firma.Width = 57
         '
         'NotizenDataGridViewTextBoxColumn
         '
@@ -212,7 +214,7 @@ Partial Class Anrufliste
         Me.NotizenDataGridViewTextBoxColumn.HeaderText = "Notizen"
         Me.NotizenDataGridViewTextBoxColumn.Name = "NotizenDataGridViewTextBoxColumn"
         Me.NotizenDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NotizenDataGridViewTextBoxColumn.Width = 300
+        Me.NotizenDataGridViewTextBoxColumn.Width = 68
         '
         'NAnrufDataGridViewTextBoxColumn
         '
@@ -220,6 +222,7 @@ Partial Class Anrufliste
         Me.NAnrufDataGridViewTextBoxColumn.HeaderText = "NAnruf"
         Me.NAnrufDataGridViewTextBoxColumn.Name = "NAnrufDataGridViewTextBoxColumn"
         Me.NAnrufDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NAnrufDataGridViewTextBoxColumn.Width = 65
         '
         'BeginZeitDataGridViewTextBoxColumn
         '
@@ -227,6 +230,7 @@ Partial Class Anrufliste
         Me.BeginZeitDataGridViewTextBoxColumn.HeaderText = "BeginZeit"
         Me.BeginZeitDataGridViewTextBoxColumn.Name = "BeginZeitDataGridViewTextBoxColumn"
         Me.BeginZeitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BeginZeitDataGridViewTextBoxColumn.Width = 77
         '
         'EndeZeitDataGridViewTextBoxColumn
         '
@@ -234,6 +238,7 @@ Partial Class Anrufliste
         Me.EndeZeitDataGridViewTextBoxColumn.HeaderText = "EndeZeit"
         Me.EndeZeitDataGridViewTextBoxColumn.Name = "EndeZeitDataGridViewTextBoxColumn"
         Me.EndeZeitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EndeZeitDataGridViewTextBoxColumn.Width = 75
         '
         'MitarbeiterNrDataGridViewTextBoxColumn
         '
@@ -241,6 +246,7 @@ Partial Class Anrufliste
         Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter"
         Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
         Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.Width = 81
         '
         'Angebot
         '
@@ -248,6 +254,7 @@ Partial Class Anrufliste
         Me.Angebot.HeaderText = "Angebot"
         Me.Angebot.Name = "Angebot"
         Me.Angebot.ReadOnly = True
+        Me.Angebot.Width = 53
         '
         'WeitereInformationen
         '
@@ -255,6 +262,7 @@ Partial Class Anrufliste
         Me.WeitereInformationen.HeaderText = "WeitereInformationen"
         Me.WeitereInformationen.Name = "WeitereInformationen"
         Me.WeitereInformationen.ReadOnly = True
+        Me.WeitereInformationen.Width = 114
         '
         'Wettbewerb
         '
@@ -262,6 +270,7 @@ Partial Class Anrufliste
         Me.Wettbewerb.HeaderText = "Wettbewerb"
         Me.Wettbewerb.Name = "Wettbewerb"
         Me.Wettbewerb.ReadOnly = True
+        Me.Wettbewerb.Width = 90
         '
         'Adresse
         '
@@ -269,6 +278,7 @@ Partial Class Anrufliste
         Me.Adresse.HeaderText = "Adresse"
         Me.Adresse.Name = "Adresse"
         Me.Adresse.ReadOnly = True
+        Me.Adresse.Width = 70
         '
         'PLZ
         '
@@ -276,6 +286,7 @@ Partial Class Anrufliste
         Me.PLZ.HeaderText = "PLZ"
         Me.PLZ.Name = "PLZ"
         Me.PLZ.ReadOnly = True
+        Me.PLZ.Width = 52
         '
         'Ort
         '
@@ -283,6 +294,7 @@ Partial Class Anrufliste
         Me.Ort.HeaderText = "Ort"
         Me.Ort.Name = "Ort"
         Me.Ort.ReadOnly = True
+        Me.Ort.Width = 46
         '
         'LAenderungDataGridViewTextBoxColumn
         '
@@ -290,6 +302,7 @@ Partial Class Anrufliste
         Me.LAenderungDataGridViewTextBoxColumn.HeaderText = "LAenderung"
         Me.LAenderungDataGridViewTextBoxColumn.Name = "LAenderungDataGridViewTextBoxColumn"
         Me.LAenderungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LAenderungDataGridViewTextBoxColumn.Width = 90
         '
         'LKontaktDataGridViewTextBoxColumn
         '
@@ -297,6 +310,7 @@ Partial Class Anrufliste
         Me.LKontaktDataGridViewTextBoxColumn.HeaderText = "LKontakt"
         Me.LKontaktDataGridViewTextBoxColumn.Name = "LKontaktDataGridViewTextBoxColumn"
         Me.LKontaktDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LKontaktDataGridViewTextBoxColumn.Width = 75
         '
         'Tel
         '
@@ -304,6 +318,7 @@ Partial Class Anrufliste
         Me.Tel.HeaderText = "Tel"
         Me.Tel.Name = "Tel"
         Me.Tel.ReadOnly = True
+        Me.Tel.Width = 47
         '
         'Mobil
         '
@@ -311,6 +326,7 @@ Partial Class Anrufliste
         Me.Mobil.HeaderText = "Mobil"
         Me.Mobil.Name = "Mobil"
         Me.Mobil.ReadOnly = True
+        Me.Mobil.Width = 57
         '
         'Email
         '
@@ -318,6 +334,7 @@ Partial Class Anrufliste
         Me.Email.HeaderText = "Email"
         Me.Email.Name = "Email"
         Me.Email.ReadOnly = True
+        Me.Email.Width = 57
         '
         'AnruflisteBindingSource
         '
@@ -373,7 +390,7 @@ Partial Class Anrufliste
         'SplitContainer.Panel2
         '
         Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1012, 794)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
         Me.SplitContainer.SplitterDistance = 238
         Me.SplitContainer.TabIndex = 11
         '
@@ -558,12 +575,11 @@ Partial Class Anrufliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1012, 794)
+        Me.ClientSize = New System.Drawing.Size(1008, 762)
         Me.Controls.Add(Me.SplitContainer)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Anrufliste"
         Me.Text = "Anrufliste"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AnruflisteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).EndInit()

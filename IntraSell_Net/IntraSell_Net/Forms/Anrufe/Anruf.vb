@@ -131,6 +131,8 @@ Public Class Anruf
             'reload
             Me.AdressenControl1.Refresh()
             Me.AdressenControl1.IDNR = IDNR
+            Me.AdressenProfil1.IDNR = IDNR
+
             'Save Text 
             Me.NotizenTextBox.Text += vbNewLine & "Adresse:" & vbNewLine & AdressenAnlageControl1.AdresseTextBox.Text
 

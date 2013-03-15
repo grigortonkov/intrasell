@@ -4,6 +4,11 @@ Imports IntraSell_Net.dsAdressenTableAdapters
 Public Class AdressenAnlageControl
     Public Event OnNewIdnrCreated(ByVal IDNR As Integer)
 
+
+    Private Sub AdressenProfil_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
+    End Sub
+
     Private Sub AdresseTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles AdresseTextBox.TextChanged
         If InStr(Me.AdresseTextBox.Text, "FIRMA") > 0 Then
             Exit Sub
@@ -75,14 +80,22 @@ Public Class AdressenAnlageControl
                 Dim PLZIDNR = IntraSellKunden.getPLZCreateIfNeeded(Land, Ort, PLZ)
 
                 actual = target.InsertKlein(idnr, Status, Name, Vorname, Firma, Adresse, Land, PLZIDNR, Ort, Tel, Mobil, Email, Web)
-                sql = "select idnr from ofAdressen where tel='" & Tel & "'"
+                sql = "select IDNR from ofAdressen where tel='" & Tel & "'"
                 idnr = firstRow(sql)
+                If Not BrancheComboBox.SelectedValue Is Nothing Then
+                    'Neue Branche setzen 
+                    sql = "Update ofAdressen set Branche=" & BrancheComboBox.SelectedValue & _
+                          " where IdNR=" & idnr
+                    RunSQL(sql)
+                End If
+
+
                 If IsNumeric(idnr) Then
                     Return idnr
                 Else
                     Return -1
                 End If
-            End If
+                End If
         End If
         Return -1
     End Function
