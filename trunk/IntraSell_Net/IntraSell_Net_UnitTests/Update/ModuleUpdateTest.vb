@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-
+Imports IntraSell_DLL
 
 
 '''<summary>
@@ -82,5 +82,42 @@ Public Class ModuleUpdateTest
      
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
     End Sub
+
+
+    '''<summary>
+    '''A test for UpdateIntraSell
+    '''</summary>
+    <TestMethod()> _
+    Public Sub UpdateIntraSellForCustomerTest()
+        'Notwendige Var eintragen 
+        FunctionsVars.VarValue_Default("INTRASELL_UPDATE_URL_CUSTOMER", "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/update.txt")
+        Dim silentMode As Boolean = True
+        Dim actual As Boolean = ModuleUpdate.UpdateIntraSellForCustomer(silentMode)
+        Assert.AreEqual(True, actual)
+
+        'Process all SQL Files 
+        actual = ProcessAllSQLFiles()
+        Assert.AreEqual(True, actual)
+        'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+    End Sub
+
+
+    '''<summary>
+    '''A test for UpdateIntraSell
+    '''</summary>
+    <TestMethod()> _
+    Public Sub UpdateIntraSellForCustomerTestManuel()
+        'Notwendige Var eintragen 
+        FunctionsVars.VarValue_Default("INTRASELL_UPDATE_URL_CUSTOMER", "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/update.txt")
+        Dim silentMode As Boolean = False
+        Dim actual As Boolean = ModuleUpdate.UpdateIntraSellForCustomer(silentMode)
+        Assert.AreEqual(True, actual)
+
+        'Process all SQL Files 
+        actual = ProcessAllSQLFiles()
+        Assert.AreEqual(True, actual)
+        'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+    End Sub
+
 
 End Class
