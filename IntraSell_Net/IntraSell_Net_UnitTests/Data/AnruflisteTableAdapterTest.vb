@@ -62,7 +62,7 @@ Public Class AnruflisteTableAdapterTest
         Dim target As AnruflisteTableAdapter = New AnruflisteTableAdapter() ' TODO: Initialize to an appropriate value
         Dim archiviert As Object = True
         Dim Original_AnrufNr As Integer = 1
-        Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
+        Dim expected As Integer = 1
         Dim actual As Integer
         actual = target.AnrufArchiviertQuery(archiviert, Original_AnrufNr)
         Assert.AreEqual(expected, actual)
