@@ -69,7 +69,8 @@ Public Class VorgangListe
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
-            LoadData()
+            'zu langsam
+            'LoadData()
 
             Dim filter As String = "1=1"
 
@@ -205,5 +206,9 @@ Public Class VorgangListe
 
     Private Sub NotizTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles NotizTextBox.TextChanged
         FilterButton_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub PLZVonTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PLZVonTextBox.TextChanged
+        PLZBisTextBox.Text = PLZVonTextBox.Text
     End Sub
 End Class

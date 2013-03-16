@@ -73,6 +73,17 @@ Namespace My
                 Return CType(Me("LOG_FILENAME"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("server=www.ptec.co.at;Port=3307;User Id=ksgroup;password=ksgroup123123;Persist Se"& _ 
+            "curity Info=True;database=intrasell_daten_ksgroup")>  _
+        Public ReadOnly Property intrasell_daten_2_ConnectionString_() As String
+            Get
+                Return CType(Me("intrasell_daten_2_ConnectionString_"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

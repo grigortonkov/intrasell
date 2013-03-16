@@ -1,15 +1,15 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports IntraSell_Net.dsAnrufeTableAdapters
+Imports IntraSell_DLL
 
 
 
 '''<summary>
-'''This is a test class for AnruflisteTableAdapterTest and is intended
-'''to contain all AnruflisteTableAdapterTest Unit Tests
+'''This is a test class for IntraSellKundenTest and is intended
+'''to contain all IntraSellKundenTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class AnruflisteTableAdapterTest
+Public Class IntraSellKundenTest
 
 
     Private testContextInstance As TestContext
@@ -55,16 +55,32 @@ Public Class AnruflisteTableAdapterTest
 
 
     '''<summary>
-    '''A test for AnrufArchiviertQuery
+    '''A test for getPLZCreateIfNeeded
     '''</summary>
     <TestMethod()> _
-    Public Sub AnrufArchiviertQueryTest()
-        Dim target As AnruflisteTableAdapter = New AnruflisteTableAdapter() ' TODO: Initialize to an appropriate value
-        Dim archiviert As Object = True
-        Dim Original_AnrufNr As Integer = 1
-        Dim expected As Integer = 1
-        Dim actual As Integer
-        actual = target.AnrufArchiviertQuery(archiviert, Original_AnrufNr)
+    Public Sub Kunden_getPLZCreateIfNeededTest()
+
+        Dim Land As String = 43
+        Dim Ort As String = "Linz"
+        Dim PLZ As String = "4040"
+        Dim expected As String = "43_4040"
+        Dim actual As String
+        actual = IntraSellKunden.getPLZCreateIfNeeded(Land, Ort, PLZ)
         Assert.AreEqual(expected, actual)
+
     End Sub
+
+    <TestMethod()> _
+    Public Sub Kunden_getPLZCreateIfNeeded2Test()
+
+        Dim Land As String = 49
+        Dim Ort As String = "Pocking"
+        Dim PLZ As String = "89000"
+        Dim expected As String = "D 89000"
+        Dim actual As String
+        actual = IntraSellKunden.getPLZCreateIfNeeded(Land, Ort, PLZ)
+        Assert.AreEqual(expected, actual)
+
+    End Sub
+
 End Class

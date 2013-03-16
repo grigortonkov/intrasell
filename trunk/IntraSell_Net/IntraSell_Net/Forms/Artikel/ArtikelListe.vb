@@ -105,4 +105,8 @@ Public Class Artikelliste
         End Try
 
     End Sub
+
+    Private Sub PreisVonTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PreisVonTextBox.TextChanged
+        PreisBisTextBox.Text = PreisVonTextBox.Text
+    End Sub
 End Class
