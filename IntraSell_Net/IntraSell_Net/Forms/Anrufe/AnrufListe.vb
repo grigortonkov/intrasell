@@ -8,7 +8,6 @@
 
 
         Try
-
             LoadData()
 
             'Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
@@ -60,7 +59,8 @@
     'Filtern
     Private Sub AnrufButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
-            LoadData()
+            'zu langsam
+            'LoadData()
 
             Dim filter As String = Nothing
 
@@ -86,11 +86,11 @@
             End If
 
             If Me.PLZVonTextBox.Text.Length > 0 Then
-                filter += " and PLZ >= '" + PLZVonTextBox.Text + "%'"
+                filter += " and PLZ >= '" + PLZVonTextBox.Text + "'"
             End If
 
             If Me.PLZBisTextBox.Text.Length > 0 Then
-                filter += " and PLZ <= '" + PLZBisTextBox.Text + "%'"
+                filter += " and PLZ <= '" + PLZBisTextBox.Text + "'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then
@@ -214,5 +214,9 @@
         Catch ex As Exception
             HandleAppError(ex)
         End Try
+    End Sub
+
+    Private Sub PLZVonTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PLZVonTextBox.TextChanged
+        PLZBisTextBox.Text = PLZVonTextBox.Text
     End Sub
 End Class

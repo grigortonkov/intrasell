@@ -87,4 +87,25 @@ Public Class AdressenAnlageControlTest
 
 
     End Sub
+
+    '''<summary>
+    '''A test for AdresseAnlegen
+    '''</summary>
+    <TestMethod()> _
+    Public Sub AdresseAnlegen2Test()
+        Dim target As AdressenAnlageControl = New AdressenAnlageControl()
+        '3 zeilen werden  importiert 
+        Dim text As String = "Rosso et Bianco(V-card)" & vbNewLine & _
+                            "Villacher Str 9" & vbNewLine & _
+                            "9220 Velden am Wörther See" & vbNewLine & _
+                            "Telefon	+43 4274 52002" & vbNewLine & _
+                            "Fax	+43 4274 52002" & vbNewLine & _
+                            "E-Mail	service@rossoetbianco.at" & vbNewLine & _
+                            "Internet	www.rossoetbianco.at Vorschau" & vbNewLine & _
+                            "0.0Keine Bewertungen" & vbNewLine
+
+        Assert.IsTrue(target.AdresseAnlegen(text) >= 0)
+
+
+    End Sub
 End Class

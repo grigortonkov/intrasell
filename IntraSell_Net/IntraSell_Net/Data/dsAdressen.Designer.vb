@@ -9312,28 +9312,28 @@ Namespace dsAdressenTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(2) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(3) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, N"& _ 
-                "ame1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, E"& _ 
-                "xport, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMe"& _ 
-                "nu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse"& _ 
-                ", EUNummer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         EUNummer1, EUNummer2, BHReferenz"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   "& _ 
+            Me._commandCollection(0).CommandText = "SELECT        IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, N" & _
+                "ame1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, E" & _
+                "xport, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMe" & _
+                "nu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse" & _
+                ", EUNummer, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         EUNummer1, EUNummer2, BHReferenz" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   " & _
                 "         ofadressen"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "INSERT INTO ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IDNR, Status, Name, Vorname, Fi"& _ 
-                "rma, Adresse, Land, PLZ, Ort, Tel, Mobil, Email, Web)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IDNR, @St"& _ 
-                "atus, @Name, @Vorname, @Firma, @Adresse, @Land, @PLZ, @Ort, @Tel, @Mobil, @Email"& _ 
+            Me._commandCollection(1).CommandText = "INSERT INTO ofadressen" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (IDNR, Status, Name, Vorname, Fi" & _
+                "rma, Adresse, Land, PLZ, Ort, Tel, Mobil, Email, Web)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES        (@IDNR, @St" & _
+                "atus, @Name, @Vorname, @Firma, @Adresse, @Land, @PLZ, @Ort, @Tel, @Mobil, @Email" & _
                 ", @Web)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@IDNR"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "IDNR"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9341,7 +9341,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 10
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Status"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9349,7 +9349,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Name"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9357,7 +9357,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Vorname"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9365,7 +9365,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 255
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Firma"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9373,14 +9373,14 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 100
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Adresse"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Land"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Land"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9388,7 +9388,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 20
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "PLZ"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9396,7 +9396,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Ort"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9404,7 +9404,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Tel"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9412,7 +9412,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Mobil"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9420,7 +9420,7 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Email"
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
@@ -9428,697 +9428,850 @@ Namespace dsAdressenTableAdapters
             param.DbType = Global.System.Data.DbType.[String]
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
             param.Size = 50
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Web"
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "UPDATE    ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET             Branche = @Branche "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IDNR = @Ori"& _ 
+            Me._commandCollection(2).CommandText = "UPDATE    ofadressen" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET             Branche = @Branche " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE     (IDNR = @Ori" & _
                 "ginal_IDNR)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Branche"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "Branche"
             Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_IDNR"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
-            param.IsNullable = true
+            param.IsNullable = True
             param.SourceColumn = "IDNR"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "UPDATE       ofadressen" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SET                Firma = @Firma, Adresse = @Adresse, P" & _
+                "LZ = @PLZ, Ort = @Ort, Tel = @Tel, Fax = @Fax, Mobil = @Mobil, Email = @Email, W" & _
+                "eb = @Web" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (IDNR = @Original_IDNR)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Firma"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 255
+            param.IsNullable = True
+            param.SourceColumn = "Firma"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Adresse"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 100
+            param.IsNullable = True
+            param.SourceColumn = "Adresse"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@PLZ"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 20
+            param.IsNullable = True
+            param.SourceColumn = "PLZ"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Ort"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Ort"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Tel"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Tel"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Fax"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Fax"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Mobil"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Mobil"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Email"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Email"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Web"
+            param.DbType = Global.System.Data.DbType.[String]
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.VarChar
+            param.Size = 50
+            param.IsNullable = True
+            param.SourceColumn = "Web"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Original_IDNR"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = True
+            param.SourceColumn = "IDNR"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(3).Parameters.Add(param)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As dsAdressen.ofadressenDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As dsAdressen.ofadressenDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As dsAdressen.ofadressenDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData() As dsAdressen.ofadressenDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As dsAdressen.ofadressenDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataTable As dsAdressen.ofadressenDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As dsAdressen) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataSet As dsAdressen) As Integer
             Return Me.Adapter.Update(dataSet, "ofAdressen")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_IDNR As Integer) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IDNR,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
+        Public Overridable Overloads Function Delete(ByVal Original_IDNR As Integer) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IDNR, Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal IDNR As Integer,  _
-                    ByVal Status As String,  _
-                    ByVal Branche As Global.System.Nullable(Of Integer),  _
-                    ByVal Briefanrede As String,  _
-                    ByVal Titel As String,  _
-                    ByVal Anrede As String,  _
-                    ByVal Name As String,  _
-                    ByVal Vorname As String,  _
-                    ByVal Name1 As String,  _
-                    ByVal Firma As String,  _
-                    ByVal Adresse As String,  _
-                    ByVal Land As Global.System.Nullable(Of Integer),  _
-                    ByVal PLZ As String,  _
-                    ByVal Ort As String,  _
-                    ByVal Tel As String,  _
-                    ByVal Tel2 As String,  _
-                    ByVal Fax As String,  _
-                    ByVal Fax2 As String,  _
-                    ByVal Mobil As String,  _
-                    ByVal Email As String,  _
-                    ByVal Web As String,  _
-                    ByVal Export As Global.System.Nullable(Of Byte),  _
-                    ByVal AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal MAAusen As Global.System.Nullable(Of Integer),  _
-                    ByVal MAInnen As Global.System.Nullable(Of Integer),  _
-                    ByVal Abbuchung As Global.System.Nullable(Of Byte),  _
-                    ByVal hasMenu As Global.System.Nullable(Of Byte),  _
-                    ByVal Passwort As String,  _
-                    ByVal nextIDNR As Global.System.Nullable(Of Integer),  _
-                    ByVal mandant As Global.System.Nullable(Of Short),  _
-                    ByVal Geburtstag As Global.System.Nullable(Of Date),  _
-                    ByVal UID As String,  _
-                    ByVal SkypeAdresse As String,  _
-                    ByVal MessengerAdresse As String,  _
-                    ByVal EUNummer As String,  _
-                    ByVal EUNummer1 As String,  _
-                    ByVal EUNummer2 As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
+        Public Overridable Overloads Function Insert( _
+                    ByVal IDNR As Integer, _
+                    ByVal Status As String, _
+                    ByVal Branche As Global.System.Nullable(Of Integer), _
+                    ByVal Briefanrede As String, _
+                    ByVal Titel As String, _
+                    ByVal Anrede As String, _
+                    ByVal Name As String, _
+                    ByVal Vorname As String, _
+                    ByVal Name1 As String, _
+                    ByVal Firma As String, _
+                    ByVal Adresse As String, _
+                    ByVal Land As Global.System.Nullable(Of Integer), _
+                    ByVal PLZ As String, _
+                    ByVal Ort As String, _
+                    ByVal Tel As String, _
+                    ByVal Tel2 As String, _
+                    ByVal Fax As String, _
+                    ByVal Fax2 As String, _
+                    ByVal Mobil As String, _
+                    ByVal Email As String, _
+                    ByVal Web As String, _
+                    ByVal Export As Global.System.Nullable(Of Byte), _
+                    ByVal AngelegtAn As Global.System.Nullable(Of Date), _
+                    ByVal MAAusen As Global.System.Nullable(Of Integer), _
+                    ByVal MAInnen As Global.System.Nullable(Of Integer), _
+                    ByVal Abbuchung As Global.System.Nullable(Of Byte), _
+                    ByVal hasMenu As Global.System.Nullable(Of Byte), _
+                    ByVal Passwort As String, _
+                    ByVal nextIDNR As Global.System.Nullable(Of Integer), _
+                    ByVal mandant As Global.System.Nullable(Of Short), _
+                    ByVal Geburtstag As Global.System.Nullable(Of Date), _
+                    ByVal UID As String, _
+                    ByVal SkypeAdresse As String, _
+                    ByVal MessengerAdresse As String, _
+                    ByVal EUNummer As String, _
+                    ByVal EUNummer1 As String, _
+                    ByVal EUNummer2 As String, _
                     ByVal BHReferenz As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(IDNR,Integer)
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(IDNR, Integer)
             If (Status Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Status,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Status, String)
             End If
-            If (Branche.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Branche.Value,Integer)
+            If (Branche.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Branche.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
             If (Briefanrede Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Briefanrede,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Briefanrede, String)
             End If
             If (Titel Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Titel,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Titel, String)
             End If
             If (Anrede Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Anrede,String)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(Anrede, String)
             End If
             If (Name Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Name,String)
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Name, String)
             End If
             If (Vorname Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Vorname,String)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Vorname, String)
             End If
             If (Name1 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Name1,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Name1, String)
             End If
             If (Firma Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Firma,String)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Firma, String)
             End If
             If (Adresse Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Adresse,String)
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Adresse, String)
             End If
-            If (Land.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Land.Value,Integer)
+            If (Land.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Land.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (PLZ Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(PLZ,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(PLZ, String)
             End If
             If (Ort Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Ort,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Ort, String)
             End If
             If (Tel Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Tel,String)
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Tel, String)
             End If
             If (Tel2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Tel2,String)
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Tel2, String)
             End If
             If (Fax Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Fax,String)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Fax, String)
             End If
             If (Fax2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Fax2,String)
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Fax2, String)
             End If
             If (Mobil Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(Mobil,String)
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(Mobil, String)
             End If
             If (Email Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(Email,String)
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(Email, String)
             End If
             If (Web Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Web,String)
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(Web, String)
             End If
-            If (Export.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(Export.Value,Byte)
+            If (Export.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(Export.Value, Byte)
             Else
                 Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
-            If (AngelegtAn.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(AngelegtAn.Value,Date)
+            If (AngelegtAn.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(AngelegtAn.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
             End If
-            If (MAAusen.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(23).Value = CType(MAAusen.Value,Integer)
+            If (MAAusen.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(MAAusen.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
-            If (MAInnen.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(24).Value = CType(MAInnen.Value,Integer)
+            If (MAInnen.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(MAInnen.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (Abbuchung.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(25).Value = CType(Abbuchung.Value,Byte)
+            If (Abbuchung.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(25).Value = CType(Abbuchung.Value, Byte)
             Else
                 Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
-            If (hasMenu.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(26).Value = CType(hasMenu.Value,Byte)
+            If (hasMenu.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(26).Value = CType(hasMenu.Value, Byte)
             Else
                 Me.Adapter.InsertCommand.Parameters(26).Value = Global.System.DBNull.Value
             End If
             If (Passwort Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(27).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(27).Value = CType(Passwort,String)
+                Me.Adapter.InsertCommand.Parameters(27).Value = CType(Passwort, String)
             End If
-            If (nextIDNR.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(28).Value = CType(nextIDNR.Value,Integer)
+            If (nextIDNR.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(28).Value = CType(nextIDNR.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            If (mandant.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(29).Value = CType(mandant.Value,Short)
+            If (mandant.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(29).Value = CType(mandant.Value, Short)
             Else
                 Me.Adapter.InsertCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
-            If (Geburtstag.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(30).Value = CType(Geburtstag.Value,Date)
+            If (Geburtstag.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(30).Value = CType(Geburtstag.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(30).Value = Global.System.DBNull.Value
             End If
             If (UID Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(31).Value = CType(UID,String)
+                Me.Adapter.InsertCommand.Parameters(31).Value = CType(UID, String)
             End If
             If (SkypeAdresse Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(32).Value = CType(SkypeAdresse,String)
+                Me.Adapter.InsertCommand.Parameters(32).Value = CType(SkypeAdresse, String)
             End If
             If (MessengerAdresse Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(33).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(33).Value = CType(MessengerAdresse,String)
+                Me.Adapter.InsertCommand.Parameters(33).Value = CType(MessengerAdresse, String)
             End If
             If (EUNummer Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(34).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(34).Value = CType(EUNummer,String)
+                Me.Adapter.InsertCommand.Parameters(34).Value = CType(EUNummer, String)
             End If
             If (EUNummer1 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(35).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(35).Value = CType(EUNummer1,String)
+                Me.Adapter.InsertCommand.Parameters(35).Value = CType(EUNummer1, String)
             End If
             If (EUNummer2 Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(36).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(36).Value = CType(EUNummer2,String)
+                Me.Adapter.InsertCommand.Parameters(36).Value = CType(EUNummer2, String)
             End If
             If (BHReferenz Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(37).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(37).Value = CType(BHReferenz,String)
+                Me.Adapter.InsertCommand.Parameters(37).Value = CType(BHReferenz, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Status As String,  _
-                    ByVal Branche As Global.System.Nullable(Of Integer),  _
-                    ByVal Briefanrede As String,  _
-                    ByVal Titel As String,  _
-                    ByVal Anrede As String,  _
-                    ByVal Name As String,  _
-                    ByVal Vorname As String,  _
-                    ByVal Name1 As String,  _
-                    ByVal Firma As String,  _
-                    ByVal Adresse As String,  _
-                    ByVal Land As Global.System.Nullable(Of Integer),  _
-                    ByVal PLZ As String,  _
-                    ByVal Ort As String,  _
-                    ByVal Tel As String,  _
-                    ByVal Tel2 As String,  _
-                    ByVal Fax As String,  _
-                    ByVal Fax2 As String,  _
-                    ByVal Mobil As String,  _
-                    ByVal Email As String,  _
-                    ByVal Web As String,  _
-                    ByVal Export As Object,  _
-                    ByVal AngelegtAn As Global.System.Nullable(Of Date),  _
-                    ByVal MAAusen As Global.System.Nullable(Of Integer),  _
-                    ByVal MAInnen As Global.System.Nullable(Of Integer),  _
-                    ByVal Abbuchung As Object,  _
-                    ByVal hasMenu As Object,  _
-                    ByVal Passwort As String,  _
-                    ByVal nextIDNR As Global.System.Nullable(Of Integer),  _
-                    ByVal mandant As Global.System.Nullable(Of Short),  _
-                    ByVal Geburtstag As Global.System.Nullable(Of Date),  _
-                    ByVal UID As String,  _
-                    ByVal SkypeAdresse As String,  _
-                    ByVal MessengerAdresse As String,  _
-                    ByVal EUNummer As String,  _
-                    ByVal EUNummer1 As String,  _
-                    ByVal EUNummer2 As String,  _
-                    ByVal BHReferenz As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal Status As String, _
+                    ByVal Branche As Global.System.Nullable(Of Integer), _
+                    ByVal Briefanrede As String, _
+                    ByVal Titel As String, _
+                    ByVal Anrede As String, _
+                    ByVal Name As String, _
+                    ByVal Vorname As String, _
+                    ByVal Name1 As String, _
+                    ByVal Firma As String, _
+                    ByVal Adresse As String, _
+                    ByVal Land As Global.System.Nullable(Of Integer), _
+                    ByVal PLZ As String, _
+                    ByVal Ort As String, _
+                    ByVal Tel As String, _
+                    ByVal Tel2 As String, _
+                    ByVal Fax As String, _
+                    ByVal Fax2 As String, _
+                    ByVal Mobil As String, _
+                    ByVal Email As String, _
+                    ByVal Web As String, _
+                    ByVal Export As Object, _
+                    ByVal AngelegtAn As Global.System.Nullable(Of Date), _
+                    ByVal MAAusen As Global.System.Nullable(Of Integer), _
+                    ByVal MAInnen As Global.System.Nullable(Of Integer), _
+                    ByVal Abbuchung As Object, _
+                    ByVal hasMenu As Object, _
+                    ByVal Passwort As String, _
+                    ByVal nextIDNR As Global.System.Nullable(Of Integer), _
+                    ByVal mandant As Global.System.Nullable(Of Short), _
+                    ByVal Geburtstag As Global.System.Nullable(Of Date), _
+                    ByVal UID As String, _
+                    ByVal SkypeAdresse As String, _
+                    ByVal MessengerAdresse As String, _
+                    ByVal EUNummer As String, _
+                    ByVal EUNummer1 As String, _
+                    ByVal EUNummer2 As String, _
+                    ByVal BHReferenz As String, _
                     ByVal Original_IDNR As Integer) As Integer
             If (Status Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Status,String)
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Status, String)
             End If
-            If (Branche.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Branche.Value,Integer)
+            If (Branche.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Branche.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (Briefanrede Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Briefanrede,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Briefanrede, String)
             End If
             If (Titel Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Titel,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Titel, String)
             End If
             If (Anrede Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Anrede,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Anrede, String)
             End If
             If (Name Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Name,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Name, String)
             End If
             If (Vorname Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Vorname,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Vorname, String)
             End If
             If (Name1 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Name1,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Name1, String)
             End If
             If (Firma Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Firma,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Firma, String)
             End If
             If (Adresse Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Adresse,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Adresse, String)
             End If
-            If (Land.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Land.Value,Integer)
+            If (Land.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Land.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
             If (PLZ Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(PLZ,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(PLZ, String)
             End If
             If (Ort Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Ort,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Ort, String)
             End If
             If (Tel Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Tel,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Tel, String)
             End If
             If (Tel2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Tel2,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Tel2, String)
             End If
             If (Fax Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Fax,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Fax, String)
             End If
             If (Fax2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Fax2,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Fax2, String)
             End If
             If (Mobil Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Mobil,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Mobil, String)
             End If
             If (Email Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Email,String)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Email, String)
             End If
             If (Web Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Web,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Web, String)
             End If
             If (Export Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Export,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Export, Object)
             End If
-            If (AngelegtAn.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(AngelegtAn.Value,Date)
+            If (AngelegtAn.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(AngelegtAn.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
-            If (MAAusen.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(MAAusen.Value,Integer)
+            If (MAAusen.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(MAAusen.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             End If
-            If (MAInnen.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(MAInnen.Value,Integer)
+            If (MAInnen.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(MAInnen.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
             If (Abbuchung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Abbuchung,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Abbuchung, Object)
             End If
             If (hasMenu Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(hasMenu,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(hasMenu, Object)
             End If
             If (Passwort Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Passwort,String)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Passwort, String)
             End If
-            If (nextIDNR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(nextIDNR.Value,Integer)
+            If (nextIDNR.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(nextIDNR.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
-            If (mandant.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(mandant.Value,Short)
+            If (mandant.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(mandant.Value, Short)
             Else
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            If (Geburtstag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Geburtstag.Value,Date)
+            If (Geburtstag.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Geburtstag.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
             If (UID Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(UID,String)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(UID, String)
             End If
             If (SkypeAdresse Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(SkypeAdresse,String)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(SkypeAdresse, String)
             End If
             If (MessengerAdresse Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(MessengerAdresse,String)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(MessengerAdresse, String)
             End If
             If (EUNummer Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(EUNummer,String)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(EUNummer, String)
             End If
             If (EUNummer1 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(EUNummer1,String)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(EUNummer1, String)
             End If
             If (EUNummer2 Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(EUNummer2,String)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(EUNummer2, String)
             End If
             If (BHReferenz Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(BHReferenz,String)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(BHReferenz, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_IDNR,Integer)
+            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_IDNR, Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function InsertKlein(ByVal IDNR As Integer, ByVal Status As String, ByVal Name As String, ByVal Vorname As String, ByVal Firma As String, ByVal Adresse As String, ByVal Land As Global.System.Nullable(Of Integer), ByVal PLZ As String, ByVal Ort As String, ByVal Tel As String, ByVal Mobil As String, ByVal Email As String, ByVal Web As String) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function InsertKlein(ByVal IDNR As Integer, ByVal Status As String, ByVal Name As String, ByVal Vorname As String, ByVal Firma As String, ByVal Adresse As String, ByVal Land As Global.System.Nullable(Of Integer), ByVal PLZ As String, ByVal Ort As String, ByVal Tel As String, ByVal Mobil As String, ByVal Email As String, ByVal Web As String) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
-            command.Parameters(0).Value = CType(IDNR,Integer)
+            command.Parameters(0).Value = CType(IDNR, Integer)
             If (Status Is Nothing) Then
                 command.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(1).Value = CType(Status,String)
+                command.Parameters(1).Value = CType(Status, String)
             End If
             If (Name Is Nothing) Then
                 command.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(2).Value = CType(Name,String)
+                command.Parameters(2).Value = CType(Name, String)
             End If
             If (Vorname Is Nothing) Then
                 command.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(3).Value = CType(Vorname,String)
+                command.Parameters(3).Value = CType(Vorname, String)
             End If
             If (Firma Is Nothing) Then
                 command.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(4).Value = CType(Firma,String)
+                command.Parameters(4).Value = CType(Firma, String)
             End If
             If (Adresse Is Nothing) Then
                 command.Parameters(5).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(5).Value = CType(Adresse,String)
+                command.Parameters(5).Value = CType(Adresse, String)
             End If
-            If (Land.HasValue = true) Then
-                command.Parameters(6).Value = CType(Land.Value,Integer)
+            If (Land.HasValue = True) Then
+                command.Parameters(6).Value = CType(Land.Value, Integer)
             Else
                 command.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (PLZ Is Nothing) Then
                 command.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(7).Value = CType(PLZ,String)
+                command.Parameters(7).Value = CType(PLZ, String)
             End If
             If (Ort Is Nothing) Then
                 command.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(8).Value = CType(Ort,String)
+                command.Parameters(8).Value = CType(Ort, String)
             End If
             If (Tel Is Nothing) Then
                 command.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(9).Value = CType(Tel,String)
+                command.Parameters(9).Value = CType(Tel, String)
             End If
             If (Mobil Is Nothing) Then
                 command.Parameters(10).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(10).Value = CType(Mobil,String)
+                command.Parameters(10).Value = CType(Mobil, String)
             End If
             If (Email Is Nothing) Then
                 command.Parameters(11).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(11).Value = CType(Email,String)
+                command.Parameters(11).Value = CType(Email, String)
             End If
             If (Web Is Nothing) Then
                 command.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(12).Value = CType(Web,String)
+                command.Parameters(12).Value = CType(Web, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateBrancheQuery(ByVal Branche As Global.System.Nullable(Of Integer), ByVal Original_IDNR As Integer) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, False)> _
+        Public Overridable Overloads Function UpdateBrancheQuery(ByVal Branche As Global.System.Nullable(Of Integer), ByVal Original_IDNR As Integer) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
-            If (Branche.HasValue = true) Then
-                command.Parameters(0).Value = CType(Branche.Value,Integer)
+            If (Branche.HasValue = True) Then
+                command.Parameters(0).Value = CType(Branche.Value, Integer)
             Else
                 command.Parameters(0).Value = Global.System.DBNull.Value
             End If
-            command.Parameters(1).Value = CType(Original_IDNR,Integer)
+            command.Parameters(1).Value = CType(Original_IDNR, Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
+                End If
+            End Try
+            Return returnValue
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function UpdateKlein(ByVal Firma As String, ByVal Adresse As String, ByVal PLZ As String, ByVal Ort As String, ByVal Tel As String, ByVal Fax As String, ByVal Mobil As String, ByVal Email As String, ByVal Web As String, ByVal Original_IDNR As Integer) As Integer
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(3)
+            If (Firma Is Nothing) Then
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(Firma, String)
+            End If
+            If (Adresse Is Nothing) Then
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(1).Value = CType(Adresse, String)
+            End If
+            If (PLZ Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(PLZ, String)
+            End If
+            If (Ort Is Nothing) Then
+                command.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(3).Value = CType(Ort, String)
+            End If
+            If (Tel Is Nothing) Then
+                command.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(4).Value = CType(Tel, String)
+            End If
+            If (Fax Is Nothing) Then
+                command.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(5).Value = CType(Fax, String)
+            End If
+            If (Mobil Is Nothing) Then
+                command.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(6).Value = CType(Mobil, String)
+            End If
+            If (Email Is Nothing) Then
+                command.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(7).Value = CType(Email, String)
+            End If
+            If (Web Is Nothing) Then
+                command.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(8).Value = CType(Web, String)
+            End If
+            command.Parameters(9).Value = CType(Original_IDNR, Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open()
+            End If
+            Dim returnValue As Integer
+            Try
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue

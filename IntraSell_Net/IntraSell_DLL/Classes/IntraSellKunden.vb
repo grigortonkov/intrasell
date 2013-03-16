@@ -77,7 +77,7 @@ Public Class IntraSellKunden
 
     'returns the idnr of the combiation PLZ/ORT/LAND
     Shared Function getPLZCreateIfNeeded(ByVal Land As String, ByVal Ort As String, ByVal PLZ As String) As String
-        Dim LAND_PLZ_SEPARATOR As String = " "
+        Const LAND_PLZ_SEPARATOR As String = " "
 
         Dim NextIDNRPLZ, sql As String
         Dim rsPLZORT As MySqlDataReader
@@ -92,13 +92,13 @@ Public Class IntraSellKunden
                 'NextIDNRPLZ = NextID("grPLZ", "IDNR")
                 'update am 26.12.2005 for PLZ Text field
                 'update 07.03.2006 because PLZ 10000 is bigger than PLz 9999 but the text search is not sorting after number
-
+                Dim LandPraefix As String = CStr(firstRow("select PLZPraefix from grLand where IDNR=" & Land))
                 Dim sameKeyCnt As String = CStr(firstRow("select count(*) as cnt FROM grPLZ where PLZ='" & PLZ & "' AND Land =" & Land))
                 If IsNumeric(sameKeyCnt) Then
                     If sameKeyCnt = "0" Then sameKeyCnt = ""
-                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & LAND_PLZ_SEPARATOR & PLZ & sameKeyCnt & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
+                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & LandPraefix & LAND_PLZ_SEPARATOR & PLZ & sameKeyCnt & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
                 Else
-                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & Land & LAND_PLZ_SEPARATOR & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
+                    sql = " INSERT INTO grPLZ (IDNR, PLZ ,Ort, Land) values ('" & LandPraefix & LAND_PLZ_SEPARATOR & PLZ & "', '" & PLZ & "', '" & Ort & "', " & Land & ")"
                 End If
 
             End If

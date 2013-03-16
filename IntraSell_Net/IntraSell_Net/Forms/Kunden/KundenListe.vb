@@ -27,7 +27,8 @@
     'Filtern
     Private Sub FilterButton_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
         Try
-            LoadData()
+            'zu langsam
+            'LoadData()
 
             Dim filter As String = Nothing
 
@@ -44,10 +45,10 @@
             End If
 
             If Me.PLZVonTextBox.Text.Length > 0 Then
-                filter += " and PLZ >= '" + PLZVonTextBox.Text + "%'"
+                filter += " and PLZ >= '" + PLZVonTextBox.Text + "'"
             End If
             If Me.PLZBisTextBox.Text.Length > 0 Then
-                filter += " and PLZ <= '" + PLZBisTextBox.Text + "%'"
+                filter += " and PLZ <= '" + PLZBisTextBox.Text + "'"
             End If
 
             If Me.KundengruppeComboBox.Text.Length > 0 Then
@@ -120,5 +121,9 @@
 
     Private Sub txtFirmaName_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFirmaName.TextChanged
         FilterButton_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub PLZVonTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PLZVonTextBox.TextChanged
+        PLZBisTextBox.Text = PLZVonTextBox.Text
     End Sub
 End Class
