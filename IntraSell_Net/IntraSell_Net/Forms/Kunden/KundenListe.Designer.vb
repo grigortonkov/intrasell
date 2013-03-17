@@ -68,6 +68,10 @@ Partial Class Kundenliste
         Me.AnrufenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerAnrufToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnrufprotokollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeriendruckToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeriendruckvorlageBearbeitenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GrbranchenTableAdapter = New IntraSell_Net.dsBranchenTableAdapters.grbranchenTableAdapter()
         BrancheLabel = New System.Windows.Forms.Label()
         CType(Me.KundengruppenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -437,7 +441,7 @@ Partial Class Kundenliste
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnrufenToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnrufenToolStripMenuItem, Me.ListeToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1008, 24)
@@ -462,6 +466,32 @@ Partial Class Kundenliste
         Me.AnrufprotokollToolStripMenuItem.Name = "AnrufprotokollToolStripMenuItem"
         Me.AnrufprotokollToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.AnrufprotokollToolStripMenuItem.Text = "Anruf&liste"
+        '
+        'ListeToolStripMenuItem
+        '
+        Me.ListeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportierenToolStripMenuItem, Me.SeriendruckToolStripMenuItem, Me.SeriendruckvorlageBearbeitenToolStripMenuItem})
+        Me.ListeToolStripMenuItem.Name = "ListeToolStripMenuItem"
+        Me.ListeToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.ListeToolStripMenuItem.Text = "&Liste"
+        '
+        'ExportierenToolStripMenuItem
+        '
+        Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.ExportierenToolStripMenuItem.Text = "&Export"
+        '
+        'SeriendruckToolStripMenuItem
+        '
+        Me.SeriendruckToolStripMenuItem.Enabled = False
+        Me.SeriendruckToolStripMenuItem.Name = "SeriendruckToolStripMenuItem"
+        Me.SeriendruckToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SeriendruckToolStripMenuItem.Text = "&Seriendruck"
+        '
+        'SeriendruckvorlageBearbeitenToolStripMenuItem
+        '
+        Me.SeriendruckvorlageBearbeitenToolStripMenuItem.Name = "SeriendruckvorlageBearbeitenToolStripMenuItem"
+        Me.SeriendruckvorlageBearbeitenToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.SeriendruckvorlageBearbeitenToolStripMenuItem.Text = "Seriendruck&vorlage bearbeiten"
         '
         'GrbranchenTableAdapter
         '
@@ -542,4 +572,8 @@ Partial Class Kundenliste
     Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Branche As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ListeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeriendruckToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeriendruckvorlageBearbeitenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
