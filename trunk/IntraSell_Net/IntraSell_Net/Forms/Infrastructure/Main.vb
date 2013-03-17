@@ -150,6 +150,21 @@ Public Class Main
         End Try
     End Sub
 
+#Region "Drucken & Export"
+
+    Private Sub Main_MdiChildActivate(sender As Object, e As System.EventArgs) Handles Me.MdiChildActivate
+
+        If ActiveMdiChild Is Nothing Then
+            Me.DruckenToolStripMenuItem.Enabled = False
+            Me.ExportToolStripMenuItem.Enabled = False
+        Else
+            Me.DruckenToolStripMenuItem.Enabled = IsImplementedFrom(ActiveMdiChild.GetType, GetType(InterfacePrintable))
+            Me.ExportToolStripMenuItem.Enabled = IsImplementedFrom(ActiveMdiChild.GetType, GetType(InterfaceExportableGrid))
+        End If
+
+    End Sub
+
+
     Private Sub DruckenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DruckenToolStripMenuItem.Click
         Try
             If Not ActiveMdiChild Is Nothing Then
@@ -165,15 +180,24 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub Main_MdiChildActivate(sender As Object, e As System.EventArgs) Handles Me.MdiChildActivate
+    Private Sub ExportToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportToolStripMenuItem.Click
+        Try
+            If Not ActiveMdiChild Is Nothing Then
+                'Print the form in focus 
+                Dim printable As InterfaceExportableGrid = Me.ActiveMdiChild
+                printable.Export(Me)
+            Else
+                Me.ExportToolStripMenuItem.Enabled = False
+            End If
 
-        If ActiveMdiChild Is Nothing Then
-            Me.DruckenToolStripMenuItem.Enabled = False
-        Else
-            Me.DruckenToolStripMenuItem.Enabled = IsImplementedFrom(ActiveMdiChild.GetType, GetType(InterfacePrintable))
-        End If
-
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
+
+
+
+#End Region
 
     Function IsImplementedFrom(objectType As Type, intefaceType As Type) As Boolean
         For Each thisInterface As Type In objectType.GetInterfaces
@@ -255,7 +279,7 @@ Public Class Main
 #End Region
 
     Private Sub ArtikelKategorienToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ArtikelKategorienToolStripMenuItem.Click
-           Try
+        Try
             ArtikelKategorien.MdiParent = Me
             ArtikelKategorien.Show()
         Catch ex As Exception

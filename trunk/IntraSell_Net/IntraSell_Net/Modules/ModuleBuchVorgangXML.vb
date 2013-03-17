@@ -15,9 +15,18 @@ Module ModuleBuchVorgangXML
         XML2WORD = dbFolder & "..\components\XML2WordGT\TestXML2Word.exe"
     End Function
 
-    ' Generates new MS Word File using XML2WORD
-    ' Viewer = WORD, XML, OUTLOOK or PDF
-    ' Returns the filename of the MS Word File
+  
+    ''' <summary>
+    ''' Generates new MS Word File using XML2WORD
+    ''' </summary>
+    ''' <param name="VorgangTyp"></param>
+    ''' <param name="VorgangNummer"></param>
+    ''' <param name="VorlageFilename"></param>
+    ''' <param name="Viewer">Viewer = WORD, XML, OUTLOOK or PDF</param>
+    ''' <param name="SofortSenden"></param>
+    ''' <param name="MailText"></param>
+    ''' <returns> Returns the filename of the MS Word File</returns>
+    ''' <remarks></remarks>
     Function OpenAusdruck_inWord_XML( _
                                 ByVal VorgangTyp As String, _
                                 ByVal VorgangNummer As Long, _
@@ -38,7 +47,7 @@ Module ModuleBuchVorgangXML
 
         Dim xml As String
         xml = "<DOCUMENT>" & vbCrLf
-        xml = xml & data & vbCrLf
+        xml = xml & Data & vbCrLf
         xml = xml & "</DOCUMENT>"
 
         'Create TMP Folder 
@@ -105,7 +114,14 @@ Module ModuleBuchVorgangXML
         OpenAusdruck_inWord_XML = ArchiveFilename
     End Function
 
-    'Erstellt XML für einen Vorgang
+
+    ''' <summary>
+    ''' Erstellt XML für einen Vorgang
+    ''' </summary>
+    ''' <param name="VorgangNummer"></param>
+    ''' <param name="VorgangTyp"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function VorgangXML(ByVal VorgangNummer As Long, ByVal VorgangTyp As String) As String
         Try
             Application.UseWaitCursor = True
@@ -187,6 +203,14 @@ Module ModuleBuchVorgangXML
 
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="XMLFilename"></param>
+    ''' <param name="WordTemplateFilename"></param>
+    ''' <param name="GenerationPath"></param>
+    ''' <param name="ResultPraefix"></param>
+    ''' <remarks></remarks>
     Private Sub CallXML2WORD(XMLFilename As String, WordTemplateFilename As String, GenerationPath As String, ResultPraefix As String)
         Try
             Application.UseWaitCursor = True
@@ -203,6 +227,12 @@ Module ModuleBuchVorgangXML
         End Try
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="Dateiname"></param>
+    ''' <param name="read_only"></param>
+    ''' <remarks></remarks>
     Public Sub DokumentInWordZeigen(ByVal Dateiname As String, Optional ByVal read_only As Boolean = True)
         Try
             Dim App 'As Application
@@ -232,8 +262,13 @@ Module ModuleBuchVorgangXML
 
     End Sub
 
-
-    'returns the filename of the html document
+ 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="filenameWordDoc"></param>
+    ''' <returns>returns the filename of the html document</returns>
+    ''' <remarks></remarks>
     Public Function SaveWordAsHTML(ByVal filenameWordDoc As String) As String
         Dim App 'As Application
         App = CreateObject("Word.Application")

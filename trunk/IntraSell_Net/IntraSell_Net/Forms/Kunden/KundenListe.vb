@@ -1,7 +1,11 @@
-﻿Public Class Kundenliste
+﻿Imports IntraSell_Net.dsAdressen
+Imports IntraSell_DLL
+
+Public Class Kundenliste
+    Implements InterfaceExportableGrid
 
     Private Sub KundenListe_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-   
+
 
         Try
 
@@ -73,7 +77,7 @@
             HandleAppError(ex)
         End Try
     End Sub
- 
+
     'KundenDetail öffnen 
     Private Sub OfAdressenlisteDataGridView_RowHeaderMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles OfAdressenlisteDataGridView.RowHeaderMouseDoubleClick
         Try
@@ -85,7 +89,7 @@
         End Try
 
     End Sub
- 
+
 
 #Region "Anrufen"
 
@@ -125,5 +129,50 @@
 
     Private Sub PLZVonTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PLZVonTextBox.TextChanged
         PLZBisTextBox.Text = PLZVonTextBox.Text
+    End Sub
+
+    Private Sub SeriendruckToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SeriendruckToolStripMenuItem.Click
+        SeriendruckvorlageBearbeitenToolStripMenuItem_Click(Nothing, Nothing)
+
+        'OfAdressenlisteBindingSource.MoveFirst()
+        'While True
+        '    Dim adress As dsAdressen.ofAdressenlisteRow = CType(CType(OfAdressenlisteBindingSource.Current, DataRowView).Row, dsAdressen.ofAdressenlisteRow)
+        '    'Dim IDNR As Integer = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
+        '    OfAdressenlisteBindingSource.MoveNext()
+        '    If adress.IDNR = CType(CType(OfAdressenlisteBindingSource.Current, DataRowView).Row, dsAdressen.ofAdressenlisteRow).IDNR Then Exit While
+        'End While
+
+    End Sub
+
+    Public Sub Export(sender As Object) Implements InterfaceExportableGrid.Export
+        Exportieren(Nothing)
+    End Sub
+
+
+
+    Private Sub ExportierenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
+        Exportieren(GetAppPath() & "\tmp\Seriendruck.csv")
+    End Sub
+
+    Private Sub SeriendruckvorlageBearbeitenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SeriendruckvorlageBearbeitenToolStripMenuItem.Click
+        Dim vorlage As String = GetAppPath() & "\Vorlagen\Vorlage_Mailing.dot"
+        EditInWord(vorlage)
+    End Sub
+
+    Sub Exportieren(filename As String)
+        Dim e As FunctionsDataGrid = New FunctionsDataGrid
+        Dim a As ofAdressenlisteDataTable = New ofAdressenlisteDataTable
+        Dim row As dsAdressen.ofAdressenlisteRow
+
+        OfAdressenlisteBindingSource.MoveFirst()
+        While True
+            row = CType(CType(OfAdressenlisteBindingSource.Current, DataRowView).Row, dsAdressen.ofAdressenlisteRow)
+            a.ImportRow(row)
+            OfAdressenlisteBindingSource.MoveNext()
+            If row.IDNR = CType(CType(OfAdressenlisteBindingSource.Current, DataRowView).Row, dsAdressen.ofAdressenlisteRow).IDNR Then Exit While
+        End While
+
+        e.Table = a
+        e.ExportDataGridContentToCSVFile(filename)
     End Sub
 End Class

@@ -6,12 +6,17 @@ Imports IntraSell_DLL
 Module ModuleBuchVorgangDruck
 
 
-    Const BEZEICHNUNG_LAENGE = 40
+    Const BEZEICHNUNG_LAENGE As Integer = 40
     Public selectedOfAdressenWeitereId As String 'ausgewählte adresse
     Public currentIDNR As String
-
-    '=======================================================
-    '=======================================================
+ 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="VorgangTyp"></param>
+    ''' <param name="VorgangNummer"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getRecSource(VorgangTyp As String, VorgangNummer As Integer) As String
 
         'getRecSource = IntraSellVorgaengeAusdruck.getRecSource(Vorgangtyp, Vorgang_Nummer)
@@ -40,15 +45,28 @@ Module ModuleBuchVorgangDruck
         Debug.Print("Print for SQL: " + getRecSource)
     End Function
 
-    '=======================================================
-    ' liefet den recordsource wenn eine weitere adresse verwendet wird
-    '=======================================================
+    
+    ''' <summary>
+    ''' liefet den recordsource wenn eine weitere adresse verwendet wird
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="Vorgang_Nummer"></param>
+    ''' <param name="selectedId"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getRecSource_Weitere(ByVal Vorgangtyp, ByVal Vorgang_Nummer, ByVal selectedId)
         getRecSource_Weitere = IntraSellVorgaengeAusdruck.getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedId)
         writeLog(getRecSource_Weitere)
     End Function
 
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="tablename"></param>
+    ''' <param name="where"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getRecSource_Address(tablename As String, where As String) As String
         Dim sql As String
         sql = "SELECT a.Vorname, a.Name, concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  " & _
@@ -90,129 +108,25 @@ Module ModuleBuchVorgangDruck
         End If
         rs.Close()
     End Function
-
-    '=======================================================
-    ' oeffnet den ausdruck mit access formular
-    '=======================================================
-    Public Sub OpenAusdruck(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
-        Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, FormatNummer)
-    End Sub
-
-
-    '=======================================================
-    ' oeffnet den ausdruck mit access formular
-    'formatNummer = SILENT - kommen keine Fragen
-    '=======================================================
-    Public Sub OpenAusdruck_inAccess(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
-        'Dim recSource ' recordSource für den Ausdruck
-        'Dim Filter, reply, i
-        'Dim Vorgang_Name
-        'Dim VonForm, VonForm_Artikel
-
-
-        'VonForm = getVorgangTableForType(Vorgangtyp)
-        'VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
-        'Vorgang_Name = getDruckForType(Vorgangtyp)
-
-        'Debug.Print(recSource)
-        'reply = vbYes
-
-        'If FormatNummer <> "SILENT" Then
-        '    If VarValue("AnzahlAusdruecke") <> "1" Then
-        '        reply = MsgBox("Wollen Sie " & VarValue("AnzahlAusdruecke") & " Kopien ausdrucken?", vbYesNo)
-        '    Else
-        '        reply = vbYes
-        '    End If
-        'End If
-
-        'If reply = vbYes Then
-
-        '    recSource = getRecSource(Vorgangtyp, Vorgang_Nummer)
-
-        '    Filter = "Nummer = " & Vorgang_Nummer
-
-
-        '    'preview
-        '    On Error Resume Next
-        '    DoCmd.DeleteObject(acQuery, "qryBuchRechArtikel")
-        '    DoCmd.DeleteObject(acQuery, "qryBuchRech")
-        '    On Error GoTo 0
-
-        '    CurrentDb.CreateQueryDef("qryBuchRechArtikel", "select * from [" & VonForm_Artikel & "] order by id")
-        '    CurrentDb.CreateQueryDef("qryBuchRech", recSource)
-
-
-
-        '    Dim rsKunden As Recordset
-        '    rsKunden = CurrentDb.openRecordset(recSource, dbOpenDynaset, dbSeeChanges)
-        '    Dim kdnr : kdnr = 0
-        '    If Not rsKunden.EOF Then
-        '        kdnr = rsKunden("idnr")
-        '    End If
-        '    Dim needs : needs = needsMWST(kdnr)
-
-        '    If checkIfWeitereVorhanden(kdnr, Vorgangtyp) > 0 Then
-        '        If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) = vbYes Then
-        '            Dim selectedIdNr : selectedIdNr = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
-        '            recSource = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
-        '            DoCmd.DeleteObject(acQuery, "qryBuchRech")
-        '            CurrentDb.CreateQueryDef("qryBuchRech", recSource)
-        '        End If
-        '    End If
-
-
-        '    DoCmd.OpenReport(VarValue("MSACCESS_VORGANG_BERICHTNAME"), acViewPreview)
-        '    'set MWST Visible or invisible according the Kundengruppe
-
-        '    'Reports![ buchRechnung].[Title] = "Dokument"
-        '    Dim rpt As Report
-        '    rpt = Reports(VarValue("MSACCESS_VORGANG_BERICHTNAME"))
-
-
-        '    'Laut Eva Janout sollte auch für 0 % MWST Rechungen Gesamtbetrag kommen
-        '    If False Then
-        '        rpt![mwstATS].Visible = needs
-        '        rpt![summeATSBrutto].Visible = needs
-        '        rpt![lblMWST].Visible = needs
-        '        rpt![lblGesamtbetrag].Visible = needs
-        '    End If
-        '    'end set
-
-        '    '0 Prozent MWST Ausweisen!
-        '    If Not needs Then
-        '        rpt![lblMWST].Caption = "0% MwSt:"
-        '        rpt![lblMWST].Visible = True
-        '    End If
-
-
-        '    'DoCmd.Save acReport, "buchRechnung"
-
-        '    If FormatNummer <> "SILENT" Then
-        '        For i = 1 To VarValue("AnzahlAusdruecke")
-        '            'preview
-        '            DoCmd.OpenReport(VarValue("MSACCESS_VORGANG_BERICHTNAME"), acPreview, , Filter)
-        '            'für Drucken
-        '            If MsgBox("Jetzt Ausdrucken?", vbYesNo) = vbYes Then
-        '                DoCmd.OpenReport(VarValue("MSACCESS_VORGANG_BERICHTNAME"), acNormal, , Filter)
-        '            Else
-        '                Exit Sub 'leave report opened
-        '            End If
-        '        Next
-        '    End If
-
-        '    DoCmd.Close(acReport, VarValue("MSACCESS_VORGANG_BERICHTNAME"))
-        '    'Forms![buchRechnung]![checkBox_ausgedruckt] = True
-        '    'DoCmd.Close acForm, "buchRechnung"
-        'End If
-    End Sub
-
-    '=================================================================
-    ' oeffnet den ausdruck mit word formular
-    '=================================================================
+ 
+    ''' <summary>
+    ''' oeffnet den ausdruck mit word formular
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="Vorgang_Nummer"></param>
+    ''' <remarks></remarks>
     Public Sub OpenAusdruck_inWord(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
         Call OpenAusdruck_inWord_Filename(Vorgangtyp, Vorgang_Nummer, "Vorlagen\\Vorlage_Rechnung.doc")
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="VorgangTyp"></param>
+    ''' <param name="VorgangNummer"></param>
+    ''' <param name="Dateiname"></param>
+    ''' <param name="silent"></param>
+    ''' <remarks></remarks>
     Public Sub OpenAusdruck_inWord_Filename(ByVal VorgangTyp As String, _
                                             ByVal VorgangNummer As String, _
                                             ByVal Dateiname As String, _
@@ -378,8 +292,14 @@ Module ModuleBuchVorgangDruck
         On Error GoTo 0
     End Sub
 
-    '=================================================================
-    '=================================================================
+ 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="App"></param>
+    ''' <param name="what"></param>
+    ''' <param name="withValue"></param>
+    ''' <remarks></remarks>
     Private Sub replaceInWordOnce(App As Object, ByVal what As String, ByVal withValue As String)
         On Error GoTo 1
         App.Selection.MoveUp(Unit:=7, Count:=4)
@@ -406,14 +326,21 @@ Module ModuleBuchVorgangDruck
     End Sub
 
 
-    '=================================================================
-    'erstellt eine WORD Datei mit den gegebenen Informationen
-    '=================================================================
+ 
+    ''' <summary>
+    ''' erstellt eine WORD Datei mit den gegebenen Informationen
+    ''' </summary>
+    ''' <param name="IDNR"></param>
+    ''' <param name="Subjekt"></param>
+    ''' <param name="BriefText"></param>
+    ''' <param name="Datum"></param>
+    ''' <param name="PrintAndClose"></param>
+    ''' <remarks></remarks>
     Public Sub OpenKorrespondenz_inWord(ByVal IDNR As String, _
                                         ByVal Subjekt As String, _
                                         ByVal BriefText As String, _
                                         ByVal Datum As Date, _
-                                        ByVal printAndClose As Boolean)
+                                        ByVal PrintAndClose As Boolean)
         Dim App 'As Application
         Dim VorlageFilename
         Dim rs As MySqlDataReader
@@ -456,7 +383,7 @@ Module ModuleBuchVorgangDruck
         App.Selection.TypeText(BriefText & "")
         App.Visible = True
         Dim saveAsFilename As String = AppFolder() & "Korrespondenz_" & IDNR & "_" & Year(Today) & Month(Today) & (Today) & ".doc"
-        If Not printAndClose Then
+        If Not PrintAndClose Then
             If MsgBox("Datei " & saveAsFilename & " speichern?", vbYesNo) = vbYes Then
                 App.ActiveDocument.SaveAs(fileName:=saveAsFilename, FileFormat:= _
                     0, LockComments:=False, Password:="", AddToRecentFiles:= _
@@ -478,13 +405,19 @@ Module ModuleBuchVorgangDruck
 
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="ArtNr1"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function makeArtikelNummer(ArtNr1 As Integer) As String
         makeArtikelNummer = ArtNr1
 
         If UseEAN() Then
             Dim rs As MySqlDataReader, sql
 
-            sql = "select artnr,ean from grArtikel where artnr = " & ArtNr1
+            sql = "select artnr, ean from grArtikel where artnr = " & ArtNr1
             rs = openRecordset(sql)
             If rs.Read Then
                 If Not IsNull(rs("ean")) Then
@@ -494,27 +427,15 @@ Module ModuleBuchVorgangDruck
         End If
 
     End Function
+ 
 
-    Sub sendVorgang_Email(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String)
-
-        Dim Email As String = getKundenEmail(Vorgangtyp, Vorgang_Nummer)
-
-        Call OpenAusdruck_inAccess(Vorgangtyp, Vorgang_Nummer, "SILENT")
-
-        Dim Subject, EmailText, TextBaustein As String
-
-        TextBaustein = "'TEXTBAUSTEIN_EMAIL_" & Vorgangtyp & "'"
-
-        EmailText = TableValue("ofKorespondenz", "Subjekt", TextBaustein, "[TEXT]")
-        Subject = getDruckForType(Vorgangtyp) & " Nr. " & Vorgang_Nummer
-
-        'TODO
-        MsgBox("Not implemented!")
-        'DoCmd.SendObject(acSendReport, VarValue("MSACCESS_VORGANG_BERICHTNAME"), , Email, , , Subject, EmailText)
-
-    End Sub
-
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="VorgangTyp"></param>
+    ''' <param name="VorgangNummer"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function getKundenEmail(ByVal VorgangTyp As String, ByVal VorgangNummer As String)
         Dim Email As String
         Dim rsEmail As MySqlDataReader
@@ -535,16 +456,25 @@ Module ModuleBuchVorgangDruck
         rsEmail.Close()
         getKundenEmail = Email
     End Function
-
-
-    '=================================================================
-    ' oeffnet den ausdruck mit word formular
-    '=================================================================
+ 
+    ''' <summary>
+    ''' oeffnet den ausdruck mit Word Vorlage
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="Vorgang_Nummer"></param>
+    ''' <param name="FormatNummer"></param>
+    ''' <remarks></remarks>
     Public Sub OpenAusdruck_inWord_RTF(ByVal Vorgangtyp As String, ByVal Vorgang_Nummer As String, ByVal FormatNummer As String)
         Call OpenAusdruck_InWord_Filename_RTF(Vorgangtyp, Vorgang_Nummer, FormatNummer, "Vorlage_Rechnung.rtf")
     End Sub
 
-    'Hilfe Funktion
+    ''' <summary>
+    ''' Hilfe Funktion
+    ''' </summary>
+    ''' <param name="Dateiname"></param>
+    ''' <param name="Positionen"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function readFileContent(ByVal Dateiname As String, ByVal Positionen As Integer) As String
         'read RTF content
         Dim VorlageFilename As String = DbFolder() & Dateiname
@@ -575,13 +505,17 @@ Module ModuleBuchVorgangDruck
         readFileContent = fileContent
     End Function
 
-    '=================================================================
-    ' Opens a textfle and replaces the tags with the informaiton from the database
-    ' Used for HTML Outlookmails too !
-    ' Liefert Dateiname der erstellten Datei retour
-    ' silent = true -> File inWord öffnen
-    '=================================================================
-    'TODO: converted but never tested -> create unit test
+ 
+    ''' <summary>
+    '''  Opens a textfle and replaces the tags with the informaiton from the database
+    ''' Used for HTML Outlookmails too !
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="Vorgang_Nummer"></param>
+    ''' <param name="Dateiname"></param>
+    ''' <param name="Silent">true -> File inWord öffnen</param>
+    ''' <returns>Liefert Dateiname der erstellten Datei retour</returns>
+    ''' <remarks></remarks>
     Public Function OpenAusdruck_InWord_Filename_RTF( _
         ByVal Vorgangtyp As String, _
         ByVal Vorgang_Nummer As String, _
@@ -619,11 +553,6 @@ Module ModuleBuchVorgangDruck
         RsArt = openRecordset(sql)
         Dim Positionen
         Positionen = RsArt("pos")
-
-
-
-
-
 
         'REPLACE CONTENT
         Dim fileContent As String : fileContent = readFileContent(Dateiname, Positionen)
@@ -709,8 +638,13 @@ Module ModuleBuchVorgangDruck
 
     End Function
 
- 
-    'adds spaces to the required length
+    ''' <summary>
+    ''' adds spaces to the required length
+    ''' </summary>
+    ''' <param name="stringToPad"></param>
+    ''' <param name="length"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function pad(ByVal stringToPad As String, ByVal length As Integer)
         Dim i : i = 0
         If Len(stringToPad) < length Then
@@ -725,8 +659,14 @@ Module ModuleBuchVorgangDruck
 
     End Function
 
-
-    'Liefert die Auswahl einer weiteren Adresse
+ 
+    ''' <summary>
+    ''' Liefert die Auswahl einer weiteren Adresse
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="Vorgang_Nummer"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer) As Integer
         Dim VonForm As String = getVorgangTableForType(Vorgangtyp)
 

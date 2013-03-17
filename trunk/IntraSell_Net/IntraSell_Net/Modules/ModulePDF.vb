@@ -3,9 +3,12 @@ Option Explicit On
 
 Module ModulePDF
  
-    ' Converts Word to PDF File
-    ' Warning: Uses the PDFCreator utility, please install first
-    ' and make the settings for auto save with same filename as the doc file
+    ''' <summary>
+    ''' Converts Word to PDF File
+    ''' Warning: Uses the PDFCreator utility, please install first and make the settings for auto save with same filename as the doc file
+    ''' </summary>
+    ''' <param name="filenameWordDoc"></param>
+    ''' <remarks></remarks>
     Sub SaveWordAsPDF(ByVal filenameWordDoc As String)
         Try
             Dim App 'As Application
@@ -23,6 +26,15 @@ Module ModulePDF
             Dim text As String = "Ein Fehler ist aufgetretten! Diese Funktion benötigt PDFCreator und MS Word. Details: " + e.Message
             HandleAppError(e, text)
         End Try
+    End Sub
+
+
+    Public Sub EditInWord(ByVal filenameWordDoc As String)
+        Dim App 'As Application
+        App = CreateObject("Word.Application")
+        App.Visible = True
+        App.Documents.Open(fileName:=filenameWordDoc, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False, Format:=0)
+
     End Sub
 
 

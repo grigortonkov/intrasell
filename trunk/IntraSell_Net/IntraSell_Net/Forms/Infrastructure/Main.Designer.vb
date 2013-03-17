@@ -52,6 +52,7 @@ Partial Class Main
         Me.LogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BugMeldenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÜberIntraSellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,7 +67,7 @@ Partial Class Main
         '
         'DateiToolStripMenuItem
         '
-        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EintellungenToolStripMenuItem, Me.DruckenToolStripMenuItem, Me.BeendenToolStripMenuItem})
+        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EintellungenToolStripMenuItem, Me.DruckenToolStripMenuItem, Me.ExportToolStripMenuItem, Me.BeendenToolStripMenuItem})
         Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
         Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.DateiToolStripMenuItem.Text = "&Datei"
@@ -74,20 +75,20 @@ Partial Class Main
         'EintellungenToolStripMenuItem
         '
         Me.EintellungenToolStripMenuItem.Name = "EintellungenToolStripMenuItem"
-        Me.EintellungenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.EintellungenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EintellungenToolStripMenuItem.Text = "&Einstellungen"
         '
         'DruckenToolStripMenuItem
         '
         Me.DruckenToolStripMenuItem.Enabled = False
         Me.DruckenToolStripMenuItem.Name = "DruckenToolStripMenuItem"
-        Me.DruckenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.DruckenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DruckenToolStripMenuItem.Text = "&Drucken"
         '
         'BeendenToolStripMenuItem
         '
         Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.BeendenToolStripMenuItem.Text = "&Beenden"
         '
         'KundenToolStripMenuItem
@@ -239,6 +240,13 @@ Partial Class Main
         Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ÜberIntraSellToolStripMenuItem.Text = "&Über IntraSell"
         '
+        'ExportToolStripMenuItem
+        '
+        Me.ExportToolStripMenuItem.Enabled = False
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportToolStripMenuItem.Text = "&Export"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -285,5 +293,6 @@ Partial Class Main
     Friend WithEvents BranchenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NeuerAnrufToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ArtikelKategorienToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
