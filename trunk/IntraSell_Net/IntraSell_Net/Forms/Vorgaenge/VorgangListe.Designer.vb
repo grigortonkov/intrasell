@@ -39,32 +39,6 @@ Partial Class VorgangListe
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.VorgangListeDataGridView = New System.Windows.Forms.DataGridView()
-        Me.NummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TypDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KundNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Land = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FirmaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VornameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BezahltDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.AusgedrucktDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.AbgeschlossenDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WaehrungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SummeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SummeMWSTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SummeBruttoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TransportMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WoherDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.WohinDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LieferantNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KundNr2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ErstelltAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NotizDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BuchVorgangListeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
@@ -95,6 +69,32 @@ Partial Class VorgangListe
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BuchVorgangListeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchVorgangListeTableAdapter()
+        Me.NummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KundNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatumDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Land = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FirmaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VornameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BezahltDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.AusgedrucktDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.AbgeschlossenDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WaehrungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SummeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SummeMWSTDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SummeBruttoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TransportMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WoherDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WohinDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LieferantNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KundNr2DataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ErstelltAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NotizDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         DatumLabel = New System.Windows.Forms.Label()
         Label10 = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -219,7 +219,6 @@ Partial Class VorgangListe
         Me.VorgangListeDataGridView.AllowUserToDeleteRows = False
         Me.VorgangListeDataGridView.AllowUserToOrderColumns = True
         Me.VorgangListeDataGridView.AutoGenerateColumns = False
-        Me.VorgangListeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -228,7 +227,6 @@ Partial Class VorgangListe
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.VorgangListeDataGridView.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.VorgangListeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.VorgangListeDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NummerDataGridViewTextBoxColumn, Me.TypDataGridViewTextBoxColumn, Me.KundNrDataGridViewTextBoxColumn, Me.DatumDataGridViewTextBoxColumn, Me.Land, Me.FirmaDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.VornameDataGridViewTextBoxColumn, Me.BezahltDataGridViewCheckBoxColumn, Me.AusgedrucktDataGridViewCheckBoxColumn, Me.AbgeschlossenDataGridViewCheckBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.WaehrungDataGridViewTextBoxColumn, Me.SummeDataGridViewTextBoxColumn, Me.SummeMWSTDataGridViewTextBoxColumn, Me.SummeBruttoDataGridViewTextBoxColumn, Me.ZahlungsbedingungDataGridViewTextBoxColumn, Me.TransportMethodeDataGridViewTextBoxColumn, Me.ZahlungsMethodeDataGridViewTextBoxColumn, Me.WoherDataGridViewTextBoxColumn, Me.WohinDataGridViewTextBoxColumn, Me.LieferantNrDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.KundNr2DataGridViewTextBoxColumn, Me.ErstelltAmDataGridViewTextBoxColumn, Me.NotizDataGridViewTextBoxColumn})
         Me.VorgangListeDataGridView.DataSource = Me.BuchVorgangListeBindingSource
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -253,214 +251,6 @@ Partial Class VorgangListe
         Me.VorgangListeDataGridView.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.VorgangListeDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.VorgangListeDataGridView.TabIndex = 20
-        '
-        'NummerDataGridViewTextBoxColumn
-        '
-        Me.NummerDataGridViewTextBoxColumn.DataPropertyName = "Nummer"
-        Me.NummerDataGridViewTextBoxColumn.HeaderText = "Nummer"
-        Me.NummerDataGridViewTextBoxColumn.Name = "NummerDataGridViewTextBoxColumn"
-        Me.NummerDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NummerDataGridViewTextBoxColumn.Width = 71
-        '
-        'TypDataGridViewTextBoxColumn
-        '
-        Me.TypDataGridViewTextBoxColumn.DataPropertyName = "Typ"
-        Me.TypDataGridViewTextBoxColumn.HeaderText = "Typ"
-        Me.TypDataGridViewTextBoxColumn.Name = "TypDataGridViewTextBoxColumn"
-        Me.TypDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TypDataGridViewTextBoxColumn.Width = 50
-        '
-        'KundNrDataGridViewTextBoxColumn
-        '
-        Me.KundNrDataGridViewTextBoxColumn.DataPropertyName = "KundNr"
-        Me.KundNrDataGridViewTextBoxColumn.HeaderText = "KundNr"
-        Me.KundNrDataGridViewTextBoxColumn.Name = "KundNrDataGridViewTextBoxColumn"
-        Me.KundNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.KundNrDataGridViewTextBoxColumn.Width = 68
-        '
-        'DatumDataGridViewTextBoxColumn
-        '
-        Me.DatumDataGridViewTextBoxColumn.DataPropertyName = "Datum"
-        Me.DatumDataGridViewTextBoxColumn.HeaderText = "Datum"
-        Me.DatumDataGridViewTextBoxColumn.Name = "DatumDataGridViewTextBoxColumn"
-        Me.DatumDataGridViewTextBoxColumn.ReadOnly = True
-        Me.DatumDataGridViewTextBoxColumn.Width = 63
-        '
-        'Land
-        '
-        Me.Land.DataPropertyName = "Land"
-        Me.Land.HeaderText = "Land"
-        Me.Land.Name = "Land"
-        Me.Land.ReadOnly = True
-        Me.Land.Width = 56
-        '
-        'FirmaDataGridViewTextBoxColumn
-        '
-        Me.FirmaDataGridViewTextBoxColumn.DataPropertyName = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.HeaderText = "Firma"
-        Me.FirmaDataGridViewTextBoxColumn.Name = "FirmaDataGridViewTextBoxColumn"
-        Me.FirmaDataGridViewTextBoxColumn.ReadOnly = True
-        Me.FirmaDataGridViewTextBoxColumn.Width = 57
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "Name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Name"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NameDataGridViewTextBoxColumn.Width = 60
-        '
-        'VornameDataGridViewTextBoxColumn
-        '
-        Me.VornameDataGridViewTextBoxColumn.DataPropertyName = "Vorname"
-        Me.VornameDataGridViewTextBoxColumn.HeaderText = "Vorname"
-        Me.VornameDataGridViewTextBoxColumn.Name = "VornameDataGridViewTextBoxColumn"
-        Me.VornameDataGridViewTextBoxColumn.ReadOnly = True
-        Me.VornameDataGridViewTextBoxColumn.Width = 74
-        '
-        'BezahltDataGridViewCheckBoxColumn
-        '
-        Me.BezahltDataGridViewCheckBoxColumn.DataPropertyName = "Bezahlt"
-        Me.BezahltDataGridViewCheckBoxColumn.HeaderText = "Bezahlt"
-        Me.BezahltDataGridViewCheckBoxColumn.Name = "BezahltDataGridViewCheckBoxColumn"
-        Me.BezahltDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.BezahltDataGridViewCheckBoxColumn.Width = 48
-        '
-        'AusgedrucktDataGridViewCheckBoxColumn
-        '
-        Me.AusgedrucktDataGridViewCheckBoxColumn.DataPropertyName = "Ausgedruckt"
-        Me.AusgedrucktDataGridViewCheckBoxColumn.HeaderText = "Ausgedruckt"
-        Me.AusgedrucktDataGridViewCheckBoxColumn.Name = "AusgedrucktDataGridViewCheckBoxColumn"
-        Me.AusgedrucktDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.AusgedrucktDataGridViewCheckBoxColumn.Width = 73
-        '
-        'AbgeschlossenDataGridViewCheckBoxColumn
-        '
-        Me.AbgeschlossenDataGridViewCheckBoxColumn.DataPropertyName = "Abgeschlossen"
-        Me.AbgeschlossenDataGridViewCheckBoxColumn.HeaderText = "Abgeschlossen"
-        Me.AbgeschlossenDataGridViewCheckBoxColumn.Name = "AbgeschlossenDataGridViewCheckBoxColumn"
-        Me.AbgeschlossenDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.AbgeschlossenDataGridViewCheckBoxColumn.Width = 85
-        '
-        'StatusDataGridViewTextBoxColumn
-        '
-        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
-        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
-        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
-        Me.StatusDataGridViewTextBoxColumn.ReadOnly = True
-        Me.StatusDataGridViewTextBoxColumn.Width = 62
-        '
-        'WaehrungDataGridViewTextBoxColumn
-        '
-        Me.WaehrungDataGridViewTextBoxColumn.DataPropertyName = "Waehrung"
-        Me.WaehrungDataGridViewTextBoxColumn.HeaderText = "Waehrung"
-        Me.WaehrungDataGridViewTextBoxColumn.Name = "WaehrungDataGridViewTextBoxColumn"
-        Me.WaehrungDataGridViewTextBoxColumn.ReadOnly = True
-        Me.WaehrungDataGridViewTextBoxColumn.Width = 82
-        '
-        'SummeDataGridViewTextBoxColumn
-        '
-        Me.SummeDataGridViewTextBoxColumn.DataPropertyName = "Summe"
-        Me.SummeDataGridViewTextBoxColumn.HeaderText = "Summe"
-        Me.SummeDataGridViewTextBoxColumn.Name = "SummeDataGridViewTextBoxColumn"
-        Me.SummeDataGridViewTextBoxColumn.ReadOnly = True
-        Me.SummeDataGridViewTextBoxColumn.Width = 67
-        '
-        'SummeMWSTDataGridViewTextBoxColumn
-        '
-        Me.SummeMWSTDataGridViewTextBoxColumn.DataPropertyName = "SummeMWST"
-        Me.SummeMWSTDataGridViewTextBoxColumn.HeaderText = "SummeMWST"
-        Me.SummeMWSTDataGridViewTextBoxColumn.Name = "SummeMWSTDataGridViewTextBoxColumn"
-        Me.SummeMWSTDataGridViewTextBoxColumn.ReadOnly = True
-        Me.SummeMWSTDataGridViewTextBoxColumn.Width = 101
-        '
-        'SummeBruttoDataGridViewTextBoxColumn
-        '
-        Me.SummeBruttoDataGridViewTextBoxColumn.DataPropertyName = "SummeBrutto"
-        Me.SummeBruttoDataGridViewTextBoxColumn.HeaderText = "SummeBrutto"
-        Me.SummeBruttoDataGridViewTextBoxColumn.Name = "SummeBruttoDataGridViewTextBoxColumn"
-        Me.SummeBruttoDataGridViewTextBoxColumn.ReadOnly = True
-        Me.SummeBruttoDataGridViewTextBoxColumn.Width = 95
-        '
-        'ZahlungsbedingungDataGridViewTextBoxColumn
-        '
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn.DataPropertyName = "Zahlungsbedingung"
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn.HeaderText = "Zahlungsbedingung"
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn.Name = "ZahlungsbedingungDataGridViewTextBoxColumn"
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ZahlungsbedingungDataGridViewTextBoxColumn.Width = 126
-        '
-        'TransportMethodeDataGridViewTextBoxColumn
-        '
-        Me.TransportMethodeDataGridViewTextBoxColumn.DataPropertyName = "TransportMethode"
-        Me.TransportMethodeDataGridViewTextBoxColumn.HeaderText = "TransportMethode"
-        Me.TransportMethodeDataGridViewTextBoxColumn.Name = "TransportMethodeDataGridViewTextBoxColumn"
-        Me.TransportMethodeDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TransportMethodeDataGridViewTextBoxColumn.Width = 119
-        '
-        'ZahlungsMethodeDataGridViewTextBoxColumn
-        '
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn.DataPropertyName = "ZahlungsMethode"
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn.HeaderText = "ZahlungsMethode"
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn.Name = "ZahlungsMethodeDataGridViewTextBoxColumn"
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ZahlungsMethodeDataGridViewTextBoxColumn.Width = 118
-        '
-        'WoherDataGridViewTextBoxColumn
-        '
-        Me.WoherDataGridViewTextBoxColumn.DataPropertyName = "Woher"
-        Me.WoherDataGridViewTextBoxColumn.HeaderText = "Woher"
-        Me.WoherDataGridViewTextBoxColumn.Name = "WoherDataGridViewTextBoxColumn"
-        Me.WoherDataGridViewTextBoxColumn.ReadOnly = True
-        Me.WoherDataGridViewTextBoxColumn.Width = 64
-        '
-        'WohinDataGridViewTextBoxColumn
-        '
-        Me.WohinDataGridViewTextBoxColumn.DataPropertyName = "Wohin"
-        Me.WohinDataGridViewTextBoxColumn.HeaderText = "Wohin"
-        Me.WohinDataGridViewTextBoxColumn.Name = "WohinDataGridViewTextBoxColumn"
-        Me.WohinDataGridViewTextBoxColumn.ReadOnly = True
-        Me.WohinDataGridViewTextBoxColumn.Width = 63
-        '
-        'LieferantNrDataGridViewTextBoxColumn
-        '
-        Me.LieferantNrDataGridViewTextBoxColumn.DataPropertyName = "LieferantNr"
-        Me.LieferantNrDataGridViewTextBoxColumn.HeaderText = "LieferantNr"
-        Me.LieferantNrDataGridViewTextBoxColumn.Name = "LieferantNrDataGridViewTextBoxColumn"
-        Me.LieferantNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LieferantNrDataGridViewTextBoxColumn.Width = 84
-        '
-        'MitarbeiterNrDataGridViewTextBoxColumn
-        '
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterNr"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "MitarbeiterNr"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.Width = 92
-        '
-        'KundNr2DataGridViewTextBoxColumn
-        '
-        Me.KundNr2DataGridViewTextBoxColumn.DataPropertyName = "KundNr2"
-        Me.KundNr2DataGridViewTextBoxColumn.HeaderText = "KundNr2"
-        Me.KundNr2DataGridViewTextBoxColumn.Name = "KundNr2DataGridViewTextBoxColumn"
-        Me.KundNr2DataGridViewTextBoxColumn.ReadOnly = True
-        Me.KundNr2DataGridViewTextBoxColumn.Width = 74
-        '
-        'ErstelltAmDataGridViewTextBoxColumn
-        '
-        Me.ErstelltAmDataGridViewTextBoxColumn.DataPropertyName = "ErstelltAm"
-        Me.ErstelltAmDataGridViewTextBoxColumn.HeaderText = "ErstelltAm"
-        Me.ErstelltAmDataGridViewTextBoxColumn.Name = "ErstelltAmDataGridViewTextBoxColumn"
-        Me.ErstelltAmDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ErstelltAmDataGridViewTextBoxColumn.Width = 78
-        '
-        'NotizDataGridViewTextBoxColumn
-        '
-        Me.NotizDataGridViewTextBoxColumn.DataPropertyName = "Notiz"
-        Me.NotizDataGridViewTextBoxColumn.HeaderText = "Notiz"
-        Me.NotizDataGridViewTextBoxColumn.Name = "NotizDataGridViewTextBoxColumn"
-        Me.NotizDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NotizDataGridViewTextBoxColumn.Width = 56
         '
         'BuchVorgangListeBindingSource
         '
@@ -764,6 +554,213 @@ Partial Class VorgangListe
         '
         Me.BuchVorgangListeTableAdapter.ClearBeforeFill = True
         '
+        'NummerDataGridViewTextBoxColumn
+        '
+        Me.NummerDataGridViewTextBoxColumn.DataPropertyName = "Nummer"
+        Me.NummerDataGridViewTextBoxColumn.HeaderText = "Nummer"
+        Me.NummerDataGridViewTextBoxColumn.Name = "NummerDataGridViewTextBoxColumn"
+        Me.NummerDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NummerDataGridViewTextBoxColumn.Width = 71
+        '
+        'TypDataGridViewTextBoxColumn
+        '
+        Me.TypDataGridViewTextBoxColumn.DataPropertyName = "Typ"
+        Me.TypDataGridViewTextBoxColumn.HeaderText = "Typ"
+        Me.TypDataGridViewTextBoxColumn.Name = "TypDataGridViewTextBoxColumn"
+        Me.TypDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TypDataGridViewTextBoxColumn.Width = 50
+        '
+        'KundNrDataGridViewTextBoxColumn
+        '
+        Me.KundNrDataGridViewTextBoxColumn.DataPropertyName = "KundNr"
+        Me.KundNrDataGridViewTextBoxColumn.HeaderText = "KundNr"
+        Me.KundNrDataGridViewTextBoxColumn.Name = "KundNrDataGridViewTextBoxColumn"
+        Me.KundNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.KundNrDataGridViewTextBoxColumn.Width = 60
+        '
+        'DatumDataGridViewTextBoxColumn
+        '
+        Me.DatumDataGridViewTextBoxColumn.DataPropertyName = "Datum"
+        Me.DatumDataGridViewTextBoxColumn.HeaderText = "Datum"
+        Me.DatumDataGridViewTextBoxColumn.Name = "DatumDataGridViewTextBoxColumn"
+        Me.DatumDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DatumDataGridViewTextBoxColumn.Width = 75
+        '
+        'Land
+        '
+        Me.Land.DataPropertyName = "Land"
+        Me.Land.HeaderText = "Land"
+        Me.Land.Name = "Land"
+        Me.Land.ReadOnly = True
+        Me.Land.Width = 50
+        '
+        'FirmaDataGridViewTextBoxColumn
+        '
+        Me.FirmaDataGridViewTextBoxColumn.DataPropertyName = "Firma"
+        Me.FirmaDataGridViewTextBoxColumn.HeaderText = "Firma"
+        Me.FirmaDataGridViewTextBoxColumn.Name = "FirmaDataGridViewTextBoxColumn"
+        Me.FirmaDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "Name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Name"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NameDataGridViewTextBoxColumn.Width = 60
+        '
+        'VornameDataGridViewTextBoxColumn
+        '
+        Me.VornameDataGridViewTextBoxColumn.DataPropertyName = "Vorname"
+        Me.VornameDataGridViewTextBoxColumn.HeaderText = "Vorname"
+        Me.VornameDataGridViewTextBoxColumn.Name = "VornameDataGridViewTextBoxColumn"
+        Me.VornameDataGridViewTextBoxColumn.ReadOnly = True
+        Me.VornameDataGridViewTextBoxColumn.Width = 60
+        '
+        'BezahltDataGridViewCheckBoxColumn
+        '
+        Me.BezahltDataGridViewCheckBoxColumn.DataPropertyName = "Bezahlt"
+        Me.BezahltDataGridViewCheckBoxColumn.HeaderText = "Bezahlt"
+        Me.BezahltDataGridViewCheckBoxColumn.Name = "BezahltDataGridViewCheckBoxColumn"
+        Me.BezahltDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.BezahltDataGridViewCheckBoxColumn.Width = 50
+        '
+        'AusgedrucktDataGridViewCheckBoxColumn
+        '
+        Me.AusgedrucktDataGridViewCheckBoxColumn.DataPropertyName = "Ausgedruckt"
+        Me.AusgedrucktDataGridViewCheckBoxColumn.HeaderText = "Ausgedruckt"
+        Me.AusgedrucktDataGridViewCheckBoxColumn.Name = "AusgedrucktDataGridViewCheckBoxColumn"
+        Me.AusgedrucktDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.AusgedrucktDataGridViewCheckBoxColumn.Width = 50
+        '
+        'AbgeschlossenDataGridViewCheckBoxColumn
+        '
+        Me.AbgeschlossenDataGridViewCheckBoxColumn.DataPropertyName = "Abgeschlossen"
+        Me.AbgeschlossenDataGridViewCheckBoxColumn.HeaderText = "Abgeschlossen"
+        Me.AbgeschlossenDataGridViewCheckBoxColumn.Name = "AbgeschlossenDataGridViewCheckBoxColumn"
+        Me.AbgeschlossenDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.AbgeschlossenDataGridViewCheckBoxColumn.Width = 50
+        '
+        'StatusDataGridViewTextBoxColumn
+        '
+        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
+        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
+        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+        Me.StatusDataGridViewTextBoxColumn.ReadOnly = True
+        Me.StatusDataGridViewTextBoxColumn.Width = 75
+        '
+        'WaehrungDataGridViewTextBoxColumn
+        '
+        Me.WaehrungDataGridViewTextBoxColumn.DataPropertyName = "Waehrung"
+        Me.WaehrungDataGridViewTextBoxColumn.HeaderText = "Waehrung"
+        Me.WaehrungDataGridViewTextBoxColumn.Name = "WaehrungDataGridViewTextBoxColumn"
+        Me.WaehrungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.WaehrungDataGridViewTextBoxColumn.Width = 50
+        '
+        'SummeDataGridViewTextBoxColumn
+        '
+        Me.SummeDataGridViewTextBoxColumn.DataPropertyName = "Summe"
+        Me.SummeDataGridViewTextBoxColumn.HeaderText = "Summe"
+        Me.SummeDataGridViewTextBoxColumn.Name = "SummeDataGridViewTextBoxColumn"
+        Me.SummeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.SummeDataGridViewTextBoxColumn.Width = 75
+        '
+        'SummeMWSTDataGridViewTextBoxColumn
+        '
+        Me.SummeMWSTDataGridViewTextBoxColumn.DataPropertyName = "SummeMWST"
+        Me.SummeMWSTDataGridViewTextBoxColumn.HeaderText = "SummeMWST"
+        Me.SummeMWSTDataGridViewTextBoxColumn.Name = "SummeMWSTDataGridViewTextBoxColumn"
+        Me.SummeMWSTDataGridViewTextBoxColumn.ReadOnly = True
+        Me.SummeMWSTDataGridViewTextBoxColumn.Width = 75
+        '
+        'SummeBruttoDataGridViewTextBoxColumn
+        '
+        Me.SummeBruttoDataGridViewTextBoxColumn.DataPropertyName = "SummeBrutto"
+        Me.SummeBruttoDataGridViewTextBoxColumn.HeaderText = "SummeBrutto"
+        Me.SummeBruttoDataGridViewTextBoxColumn.Name = "SummeBruttoDataGridViewTextBoxColumn"
+        Me.SummeBruttoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.SummeBruttoDataGridViewTextBoxColumn.Width = 75
+        '
+        'ZahlungsbedingungDataGridViewTextBoxColumn
+        '
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.DataPropertyName = "Zahlungsbedingung"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.HeaderText = "Zahlungsbedingung"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.Name = "ZahlungsbedingungDataGridViewTextBoxColumn"
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ZahlungsbedingungDataGridViewTextBoxColumn.Width = 75
+        '
+        'TransportMethodeDataGridViewTextBoxColumn
+        '
+        Me.TransportMethodeDataGridViewTextBoxColumn.DataPropertyName = "TransportMethode"
+        Me.TransportMethodeDataGridViewTextBoxColumn.HeaderText = "TransportMethode"
+        Me.TransportMethodeDataGridViewTextBoxColumn.Name = "TransportMethodeDataGridViewTextBoxColumn"
+        Me.TransportMethodeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TransportMethodeDataGridViewTextBoxColumn.Width = 75
+        '
+        'ZahlungsMethodeDataGridViewTextBoxColumn
+        '
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn.DataPropertyName = "ZahlungsMethode"
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn.HeaderText = "ZahlungsMethode"
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn.Name = "ZahlungsMethodeDataGridViewTextBoxColumn"
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ZahlungsMethodeDataGridViewTextBoxColumn.Width = 75
+        '
+        'WoherDataGridViewTextBoxColumn
+        '
+        Me.WoherDataGridViewTextBoxColumn.DataPropertyName = "Woher"
+        Me.WoherDataGridViewTextBoxColumn.HeaderText = "Woher"
+        Me.WoherDataGridViewTextBoxColumn.Name = "WoherDataGridViewTextBoxColumn"
+        Me.WoherDataGridViewTextBoxColumn.ReadOnly = True
+        Me.WoherDataGridViewTextBoxColumn.Width = 75
+        '
+        'WohinDataGridViewTextBoxColumn
+        '
+        Me.WohinDataGridViewTextBoxColumn.DataPropertyName = "Wohin"
+        Me.WohinDataGridViewTextBoxColumn.HeaderText = "Wohin"
+        Me.WohinDataGridViewTextBoxColumn.Name = "WohinDataGridViewTextBoxColumn"
+        Me.WohinDataGridViewTextBoxColumn.ReadOnly = True
+        Me.WohinDataGridViewTextBoxColumn.Width = 75
+        '
+        'LieferantNrDataGridViewTextBoxColumn
+        '
+        Me.LieferantNrDataGridViewTextBoxColumn.DataPropertyName = "LieferantNr"
+        Me.LieferantNrDataGridViewTextBoxColumn.HeaderText = "LieferantNr"
+        Me.LieferantNrDataGridViewTextBoxColumn.Name = "LieferantNrDataGridViewTextBoxColumn"
+        Me.LieferantNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LieferantNrDataGridViewTextBoxColumn.Width = 75
+        '
+        'MitarbeiterNrDataGridViewTextBoxColumn
+        '
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterNr"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "MitarbeiterNr"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.Width = 5
+        '
+        'KundNr2DataGridViewTextBoxColumn
+        '
+        Me.KundNr2DataGridViewTextBoxColumn.DataPropertyName = "KundNr2"
+        Me.KundNr2DataGridViewTextBoxColumn.HeaderText = "KundNr2"
+        Me.KundNr2DataGridViewTextBoxColumn.Name = "KundNr2DataGridViewTextBoxColumn"
+        Me.KundNr2DataGridViewTextBoxColumn.ReadOnly = True
+        Me.KundNr2DataGridViewTextBoxColumn.Width = 75
+        '
+        'ErstelltAmDataGridViewTextBoxColumn
+        '
+        Me.ErstelltAmDataGridViewTextBoxColumn.DataPropertyName = "ErstelltAm"
+        Me.ErstelltAmDataGridViewTextBoxColumn.HeaderText = "ErstelltAm"
+        Me.ErstelltAmDataGridViewTextBoxColumn.Name = "ErstelltAmDataGridViewTextBoxColumn"
+        Me.ErstelltAmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ErstelltAmDataGridViewTextBoxColumn.Width = 75
+        '
+        'NotizDataGridViewTextBoxColumn
+        '
+        Me.NotizDataGridViewTextBoxColumn.DataPropertyName = "Notiz"
+        Me.NotizDataGridViewTextBoxColumn.HeaderText = "Notiz"
+        Me.NotizDataGridViewTextBoxColumn.Name = "NotizDataGridViewTextBoxColumn"
+        Me.NotizDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NotizDataGridViewTextBoxColumn.Width = 75
+        '
         'VorgangListe
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -821,6 +818,8 @@ Partial Class VorgangListe
     Friend WithEvents SummeVonTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SummeBisTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents NotizTextBox As System.Windows.Forms.TextBox
     Friend WithEvents NummerDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TypDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents KundNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -847,6 +846,4 @@ Partial Class VorgangListe
     Friend WithEvents KundNr2DataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ErstelltAmDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NotizDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents NotizTextBox As System.Windows.Forms.TextBox
 End Class

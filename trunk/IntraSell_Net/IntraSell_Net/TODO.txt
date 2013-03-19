@@ -1,2 +1,1 @@
-﻿1. PLZ Exakte Suche , PLZ Suche von Bis ist inkorrekt 
-2. Email, Web Speichern in der Adresse erfassung
+﻿
