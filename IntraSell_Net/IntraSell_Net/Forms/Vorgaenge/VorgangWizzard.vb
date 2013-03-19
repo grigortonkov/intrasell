@@ -20,6 +20,7 @@ Public Class VorgangWizzard
         Try
             loading = True
             FillComboBox(Me.TypComboBox, "SELECT '' as Typ, '' as Bezeichnung union SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
+            Me.KundNrAdressenControl.IDNR = ModuleGlobals.KundenIDNR
             loading = False
         Catch ex As Exception
             HandleAppError(ex)

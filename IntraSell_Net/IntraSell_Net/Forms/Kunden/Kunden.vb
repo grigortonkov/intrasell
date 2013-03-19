@@ -90,7 +90,8 @@ Public Class Kunden
                               ByVal e As System.EventArgs) _
                               Handles ofAdressenBindingSource.CurrentChanged
         Try
-            If IsNumeric(IDNRTextBox.Text) Then ModuleGlobals.KundenIDNR = IDNRTextBox.Text
+            Dim cur = ofAdressenBindingSource.Current.Row.IDNR
+            If IsNumeric(cur) Then ModuleGlobals.KundenIDNR = cur
             If AddingNewFlag = True Then
                 AddingNewFlag = False
                 Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)
@@ -169,4 +170,25 @@ Public Class Kunden
 
 
 
+    Private Sub AlteVorgängeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AlteVorgängeToolStripMenuItem.Click
+        Try
+            VorgangListe.MdiParent = Main
+            VorgangListe.Show()
+            'VorgangListe.Filter()
+            'VorgangListe.AdressenControl1.IDNR = ModuleGlobals.KundenIDNR
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub NeuerVorgangToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem1.Click
+        Try
+            Dim v As Vorgang = New Vorgang
+            v.MdiParent = Main
+            v.Show()
+            v.BeginNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
