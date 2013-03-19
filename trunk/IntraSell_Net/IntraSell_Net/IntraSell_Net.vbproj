@@ -264,6 +264,12 @@
     <Compile Include="Forms\Controls\TextBoxLink.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\Einstellungen\Session.Designer.vb">
+      <DependentUpon>Session.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Session.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Einstellungen\Vars.Designer.vb">
       <DependentUpon>Vars.vb</DependentUpon>
     </Compile>
@@ -498,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\MitarbeiterControl.resx">
       <DependentUpon>MitarbeiterControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Einstellungen\Session.resx">
+      <DependentUpon>Session.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Einstellungen\Vars.resx">
       <DependentUpon>Vars.vb</DependentUpon>

@@ -37,6 +37,15 @@ Public Class Main
         Return False
     End Function
 
+    Private Sub SessionToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SessionToolStripMenuItem.Click
+        Try
+            Session.MdiParent = Me
+            Session.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #Region "Kunden"
 
 
@@ -274,8 +283,8 @@ Public Class Main
         Catch ex As Exception
             HandleAppError(ex)
         End Try
-
     End Sub
+
     Private Sub ListeToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem1.Click
         Dim f As Anrufliste = New Anrufliste
         f.MdiParent = Me
@@ -364,5 +373,6 @@ Public Class Main
     End Sub
 
 #End Region
+
 
 End Class
