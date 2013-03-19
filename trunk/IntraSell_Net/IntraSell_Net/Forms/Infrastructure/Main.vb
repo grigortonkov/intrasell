@@ -287,4 +287,40 @@ Public Class Main
         End Try
 
     End Sub
+
+    Private Sub LänderToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LänderToolStripMenuItem.Click
+        Try
+            Land.MdiParent = Me
+            Land.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub MwStToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MwStToolStripMenuItem.Click
+        Try
+            MwSt.MdiParent = Me
+            MwSt.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub BankenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BankenToolStripMenuItem.Click
+        Try
+            Bank.MdiParent = Me
+            Bank.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub VorgangEinstellungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangEinstellungenToolStripMenuItem.Click
+        Try
+            VorgangBedingungen.MdiParent = Me
+            VorgangBedingungen.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
