@@ -61,6 +61,10 @@ Public Class VorgangListe
             Me.DatumUntil.Value = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.DatumUntil.Name, Me.DatumUntil.MaxDate)
             Me.TypComboBox.SelectedValue = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.TypComboBox.Name, Me.TypComboBox.SelectedValue)
             Me.NummerTextBox.Text = VarValue_Default(ModuleGlobals.MitarbeiterID & "_" & Me.Name & "_Filter_" & Me.NummerTextBox.Name, Me.NummerTextBox.Text)
+
+            Me.AdressenControl1.IDNR = ModuleGlobals.KundenIDNR
+            Me.MitarbeiterComboBox.IDNR = ModuleGlobals.MitarbeiterID
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try

@@ -162,7 +162,7 @@ Public Class Vorgang
         End If
     End Sub
 
-    Private Sub BeginNew(Optional ByVal addNew As Boolean = True)
+    Public Sub BeginNew(Optional ByVal addNew As Boolean = True)
         Try
             'neuen vorgang erstellen
             'If MessageBox.Show("Wollen Sie einen neuen Vorgang erstellen?", "Vorgang erstellen?", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
