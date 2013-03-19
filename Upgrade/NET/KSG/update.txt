@@ -1,2 +1,3 @@
 http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130316.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130319.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130319_Vorlagen.zip
