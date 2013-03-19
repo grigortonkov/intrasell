@@ -27,6 +27,19 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+    Function IsImplementedFrom(objectType As Type, intefaceType As Type) As Boolean
+        For Each thisInterface As Type In objectType.GetInterfaces
+            If thisInterface Is intefaceType Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
+
+#Region "Kunden"
+
+
     Private Sub KundenToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles KundenToolStripMenuItem1.Click
         Try
             Dim f As Kunden = New Kunden
@@ -47,6 +60,11 @@ Public Class Main
         End Try
     End Sub
 
+#End Region
+
+#Region "Artikel"
+
+
     Private Sub Liste2ToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Liste2ToolStripMenuItem.Click
         Try
             Dim f As Artikel = New Artikel
@@ -62,6 +80,20 @@ Public Class Main
         f.MdiParent = Me
         f.Show()
     End Sub
+
+    Private Sub ArtikelEinheitenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelEinheitenToolStripMenuItem.Click
+        Try
+            Einheiten.MdiParent = Me
+            Einheiten.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+#End Region
+
+#Region "Vorgang"
+
 
     Private Sub VorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangToolStripMenuItem.Click
         Try
@@ -81,6 +113,12 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+
+#End Region
+
+#Region "Infrastructure"
+
 
     Private Sub ÜberIntraSellToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ÜberIntraSellToolStripMenuItem.Click
         Try
@@ -150,6 +188,17 @@ Public Class Main
         End Try
     End Sub
 
+
+    Private Sub BugMeldenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BugMeldenToolStripMenuItem.Click
+        Try
+            System.Diagnostics.Process.Start("http://code.google.com/p/intrasell/issues/list")
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+#End Region
+
 #Region "Drucken & Export"
 
     Private Sub Main_MdiChildActivate(sender As Object, e As System.EventArgs) Handles Me.MdiChildActivate
@@ -199,22 +248,9 @@ Public Class Main
 
 #End Region
 
-    Function IsImplementedFrom(objectType As Type, intefaceType As Type) As Boolean
-        For Each thisInterface As Type In objectType.GetInterfaces
-            If thisInterface Is intefaceType Then
-                Return True
-            End If
-        Next
-        Return False
-    End Function
+#Region "Preise"
 
-    Private Sub BugMeldenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles BugMeldenToolStripMenuItem.Click
-        Try
-            System.Diagnostics.Process.Start("http://code.google.com/p/intrasell/issues/list")
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-    End Sub
+
 
     Private Sub PreisregelnToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles PreisregelnToolStripMenuItem.Click
         Try
@@ -224,7 +260,7 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
-
+#End Region
 
 #Region "Anrufe"
 
@@ -278,6 +314,9 @@ Public Class Main
     End Sub
 #End Region
 
+#Region "Stammdaten"
+
+
     Private Sub ArtikelKategorienToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ArtikelKategorienToolStripMenuItem.Click
         Try
             ArtikelKategorien.MdiParent = Me
@@ -323,4 +362,7 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+#End Region
+
 End Class

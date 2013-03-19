@@ -40,6 +40,7 @@ Partial Class Main
         Me.LänderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MwStToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BankenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorgangEinstellungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VorgängeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VorganglisteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,7 +57,9 @@ Partial Class Main
         Me.LogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BugMeldenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÜberIntraSellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VorgangEinstellungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArtikelEinheitenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -104,7 +107,7 @@ Partial Class Main
         '
         'KundenToolStripMenuItem
         '
-        Me.KundenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KundenToolStripMenuItem1, Me.ListeToolStripMenuItem, Me.Liste2ToolStripMenuItem, Me.ArtikellisteToolStripMenuItem, Me.ArtikelKategorienToolStripMenuItem, Me.MitarbeiterToolStripMenuItem, Me.BranchenToolStripMenuItem, Me.LänderToolStripMenuItem, Me.MwStToolStripMenuItem, Me.BankenToolStripMenuItem, Me.VorgangEinstellungenToolStripMenuItem})
+        Me.KundenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KundenToolStripMenuItem1, Me.ListeToolStripMenuItem, Me.ToolStripSeparator2, Me.Liste2ToolStripMenuItem, Me.ArtikellisteToolStripMenuItem, Me.ArtikelKategorienToolStripMenuItem, Me.ArtikelEinheitenToolStripMenuItem, Me.ToolStripSeparator1, Me.MitarbeiterToolStripMenuItem, Me.BranchenToolStripMenuItem, Me.LänderToolStripMenuItem, Me.MwStToolStripMenuItem, Me.BankenToolStripMenuItem, Me.VorgangEinstellungenToolStripMenuItem})
         Me.KundenToolStripMenuItem.Name = "KundenToolStripMenuItem"
         Me.KundenToolStripMenuItem.Size = New System.Drawing.Size(87, 20)
         Me.KundenToolStripMenuItem.Text = "&Stammdaten"
@@ -169,6 +172,12 @@ Partial Class Main
         Me.BankenToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.BankenToolStripMenuItem.Text = "&Banken"
         '
+        'VorgangEinstellungenToolStripMenuItem
+        '
+        Me.VorgangEinstellungenToolStripMenuItem.Name = "VorgangEinstellungenToolStripMenuItem"
+        Me.VorgangEinstellungenToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.VorgangEinstellungenToolStripMenuItem.Text = "&Vorgang Einstellungen"
+        '
         'VorgängeToolStripMenuItem
         '
         Me.VorgängeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem, Me.VorganglisteToolStripMenuItem})
@@ -179,13 +188,13 @@ Partial Class Main
         'VorgangToolStripMenuItem
         '
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang"
         '
         'VorganglisteToolStripMenuItem
         '
         Me.VorganglisteToolStripMenuItem.Name = "VorganglisteToolStripMenuItem"
-        Me.VorganglisteToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.VorganglisteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.VorganglisteToolStripMenuItem.Text = "Vorgang&liste"
         '
         'PreiseToolStripMenuItem
@@ -269,11 +278,21 @@ Partial Class Main
         Me.ÜberIntraSellToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ÜberIntraSellToolStripMenuItem.Text = "&Über IntraSell"
         '
-        'VorgangEinstellungenToolStripMenuItem
+        'ArtikelEinheitenToolStripMenuItem
         '
-        Me.VorgangEinstellungenToolStripMenuItem.Name = "VorgangEinstellungenToolStripMenuItem"
-        Me.VorgangEinstellungenToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
-        Me.VorgangEinstellungenToolStripMenuItem.Text = "&Vorgang Einstellungen"
+        Me.ArtikelEinheitenToolStripMenuItem.Name = "ArtikelEinheitenToolStripMenuItem"
+        Me.ArtikelEinheitenToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.ArtikelEinheitenToolStripMenuItem.Text = "Artikel &Einheiten"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(190, 6)
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(190, 6)
         '
         'Main
         '
@@ -326,5 +345,8 @@ Partial Class Main
     Friend WithEvents MwStToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BankenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VorgangEinstellungenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ArtikelEinheitenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
 
 End Class
