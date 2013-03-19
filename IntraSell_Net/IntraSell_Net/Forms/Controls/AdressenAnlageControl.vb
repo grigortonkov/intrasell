@@ -65,8 +65,12 @@ Public Class AdressenAnlageControl
             'Adresse anlegen 
             Dim target As ofadressenTableAdapter = New ofadressenTableAdapter()
 
+            'INSERT 
+            Dim Land As Nullable(Of Integer) = 43
+            Dim PLZIDNR = IntraSellKunden.getPLZCreateIfNeeded(Land, Ort, PLZ)
+
             If IsNumeric(idnr) Then
-                target.UpdateKlein(Firma:=Firma, Adresse:=Adresse, Email:=Email, PLZ:=PLZ, Ort:=Ort, Fax:=Fax, Mobil:=Mobil, Tel:=Tel, Web:=Web, Original_IDNR:=idnr)
+                target.UpdateKlein(Firma:=Firma, Adresse:=Adresse, Email:=Email, PLZ:=PLZIDNR, Ort:=Ort, Fax:=Fax, Mobil:=Mobil, Tel:=Tel, Web:=Web, Original_IDNR:=idnr)
                 Return idnr
             Else
 
@@ -76,7 +80,7 @@ Public Class AdressenAnlageControl
                 Dim Status As String = "Neu"
                 Dim Name As String = ""
                 Dim Vorname As String = ""
-                Dim Land As Nullable(Of Integer) = 43
+
 
 
                 Dim Fax2 As String = String.Empty
@@ -84,8 +88,7 @@ Public Class AdressenAnlageControl
 
                 Dim actual As Integer
 
-                'INSERT 
-                Dim PLZIDNR = IntraSellKunden.getPLZCreateIfNeeded(Land, Ort, PLZ)
+              
 
                 actual = target.InsertKlein(idnr, Status, Name, Vorname, Firma, Adresse, Land, PLZIDNR, Ort, Tel, Mobil, Email, Web)
                 sql = "select IDNR from ofAdressen where tel='" & Tel & "'"
