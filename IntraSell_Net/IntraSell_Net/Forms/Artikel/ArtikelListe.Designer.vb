@@ -35,6 +35,22 @@ Partial Class Artikelliste
         Me.PreislistenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
+        Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsArtikel = New IntraSell_Net.dsArtikel()
+        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
+        Me.LagerArtikelCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SeriennummerCheckBox = New System.Windows.Forms.CheckBox()
+        Me.SetArtikelCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ProduktAktivCheckBox = New System.Windows.Forms.CheckBox()
+        Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
+        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.ArtNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EANDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KategorieDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,22 +85,6 @@ Partial Class Artikelliste
         Me.ProduktAktivDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ProduktAktivOnlineDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.AngelegtAmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsArtikel = New IntraSell_Net.dsArtikel()
-        Me.SplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
-        Me.LagerArtikelCheckBox = New System.Windows.Forms.CheckBox()
-        Me.SeriennummerCheckBox = New System.Windows.Forms.CheckBox()
-        Me.SetArtikelCheckBox = New System.Windows.Forms.CheckBox()
-        Me.ProduktAktivCheckBox = New System.Windows.Forms.CheckBox()
-        Me.NichtBestellbarCheckBox = New System.Windows.Forms.CheckBox()
-        Me.ProduktAktivOnlineCheckBox = New System.Windows.Forms.CheckBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
-        Me.ArtKatNrComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         SetArtikelLabel = New System.Windows.Forms.Label()
         CType(Me.PreislistenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,8 +195,6 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.AllowUserToDeleteRows = False
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
-        Me.OfAdressenlisteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtNrDataGridViewTextBoxColumn, Me.EANDataGridViewTextBoxColumn, Me.KategorieDataGridViewTextBoxColumn, Me.BarcodeDataGridViewTextBoxColumn, Me.BezeichnungDataGridViewTextBoxColumn, Me.Bezeichnung1DataGridViewTextBoxColumn, Me.BeschreibungDataGridViewTextBoxColumn, Me.EinheitDataGridViewTextBoxColumn, Me.PreisATSDataGridViewTextBoxColumn, Me.MWSTDataGridViewTextBoxColumn, Me.PreisATSBruttoDataGridViewTextBoxColumn, Me.EKPreisDataGridViewTextBoxColumn, Me.LEKPreisDataGridViewTextBoxColumn, Me.LieferantNRDataGridViewTextBoxColumn, Me.ArtKatNrDataGridViewTextBoxColumn, Me.PictureDataGridViewTextBoxColumn, Me.HerstellerNrDataGridViewTextBoxColumn, Me.ShopURLDataGridViewTextBoxColumn, Me.HerstellerURLDataGridViewTextBoxColumn, Me.ModifikationenDataGridViewTextBoxColumn, Me.HerstellerRabattDataGridViewTextBoxColumn, Me.HerstellerRabattTextDataGridViewTextBoxColumn, Me.AngelegtAnDataGridViewTextBoxColumn, Me.GewichtDataGridViewTextBoxColumn, Me.BruttoGewichtDataGridViewTextBoxColumn, Me.NettoGewichtDataGridViewTextBoxColumn, Me.TaraGewichtDataGridViewTextBoxColumn, Me.SeriennummerDataGridViewCheckBoxColumn, Me.SetArtikelDataGridViewCheckBoxColumn, Me.LagerArtikelDataGridViewCheckBoxColumn, Me.NichtBestellbarDataGridViewCheckBoxColumn, Me.ProduktAktivDataGridViewCheckBoxColumn, Me.ProduktAktivOnlineDataGridViewTextBoxColumn, Me.AngelegtAmDataGridViewTextBoxColumn})
         Me.OfAdressenlisteDataGridView.DataSource = Me.GrArtikellisteBindingSource
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
@@ -205,279 +203,6 @@ Partial Class Artikelliste
         Me.OfAdressenlisteDataGridView.ReadOnly = True
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(771, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'ArtNrDataGridViewTextBoxColumn
-        '
-        Me.ArtNrDataGridViewTextBoxColumn.DataPropertyName = "ArtNr"
-        Me.ArtNrDataGridViewTextBoxColumn.HeaderText = "ArtNr"
-        Me.ArtNrDataGridViewTextBoxColumn.Name = "ArtNrDataGridViewTextBoxColumn"
-        Me.ArtNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ArtNrDataGridViewTextBoxColumn.Width = 56
-        '
-        'EANDataGridViewTextBoxColumn
-        '
-        Me.EANDataGridViewTextBoxColumn.DataPropertyName = "EAN"
-        Me.EANDataGridViewTextBoxColumn.HeaderText = "EAN"
-        Me.EANDataGridViewTextBoxColumn.Name = "EANDataGridViewTextBoxColumn"
-        Me.EANDataGridViewTextBoxColumn.ReadOnly = True
-        Me.EANDataGridViewTextBoxColumn.Width = 54
-        '
-        'KategorieDataGridViewTextBoxColumn
-        '
-        Me.KategorieDataGridViewTextBoxColumn.DataPropertyName = "Kategorie"
-        Me.KategorieDataGridViewTextBoxColumn.HeaderText = "Kategorie"
-        Me.KategorieDataGridViewTextBoxColumn.Name = "KategorieDataGridViewTextBoxColumn"
-        Me.KategorieDataGridViewTextBoxColumn.ReadOnly = True
-        Me.KategorieDataGridViewTextBoxColumn.Width = 77
-        '
-        'BarcodeDataGridViewTextBoxColumn
-        '
-        Me.BarcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode"
-        Me.BarcodeDataGridViewTextBoxColumn.HeaderText = "Barcode"
-        Me.BarcodeDataGridViewTextBoxColumn.Name = "BarcodeDataGridViewTextBoxColumn"
-        Me.BarcodeDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BarcodeDataGridViewTextBoxColumn.Width = 72
-        '
-        'BezeichnungDataGridViewTextBoxColumn
-        '
-        Me.BezeichnungDataGridViewTextBoxColumn.DataPropertyName = "Bezeichnung"
-        Me.BezeichnungDataGridViewTextBoxColumn.HeaderText = "Bezeichnung"
-        Me.BezeichnungDataGridViewTextBoxColumn.Name = "BezeichnungDataGridViewTextBoxColumn"
-        Me.BezeichnungDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BezeichnungDataGridViewTextBoxColumn.Width = 94
-        '
-        'Bezeichnung1DataGridViewTextBoxColumn
-        '
-        Me.Bezeichnung1DataGridViewTextBoxColumn.DataPropertyName = "Bezeichnung1"
-        Me.Bezeichnung1DataGridViewTextBoxColumn.HeaderText = "Bezeichnung1"
-        Me.Bezeichnung1DataGridViewTextBoxColumn.Name = "Bezeichnung1DataGridViewTextBoxColumn"
-        Me.Bezeichnung1DataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'BeschreibungDataGridViewTextBoxColumn
-        '
-        Me.BeschreibungDataGridViewTextBoxColumn.DataPropertyName = "Beschreibung"
-        Me.BeschreibungDataGridViewTextBoxColumn.HeaderText = "Beschreibung"
-        Me.BeschreibungDataGridViewTextBoxColumn.Name = "BeschreibungDataGridViewTextBoxColumn"
-        Me.BeschreibungDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BeschreibungDataGridViewTextBoxColumn.Width = 97
-        '
-        'EinheitDataGridViewTextBoxColumn
-        '
-        Me.EinheitDataGridViewTextBoxColumn.DataPropertyName = "Einheit"
-        Me.EinheitDataGridViewTextBoxColumn.HeaderText = "Einheit"
-        Me.EinheitDataGridViewTextBoxColumn.Name = "EinheitDataGridViewTextBoxColumn"
-        Me.EinheitDataGridViewTextBoxColumn.ReadOnly = True
-        Me.EinheitDataGridViewTextBoxColumn.Width = 64
-        '
-        'PreisATSDataGridViewTextBoxColumn
-        '
-        Me.PreisATSDataGridViewTextBoxColumn.DataPropertyName = "PreisATS"
-        Me.PreisATSDataGridViewTextBoxColumn.HeaderText = "Preis"
-        Me.PreisATSDataGridViewTextBoxColumn.Name = "PreisATSDataGridViewTextBoxColumn"
-        Me.PreisATSDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PreisATSDataGridViewTextBoxColumn.Width = 55
-        '
-        'MWSTDataGridViewTextBoxColumn
-        '
-        Me.MWSTDataGridViewTextBoxColumn.DataPropertyName = "MWST"
-        Me.MWSTDataGridViewTextBoxColumn.HeaderText = "MWST"
-        Me.MWSTDataGridViewTextBoxColumn.Name = "MWSTDataGridViewTextBoxColumn"
-        Me.MWSTDataGridViewTextBoxColumn.ReadOnly = True
-        Me.MWSTDataGridViewTextBoxColumn.Width = 66
-        '
-        'PreisATSBruttoDataGridViewTextBoxColumn
-        '
-        Me.PreisATSBruttoDataGridViewTextBoxColumn.DataPropertyName = "PreisATS_Brutto"
-        Me.PreisATSBruttoDataGridViewTextBoxColumn.HeaderText = "Preis_Brutto"
-        Me.PreisATSBruttoDataGridViewTextBoxColumn.Name = "PreisATSBruttoDataGridViewTextBoxColumn"
-        Me.PreisATSBruttoDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PreisATSBruttoDataGridViewTextBoxColumn.Width = 89
-        '
-        'EKPreisDataGridViewTextBoxColumn
-        '
-        Me.EKPreisDataGridViewTextBoxColumn.DataPropertyName = "EKPreis"
-        Me.EKPreisDataGridViewTextBoxColumn.HeaderText = "EKPreis"
-        Me.EKPreisDataGridViewTextBoxColumn.Name = "EKPreisDataGridViewTextBoxColumn"
-        Me.EKPreisDataGridViewTextBoxColumn.ReadOnly = True
-        Me.EKPreisDataGridViewTextBoxColumn.Width = 69
-        '
-        'LEKPreisDataGridViewTextBoxColumn
-        '
-        Me.LEKPreisDataGridViewTextBoxColumn.DataPropertyName = "LEKPreis"
-        Me.LEKPreisDataGridViewTextBoxColumn.HeaderText = "LEKPreis"
-        Me.LEKPreisDataGridViewTextBoxColumn.Name = "LEKPreisDataGridViewTextBoxColumn"
-        Me.LEKPreisDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LEKPreisDataGridViewTextBoxColumn.Width = 75
-        '
-        'LieferantNRDataGridViewTextBoxColumn
-        '
-        Me.LieferantNRDataGridViewTextBoxColumn.DataPropertyName = "LieferantNR"
-        Me.LieferantNRDataGridViewTextBoxColumn.HeaderText = "LieferantNR"
-        Me.LieferantNRDataGridViewTextBoxColumn.Name = "LieferantNRDataGridViewTextBoxColumn"
-        Me.LieferantNRDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LieferantNRDataGridViewTextBoxColumn.Width = 89
-        '
-        'ArtKatNrDataGridViewTextBoxColumn
-        '
-        Me.ArtKatNrDataGridViewTextBoxColumn.DataPropertyName = "ArtKatNr"
-        Me.ArtKatNrDataGridViewTextBoxColumn.HeaderText = "ArtKatNr"
-        Me.ArtKatNrDataGridViewTextBoxColumn.Name = "ArtKatNrDataGridViewTextBoxColumn"
-        Me.ArtKatNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ArtKatNrDataGridViewTextBoxColumn.Visible = False
-        '
-        'PictureDataGridViewTextBoxColumn
-        '
-        Me.PictureDataGridViewTextBoxColumn.DataPropertyName = "Picture"
-        Me.PictureDataGridViewTextBoxColumn.HeaderText = "Picture"
-        Me.PictureDataGridViewTextBoxColumn.Name = "PictureDataGridViewTextBoxColumn"
-        Me.PictureDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PictureDataGridViewTextBoxColumn.Width = 65
-        '
-        'HerstellerNrDataGridViewTextBoxColumn
-        '
-        Me.HerstellerNrDataGridViewTextBoxColumn.DataPropertyName = "HerstellerNr"
-        Me.HerstellerNrDataGridViewTextBoxColumn.HeaderText = "HerstellerNr"
-        Me.HerstellerNrDataGridViewTextBoxColumn.Name = "HerstellerNrDataGridViewTextBoxColumn"
-        Me.HerstellerNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.HerstellerNrDataGridViewTextBoxColumn.Width = 87
-        '
-        'ShopURLDataGridViewTextBoxColumn
-        '
-        Me.ShopURLDataGridViewTextBoxColumn.DataPropertyName = "ShopURL"
-        Me.ShopURLDataGridViewTextBoxColumn.HeaderText = "ShopURL"
-        Me.ShopURLDataGridViewTextBoxColumn.Name = "ShopURLDataGridViewTextBoxColumn"
-        Me.ShopURLDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ShopURLDataGridViewTextBoxColumn.Width = 79
-        '
-        'HerstellerURLDataGridViewTextBoxColumn
-        '
-        Me.HerstellerURLDataGridViewTextBoxColumn.DataPropertyName = "HerstellerURL"
-        Me.HerstellerURLDataGridViewTextBoxColumn.HeaderText = "HerstellerURL"
-        Me.HerstellerURLDataGridViewTextBoxColumn.Name = "HerstellerURLDataGridViewTextBoxColumn"
-        Me.HerstellerURLDataGridViewTextBoxColumn.ReadOnly = True
-        Me.HerstellerURLDataGridViewTextBoxColumn.Width = 98
-        '
-        'ModifikationenDataGridViewTextBoxColumn
-        '
-        Me.ModifikationenDataGridViewTextBoxColumn.DataPropertyName = "Modifikationen"
-        Me.ModifikationenDataGridViewTextBoxColumn.HeaderText = "Modifikationen"
-        Me.ModifikationenDataGridViewTextBoxColumn.Name = "ModifikationenDataGridViewTextBoxColumn"
-        Me.ModifikationenDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ModifikationenDataGridViewTextBoxColumn.Width = 101
-        '
-        'HerstellerRabattDataGridViewTextBoxColumn
-        '
-        Me.HerstellerRabattDataGridViewTextBoxColumn.DataPropertyName = "HerstellerRabatt"
-        Me.HerstellerRabattDataGridViewTextBoxColumn.HeaderText = "HerstellerRabatt"
-        Me.HerstellerRabattDataGridViewTextBoxColumn.Name = "HerstellerRabattDataGridViewTextBoxColumn"
-        Me.HerstellerRabattDataGridViewTextBoxColumn.ReadOnly = True
-        Me.HerstellerRabattDataGridViewTextBoxColumn.Width = 108
-        '
-        'HerstellerRabattTextDataGridViewTextBoxColumn
-        '
-        Me.HerstellerRabattTextDataGridViewTextBoxColumn.DataPropertyName = "HerstellerRabattText"
-        Me.HerstellerRabattTextDataGridViewTextBoxColumn.HeaderText = "HerstellerRabattText"
-        Me.HerstellerRabattTextDataGridViewTextBoxColumn.Name = "HerstellerRabattTextDataGridViewTextBoxColumn"
-        Me.HerstellerRabattTextDataGridViewTextBoxColumn.ReadOnly = True
-        Me.HerstellerRabattTextDataGridViewTextBoxColumn.Width = 129
-        '
-        'AngelegtAnDataGridViewTextBoxColumn
-        '
-        Me.AngelegtAnDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAn"
-        Me.AngelegtAnDataGridViewTextBoxColumn.HeaderText = "AngelegtAn"
-        Me.AngelegtAnDataGridViewTextBoxColumn.Name = "AngelegtAnDataGridViewTextBoxColumn"
-        Me.AngelegtAnDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AngelegtAnDataGridViewTextBoxColumn.Visible = False
-        '
-        'GewichtDataGridViewTextBoxColumn
-        '
-        Me.GewichtDataGridViewTextBoxColumn.DataPropertyName = "Gewicht"
-        Me.GewichtDataGridViewTextBoxColumn.HeaderText = "Gewicht"
-        Me.GewichtDataGridViewTextBoxColumn.Name = "GewichtDataGridViewTextBoxColumn"
-        Me.GewichtDataGridViewTextBoxColumn.ReadOnly = True
-        Me.GewichtDataGridViewTextBoxColumn.Width = 71
-        '
-        'BruttoGewichtDataGridViewTextBoxColumn
-        '
-        Me.BruttoGewichtDataGridViewTextBoxColumn.DataPropertyName = "BruttoGewicht"
-        Me.BruttoGewichtDataGridViewTextBoxColumn.HeaderText = "BruttoGewicht"
-        Me.BruttoGewichtDataGridViewTextBoxColumn.Name = "BruttoGewichtDataGridViewTextBoxColumn"
-        Me.BruttoGewichtDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BruttoGewichtDataGridViewTextBoxColumn.Width = 99
-        '
-        'NettoGewichtDataGridViewTextBoxColumn
-        '
-        Me.NettoGewichtDataGridViewTextBoxColumn.DataPropertyName = "NettoGewicht"
-        Me.NettoGewichtDataGridViewTextBoxColumn.HeaderText = "NettoGewicht"
-        Me.NettoGewichtDataGridViewTextBoxColumn.Name = "NettoGewichtDataGridViewTextBoxColumn"
-        Me.NettoGewichtDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NettoGewichtDataGridViewTextBoxColumn.Width = 97
-        '
-        'TaraGewichtDataGridViewTextBoxColumn
-        '
-        Me.TaraGewichtDataGridViewTextBoxColumn.DataPropertyName = "TaraGewicht"
-        Me.TaraGewichtDataGridViewTextBoxColumn.HeaderText = "TaraGewicht"
-        Me.TaraGewichtDataGridViewTextBoxColumn.Name = "TaraGewichtDataGridViewTextBoxColumn"
-        Me.TaraGewichtDataGridViewTextBoxColumn.ReadOnly = True
-        Me.TaraGewichtDataGridViewTextBoxColumn.Width = 93
-        '
-        'SeriennummerDataGridViewCheckBoxColumn
-        '
-        Me.SeriennummerDataGridViewCheckBoxColumn.DataPropertyName = "Seriennummer"
-        Me.SeriennummerDataGridViewCheckBoxColumn.HeaderText = "Seriennummer"
-        Me.SeriennummerDataGridViewCheckBoxColumn.Name = "SeriennummerDataGridViewCheckBoxColumn"
-        Me.SeriennummerDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.SeriennummerDataGridViewCheckBoxColumn.Width = 80
-        '
-        'SetArtikelDataGridViewCheckBoxColumn
-        '
-        Me.SetArtikelDataGridViewCheckBoxColumn.DataPropertyName = "SetArtikel"
-        Me.SetArtikelDataGridViewCheckBoxColumn.HeaderText = "SetArtikel"
-        Me.SetArtikelDataGridViewCheckBoxColumn.Name = "SetArtikelDataGridViewCheckBoxColumn"
-        Me.SetArtikelDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.SetArtikelDataGridViewCheckBoxColumn.Width = 58
-        '
-        'LagerArtikelDataGridViewCheckBoxColumn
-        '
-        Me.LagerArtikelDataGridViewCheckBoxColumn.DataPropertyName = "LagerArtikel"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.HeaderText = "LagerArtikel"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.Name = "LagerArtikelDataGridViewCheckBoxColumn"
-        Me.LagerArtikelDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.LagerArtikelDataGridViewCheckBoxColumn.Width = 69
-        '
-        'NichtBestellbarDataGridViewCheckBoxColumn
-        '
-        Me.NichtBestellbarDataGridViewCheckBoxColumn.DataPropertyName = "NichtBestellbar"
-        Me.NichtBestellbarDataGridViewCheckBoxColumn.HeaderText = "NichtBestellbar"
-        Me.NichtBestellbarDataGridViewCheckBoxColumn.Name = "NichtBestellbarDataGridViewCheckBoxColumn"
-        Me.NichtBestellbarDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.NichtBestellbarDataGridViewCheckBoxColumn.Width = 84
-        '
-        'ProduktAktivDataGridViewCheckBoxColumn
-        '
-        Me.ProduktAktivDataGridViewCheckBoxColumn.DataPropertyName = "ProduktAktiv"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.HeaderText = "ProduktAktiv"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.Name = "ProduktAktivDataGridViewCheckBoxColumn"
-        Me.ProduktAktivDataGridViewCheckBoxColumn.ReadOnly = True
-        Me.ProduktAktivDataGridViewCheckBoxColumn.Width = 74
-        '
-        'ProduktAktivOnlineDataGridViewTextBoxColumn
-        '
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.DataPropertyName = "ProduktAktivOnline"
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.HeaderText = "ProduktAktivOnline"
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Name = "ProduktAktivOnlineDataGridViewTextBoxColumn"
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Width = 123
-        '
-        'AngelegtAmDataGridViewTextBoxColumn
-        '
-        Me.AngelegtAmDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAm"
-        Me.AngelegtAmDataGridViewTextBoxColumn.HeaderText = "AngelegtAm"
-        Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
-        Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AngelegtAmDataGridViewTextBoxColumn.Width = 89
         '
         'GrArtikellisteBindingSource
         '
@@ -647,6 +372,279 @@ Partial Class Artikelliste
         'GrArtikellisteTableAdapter
         '
         Me.GrArtikellisteTableAdapter.ClearBeforeFill = True
+        '
+        'ArtNrDataGridViewTextBoxColumn
+        '
+        Me.ArtNrDataGridViewTextBoxColumn.DataPropertyName = "ArtNr"
+        Me.ArtNrDataGridViewTextBoxColumn.HeaderText = "ArtNr"
+        Me.ArtNrDataGridViewTextBoxColumn.Name = "ArtNrDataGridViewTextBoxColumn"
+        Me.ArtNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ArtNrDataGridViewTextBoxColumn.Width = 56
+        '
+        'EANDataGridViewTextBoxColumn
+        '
+        Me.EANDataGridViewTextBoxColumn.DataPropertyName = "EAN"
+        Me.EANDataGridViewTextBoxColumn.HeaderText = "EAN"
+        Me.EANDataGridViewTextBoxColumn.Name = "EANDataGridViewTextBoxColumn"
+        Me.EANDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EANDataGridViewTextBoxColumn.Width = 54
+        '
+        'KategorieDataGridViewTextBoxColumn
+        '
+        Me.KategorieDataGridViewTextBoxColumn.DataPropertyName = "Kategorie"
+        Me.KategorieDataGridViewTextBoxColumn.HeaderText = "Kategorie"
+        Me.KategorieDataGridViewTextBoxColumn.Name = "KategorieDataGridViewTextBoxColumn"
+        Me.KategorieDataGridViewTextBoxColumn.ReadOnly = True
+        Me.KategorieDataGridViewTextBoxColumn.Width = 77
+        '
+        'BarcodeDataGridViewTextBoxColumn
+        '
+        Me.BarcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode"
+        Me.BarcodeDataGridViewTextBoxColumn.HeaderText = "Barcode"
+        Me.BarcodeDataGridViewTextBoxColumn.Name = "BarcodeDataGridViewTextBoxColumn"
+        Me.BarcodeDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BarcodeDataGridViewTextBoxColumn.Width = 72
+        '
+        'BezeichnungDataGridViewTextBoxColumn
+        '
+        Me.BezeichnungDataGridViewTextBoxColumn.DataPropertyName = "Bezeichnung"
+        Me.BezeichnungDataGridViewTextBoxColumn.HeaderText = "Bezeichnung"
+        Me.BezeichnungDataGridViewTextBoxColumn.Name = "BezeichnungDataGridViewTextBoxColumn"
+        Me.BezeichnungDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Bezeichnung1DataGridViewTextBoxColumn
+        '
+        Me.Bezeichnung1DataGridViewTextBoxColumn.DataPropertyName = "Bezeichnung1"
+        Me.Bezeichnung1DataGridViewTextBoxColumn.HeaderText = "Bezeichnung1"
+        Me.Bezeichnung1DataGridViewTextBoxColumn.Name = "Bezeichnung1DataGridViewTextBoxColumn"
+        Me.Bezeichnung1DataGridViewTextBoxColumn.ReadOnly = True
+        Me.Bezeichnung1DataGridViewTextBoxColumn.Width = 50
+        '
+        'BeschreibungDataGridViewTextBoxColumn
+        '
+        Me.BeschreibungDataGridViewTextBoxColumn.DataPropertyName = "Beschreibung"
+        Me.BeschreibungDataGridViewTextBoxColumn.HeaderText = "Beschreibung"
+        Me.BeschreibungDataGridViewTextBoxColumn.Name = "BeschreibungDataGridViewTextBoxColumn"
+        Me.BeschreibungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BeschreibungDataGridViewTextBoxColumn.Width = 50
+        '
+        'EinheitDataGridViewTextBoxColumn
+        '
+        Me.EinheitDataGridViewTextBoxColumn.DataPropertyName = "Einheit"
+        Me.EinheitDataGridViewTextBoxColumn.HeaderText = "Einheit"
+        Me.EinheitDataGridViewTextBoxColumn.Name = "EinheitDataGridViewTextBoxColumn"
+        Me.EinheitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EinheitDataGridViewTextBoxColumn.Width = 30
+        '
+        'PreisATSDataGridViewTextBoxColumn
+        '
+        Me.PreisATSDataGridViewTextBoxColumn.DataPropertyName = "PreisATS"
+        Me.PreisATSDataGridViewTextBoxColumn.HeaderText = "Preis"
+        Me.PreisATSDataGridViewTextBoxColumn.Name = "PreisATSDataGridViewTextBoxColumn"
+        Me.PreisATSDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PreisATSDataGridViewTextBoxColumn.Width = 50
+        '
+        'MWSTDataGridViewTextBoxColumn
+        '
+        Me.MWSTDataGridViewTextBoxColumn.DataPropertyName = "MWST"
+        Me.MWSTDataGridViewTextBoxColumn.HeaderText = "MWST"
+        Me.MWSTDataGridViewTextBoxColumn.Name = "MWSTDataGridViewTextBoxColumn"
+        Me.MWSTDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MWSTDataGridViewTextBoxColumn.Width = 50
+        '
+        'PreisATSBruttoDataGridViewTextBoxColumn
+        '
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.DataPropertyName = "PreisATS_Brutto"
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.HeaderText = "Preis_Brutto"
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.Name = "PreisATSBruttoDataGridViewTextBoxColumn"
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PreisATSBruttoDataGridViewTextBoxColumn.Width = 50
+        '
+        'EKPreisDataGridViewTextBoxColumn
+        '
+        Me.EKPreisDataGridViewTextBoxColumn.DataPropertyName = "EKPreis"
+        Me.EKPreisDataGridViewTextBoxColumn.HeaderText = "EKPreis"
+        Me.EKPreisDataGridViewTextBoxColumn.Name = "EKPreisDataGridViewTextBoxColumn"
+        Me.EKPreisDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EKPreisDataGridViewTextBoxColumn.Width = 50
+        '
+        'LEKPreisDataGridViewTextBoxColumn
+        '
+        Me.LEKPreisDataGridViewTextBoxColumn.DataPropertyName = "LEKPreis"
+        Me.LEKPreisDataGridViewTextBoxColumn.HeaderText = "LEKPreis"
+        Me.LEKPreisDataGridViewTextBoxColumn.Name = "LEKPreisDataGridViewTextBoxColumn"
+        Me.LEKPreisDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LEKPreisDataGridViewTextBoxColumn.Width = 50
+        '
+        'LieferantNRDataGridViewTextBoxColumn
+        '
+        Me.LieferantNRDataGridViewTextBoxColumn.DataPropertyName = "LieferantNR"
+        Me.LieferantNRDataGridViewTextBoxColumn.HeaderText = "LieferantNR"
+        Me.LieferantNRDataGridViewTextBoxColumn.Name = "LieferantNRDataGridViewTextBoxColumn"
+        Me.LieferantNRDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LieferantNRDataGridViewTextBoxColumn.Width = 89
+        '
+        'ArtKatNrDataGridViewTextBoxColumn
+        '
+        Me.ArtKatNrDataGridViewTextBoxColumn.DataPropertyName = "ArtKatNr"
+        Me.ArtKatNrDataGridViewTextBoxColumn.HeaderText = "ArtKatNr"
+        Me.ArtKatNrDataGridViewTextBoxColumn.Name = "ArtKatNrDataGridViewTextBoxColumn"
+        Me.ArtKatNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ArtKatNrDataGridViewTextBoxColumn.Visible = False
+        '
+        'PictureDataGridViewTextBoxColumn
+        '
+        Me.PictureDataGridViewTextBoxColumn.DataPropertyName = "Picture"
+        Me.PictureDataGridViewTextBoxColumn.HeaderText = "Picture"
+        Me.PictureDataGridViewTextBoxColumn.Name = "PictureDataGridViewTextBoxColumn"
+        Me.PictureDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PictureDataGridViewTextBoxColumn.Width = 65
+        '
+        'HerstellerNrDataGridViewTextBoxColumn
+        '
+        Me.HerstellerNrDataGridViewTextBoxColumn.DataPropertyName = "HerstellerNr"
+        Me.HerstellerNrDataGridViewTextBoxColumn.HeaderText = "HerstellerNr"
+        Me.HerstellerNrDataGridViewTextBoxColumn.Name = "HerstellerNrDataGridViewTextBoxColumn"
+        Me.HerstellerNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerNrDataGridViewTextBoxColumn.Width = 87
+        '
+        'ShopURLDataGridViewTextBoxColumn
+        '
+        Me.ShopURLDataGridViewTextBoxColumn.DataPropertyName = "ShopURL"
+        Me.ShopURLDataGridViewTextBoxColumn.HeaderText = "ShopURL"
+        Me.ShopURLDataGridViewTextBoxColumn.Name = "ShopURLDataGridViewTextBoxColumn"
+        Me.ShopURLDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ShopURLDataGridViewTextBoxColumn.Width = 79
+        '
+        'HerstellerURLDataGridViewTextBoxColumn
+        '
+        Me.HerstellerURLDataGridViewTextBoxColumn.DataPropertyName = "HerstellerURL"
+        Me.HerstellerURLDataGridViewTextBoxColumn.HeaderText = "HerstellerURL"
+        Me.HerstellerURLDataGridViewTextBoxColumn.Name = "HerstellerURLDataGridViewTextBoxColumn"
+        Me.HerstellerURLDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerURLDataGridViewTextBoxColumn.Width = 98
+        '
+        'ModifikationenDataGridViewTextBoxColumn
+        '
+        Me.ModifikationenDataGridViewTextBoxColumn.DataPropertyName = "Modifikationen"
+        Me.ModifikationenDataGridViewTextBoxColumn.HeaderText = "Modifikationen"
+        Me.ModifikationenDataGridViewTextBoxColumn.Name = "ModifikationenDataGridViewTextBoxColumn"
+        Me.ModifikationenDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ModifikationenDataGridViewTextBoxColumn.Width = 101
+        '
+        'HerstellerRabattDataGridViewTextBoxColumn
+        '
+        Me.HerstellerRabattDataGridViewTextBoxColumn.DataPropertyName = "HerstellerRabatt"
+        Me.HerstellerRabattDataGridViewTextBoxColumn.HeaderText = "HerstellerRabatt"
+        Me.HerstellerRabattDataGridViewTextBoxColumn.Name = "HerstellerRabattDataGridViewTextBoxColumn"
+        Me.HerstellerRabattDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerRabattDataGridViewTextBoxColumn.Width = 108
+        '
+        'HerstellerRabattTextDataGridViewTextBoxColumn
+        '
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.DataPropertyName = "HerstellerRabattText"
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.HeaderText = "HerstellerRabattText"
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.Name = "HerstellerRabattTextDataGridViewTextBoxColumn"
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.ReadOnly = True
+        Me.HerstellerRabattTextDataGridViewTextBoxColumn.Width = 129
+        '
+        'AngelegtAnDataGridViewTextBoxColumn
+        '
+        Me.AngelegtAnDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAn"
+        Me.AngelegtAnDataGridViewTextBoxColumn.HeaderText = "AngelegtAn"
+        Me.AngelegtAnDataGridViewTextBoxColumn.Name = "AngelegtAnDataGridViewTextBoxColumn"
+        Me.AngelegtAnDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AngelegtAnDataGridViewTextBoxColumn.Visible = False
+        '
+        'GewichtDataGridViewTextBoxColumn
+        '
+        Me.GewichtDataGridViewTextBoxColumn.DataPropertyName = "Gewicht"
+        Me.GewichtDataGridViewTextBoxColumn.HeaderText = "Gewicht"
+        Me.GewichtDataGridViewTextBoxColumn.Name = "GewichtDataGridViewTextBoxColumn"
+        Me.GewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.GewichtDataGridViewTextBoxColumn.Width = 71
+        '
+        'BruttoGewichtDataGridViewTextBoxColumn
+        '
+        Me.BruttoGewichtDataGridViewTextBoxColumn.DataPropertyName = "BruttoGewicht"
+        Me.BruttoGewichtDataGridViewTextBoxColumn.HeaderText = "Brutto"
+        Me.BruttoGewichtDataGridViewTextBoxColumn.Name = "BruttoGewichtDataGridViewTextBoxColumn"
+        Me.BruttoGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BruttoGewichtDataGridViewTextBoxColumn.Width = 50
+        '
+        'NettoGewichtDataGridViewTextBoxColumn
+        '
+        Me.NettoGewichtDataGridViewTextBoxColumn.DataPropertyName = "NettoGewicht"
+        Me.NettoGewichtDataGridViewTextBoxColumn.HeaderText = "Netto"
+        Me.NettoGewichtDataGridViewTextBoxColumn.Name = "NettoGewichtDataGridViewTextBoxColumn"
+        Me.NettoGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NettoGewichtDataGridViewTextBoxColumn.Width = 50
+        '
+        'TaraGewichtDataGridViewTextBoxColumn
+        '
+        Me.TaraGewichtDataGridViewTextBoxColumn.DataPropertyName = "TaraGewicht"
+        Me.TaraGewichtDataGridViewTextBoxColumn.HeaderText = "Tara"
+        Me.TaraGewichtDataGridViewTextBoxColumn.Name = "TaraGewichtDataGridViewTextBoxColumn"
+        Me.TaraGewichtDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TaraGewichtDataGridViewTextBoxColumn.Width = 50
+        '
+        'SeriennummerDataGridViewCheckBoxColumn
+        '
+        Me.SeriennummerDataGridViewCheckBoxColumn.DataPropertyName = "Seriennummer"
+        Me.SeriennummerDataGridViewCheckBoxColumn.HeaderText = "Seriennummer"
+        Me.SeriennummerDataGridViewCheckBoxColumn.Name = "SeriennummerDataGridViewCheckBoxColumn"
+        Me.SeriennummerDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.SeriennummerDataGridViewCheckBoxColumn.Width = 40
+        '
+        'SetArtikelDataGridViewCheckBoxColumn
+        '
+        Me.SetArtikelDataGridViewCheckBoxColumn.DataPropertyName = "SetArtikel"
+        Me.SetArtikelDataGridViewCheckBoxColumn.HeaderText = "SetArtikel"
+        Me.SetArtikelDataGridViewCheckBoxColumn.Name = "SetArtikelDataGridViewCheckBoxColumn"
+        Me.SetArtikelDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.SetArtikelDataGridViewCheckBoxColumn.Width = 40
+        '
+        'LagerArtikelDataGridViewCheckBoxColumn
+        '
+        Me.LagerArtikelDataGridViewCheckBoxColumn.DataPropertyName = "LagerArtikel"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.HeaderText = "LagerArtikel"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.Name = "LagerArtikelDataGridViewCheckBoxColumn"
+        Me.LagerArtikelDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.LagerArtikelDataGridViewCheckBoxColumn.Width = 40
+        '
+        'NichtBestellbarDataGridViewCheckBoxColumn
+        '
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.DataPropertyName = "NichtBestellbar"
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.HeaderText = "NichtBestellbar"
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.Name = "NichtBestellbarDataGridViewCheckBoxColumn"
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.NichtBestellbarDataGridViewCheckBoxColumn.Width = 40
+        '
+        'ProduktAktivDataGridViewCheckBoxColumn
+        '
+        Me.ProduktAktivDataGridViewCheckBoxColumn.DataPropertyName = "ProduktAktiv"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.HeaderText = "ProduktAktiv"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.Name = "ProduktAktivDataGridViewCheckBoxColumn"
+        Me.ProduktAktivDataGridViewCheckBoxColumn.ReadOnly = True
+        Me.ProduktAktivDataGridViewCheckBoxColumn.Width = 40
+        '
+        'ProduktAktivOnlineDataGridViewTextBoxColumn
+        '
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.DataPropertyName = "ProduktAktivOnline"
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.HeaderText = "ProduktAktivOnline"
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Name = "ProduktAktivOnlineDataGridViewTextBoxColumn"
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ProduktAktivOnlineDataGridViewTextBoxColumn.Width = 40
+        '
+        'AngelegtAmDataGridViewTextBoxColumn
+        '
+        Me.AngelegtAmDataGridViewTextBoxColumn.DataPropertyName = "AngelegtAm"
+        Me.AngelegtAmDataGridViewTextBoxColumn.HeaderText = "AngelegtAm"
+        Me.AngelegtAmDataGridViewTextBoxColumn.Name = "AngelegtAmDataGridViewTextBoxColumn"
+        Me.AngelegtAmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AngelegtAmDataGridViewTextBoxColumn.Width = 50
         '
         'Artikelliste
         '

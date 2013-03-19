@@ -33,25 +33,6 @@ Partial Class Anrufliste
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
-        Me.AnrufNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdrNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Firma = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NotizenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NAnrufDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BeginZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EndeZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Angebot = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.WeitereInformationen = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Wettbewerb = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Adresse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PLZ = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ort = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LAenderungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LKontaktDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Mobil = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AnruflisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
         Me.OfanrufeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -76,6 +57,25 @@ Partial Class Anrufliste
         Me.Label5 = New System.Windows.Forms.Label()
         Me.OfanrufeTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.ofanrufeTableAdapter()
         Me.AnruflisteTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.AnruflisteTableAdapter()
+        Me.AnrufNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdrNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Firma = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NotizenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NAnrufDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BeginZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EndeZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Angebot = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.WeitereInformationen = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Wettbewerb = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Adresse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PLZ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ort = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LAenderungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LKontaktDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Mobil = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AnruflisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,8 +172,6 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.AllowUserToDeleteRows = False
         Me.OfAdressenlisteDataGridView.AllowUserToOrderColumns = True
         Me.OfAdressenlisteDataGridView.AutoGenerateColumns = False
-        Me.OfAdressenlisteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.OfAdressenlisteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OfAdressenlisteDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AnrufNrDataGridViewTextBoxColumn, Me.AdrNrDataGridViewTextBoxColumn, Me.Firma, Me.NotizenDataGridViewTextBoxColumn, Me.NAnrufDataGridViewTextBoxColumn, Me.BeginZeitDataGridViewTextBoxColumn, Me.EndeZeitDataGridViewTextBoxColumn, Me.MitarbeiterNrDataGridViewTextBoxColumn, Me.Angebot, Me.WeitereInformationen, Me.Wettbewerb, Me.Adresse, Me.PLZ, Me.Ort, Me.LAenderungDataGridViewTextBoxColumn, Me.LKontaktDataGridViewTextBoxColumn, Me.Tel, Me.Mobil, Me.Email})
         Me.OfAdressenlisteDataGridView.DataSource = Me.AnruflisteBindingSource
         Me.OfAdressenlisteDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
@@ -182,159 +180,6 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.ReadOnly = True
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'AnrufNrDataGridViewTextBoxColumn
-        '
-        Me.AnrufNrDataGridViewTextBoxColumn.DataPropertyName = "AnrufNr"
-        Me.AnrufNrDataGridViewTextBoxColumn.HeaderText = "AnrufNr"
-        Me.AnrufNrDataGridViewTextBoxColumn.Name = "AnrufNrDataGridViewTextBoxColumn"
-        Me.AnrufNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AnrufNrDataGridViewTextBoxColumn.Visible = False
-        '
-        'AdrNrDataGridViewTextBoxColumn
-        '
-        Me.AdrNrDataGridViewTextBoxColumn.DataPropertyName = "AdrNr"
-        Me.AdrNrDataGridViewTextBoxColumn.HeaderText = "AdrNr"
-        Me.AdrNrDataGridViewTextBoxColumn.Name = "AdrNrDataGridViewTextBoxColumn"
-        Me.AdrNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdrNrDataGridViewTextBoxColumn.Visible = False
-        '
-        'Firma
-        '
-        Me.Firma.DataPropertyName = "Firma"
-        Me.Firma.HeaderText = "Firma"
-        Me.Firma.Name = "Firma"
-        Me.Firma.ReadOnly = True
-        Me.Firma.Width = 57
-        '
-        'NotizenDataGridViewTextBoxColumn
-        '
-        Me.NotizenDataGridViewTextBoxColumn.DataPropertyName = "Notizen"
-        Me.NotizenDataGridViewTextBoxColumn.FillWeight = 300.0!
-        Me.NotizenDataGridViewTextBoxColumn.HeaderText = "Notizen"
-        Me.NotizenDataGridViewTextBoxColumn.Name = "NotizenDataGridViewTextBoxColumn"
-        Me.NotizenDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NotizenDataGridViewTextBoxColumn.Width = 68
-        '
-        'NAnrufDataGridViewTextBoxColumn
-        '
-        Me.NAnrufDataGridViewTextBoxColumn.DataPropertyName = "NAnruf"
-        Me.NAnrufDataGridViewTextBoxColumn.HeaderText = "NAnruf"
-        Me.NAnrufDataGridViewTextBoxColumn.Name = "NAnrufDataGridViewTextBoxColumn"
-        Me.NAnrufDataGridViewTextBoxColumn.ReadOnly = True
-        Me.NAnrufDataGridViewTextBoxColumn.Width = 65
-        '
-        'BeginZeitDataGridViewTextBoxColumn
-        '
-        Me.BeginZeitDataGridViewTextBoxColumn.DataPropertyName = "BeginZeit"
-        Me.BeginZeitDataGridViewTextBoxColumn.HeaderText = "BeginZeit"
-        Me.BeginZeitDataGridViewTextBoxColumn.Name = "BeginZeitDataGridViewTextBoxColumn"
-        Me.BeginZeitDataGridViewTextBoxColumn.ReadOnly = True
-        Me.BeginZeitDataGridViewTextBoxColumn.Width = 77
-        '
-        'EndeZeitDataGridViewTextBoxColumn
-        '
-        Me.EndeZeitDataGridViewTextBoxColumn.DataPropertyName = "EndeZeit"
-        Me.EndeZeitDataGridViewTextBoxColumn.HeaderText = "EndeZeit"
-        Me.EndeZeitDataGridViewTextBoxColumn.Name = "EndeZeitDataGridViewTextBoxColumn"
-        Me.EndeZeitDataGridViewTextBoxColumn.ReadOnly = True
-        Me.EndeZeitDataGridViewTextBoxColumn.Width = 75
-        '
-        'MitarbeiterNrDataGridViewTextBoxColumn
-        '
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterName"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.MitarbeiterNrDataGridViewTextBoxColumn.Width = 81
-        '
-        'Angebot
-        '
-        Me.Angebot.DataPropertyName = "Angebot"
-        Me.Angebot.HeaderText = "Angebot"
-        Me.Angebot.Name = "Angebot"
-        Me.Angebot.ReadOnly = True
-        Me.Angebot.Width = 53
-        '
-        'WeitereInformationen
-        '
-        Me.WeitereInformationen.DataPropertyName = "WeitereInformationen"
-        Me.WeitereInformationen.HeaderText = "WeitereInformationen"
-        Me.WeitereInformationen.Name = "WeitereInformationen"
-        Me.WeitereInformationen.ReadOnly = True
-        Me.WeitereInformationen.Width = 114
-        '
-        'Wettbewerb
-        '
-        Me.Wettbewerb.DataPropertyName = "Wettbewerb"
-        Me.Wettbewerb.HeaderText = "Wettbewerb"
-        Me.Wettbewerb.Name = "Wettbewerb"
-        Me.Wettbewerb.ReadOnly = True
-        Me.Wettbewerb.Width = 90
-        '
-        'Adresse
-        '
-        Me.Adresse.DataPropertyName = "Adresse"
-        Me.Adresse.HeaderText = "Adresse"
-        Me.Adresse.Name = "Adresse"
-        Me.Adresse.ReadOnly = True
-        Me.Adresse.Width = 70
-        '
-        'PLZ
-        '
-        Me.PLZ.DataPropertyName = "PLZ"
-        Me.PLZ.HeaderText = "PLZ"
-        Me.PLZ.Name = "PLZ"
-        Me.PLZ.ReadOnly = True
-        Me.PLZ.Width = 52
-        '
-        'Ort
-        '
-        Me.Ort.DataPropertyName = "Ort"
-        Me.Ort.HeaderText = "Ort"
-        Me.Ort.Name = "Ort"
-        Me.Ort.ReadOnly = True
-        Me.Ort.Width = 46
-        '
-        'LAenderungDataGridViewTextBoxColumn
-        '
-        Me.LAenderungDataGridViewTextBoxColumn.DataPropertyName = "LAenderung"
-        Me.LAenderungDataGridViewTextBoxColumn.HeaderText = "LAenderung"
-        Me.LAenderungDataGridViewTextBoxColumn.Name = "LAenderungDataGridViewTextBoxColumn"
-        Me.LAenderungDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LAenderungDataGridViewTextBoxColumn.Width = 90
-        '
-        'LKontaktDataGridViewTextBoxColumn
-        '
-        Me.LKontaktDataGridViewTextBoxColumn.DataPropertyName = "LKontakt"
-        Me.LKontaktDataGridViewTextBoxColumn.HeaderText = "LKontakt"
-        Me.LKontaktDataGridViewTextBoxColumn.Name = "LKontaktDataGridViewTextBoxColumn"
-        Me.LKontaktDataGridViewTextBoxColumn.ReadOnly = True
-        Me.LKontaktDataGridViewTextBoxColumn.Width = 75
-        '
-        'Tel
-        '
-        Me.Tel.DataPropertyName = "Tel"
-        Me.Tel.HeaderText = "Tel"
-        Me.Tel.Name = "Tel"
-        Me.Tel.ReadOnly = True
-        Me.Tel.Width = 47
-        '
-        'Mobil
-        '
-        Me.Mobil.DataPropertyName = "Mobil"
-        Me.Mobil.HeaderText = "Mobil"
-        Me.Mobil.Name = "Mobil"
-        Me.Mobil.ReadOnly = True
-        Me.Mobil.Width = 57
-        '
-        'Email
-        '
-        Me.Email.DataPropertyName = "Email"
-        Me.Email.HeaderText = "Email"
-        Me.Email.Name = "Email"
-        Me.Email.ReadOnly = True
-        Me.Email.Width = 57
         '
         'AnruflisteBindingSource
         '
@@ -571,6 +416,156 @@ Partial Class Anrufliste
         '
         Me.AnruflisteTableAdapter.ClearBeforeFill = True
         '
+        'AnrufNrDataGridViewTextBoxColumn
+        '
+        Me.AnrufNrDataGridViewTextBoxColumn.DataPropertyName = "AnrufNr"
+        Me.AnrufNrDataGridViewTextBoxColumn.HeaderText = "AnrufNr"
+        Me.AnrufNrDataGridViewTextBoxColumn.Name = "AnrufNrDataGridViewTextBoxColumn"
+        Me.AnrufNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AnrufNrDataGridViewTextBoxColumn.Visible = False
+        '
+        'AdrNrDataGridViewTextBoxColumn
+        '
+        Me.AdrNrDataGridViewTextBoxColumn.DataPropertyName = "AdrNr"
+        Me.AdrNrDataGridViewTextBoxColumn.HeaderText = "AdrNr"
+        Me.AdrNrDataGridViewTextBoxColumn.Name = "AdrNrDataGridViewTextBoxColumn"
+        Me.AdrNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdrNrDataGridViewTextBoxColumn.Visible = False
+        '
+        'Firma
+        '
+        Me.Firma.DataPropertyName = "Firma"
+        Me.Firma.HeaderText = "Firma"
+        Me.Firma.Name = "Firma"
+        Me.Firma.ReadOnly = True
+        '
+        'NotizenDataGridViewTextBoxColumn
+        '
+        Me.NotizenDataGridViewTextBoxColumn.DataPropertyName = "Notizen"
+        Me.NotizenDataGridViewTextBoxColumn.FillWeight = 300.0!
+        Me.NotizenDataGridViewTextBoxColumn.HeaderText = "Notizen"
+        Me.NotizenDataGridViewTextBoxColumn.Name = "NotizenDataGridViewTextBoxColumn"
+        Me.NotizenDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NAnrufDataGridViewTextBoxColumn
+        '
+        Me.NAnrufDataGridViewTextBoxColumn.DataPropertyName = "NAnruf"
+        Me.NAnrufDataGridViewTextBoxColumn.HeaderText = "NAnruf"
+        Me.NAnrufDataGridViewTextBoxColumn.Name = "NAnrufDataGridViewTextBoxColumn"
+        Me.NAnrufDataGridViewTextBoxColumn.ReadOnly = True
+        Me.NAnrufDataGridViewTextBoxColumn.Width = 75
+        '
+        'BeginZeitDataGridViewTextBoxColumn
+        '
+        Me.BeginZeitDataGridViewTextBoxColumn.DataPropertyName = "BeginZeit"
+        Me.BeginZeitDataGridViewTextBoxColumn.HeaderText = "BeginZeit"
+        Me.BeginZeitDataGridViewTextBoxColumn.Name = "BeginZeitDataGridViewTextBoxColumn"
+        Me.BeginZeitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.BeginZeitDataGridViewTextBoxColumn.Width = 75
+        '
+        'EndeZeitDataGridViewTextBoxColumn
+        '
+        Me.EndeZeitDataGridViewTextBoxColumn.DataPropertyName = "EndeZeit"
+        Me.EndeZeitDataGridViewTextBoxColumn.HeaderText = "EndeZeit"
+        Me.EndeZeitDataGridViewTextBoxColumn.Name = "EndeZeitDataGridViewTextBoxColumn"
+        Me.EndeZeitDataGridViewTextBoxColumn.ReadOnly = True
+        Me.EndeZeitDataGridViewTextBoxColumn.Width = 75
+        '
+        'MitarbeiterNrDataGridViewTextBoxColumn
+        '
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.DataPropertyName = "MitarbeiterName"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.HeaderText = "Mitarbeiter"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.Name = "MitarbeiterNrDataGridViewTextBoxColumn"
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.MitarbeiterNrDataGridViewTextBoxColumn.Width = 75
+        '
+        'Angebot
+        '
+        Me.Angebot.DataPropertyName = "Angebot"
+        Me.Angebot.HeaderText = "Angebot"
+        Me.Angebot.Name = "Angebot"
+        Me.Angebot.ReadOnly = True
+        Me.Angebot.Width = 50
+        '
+        'WeitereInformationen
+        '
+        Me.WeitereInformationen.DataPropertyName = "WeitereInformationen"
+        Me.WeitereInformationen.HeaderText = "WeitereInformationen"
+        Me.WeitereInformationen.Name = "WeitereInformationen"
+        Me.WeitereInformationen.ReadOnly = True
+        Me.WeitereInformationen.Width = 50
+        '
+        'Wettbewerb
+        '
+        Me.Wettbewerb.DataPropertyName = "Wettbewerb"
+        Me.Wettbewerb.HeaderText = "Wettbewerb"
+        Me.Wettbewerb.Name = "Wettbewerb"
+        Me.Wettbewerb.ReadOnly = True
+        Me.Wettbewerb.Width = 75
+        '
+        'Adresse
+        '
+        Me.Adresse.DataPropertyName = "Adresse"
+        Me.Adresse.HeaderText = "Adresse"
+        Me.Adresse.Name = "Adresse"
+        Me.Adresse.ReadOnly = True
+        Me.Adresse.Width = 70
+        '
+        'PLZ
+        '
+        Me.PLZ.DataPropertyName = "PLZ"
+        Me.PLZ.HeaderText = "PLZ"
+        Me.PLZ.Name = "PLZ"
+        Me.PLZ.ReadOnly = True
+        Me.PLZ.Width = 50
+        '
+        'Ort
+        '
+        Me.Ort.DataPropertyName = "Ort"
+        Me.Ort.HeaderText = "Ort"
+        Me.Ort.Name = "Ort"
+        Me.Ort.ReadOnly = True
+        Me.Ort.Width = 75
+        '
+        'LAenderungDataGridViewTextBoxColumn
+        '
+        Me.LAenderungDataGridViewTextBoxColumn.DataPropertyName = "LAenderung"
+        Me.LAenderungDataGridViewTextBoxColumn.HeaderText = "LAenderung"
+        Me.LAenderungDataGridViewTextBoxColumn.Name = "LAenderungDataGridViewTextBoxColumn"
+        Me.LAenderungDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LAenderungDataGridViewTextBoxColumn.Width = 75
+        '
+        'LKontaktDataGridViewTextBoxColumn
+        '
+        Me.LKontaktDataGridViewTextBoxColumn.DataPropertyName = "LKontakt"
+        Me.LKontaktDataGridViewTextBoxColumn.HeaderText = "LKontakt"
+        Me.LKontaktDataGridViewTextBoxColumn.Name = "LKontaktDataGridViewTextBoxColumn"
+        Me.LKontaktDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LKontaktDataGridViewTextBoxColumn.Width = 75
+        '
+        'Tel
+        '
+        Me.Tel.DataPropertyName = "Tel"
+        Me.Tel.HeaderText = "Tel"
+        Me.Tel.Name = "Tel"
+        Me.Tel.ReadOnly = True
+        Me.Tel.Width = 75
+        '
+        'Mobil
+        '
+        Me.Mobil.DataPropertyName = "Mobil"
+        Me.Mobil.HeaderText = "Mobil"
+        Me.Mobil.Name = "Mobil"
+        Me.Mobil.ReadOnly = True
+        Me.Mobil.Width = 75
+        '
+        'Email
+        '
+        Me.Email.DataPropertyName = "Email"
+        Me.Email.HeaderText = "Email"
+        Me.Email.Name = "Email"
+        Me.Email.ReadOnly = True
+        '
         'Anrufliste
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -626,6 +621,8 @@ Partial Class Anrufliste
     Friend WithEvents AngebotToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InfoCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents AngebotCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents WettberwerbCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents ArchiviertCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents AnrufNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AdrNrDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Firma As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -645,6 +642,4 @@ Partial Class Anrufliste
     Friend WithEvents Tel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Mobil As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Email As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents WettberwerbCheckBox As System.Windows.Forms.CheckBox
-    Friend WithEvents ArchiviertCheckBox As System.Windows.Forms.CheckBox
 End Class
