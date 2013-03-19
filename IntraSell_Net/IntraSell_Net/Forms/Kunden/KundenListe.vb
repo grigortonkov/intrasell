@@ -91,6 +91,20 @@ Public Class Kundenliste
     End Sub
 
 
+    Private Sub BindingSource_CurrentChanged(ByVal sender As System.Object, _
+                             ByVal e As System.EventArgs) _
+                             Handles OfAdressenlisteBindingSource.CurrentChanged
+        Try
+            If OfAdressenlisteDataGridView.SelectedRows.Count > 0 Then
+                Dim IDNR As Object = OfAdressenlisteDataGridView.SelectedRows(0).Cells(0).Value
+                If IsNumeric(IDNR) Then ModuleGlobals.KundenIDNR = IDNR
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+
 #Region "Anrufen"
 
 
