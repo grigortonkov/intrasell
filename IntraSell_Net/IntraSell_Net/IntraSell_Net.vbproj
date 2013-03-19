@@ -71,7 +71,8 @@
     <ManifestCertificateThumbprint>AFC3D8579A4D246AC5E9640A4E9C029B2B1353FA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>IntraSell_Net_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -351,6 +352,12 @@
     <Compile Include="Forms\Stammdaten\Bank.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Artikel\Einheiten.Designer.vb">
+      <DependentUpon>Einheiten.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\Einheiten.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Stammdaten\Land.Designer.vb">
       <DependentUpon>Land.vb</DependentUpon>
     </Compile>
@@ -530,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Stammdaten\Bank.resx">
       <DependentUpon>Bank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikel\Einheiten.resx">
+      <DependentUpon>Einheiten.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Stammdaten\Land.resx">
       <DependentUpon>Land.vb</DependentUpon>
