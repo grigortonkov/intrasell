@@ -252,7 +252,7 @@ Partial Class ArtikelKategorien
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -369,6 +369,7 @@ Partial Class ArtikelKategorien
         '
         Me.TemplateTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Grartikel_kategorienBindingSource, "Template", True))
         Me.TemplateTextBox.Location = New System.Drawing.Point(120, 142)
+        Me.TemplateTextBox.Multiline = True
         Me.TemplateTextBox.Name = "TemplateTextBox"
         Me.TemplateTextBox.Size = New System.Drawing.Size(221, 20)
         Me.TemplateTextBox.TabIndex = 10
@@ -409,6 +410,7 @@ Partial Class ArtikelKategorien
         '
         Me.TemplateForProductTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Grartikel_kategorienBindingSource, "TemplateForProduct", True))
         Me.TemplateForProductTextBox.Location = New System.Drawing.Point(120, 272)
+        Me.TemplateForProductTextBox.Multiline = True
         Me.TemplateForProductTextBox.Name = "TemplateForProductTextBox"
         Me.TemplateForProductTextBox.Size = New System.Drawing.Size(221, 20)
         Me.TemplateForProductTextBox.TabIndex = 20

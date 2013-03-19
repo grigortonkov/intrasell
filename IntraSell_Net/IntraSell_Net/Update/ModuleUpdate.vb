@@ -281,15 +281,29 @@ Module ModuleUpdate
                 Call FileCopy(destinationFolder & fItemName, GetAppPath() & "archive\" & archiveFolder & "\" & fItemName)
             End If
             Call writeLog("copy files: " & fItemName)
+            'copy only if newer 
+            Dim destinationFile As String = destinationFolder & fItemName
+            Dim newerFile As String = updateFolder & "\" & fItemName
+
+            'If FileDateTime(newerFile) > FileDateTime(destinationFile) Then
             If fItemName.ToLower.Contains(".exe") Or fItemName.ToLower.Contains(".dll") Then ' update itselfes 
-                Call Rename(destinationFolder & fItemName, destinationFolder & fItemName & "_" & Date.Now.ToFileTime & ".bak")
+                Try
+                    Call Rename(destinationFolder & fItemName, destinationFolder & fItemName & "_" & Date.Now.ToFileTime & ".bak")
+                Catch ex As Exception
+                    writeLog("Die Datei kann nicht umbennant werden. Dateiname: " & destinationFolder & fItemName)
+                    'cannot rename !!! ok we contiunue 
+                End Try
             End If
             Call FileCopy(updateFolder & "\" & fItemName, destinationFolder & fItemName)
-            If fItemName.Contains("n.exe") Or fItemName.ToLower.Contains(".dll") Then
+
+            'Warn to restart 
+            If fItemName.Contains(".exe") Or fItemName.ToLower.Contains(".dll") Then
                 If Not silentMode Then ' update itselfes 
                     MsgBox("Es wird empfohlen das Programm jetzt neu zu starten!")
                 End If
             End If
+            'End If
+
         Next
     End Sub
     Public Function UpdateIntraSellForCustomer(ByVal silent As Boolean) As Boolean
@@ -301,6 +315,7 @@ Module ModuleUpdate
         End If
 
     End Function
+
 #Region "CheckUpdates"
     Dim CheckUpdatesThread As Thread = New Thread(AddressOf UpdateIntraSellSilent)
     'Silently upgrades 
@@ -310,7 +325,7 @@ Module ModuleUpdate
     End Sub
 
     Private Sub UpdateIntraSellSilent()
-        Thread.Sleep(360000) ' Nach 10 sekunden erst
+        Thread.Sleep(600000) ' Nach 10 minuten
         Call UpdateIntraSell(True)
     End Sub
 

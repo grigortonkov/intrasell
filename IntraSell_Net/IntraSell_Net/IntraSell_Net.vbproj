@@ -345,6 +345,30 @@
     <Compile Include="Forms\Preise\ArtikelPreisregeln.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Stammdaten\Bank.Designer.vb">
+      <DependentUpon>Bank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Bank.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Land.Designer.vb">
+      <DependentUpon>Land.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Land.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\MwSt.Designer.vb">
+      <DependentUpon>MwSt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\MwSt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\VorgangBedingungen.Designer.vb">
+      <DependentUpon>VorgangBedingungen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\VorgangBedingungen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Vorgaenge\VorgangDruck.Designer.vb">
       <DependentUpon>VorgangDruck.vb</DependentUpon>
     </Compile>
@@ -503,6 +527,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Preise\ArtikelPreisregeln.resx">
       <DependentUpon>ArtikelPreisregeln.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\Bank.resx">
+      <DependentUpon>Bank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\Land.resx">
+      <DependentUpon>Land.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\MwSt.resx">
+      <DependentUpon>MwSt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\VorgangBedingungen.resx">
+      <DependentUpon>VorgangBedingungen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vorgaenge\VorgangDruck.resx">
       <DependentUpon>VorgangDruck.vb</DependentUpon>
@@ -795,6 +831,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Forms\Lager\" />
     <Folder Include="Forms\Lieferanten\" />
   </ItemGroup>
   <ItemGroup>
