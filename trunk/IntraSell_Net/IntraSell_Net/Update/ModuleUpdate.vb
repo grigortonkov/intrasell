@@ -199,22 +199,12 @@ Module ModuleUpdate
                                 Dim backUpFolder As String = GetAppPath() & "archive\" & strfName1
                                 If Dir(backUpFolder, vbDirectory) = "" Then MkDir(backUpFolder)
 
-                                For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
-                                    Dim fItemName As String = Replace(fItem, updateFolder & "\", "")  ' = System.IO.File(fItem)
-                                    If Dir(GetAppPath() & fItemName) <> "" Then
-                                        Call writeLog("archive files: " & fItemName)
-                                        Call FileCopy(GetAppPath() & fItemName, GetAppPath() & "archive\" & strfName1 & "\" & fItemName)
-                                    End If
-                                    Call writeLog("copy files: " & fItemName)
-                                    If fItemName.ToLower.Contains(".exe") Or fItemName.ToLower.Contains(".dll") Then ' update itselfes 
-                                        Call Rename(GetAppPath() & fItemName, GetAppPath() & fItemName & "_" & Date.Now.ToFileTime & ".bak")
-                                    End If
-                                    Call FileCopy(updateFolder & "\" & fItemName, GetAppPath() & fItemName)
-                                    If fItemName.Contains("n.exe") Or fItemName.ToLower.Contains(".dll") Then
-                                        If Not silentMode Then ' update itselfes 
-                                            MsgBox("Es wird empfohlen das Programm jetzt neu zu starten!")
-                                        End If
-                                    End If
+                                'copy all files from this folder 
+                                CopyAllFiles(updateFolder, strfName1, silentMode)
+                                'Copy all sub Folder Files too
+                                For Each subFolder In System.IO.Directory.EnumerateDirectories(updateFolder)
+                                    Dim destinationFolder As String = GetAppPath() & Replace(subFolder, updateFolder & "\", "") & "\"
+                                    CopyAllFiles(subFolder, strfName1, silentMode, destinationFolder)
                                 Next
 
                                 'TODO remove all subfolders too 
@@ -276,6 +266,32 @@ Module ModuleUpdate
         End Try
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="updateFolder"></param>
+    ''' <remarks></remarks>
+    Sub CopyAllFiles(updateFolder As String, archiveFolder As String, silentMode As Boolean, Optional destinationFolder As String = Nothing)
+        'Copy all Files  
+        If destinationFolder Is Nothing Then destinationFolder = GetAppPath()
+        For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
+            Dim fItemName As String = Replace(fItem, updateFolder & "\", "")  ' = System.IO.File(fItem)
+            If Dir(destinationFolder & fItemName) <> "" Then
+                Call writeLog("archive files: " & fItemName)
+                Call FileCopy(destinationFolder & fItemName, GetAppPath() & "archive\" & archiveFolder & "\" & fItemName)
+            End If
+            Call writeLog("copy files: " & fItemName)
+            If fItemName.ToLower.Contains(".exe") Or fItemName.ToLower.Contains(".dll") Then ' update itselfes 
+                Call Rename(destinationFolder & fItemName, destinationFolder & fItemName & "_" & Date.Now.ToFileTime & ".bak")
+            End If
+            Call FileCopy(updateFolder & "\" & fItemName, destinationFolder & fItemName)
+            If fItemName.Contains("n.exe") Or fItemName.ToLower.Contains(".dll") Then
+                If Not silentMode Then ' update itselfes 
+                    MsgBox("Es wird empfohlen das Programm jetzt neu zu starten!")
+                End If
+            End If
+        Next
+    End Sub
     Public Function UpdateIntraSellForCustomer(ByVal silent As Boolean) As Boolean
         If ExistsVarValue("INTRASELL_UPDATE_URL_CUSTOMER") Then
             Dim customerUpdateURL As String = VarValue("INTRASELL_UPDATE_URL_CUSTOMER")
