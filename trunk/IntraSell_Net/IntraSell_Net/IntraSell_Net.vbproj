@@ -376,10 +376,16 @@
     <Compile Include="Forms\Stammdaten\MwSt.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Stammdaten\VorgangBedingungen.Designer.vb">
+    <Compile Include="Forms\Vorgaenge\VorgangBedingungen.Designer.vb">
       <DependentUpon>VorgangBedingungen.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Stammdaten\VorgangBedingungen.vb">
+    <Compile Include="Forms\Vorgaenge\VorgangBedingungen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangEinstellungen.Designer.vb">
+      <DependentUpon>VorgangEinstellungen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangEinstellungen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Vorgaenge\VorgangDruck.Designer.vb">
@@ -556,8 +562,11 @@
     <EmbeddedResource Include="Forms\Stammdaten\MwSt.resx">
       <DependentUpon>MwSt.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Stammdaten\VorgangBedingungen.resx">
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangBedingungen.resx">
       <DependentUpon>VorgangBedingungen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangEinstellungen.resx">
+      <DependentUpon>VorgangEinstellungen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vorgaenge\VorgangDruck.resx">
       <DependentUpon>VorgangDruck.vb</DependentUpon>

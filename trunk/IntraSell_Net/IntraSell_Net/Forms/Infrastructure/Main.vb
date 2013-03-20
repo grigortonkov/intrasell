@@ -124,6 +124,25 @@ Public Class Main
     End Sub
 
 
+
+    Private Sub VorgangEinstellungenToolStripMenuItem1_Click_1(sender As System.Object, e As System.EventArgs) Handles VorgangEinstellungenToolStripMenuItem1.Click
+        Try
+            VorgangEinstellungen.MdiParent = Me
+            VorgangEinstellungen.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub VorgangEinstellungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangEinstellungenToolStripMenuItem.Click
+        Try
+            VorgangBedingungen.MdiParent = Me
+            VorgangBedingungen.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Infrastructure"
@@ -363,14 +382,7 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub VorgangEinstellungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangEinstellungenToolStripMenuItem.Click
-        Try
-            VorgangBedingungen.MdiParent = Me
-            VorgangBedingungen.Show()
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-    End Sub
+ 
 
 #End Region
 
