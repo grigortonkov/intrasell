@@ -36,6 +36,8 @@ Public Class Anruf
 
     Private Sub BeginNew()
         Try
+            Me.AnrufNrTextBox.Text = nextId("ofAnrufe", "AnrufNr")
+
             Me.MitarbeiterControl.IDNR = ModuleGlobals.MitarbeiterID
             Me.AdressenControl1.IDNR = Nothing
             Me.AdressenProfil1.IDNR = Nothing
