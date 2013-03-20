@@ -39,6 +39,24 @@ Public Class AdressenControl
         End Try
     End Sub
 
+
+    ''' <summary>
+    ''' Remove selected idnr   
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub AdressenComboBox_TextUpdate(sender As System.Object, e As System.EventArgs) Handles AdressenComboBox.TextUpdate
+        Try
+            If AdressenComboBox.Text = "" Then
+                IDNR = Nothing
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+
     'reload data 
     Public Shadows Sub Refresh()
         Parent.Refresh()
@@ -56,7 +74,7 @@ Public Class AdressenControl
             HandleAppError(ex)
         End Try
     End Sub
- 
+
     Private Sub JumpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         AdressenComboBox_MouseDoubleClick(Nothing, Nothing)
     End Sub

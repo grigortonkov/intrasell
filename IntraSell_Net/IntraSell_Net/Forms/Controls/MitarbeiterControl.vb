@@ -38,4 +38,21 @@ Public Class MitarbeiterControl
             HandleAppError(ex)
         End Try
     End Sub
+
+
+    ''' <summary>
+    ''' Clean for Filters etc.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub MitarbeiterComboBox_TextUpdate(sender As System.Object, e As System.EventArgs) Handles MitarbeiterComboBox.TextUpdate
+        Try
+            If MitarbeiterComboBox.Text = "" Then
+                IDNR = Nothing
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

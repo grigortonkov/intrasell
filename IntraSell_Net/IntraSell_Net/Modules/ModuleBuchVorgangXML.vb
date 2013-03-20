@@ -79,6 +79,10 @@ Module ModuleBuchVorgangXML
             'nur wenn die datei nicht vorher existiert 
             If Not FileIO.FileSystem.FileExists(ArchiveFilename) Then
                 RenameFile(ResultFilename, ArchiveFilename)
+            Else
+                If MsgBox("Die Datei " & ArchiveFilename & " wurde bereits angelegt!  Wollen Sie diese Datei ersetzen?", vbYesNo) = vbYes Then
+                    RenameFile(ResultFilename, ArchiveFilename)
+                End If
             End If
 
         End If

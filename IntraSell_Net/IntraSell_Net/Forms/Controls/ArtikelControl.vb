@@ -37,6 +37,24 @@ Public Class ArtikelControl
             HandleAppError(ex)
         End Try
     End Sub
+ 
+
+    ''' <summary>
+    ''' Remove selected ArtNr (for Filters etc.)
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ArtikelComboBox_TextUpdate(sender As System.Object, e As System.EventArgs) Handles ArtikelComboBox.TextUpdate
+        Try
+            If ArtikelComboBox.Text = "" Then
+                ArtNr = Nothing
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 
     Private Sub StammdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StammdatenToolStripMenuItem.Click
         Try

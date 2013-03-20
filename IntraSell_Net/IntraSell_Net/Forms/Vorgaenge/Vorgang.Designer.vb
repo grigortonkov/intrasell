@@ -81,8 +81,28 @@ Partial Class Vorgang
         Me.MitarbeiterNrComboBox = New IntraSell_Net.MitarbeiterControl()
         Me.Buchvorgang_artikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Buchvorgang_artikelDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnNummer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnTyp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnStk = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ArtNrComboBox = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.GrArtikellisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsArtikel = New IntraSell_Net.dsArtikel()
+        Me.DataGridViewTextBoxColumnArtNr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnBezeichnung = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnPreisNetto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnPreisBrutto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnMWST = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnEKPreis = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ZahlungsbedingungComboBox = New System.Windows.Forms.ComboBox()
         Me.TransportMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
@@ -105,26 +125,6 @@ Partial Class Vorgang
         Me.KassaBuchungToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendeEmailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VorlageeditierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DataGridViewTextBoxColumnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnNummer = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnTyp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnStk = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ArtNrComboBox = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.DataGridViewTextBoxColumnArtNr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnBezeichnung = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnPreisNetto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnPreisBrutto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnMWST = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnEKPreis = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -403,7 +403,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -664,6 +664,43 @@ Partial Class Vorgang
         Me.Buchvorgang_artikelDataGridView.Size = New System.Drawing.Size(1018, 295)
         Me.Buchvorgang_artikelDataGridView.TabIndex = 49
         '
+        'DataGridViewTextBoxColumnID
+        '
+        Me.DataGridViewTextBoxColumnID.DataPropertyName = "ID"
+        Me.DataGridViewTextBoxColumnID.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumnID.Name = "DataGridViewTextBoxColumnID"
+        '
+        'DataGridViewTextBoxColumnNummer
+        '
+        Me.DataGridViewTextBoxColumnNummer.DataPropertyName = "Nummer"
+        Me.DataGridViewTextBoxColumnNummer.HeaderText = "Nummer"
+        Me.DataGridViewTextBoxColumnNummer.Name = "DataGridViewTextBoxColumnNummer"
+        Me.DataGridViewTextBoxColumnNummer.Visible = False
+        '
+        'DataGridViewTextBoxColumnTyp
+        '
+        Me.DataGridViewTextBoxColumnTyp.DataPropertyName = "Typ"
+        Me.DataGridViewTextBoxColumnTyp.HeaderText = "Typ"
+        Me.DataGridViewTextBoxColumnTyp.Name = "DataGridViewTextBoxColumnTyp"
+        Me.DataGridViewTextBoxColumnTyp.Visible = False
+        '
+        'DataGridViewTextBoxColumnStk
+        '
+        Me.DataGridViewTextBoxColumnStk.DataPropertyName = "Stk"
+        Me.DataGridViewTextBoxColumnStk.HeaderText = "Stk"
+        Me.DataGridViewTextBoxColumnStk.Name = "DataGridViewTextBoxColumnStk"
+        '
+        'ArtNrComboBox
+        '
+        Me.ArtNrComboBox.DataPropertyName = "ArtNr"
+        Me.ArtNrComboBox.DataSource = Me.GrArtikellisteBindingSource
+        Me.ArtNrComboBox.DisplayMember = "EANBezeichung"
+        Me.ArtNrComboBox.DropDownWidth = 200
+        Me.ArtNrComboBox.HeaderText = "Artikel"
+        Me.ArtNrComboBox.MaxDropDownItems = 20
+        Me.ArtNrComboBox.Name = "ArtNrComboBox"
+        Me.ArtNrComboBox.ValueMember = "ArtNr"
+        '
         'GrArtikellisteBindingSource
         '
         Me.GrArtikellisteBindingSource.DataMember = "grArtikelliste"
@@ -673,6 +710,106 @@ Partial Class Vorgang
         '
         Me.DsArtikel.DataSetName = "dsArtikel"
         Me.DsArtikel.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DataGridViewTextBoxColumnArtNr
+        '
+        Me.DataGridViewTextBoxColumnArtNr.DataPropertyName = "ArtNr"
+        Me.DataGridViewTextBoxColumnArtNr.HeaderText = "ArtNr"
+        Me.DataGridViewTextBoxColumnArtNr.Name = "DataGridViewTextBoxColumnArtNr"
+        Me.DataGridViewTextBoxColumnArtNr.Visible = False
+        '
+        'DataGridViewTextBoxColumnBezeichnung
+        '
+        Me.DataGridViewTextBoxColumnBezeichnung.DataPropertyName = "Bezeichnung"
+        Me.DataGridViewTextBoxColumnBezeichnung.HeaderText = "Bezeichnung"
+        Me.DataGridViewTextBoxColumnBezeichnung.Name = "DataGridViewTextBoxColumnBezeichnung"
+        '
+        'DataGridViewTextBoxColumnPreisNetto
+        '
+        Me.DataGridViewTextBoxColumnPreisNetto.DataPropertyName = "Preis_Netto"
+        Me.DataGridViewTextBoxColumnPreisNetto.HeaderText = "Preis_Netto"
+        Me.DataGridViewTextBoxColumnPreisNetto.Name = "DataGridViewTextBoxColumnPreisNetto"
+        '
+        'DataGridViewTextBoxColumnPreisBrutto
+        '
+        Me.DataGridViewTextBoxColumnPreisBrutto.DataPropertyName = "Preis_Brutto"
+        Me.DataGridViewTextBoxColumnPreisBrutto.HeaderText = "Preis_Brutto"
+        Me.DataGridViewTextBoxColumnPreisBrutto.Name = "DataGridViewTextBoxColumnPreisBrutto"
+        '
+        'DataGridViewTextBoxColumnMWST
+        '
+        Me.DataGridViewTextBoxColumnMWST.DataPropertyName = "MWST"
+        Me.DataGridViewTextBoxColumnMWST.HeaderText = "MWST"
+        Me.DataGridViewTextBoxColumnMWST.Name = "DataGridViewTextBoxColumnMWST"
+        '
+        'DataGridViewTextBoxColumnEKPreis
+        '
+        Me.DataGridViewTextBoxColumnEKPreis.DataPropertyName = "EKPreis"
+        Me.DataGridViewTextBoxColumnEKPreis.HeaderText = "EKPreis"
+        Me.DataGridViewTextBoxColumnEKPreis.Name = "DataGridViewTextBoxColumnEKPreis"
+        Me.DataGridViewTextBoxColumnEKPreis.Visible = False
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "ArtikelIdentifikation"
+        Me.DataGridViewTextBoxColumn10.HeaderText = "ArtikelIdentifikation"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "LieferantNr"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "LieferantNr"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.Visible = False
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Status"
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Status"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.Visible = False
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.DataPropertyName = "Referenz"
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Referenz"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.Visible = False
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Packung"
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Packung"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.Visible = False
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Herkunft"
+        Me.DataGridViewTextBoxColumn16.HeaderText = "Herkunft"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.Visible = False
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.DataPropertyName = "Incoterm"
+        Me.DataGridViewTextBoxColumn17.HeaderText = "Incoterm"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.Visible = False
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.DataPropertyName = "Spezifikation"
+        Me.DataGridViewTextBoxColumn18.HeaderText = "Spezifikation"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.Visible = False
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.DataPropertyName = "Zeitpunkt"
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Zeitpunkt"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        Me.DataGridViewTextBoxColumn19.Visible = False
         '
         'ZahlungsbedingungComboBox
         '
@@ -796,7 +933,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(110, 322)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -804,205 +941,68 @@ Partial Class Vorgang
         '
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem, Me.VorlageeditierenToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AusdruckenToolStripMenuItem
         '
         Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
-        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'VorlageeditierenToolStripMenuItem
         '
         Me.VorlageeditierenToolStripMenuItem.Name = "VorlageeditierenToolStripMenuItem"
-        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.VorlageeditierenToolStripMenuItem.Text = "Vorlage &editieren"
-        '
-        'DataGridViewTextBoxColumnID
-        '
-        Me.DataGridViewTextBoxColumnID.DataPropertyName = "ID"
-        Me.DataGridViewTextBoxColumnID.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumnID.Name = "DataGridViewTextBoxColumnID"
-        '
-        'DataGridViewTextBoxColumnNummer
-        '
-        Me.DataGridViewTextBoxColumnNummer.DataPropertyName = "Nummer"
-        Me.DataGridViewTextBoxColumnNummer.HeaderText = "Nummer"
-        Me.DataGridViewTextBoxColumnNummer.Name = "DataGridViewTextBoxColumnNummer"
-        Me.DataGridViewTextBoxColumnNummer.Visible = False
-        '
-        'DataGridViewTextBoxColumnTyp
-        '
-        Me.DataGridViewTextBoxColumnTyp.DataPropertyName = "Typ"
-        Me.DataGridViewTextBoxColumnTyp.HeaderText = "Typ"
-        Me.DataGridViewTextBoxColumnTyp.Name = "DataGridViewTextBoxColumnTyp"
-        Me.DataGridViewTextBoxColumnTyp.Visible = False
-        '
-        'DataGridViewTextBoxColumnStk
-        '
-        Me.DataGridViewTextBoxColumnStk.DataPropertyName = "Stk"
-        Me.DataGridViewTextBoxColumnStk.HeaderText = "Stk"
-        Me.DataGridViewTextBoxColumnStk.Name = "DataGridViewTextBoxColumnStk"
-        '
-        'ArtNrComboBox
-        '
-        Me.ArtNrComboBox.DataPropertyName = "ArtNr"
-        Me.ArtNrComboBox.DataSource = Me.GrArtikellisteBindingSource
-        Me.ArtNrComboBox.DisplayMember = "EANBezeichung"
-        Me.ArtNrComboBox.DropDownWidth = 200
-        Me.ArtNrComboBox.HeaderText = "Artikel"
-        Me.ArtNrComboBox.MaxDropDownItems = 20
-        Me.ArtNrComboBox.Name = "ArtNrComboBox"
-        Me.ArtNrComboBox.ValueMember = "ArtNr"
-        '
-        'DataGridViewTextBoxColumnArtNr
-        '
-        Me.DataGridViewTextBoxColumnArtNr.DataPropertyName = "ArtNr"
-        Me.DataGridViewTextBoxColumnArtNr.HeaderText = "ArtNr"
-        Me.DataGridViewTextBoxColumnArtNr.Name = "DataGridViewTextBoxColumnArtNr"
-        Me.DataGridViewTextBoxColumnArtNr.Visible = False
-        '
-        'DataGridViewTextBoxColumnBezeichnung
-        '
-        Me.DataGridViewTextBoxColumnBezeichnung.DataPropertyName = "Bezeichnung"
-        Me.DataGridViewTextBoxColumnBezeichnung.HeaderText = "Bezeichnung"
-        Me.DataGridViewTextBoxColumnBezeichnung.Name = "DataGridViewTextBoxColumnBezeichnung"
-        '
-        'DataGridViewTextBoxColumnPreisNetto
-        '
-        Me.DataGridViewTextBoxColumnPreisNetto.DataPropertyName = "Preis_Netto"
-        Me.DataGridViewTextBoxColumnPreisNetto.HeaderText = "Preis_Netto"
-        Me.DataGridViewTextBoxColumnPreisNetto.Name = "DataGridViewTextBoxColumnPreisNetto"
-        '
-        'DataGridViewTextBoxColumnPreisBrutto
-        '
-        Me.DataGridViewTextBoxColumnPreisBrutto.DataPropertyName = "Preis_Brutto"
-        Me.DataGridViewTextBoxColumnPreisBrutto.HeaderText = "Preis_Brutto"
-        Me.DataGridViewTextBoxColumnPreisBrutto.Name = "DataGridViewTextBoxColumnPreisBrutto"
-        '
-        'DataGridViewTextBoxColumnMWST
-        '
-        Me.DataGridViewTextBoxColumnMWST.DataPropertyName = "MWST"
-        Me.DataGridViewTextBoxColumnMWST.HeaderText = "MWST"
-        Me.DataGridViewTextBoxColumnMWST.Name = "DataGridViewTextBoxColumnMWST"
-        '
-        'DataGridViewTextBoxColumnEKPreis
-        '
-        Me.DataGridViewTextBoxColumnEKPreis.DataPropertyName = "EKPreis"
-        Me.DataGridViewTextBoxColumnEKPreis.HeaderText = "EKPreis"
-        Me.DataGridViewTextBoxColumnEKPreis.Name = "DataGridViewTextBoxColumnEKPreis"
-        Me.DataGridViewTextBoxColumnEKPreis.Visible = False
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "ArtikelIdentifikation"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "ArtikelIdentifikation"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "LieferantNr"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "LieferantNr"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.Visible = False
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Status"
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Status"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        Me.DataGridViewTextBoxColumn13.Visible = False
-        '
-        'DataGridViewTextBoxColumn14
-        '
-        Me.DataGridViewTextBoxColumn14.DataPropertyName = "Referenz"
-        Me.DataGridViewTextBoxColumn14.HeaderText = "Referenz"
-        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-        Me.DataGridViewTextBoxColumn14.Visible = False
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Packung"
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Packung"
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        Me.DataGridViewTextBoxColumn15.Visible = False
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Herkunft"
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Herkunft"
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        Me.DataGridViewTextBoxColumn16.Visible = False
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "Incoterm"
-        Me.DataGridViewTextBoxColumn17.HeaderText = "Incoterm"
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        Me.DataGridViewTextBoxColumn17.Visible = False
-        '
-        'DataGridViewTextBoxColumn18
-        '
-        Me.DataGridViewTextBoxColumn18.DataPropertyName = "Spezifikation"
-        Me.DataGridViewTextBoxColumn18.HeaderText = "Spezifikation"
-        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-        Me.DataGridViewTextBoxColumn18.Visible = False
-        '
-        'DataGridViewTextBoxColumn19
-        '
-        Me.DataGridViewTextBoxColumn19.DataPropertyName = "Zeitpunkt"
-        Me.DataGridViewTextBoxColumn19.HeaderText = "Zeitpunkt"
-        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-        Me.DataGridViewTextBoxColumn19.Visible = False
         '
         'Vorgang
         '
@@ -1034,7 +1034,6 @@ Partial Class Vorgang
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Vorgang"
         Me.Text = "Vorgang"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
