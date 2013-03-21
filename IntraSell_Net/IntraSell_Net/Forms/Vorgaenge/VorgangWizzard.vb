@@ -7,8 +7,13 @@ Public Class VorgangWizzard
     Shared callingForm As Vorgang
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.Close()
+        Try
+            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.SelectedValue, Me.KundNrAdressenControl.IDNR)
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
+            Me.Close()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
@@ -33,7 +38,6 @@ Public Class VorgangWizzard
         If loading Then Return
         Try
             If Not String.IsNullOrEmpty(Me.TypComboBox.SelectedValue) Then
-                Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.SelectedValue, Me.KundNrAdressenControl.IDNR)
                 Me.DatumDateTimePicker.Value = DateTime.Now
                 Me.OK_Button.Enabled = True
             Else 'disable

@@ -1484,4 +1484,15 @@ Public Class Vorgang
 #End Region
 
 
+    Private Sub ArtikelstammToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ArtikelstammToolStripMenuItem.Click
+        Try
+            Dim _ArtNr = Buchvorgang_artikelBindingSource.Current.row.ArtNr
+            Dim k As Artikel = New Artikel
+            k.MdiParent = Main
+            k.Show()
+            k.FilterBy("ArtNr=" & _ArtNr)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

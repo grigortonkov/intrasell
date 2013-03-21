@@ -173,8 +173,7 @@ Public Class Kunden
     Private Sub AlteVorgängeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AlteVorgängeToolStripMenuItem.Click
         Try
             VorgangListe.MdiParent = Main
-            VorgangListe.Show()
-            'VorgangListe.Filter()
+            VorgangListe.Show()            'VorgangListe.Filter()
             'VorgangListe.AdressenControl1.IDNR = ModuleGlobals.KundenIDNR
         Catch ex As Exception
             HandleAppError(ex)
@@ -191,4 +190,35 @@ Public Class Kunden
             HandleAppError(ex)
         End Try
     End Sub
+
+#Region "Settings"
+    Private Sub cbPreisliste_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbPreisliste.GotFocus
+        CreateNewSettingsCurrentRow()
+    End Sub
+
+    Private Sub cbKundengruppe_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbKundengruppe.GotFocus
+        CreateNewSettingsCurrentRow()
+    End Sub
+
+    Private Sub Language_codeComboBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Language_codeComboBox.GotFocus
+        CreateNewSettingsCurrentRow()
+    End Sub
+
+    Private Sub FirmenKontoIdTextBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FirmenKontoIdTextBox.GotFocus
+        CreateNewSettingsCurrentRow()
+    End Sub
+
+
+    Sub CreateNewSettingsCurrentRow()
+        Try
+            'create settings datarow 
+            If Me.FKofAdressenofadressensettingsBindingSource.Current Is Nothing Then
+                Me.DataSetKunden._ofadressen_settings.Add_ofadressen_settingsRow(Me.ofAdressenBindingSource.Current.row, Nothing, Nothing, Nothing, Nothing)
+            End If
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
+
 End Class

@@ -72,7 +72,7 @@ Public Class grartikel_vkpreisperselectionTableAdapterTest
         Dim AufschlagVKPreis As Nullable(Of Double) = New Nullable(Of Double)()
         Dim AufschlagEKPreis As Nullable(Of Double) = New Nullable(Of Double)()
 
-        Dim PreislisteName As String = String.Empty '"Bonuskunden"
+        Dim PreislisteName As String = "Bonuskunden"
         Dim ArtKatNr As Nullable(Of Integer) = New Nullable(Of Integer)()
         Dim ArtNr As Nullable(Of Integer) = New Nullable(Of Integer)
         Dim IDNR As Nullable(Of Integer) = New Nullable(Of Integer)
