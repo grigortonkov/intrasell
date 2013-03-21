@@ -27,20 +27,25 @@ Public Class Kunden
         'TODO IMPLEMENT OpenAusdruck_inWord_XML(Me.IDNRTextBox.Text, "Vorlagen/0. BRIEF.dot", "WORD", False, Nothing)
     End Sub
 
+
+    Sub BeginNew()
+        Try
+            BindingNavigatorAddNewItem_Click(Nothing, Nothing)
+            ofAdressenBindingSource.AddNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #Region "Events "
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
-
-
         Try
-
             Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
             Me.BuchvorgangtypTableAdapter.Fill(Me.DsVorgaenge.buchvorgangtyp)
             Me.GrtransportmethodeTableAdapter.Fill(Me.DsStammdaten.grtransportmethode)
             Me.GrzahlungsbedingungTableAdapter.Fill(Me.DsStammdaten.grzahlungsbedingung)
             Me.GrzahlungsmethodeTableAdapter.Fill(Me.DsStammdaten.grzahlungsmethode)
-
 
             'Branche 
             FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen   order by Bezeichnung", "Bezeichnung", "BrNr")
@@ -61,7 +66,6 @@ Public Class Kunden
             Me.PreislistenTableAdapter.Fill(Me.DataSetKunden.Preislisten)
             Me.KundengruppenTableAdapter.Fill(Me.DataSetKunden.Kundengruppen)
 
-
             Me.Ofadressen_weitereTableAdapter.Fill(Me.DataSetKunden._ofadressen_weitere)
 
             Me.Ofadressen_zahlungsmethodenTableAdapter.Fill(Me.DataSetKunden._ofadressen_zahlungsmethoden)
@@ -71,6 +75,12 @@ Public Class Kunden
             Rebind()
 
             Me.ParentBindingNavigator.BindingSource = Me.ofAdressenBindingSource
+
+
+            If BeginNewFlag Then
+                BeginNew()
+            End If
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -90,12 +100,16 @@ Public Class Kunden
                               ByVal e As System.EventArgs) _
                               Handles ofAdressenBindingSource.CurrentChanged
         Try
-            Dim cur = ofAdressenBindingSource.Current.Row.IDNR
-            If IsNumeric(cur) Then ModuleGlobals.KundenIDNR = cur
+
             If AddingNewFlag = True Then
                 AddingNewFlag = False
                 Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)
+                Exit Sub
             End If
+
+            Dim cur = ofAdressenBindingSource.Current.Row.IDNR
+            If IsNumeric(cur) Then ModuleGlobals.KundenIDNR = cur
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -220,5 +234,6 @@ Public Class Kunden
         End Try
     End Sub
 #End Region
+
 
 End Class

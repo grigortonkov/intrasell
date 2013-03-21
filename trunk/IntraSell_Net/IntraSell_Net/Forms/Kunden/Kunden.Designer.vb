@@ -612,10 +612,10 @@ Partial Class Kunden
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl1.Location = New System.Drawing.Point(0, 341)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 358)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(837, 317)
+        Me.TabControl1.Size = New System.Drawing.Size(794, 317)
         Me.TabControl1.TabIndex = 23
         '
         'TabPage1
@@ -635,7 +635,7 @@ Partial Class Kunden
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(829, 291)
+        Me.TabPage1.Size = New System.Drawing.Size(786, 291)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Einstellungen"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -658,7 +658,7 @@ Partial Class Kunden
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.18519!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.81481!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(823, 202)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(780, 202)
         Me.TableLayoutPanel1.TabIndex = 16
         '
         'Label1
@@ -679,7 +679,7 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsmethodenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Ofadressen_zahlungsmethodenDataGridView.Location = New System.Drawing.Point(3, 23)
         Me.Ofadressen_zahlungsmethodenDataGridView.Name = "Ofadressen_zahlungsmethodenDataGridView"
-        Me.Ofadressen_zahlungsmethodenDataGridView.Size = New System.Drawing.Size(268, 176)
+        Me.Ofadressen_zahlungsmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_zahlungsmethodenDataGridView.TabIndex = 9
         '
         'DataGridViewTextBoxColumn1
@@ -728,9 +728,9 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsbedingungenDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewCheckBoxColumn2})
         Me.Ofadressen_zahlungsbedingungenDataGridView.DataSource = Me.Ofadressen_zahlungsbedingungenBindingSource
         Me.Ofadressen_zahlungsbedingungenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ofadressen_zahlungsbedingungenDataGridView.Location = New System.Drawing.Point(277, 23)
+        Me.Ofadressen_zahlungsbedingungenDataGridView.Location = New System.Drawing.Point(263, 23)
         Me.Ofadressen_zahlungsbedingungenDataGridView.Name = "Ofadressen_zahlungsbedingungenDataGridView"
-        Me.Ofadressen_zahlungsbedingungenDataGridView.Size = New System.Drawing.Size(268, 176)
+        Me.Ofadressen_zahlungsbedingungenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_zahlungsbedingungenDataGridView.TabIndex = 10
         '
         'DataGridViewTextBoxColumn3
@@ -770,7 +770,7 @@ Partial Class Kunden
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(277, 0)
+        Me.Label2.Location = New System.Drawing.Point(263, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(116, 13)
         Me.Label2.TabIndex = 11
@@ -779,7 +779,7 @@ Partial Class Kunden
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(551, 0)
+        Me.Label3.Location = New System.Drawing.Point(523, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 13
@@ -792,9 +792,9 @@ Partial Class Kunden
         Me.Ofadressen_transportmethodenDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7})
         Me.Ofadressen_transportmethodenDataGridView.DataSource = Me.Ofadressen_transportmethodenBindingSource
         Me.Ofadressen_transportmethodenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ofadressen_transportmethodenDataGridView.Location = New System.Drawing.Point(551, 23)
+        Me.Ofadressen_transportmethodenDataGridView.Location = New System.Drawing.Point(523, 23)
         Me.Ofadressen_transportmethodenDataGridView.Name = "Ofadressen_transportmethodenDataGridView"
-        Me.Ofadressen_transportmethodenDataGridView.Size = New System.Drawing.Size(269, 176)
+        Me.Ofadressen_transportmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
         Me.Ofadressen_transportmethodenDataGridView.TabIndex = 12
         '
         'DataGridViewTextBoxColumn5
@@ -946,7 +946,7 @@ Partial Class Kunden
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(786, 291)
+        Me.TabPage2.Size = New System.Drawing.Size(829, 291)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Weitere Stammdaten"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1079,7 +1079,7 @@ Partial Class Kunden
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(786, 291)
+        Me.TabPage4.Size = New System.Drawing.Size(829, 291)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Weitere Adressdaten"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1306,7 +1306,7 @@ Partial Class Kunden
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(786, 291)
+        Me.TabPage3.Size = New System.Drawing.Size(829, 291)
         Me.TabPage3.TabIndex = 4
         Me.TabPage3.Text = "Profil"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1631,7 +1631,7 @@ Partial Class Kunden
         Me.FillByToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillByToolStripButton})
         Me.FillByToolStrip.Location = New System.Drawing.Point(0, 25)
         Me.FillByToolStrip.Name = "FillByToolStrip"
-        Me.FillByToolStrip.Size = New System.Drawing.Size(837, 25)
+        Me.FillByToolStrip.Size = New System.Drawing.Size(794, 25)
         Me.FillByToolStrip.TabIndex = 70
         Me.FillByToolStrip.Text = "FillByToolStrip"
         '
@@ -1639,7 +1639,7 @@ Partial Class Kunden
         '
         Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(35, 22)
+        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
         Me.FillByToolStripButton.Text = "FillBy"
         '
         'GrzahlungsmethodeTableAdapter
@@ -1668,7 +1668,7 @@ Partial Class Kunden
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(678, 185)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(159, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(72, 24)
         Me.MenuStrip1.TabIndex = 71
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1677,19 +1677,19 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.NeuerVorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem1, Me.AlteVorgängeToolStripMenuItem})
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Vorgang"
         '
         'NeuerVorgangToolStripMenuItem1
         '
         Me.NeuerVorgangToolStripMenuItem1.Name = "NeuerVorgangToolStripMenuItem1"
-        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
         Me.NeuerVorgangToolStripMenuItem1.Text = "&Neuer Vorgang"
         '
         'AlteVorgängeToolStripMenuItem
         '
         Me.AlteVorgängeToolStripMenuItem.Name = "AlteVorgängeToolStripMenuItem"
-        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.AlteVorgängeToolStripMenuItem.Text = "&Alte Vorgänge"
         '
         'Kunden

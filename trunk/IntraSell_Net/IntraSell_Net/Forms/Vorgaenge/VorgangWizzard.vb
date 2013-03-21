@@ -50,4 +50,23 @@ Public Class VorgangWizzard
         End Try
     End Sub
 
+    Private Sub KundeAnlegenButton_Click(sender As System.Object, e As System.EventArgs) Handles KundeAnlegenButton.Click
+        Try
+            Dim k As Kunden = New Kunden
+            k.BeginNewFlag = True
+            k.ShowDialog()
+            'hier wartet bis dialog fenster zu ist
+            'If k.DialogResult = Windows.Forms.DialogResult.OK Then
+            Me.KundNrAdressenControl.Refresh()
+            Me.KundNrAdressenControl.IDNR = k.IDNRTextBox.Text
+            'Else 'cancel
+
+            'End If
+
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+     
+    End Sub
 End Class
