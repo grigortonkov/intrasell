@@ -47,7 +47,16 @@ Public Class Main
     End Sub
 
 #Region "Kunden"
-
+    Private Sub NeuerKundeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerKundeToolStripMenuItem.Click
+        Try
+            Dim f As Kunden = New Kunden
+            f.MdiParent = Me
+            f.Show()
+            f.BeginNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 
     Private Sub KundenToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles KundenToolStripMenuItem1.Click
         Try
@@ -113,6 +122,16 @@ Public Class Main
 
 #Region "Vorgang"
 
+
+    Private Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
+        Try
+            Vorgang.MdiParent = Me
+            Vorgang.Show()
+            Vorgang.BeginNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 
     Private Sub VorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorgangToolStripMenuItem.Click
         Try
@@ -395,6 +414,7 @@ Public Class Main
  
 
 #End Region
+
 
 
 

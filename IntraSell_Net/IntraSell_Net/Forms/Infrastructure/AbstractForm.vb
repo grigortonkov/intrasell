@@ -1,6 +1,7 @@
 ﻿Public Class AbstractForm
 
- 
+    Public BeginNewFlag = False
+
     Private Sub AbstractForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
     End Sub
