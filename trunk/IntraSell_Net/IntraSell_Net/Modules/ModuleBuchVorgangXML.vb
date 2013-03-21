@@ -187,7 +187,7 @@ Module ModuleBuchVorgangXML
 
 
             xml = xml + QueryToXML("select p.*, round(p.Preis_Netto*p.Stk,2) as PreisSummeNetto, round(p.Preis_Brutto*p.Stk,2) as PreisSummeBrutto, " & _
-                 " round(p.Preis_Brutto*p.Stk,2) - round(p.Preis_Netto*p.Stk,2) as PreisSummeMWST, " & _
+                 " round(p.Preis_Brutto*p.Stk,2) - round(p.Preis_Netto*p.Stk,2) as PreisSummeMWST, a.*, " & _
                  " k.Name as Kategorie " & _
                  " from `" & VonForm_Artikel & "` p, grArtikel a,  `grArtikel-Kategorien` k " & _
                  " where p.ArtNr=a.ArtNr and a.ArtKatNr=k.ArtKatNr and p.Nummer=" & VorgangNummer & " and p.Typ = '" & VorgangTyp & "'" & _

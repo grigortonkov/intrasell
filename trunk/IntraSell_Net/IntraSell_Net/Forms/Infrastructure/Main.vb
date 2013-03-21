@@ -69,6 +69,16 @@ Public Class Main
         End Try
     End Sub
 
+    Private Sub KundengruppenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles KundengruppenToolStripMenuItem.Click
+        Try
+            Dim f As KundenGruppe = New KundenGruppe
+            f.MdiParent = Me
+            f.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Artikel"
@@ -385,6 +395,7 @@ Public Class Main
  
 
 #End Region
+
 
 
 End Class
