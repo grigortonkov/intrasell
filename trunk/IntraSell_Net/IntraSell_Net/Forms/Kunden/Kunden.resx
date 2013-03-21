@@ -226,129 +226,129 @@
     <value>False</value>
   </metadata>
   <metadata name="DataSetKunden.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>199, 17</value>
+    <value>185, 17</value>
   </metadata>
   <metadata name="ofAdressenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>335, 17</value>
+    <value>313, 17</value>
   </metadata>
   <metadata name="GrzahlungsmethodeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>152, 251</value>
+    <value>449, 202</value>
   </metadata>
   <metadata name="DsStammdaten.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 251</value>
+    <value>322, 202</value>
   </metadata>
   <metadata name="Ofadressen_zahlungsmethodenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>202, 134</value>
+    <value>824, 91</value>
   </metadata>
   <metadata name="GrzahlungsbedingungBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>628, 251</value>
+    <value>888, 202</value>
   </metadata>
   <metadata name="Ofadressen_zahlungsbedingungenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 173</value>
+    <value>291, 128</value>
   </metadata>
   <metadata name="GrtransportmethodeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>262, 290</value>
+    <value>243, 239</value>
   </metadata>
   <metadata name="Ofadressen_transportmethodenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>648, 173</value>
+    <value>17, 165</value>
   </metadata>
   <metadata name="FKofAdressenofadressensettingsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>526, 17</value>
+    <value>490, 17</value>
   </metadata>
   <metadata name="KundengruppenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>945, 17</value>
   </metadata>
   <metadata name="PreislistenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>833, 17</value>
+    <value>773, 17</value>
   </metadata>
   <metadata name="BuchvorgangtypBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>866, 290</value>
+    <value>803, 239</value>
   </metadata>
   <metadata name="DsVorgaenge.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>741, 290</value>
+    <value>685, 239</value>
   </metadata>
   <metadata name="GrLandPlzBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 134</value>
+    <value>652, 91</value>
   </metadata>
   <metadata name="DsPLZ.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>568, 95</value>
+    <value>236, 91</value>
   </metadata>
   <metadata name="Ofadressen_weitereBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>315, 212</value>
+    <value>573, 165</value>
   </metadata>
   <metadata name="Ofadressen_profilBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>231, 329</value>
+    <value>216, 276</value>
   </metadata>
   <metadata name="Ofadressen_settingsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>236, 56</value>
+    <value>17, 54</value>
   </metadata>
   <metadata name="OfAdressenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>146, 95</value>
+    <value>888, 54</value>
   </metadata>
   <metadata name="PreislistenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>689, 56</value>
+    <value>437, 54</value>
   </metadata>
   <metadata name="TableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>869, 56</value>
+    <value>605, 54</value>
   </metadata>
   <metadata name="Ofadressen_settingsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>334, 95</value>
+    <value>17, 91</value>
   </metadata>
   <metadata name="KundengruppenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>476, 56</value>
+    <value>240, 54</value>
   </metadata>
   <metadata name="GrLandPlzTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>653, 95</value>
+    <value>318, 91</value>
   </metadata>
   <metadata name="TableAdapterManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>832, 95</value>
+    <value>485, 91</value>
   </metadata>
   <metadata name="GrbranchenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>589, 329</value>
+    <value>551, 276</value>
   </metadata>
   <metadata name="DsBranchen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>473, 329</value>
+    <value>440, 276</value>
   </metadata>
   <metadata name="GrlandBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>944, 212</value>
+    <value>167, 202</value>
   </metadata>
   <metadata name="Ofadressen_zahlungsmethodenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>504, 134</value>
+    <value>17, 128</value>
   </metadata>
   <metadata name="Ofadressen_zahlungsbedingungenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>335, 173</value>
+    <value>584, 128</value>
   </metadata>
   <metadata name="Ofadressen_transportmethodenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 212</value>
+    <value>297, 165</value>
   </metadata>
   <metadata name="Ofadressen_weitereTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>552, 212</value>
+    <value>794, 165</value>
   </metadata>
   <metadata name="GrlandTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>783, 212</value>
+    <value>17, 202</value>
   </metadata>
   <metadata name="FillByToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+    <value>766, 54</value>
   </metadata>
   <metadata name="GrzahlungsmethodeTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>393, 251</value>
+    <value>671, 202</value>
   </metadata>
   <metadata name="GrzahlungsbedingungTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 290</value>
+    <value>17, 239</value>
   </metadata>
   <metadata name="GrtransportmethodeTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>504, 290</value>
+    <value>466, 239</value>
   </metadata>
   <metadata name="BuchvorgangtypTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 329</value>
+    <value>17, 276</value>
   </metadata>
   <metadata name="GrbranchenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>783, 329</value>
+    <value>731, 276</value>
   </metadata>
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>972, 329</value>
+    <value>907, 276</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>118</value>
+    <value>252</value>
   </metadata>
 </root>

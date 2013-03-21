@@ -33,6 +33,25 @@ Partial Class Anrufliste
         Me.PreislisteComboBox = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.OfAdressenlisteDataGridView = New System.Windows.Forms.DataGridView()
+        Me.AnrufNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdrNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Firma = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NotizenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NAnrufDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BeginZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EndeZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Angebot = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.WeitereInformationen = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Wettbewerb = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Adresse = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PLZ = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ort = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LAenderungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LKontaktDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Mobil = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AnruflisteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsAnrufe = New IntraSell_Net.dsAnrufe()
         Me.OfanrufeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -57,25 +76,6 @@ Partial Class Anrufliste
         Me.Label5 = New System.Windows.Forms.Label()
         Me.OfanrufeTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.ofanrufeTableAdapter()
         Me.AnruflisteTableAdapter = New IntraSell_Net.dsAnrufeTableAdapters.AnruflisteTableAdapter()
-        Me.AnrufNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdrNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Firma = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NotizenDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NAnrufDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BeginZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EndeZeitDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MitarbeiterNrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Angebot = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.WeitereInformationen = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Wettbewerb = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Adresse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PLZ = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ort = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LAenderungDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LKontaktDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Mobil = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.OfAdressenlisteDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AnruflisteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAnrufe, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,241 +180,6 @@ Partial Class Anrufliste
         Me.OfAdressenlisteDataGridView.ReadOnly = True
         Me.OfAdressenlisteDataGridView.Size = New System.Drawing.Size(766, 762)
         Me.OfAdressenlisteDataGridView.TabIndex = 6
-        '
-        'AnruflisteBindingSource
-        '
-        Me.AnruflisteBindingSource.DataMember = "Anrufliste"
-        Me.AnruflisteBindingSource.DataSource = Me.DsAnrufe
-        '
-        'DsAnrufe
-        '
-        Me.DsAnrufe.DataSetName = "dsAnrufe"
-        Me.DsAnrufe.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'OfanrufeBindingSource
-        '
-        Me.OfanrufeBindingSource.DataMember = "ofanrufe"
-        Me.OfanrufeBindingSource.DataSource = Me.DsAnrufe
-        '
-        'SplitContainer
-        '
-        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
-        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer.Name = "SplitContainer"
-        '
-        'SplitContainer.Panel1
-        '
-        Me.SplitContainer.Panel1.Controls.Add(Me.ArchiviertCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.WettberwerbCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.MenuStrip1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.InfoCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AngebotCheckBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label15)
-        Me.SplitContainer.Panel1.Controls.Add(Me.NotizTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.BeginZeitBisDateTimePicker)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
-        Me.SplitContainer.Panel1.Controls.Add(Me.BeginZeitVonDateTimePicker)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
-        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterControl)
-        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
-        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
-        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
-        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
-        '
-        'SplitContainer.Panel2
-        '
-        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
-        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
-        Me.SplitContainer.SplitterDistance = 238
-        Me.SplitContainer.TabIndex = 11
-        '
-        'ArchiviertCheckBox
-        '
-        Me.ArchiviertCheckBox.Location = New System.Drawing.Point(98, 346)
-        Me.ArchiviertCheckBox.Name = "ArchiviertCheckBox"
-        Me.ArchiviertCheckBox.Size = New System.Drawing.Size(126, 24)
-        Me.ArchiviertCheckBox.TabIndex = 13
-        Me.ArchiviertCheckBox.Text = "archevierte zeigen"
-        Me.ArchiviertCheckBox.UseVisualStyleBackColor = True
-        '
-        'WettberwerbCheckBox
-        '
-        Me.WettberwerbCheckBox.Checked = True
-        Me.WettberwerbCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.WettberwerbCheckBox.Location = New System.Drawing.Point(98, 316)
-        Me.WettberwerbCheckBox.Name = "WettberwerbCheckBox"
-        Me.WettberwerbCheckBox.Size = New System.Drawing.Size(126, 24)
-        Me.WettberwerbCheckBox.TabIndex = 12
-        Me.WettberwerbCheckBox.Text = "hat anderen Anbieter"
-        Me.WettberwerbCheckBox.UseVisualStyleBackColor = True
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AngebotToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(34, 420)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(73, 24)
-        Me.MenuStrip1.TabIndex = 12
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'AngebotToolStripMenuItem
-        '
-        Me.AngebotToolStripMenuItem.Enabled = False
-        Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
-        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
-        Me.AngebotToolStripMenuItem.Text = "Angebot"
-        '
-        'InfoCheckBox
-        '
-        Me.InfoCheckBox.AutoEllipsis = True
-        Me.InfoCheckBox.Checked = True
-        Me.InfoCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.InfoCheckBox.Location = New System.Drawing.Point(98, 286)
-        Me.InfoCheckBox.Name = "InfoCheckBox"
-        Me.InfoCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.InfoCheckBox.TabIndex = 11
-        Me.InfoCheckBox.Text = "will Information"
-        Me.InfoCheckBox.ThreeState = True
-        Me.InfoCheckBox.UseVisualStyleBackColor = True
-        '
-        'AngebotCheckBox
-        '
-        Me.AngebotCheckBox.Checked = True
-        Me.AngebotCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.AngebotCheckBox.Location = New System.Drawing.Point(98, 256)
-        Me.AngebotCheckBox.Name = "AngebotCheckBox"
-        Me.AngebotCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AngebotCheckBox.TabIndex = 10
-        Me.AngebotCheckBox.Text = "will Angebot"
-        Me.AngebotCheckBox.ThreeState = True
-        Me.AngebotCheckBox.UseVisualStyleBackColor = True
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(12, 233)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(34, 13)
-        Me.Label15.TabIndex = 47
-        Me.Label15.Text = "Notiz:"
-        '
-        'NotizTextBox
-        '
-        Me.NotizTextBox.Location = New System.Drawing.Point(98, 230)
-        Me.NotizTextBox.Name = "NotizTextBox"
-        Me.NotizTextBox.Size = New System.Drawing.Size(126, 20)
-        Me.NotizTextBox.TabIndex = 9
-        '
-        'BeginZeitBisDateTimePicker
-        '
-        Me.BeginZeitBisDateTimePicker.CustomFormat = " "
-        Me.BeginZeitBisDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.BeginZeitBisDateTimePicker.Location = New System.Drawing.Point(98, 38)
-        Me.BeginZeitBisDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.BeginZeitBisDateTimePicker.Name = "BeginZeitBisDateTimePicker"
-        Me.BeginZeitBisDateTimePicker.Size = New System.Drawing.Size(126, 20)
-        Me.BeginZeitBisDateTimePicker.TabIndex = 1
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(13, 38)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(48, 13)
-        Me.Label7.TabIndex = 28
-        Me.Label7.Text = "Anruf bis"
-        '
-        'BeginZeitVonDateTimePicker
-        '
-        Me.BeginZeitVonDateTimePicker.CustomFormat = " "
-        Me.BeginZeitVonDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.BeginZeitVonDateTimePicker.Location = New System.Drawing.Point(98, 12)
-        Me.BeginZeitVonDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.BeginZeitVonDateTimePicker.Name = "BeginZeitVonDateTimePicker"
-        Me.BeginZeitVonDateTimePicker.Size = New System.Drawing.Size(126, 20)
-        Me.BeginZeitVonDateTimePicker.TabIndex = 0
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(13, 12)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 13)
-        Me.Label6.TabIndex = 24
-        Me.Label6.Text = "Anruf von"
-        '
-        'MitarbeiterControl
-        '
-        Me.MitarbeiterControl.IDNR = 0
-        Me.MitarbeiterControl.Location = New System.Drawing.Point(98, 199)
-        Me.MitarbeiterControl.Name = "MitarbeiterControl"
-        Me.MitarbeiterControl.Size = New System.Drawing.Size(136, 25)
-        Me.MitarbeiterControl.TabIndex = 8
-        '
-        'AdressenControl1
-        '
-        Me.AdressenControl1.IDNR = 0
-        Me.AdressenControl1.Location = New System.Drawing.Point(98, 64)
-        Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
-        Me.AdressenControl1.TabIndex = 2
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 69)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(38, 13)
-        Me.Label9.TabIndex = 22
-        Me.Label9.Text = "Kunde"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 205)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(59, 13)
-        Me.Label8.TabIndex = 21
-        Me.Label8.Text = "Mitarbeiter:"
-        '
-        'LandComboBox
-        '
-        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.LandComboBox.FormattingEnabled = True
-        Me.LandComboBox.Location = New System.Drawing.Point(98, 92)
-        Me.LandComboBox.Name = "LandComboBox"
-        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
-        Me.LandComboBox.TabIndex = 3
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 95)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Land:"
-        '
-        'OfanrufeTableAdapter
-        '
-        Me.OfanrufeTableAdapter.ClearBeforeFill = True
-        '
-        'AnruflisteTableAdapter
-        '
-        Me.AnruflisteTableAdapter.ClearBeforeFill = True
         '
         'AnrufNrDataGridViewTextBoxColumn
         '
@@ -565,6 +330,242 @@ Partial Class Anrufliste
         Me.Email.HeaderText = "Email"
         Me.Email.Name = "Email"
         Me.Email.ReadOnly = True
+        '
+        'AnruflisteBindingSource
+        '
+        Me.AnruflisteBindingSource.DataMember = "Anrufliste"
+        Me.AnruflisteBindingSource.DataSource = Me.DsAnrufe
+        '
+        'DsAnrufe
+        '
+        Me.DsAnrufe.DataSetName = "dsAnrufe"
+        Me.DsAnrufe.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'OfanrufeBindingSource
+        '
+        Me.OfanrufeBindingSource.DataMember = "ofanrufe"
+        Me.OfanrufeBindingSource.DataSource = Me.DsAnrufe
+        '
+        'SplitContainer
+        '
+        Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer.Name = "SplitContainer"
+        '
+        'SplitContainer.Panel1
+        '
+        Me.SplitContainer.Panel1.Controls.Add(Me.ArchiviertCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.WettberwerbCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.MenuStrip1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.InfoCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AngebotCheckBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label15)
+        Me.SplitContainer.Panel1.Controls.Add(Me.NotizTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.BeginZeitBisDateTimePicker)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label7)
+        Me.SplitContainer.Panel1.Controls.Add(Me.BeginZeitVonDateTimePicker)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label6)
+        Me.SplitContainer.Panel1.Controls.Add(Me.MitarbeiterControl)
+        Me.SplitContainer.Panel1.Controls.Add(Me.AdressenControl1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label9)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label8)
+        Me.SplitContainer.Panel1.Controls.Add(Me.LandComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label5)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer.Panel1.Controls.Add(Me.FilterButton)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PreislisteComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZVonTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label4)
+        Me.SplitContainer.Panel1.Controls.Add(Me.PLZBisTextBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.KundengruppeComboBox)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer.Panel1.Controls.Add(Me.Label3)
+        '
+        'SplitContainer.Panel2
+        '
+        Me.SplitContainer.Panel2.Controls.Add(Me.OfAdressenlisteDataGridView)
+        Me.SplitContainer.Size = New System.Drawing.Size(1008, 762)
+        Me.SplitContainer.SplitterDistance = 238
+        Me.SplitContainer.TabIndex = 11
+        '
+        'ArchiviertCheckBox
+        '
+        Me.ArchiviertCheckBox.Location = New System.Drawing.Point(98, 346)
+        Me.ArchiviertCheckBox.Name = "ArchiviertCheckBox"
+        Me.ArchiviertCheckBox.Size = New System.Drawing.Size(126, 24)
+        Me.ArchiviertCheckBox.TabIndex = 13
+        Me.ArchiviertCheckBox.Text = "archevierte zeigen"
+        Me.ArchiviertCheckBox.UseVisualStyleBackColor = True
+        '
+        'WettberwerbCheckBox
+        '
+        Me.WettberwerbCheckBox.Checked = True
+        Me.WettberwerbCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.WettberwerbCheckBox.Location = New System.Drawing.Point(98, 316)
+        Me.WettberwerbCheckBox.Name = "WettberwerbCheckBox"
+        Me.WettberwerbCheckBox.Size = New System.Drawing.Size(126, 24)
+        Me.WettberwerbCheckBox.TabIndex = 12
+        Me.WettberwerbCheckBox.Text = "hat anderen Anbieter"
+        Me.WettberwerbCheckBox.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AngebotToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(34, 420)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(160, 24)
+        Me.MenuStrip1.TabIndex = 12
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'AngebotToolStripMenuItem
+        '
+        Me.AngebotToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.AngebotToolStripMenuItem.Enabled = False
+        Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
+        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.AngebotToolStripMenuItem.Text = "Angebot"
+        '
+        'InfoCheckBox
+        '
+        Me.InfoCheckBox.AutoEllipsis = True
+        Me.InfoCheckBox.Checked = True
+        Me.InfoCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.InfoCheckBox.Location = New System.Drawing.Point(98, 286)
+        Me.InfoCheckBox.Name = "InfoCheckBox"
+        Me.InfoCheckBox.Size = New System.Drawing.Size(101, 24)
+        Me.InfoCheckBox.TabIndex = 11
+        Me.InfoCheckBox.Text = "will Information"
+        Me.InfoCheckBox.ThreeState = True
+        Me.InfoCheckBox.UseVisualStyleBackColor = True
+        '
+        'AngebotCheckBox
+        '
+        Me.AngebotCheckBox.Checked = True
+        Me.AngebotCheckBox.CheckState = System.Windows.Forms.CheckState.Indeterminate
+        Me.AngebotCheckBox.Location = New System.Drawing.Point(98, 256)
+        Me.AngebotCheckBox.Name = "AngebotCheckBox"
+        Me.AngebotCheckBox.Size = New System.Drawing.Size(101, 24)
+        Me.AngebotCheckBox.TabIndex = 10
+        Me.AngebotCheckBox.Text = "will Angebot"
+        Me.AngebotCheckBox.ThreeState = True
+        Me.AngebotCheckBox.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(12, 233)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(34, 13)
+        Me.Label15.TabIndex = 47
+        Me.Label15.Text = "Notiz:"
+        '
+        'NotizTextBox
+        '
+        Me.NotizTextBox.Location = New System.Drawing.Point(98, 230)
+        Me.NotizTextBox.Name = "NotizTextBox"
+        Me.NotizTextBox.Size = New System.Drawing.Size(126, 20)
+        Me.NotizTextBox.TabIndex = 9
+        '
+        'BeginZeitBisDateTimePicker
+        '
+        Me.BeginZeitBisDateTimePicker.CustomFormat = " "
+        Me.BeginZeitBisDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.BeginZeitBisDateTimePicker.Location = New System.Drawing.Point(98, 38)
+        Me.BeginZeitBisDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.BeginZeitBisDateTimePicker.Name = "BeginZeitBisDateTimePicker"
+        Me.BeginZeitBisDateTimePicker.Size = New System.Drawing.Size(126, 20)
+        Me.BeginZeitBisDateTimePicker.TabIndex = 1
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(13, 38)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(48, 13)
+        Me.Label7.TabIndex = 28
+        Me.Label7.Text = "Anruf bis"
+        '
+        'BeginZeitVonDateTimePicker
+        '
+        Me.BeginZeitVonDateTimePicker.CustomFormat = " "
+        Me.BeginZeitVonDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.BeginZeitVonDateTimePicker.Location = New System.Drawing.Point(98, 12)
+        Me.BeginZeitVonDateTimePicker.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.BeginZeitVonDateTimePicker.Name = "BeginZeitVonDateTimePicker"
+        Me.BeginZeitVonDateTimePicker.Size = New System.Drawing.Size(126, 20)
+        Me.BeginZeitVonDateTimePicker.TabIndex = 0
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(13, 12)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(53, 13)
+        Me.Label6.TabIndex = 24
+        Me.Label6.Text = "Anruf von"
+        '
+        'MitarbeiterControl
+        '
+        Me.MitarbeiterControl.IDNR = 0
+        Me.MitarbeiterControl.Location = New System.Drawing.Point(98, 199)
+        Me.MitarbeiterControl.Name = "MitarbeiterControl"
+        Me.MitarbeiterControl.Size = New System.Drawing.Size(136, 25)
+        Me.MitarbeiterControl.TabIndex = 8
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(98, 64)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.Size = New System.Drawing.Size(136, 25)
+        Me.AdressenControl1.TabIndex = 2
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 69)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(38, 13)
+        Me.Label9.TabIndex = 22
+        Me.Label9.Text = "Kunde"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 205)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(59, 13)
+        Me.Label8.TabIndex = 21
+        Me.Label8.Text = "Mitarbeiter:"
+        '
+        'LandComboBox
+        '
+        Me.LandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.LandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.LandComboBox.FormattingEnabled = True
+        Me.LandComboBox.Location = New System.Drawing.Point(98, 92)
+        Me.LandComboBox.Name = "LandComboBox"
+        Me.LandComboBox.Size = New System.Drawing.Size(126, 21)
+        Me.LandComboBox.TabIndex = 3
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 95)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Land:"
+        '
+        'OfanrufeTableAdapter
+        '
+        Me.OfanrufeTableAdapter.ClearBeforeFill = True
+        '
+        'AnruflisteTableAdapter
+        '
+        Me.AnruflisteTableAdapter.ClearBeforeFill = True
         '
         'Anrufliste
         '

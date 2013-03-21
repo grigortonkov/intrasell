@@ -31,7 +31,7 @@ Partial Class AdressenWeitereControl
         'ArtikelSelectorButton
         '
         Me.ArtikelSelectorButton.Enabled = False
-        Me.ArtikelSelectorButton.Location = New System.Drawing.Point(133, 1)
+        Me.ArtikelSelectorButton.Location = New System.Drawing.Point(128, 1)
         Me.ArtikelSelectorButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ArtikelSelectorButton.Name = "ArtikelSelectorButton"
         Me.ArtikelSelectorButton.Size = New System.Drawing.Size(20, 23)
@@ -50,7 +50,7 @@ Partial Class AdressenWeitereControl
         Me.AdressenComboBox.Location = New System.Drawing.Point(0, 1)
         Me.AdressenComboBox.Margin = New System.Windows.Forms.Padding(0, 1, 1, 1)
         Me.AdressenComboBox.Name = "AdressenComboBox"
-        Me.AdressenComboBox.Size = New System.Drawing.Size(131, 21)
+        Me.AdressenComboBox.Size = New System.Drawing.Size(126, 21)
         Me.AdressenComboBox.TabIndex = 38
         '
         'FlowLayoutPanel1
