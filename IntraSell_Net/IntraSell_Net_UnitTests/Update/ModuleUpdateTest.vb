@@ -2,6 +2,7 @@
 
 Imports IntraSell_Net
 Imports IntraSell_DLL
+Imports System.IO
 
 
 '''<summary>
@@ -23,7 +24,7 @@ Public Class ModuleUpdateTest
             Return testContextInstance
         End Get
         Set(value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -79,7 +80,7 @@ Public Class ModuleUpdateTest
         Dim silentMode As Boolean = True
         Dim actual As Boolean = DBUpgrade.ProcessAllSQLFiles()
         Assert.AreEqual(True, actual)
-     
+
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
     End Sub
 
@@ -98,7 +99,7 @@ Public Class ModuleUpdateTest
         'Process all SQL Files 
         actual = ProcessAllSQLFiles()
         Assert.AreEqual(True, actual)
-        'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+        'Assert.Inconclusive("A method that does n  ot return a value cannot be verified.")
     End Sub
 
 
@@ -119,5 +120,13 @@ Public Class ModuleUpdateTest
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
     End Sub
 
+
+
+    <TestMethod()> _
+    Public Sub TestManuel()
+        ' Dim fa As FileAttributes = File.GetAttributes(GetAppPath() & "intraSell_net.exe")
+        Dim d = FileDateTime(GetAppPath() & "update\intraSell_net.exe")
+        Assert.AreNotSame(DateTime.Today, d)
+    End Sub
 
 End Class

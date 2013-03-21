@@ -652,8 +652,8 @@ Public Class IntraSellPreise
         rs = openRecordset("select VorgangNrKreisVon, VorgangNrKreisBis from [ofAdressen-KundenGruppen] " & _
                            " where gruppe in (select kundengruppe from [ofadressen-settings]  where idnr = " & IdNr & ")")
         If rs.Read Then 'kundengruppe is definiert
-            von = CInt(rs("VorgangNrKreisvon"))
-            bis = CInt(rs("VorgangNrKreisbis"))
+            von = CInt(rs("VorgangNrKreisVon"))
+            bis = CInt(rs("VorgangNrKreisBis"))
             rs.Close()
             'End If
             rs = openRecordset("select * from " & getVorgangTableForType(Typ) & _

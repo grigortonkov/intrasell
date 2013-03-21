@@ -114,6 +114,7 @@
     <Compile Include="Data\ofanrufeTableAdapterTest.vb" />
     <Compile Include="Data\ofmitarbeiterTableAdapterTest.vb" />
     <Compile Include="Data\ofadressen_profilTableAdapterTest.vb" />
+    <Compile Include="Update\ModuleUnzipTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />

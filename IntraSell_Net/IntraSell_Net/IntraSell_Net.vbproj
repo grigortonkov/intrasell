@@ -327,6 +327,12 @@
     <Compile Include="Forms\Kunden\Kunden.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Kunden\KundenGruppe.Designer.vb">
+      <DependentUpon>KundenGruppe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\KundenGruppe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Kunden\KundenListe.Designer.vb">
       <DependentUpon>KundenListe.vb</DependentUpon>
     </Compile>
@@ -534,6 +540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden\Kunden.resx">
       <DependentUpon>Kunden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\KundenGruppe.resx">
+      <DependentUpon>KundenGruppe.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden\KundenListe.resx">
       <DependentUpon>KundenListe.vb</DependentUpon>

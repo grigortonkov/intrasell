@@ -1,1 +1,4 @@
-﻿
+﻿1. Einheiten in der Vorlage und Vorgang 
+2. Bug: Nummer wird besetzt problem - VorgangWizzard
+OK 3. Kundengruppen Form
+4. Kundengruppe, Preisliste wird bem Kundne nicht gespeihert, und beim blättern verschwindet
