@@ -72,7 +72,7 @@ Public Class grartikel_vkpreisperselectionTableAdapterTest
         Dim AufschlagVKPreis As Nullable(Of Double) = New Nullable(Of Double)()
         Dim AufschlagEKPreis As Nullable(Of Double) = New Nullable(Of Double)()
 
-        Dim PreislisteName As String = "Bonuskunden"
+        Dim PreislisteName As String = Nothing '"Bonuskunden"
         Dim ArtKatNr As Nullable(Of Integer) = New Nullable(Of Integer)()
         Dim ArtNr As Nullable(Of Integer) = New Nullable(Of Integer)
         Dim IDNR As Nullable(Of Integer) = New Nullable(Of Integer)
@@ -107,6 +107,12 @@ Public Class grartikel_vkpreisperselectionTableAdapterTest
 
         'Regel 6
         actual = target.Insert(Datum, 80, AufschlagVKPreis, AufschlagEKPreis, PreislisteName, ArtKatNr, ArtNr, 100, 10)
+        Assert.AreEqual(expected, actual)
+
+
+        'Regel 7 - Allgemeine Regel - 60 % auf EK Preis - 
+        PreislisteName = "Bonuskunden"
+        actual = target.Insert(Datum, VKPreis, AufschlagVKPreis, 60, PreislisteName, ArtKatNr, ArtNr, IDNR, StkAb)
         Assert.AreEqual(expected, actual)
 
     End Sub
