@@ -11,21 +11,21 @@ Public Class AdressenDetailControl
         End Set
     End Property
 
-    Public Property Status As String
-        Get
-            Return StatusComboBox.Text
-        End Get
-        Set(value As String)
-            StatusComboBox.Text = value
-        End Set
-    End Property
+    'Public Property Status As String
+    '    Get
+    '        Return StatusComboBox.Text
+    '    End Get
+    '    Set(value As String)
+    '        StatusComboBox.Text = value
+    '    End Set
+    'End Property
 
     Public Property Branche As String
         Get
-            Return BrancheComboBox.Text
+            Return BrancheComboBox.SelectedValue
         End Get
         Set(value As String)
-            BrancheComboBox.Text = value
+            BrancheComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -41,30 +41,30 @@ Public Class AdressenDetailControl
 
     Public Property Briefanrede As String
         Get
-            Return BriefanredeComboBox.Text
+            Return BriefanredeComboBox.SelectedValue
         End Get
         Set(value As String)
-            BriefanredeComboBox.Text = value
+            BriefanredeComboBox.SelectedValue = value
         End Set
     End Property
 
 
     Public Property Anrede As String
         Get
-            Return AnredeComboBox.Text
+            Return AnredeComboBox.SelectedValue
         End Get
         Set(value As String)
-            AnredeComboBox.Text = value
+            AnredeComboBox.SelectedValue = value
         End Set
     End Property
 
 
     Public Property Titel As String
         Get
-            Return TitelComboBox.Text
+            Return TitelComboBox.SelectedValue
         End Get
         Set(value As String)
-            TitelComboBox.Text = value
+            TitelComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -95,28 +95,137 @@ Public Class AdressenDetailControl
         End Set
     End Property
 
+    Public Property Geburtstag As Date
+        Get
+            Return GeburtstagDateTimePicker.Value
+        End Get
+        Set(ByVal value As Date)
+            GeburtstagDateTimePicker.Value = value
+        End Set
+    End Property
+    Public Property Land As String
+        Get
+            Return LandComboBox.SelectedValue
+        End Get
+        Set(ByVal value As String)
+            If Not value Is Nothing And Not value = "" Then LandComboBox.SelectedValue = value
+        End Set
+    End Property
 
+    Public Property PLZ As String
+        Get
+            Return PLZComboBox.SelectedValue
+        End Get
+        Set(ByVal value As String)
+            If Not value Is Nothing And Not value = "" Then PLZComboBox.SelectedValue = value
+        End Set
+    End Property
+
+    Public Property Ort As String
+        Get
+            Return OrtComboBox.Text
+        End Get
+        Set(ByVal value As String)
+            OrtComboBox.Text = value
+        End Set
+    End Property
+
+    Public Property Adresse As String
+        Get
+            Return AdresseTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            AdresseTextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Tel As String
+        Get
+            Return TelTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            TelTextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Tel2 As String
+        Get
+            Return Tel2TextBox.Text
+        End Get
+        Set(ByVal value As String)
+            Tel2TextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Fax As String
+        Get
+            Return FaxTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            FaxTextBox.Text = value
+        End Set
+    End Property
+
+
+    Public Property Fax2 As String
+        Get
+            Return Fax2TextBox.Text
+        End Get
+        Set(ByVal value As String)
+            Fax2TextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Mobil As String
+        Get
+            Return MobilTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            MobilTextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Email As String
+        Get
+            Return EmailTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            EmailTextBox.Text = value
+        End Set
+    End Property
+
+    Public Property Web As String
+        Get
+            Return WebTextBox.Text
+        End Get
+        Set(ByVal value As String)
+            WebTextBox.Text = value
+        End Set
+    End Property
+
+
+    'TODO: Tel, Email ....
 
 #End Region
 
-    Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Public Sub Init()
         Try
 
             'Branche 
-            FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen   order by Bezeichnung", "Bezeichnung", "BrNr")
-            'Title
+            FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen order by Bezeichnung", "Bezeichnung", "BrNr")
+            'Titel
             FillComboBox(Me.TitelComboBox, "select Titel from ofAdressen group by Titel order by Titel", "Titel", "Titel")
-            'anrede 
+            'Anrede 
             FillComboBox(Me.AnredeComboBox, "select Anrede from grAnrede group by Anrede order by Anrede", "Anrede", "Anrede")
             'Briefanrede 
             FillComboBox(Me.BriefanredeComboBox, "select Briefanrede from grAnrede group by Briefanrede order by Briefanrede", "Briefanrede", "Briefanrede")
-            'Satus 
-            FillComboBox(Me.StatusComboBox, "select Status from ofAdressen group by Status order by Status", "Status", "Status")
+            'Satus - gibt es nicht in Weitere Adressen oder Lieferanten
+            'FillComboBox(Me.StatusComboBox, "select Status from ofAdressen group by Status order by Status", "Status", "Status")
 
             Me.GrlandTableAdapter.FillBy(Me.DsPLZ.grland)
             Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
 
-            Me.OfAdressenTableAdapter.Fill(Me.DataSetKunden.ofadressen)
+            'Me.OfAdressenTableAdapter.Fill(Me.DataSetKunden.ofadressen)
 
         Catch ex As Exception
             HandleAppError(ex)

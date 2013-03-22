@@ -1,20 +1,51 @@
-﻿Public Class AdresseWeitere
+﻿Imports IntraSell_DLL
+Public Class AdresseWeitere
 
-    Private Sub AdressenDetailControl1_Load(sender As System.Object, e As System.EventArgs) Handles AdressenDetailControl1.Load
-
+    Private Sub Ofadressen_weitereBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Ofadressen_weitereBindingNavigatorSaveItem.Click
+        Try
+            Me.Validate()
+            Me.Ofadressen_weitereBindingSource.EndEdit()
+            Me.TableAdapterManager.UpdateAll(Me.DsAdressen)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
-    Private Sub Ofadressen_weitereBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles Ofadressen_weitereBindingNavigatorSaveItem.Click
-        Me.Validate()
-        Me.Ofadressen_weitereBindingSource.EndEdit()
-        Me.TableAdapterManager.UpdateAll(Me.DsAdressen)
-
+    Sub LoadData(ByVal IDNR As Integer)
+        Try
+            Me.OfAdressenTableAdapter.FillByIDNR(Me.DsAdressen.ofadressen, IDNR)
+            Me.Ofadressen_weitereTableAdapter.FillByIDNR(Me.DsAdressen._ofadressen_weitere, IDNR)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 
-    Private Sub AdresseWeitere_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DsAdressen._ofadressen_weitere' table. You can move, or remove it, as needed.#
-        Me.OfadressenTableAdapter.Fill(Me.DsAdressen.ofadressen)
-        Me.Ofadressen_weitereTableAdapter.Fill(Me.DsAdressen._ofadressen_weitere)
+    Public Sub StarteNeueAdresse(ByVal IDNR As Integer, ByVal VorgangTyp As String)
+        Try
+            LoadData(IDNR)
+            Me.Ofadressen_weitereBindingSource.AddNew()
+            Me.Ofadressen_weitereBindingSource.Current.Row.IDNR = IDNR
+            Me.Ofadressen_weitereBindingSource.Current.Row.Typ = VorgangTyp
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 
+
+    Private Sub AdresseWeitere_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Try
+            AdressenDetailControl.Init()
+            'folgende DAten sind nicht aktiviert für weitere adressen
+            AdressenDetailControl.BriefanredeComboBox.Enabled = False
+            AdressenDetailControl.StatusComboBox.Enabled = False
+            AdressenDetailControl.GeburtstagDateTimePicker.Enabled = False
+            AdressenDetailControl.Tel2TextBox.Enabled = False
+            AdressenDetailControl.Fax2TextBox.Enabled = False
+
+            FillComboBox(Me.TypComboBox, "SELECT '' as Typ, '' as Bezeichnung union SELECT Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
+
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 End Class

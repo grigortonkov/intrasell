@@ -33,7 +33,6 @@ Partial Class VorgangWizzard
         Me.TypComboBox = New System.Windows.Forms.ComboBox()
         Me.DatumDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
-        Me.KundeAnlegenButton = New System.Windows.Forms.Button()
         NummerLabel = New System.Windows.Forms.Label()
         TypLabel = New System.Windows.Forms.Label()
         KundNrLabel = New System.Windows.Forms.Label()
@@ -143,17 +142,9 @@ Partial Class VorgangWizzard
         Me.KundNrAdressenControl.IDNR = 0
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(134, 25)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(172, 25)
+        Me.KundNrAdressenControl.ShowAddNew = True
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(171, 25)
         Me.KundNrAdressenControl.TabIndex = 0
-        '
-        'KundeAnlegenButton
-        '
-        Me.KundeAnlegenButton.Location = New System.Drawing.Point(289, 25)
-        Me.KundeAnlegenButton.Name = "KundeAnlegenButton"
-        Me.KundeAnlegenButton.Size = New System.Drawing.Size(102, 23)
-        Me.KundeAnlegenButton.TabIndex = 14
-        Me.KundeAnlegenButton.Text = "Kunde anlegen"
-        Me.KundeAnlegenButton.UseVisualStyleBackColor = True
         '
         'VorgangWizzard
         '
@@ -162,7 +153,6 @@ Partial Class VorgangWizzard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(435, 315)
-        Me.Controls.Add(Me.KundeAnlegenButton)
         Me.Controls.Add(DatumLabel)
         Me.Controls.Add(Me.DatumDateTimePicker)
         Me.Controls.Add(Me.KundNrAdressenControl)
@@ -191,6 +181,5 @@ Partial Class VorgangWizzard
     Friend WithEvents NummerTextBox As System.Windows.Forms.TextBox
     Friend WithEvents TypComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents DatumDateTimePicker As System.Windows.Forms.DateTimePicker
-    Friend WithEvents KundeAnlegenButton As System.Windows.Forms.Button
 
 End Class

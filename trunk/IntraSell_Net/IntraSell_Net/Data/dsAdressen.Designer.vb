@@ -9908,7 +9908,7 @@ Namespace dsAdressenTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(3) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(4) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, N"& _ 
@@ -9920,10 +9920,12 @@ Namespace dsAdressenTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "INSERT INTO ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IDNR, Status, Name, Vorname, Fi"& _ 
-                "rma, Adresse, Land, PLZ, Ort, Tel, Mobil, Email, Web)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IDNR, @St"& _ 
-                "atus, @Name, @Vorname, @Firma, @Adresse, @Land, @PLZ, @Ort, @Tel, @Mobil, @Email"& _ 
-                ", @Web)"
+            Me._commandCollection(1).CommandText = "SELECT        IDNR, Status, Branche, Briefanrede, Titel, Anrede, Name, Vorname, N"& _ 
+                "ame1, Firma, Adresse, Land, PLZ, Ort, Tel, Tel2, Fax, Fax2, Mobil, Email, Web, E"& _ 
+                "xport, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         AngelegtAn, MAAusen, MAInnen, Abbuchung, hasMe"& _ 
+                "nu, Passwort, nextIDNR, mandant, Geburtstag, UID, SkypeAdresse, MessengerAdresse"& _ 
+                ", EUNummer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         EUNummer1, EUNummer2, BHReferenz"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   "& _ 
+                "         ofadressen where IDNR=@IDNR"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@IDNR"
@@ -9932,6 +9934,20 @@ Namespace dsAdressenTableAdapters
             param.IsNullable = true
             param.SourceColumn = "IDNR"
             Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "INSERT INTO ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (IDNR, Status, Name, Vorname, Fi"& _ 
+                "rma, Adresse, Land, PLZ, Ort, Tel, Mobil, Email, Web)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@IDNR, @St"& _ 
+                "atus, @Name, @Vorname, @Firma, @Adresse, @Land, @PLZ, @Ort, @Tel, @Mobil, @Email"& _ 
+                ", @Web)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IDNR"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IDNR"
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Status"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9939,7 +9955,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 10
             param.IsNullable = true
             param.SourceColumn = "Status"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Name"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9947,7 +9963,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Name"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Vorname"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9955,7 +9971,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Vorname"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Firma"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9963,7 +9979,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 255
             param.IsNullable = true
             param.SourceColumn = "Firma"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Adresse"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9971,14 +9987,14 @@ Namespace dsAdressenTableAdapters
             param.Size = 100
             param.IsNullable = true
             param.SourceColumn = "Adresse"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Land"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "Land"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PLZ"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9986,7 +10002,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 20
             param.IsNullable = true
             param.SourceColumn = "PLZ"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Ort"
             param.DbType = Global.System.Data.DbType.[String]
@@ -9994,7 +10010,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Ort"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Tel"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10002,7 +10018,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Tel"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Mobil"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10010,7 +10026,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Mobil"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Email"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10018,7 +10034,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Email"
-            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Web"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10026,19 +10042,19 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Web"
-            Me._commandCollection(1).Parameters.Add(param)
-            Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "UPDATE    ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET             Branche = @Branche "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IDNR = @Ori"& _ 
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "UPDATE    ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET             Branche = @Branche "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     (IDNR = @Ori"& _ 
                 "ginal_IDNR)"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Branche"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
             param.SourceColumn = "Branche"
-            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_IDNR"
             param.DbType = Global.System.Data.DbType.Int32
@@ -10046,13 +10062,13 @@ Namespace dsAdressenTableAdapters
             param.IsNullable = true
             param.SourceColumn = "IDNR"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(2).Parameters.Add(param)
-            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
-            Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "UPDATE       ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Firma = @Firma, Adresse = @Adresse, P"& _ 
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "UPDATE       ofadressen"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Firma = @Firma, Adresse = @Adresse, P"& _ 
                 "LZ = @PLZ, Ort = @Ort, Tel = @Tel, Fax = @Fax, Mobil = @Mobil, Email = @Email, W"& _ 
                 "eb = @Web"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (IDNR = @Original_IDNR)"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Firma"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10060,7 +10076,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 255
             param.IsNullable = true
             param.SourceColumn = "Firma"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Adresse"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10068,7 +10084,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 100
             param.IsNullable = true
             param.SourceColumn = "Adresse"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@PLZ"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10076,7 +10092,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 20
             param.IsNullable = true
             param.SourceColumn = "PLZ"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Ort"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10084,7 +10100,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Ort"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Tel"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10092,7 +10108,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Tel"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Fax"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10100,7 +10116,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Fax"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Mobil"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10108,7 +10124,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Mobil"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Email"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10116,7 +10132,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Email"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Web"
             param.DbType = Global.System.Data.DbType.[String]
@@ -10124,7 +10140,7 @@ Namespace dsAdressenTableAdapters
             param.Size = 50
             param.IsNullable = true
             param.SourceColumn = "Web"
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Original_IDNR"
             param.DbType = Global.System.Data.DbType.Int32
@@ -10132,7 +10148,7 @@ Namespace dsAdressenTableAdapters
             param.IsNullable = true
             param.SourceColumn = "IDNR"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10157,6 +10173,20 @@ Namespace dsAdressenTableAdapters
             Dim dataTable As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIDNR(ByVal dataTable As dsAdressen.ofadressenDataTable, ByVal IDNR As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDNR,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10700,7 +10730,7 @@ Namespace dsAdressenTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function InsertKlein(ByVal IDNR As Integer, ByVal Status As String, ByVal Name As String, ByVal Vorname As String, ByVal Firma As String, ByVal Adresse As String, ByVal Land As Global.System.Nullable(Of Integer), ByVal PLZ As String, ByVal Ort As String, ByVal Tel As String, ByVal Mobil As String, ByVal Email As String, ByVal Web As String) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
             command.Parameters(0).Value = CType(IDNR,Integer)
             If (Status Is Nothing) Then
                 command.Parameters(1).Value = Global.System.DBNull.Value
@@ -10783,7 +10813,7 @@ Namespace dsAdressenTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateBrancheQuery(ByVal Branche As Global.System.Nullable(Of Integer), ByVal Original_IDNR As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(3)
             If (Branche.HasValue = true) Then
                 command.Parameters(0).Value = CType(Branche.Value,Integer)
             Else
@@ -10810,7 +10840,7 @@ Namespace dsAdressenTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function UpdateKlein(ByVal Firma As String, ByVal Adresse As String, ByVal PLZ As String, ByVal Ort As String, ByVal Tel As String, ByVal Fax As String, ByVal Mobil As String, ByVal Email As String, ByVal Web As String, ByVal Original_IDNR As Integer) As Integer
-            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(3)
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(4)
             If (Firma Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -12761,7 +12791,7 @@ Namespace dsAdressenTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT `ID`, `Anrede`, `Typ`, `Branche`, `IDNR`, `Land`, `Name`, `Vorname`, `Name"& _ 
@@ -12769,6 +12799,20 @@ Namespace dsAdressenTableAdapters
                 "eb`, `AngelegtAn`, `Passwort`, `Geburtstag`, `UID`, `EUNummer`, `EUNummer1`, `EU"& _ 
                 "Nummer2`, `Titel` FROM `ofadressen-weitere`"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT `ID`, `Anrede`, `Typ`, `Branche`, `IDNR`, `Land`, `Name`, `Vorname`, `Name"& _ 
+                "1`, `Firma`, `Adresse`, `PLZ`, `Ort`, `Tel`, `Tel2`, `Fax`, `Mobil`, `Email`, `W"& _ 
+                "eb`, `AngelegtAn`, `Passwort`, `Geburtstag`, `UID`, `EUNummer`, `EUNummer1`, `EU"& _ 
+                "Nummer2`, `Titel` FROM `ofadressen-weitere`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where IDNR=@IDNR"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@IDNR"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "IDNR"
+            Me._commandCollection(1).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12793,6 +12837,24 @@ Namespace dsAdressenTableAdapters
             Dim dataTable As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByIDNR(ByVal dataTable As dsAdressen._ofadressen_weitereDataTable, ByVal IDNR As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (IDNR.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(IDNR.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

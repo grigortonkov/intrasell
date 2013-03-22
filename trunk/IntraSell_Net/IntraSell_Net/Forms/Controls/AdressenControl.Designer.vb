@@ -28,6 +28,7 @@ Partial Class AdressenControl
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.AddNewButton = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -74,11 +75,24 @@ Partial Class AdressenControl
         '
         Me.FlowLayoutPanel1.Controls.Add(Me.AdressenComboBox)
         Me.FlowLayoutPanel1.Controls.Add(Me.SelectorButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.AddNewButton)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(156, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 25)
         Me.FlowLayoutPanel1.TabIndex = 40
+        '
+        'AddNewButton
+        '
+        Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.AddNewButton.Location = New System.Drawing.Point(150, 1)
+        Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.AddNewButton.Name = "AddNewButton"
+        Me.AddNewButton.Size = New System.Drawing.Size(20, 23)
+        Me.AddNewButton.TabIndex = 40
+        Me.AddNewButton.Text = "+"
+        Me.AddNewButton.UseVisualStyleBackColor = True
+        Me.AddNewButton.Visible = False
         '
         'AdressenControl
         '
@@ -86,7 +100,7 @@ Partial Class AdressenControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "AdressenControl"
-        Me.Size = New System.Drawing.Size(156, 25)
+        Me.Size = New System.Drawing.Size(171, 25)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -97,5 +111,6 @@ Partial Class AdressenControl
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AddNewButton As System.Windows.Forms.Button
 
 End Class

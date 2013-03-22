@@ -25,6 +25,7 @@ Partial Class AdressenWeitereControl
         Me.ArtikelSelectorButton = New System.Windows.Forms.Button()
         Me.AdressenComboBox = New System.Windows.Forms.ComboBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.AddNewButton = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,11 +58,24 @@ Partial Class AdressenWeitereControl
         '
         Me.FlowLayoutPanel1.Controls.Add(Me.AdressenComboBox)
         Me.FlowLayoutPanel1.Controls.Add(Me.ArtikelSelectorButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.AddNewButton)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(155, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 25)
         Me.FlowLayoutPanel1.TabIndex = 40
+        '
+        'AddNewButton
+        '
+        Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.AddNewButton.Location = New System.Drawing.Point(150, 1)
+        Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.AddNewButton.Name = "AddNewButton"
+        Me.AddNewButton.Size = New System.Drawing.Size(20, 23)
+        Me.AddNewButton.TabIndex = 41
+        Me.AddNewButton.Text = "+"
+        Me.AddNewButton.UseVisualStyleBackColor = True
+        Me.AddNewButton.Visible = False
         '
         'AdressenWeitereControl
         '
@@ -69,7 +83,7 @@ Partial Class AdressenWeitereControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "AdressenWeitereControl"
-        Me.Size = New System.Drawing.Size(155, 25)
+        Me.Size = New System.Drawing.Size(171, 25)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -77,5 +91,6 @@ Partial Class AdressenWeitereControl
     Friend WithEvents ArtikelSelectorButton As System.Windows.Forms.Button
     Friend WithEvents AdressenComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents AddNewButton As System.Windows.Forms.Button
 
 End Class

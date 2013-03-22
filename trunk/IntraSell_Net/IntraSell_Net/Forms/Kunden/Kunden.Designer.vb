@@ -23,33 +23,12 @@ Partial Class Kunden
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim IDNRLabel As System.Windows.Forms.Label
         Dim StatusLabel As System.Windows.Forms.Label
-        Dim BrancheLabel As System.Windows.Forms.Label
-        Dim BriefanredeLabel As System.Windows.Forms.Label
-        Dim TitelLabel As System.Windows.Forms.Label
-        Dim AnredeLabel As System.Windows.Forms.Label
-        Dim NameLabel As System.Windows.Forms.Label
-        Dim VornameLabel As System.Windows.Forms.Label
-        Dim Name1Label As System.Windows.Forms.Label
-        Dim FirmaLabel As System.Windows.Forms.Label
-        Dim AdresseLabel As System.Windows.Forms.Label
-        Dim LandLabel As System.Windows.Forms.Label
-        Dim PLZLabel As System.Windows.Forms.Label
-        Dim OrtLabel As System.Windows.Forms.Label
-        Dim TelLabel As System.Windows.Forms.Label
-        Dim Tel2Label As System.Windows.Forms.Label
-        Dim FaxLabel As System.Windows.Forms.Label
-        Dim Fax2Label As System.Windows.Forms.Label
-        Dim MobilLabel As System.Windows.Forms.Label
-        Dim EmailLabel As System.Windows.Forms.Label
-        Dim WebLabel As System.Windows.Forms.Label
         Dim MAAusenLabel As System.Windows.Forms.Label
         Dim MAInnenLabel As System.Windows.Forms.Label
         Dim PasswortLabel As System.Windows.Forms.Label
         Dim NextIDNRLabel As System.Windows.Forms.Label
         Dim MandantLabel As System.Windows.Forms.Label
-        Dim GeburtstagLabel As System.Windows.Forms.Label
         Dim UIDLabel As System.Windows.Forms.Label
         Dim SkypeAdresseLabel As System.Windows.Forms.Label
         Dim MessengerAdresseLabel As System.Windows.Forms.Label
@@ -112,9 +91,11 @@ Partial Class Kunden
         Me.SkypeAdresseTextBox = New System.Windows.Forms.TextBox()
         Me.UIDTextBox = New System.Windows.Forms.TextBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.AdresseWeitereButton = New System.Windows.Forms.Button()
         Me.Ofadressen_weitereDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Typ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -156,38 +137,14 @@ Partial Class Kunden
         Me.KundengruppenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.KundengruppenTableAdapter()
         Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
         Me.TableAdapterManager1 = New IntraSell_Net.dsPLZTableAdapters.TableAdapterManager()
-        Me.IDNRTextBox = New System.Windows.Forms.TextBox()
         Me.StatusComboBox = New System.Windows.Forms.ComboBox()
-        Me.BrancheComboBox = New System.Windows.Forms.ComboBox()
         Me.GrbranchenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsBranchen = New IntraSell_Net.dsBranchen()
-        Me.BriefanredeComboBox = New System.Windows.Forms.ComboBox()
-        Me.TitelComboBox = New System.Windows.Forms.ComboBox()
-        Me.AnredeComboBox = New System.Windows.Forms.ComboBox()
-        Me.NameTextBox = New System.Windows.Forms.TextBox()
-        Me.VornameTextBox = New System.Windows.Forms.TextBox()
-        Me.Name1TextBox = New System.Windows.Forms.TextBox()
-        Me.FirmaTextBox = New System.Windows.Forms.TextBox()
-        Me.AdresseTextBox = New System.Windows.Forms.TextBox()
-        Me.LandComboBox = New System.Windows.Forms.ComboBox()
-        Me.PLZComboBox = New System.Windows.Forms.ComboBox()
-        Me.OrtComboBox = New System.Windows.Forms.ComboBox()
-        Me.TelTextBox = New System.Windows.Forms.TextBox()
-        Me.Tel2TextBox = New System.Windows.Forms.TextBox()
-        Me.FaxTextBox = New System.Windows.Forms.TextBox()
-        Me.Fax2TextBox = New System.Windows.Forms.TextBox()
-        Me.MobilTextBox = New System.Windows.Forms.TextBox()
-        Me.EmailTextBox = New System.Windows.Forms.TextBox()
-        Me.WebTextBox = New System.Windows.Forms.TextBox()
-        Me.GeburtstagDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.Ofadressen_zahlungsmethodenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_zahlungsmethodenTableAdapter()
         Me.Ofadressen_zahlungsbedingungenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_zahlungsbedingungenTableAdapter()
         Me.Ofadressen_transportmethodenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_transportmethodenTableAdapter()
         Me.Ofadressen_weitereTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_weitereTableAdapter()
-        Me.ButtonPLZSelect = New System.Windows.Forms.Button()
         Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
-        Me.FillByToolStrip = New System.Windows.Forms.ToolStrip()
-        Me.FillByToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.GrzahlungsmethodeTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grzahlungsmethodeTableAdapter()
         Me.GrzahlungsbedingungTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grzahlungsbedingungTableAdapter()
         Me.GrtransportmethodeTableAdapter = New IntraSell_Net.dsStammdatenTableAdapters.grtransportmethodeTableAdapter()
@@ -197,34 +154,13 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerVorgangToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AlteVorgängeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdresseWeitereButton = New System.Windows.Forms.Button()
-        IDNRLabel = New System.Windows.Forms.Label()
+        Me.AdressenDetailControl1 = New IntraSell_Net.AdressenDetailControl()
         StatusLabel = New System.Windows.Forms.Label()
-        BrancheLabel = New System.Windows.Forms.Label()
-        BriefanredeLabel = New System.Windows.Forms.Label()
-        TitelLabel = New System.Windows.Forms.Label()
-        AnredeLabel = New System.Windows.Forms.Label()
-        NameLabel = New System.Windows.Forms.Label()
-        VornameLabel = New System.Windows.Forms.Label()
-        Name1Label = New System.Windows.Forms.Label()
-        FirmaLabel = New System.Windows.Forms.Label()
-        AdresseLabel = New System.Windows.Forms.Label()
-        LandLabel = New System.Windows.Forms.Label()
-        PLZLabel = New System.Windows.Forms.Label()
-        OrtLabel = New System.Windows.Forms.Label()
-        TelLabel = New System.Windows.Forms.Label()
-        Tel2Label = New System.Windows.Forms.Label()
-        FaxLabel = New System.Windows.Forms.Label()
-        Fax2Label = New System.Windows.Forms.Label()
-        MobilLabel = New System.Windows.Forms.Label()
-        EmailLabel = New System.Windows.Forms.Label()
-        WebLabel = New System.Windows.Forms.Label()
         MAAusenLabel = New System.Windows.Forms.Label()
         MAInnenLabel = New System.Windows.Forms.Label()
         PasswortLabel = New System.Windows.Forms.Label()
         NextIDNRLabel = New System.Windows.Forms.Label()
         MandantLabel = New System.Windows.Forms.Label()
-        GeburtstagLabel = New System.Windows.Forms.Label()
         UIDLabel = New System.Windows.Forms.Label()
         SkypeAdresseLabel = New System.Windows.Forms.Label()
         MessengerAdresseLabel = New System.Windows.Forms.Label()
@@ -267,198 +203,17 @@ Partial Class Kunden
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.FillByToolStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'IDNRLabel
-        '
-        IDNRLabel.AutoSize = True
-        IDNRLabel.Location = New System.Drawing.Point(9, 31)
-        IDNRLabel.Name = "IDNRLabel"
-        IDNRLabel.Size = New System.Drawing.Size(37, 13)
-        IDNRLabel.TabIndex = 7
-        IDNRLabel.Text = "IDNR:"
         '
         'StatusLabel
         '
         StatusLabel.AutoSize = True
-        StatusLabel.Location = New System.Drawing.Point(9, 57)
+        StatusLabel.Location = New System.Drawing.Point(650, 44)
         StatusLabel.Name = "StatusLabel"
         StatusLabel.Size = New System.Drawing.Size(40, 13)
         StatusLabel.TabIndex = 9
         StatusLabel.Text = "Status:"
-        '
-        'BrancheLabel
-        '
-        BrancheLabel.AutoSize = True
-        BrancheLabel.Location = New System.Drawing.Point(9, 84)
-        BrancheLabel.Name = "BrancheLabel"
-        BrancheLabel.Size = New System.Drawing.Size(50, 13)
-        BrancheLabel.TabIndex = 11
-        BrancheLabel.Text = "Branche:"
-        '
-        'BriefanredeLabel
-        '
-        BriefanredeLabel.AutoSize = True
-        BriefanredeLabel.Location = New System.Drawing.Point(9, 137)
-        BriefanredeLabel.Name = "BriefanredeLabel"
-        BriefanredeLabel.Size = New System.Drawing.Size(64, 13)
-        BriefanredeLabel.TabIndex = 13
-        BriefanredeLabel.Text = "Briefanrede:"
-        '
-        'TitelLabel
-        '
-        TitelLabel.AutoSize = True
-        TitelLabel.Location = New System.Drawing.Point(9, 191)
-        TitelLabel.Name = "TitelLabel"
-        TitelLabel.Size = New System.Drawing.Size(30, 13)
-        TitelLabel.TabIndex = 15
-        TitelLabel.Text = "Titel:"
-        '
-        'AnredeLabel
-        '
-        AnredeLabel.AutoSize = True
-        AnredeLabel.Location = New System.Drawing.Point(9, 163)
-        AnredeLabel.Name = "AnredeLabel"
-        AnredeLabel.Size = New System.Drawing.Size(44, 13)
-        AnredeLabel.TabIndex = 17
-        AnredeLabel.Text = "Anrede:"
-        '
-        'NameLabel
-        '
-        NameLabel.AutoSize = True
-        NameLabel.Location = New System.Drawing.Point(9, 218)
-        NameLabel.Name = "NameLabel"
-        NameLabel.Size = New System.Drawing.Size(38, 13)
-        NameLabel.TabIndex = 19
-        NameLabel.Text = "Name:"
-        '
-        'VornameLabel
-        '
-        VornameLabel.AutoSize = True
-        VornameLabel.Location = New System.Drawing.Point(9, 244)
-        VornameLabel.Name = "VornameLabel"
-        VornameLabel.Size = New System.Drawing.Size(52, 13)
-        VornameLabel.TabIndex = 21
-        VornameLabel.Text = "Vorname:"
-        '
-        'Name1Label
-        '
-        Name1Label.AutoSize = True
-        Name1Label.Location = New System.Drawing.Point(9, 270)
-        Name1Label.Name = "Name1Label"
-        Name1Label.Size = New System.Drawing.Size(44, 13)
-        Name1Label.TabIndex = 23
-        Name1Label.Text = "Name1:"
-        '
-        'FirmaLabel
-        '
-        FirmaLabel.AutoSize = True
-        FirmaLabel.Location = New System.Drawing.Point(9, 111)
-        FirmaLabel.Name = "FirmaLabel"
-        FirmaLabel.Size = New System.Drawing.Size(35, 13)
-        FirmaLabel.TabIndex = 25
-        FirmaLabel.Text = "Firma:"
-        '
-        'AdresseLabel
-        '
-        AdresseLabel.AutoSize = True
-        AdresseLabel.Location = New System.Drawing.Point(319, 84)
-        AdresseLabel.Name = "AdresseLabel"
-        AdresseLabel.Size = New System.Drawing.Size(45, 13)
-        AdresseLabel.TabIndex = 27
-        AdresseLabel.Text = "Strasse:"
-        '
-        'LandLabel
-        '
-        LandLabel.AutoSize = True
-        LandLabel.Location = New System.Drawing.Point(319, 31)
-        LandLabel.Name = "LandLabel"
-        LandLabel.Size = New System.Drawing.Size(34, 13)
-        LandLabel.TabIndex = 29
-        LandLabel.Text = "Land:"
-        '
-        'PLZLabel
-        '
-        PLZLabel.AutoSize = True
-        PLZLabel.Location = New System.Drawing.Point(319, 62)
-        PLZLabel.Name = "PLZLabel"
-        PLZLabel.Size = New System.Drawing.Size(30, 13)
-        PLZLabel.TabIndex = 31
-        PLZLabel.Text = "PLZ:"
-        '
-        'OrtLabel
-        '
-        OrtLabel.AutoSize = True
-        OrtLabel.Location = New System.Drawing.Point(435, 62)
-        OrtLabel.Name = "OrtLabel"
-        OrtLabel.Size = New System.Drawing.Size(24, 13)
-        OrtLabel.TabIndex = 33
-        OrtLabel.Text = "Ort:"
-        '
-        'TelLabel
-        '
-        TelLabel.AutoSize = True
-        TelLabel.Location = New System.Drawing.Point(319, 137)
-        TelLabel.Name = "TelLabel"
-        TelLabel.Size = New System.Drawing.Size(25, 13)
-        TelLabel.TabIndex = 35
-        TelLabel.Text = "Tel:"
-        '
-        'Tel2Label
-        '
-        Tel2Label.AutoSize = True
-        Tel2Label.Location = New System.Drawing.Point(319, 163)
-        Tel2Label.Name = "Tel2Label"
-        Tel2Label.Size = New System.Drawing.Size(31, 13)
-        Tel2Label.TabIndex = 37
-        Tel2Label.Text = "Tel2:"
-        '
-        'FaxLabel
-        '
-        FaxLabel.AutoSize = True
-        FaxLabel.Location = New System.Drawing.Point(319, 189)
-        FaxLabel.Name = "FaxLabel"
-        FaxLabel.Size = New System.Drawing.Size(27, 13)
-        FaxLabel.TabIndex = 39
-        FaxLabel.Text = "Fax:"
-        '
-        'Fax2Label
-        '
-        Fax2Label.AutoSize = True
-        Fax2Label.Location = New System.Drawing.Point(319, 215)
-        Fax2Label.Name = "Fax2Label"
-        Fax2Label.Size = New System.Drawing.Size(33, 13)
-        Fax2Label.TabIndex = 41
-        Fax2Label.Text = "Fax2:"
-        '
-        'MobilLabel
-        '
-        MobilLabel.AutoSize = True
-        MobilLabel.Location = New System.Drawing.Point(319, 241)
-        MobilLabel.Name = "MobilLabel"
-        MobilLabel.Size = New System.Drawing.Size(35, 13)
-        MobilLabel.TabIndex = 43
-        MobilLabel.Text = "Mobil:"
-        '
-        'EmailLabel
-        '
-        EmailLabel.AutoSize = True
-        EmailLabel.Location = New System.Drawing.Point(319, 267)
-        EmailLabel.Name = "EmailLabel"
-        EmailLabel.Size = New System.Drawing.Size(35, 13)
-        EmailLabel.TabIndex = 45
-        EmailLabel.Text = "Email:"
-        '
-        'WebLabel
-        '
-        WebLabel.AutoSize = True
-        WebLabel.Location = New System.Drawing.Point(319, 293)
-        WebLabel.Name = "WebLabel"
-        WebLabel.Size = New System.Drawing.Size(33, 13)
-        WebLabel.TabIndex = 47
-        WebLabel.Text = "Web:"
         '
         'MAAusenLabel
         '
@@ -504,15 +259,6 @@ Partial Class Kunden
         MandantLabel.Size = New System.Drawing.Size(52, 13)
         MandantLabel.TabIndex = 65
         MandantLabel.Text = "Mandant:"
-        '
-        'GeburtstagLabel
-        '
-        GeburtstagLabel.AutoSize = True
-        GeburtstagLabel.Location = New System.Drawing.Point(9, 297)
-        GeburtstagLabel.Name = "GeburtstagLabel"
-        GeburtstagLabel.Size = New System.Drawing.Size(62, 13)
-        GeburtstagLabel.TabIndex = 67
-        GeburtstagLabel.Text = "Geburtstag:"
         '
         'UIDLabel
         '
@@ -612,10 +358,10 @@ Partial Class Kunden
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl1.Location = New System.Drawing.Point(0, 319)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 345)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(794, 356)
+        Me.TabControl1.Size = New System.Drawing.Size(953, 318)
         Me.TabControl1.TabIndex = 23
         '
         'TabPage1
@@ -635,7 +381,7 @@ Partial Class Kunden
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(786, 330)
+        Me.TabPage1.Size = New System.Drawing.Size(945, 292)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Einstellungen"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -653,12 +399,12 @@ Partial Class Kunden
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 2, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Ofadressen_transportmethodenDataGridView, 2, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 125)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 87)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.18519!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.81481!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(780, 202)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(939, 202)
         Me.TableLayoutPanel1.TabIndex = 16
         '
         'Label1
@@ -679,7 +425,7 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsmethodenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Ofadressen_zahlungsmethodenDataGridView.Location = New System.Drawing.Point(3, 23)
         Me.Ofadressen_zahlungsmethodenDataGridView.Name = "Ofadressen_zahlungsmethodenDataGridView"
-        Me.Ofadressen_zahlungsmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
+        Me.Ofadressen_zahlungsmethodenDataGridView.Size = New System.Drawing.Size(307, 176)
         Me.Ofadressen_zahlungsmethodenDataGridView.TabIndex = 9
         '
         'DataGridViewTextBoxColumn1
@@ -728,9 +474,9 @@ Partial Class Kunden
         Me.Ofadressen_zahlungsbedingungenDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewCheckBoxColumn2})
         Me.Ofadressen_zahlungsbedingungenDataGridView.DataSource = Me.Ofadressen_zahlungsbedingungenBindingSource
         Me.Ofadressen_zahlungsbedingungenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ofadressen_zahlungsbedingungenDataGridView.Location = New System.Drawing.Point(263, 23)
+        Me.Ofadressen_zahlungsbedingungenDataGridView.Location = New System.Drawing.Point(316, 23)
         Me.Ofadressen_zahlungsbedingungenDataGridView.Name = "Ofadressen_zahlungsbedingungenDataGridView"
-        Me.Ofadressen_zahlungsbedingungenDataGridView.Size = New System.Drawing.Size(254, 176)
+        Me.Ofadressen_zahlungsbedingungenDataGridView.Size = New System.Drawing.Size(307, 176)
         Me.Ofadressen_zahlungsbedingungenDataGridView.TabIndex = 10
         '
         'DataGridViewTextBoxColumn3
@@ -770,7 +516,7 @@ Partial Class Kunden
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(263, 0)
+        Me.Label2.Location = New System.Drawing.Point(316, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(116, 13)
         Me.Label2.TabIndex = 11
@@ -779,7 +525,7 @@ Partial Class Kunden
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(523, 0)
+        Me.Label3.Location = New System.Drawing.Point(629, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 13
@@ -792,9 +538,9 @@ Partial Class Kunden
         Me.Ofadressen_transportmethodenDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7})
         Me.Ofadressen_transportmethodenDataGridView.DataSource = Me.Ofadressen_transportmethodenBindingSource
         Me.Ofadressen_transportmethodenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ofadressen_transportmethodenDataGridView.Location = New System.Drawing.Point(523, 23)
+        Me.Ofadressen_transportmethodenDataGridView.Location = New System.Drawing.Point(629, 23)
         Me.Ofadressen_transportmethodenDataGridView.Name = "Ofadressen_transportmethodenDataGridView"
-        Me.Ofadressen_transportmethodenDataGridView.Size = New System.Drawing.Size(254, 176)
+        Me.Ofadressen_transportmethodenDataGridView.Size = New System.Drawing.Size(307, 176)
         Me.Ofadressen_transportmethodenDataGridView.TabIndex = 12
         '
         'DataGridViewTextBoxColumn5
@@ -946,7 +692,7 @@ Partial Class Kunden
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(786, 330)
+        Me.TabPage2.Size = New System.Drawing.Size(945, 292)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Weitere Stammdaten"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1075,25 +821,35 @@ Partial Class Kunden
         'TabPage4
         '
         Me.TabPage4.AutoScroll = True
+        Me.TabPage4.Controls.Add(Me.AdresseWeitereButton)
         Me.TabPage4.Controls.Add(Me.Ofadressen_weitereDataGridView)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(786, 330)
+        Me.TabPage4.Size = New System.Drawing.Size(945, 292)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Weitere Adressdaten"
         Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'AdresseWeitereButton
+        '
+        Me.AdresseWeitereButton.Location = New System.Drawing.Point(3, 3)
+        Me.AdresseWeitereButton.Name = "AdresseWeitereButton"
+        Me.AdresseWeitereButton.Size = New System.Drawing.Size(109, 23)
+        Me.AdresseWeitereButton.TabIndex = 72
+        Me.AdresseWeitereButton.Text = "neue Adresse"
+        Me.AdresseWeitereButton.UseVisualStyleBackColor = True
         '
         'Ofadressen_weitereDataGridView
         '
         Me.Ofadressen_weitereDataGridView.AutoGenerateColumns = False
         Me.Ofadressen_weitereDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Ofadressen_weitereDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn34, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33, Me.DataGridViewTextBoxColumn27})
+        Me.Ofadressen_weitereDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn12, Me.Typ, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn34, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33, Me.DataGridViewTextBoxColumn27})
         Me.Ofadressen_weitereDataGridView.DataSource = Me.Ofadressen_weitereBindingSource
-        Me.Ofadressen_weitereDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(3, 3)
+        Me.Ofadressen_weitereDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(3, 23)
         Me.Ofadressen_weitereDataGridView.Name = "Ofadressen_weitereDataGridView"
-        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(780, 324)
+        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(922, 300)
         Me.Ofadressen_weitereDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn8
@@ -1109,6 +865,12 @@ Partial Class Kunden
         Me.DataGridViewTextBoxColumn12.HeaderText = "IDNR"
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         Me.DataGridViewTextBoxColumn12.Visible = False
+        '
+        'Typ
+        '
+        Me.Typ.DataPropertyName = "Typ"
+        Me.Typ.HeaderText = "Zweck"
+        Me.Typ.Name = "Typ"
         '
         'DataGridViewTextBoxColumn11
         '
@@ -1295,7 +1057,7 @@ Partial Class Kunden
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(786, 330)
+        Me.TabPage3.Size = New System.Drawing.Size(945, 292)
         Me.TabPage3.TabIndex = 4
         Me.TabPage3.Text = "Profil"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1308,7 +1070,7 @@ Partial Class Kunden
         Me.AdressenProfil1.IDNR = 0
         Me.AdressenProfil1.Location = New System.Drawing.Point(3, 3)
         Me.AdressenProfil1.Name = "AdressenProfil1"
-        Me.AdressenProfil1.Size = New System.Drawing.Size(780, 324)
+        Me.AdressenProfil1.Size = New System.Drawing.Size(939, 286)
         Me.AdressenProfil1.TabIndex = 47
         '
         'Ofadressen_profilBindingNavigator
@@ -1323,9 +1085,10 @@ Partial Class Kunden
         Me.Ofadressen_profilBindingNavigator.MovePreviousItem = Nothing
         Me.Ofadressen_profilBindingNavigator.Name = "Ofadressen_profilBindingNavigator"
         Me.Ofadressen_profilBindingNavigator.PositionItem = Nothing
-        Me.Ofadressen_profilBindingNavigator.Size = New System.Drawing.Size(780, 25)
+        Me.Ofadressen_profilBindingNavigator.Size = New System.Drawing.Size(1101, 25)
         Me.Ofadressen_profilBindingNavigator.TabIndex = 0
         Me.Ofadressen_profilBindingNavigator.Text = "BindingNavigator1"
+        Me.Ofadressen_profilBindingNavigator.Visible = False
         '
         'BuchvorgangtypBindingSource
         '
@@ -1385,34 +1148,14 @@ Partial Class Kunden
         Me.TableAdapterManager1.grplzTableAdapter = Nothing
         Me.TableAdapterManager1.UpdateOrder = IntraSell_Net.dsPLZTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'IDNRTextBox
-        '
-        Me.IDNRTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "IDNR", True))
-        Me.IDNRTextBox.Location = New System.Drawing.Point(77, 28)
-        Me.IDNRTextBox.Name = "IDNRTextBox"
-        Me.IDNRTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.IDNRTextBox.TabIndex = 0
-        '
         'StatusComboBox
         '
         Me.StatusComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Status", True))
         Me.StatusComboBox.FormattingEnabled = True
-        Me.StatusComboBox.Location = New System.Drawing.Point(77, 54)
+        Me.StatusComboBox.Location = New System.Drawing.Point(718, 41)
         Me.StatusComboBox.Name = "StatusComboBox"
         Me.StatusComboBox.Size = New System.Drawing.Size(200, 21)
         Me.StatusComboBox.TabIndex = 1
-        '
-        'BrancheComboBox
-        '
-        Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Branche", True))
-        Me.BrancheComboBox.DataSource = Me.GrbranchenBindingSource
-        Me.BrancheComboBox.DisplayMember = "Bezeichnung"
-        Me.BrancheComboBox.FormattingEnabled = True
-        Me.BrancheComboBox.Location = New System.Drawing.Point(77, 81)
-        Me.BrancheComboBox.Name = "BrancheComboBox"
-        Me.BrancheComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.BrancheComboBox.TabIndex = 2
-        Me.BrancheComboBox.ValueMember = "BrNR"
         '
         'GrbranchenBindingSource
         '
@@ -1423,173 +1166,6 @@ Partial Class Kunden
         '
         Me.DsBranchen.DataSetName = "dsBranchen"
         Me.DsBranchen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'BriefanredeComboBox
-        '
-        Me.BriefanredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Briefanrede", True))
-        Me.BriefanredeComboBox.FormattingEnabled = True
-        Me.BriefanredeComboBox.Location = New System.Drawing.Point(77, 134)
-        Me.BriefanredeComboBox.Name = "BriefanredeComboBox"
-        Me.BriefanredeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.BriefanredeComboBox.TabIndex = 4
-        '
-        'TitelComboBox
-        '
-        Me.TitelComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Titel", True))
-        Me.TitelComboBox.FormattingEnabled = True
-        Me.TitelComboBox.Location = New System.Drawing.Point(77, 188)
-        Me.TitelComboBox.Name = "TitelComboBox"
-        Me.TitelComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.TitelComboBox.TabIndex = 6
-        '
-        'AnredeComboBox
-        '
-        Me.AnredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Anrede", True))
-        Me.AnredeComboBox.FormattingEnabled = True
-        Me.AnredeComboBox.Location = New System.Drawing.Point(77, 160)
-        Me.AnredeComboBox.Name = "AnredeComboBox"
-        Me.AnredeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.AnredeComboBox.TabIndex = 5
-        '
-        'NameTextBox
-        '
-        Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name", True))
-        Me.NameTextBox.Location = New System.Drawing.Point(77, 215)
-        Me.NameTextBox.Name = "NameTextBox"
-        Me.NameTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.NameTextBox.TabIndex = 7
-        '
-        'VornameTextBox
-        '
-        Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Vorname", True))
-        Me.VornameTextBox.Location = New System.Drawing.Point(77, 241)
-        Me.VornameTextBox.Name = "VornameTextBox"
-        Me.VornameTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.VornameTextBox.TabIndex = 8
-        '
-        'Name1TextBox
-        '
-        Me.Name1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name1", True))
-        Me.Name1TextBox.Location = New System.Drawing.Point(77, 267)
-        Me.Name1TextBox.Name = "Name1TextBox"
-        Me.Name1TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Name1TextBox.TabIndex = 9
-        '
-        'FirmaTextBox
-        '
-        Me.FirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Firma", True))
-        Me.FirmaTextBox.Location = New System.Drawing.Point(77, 108)
-        Me.FirmaTextBox.Name = "FirmaTextBox"
-        Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.FirmaTextBox.TabIndex = 3
-        '
-        'AdresseTextBox
-        '
-        Me.AdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Adresse", True))
-        Me.AdresseTextBox.Location = New System.Drawing.Point(373, 84)
-        Me.AdresseTextBox.Name = "AdresseTextBox"
-        Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.AdresseTextBox.TabIndex = 14
-        '
-        'LandComboBox
-        '
-        Me.LandComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Land", True))
-        Me.LandComboBox.DataSource = Me.GrlandBindingSource
-        Me.LandComboBox.DisplayMember = "Name"
-        Me.LandComboBox.Location = New System.Drawing.Point(373, 31)
-        Me.LandComboBox.Name = "LandComboBox"
-        Me.LandComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.LandComboBox.TabIndex = 11
-        Me.LandComboBox.ValueMember = "IdNr"
-        '
-        'PLZComboBox
-        '
-        Me.PLZComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "PLZ", True))
-        Me.PLZComboBox.DataSource = Me.GrLandPlzBindingSource
-        Me.PLZComboBox.DisplayMember = "PLZ"
-        Me.PLZComboBox.FormattingEnabled = True
-        Me.PLZComboBox.Location = New System.Drawing.Point(373, 58)
-        Me.PLZComboBox.Name = "PLZComboBox"
-        Me.PLZComboBox.Size = New System.Drawing.Size(54, 21)
-        Me.PLZComboBox.TabIndex = 12
-        Me.PLZComboBox.ValueMember = "IdNr"
-        '
-        'OrtComboBox
-        '
-        Me.OrtComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Ort", True))
-        Me.OrtComboBox.DataSource = Me.GrLandPlzBindingSource
-        Me.OrtComboBox.DisplayMember = "Ort"
-        Me.OrtComboBox.FormattingEnabled = True
-        Me.OrtComboBox.Location = New System.Drawing.Point(460, 58)
-        Me.OrtComboBox.Name = "OrtComboBox"
-        Me.OrtComboBox.Size = New System.Drawing.Size(113, 21)
-        Me.OrtComboBox.TabIndex = 13
-        Me.OrtComboBox.ValueMember = "Ort"
-        '
-        'TelTextBox
-        '
-        Me.TelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel", True))
-        Me.TelTextBox.Location = New System.Drawing.Point(373, 137)
-        Me.TelTextBox.Name = "TelTextBox"
-        Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.TelTextBox.TabIndex = 16
-        '
-        'Tel2TextBox
-        '
-        Me.Tel2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel2", True))
-        Me.Tel2TextBox.Location = New System.Drawing.Point(373, 163)
-        Me.Tel2TextBox.Name = "Tel2TextBox"
-        Me.Tel2TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Tel2TextBox.TabIndex = 17
-        '
-        'FaxTextBox
-        '
-        Me.FaxTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax", True))
-        Me.FaxTextBox.Location = New System.Drawing.Point(373, 189)
-        Me.FaxTextBox.Name = "FaxTextBox"
-        Me.FaxTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.FaxTextBox.TabIndex = 18
-        '
-        'Fax2TextBox
-        '
-        Me.Fax2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax2", True))
-        Me.Fax2TextBox.Location = New System.Drawing.Point(373, 215)
-        Me.Fax2TextBox.Name = "Fax2TextBox"
-        Me.Fax2TextBox.Size = New System.Drawing.Size(200, 20)
-        Me.Fax2TextBox.TabIndex = 19
-        '
-        'MobilTextBox
-        '
-        Me.MobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Mobil", True))
-        Me.MobilTextBox.Location = New System.Drawing.Point(373, 241)
-        Me.MobilTextBox.Name = "MobilTextBox"
-        Me.MobilTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.MobilTextBox.TabIndex = 20
-        '
-        'EmailTextBox
-        '
-        Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Email", True))
-        Me.EmailTextBox.Location = New System.Drawing.Point(373, 267)
-        Me.EmailTextBox.Name = "EmailTextBox"
-        Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.EmailTextBox.TabIndex = 21
-        '
-        'WebTextBox
-        '
-        Me.WebTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Web", True))
-        Me.WebTextBox.Location = New System.Drawing.Point(373, 293)
-        Me.WebTextBox.Name = "WebTextBox"
-        Me.WebTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.WebTextBox.TabIndex = 22
-        '
-        'GeburtstagDateTimePicker
-        '
-        Me.GeburtstagDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "Geburtstag", True))
-        Me.GeburtstagDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(77, 293)
-        Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
-        Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
-        Me.GeburtstagDateTimePicker.TabIndex = 10
         '
         'Ofadressen_zahlungsmethodenTableAdapter
         '
@@ -1607,35 +1183,9 @@ Partial Class Kunden
         '
         Me.Ofadressen_weitereTableAdapter.ClearBeforeFill = True
         '
-        'ButtonPLZSelect
-        '
-        Me.ButtonPLZSelect.Location = New System.Drawing.Point(579, 56)
-        Me.ButtonPLZSelect.Name = "ButtonPLZSelect"
-        Me.ButtonPLZSelect.Size = New System.Drawing.Size(33, 23)
-        Me.ButtonPLZSelect.TabIndex = 14
-        Me.ButtonPLZSelect.Text = "..."
-        Me.ButtonPLZSelect.UseVisualStyleBackColor = True
-        '
         'GrlandTableAdapter
         '
         Me.GrlandTableAdapter.ClearBeforeFill = True
-        '
-        'FillByToolStrip
-        '
-        Me.FillByToolStrip.Dock = System.Windows.Forms.DockStyle.None
-        Me.FillByToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillByToolStripButton})
-        Me.FillByToolStrip.Location = New System.Drawing.Point(672, 125)
-        Me.FillByToolStrip.Name = "FillByToolStrip"
-        Me.FillByToolStrip.Size = New System.Drawing.Size(51, 25)
-        Me.FillByToolStrip.TabIndex = 70
-        Me.FillByToolStrip.Text = "FillByToolStrip"
-        '
-        'FillByToolStripButton
-        '
-        Me.FillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.FillByToolStripButton.Name = "FillByToolStripButton"
-        Me.FillByToolStripButton.Size = New System.Drawing.Size(39, 22)
-        Me.FillByToolStripButton.Text = "FillBy"
         '
         'GrzahlungsmethodeTableAdapter
         '
@@ -1661,9 +1211,9 @@ Partial Class Kunden
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(672, 160)
+        Me.MenuStrip1.Location = New System.Drawing.Point(718, 65)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(72, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(67, 24)
         Me.MenuStrip1.TabIndex = 71
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1672,82 +1222,78 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.NeuerVorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem1, Me.AlteVorgängeToolStripMenuItem})
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Vorgang"
         '
         'NeuerVorgangToolStripMenuItem1
         '
         Me.NeuerVorgangToolStripMenuItem1.Name = "NeuerVorgangToolStripMenuItem1"
-        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
+        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.NeuerVorgangToolStripMenuItem1.Text = "&Neuer Vorgang"
         '
         'AlteVorgängeToolStripMenuItem
         '
         Me.AlteVorgängeToolStripMenuItem.Name = "AlteVorgängeToolStripMenuItem"
-        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.AlteVorgängeToolStripMenuItem.Text = "&Alte Vorgänge"
         '
-        'AdresseWeitereButton
+        'AdressenDetailControl1
         '
-        Me.AdresseWeitereButton.Location = New System.Drawing.Point(590, 294)
-        Me.AdresseWeitereButton.Name = "AdresseWeitereButton"
-        Me.AdresseWeitereButton.Size = New System.Drawing.Size(109, 23)
-        Me.AdresseWeitereButton.TabIndex = 72
-        Me.AdresseWeitereButton.Text = "neue Adresse"
-        Me.AdresseWeitereButton.UseVisualStyleBackColor = True
+        Me.AdressenDetailControl1.Adresse = ""
+        Me.AdressenDetailControl1.Anrede = Nothing
+        Me.AdressenDetailControl1.Branche = Nothing
+        Me.AdressenDetailControl1.Briefanrede = Nothing
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Adresse", Me.ofAdressenBindingSource, "Adresse", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Anrede", Me.ofAdressenBindingSource, "Anrede", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Branche", Me.ofAdressenBindingSource, "Branche", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Briefanrede", Me.ofAdressenBindingSource, "Briefanrede", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Email", Me.ofAdressenBindingSource, "Email", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Fax", Me.ofAdressenBindingSource, "Fax", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Fax2", Me.ofAdressenBindingSource, "Fax2", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Firma", Me.ofAdressenBindingSource, "Firma", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Geburtstag", Me.ofAdressenBindingSource, "Geburtstag", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.ofAdressenBindingSource, "IDNR", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Land", Me.ofAdressenBindingSource, "Land", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Mobil", Me.ofAdressenBindingSource, "Mobil", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Name1", Me.ofAdressenBindingSource, "Name1", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("NameFamilie", Me.ofAdressenBindingSource, "Name", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Ort", Me.ofAdressenBindingSource, "Ort", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("PLZ", Me.ofAdressenBindingSource, "PLZ", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Tel", Me.ofAdressenBindingSource, "Tel", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Tel2", Me.ofAdressenBindingSource, "Tel2", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Titel", Me.ofAdressenBindingSource, "Titel", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Vorname", Me.ofAdressenBindingSource, "Vorname", True))
+        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Web", Me.ofAdressenBindingSource, "Web", True))
+        Me.AdressenDetailControl1.Email = ""
+        Me.AdressenDetailControl1.Fax = ""
+        Me.AdressenDetailControl1.Fax2 = ""
+        Me.AdressenDetailControl1.Firma = ""
+        Me.AdressenDetailControl1.Geburtstag = New Date(2013, 3, 22, 21, 58, 7, 234)
+        Me.AdressenDetailControl1.IDNR = ""
+        Me.AdressenDetailControl1.Land = Nothing
+        Me.AdressenDetailControl1.Location = New System.Drawing.Point(4, 28)
+        Me.AdressenDetailControl1.Mobil = ""
+        Me.AdressenDetailControl1.Name = "AdressenDetailControl1"
+        Me.AdressenDetailControl1.Name1 = ""
+        Me.AdressenDetailControl1.NameFamilie = ""
+        Me.AdressenDetailControl1.Ort = ""
+        Me.AdressenDetailControl1.PLZ = Nothing
+        Me.AdressenDetailControl1.Size = New System.Drawing.Size(637, 316)
+        Me.AdressenDetailControl1.TabIndex = 0
+        Me.AdressenDetailControl1.Tel = ""
+        Me.AdressenDetailControl1.Tel2 = ""
+        Me.AdressenDetailControl1.Titel = Nothing
+        Me.AdressenDetailControl1.Vorname = ""
+        Me.AdressenDetailControl1.Web = ""
         '
         'Kunden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(794, 675)
-        Me.Controls.Add(Me.AdresseWeitereButton)
-        Me.Controls.Add(Me.FillByToolStrip)
-        Me.Controls.Add(Me.ButtonPLZSelect)
-        Me.Controls.Add(IDNRLabel)
-        Me.Controls.Add(Me.IDNRTextBox)
+        Me.ClientSize = New System.Drawing.Size(953, 663)
+        Me.Controls.Add(Me.AdressenDetailControl1)
         Me.Controls.Add(StatusLabel)
         Me.Controls.Add(Me.StatusComboBox)
-        Me.Controls.Add(BrancheLabel)
-        Me.Controls.Add(Me.BrancheComboBox)
-        Me.Controls.Add(BriefanredeLabel)
-        Me.Controls.Add(Me.BriefanredeComboBox)
-        Me.Controls.Add(TitelLabel)
-        Me.Controls.Add(Me.TitelComboBox)
-        Me.Controls.Add(AnredeLabel)
-        Me.Controls.Add(Me.AnredeComboBox)
-        Me.Controls.Add(NameLabel)
-        Me.Controls.Add(Me.NameTextBox)
-        Me.Controls.Add(VornameLabel)
-        Me.Controls.Add(Me.VornameTextBox)
-        Me.Controls.Add(Name1Label)
-        Me.Controls.Add(Me.Name1TextBox)
-        Me.Controls.Add(FirmaLabel)
-        Me.Controls.Add(Me.FirmaTextBox)
-        Me.Controls.Add(AdresseLabel)
-        Me.Controls.Add(Me.AdresseTextBox)
-        Me.Controls.Add(LandLabel)
-        Me.Controls.Add(Me.LandComboBox)
-        Me.Controls.Add(PLZLabel)
-        Me.Controls.Add(Me.PLZComboBox)
-        Me.Controls.Add(OrtLabel)
-        Me.Controls.Add(Me.OrtComboBox)
-        Me.Controls.Add(TelLabel)
-        Me.Controls.Add(Me.TelTextBox)
-        Me.Controls.Add(Tel2Label)
-        Me.Controls.Add(Me.Tel2TextBox)
-        Me.Controls.Add(FaxLabel)
-        Me.Controls.Add(Me.FaxTextBox)
-        Me.Controls.Add(Fax2Label)
-        Me.Controls.Add(Me.Fax2TextBox)
-        Me.Controls.Add(MobilLabel)
-        Me.Controls.Add(Me.MobilTextBox)
-        Me.Controls.Add(EmailLabel)
-        Me.Controls.Add(Me.EmailTextBox)
-        Me.Controls.Add(WebLabel)
-        Me.Controls.Add(Me.WebTextBox)
-        Me.Controls.Add(GeburtstagLabel)
-        Me.Controls.Add(Me.GeburtstagDateTimePicker)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -1755,53 +1301,9 @@ Partial Class Kunden
         Me.Text = "Kunden"
         Me.Controls.SetChildIndex(Me.MenuStrip1, 0)
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
-        Me.Controls.SetChildIndex(Me.GeburtstagDateTimePicker, 0)
-        Me.Controls.SetChildIndex(GeburtstagLabel, 0)
-        Me.Controls.SetChildIndex(Me.WebTextBox, 0)
-        Me.Controls.SetChildIndex(WebLabel, 0)
-        Me.Controls.SetChildIndex(Me.EmailTextBox, 0)
-        Me.Controls.SetChildIndex(EmailLabel, 0)
-        Me.Controls.SetChildIndex(Me.MobilTextBox, 0)
-        Me.Controls.SetChildIndex(MobilLabel, 0)
-        Me.Controls.SetChildIndex(Me.Fax2TextBox, 0)
-        Me.Controls.SetChildIndex(Fax2Label, 0)
-        Me.Controls.SetChildIndex(Me.FaxTextBox, 0)
-        Me.Controls.SetChildIndex(FaxLabel, 0)
-        Me.Controls.SetChildIndex(Me.Tel2TextBox, 0)
-        Me.Controls.SetChildIndex(Tel2Label, 0)
-        Me.Controls.SetChildIndex(Me.TelTextBox, 0)
-        Me.Controls.SetChildIndex(TelLabel, 0)
-        Me.Controls.SetChildIndex(Me.OrtComboBox, 0)
-        Me.Controls.SetChildIndex(OrtLabel, 0)
-        Me.Controls.SetChildIndex(Me.PLZComboBox, 0)
-        Me.Controls.SetChildIndex(PLZLabel, 0)
-        Me.Controls.SetChildIndex(Me.LandComboBox, 0)
-        Me.Controls.SetChildIndex(LandLabel, 0)
-        Me.Controls.SetChildIndex(Me.AdresseTextBox, 0)
-        Me.Controls.SetChildIndex(AdresseLabel, 0)
-        Me.Controls.SetChildIndex(Me.FirmaTextBox, 0)
-        Me.Controls.SetChildIndex(FirmaLabel, 0)
-        Me.Controls.SetChildIndex(Me.Name1TextBox, 0)
-        Me.Controls.SetChildIndex(Name1Label, 0)
-        Me.Controls.SetChildIndex(Me.VornameTextBox, 0)
-        Me.Controls.SetChildIndex(VornameLabel, 0)
-        Me.Controls.SetChildIndex(Me.NameTextBox, 0)
-        Me.Controls.SetChildIndex(NameLabel, 0)
-        Me.Controls.SetChildIndex(Me.AnredeComboBox, 0)
-        Me.Controls.SetChildIndex(AnredeLabel, 0)
-        Me.Controls.SetChildIndex(Me.TitelComboBox, 0)
-        Me.Controls.SetChildIndex(TitelLabel, 0)
-        Me.Controls.SetChildIndex(Me.BriefanredeComboBox, 0)
-        Me.Controls.SetChildIndex(BriefanredeLabel, 0)
-        Me.Controls.SetChildIndex(Me.BrancheComboBox, 0)
-        Me.Controls.SetChildIndex(BrancheLabel, 0)
         Me.Controls.SetChildIndex(Me.StatusComboBox, 0)
         Me.Controls.SetChildIndex(StatusLabel, 0)
-        Me.Controls.SetChildIndex(Me.IDNRTextBox, 0)
-        Me.Controls.SetChildIndex(IDNRLabel, 0)
-        Me.Controls.SetChildIndex(Me.ButtonPLZSelect, 0)
-        Me.Controls.SetChildIndex(Me.FillByToolStrip, 0)
-        Me.Controls.SetChildIndex(Me.AdresseWeitereButton, 0)
+        Me.Controls.SetChildIndex(Me.AdressenDetailControl1, 0)
         CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
@@ -1839,8 +1341,6 @@ Partial Class Kunden
         CType(Me.Ofadressen_settingsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrbranchenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsBranchen, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.FillByToolStrip.ResumeLayout(False)
-        Me.FillByToolStrip.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -1871,34 +1371,13 @@ Partial Class Kunden
     Friend WithEvents GrLandPlzTableAdapter As IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter
     Friend WithEvents TableAdapterManager1 As IntraSell_Net.dsPLZTableAdapters.TableAdapterManager
     Friend WithEvents GrLandPlzBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents IDNRTextBox As System.Windows.Forms.TextBox
     Friend WithEvents StatusComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents BrancheComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents BriefanredeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents TitelComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents AnredeComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents NameTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents VornameTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents Name1TextBox As System.Windows.Forms.TextBox
-    Friend WithEvents FirmaTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents AdresseTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents LandComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents PLZComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents OrtComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents TelTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents Tel2TextBox As System.Windows.Forms.TextBox
-    Friend WithEvents FaxTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents Fax2TextBox As System.Windows.Forms.TextBox
-    Friend WithEvents MobilTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents WebTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ExportCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents AbbuchungCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents HasMenuCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents PasswortTextBox As System.Windows.Forms.TextBox
     Friend WithEvents NextIDNRComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents MandantTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents GeburtstagDateTimePicker As System.Windows.Forms.DateTimePicker
     Friend WithEvents UIDTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SkypeAdresseTextBox As System.Windows.Forms.TextBox
     Friend WithEvents MessengerAdresseTextBox As System.Windows.Forms.TextBox
@@ -1925,10 +1404,7 @@ Partial Class Kunden
     Friend WithEvents FirmenKontoIdTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Language_codeComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents ButtonPLZSelect As System.Windows.Forms.Button
     Friend WithEvents GrlandTableAdapter As IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter
-    Friend WithEvents FillByToolStrip As System.Windows.Forms.ToolStrip
-    Friend WithEvents FillByToolStripButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents GrlandBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents DsStammdaten As IntraSell_Net.dsStammdaten
     Friend WithEvents GrzahlungsmethodeBindingSource As System.Windows.Forms.BindingSource
@@ -1962,8 +1438,10 @@ Partial Class Kunden
     Friend WithEvents MAInnenMitarbeiterControl As IntraSell_Net.MitarbeiterControl
     Friend WithEvents MAAusenMitarbeiterControl As IntraSell_Net.MitarbeiterControl
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewComboBoxColumn
+    Friend WithEvents AdresseWeitereButton As System.Windows.Forms.Button
     Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Typ As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn17 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn34 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1988,5 +1466,5 @@ Partial Class Kunden
     Friend WithEvents DataGridViewTextBoxColumn32 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn33 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn27 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AdresseWeitereButton As System.Windows.Forms.Button
+    Friend WithEvents AdressenDetailControl1 As IntraSell_Net.AdressenDetailControl
 End Class

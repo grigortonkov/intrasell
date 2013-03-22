@@ -36,7 +36,18 @@ Public Class AdressenWeitereControl
         End Set
     End Property
 
-    Private Sub reloadCombo()
+
+    Public Property ShowAddNew() As Boolean
+        Get
+            Return AddNewButton.Visible
+        End Get
+        Set(ByVal value As Boolean)
+            AddNewButton.Visible = value
+        End Set
+
+    End Property
+
+    Private Sub ReloadCombo()
         If SQLcurrent <> Replace(SQL, ":IDNR", _IDNR) Then
             SQLcurrent = Replace(SQL, ":IDNR", _IDNR)
             FillComboBox(Me.AdressenComboBox, SQLcurrent, "Adr", "ID")
@@ -69,9 +80,25 @@ Public Class AdressenWeitereControl
 
     'reload data 
     Public Shadows Sub Refresh()
-        Parent.Refresh()
-        reloadCombo()
-        Me.AdressenComboBox.Text = ""
+        Try
+            Parent.Refresh()
+            ReloadCombo()
+            Me.AdressenComboBox.Text = ""
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
  
+    Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNewButton.Click
+        Try
+            Dim a As AdresseWeitere = New AdresseWeitere
+            a.StarteNeueAdresse(IDNR:=IDNR, VorgangTyp:="LI")
+            a.TypComboBox.SelectedValue = "LI"
+            a.ShowDialog()
+            'refresh data 
+            FillComboBox(Me.AdressenComboBox, SQLcurrent, "Adr", "ID")
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class

@@ -45,8 +45,6 @@ Partial Class AdressenDetailControl
         Dim EmailLabel As System.Windows.Forms.Label
         Dim WebLabel As System.Windows.Forms.Label
         Dim GeburtstagLabel As System.Windows.Forms.Label
-        Me.DataSetKunden = New IntraSell_Net.dsAdressen()
-        Me.ofAdressenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPLZ = New IntraSell_Net.dsPLZ()
         Me.GrLandPlzTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter()
         Me.GrLandPlzBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -63,6 +61,7 @@ Partial Class AdressenDetailControl
         Me.FirmaTextBox = New System.Windows.Forms.TextBox()
         Me.AdresseTextBox = New System.Windows.Forms.TextBox()
         Me.LandComboBox = New System.Windows.Forms.ComboBox()
+        Me.GrlandBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PLZComboBox = New System.Windows.Forms.ComboBox()
         Me.OrtComboBox = New System.Windows.Forms.ComboBox()
         Me.TelTextBox = New System.Windows.Forms.TextBox()
@@ -73,7 +72,6 @@ Partial Class AdressenDetailControl
         Me.EmailTextBox = New System.Windows.Forms.TextBox()
         Me.WebTextBox = New System.Windows.Forms.TextBox()
         Me.GeburtstagDateTimePicker = New System.Windows.Forms.DateTimePicker()
-        Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
         Me.GrlandTableAdapter = New IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter()
         IDNRLabel = New System.Windows.Forms.Label()
         StatusLabel = New System.Windows.Forms.Label()
@@ -97,10 +95,9 @@ Partial Class AdressenDetailControl
         EmailLabel = New System.Windows.Forms.Label()
         WebLabel = New System.Windows.Forms.Label()
         GeburtstagLabel = New System.Windows.Forms.Label()
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'IDNRLabel
@@ -301,16 +298,6 @@ Partial Class AdressenDetailControl
         GeburtstagLabel.TabIndex = 112
         GeburtstagLabel.Text = "Geburtstag:"
         '
-        'DataSetKunden
-        '
-        Me.DataSetKunden.DataSetName = "DataSetKunden"
-        Me.DataSetKunden.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ofAdressenBindingSource
-        '
-        Me.ofAdressenBindingSource.DataMember = "ofAdressen"
-        Me.ofAdressenBindingSource.DataSource = Me.DataSetKunden
-        '
         'DsPLZ
         '
         Me.DsPLZ.DataSetName = "dsPLZ"
@@ -336,7 +323,6 @@ Partial Class AdressenDetailControl
         '
         'IDNRTextBox
         '
-        Me.IDNRTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "IDNR", True))
         Me.IDNRTextBox.Location = New System.Drawing.Point(82, 11)
         Me.IDNRTextBox.Name = "IDNRTextBox"
         Me.IDNRTextBox.Size = New System.Drawing.Size(200, 20)
@@ -344,7 +330,7 @@ Partial Class AdressenDetailControl
         '
         'StatusComboBox
         '
-        Me.StatusComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Status", True))
+        Me.StatusComboBox.Enabled = False
         Me.StatusComboBox.FormattingEnabled = True
         Me.StatusComboBox.Location = New System.Drawing.Point(82, 37)
         Me.StatusComboBox.Name = "StatusComboBox"
@@ -353,7 +339,6 @@ Partial Class AdressenDetailControl
         '
         'BrancheComboBox
         '
-        Me.BrancheComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Branche", True))
         Me.BrancheComboBox.DisplayMember = "Bezeichnung"
         Me.BrancheComboBox.FormattingEnabled = True
         Me.BrancheComboBox.Location = New System.Drawing.Point(82, 64)
@@ -364,7 +349,6 @@ Partial Class AdressenDetailControl
         '
         'BriefanredeComboBox
         '
-        Me.BriefanredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Briefanrede", True))
         Me.BriefanredeComboBox.FormattingEnabled = True
         Me.BriefanredeComboBox.Location = New System.Drawing.Point(82, 117)
         Me.BriefanredeComboBox.Name = "BriefanredeComboBox"
@@ -373,7 +357,6 @@ Partial Class AdressenDetailControl
         '
         'TitelComboBox
         '
-        Me.TitelComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Titel", True))
         Me.TitelComboBox.FormattingEnabled = True
         Me.TitelComboBox.Location = New System.Drawing.Point(82, 171)
         Me.TitelComboBox.Name = "TitelComboBox"
@@ -382,7 +365,6 @@ Partial Class AdressenDetailControl
         '
         'AnredeComboBox
         '
-        Me.AnredeComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Anrede", True))
         Me.AnredeComboBox.FormattingEnabled = True
         Me.AnredeComboBox.Location = New System.Drawing.Point(82, 143)
         Me.AnredeComboBox.Name = "AnredeComboBox"
@@ -391,7 +373,6 @@ Partial Class AdressenDetailControl
         '
         'NameTextBox
         '
-        Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name", True))
         Me.NameTextBox.Location = New System.Drawing.Point(82, 198)
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(200, 20)
@@ -399,7 +380,6 @@ Partial Class AdressenDetailControl
         '
         'VornameTextBox
         '
-        Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Vorname", True))
         Me.VornameTextBox.Location = New System.Drawing.Point(82, 224)
         Me.VornameTextBox.Name = "VornameTextBox"
         Me.VornameTextBox.Size = New System.Drawing.Size(200, 20)
@@ -407,7 +387,6 @@ Partial Class AdressenDetailControl
         '
         'Name1TextBox
         '
-        Me.Name1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Name1", True))
         Me.Name1TextBox.Location = New System.Drawing.Point(82, 250)
         Me.Name1TextBox.Name = "Name1TextBox"
         Me.Name1TextBox.Size = New System.Drawing.Size(200, 20)
@@ -415,7 +394,6 @@ Partial Class AdressenDetailControl
         '
         'FirmaTextBox
         '
-        Me.FirmaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Firma", True))
         Me.FirmaTextBox.Location = New System.Drawing.Point(82, 91)
         Me.FirmaTextBox.Name = "FirmaTextBox"
         Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
@@ -423,7 +401,6 @@ Partial Class AdressenDetailControl
         '
         'AdresseTextBox
         '
-        Me.AdresseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Adresse", True))
         Me.AdresseTextBox.Location = New System.Drawing.Point(378, 67)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
@@ -431,7 +408,7 @@ Partial Class AdressenDetailControl
         '
         'LandComboBox
         '
-        Me.LandComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "Land", True))
+        Me.LandComboBox.DataSource = Me.GrlandBindingSource
         Me.LandComboBox.DisplayMember = "Name"
         Me.LandComboBox.Location = New System.Drawing.Point(378, 14)
         Me.LandComboBox.Name = "LandComboBox"
@@ -439,9 +416,13 @@ Partial Class AdressenDetailControl
         Me.LandComboBox.TabIndex = 82
         Me.LandComboBox.ValueMember = "IdNr"
         '
+        'GrlandBindingSource
+        '
+        Me.GrlandBindingSource.DataMember = "grland"
+        Me.GrlandBindingSource.DataSource = Me.DsPLZ
+        '
         'PLZComboBox
         '
-        Me.PLZComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.ofAdressenBindingSource, "PLZ", True))
         Me.PLZComboBox.DataSource = Me.GrLandPlzBindingSource
         Me.PLZComboBox.DisplayMember = "PLZ"
         Me.PLZComboBox.FormattingEnabled = True
@@ -453,7 +434,6 @@ Partial Class AdressenDetailControl
         '
         'OrtComboBox
         '
-        Me.OrtComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Ort", True))
         Me.OrtComboBox.DataSource = Me.GrLandPlzBindingSource
         Me.OrtComboBox.DisplayMember = "Ort"
         Me.OrtComboBox.FormattingEnabled = True
@@ -465,7 +445,6 @@ Partial Class AdressenDetailControl
         '
         'TelTextBox
         '
-        Me.TelTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel", True))
         Me.TelTextBox.Location = New System.Drawing.Point(378, 120)
         Me.TelTextBox.Name = "TelTextBox"
         Me.TelTextBox.Size = New System.Drawing.Size(200, 20)
@@ -473,7 +452,6 @@ Partial Class AdressenDetailControl
         '
         'Tel2TextBox
         '
-        Me.Tel2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Tel2", True))
         Me.Tel2TextBox.Location = New System.Drawing.Point(378, 146)
         Me.Tel2TextBox.Name = "Tel2TextBox"
         Me.Tel2TextBox.Size = New System.Drawing.Size(200, 20)
@@ -481,7 +459,6 @@ Partial Class AdressenDetailControl
         '
         'FaxTextBox
         '
-        Me.FaxTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax", True))
         Me.FaxTextBox.Location = New System.Drawing.Point(378, 172)
         Me.FaxTextBox.Name = "FaxTextBox"
         Me.FaxTextBox.Size = New System.Drawing.Size(200, 20)
@@ -489,7 +466,6 @@ Partial Class AdressenDetailControl
         '
         'Fax2TextBox
         '
-        Me.Fax2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Fax2", True))
         Me.Fax2TextBox.Location = New System.Drawing.Point(378, 198)
         Me.Fax2TextBox.Name = "Fax2TextBox"
         Me.Fax2TextBox.Size = New System.Drawing.Size(200, 20)
@@ -497,7 +473,6 @@ Partial Class AdressenDetailControl
         '
         'MobilTextBox
         '
-        Me.MobilTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Mobil", True))
         Me.MobilTextBox.Location = New System.Drawing.Point(378, 224)
         Me.MobilTextBox.Name = "MobilTextBox"
         Me.MobilTextBox.Size = New System.Drawing.Size(200, 20)
@@ -505,7 +480,6 @@ Partial Class AdressenDetailControl
         '
         'EmailTextBox
         '
-        Me.EmailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Email", True))
         Me.EmailTextBox.Location = New System.Drawing.Point(378, 250)
         Me.EmailTextBox.Name = "EmailTextBox"
         Me.EmailTextBox.Size = New System.Drawing.Size(200, 20)
@@ -513,7 +487,6 @@ Partial Class AdressenDetailControl
         '
         'WebTextBox
         '
-        Me.WebTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "Web", True))
         Me.WebTextBox.Location = New System.Drawing.Point(378, 276)
         Me.WebTextBox.Name = "WebTextBox"
         Me.WebTextBox.Size = New System.Drawing.Size(200, 20)
@@ -521,16 +494,11 @@ Partial Class AdressenDetailControl
         '
         'GeburtstagDateTimePicker
         '
-        Me.GeburtstagDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.ofAdressenBindingSource, "Geburtstag", True))
         Me.GeburtstagDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.GeburtstagDateTimePicker.Location = New System.Drawing.Point(82, 276)
         Me.GeburtstagDateTimePicker.Name = "GeburtstagDateTimePicker"
         Me.GeburtstagDateTimePicker.Size = New System.Drawing.Size(200, 20)
         Me.GeburtstagDateTimePicker.TabIndex = 80
-        '
-        'OfAdressenTableAdapter
-        '
-        Me.OfAdressenTableAdapter.ClearBeforeFill = True
         '
         'GrlandTableAdapter
         '
@@ -587,16 +555,13 @@ Partial Class AdressenDetailControl
         Me.Controls.Add(Me.GeburtstagDateTimePicker)
         Me.Name = "AdressenDetailControl"
         Me.Size = New System.Drawing.Size(637, 316)
-        CType(Me.DataSetKunden, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ofAdressenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPLZ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrLandPlzBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GrlandBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents DataSetKunden As IntraSell_Net.dsAdressen
-    Friend WithEvents ofAdressenBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents DsPLZ As IntraSell_Net.dsPLZ
     Friend WithEvents GrLandPlzTableAdapter As IntraSell_Net.dsPLZTableAdapters.grLandPlzTableAdapter
     Friend WithEvents GrLandPlzBindingSource As System.Windows.Forms.BindingSource
@@ -623,7 +588,7 @@ Partial Class AdressenDetailControl
     Friend WithEvents EmailTextBox As System.Windows.Forms.TextBox
     Friend WithEvents WebTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GeburtstagDateTimePicker As System.Windows.Forms.DateTimePicker
-    Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
     Friend WithEvents GrlandTableAdapter As IntraSell_Net.dsPLZTableAdapters.grlandTableAdapter
+    Friend WithEvents GrlandBindingSource As System.Windows.Forms.BindingSource
 
 End Class

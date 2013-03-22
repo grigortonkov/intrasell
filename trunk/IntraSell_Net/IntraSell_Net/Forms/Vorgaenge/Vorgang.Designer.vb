@@ -411,7 +411,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -923,9 +923,9 @@ Partial Class Vorgang
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(9, 273)
+        Me.MenuStrip1.Location = New System.Drawing.Point(610, 233)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -934,67 +934,67 @@ Partial Class Vorgang
         Me.VorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem, Me.VorlageeditierenToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AusdruckenToolStripMenuItem
         '
         Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
-        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'VorlageeditierenToolStripMenuItem
         '
         Me.VorlageeditierenToolStripMenuItem.Name = "VorlageeditierenToolStripMenuItem"
-        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.VorlageeditierenToolStripMenuItem.Text = "Vorlage &editieren"
         '
         'WaehrungComboBox
@@ -1014,7 +1014,8 @@ Partial Class Vorgang
         Me.KundNr2AdressenControl.IDNR = 0
         Me.KundNr2AdressenControl.Location = New System.Drawing.Point(120, 131)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
-        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(155, 25)
+        Me.KundNr2AdressenControl.ShowAddNew = True
+        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(172, 25)
         Me.KundNr2AdressenControl.TabIndex = 5
         '
         'KundNrAdressenControl
@@ -1023,7 +1024,8 @@ Partial Class Vorgang
         Me.KundNrAdressenControl.IDNR = 0
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(120, 100)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(155, 25)
+        Me.KundNrAdressenControl.ShowAddNew = True
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(172, 25)
         Me.KundNrAdressenControl.TabIndex = 4
         '
         'TabPage2

@@ -23,14 +23,12 @@ Partial Class AdresseWeitere
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim TypLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AdresseWeitere))
-        Me.AdressenDetailControl1 = New IntraSell_Net.AdressenDetailControl()
-        Me.Ofadressen_weitereBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DsAdressen = New IntraSell_Net.dsAdressen()
-        Me.Ofadressen_weitereTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_weitereTableAdapter()
-        Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
         Me.Ofadressen_weitereBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
+        Me.Ofadressen_weitereBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsAdressen = New IntraSell_Net.dsAdressen()
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
@@ -42,94 +40,26 @@ Partial Class AdresseWeitere
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.Ofadressen_weitereBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
-        Me.Ofadressen_weitereDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ofadressen_weitereTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressen_weitereTableAdapter()
+        Me.TableAdapterManager = New IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager()
         Me.OfAdressenTableAdapter = New IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter()
-        CType(Me.Ofadressen_weitereBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AdressenDetailControl = New IntraSell_Net.AdressenDetailControl()
+        Me.TypComboBox = New System.Windows.Forms.ComboBox()
+        TypLabel = New System.Windows.Forms.Label()
         CType(Me.Ofadressen_weitereBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Ofadressen_weitereBindingNavigator.SuspendLayout()
-        CType(Me.Ofadressen_weitereDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Ofadressen_weitereBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'AdressenDetailControl1
+        'TypLabel
         '
-        Me.AdressenDetailControl1.Anrede = "Herr"
-        Me.AdressenDetailControl1.Branche = ""
-        Me.AdressenDetailControl1.Briefanrede = "Lieber Herr"
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Anrede", Me.Ofadressen_weitereBindingSource, "Anrede", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Branche", Me.Ofadressen_weitereBindingSource, "Branche", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Firma", Me.Ofadressen_weitereBindingSource, "Firma", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.Ofadressen_weitereBindingSource, "IDNR", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Name1", Me.Ofadressen_weitereBindingSource, "Name1", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("NameFamilie", Me.Ofadressen_weitereBindingSource, "Name", True))
-        Me.AdressenDetailControl1.DataBindings.Add(New System.Windows.Forms.Binding("Vorname", Me.Ofadressen_weitereBindingSource, "Vorname", True))
-        Me.AdressenDetailControl1.Firma = "GRITON"
-        Me.AdressenDetailControl1.IDNR = "100"
-        Me.AdressenDetailControl1.Location = New System.Drawing.Point(0, 28)
-        Me.AdressenDetailControl1.Name = "AdressenDetailControl1"
-        Me.AdressenDetailControl1.Name1 = ""
-        Me.AdressenDetailControl1.NameFamilie = "TONKOV"
-        Me.AdressenDetailControl1.Size = New System.Drawing.Size(619, 303)
-        Me.AdressenDetailControl1.Status = "Kunde"
-        Me.AdressenDetailControl1.TabIndex = 0
-        Me.AdressenDetailControl1.Titel = "Prof. Dr."
-        Me.AdressenDetailControl1.Vorname = "Grigor"
-        '
-        'Ofadressen_weitereBindingSource
-        '
-        Me.Ofadressen_weitereBindingSource.DataMember = "ofadressen-weitere"
-        Me.Ofadressen_weitereBindingSource.DataSource = Me.DsAdressen
-        '
-        'DsAdressen
-        '
-        Me.DsAdressen.DataSetName = "dsAdressen"
-        Me.DsAdressen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'Ofadressen_weitereTableAdapter
-        '
-        Me.Ofadressen_weitereTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.grtransportmethodeTableAdapter = Nothing
-        Me.TableAdapterManager.grzahlungsbedingungTableAdapter = Nothing
-        Me.TableAdapterManager.grzahlungsmethodeTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressen_kundengruppenTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressen_settingsTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressen_weitereTableAdapter = Me.Ofadressen_weitereTableAdapter
-        Me.TableAdapterManager.ofadressen_zahlungsbedingungenTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressen_zahlungsmethodenTableAdapter = Nothing
-        Me.TableAdapterManager.ofadressenTableAdapter = Nothing
-        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        TypLabel.AutoSize = True
+        TypLabel.Location = New System.Drawing.Point(29, 31)
+        TypLabel.Name = "TypLabel"
+        TypLabel.Size = New System.Drawing.Size(43, 13)
+        TypLabel.TabIndex = 11
+        TypLabel.Text = "Zweck:"
         '
         'Ofadressen_weitereBindingNavigator
         '
@@ -145,7 +75,7 @@ Partial Class AdresseWeitere
         Me.Ofadressen_weitereBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.Ofadressen_weitereBindingNavigator.Name = "Ofadressen_weitereBindingNavigator"
         Me.Ofadressen_weitereBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.Ofadressen_weitereBindingNavigator.Size = New System.Drawing.Size(853, 25)
+        Me.Ofadressen_weitereBindingNavigator.Size = New System.Drawing.Size(662, 25)
         Me.Ofadressen_weitereBindingNavigator.TabIndex = 1
         Me.Ofadressen_weitereBindingNavigator.Text = "BindingNavigator1"
         '
@@ -158,10 +88,20 @@ Partial Class AdresseWeitere
         Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorAddNewItem.Text = "Add new"
         '
+        'Ofadressen_weitereBindingSource
+        '
+        Me.Ofadressen_weitereBindingSource.DataMember = "ofadressen-weitere"
+        Me.Ofadressen_weitereBindingSource.DataSource = Me.DsAdressen
+        '
+        'DsAdressen
+        '
+        Me.DsAdressen.DataSetName = "dsAdressen"
+        Me.DsAdressen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -242,204 +182,104 @@ Partial Class AdresseWeitere
         Me.Ofadressen_weitereBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
         Me.Ofadressen_weitereBindingNavigatorSaveItem.Text = "Save Data"
         '
-        'Ofadressen_weitereDataGridView
+        'Ofadressen_weitereTableAdapter
         '
-        Me.Ofadressen_weitereDataGridView.AutoGenerateColumns = False
-        Me.Ofadressen_weitereDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Ofadressen_weitereDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn27})
-        Me.Ofadressen_weitereDataGridView.DataSource = Me.Ofadressen_weitereBindingSource
-        Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(12, 337)
-        Me.Ofadressen_weitereDataGridView.Name = "Ofadressen_weitereDataGridView"
-        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(829, 204)
-        Me.Ofadressen_weitereDataGridView.TabIndex = 2
+        Me.Ofadressen_weitereTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn1
+        'TableAdapterManager
         '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "ID"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Anrede"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Anrede"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Typ"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Typ"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Branche"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Branche"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "IDNR"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "IDNR"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Land"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Land"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Name"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Vorname"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Vorname"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.DataPropertyName = "Name1"
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Name1"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "Firma"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Firma"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Adresse"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Adresse"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "PLZ"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "PLZ"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Ort"
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Ort"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        '
-        'DataGridViewTextBoxColumn14
-        '
-        Me.DataGridViewTextBoxColumn14.DataPropertyName = "Tel"
-        Me.DataGridViewTextBoxColumn14.HeaderText = "Tel"
-        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-        '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Tel2"
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Tel2"
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "Fax"
-        Me.DataGridViewTextBoxColumn16.HeaderText = "Fax"
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "Mobil"
-        Me.DataGridViewTextBoxColumn17.HeaderText = "Mobil"
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        '
-        'DataGridViewTextBoxColumn18
-        '
-        Me.DataGridViewTextBoxColumn18.DataPropertyName = "Email"
-        Me.DataGridViewTextBoxColumn18.HeaderText = "Email"
-        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-        '
-        'DataGridViewTextBoxColumn19
-        '
-        Me.DataGridViewTextBoxColumn19.DataPropertyName = "Web"
-        Me.DataGridViewTextBoxColumn19.HeaderText = "Web"
-        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-        '
-        'DataGridViewTextBoxColumn20
-        '
-        Me.DataGridViewTextBoxColumn20.DataPropertyName = "AngelegtAn"
-        Me.DataGridViewTextBoxColumn20.HeaderText = "AngelegtAn"
-        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-        '
-        'DataGridViewTextBoxColumn21
-        '
-        Me.DataGridViewTextBoxColumn21.DataPropertyName = "Passwort"
-        Me.DataGridViewTextBoxColumn21.HeaderText = "Passwort"
-        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
-        '
-        'DataGridViewTextBoxColumn22
-        '
-        Me.DataGridViewTextBoxColumn22.DataPropertyName = "Geburtstag"
-        Me.DataGridViewTextBoxColumn22.HeaderText = "Geburtstag"
-        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
-        '
-        'DataGridViewTextBoxColumn23
-        '
-        Me.DataGridViewTextBoxColumn23.DataPropertyName = "UID"
-        Me.DataGridViewTextBoxColumn23.HeaderText = "UID"
-        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
-        '
-        'DataGridViewTextBoxColumn24
-        '
-        Me.DataGridViewTextBoxColumn24.DataPropertyName = "EUNummer"
-        Me.DataGridViewTextBoxColumn24.HeaderText = "EUNummer"
-        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
-        '
-        'DataGridViewTextBoxColumn25
-        '
-        Me.DataGridViewTextBoxColumn25.DataPropertyName = "EUNummer1"
-        Me.DataGridViewTextBoxColumn25.HeaderText = "EUNummer1"
-        Me.DataGridViewTextBoxColumn25.Name = "DataGridViewTextBoxColumn25"
-        '
-        'DataGridViewTextBoxColumn26
-        '
-        Me.DataGridViewTextBoxColumn26.DataPropertyName = "EUNummer2"
-        Me.DataGridViewTextBoxColumn26.HeaderText = "EUNummer2"
-        Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
-        '
-        'DataGridViewTextBoxColumn27
-        '
-        Me.DataGridViewTextBoxColumn27.DataPropertyName = "Titel"
-        Me.DataGridViewTextBoxColumn27.HeaderText = "Titel"
-        Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.grtransportmethodeTableAdapter = Nothing
+        Me.TableAdapterManager.grzahlungsbedingungTableAdapter = Nothing
+        Me.TableAdapterManager.grzahlungsmethodeTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_kundengruppenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_settingsTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_transportmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_weitereTableAdapter = Me.Ofadressen_weitereTableAdapter
+        Me.TableAdapterManager.ofadressen_zahlungsbedingungenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressen_zahlungsmethodenTableAdapter = Nothing
+        Me.TableAdapterManager.ofadressenTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsAdressenTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'OfAdressenTableAdapter
         '
         Me.OfAdressenTableAdapter.ClearBeforeFill = True
         '
+        'AdressenDetailControl
+        '
+        Me.AdressenDetailControl.Adresse = ""
+        Me.AdressenDetailControl.Anrede = Nothing
+        Me.AdressenDetailControl.Branche = Nothing
+        Me.AdressenDetailControl.Briefanrede = Nothing
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Adresse", Me.Ofadressen_weitereBindingSource, "Adresse", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Anrede", Me.Ofadressen_weitereBindingSource, "Anrede", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Email", Me.Ofadressen_weitereBindingSource, "Email", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Fax", Me.Ofadressen_weitereBindingSource, "Fax", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Firma", Me.Ofadressen_weitereBindingSource, "Firma", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.Ofadressen_weitereBindingSource, "IDNR", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Land", Me.Ofadressen_weitereBindingSource, "Land", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Mobil", Me.Ofadressen_weitereBindingSource, "Mobil", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Name1", Me.Ofadressen_weitereBindingSource, "Name1", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("NameFamilie", Me.Ofadressen_weitereBindingSource, "Name", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Ort", Me.Ofadressen_weitereBindingSource, "Ort", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("PLZ", Me.Ofadressen_weitereBindingSource, "PLZ", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Tel", Me.Ofadressen_weitereBindingSource, "Tel", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Tel2", Me.Ofadressen_weitereBindingSource, "Tel2", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Titel", Me.Ofadressen_weitereBindingSource, "Titel", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Vorname", Me.Ofadressen_weitereBindingSource, "Vorname", True))
+        Me.AdressenDetailControl.DataBindings.Add(New System.Windows.Forms.Binding("Web", Me.Ofadressen_weitereBindingSource, "Web", True))
+        Me.AdressenDetailControl.Email = ""
+        Me.AdressenDetailControl.Fax = ""
+        Me.AdressenDetailControl.Fax2 = ""
+        Me.AdressenDetailControl.Firma = ""
+        Me.AdressenDetailControl.Geburtstag = New Date(2013, 3, 22, 22, 50, 23, 656)
+        Me.AdressenDetailControl.IDNR = ""
+        Me.AdressenDetailControl.Land = Nothing
+        Me.AdressenDetailControl.Location = New System.Drawing.Point(12, 55)
+        Me.AdressenDetailControl.Mobil = ""
+        Me.AdressenDetailControl.Name = "AdressenDetailControl"
+        Me.AdressenDetailControl.Name1 = ""
+        Me.AdressenDetailControl.NameFamilie = ""
+        Me.AdressenDetailControl.Ort = ""
+        Me.AdressenDetailControl.PLZ = Nothing
+        Me.AdressenDetailControl.Size = New System.Drawing.Size(637, 305)
+        Me.AdressenDetailControl.TabIndex = 3
+        Me.AdressenDetailControl.Tel = ""
+        Me.AdressenDetailControl.Tel2 = ""
+        Me.AdressenDetailControl.Titel = Nothing
+        Me.AdressenDetailControl.Vorname = ""
+        Me.AdressenDetailControl.Web = ""
+        '
+        'TypComboBox
+        '
+        Me.TypComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.Ofadressen_weitereBindingSource, "Typ", True))
+        Me.TypComboBox.FormattingEnabled = True
+        Me.TypComboBox.Location = New System.Drawing.Point(94, 28)
+        Me.TypComboBox.Name = "TypComboBox"
+        Me.TypComboBox.Size = New System.Drawing.Size(199, 21)
+        Me.TypComboBox.TabIndex = 10
+        '
         'AdresseWeitere
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(853, 563)
-        Me.Controls.Add(Me.Ofadressen_weitereDataGridView)
+        Me.ClientSize = New System.Drawing.Size(662, 373)
+        Me.Controls.Add(TypLabel)
+        Me.Controls.Add(Me.TypComboBox)
         Me.Controls.Add(Me.Ofadressen_weitereBindingNavigator)
-        Me.Controls.Add(Me.AdressenDetailControl1)
+        Me.Controls.Add(Me.AdressenDetailControl)
         Me.Name = "AdresseWeitere"
         Me.Text = "Adresse"
-        CType(Me.Ofadressen_weitereBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ofadressen_weitereBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Ofadressen_weitereBindingNavigator.ResumeLayout(False)
         Me.Ofadressen_weitereBindingNavigator.PerformLayout()
-        CType(Me.Ofadressen_weitereDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Ofadressen_weitereBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsAdressen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents AdressenDetailControl1 As IntraSell_Net.AdressenDetailControl
+    Friend WithEvents AdressenDetailControl As IntraSell_Net.AdressenDetailControl
     Friend WithEvents DsAdressen As IntraSell_Net.dsAdressen
     Friend WithEvents Ofadressen_weitereBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Ofadressen_weitereTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressen_weitereTableAdapter
@@ -457,33 +297,6 @@ Partial Class AdresseWeitere
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents Ofadressen_weitereBindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents Ofadressen_weitereDataGridView As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn15 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn21 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn22 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn23 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn24 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn25 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn26 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn27 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
+    Friend WithEvents TypComboBox As System.Windows.Forms.ComboBox
 End Class
