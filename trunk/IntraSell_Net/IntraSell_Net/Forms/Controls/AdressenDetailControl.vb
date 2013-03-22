@@ -25,7 +25,7 @@ Public Class AdressenDetailControl
             Return BrancheComboBox.SelectedValue
         End Get
         Set(value As String)
-            BrancheComboBox.SelectedValue = value
+                If Not value Is Nothing And Not value = "" Then BrancheComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -44,7 +44,7 @@ Public Class AdressenDetailControl
             Return BriefanredeComboBox.SelectedValue
         End Get
         Set(value As String)
-            BriefanredeComboBox.SelectedValue = value
+            If Not value Is Nothing And Not value = "" Then BriefanredeComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -54,7 +54,7 @@ Public Class AdressenDetailControl
             Return AnredeComboBox.SelectedValue
         End Get
         Set(value As String)
-            AnredeComboBox.SelectedValue = value
+            If Not value Is Nothing And Not value = "" Then AnredeComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -64,7 +64,7 @@ Public Class AdressenDetailControl
             Return TitelComboBox.SelectedValue
         End Get
         Set(value As String)
-            TitelComboBox.SelectedValue = value
+            If Not value Is Nothing And Not value = "" Then TitelComboBox.SelectedValue = value
         End Set
     End Property
 
@@ -100,7 +100,10 @@ Public Class AdressenDetailControl
             Return GeburtstagDateTimePicker.Value
         End Get
         Set(ByVal value As Date)
-            GeburtstagDateTimePicker.Value = value
+            Try
+                GeburtstagDateTimePicker.Value = value
+            Catch
+            End Try
         End Set
     End Property
     Public Property Land As String

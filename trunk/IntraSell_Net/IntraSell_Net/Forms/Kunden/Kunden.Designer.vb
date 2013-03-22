@@ -847,9 +847,9 @@ Partial Class Kunden
         Me.Ofadressen_weitereDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn12, Me.Typ, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn34, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33, Me.DataGridViewTextBoxColumn27})
         Me.Ofadressen_weitereDataGridView.DataSource = Me.Ofadressen_weitereBindingSource
         Me.Ofadressen_weitereDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(3, 23)
+        Me.Ofadressen_weitereDataGridView.Location = New System.Drawing.Point(3, 29)
         Me.Ofadressen_weitereDataGridView.Name = "Ofadressen_weitereDataGridView"
-        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(922, 300)
+        Me.Ofadressen_weitereDataGridView.Size = New System.Drawing.Size(939, 260)
         Me.Ofadressen_weitereDataGridView.TabIndex = 0
         '
         'DataGridViewTextBoxColumn8
@@ -1213,7 +1213,7 @@ Partial Class Kunden
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(718, 65)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(67, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(72, 24)
         Me.MenuStrip1.TabIndex = 71
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1222,19 +1222,19 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.NeuerVorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem1, Me.AlteVorgängeToolStripMenuItem})
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Vorgang"
         '
         'NeuerVorgangToolStripMenuItem1
         '
         Me.NeuerVorgangToolStripMenuItem1.Name = "NeuerVorgangToolStripMenuItem1"
-        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
+        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
         Me.NeuerVorgangToolStripMenuItem1.Text = "&Neuer Vorgang"
         '
         'AlteVorgängeToolStripMenuItem
         '
         Me.AlteVorgängeToolStripMenuItem.Name = "AlteVorgängeToolStripMenuItem"
-        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.AlteVorgängeToolStripMenuItem.Text = "&Alte Vorgänge"
         '
         'AdressenDetailControl1
