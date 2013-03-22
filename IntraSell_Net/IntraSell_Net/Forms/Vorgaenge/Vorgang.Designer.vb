@@ -110,6 +110,7 @@ Partial Class Vorgang
         Me.ZahlungsMethodeComboBox = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.AddNewButton = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.VorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerVorgangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -325,18 +326,18 @@ Partial Class Vorgang
         TransportMethodeLabel1.AutoSize = True
         TransportMethodeLabel1.Location = New System.Drawing.Point(338, 100)
         TransportMethodeLabel1.Name = "TransportMethodeLabel1"
-        TransportMethodeLabel1.Size = New System.Drawing.Size(100, 13)
+        TransportMethodeLabel1.Size = New System.Drawing.Size(55, 13)
         TransportMethodeLabel1.TabIndex = 50
-        TransportMethodeLabel1.Text = "Transport Methode:"
+        TransportMethodeLabel1.Text = "Transport:"
         '
         'ZahlungsMethodeLabel1
         '
         ZahlungsMethodeLabel1.AutoSize = True
         ZahlungsMethodeLabel1.Location = New System.Drawing.Point(338, 47)
         ZahlungsMethodeLabel1.Name = "ZahlungsMethodeLabel1"
-        ZahlungsMethodeLabel1.Size = New System.Drawing.Size(99, 13)
+        ZahlungsMethodeLabel1.Size = New System.Drawing.Size(95, 13)
         ZahlungsMethodeLabel1.TabIndex = 51
-        ZahlungsMethodeLabel1.Text = "Zahlungs Methode:"
+        ZahlungsMethodeLabel1.Text = "Zahlungsmethode:"
         '
         'WaehrungLabel1
         '
@@ -411,7 +412,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -715,12 +716,12 @@ Partial Class Vorgang
         '
         Me.ArtikelContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArtikelstammToolStripMenuItem})
         Me.ArtikelContextMenuStrip.Name = "ArtikelContextMenuStrip"
-        Me.ArtikelContextMenuStrip.Size = New System.Drawing.Size(135, 26)
+        Me.ArtikelContextMenuStrip.Size = New System.Drawing.Size(143, 26)
         '
         'ArtikelstammToolStripMenuItem
         '
         Me.ArtikelstammToolStripMenuItem.Name = "ArtikelstammToolStripMenuItem"
-        Me.ArtikelstammToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.ArtikelstammToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.ArtikelstammToolStripMenuItem.Text = "Stammdaten"
         '
         'GrArtikellisteBindingSource
@@ -873,6 +874,7 @@ Partial Class Vorgang
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.AddNewButton)
         Me.TabPage1.Controls.Add(Me.BezahltCheckBox)
         Me.TabPage1.Controls.Add(Me.MitarbeiterNrComboBox)
         Me.TabPage1.Controls.Add(WaehrungLabel1)
@@ -919,13 +921,24 @@ Partial Class Vorgang
         Me.TabPage1.Text = "Status"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'AddNewButton
+        '
+        Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.AddNewButton.Location = New System.Drawing.Point(656, 43)
+        Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.AddNewButton.Name = "AddNewButton"
+        Me.AddNewButton.Size = New System.Drawing.Size(20, 77)
+        Me.AddNewButton.TabIndex = 54
+        Me.AddNewButton.Text = "+"
+        Me.AddNewButton.UseVisualStyleBackColor = True
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(610, 233)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -934,67 +947,67 @@ Partial Class Vorgang
         Me.VorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem, Me.VorlageeditierenToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AusdruckenToolStripMenuItem
         '
         Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
-        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'VorlageeditierenToolStripMenuItem
         '
         Me.VorlageeditierenToolStripMenuItem.Name = "VorlageeditierenToolStripMenuItem"
-        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.VorlageeditierenToolStripMenuItem.Text = "Vorlage &editieren"
         '
         'WaehrungComboBox
@@ -1187,4 +1200,5 @@ Partial Class Vorgang
     Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents AddNewButton As System.Windows.Forms.Button
 End Class

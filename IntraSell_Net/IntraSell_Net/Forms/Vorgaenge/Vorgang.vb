@@ -1497,4 +1497,16 @@ Public Class Vorgang
             HandleAppError(ex)
         End Try
     End Sub
+
+ 
+    Private Sub AddNewButton_Click(sender As System.Object, e As System.EventArgs) Handles AddNewButton.Click
+        Try
+            'Kundenform öffnenum weitere zu definieren
+            Dim k As Kunden = New Kunden
+            k.FilterBy("IDNR=" & Me.KundNr)
+            k.ShowDialog()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
