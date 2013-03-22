@@ -27,7 +27,6 @@ Public Class Kunden
         'TODO IMPLEMENT OpenAusdruck_inWord_XML(Me.IDNRTextBox.Text, "Vorlagen/0. BRIEF.dot", "WORD", False, Nothing)
     End Sub
 
-
     Sub BeginNew()
         Try
             BindingNavigatorAddNewItem_Click(Nothing, Nothing)
@@ -130,7 +129,6 @@ Public Class Kunden
             Me.Ofadressen_zahlungsmethodenBindingSource.EndEdit()
             Me.Ofadressen_transportmethodenBindingSource.EndEdit()
 
-
             Me.OfAdressenTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_settingsTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_weitereTableAdapter.Update(Me.DataSetKunden)
@@ -182,7 +180,7 @@ Public Class Kunden
 
 #End Region
 
-
+#Region "Vorgaenge"
 
     Private Sub AlteVorgängeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AlteVorgängeToolStripMenuItem.Click
         Try
@@ -204,6 +202,7 @@ Public Class Kunden
             HandleAppError(ex)
         End Try
     End Sub
+#End Region
 
 #Region "Settings"
     Private Sub cbPreisliste_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbPreisliste.GotFocus
@@ -236,4 +235,7 @@ Public Class Kunden
 #End Region
 
 
+    Private Sub AdresseWeitereButton_Click(sender As System.Object, e As System.EventArgs) Handles AdresseWeitereButton.Click
+        AdresseWeitere.ShowDialog()
+    End Sub
 End Class

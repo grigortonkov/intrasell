@@ -134,4 +134,17 @@ Public Class ModuleBuchVorgangTest
         'Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
+
+    <TestMethod()> _
+    Public Sub VorgangKonvertierenTestManuell()
+        If Not IntraSell_DLL.FunctionsDB.CurrentDB.State = Data.ConnectionState.Open Then
+            IntraSell_DLL.FunctionsDB.CurrentDB.Open()
+        End If
+        Dim actual As String
+        Dim expected As String = "2012002"
+        actual = ModuleBuchVorgang.VorgangKonvertieren("AN", "AR", "2012001", 100)
+        Assert.AreEqual(expected, actual)
+        'Assert.Inconclusive("Verify the correctness of this test method.")
+
+    End Sub
 End Class

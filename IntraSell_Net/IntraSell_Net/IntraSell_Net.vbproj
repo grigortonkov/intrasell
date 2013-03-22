@@ -180,6 +180,12 @@
     <Compile Include="Forms\Artikel\ArtikelKategorien.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Controls\AdressenDetailControl.Designer.vb">
+      <DependentUpon>AdressenDetailControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenDetailControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\AdressenProfil.Designer.vb">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </Compile>
@@ -319,6 +325,12 @@
       <DependentUpon>Setup.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Infrastructure\Setup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\AdresseWeitere.Designer.vb">
+      <DependentUpon>AdresseWeitere.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\AdresseWeitere.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Kunden\Kunden.Designer.vb">
@@ -478,6 +490,9 @@
     <EmbeddedResource Include="Forms\Artikel\ArtikelKategorien.resx">
       <DependentUpon>ArtikelKategorien.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenDetailControl.resx">
+      <DependentUpon>AdressenDetailControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\AdressenProfil.resx">
       <DependentUpon>AdressenProfil.vb</DependentUpon>
     </EmbeddedResource>
@@ -537,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\Setup.resx">
       <DependentUpon>Setup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\AdresseWeitere.resx">
+      <DependentUpon>AdresseWeitere.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kunden\Kunden.resx">
       <DependentUpon>Kunden.vb</DependentUpon>
@@ -603,6 +621,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Data\dsAdressenProfil.xsc">
       <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
     </None>
