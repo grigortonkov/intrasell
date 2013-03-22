@@ -429,8 +429,8 @@ Public Class IntraSellPreise
     ' returns the nummer of the created new OrderType or 0 of failed
     '*****************************************************************
     Public Function convertFromTo(ByVal VorgangTypVon As String, ByVal VorgangTypNach As String, ByVal VorgangNummerVon As Integer, ByVal NewKundNr As Integer, Optional silent As Boolean = False) As String
-        Dim benutzeTransaktion As Boolean = False
-        ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
+        Dim benutzeTransaktion As Boolean = True
+        ' benutzeTransaktion = True -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
         Dim mysqltr As MySqlTransaction = Nothing
         Try
 
