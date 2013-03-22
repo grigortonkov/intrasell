@@ -40,20 +40,13 @@ Public Class Kunden
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            Me.AdressenDetailControl1.Init()
             Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
             Me.BuchvorgangtypTableAdapter.Fill(Me.DsVorgaenge.buchvorgangtyp)
             Me.GrtransportmethodeTableAdapter.Fill(Me.DsStammdaten.grtransportmethode)
             Me.GrzahlungsbedingungTableAdapter.Fill(Me.DsStammdaten.grzahlungsbedingung)
             Me.GrzahlungsmethodeTableAdapter.Fill(Me.DsStammdaten.grzahlungsmethode)
 
-            'Branche 
-            FillComboBox(Me.BrancheComboBox, "select BrNr, Bezeichnung from grBranchen   order by Bezeichnung", "Bezeichnung", "BrNr")
-            'Title
-            FillComboBox(Me.TitelComboBox, "select Titel from ofAdressen group by Titel order by Titel", "Titel", "Titel")
-            'anrede 
-            FillComboBox(Me.AnredeComboBox, "select Anrede from grAnrede group by Anrede order by Anrede", "Anrede", "Anrede")
-            'Briefanrede 
-            FillComboBox(Me.BriefanredeComboBox, "select Briefanrede from grAnrede group by Briefanrede order by Briefanrede", "Briefanrede", "Briefanrede")
             'Satus 
             FillComboBox(Me.StatusComboBox, "select Status from ofAdressen group by Status order by Status", "Status", "Status")
 
@@ -102,7 +95,7 @@ Public Class Kunden
 
             If AddingNewFlag = True Then
                 AddingNewFlag = False
-                Me.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)
+                Me.AdressenDetailControl1.IDNRTextBox.Text = nextId("ofAdressen", "IDNR", , False)
                 Exit Sub
             End If
 
@@ -135,42 +128,6 @@ Public Class Kunden
             Me.Ofadressen_zahlungsbedingungenTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_zahlungsmethodenTableAdapter.Update(Me.DataSetKunden)
             Me.Ofadressen_transportmethodenTableAdapter.Update(Me.DataSetKunden)
-
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-
-    End Sub
-
-    Private Sub ButtonPLZSelect_Click(sender As System.Object, e As System.EventArgs) Handles ButtonPLZSelect.Click
-        Try
-            Dim plz As PLZSelector = New PLZSelector
-            plz.Ort = Me.OrtComboBox
-            plz.PLZ = Me.PLZComboBox
-            plz.Land = Me.LandComboBox
-            plz.ShowDialog()
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-    End Sub
-
-
-
-    Private Sub PLZComboBox_Validating(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles PLZComboBox.Validating
-        Try
-            Me.OrtComboBox.Text = firstRow("select Ort from grPLZ where PLZ ='" & PLZComboBox.Text & "'")
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-
-    End Sub
-
-    Private Sub OrtComboBox_Validating(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles OrtComboBox.Validating
-        Try
-            'Enter new PLZ + Ort if not Existing 
-            Dim newValue As String = IntraSellKunden.getPLZCreateIfNeeded(Me.LandComboBox.SelectedValue, Me.OrtComboBox.Text, Me.PLZComboBox.Text)
-            Me.GrLandPlzTableAdapter.Fill(Me.DsPLZ.grLandPlz)
-            Me.PLZComboBox.SelectedValue = newValue
 
         Catch ex As Exception
             HandleAppError(ex)
@@ -235,7 +192,15 @@ Public Class Kunden
 #End Region
 
 
-    Private Sub AdresseWeitereButton_Click(sender As System.Object, e As System.EventArgs) Handles AdresseWeitereButton.Click
-        AdresseWeitere.ShowDialog()
+    Private Sub AdresseWeitereButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdresseWeitereButton.Click 
+        Try
+            Dim a As AdresseWeitere = New AdresseWeitere
+            a.StarteNeueAdresse(IDNR:=AdressenDetailControl1.IDNR, VorgangTyp:="LI")
+            a.ShowDialog()
+            'refresh data 
+            Me.Ofadressen_weitereTableAdapter.Fill(Me.DataSetKunden._ofadressen_weitere)
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
 End Class

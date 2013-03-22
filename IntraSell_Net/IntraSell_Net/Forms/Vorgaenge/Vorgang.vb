@@ -173,10 +173,12 @@ Public Class Vorgang
             VorgangWizzard.ShowDialog()
             'die Werte Übernehmen 
             If VorgangWizzard.DialogResult = DialogResult.OK Then
+                'refresh 
 
                 Me.NummerTextBox.Text = VorgangWizzard.NummerTextBox.Text
                 Me.TypComboBox.Text = VorgangWizzard.TypComboBox.Text
                 Me.TypComboBox.SelectedValue = VorgangWizzard.TypComboBox.SelectedValue
+                Me.KundNrAdressenControl.Refresh()
                 Me.KundNrAdressenControl.IDNR = VorgangWizzard.KundNrAdressenControl.IDNR
                 Me.DatumDateTimePicker.Value = VorgangWizzard.DatumDateTimePicker.Value
                 Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID

@@ -50,7 +50,7 @@ Public Class VorgangWizzard
         End Try
     End Sub
 
-    Private Sub KundeAnlegenButton_Click(sender As System.Object, e As System.EventArgs) Handles KundeAnlegenButton.Click
+    Private Sub KundeAnlegenButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim k As Kunden = New Kunden
             k.BeginNewFlag = True
@@ -58,7 +58,7 @@ Public Class VorgangWizzard
             'hier wartet bis dialog fenster zu ist
             'If k.DialogResult = Windows.Forms.DialogResult.OK Then
             Me.KundNrAdressenControl.Refresh()
-            Me.KundNrAdressenControl.IDNR = k.IDNRTextBox.Text
+            Me.KundNrAdressenControl.IDNR = k.AdressenDetailControl1.IDNRTextBox.Text
             'Else 'cancel
 
             'End If
@@ -67,6 +67,6 @@ Public Class VorgangWizzard
         Catch ex As Exception
             HandleAppError(ex)
         End Try
-     
+
     End Sub
 End Class
