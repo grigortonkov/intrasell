@@ -3,6 +3,9 @@ Public Class ArtikelControl
     Public Const SQL = "SELECT ArtNr, concat(EAN, ' ', Bezeichnung) as Art FROM grArtikel ORDER BY EAN, Bezeichnung"
     Private _ArtNr As Integer
 
+    Public Event ArtNrChanged(ByVal ArtNr As Integer)
+
+
     Public Property ArtNr() As Integer
         Get
             Return _ArtNr
@@ -32,6 +35,7 @@ Public Class ArtikelControl
         Try
             If VarType(ArtikelComboBox.SelectedValue) = VariantType.Integer Then
                 ArtNr = ArtikelComboBox.SelectedValue
+                RaiseEvent ArtNrChanged(ArtNr)
             End If
         Catch ex As Exception
             HandleAppError(ex)

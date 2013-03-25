@@ -4,4 +4,5 @@ OK 3. Kundengruppen Form
 Ok 4. Kundengruppe, Preisliste wird bem Kundne nicht gespeihert, und beim blättern verschwindet
 5.Textbausteine für Vorgang 
 OK 6. PLZ Erfassung in Weitere Adressen ist falsch und ändert die PLZ von der Hauptadresse
-7. Position einfügen 
+ok 7. Position einfügen 
+8. Vorgang - nach Position einfügen in DAtagrid .. refresh der daten 
