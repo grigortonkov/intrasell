@@ -43,6 +43,21 @@ Partial Class Vorgang
         Dim TransportMethodeLabel1 As System.Windows.Forms.Label
         Dim ZahlungsMethodeLabel1 As System.Windows.Forms.Label
         Dim WaehrungLabel1 As System.Windows.Forms.Label
+        Dim ArtNrLabel As System.Windows.Forms.Label
+        Dim StkLabel As System.Windows.Forms.Label
+        Dim Preis_NettoLabel As System.Windows.Forms.Label
+        Dim Preis_BruttoLabel As System.Windows.Forms.Label
+        Dim MWSTLabel As System.Windows.Forms.Label
+        Dim ArtikelIdentifikationLabel As System.Windows.Forms.Label
+        Dim BezeichnungLabel As System.Windows.Forms.Label
+        Dim LieferantNrLabel1 As System.Windows.Forms.Label
+        Dim StatusLabel1 As System.Windows.Forms.Label
+        Dim ReferenzLabel As System.Windows.Forms.Label
+        Dim PackungLabel As System.Windows.Forms.Label
+        Dim HerkunftLabel As System.Windows.Forms.Label
+        Dim IncotermLabel As System.Windows.Forms.Label
+        Dim SpezifikationLabel As System.Windows.Forms.Label
+        Dim ZeitpunktLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Vorgang))
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
         Me.BuchvorgangBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -127,6 +142,23 @@ Partial Class Vorgang
         Me.KundNr2AdressenControl = New IntraSell_Net.AdressenWeitereControl()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.NeuePositionButton = New System.Windows.Forms.Button()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
+        Me.StkTextBox = New System.Windows.Forms.TextBox()
+        Me.Preis_NettoTextBox = New System.Windows.Forms.TextBox()
+        Me.Preis_BruttoTextBox = New System.Windows.Forms.TextBox()
+        Me.MWSTTextBox = New System.Windows.Forms.TextBox()
+        Me.ArtikelIdentifikationTextBox = New System.Windows.Forms.TextBox()
+        Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
+        Me.LieferantNrTextBox = New System.Windows.Forms.TextBox()
+        Me.StatusTextBox = New System.Windows.Forms.TextBox()
+        Me.ReferenzTextBox = New System.Windows.Forms.TextBox()
+        Me.PackungTextBox = New System.Windows.Forms.TextBox()
+        Me.HerkunftTextBox = New System.Windows.Forms.TextBox()
+        Me.IncotermTextBox = New System.Windows.Forms.TextBox()
+        Me.SpezifikationTextBox = New System.Windows.Forms.TextBox()
+        Me.ZeitpunktDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.GrArtikellisteTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grArtikellisteTableAdapter()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         NummerLabel = New System.Windows.Forms.Label()
@@ -149,6 +181,21 @@ Partial Class Vorgang
         TransportMethodeLabel1 = New System.Windows.Forms.Label()
         ZahlungsMethodeLabel1 = New System.Windows.Forms.Label()
         WaehrungLabel1 = New System.Windows.Forms.Label()
+        ArtNrLabel = New System.Windows.Forms.Label()
+        StkLabel = New System.Windows.Forms.Label()
+        Preis_NettoLabel = New System.Windows.Forms.Label()
+        Preis_BruttoLabel = New System.Windows.Forms.Label()
+        MWSTLabel = New System.Windows.Forms.Label()
+        ArtikelIdentifikationLabel = New System.Windows.Forms.Label()
+        BezeichnungLabel = New System.Windows.Forms.Label()
+        LieferantNrLabel1 = New System.Windows.Forms.Label()
+        StatusLabel1 = New System.Windows.Forms.Label()
+        ReferenzLabel = New System.Windows.Forms.Label()
+        PackungLabel = New System.Windows.Forms.Label()
+        HerkunftLabel = New System.Windows.Forms.Label()
+        IncotermLabel = New System.Windows.Forms.Label()
+        SpezifikationLabel = New System.Windows.Forms.Label()
+        ZeitpunktLabel = New System.Windows.Forms.Label()
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +209,7 @@ Partial Class Vorgang
         Me.TabPage1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -216,7 +264,7 @@ Partial Class Vorgang
         'NotizInternLabel
         '
         NotizInternLabel.AutoSize = True
-        NotizInternLabel.Location = New System.Drawing.Point(6, 114)
+        NotizInternLabel.Location = New System.Drawing.Point(6, 98)
         NotizInternLabel.Name = "NotizInternLabel"
         NotizInternLabel.Size = New System.Drawing.Size(64, 13)
         NotizInternLabel.TabIndex = 11
@@ -225,7 +273,7 @@ Partial Class Vorgang
         'NotizExternLabel
         '
         NotizExternLabel.AutoSize = True
-        NotizExternLabel.Location = New System.Drawing.Point(6, 220)
+        NotizExternLabel.Location = New System.Drawing.Point(6, 186)
         NotizExternLabel.Name = "NotizExternLabel"
         NotizExternLabel.Size = New System.Drawing.Size(67, 13)
         NotizExternLabel.TabIndex = 13
@@ -348,6 +396,141 @@ Partial Class Vorgang
         WaehrungLabel1.TabIndex = 52
         WaehrungLabel1.Text = "Währung:"
         '
+        'ArtNrLabel
+        '
+        ArtNrLabel.AutoSize = True
+        ArtNrLabel.Location = New System.Drawing.Point(8, 21)
+        ArtNrLabel.Name = "ArtNrLabel"
+        ArtNrLabel.Size = New System.Drawing.Size(37, 13)
+        ArtNrLabel.TabIndex = 6
+        ArtNrLabel.Text = "Art Nr:"
+        '
+        'StkLabel
+        '
+        StkLabel.AutoSize = True
+        StkLabel.Location = New System.Drawing.Point(10, 77)
+        StkLabel.Name = "StkLabel"
+        StkLabel.Size = New System.Drawing.Size(43, 13)
+        StkLabel.TabIndex = 8
+        StkLabel.Text = "Menge:"
+        '
+        'Preis_NettoLabel
+        '
+        Preis_NettoLabel.AutoSize = True
+        Preis_NettoLabel.Location = New System.Drawing.Point(8, 103)
+        Preis_NettoLabel.Name = "Preis_NettoLabel"
+        Preis_NettoLabel.Size = New System.Drawing.Size(62, 13)
+        Preis_NettoLabel.TabIndex = 12
+        Preis_NettoLabel.Text = "Preis Netto:"
+        '
+        'Preis_BruttoLabel
+        '
+        Preis_BruttoLabel.AutoSize = True
+        Preis_BruttoLabel.Location = New System.Drawing.Point(8, 129)
+        Preis_BruttoLabel.Name = "Preis_BruttoLabel"
+        Preis_BruttoLabel.Size = New System.Drawing.Size(64, 13)
+        Preis_BruttoLabel.TabIndex = 14
+        Preis_BruttoLabel.Text = "Preis Brutto:"
+        '
+        'MWSTLabel
+        '
+        MWSTLabel.AutoSize = True
+        MWSTLabel.Location = New System.Drawing.Point(8, 155)
+        MWSTLabel.Name = "MWSTLabel"
+        MWSTLabel.Size = New System.Drawing.Size(44, 13)
+        MWSTLabel.TabIndex = 16
+        MWSTLabel.Text = "MWST:"
+        '
+        'ArtikelIdentifikationLabel
+        '
+        ArtikelIdentifikationLabel.AutoSize = True
+        ArtikelIdentifikationLabel.Location = New System.Drawing.Point(8, 181)
+        ArtikelIdentifikationLabel.Name = "ArtikelIdentifikationLabel"
+        ArtikelIdentifikationLabel.Size = New System.Drawing.Size(102, 13)
+        ArtikelIdentifikationLabel.TabIndex = 18
+        ArtikelIdentifikationLabel.Text = "Artikel Identifikation:"
+        '
+        'BezeichnungLabel
+        '
+        BezeichnungLabel.AutoSize = True
+        BezeichnungLabel.Location = New System.Drawing.Point(8, 51)
+        BezeichnungLabel.Name = "BezeichnungLabel"
+        BezeichnungLabel.Size = New System.Drawing.Size(72, 13)
+        BezeichnungLabel.TabIndex = 20
+        BezeichnungLabel.Text = "Bezeichnung:"
+        '
+        'LieferantNrLabel1
+        '
+        LieferantNrLabel1.AutoSize = True
+        LieferantNrLabel1.Location = New System.Drawing.Point(386, 23)
+        LieferantNrLabel1.Name = "LieferantNrLabel1"
+        LieferantNrLabel1.Size = New System.Drawing.Size(65, 13)
+        LieferantNrLabel1.TabIndex = 22
+        LieferantNrLabel1.Text = "Lieferant Nr:"
+        '
+        'StatusLabel1
+        '
+        StatusLabel1.AutoSize = True
+        StatusLabel1.Location = New System.Drawing.Point(386, 49)
+        StatusLabel1.Name = "StatusLabel1"
+        StatusLabel1.Size = New System.Drawing.Size(40, 13)
+        StatusLabel1.TabIndex = 24
+        StatusLabel1.Text = "Status:"
+        '
+        'ReferenzLabel
+        '
+        ReferenzLabel.AutoSize = True
+        ReferenzLabel.Location = New System.Drawing.Point(386, 75)
+        ReferenzLabel.Name = "ReferenzLabel"
+        ReferenzLabel.Size = New System.Drawing.Size(53, 13)
+        ReferenzLabel.TabIndex = 26
+        ReferenzLabel.Text = "Referenz:"
+        '
+        'PackungLabel
+        '
+        PackungLabel.AutoSize = True
+        PackungLabel.Location = New System.Drawing.Point(386, 101)
+        PackungLabel.Name = "PackungLabel"
+        PackungLabel.Size = New System.Drawing.Size(53, 13)
+        PackungLabel.TabIndex = 28
+        PackungLabel.Text = "Packung:"
+        '
+        'HerkunftLabel
+        '
+        HerkunftLabel.AutoSize = True
+        HerkunftLabel.Location = New System.Drawing.Point(386, 127)
+        HerkunftLabel.Name = "HerkunftLabel"
+        HerkunftLabel.Size = New System.Drawing.Size(51, 13)
+        HerkunftLabel.TabIndex = 30
+        HerkunftLabel.Text = "Herkunft:"
+        '
+        'IncotermLabel
+        '
+        IncotermLabel.AutoSize = True
+        IncotermLabel.Location = New System.Drawing.Point(386, 153)
+        IncotermLabel.Name = "IncotermLabel"
+        IncotermLabel.Size = New System.Drawing.Size(51, 13)
+        IncotermLabel.TabIndex = 32
+        IncotermLabel.Text = "Incoterm:"
+        '
+        'SpezifikationLabel
+        '
+        SpezifikationLabel.AutoSize = True
+        SpezifikationLabel.Location = New System.Drawing.Point(386, 179)
+        SpezifikationLabel.Name = "SpezifikationLabel"
+        SpezifikationLabel.Size = New System.Drawing.Size(70, 13)
+        SpezifikationLabel.TabIndex = 34
+        SpezifikationLabel.Text = "Spezifikation:"
+        '
+        'ZeitpunktLabel
+        '
+        ZeitpunktLabel.AutoSize = True
+        ZeitpunktLabel.Location = New System.Drawing.Point(386, 206)
+        ZeitpunktLabel.Name = "ZeitpunktLabel"
+        ZeitpunktLabel.Size = New System.Drawing.Size(55, 13)
+        ZeitpunktLabel.TabIndex = 36
+        ZeitpunktLabel.Text = "Zeitpunkt:"
+        '
         'DsVorgaenge
         '
         Me.DsVorgaenge.DataSetName = "dsVorgaenge"
@@ -412,7 +595,7 @@ Partial Class Vorgang
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -528,25 +711,25 @@ Partial Class Vorgang
         Me.NotizTextBox.Location = New System.Drawing.Point(120, 6)
         Me.NotizTextBox.Multiline = True
         Me.NotizTextBox.Name = "NotizTextBox"
-        Me.NotizTextBox.Size = New System.Drawing.Size(541, 99)
+        Me.NotizTextBox.Size = New System.Drawing.Size(541, 83)
         Me.NotizTextBox.TabIndex = 10
         '
         'NotizInternTextBox
         '
         Me.NotizInternTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "NotizIntern", True))
-        Me.NotizInternTextBox.Location = New System.Drawing.Point(120, 111)
+        Me.NotizInternTextBox.Location = New System.Drawing.Point(120, 95)
         Me.NotizInternTextBox.Multiline = True
         Me.NotizInternTextBox.Name = "NotizInternTextBox"
-        Me.NotizInternTextBox.Size = New System.Drawing.Size(541, 99)
+        Me.NotizInternTextBox.Size = New System.Drawing.Size(541, 83)
         Me.NotizInternTextBox.TabIndex = 12
         '
         'NotizExternTextBox
         '
         Me.NotizExternTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangBindingSource, "NotizExtern", True))
-        Me.NotizExternTextBox.Location = New System.Drawing.Point(120, 217)
+        Me.NotizExternTextBox.Location = New System.Drawing.Point(120, 183)
         Me.NotizExternTextBox.Multiline = True
         Me.NotizExternTextBox.Name = "NotizExternTextBox"
-        Me.NotizExternTextBox.Size = New System.Drawing.Size(541, 99)
+        Me.NotizExternTextBox.Size = New System.Drawing.Size(541, 83)
         Me.NotizExternTextBox.TabIndex = 14
         '
         'SummeTextBox
@@ -566,7 +749,7 @@ Partial Class Vorgang
         Me.BezahltCheckBox.Location = New System.Drawing.Point(347, 16)
         Me.BezahltCheckBox.Name = "BezahltCheckBox"
         Me.BezahltCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.BezahltCheckBox.TabIndex = 18
+        Me.BezahltCheckBox.TabIndex = 10
         Me.BezahltCheckBox.Text = "bezahlt"
         Me.BezahltCheckBox.UseVisualStyleBackColor = True
         '
@@ -577,7 +760,7 @@ Partial Class Vorgang
         Me.AusgedrucktCheckBox.Location = New System.Drawing.Point(452, 16)
         Me.AusgedrucktCheckBox.Name = "AusgedrucktCheckBox"
         Me.AusgedrucktCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AusgedrucktCheckBox.TabIndex = 20
+        Me.AusgedrucktCheckBox.TabIndex = 11
         Me.AusgedrucktCheckBox.Text = "ausgedruckt"
         Me.AusgedrucktCheckBox.UseVisualStyleBackColor = True
         '
@@ -588,7 +771,7 @@ Partial Class Vorgang
         Me.AbgeschlossenCheckBox.Location = New System.Drawing.Point(559, 16)
         Me.AbgeschlossenCheckBox.Name = "AbgeschlossenCheckBox"
         Me.AbgeschlossenCheckBox.Size = New System.Drawing.Size(101, 24)
-        Me.AbgeschlossenCheckBox.TabIndex = 22
+        Me.AbgeschlossenCheckBox.TabIndex = 12
         Me.AbgeschlossenCheckBox.Text = "abgeschlosen"
         Me.AbgeschlossenCheckBox.UseVisualStyleBackColor = True
         '
@@ -599,7 +782,7 @@ Partial Class Vorgang
         Me.WoherTextBox.Location = New System.Drawing.Point(452, 124)
         Me.WoherTextBox.Name = "WoherTextBox"
         Me.WoherTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.WoherTextBox.TabIndex = 30
+        Me.WoherTextBox.TabIndex = 17
         '
         'WohinTextBox
         '
@@ -608,7 +791,7 @@ Partial Class Vorgang
         Me.WohinTextBox.Location = New System.Drawing.Point(452, 150)
         Me.WohinTextBox.Name = "WohinTextBox"
         Me.WohinTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.WohinTextBox.TabIndex = 32
+        Me.WohinTextBox.TabIndex = 18
         '
         'StatusComboBox
         '
@@ -617,7 +800,7 @@ Partial Class Vorgang
         Me.StatusComboBox.Location = New System.Drawing.Point(452, 176)
         Me.StatusComboBox.Name = "StatusComboBox"
         Me.StatusComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.StatusComboBox.TabIndex = 34
+        Me.StatusComboBox.TabIndex = 19
         '
         'SummeMWSTTextBox
         '
@@ -646,7 +829,7 @@ Partial Class Vorgang
         Me.LieferantNrComboBox.Location = New System.Drawing.Point(452, 203)
         Me.LieferantNrComboBox.Name = "LieferantNrComboBox"
         Me.LieferantNrComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.LieferantNrComboBox.TabIndex = 40
+        Me.LieferantNrComboBox.TabIndex = 20
         '
         'MitarbeiterNrComboBox
         '
@@ -655,7 +838,7 @@ Partial Class Vorgang
         Me.MitarbeiterNrComboBox.Location = New System.Drawing.Point(452, 230)
         Me.MitarbeiterNrComboBox.Name = "MitarbeiterNrComboBox"
         Me.MitarbeiterNrComboBox.Size = New System.Drawing.Size(155, 25)
-        Me.MitarbeiterNrComboBox.TabIndex = 42
+        Me.MitarbeiterNrComboBox.TabIndex = 21
         '
         'Buchvorgang_artikelBindingSource
         '
@@ -671,7 +854,7 @@ Partial Class Vorgang
         Me.Buchvorgang_artikelDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Buchvorgang_artikelDataGridView.Location = New System.Drawing.Point(0, 0)
         Me.Buchvorgang_artikelDataGridView.Name = "Buchvorgang_artikelDataGridView"
-        Me.Buchvorgang_artikelDataGridView.Size = New System.Drawing.Size(871, 296)
+        Me.Buchvorgang_artikelDataGridView.Size = New System.Drawing.Size(871, 352)
         Me.Buchvorgang_artikelDataGridView.TabIndex = 49
         '
         'DataGridViewTextBoxColumnID
@@ -841,7 +1024,7 @@ Partial Class Vorgang
         Me.ZahlungsbedingungComboBox.Location = New System.Drawing.Point(452, 71)
         Me.ZahlungsbedingungComboBox.Name = "ZahlungsbedingungComboBox"
         Me.ZahlungsbedingungComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ZahlungsbedingungComboBox.TabIndex = 51
+        Me.ZahlungsbedingungComboBox.TabIndex = 14
         '
         'TransportMethodeComboBox
         '
@@ -850,7 +1033,7 @@ Partial Class Vorgang
         Me.TransportMethodeComboBox.Location = New System.Drawing.Point(452, 97)
         Me.TransportMethodeComboBox.Name = "TransportMethodeComboBox"
         Me.TransportMethodeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.TransportMethodeComboBox.TabIndex = 52
+        Me.TransportMethodeComboBox.TabIndex = 15
         '
         'ZahlungsMethodeComboBox
         '
@@ -859,17 +1042,18 @@ Partial Class Vorgang
         Me.ZahlungsMethodeComboBox.Location = New System.Drawing.Point(452, 44)
         Me.ZahlungsMethodeComboBox.Name = "ZahlungsMethodeComboBox"
         Me.ZahlungsMethodeComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.ZahlungsMethodeComboBox.TabIndex = 50
+        Me.ZahlungsMethodeComboBox.TabIndex = 13
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(871, 356)
+        Me.TabControl1.Size = New System.Drawing.Size(871, 300)
         Me.TabControl1.TabIndex = 10
         '
         'TabPage1
@@ -916,7 +1100,7 @@ Partial Class Vorgang
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(863, 330)
+        Me.TabPage1.Size = New System.Drawing.Size(863, 274)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Status"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -924,11 +1108,11 @@ Partial Class Vorgang
         'AddNewButton
         '
         Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.AddNewButton.Location = New System.Drawing.Point(656, 43)
+        Me.AddNewButton.Location = New System.Drawing.Point(656, 15)
         Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
         Me.AddNewButton.Name = "AddNewButton"
         Me.AddNewButton.Size = New System.Drawing.Size(20, 77)
-        Me.AddNewButton.TabIndex = 54
+        Me.AddNewButton.TabIndex = 16
         Me.AddNewButton.Text = "+"
         Me.AddNewButton.UseVisualStyleBackColor = True
         '
@@ -938,7 +1122,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(610, 233)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(117, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -947,67 +1131,67 @@ Partial Class Vorgang
         Me.VorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.VorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.AusdruckenToolStripMenuItem, Me.AbschliessenToolStripMenuItem, Me.StornoToolStripMenuItem, Me.ExportierenToolStripMenuItem, Me.KonvertierenToolStripMenuItem, Me.VorlagenToolStripMenuItem, Me.KassaBuchungToolStripMenuItem, Me.SendeEmailToolStripMenuItem, Me.VorlageeditierenToolStripMenuItem})
         Me.VorgangToolStripMenuItem.Name = "VorgangToolStripMenuItem"
-        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(119, 20)
+        Me.VorgangToolStripMenuItem.Size = New System.Drawing.Size(109, 20)
         Me.VorgangToolStripMenuItem.Text = "&Vorgang Aufgaben"
         '
         'NeuerVorgangToolStripMenuItem
         '
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Neuer Vorgang"
         '
         'AusdruckenToolStripMenuItem
         '
         Me.AusdruckenToolStripMenuItem.Name = "AusdruckenToolStripMenuItem"
-        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AusdruckenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AusdruckenToolStripMenuItem.Text = "Ausdrucken"
         '
         'AbschliessenToolStripMenuItem
         '
         Me.AbschliessenToolStripMenuItem.Name = "AbschliessenToolStripMenuItem"
-        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AbschliessenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AbschliessenToolStripMenuItem.Text = "&Abschliessen"
         '
         'StornoToolStripMenuItem
         '
         Me.StornoToolStripMenuItem.Name = "StornoToolStripMenuItem"
-        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.StornoToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.StornoToolStripMenuItem.Text = "&Storno"
         '
         'ExportierenToolStripMenuItem
         '
         Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ExportierenToolStripMenuItem.Text = "&Exportieren"
         '
         'KonvertierenToolStripMenuItem
         '
         Me.KonvertierenToolStripMenuItem.Name = "KonvertierenToolStripMenuItem"
-        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.KonvertierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.KonvertierenToolStripMenuItem.Text = "&Konvertieren"
         '
         'VorlagenToolStripMenuItem
         '
         Me.VorlagenToolStripMenuItem.Name = "VorlagenToolStripMenuItem"
-        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.VorlagenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.VorlagenToolStripMenuItem.Text = "&Vorlagen"
         '
         'KassaBuchungToolStripMenuItem
         '
         Me.KassaBuchungToolStripMenuItem.Name = "KassaBuchungToolStripMenuItem"
-        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.KassaBuchungToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.KassaBuchungToolStripMenuItem.Text = "Kassa &Buchung"
         '
         'SendeEmailToolStripMenuItem
         '
         Me.SendeEmailToolStripMenuItem.Name = "SendeEmailToolStripMenuItem"
-        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.SendeEmailToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.SendeEmailToolStripMenuItem.Text = "Sende &Email"
         '
         'VorlageeditierenToolStripMenuItem
         '
         Me.VorlageeditierenToolStripMenuItem.Name = "VorlageeditierenToolStripMenuItem"
-        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.VorlageeditierenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.VorlageeditierenToolStripMenuItem.Text = "Vorlage &editieren"
         '
         'WaehrungComboBox
@@ -1027,7 +1211,7 @@ Partial Class Vorgang
         Me.KundNr2AdressenControl.IDNR = 0
         Me.KundNr2AdressenControl.Location = New System.Drawing.Point(120, 131)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
-        Me.KundNr2AdressenControl.ShowAddNew = True
+        Me.KundNr2AdressenControl.ShowAddNew = False
         Me.KundNr2AdressenControl.Size = New System.Drawing.Size(172, 25)
         Me.KundNr2AdressenControl.TabIndex = 5
         '
@@ -1037,7 +1221,7 @@ Partial Class Vorgang
         Me.KundNrAdressenControl.IDNR = 0
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(120, 100)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
-        Me.KundNrAdressenControl.ShowAddNew = True
+        Me.KundNrAdressenControl.ShowAddNew = False
         Me.KundNrAdressenControl.Size = New System.Drawing.Size(172, 25)
         Me.KundNrAdressenControl.TabIndex = 4
         '
@@ -1052,10 +1236,182 @@ Partial Class Vorgang
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(863, 330)
+        Me.TabPage2.Size = New System.Drawing.Size(863, 274)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Notizen"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TabPage3
+        '
+        Me.TabPage3.AutoScroll = True
+        Me.TabPage3.Controls.Add(Me.NeuePositionButton)
+        Me.TabPage3.Controls.Add(Me.ArtikelControl1)
+        Me.TabPage3.Controls.Add(ArtNrLabel)
+        Me.TabPage3.Controls.Add(StkLabel)
+        Me.TabPage3.Controls.Add(Me.StkTextBox)
+        Me.TabPage3.Controls.Add(Preis_NettoLabel)
+        Me.TabPage3.Controls.Add(Me.Preis_NettoTextBox)
+        Me.TabPage3.Controls.Add(Preis_BruttoLabel)
+        Me.TabPage3.Controls.Add(Me.Preis_BruttoTextBox)
+        Me.TabPage3.Controls.Add(MWSTLabel)
+        Me.TabPage3.Controls.Add(Me.MWSTTextBox)
+        Me.TabPage3.Controls.Add(ArtikelIdentifikationLabel)
+        Me.TabPage3.Controls.Add(Me.ArtikelIdentifikationTextBox)
+        Me.TabPage3.Controls.Add(BezeichnungLabel)
+        Me.TabPage3.Controls.Add(Me.BezeichnungTextBox)
+        Me.TabPage3.Controls.Add(LieferantNrLabel1)
+        Me.TabPage3.Controls.Add(Me.LieferantNrTextBox)
+        Me.TabPage3.Controls.Add(StatusLabel1)
+        Me.TabPage3.Controls.Add(Me.StatusTextBox)
+        Me.TabPage3.Controls.Add(ReferenzLabel)
+        Me.TabPage3.Controls.Add(Me.ReferenzTextBox)
+        Me.TabPage3.Controls.Add(PackungLabel)
+        Me.TabPage3.Controls.Add(Me.PackungTextBox)
+        Me.TabPage3.Controls.Add(HerkunftLabel)
+        Me.TabPage3.Controls.Add(Me.HerkunftTextBox)
+        Me.TabPage3.Controls.Add(IncotermLabel)
+        Me.TabPage3.Controls.Add(Me.IncotermTextBox)
+        Me.TabPage3.Controls.Add(SpezifikationLabel)
+        Me.TabPage3.Controls.Add(Me.SpezifikationTextBox)
+        Me.TabPage3.Controls.Add(ZeitpunktLabel)
+        Me.TabPage3.Controls.Add(Me.ZeitpunktDateTimePicker)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(863, 274)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Position"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'NeuePositionButton
+        '
+        Me.NeuePositionButton.Location = New System.Drawing.Point(736, 18)
+        Me.NeuePositionButton.Name = "NeuePositionButton"
+        Me.NeuePositionButton.Size = New System.Drawing.Size(105, 24)
+        Me.NeuePositionButton.TabIndex = 38
+        Me.NeuePositionButton.Text = "Neue Position"
+        Me.NeuePositionButton.UseVisualStyleBackColor = True
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.ArtNr = 0
+        Me.ArtikelControl1.DataBindings.Add(New System.Windows.Forms.Binding("ArtNr", Me.Buchvorgang_artikelBindingSource, "ArtNr", True))
+        Me.ArtikelControl1.Location = New System.Drawing.Point(116, 17)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.Size = New System.Drawing.Size(200, 25)
+        Me.ArtikelControl1.TabIndex = 16
+        '
+        'StkTextBox
+        '
+        Me.StkTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Stk", True))
+        Me.StkTextBox.Location = New System.Drawing.Point(116, 74)
+        Me.StkTextBox.Name = "StkTextBox"
+        Me.StkTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.StkTextBox.TabIndex = 18
+        '
+        'Preis_NettoTextBox
+        '
+        Me.Preis_NettoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Preis_Netto", True))
+        Me.Preis_NettoTextBox.Location = New System.Drawing.Point(116, 100)
+        Me.Preis_NettoTextBox.Name = "Preis_NettoTextBox"
+        Me.Preis_NettoTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Preis_NettoTextBox.TabIndex = 19
+        '
+        'Preis_BruttoTextBox
+        '
+        Me.Preis_BruttoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Preis_Brutto", True))
+        Me.Preis_BruttoTextBox.Location = New System.Drawing.Point(116, 126)
+        Me.Preis_BruttoTextBox.Name = "Preis_BruttoTextBox"
+        Me.Preis_BruttoTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Preis_BruttoTextBox.TabIndex = 20
+        '
+        'MWSTTextBox
+        '
+        Me.MWSTTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "MWST", True))
+        Me.MWSTTextBox.Location = New System.Drawing.Point(116, 152)
+        Me.MWSTTextBox.Name = "MWSTTextBox"
+        Me.MWSTTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.MWSTTextBox.TabIndex = 21
+        '
+        'ArtikelIdentifikationTextBox
+        '
+        Me.ArtikelIdentifikationTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "ArtikelIdentifikation", True))
+        Me.ArtikelIdentifikationTextBox.Location = New System.Drawing.Point(116, 178)
+        Me.ArtikelIdentifikationTextBox.Name = "ArtikelIdentifikationTextBox"
+        Me.ArtikelIdentifikationTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.ArtikelIdentifikationTextBox.TabIndex = 22
+        '
+        'BezeichnungTextBox
+        '
+        Me.BezeichnungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Bezeichnung", True))
+        Me.BezeichnungTextBox.Location = New System.Drawing.Point(116, 48)
+        Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
+        Me.BezeichnungTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.BezeichnungTextBox.TabIndex = 17
+        '
+        'LieferantNrTextBox
+        '
+        Me.LieferantNrTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "LieferantNr", True))
+        Me.LieferantNrTextBox.Location = New System.Drawing.Point(494, 20)
+        Me.LieferantNrTextBox.Name = "LieferantNrTextBox"
+        Me.LieferantNrTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.LieferantNrTextBox.TabIndex = 23
+        '
+        'StatusTextBox
+        '
+        Me.StatusTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Status", True))
+        Me.StatusTextBox.Location = New System.Drawing.Point(494, 46)
+        Me.StatusTextBox.Name = "StatusTextBox"
+        Me.StatusTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.StatusTextBox.TabIndex = 25
+        '
+        'ReferenzTextBox
+        '
+        Me.ReferenzTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Referenz", True))
+        Me.ReferenzTextBox.Location = New System.Drawing.Point(494, 72)
+        Me.ReferenzTextBox.Name = "ReferenzTextBox"
+        Me.ReferenzTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.ReferenzTextBox.TabIndex = 27
+        '
+        'PackungTextBox
+        '
+        Me.PackungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Packung", True))
+        Me.PackungTextBox.Location = New System.Drawing.Point(494, 98)
+        Me.PackungTextBox.Name = "PackungTextBox"
+        Me.PackungTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.PackungTextBox.TabIndex = 29
+        '
+        'HerkunftTextBox
+        '
+        Me.HerkunftTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Herkunft", True))
+        Me.HerkunftTextBox.Location = New System.Drawing.Point(494, 124)
+        Me.HerkunftTextBox.Name = "HerkunftTextBox"
+        Me.HerkunftTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.HerkunftTextBox.TabIndex = 31
+        '
+        'IncotermTextBox
+        '
+        Me.IncotermTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Incoterm", True))
+        Me.IncotermTextBox.Location = New System.Drawing.Point(494, 150)
+        Me.IncotermTextBox.Name = "IncotermTextBox"
+        Me.IncotermTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.IncotermTextBox.TabIndex = 33
+        '
+        'SpezifikationTextBox
+        '
+        Me.SpezifikationTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Spezifikation", True))
+        Me.SpezifikationTextBox.Location = New System.Drawing.Point(494, 176)
+        Me.SpezifikationTextBox.Name = "SpezifikationTextBox"
+        Me.SpezifikationTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.SpezifikationTextBox.TabIndex = 35
+        '
+        'ZeitpunktDateTimePicker
+        '
+        Me.ZeitpunktDateTimePicker.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.Buchvorgang_artikelBindingSource, "Zeitpunkt", True))
+        Me.ZeitpunktDateTimePicker.Location = New System.Drawing.Point(494, 202)
+        Me.ZeitpunktDateTimePicker.Name = "ZeitpunktDateTimePicker"
+        Me.ZeitpunktDateTimePicker.Size = New System.Drawing.Size(200, 20)
+        Me.ZeitpunktDateTimePicker.TabIndex = 37
         '
         'GrArtikellisteTableAdapter
         '
@@ -1077,7 +1433,7 @@ Partial Class Vorgang
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Buchvorgang_artikelDataGridView)
         Me.SplitContainer1.Size = New System.Drawing.Size(871, 656)
-        Me.SplitContainer1.SplitterDistance = 356
+        Me.SplitContainer1.SplitterDistance = 300
         Me.SplitContainer1.TabIndex = 54
         '
         'Vorgang
@@ -1107,6 +1463,8 @@ Partial Class Vorgang
         Me.MenuStrip1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1201,4 +1559,21 @@ Partial Class Vorgang
     Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents AddNewButton As System.Windows.Forms.Button
+    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents StkTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Preis_NettoTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Preis_BruttoTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents MWSTTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ArtikelIdentifikationTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents LieferantNrTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents StatusTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ReferenzTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PackungTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents HerkunftTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents IncotermTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents SpezifikationTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents ZeitpunktDateTimePicker As System.Windows.Forms.DateTimePicker
+    Friend WithEvents ArtikelControl1 As IntraSell_Net.ArtikelControl
+    Friend WithEvents NeuePositionButton As System.Windows.Forms.Button
 End Class
