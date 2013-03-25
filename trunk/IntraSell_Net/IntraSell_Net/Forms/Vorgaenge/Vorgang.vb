@@ -1498,7 +1498,6 @@ Public Class Vorgang
         End Try
     End Sub
 
- 
     Private Sub AddNewButton_Click(sender As System.Object, e As System.EventArgs) Handles AddNewButton.Click
         Try
             'Kundenform öffnenum weitere zu definieren
@@ -1508,5 +1507,19 @@ Public Class Vorgang
         Catch ex As Exception
             HandleAppError(ex)
         End Try
+    End Sub
+
+
+    Private Sub NeuePositionButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuePositionButton.Click
+        Try
+            Me.Buchvorgang_artikelBindingSource.AddNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub StkTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StkTextBox.Validated
+        loading = False
+        Buchvorgang_artikelDataGridView_CellValueChanged(Nothing, Nothing)
     End Sub
 End Class
