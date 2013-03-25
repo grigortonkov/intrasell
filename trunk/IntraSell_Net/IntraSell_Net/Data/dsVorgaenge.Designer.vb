@@ -17575,14 +17575,21 @@ Namespace dsVorgaengeTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(param)
             Me._adapter.InsertCommand = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang-artikel`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Nummer, Typ, ArtNr, "& _ 
-                "Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnun"& _ 
-                "g, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
-                "          Spezifikation, Zeitpunkt)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Nummer, @Typ, @ArtNr, @Stk,"& _ 
-                " @EKPreis, @Preis_Netto, @Preis_Brutto, @MWST, @ArtikelIdentifikation, @Bezeichn"& _ 
-                "ung, @LieferantNr, @Status, @Referenz, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @Packung, @Her"& _ 
-                "kunft, @Incoterm, @Spezifikation, @Zeitpunkt)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `buchvorgang-artikel`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (ID, Nummer, Typ, Art"& _ 
+                "Nr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeic"& _ 
+                "hnung, LieferantNr, Status, Referenz, Packung, Herkunft, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "    Incoterm, Spezifikation, Zeitpunkt)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@ID, @Nummer, @Typ, @Art"& _ 
+                "Nr, @Stk, @EKPreis, @Preis_Netto, @Preis_Brutto, @MWST, @ArtikelIdentifikation, "& _ 
+                "@Bezeichnung, @LieferantNr, @Status, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @Referenz, @Pack"& _ 
+                "ung, @Herkunft, @Incoterm, @Spezifikation, @Zeitpunkt)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ID"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@Nummer"
             param.DbType = Global.System.Data.DbType.Int32
@@ -18011,6 +18018,7 @@ Namespace dsVorgaengeTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
         Public Overloads Overridable Function Insert( _
+                    ByVal ID As Integer,  _
                     ByVal Nummer As Integer,  _
                     ByVal Typ As String,  _
                     ByVal ArtNr As Integer,  _
@@ -18029,79 +18037,80 @@ Namespace dsVorgaengeTableAdapters
                     ByVal Incoterm As String,  _
                     ByVal Spezifikation As String,  _
                     ByVal Zeitpunkt As Global.System.Nullable(Of Date)) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Nummer,Integer)
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(ID,Integer)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(Nummer,Integer)
             If (Typ Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Typ")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Typ,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Typ,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(ArtNr,Integer)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(Stk,Decimal)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(ArtNr,Integer)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(Stk,Decimal)
             If (EKPreis.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(EKPreis.Value,Decimal)
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(EKPreis.Value,Decimal)
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Preis_Netto,Decimal)
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(Preis_Netto,Decimal)
             If (Preis_Brutto.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(Preis_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (MWST.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(MWST.Value,Decimal)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Preis_Brutto.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (ArtikelIdentifikation Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            If (MWST.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(MWST.Value,Decimal)
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ArtikelIdentifikation,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (ArtikelIdentifikation Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(ArtikelIdentifikation,String)
             End If
             If (Bezeichnung Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(Bezeichnung,String)
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Bezeichnung,String)
             End If
             If (LieferantNr.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(LieferantNr.Value,Integer)
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(LieferantNr.Value,Integer)
             Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Status Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Status,String)
-            End If
-            If (Referenz Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Referenz,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Status,String)
             End If
-            If (Packung Is Nothing) Then
+            If (Referenz Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Packung,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Referenz,String)
             End If
-            If (Herkunft Is Nothing) Then
+            If (Packung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Herkunft,String)
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(Packung,String)
             End If
-            If (Incoterm Is Nothing) Then
+            If (Herkunft Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Incoterm,String)
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Herkunft,String)
             End If
-            If (Spezifikation Is Nothing) Then
+            If (Incoterm Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Spezifikation,String)
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Incoterm,String)
+            End If
+            If (Spezifikation Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Spezifikation,String)
             End If
             If (Zeitpunkt.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(Zeitpunkt.Value,Date)
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(Zeitpunkt.Value,Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _

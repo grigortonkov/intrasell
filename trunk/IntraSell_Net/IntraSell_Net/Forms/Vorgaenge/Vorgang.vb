@@ -310,63 +310,45 @@ Public Class Vorgang
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Stk" Then
                 Recalculate()
             End If
-
+            Dim r As DataGridViewRow = Buchvorgang_artikelDataGridView.Rows(e.RowIndex)
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Artikel" Then
-                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX).Value, _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-                                     Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+                ArtNr_CalculatePreis()
 
                 Recalculate()
             End If
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "ArtNr" Then
-                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+                ArtNr_CalculatePreis()
 
                 Recalculate()
             End If
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Bezeichnung" Then
 
-                bezeichnung_afterupdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_COMBO_INDEX), _
-                                        Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX))
+                bezeichnung_afterupdate(r.Cells(COL_BEZEICHNUNG_INDEX), _
+                                        r.Cells(COL_ARTNR_COMBO_INDEX), _
+                                        r.Cells(COL_ARTNR_INDEX))
 
                 'set Preise neu 
-                ArtNr_CalculatePreis(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_STK_INDEX).Value, _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_BEZEICHNUNG_INDEX), _
-                                      Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX), _
-                Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_EKPREIS_INDEX))
+                ArtNr_CalculatePreis()
                 Recalculate()
 
             End If
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Netto" Then
-                Preis_Netto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
+                Preis_Netto_AfterUpdate(r.Cells(COL_ARTNR_INDEX).Value, _
+                                            r.Cells(COL_PREIS_NETTO_INDEX), _
+                                            r.Cells(COL_PREIS_BRUTTO_INDEX), _
+                                            r.Cells(COL_MWST_INDEX))
 
                 Recalculate()
             End If
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Preis_Brutto" Then
-                Preis_Brutto_AfterUpdate(Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_ARTNR_INDEX).Value, _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_NETTO_INDEX), _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_PREIS_BRUTTO_INDEX), _
-                                            Buchvorgang_artikelDataGridView.Rows(e.RowIndex).Cells(COL_MWST_INDEX))
+                Preis_Brutto_AfterUpdate(r.Cells(COL_ARTNR_INDEX).Value, _
+                                            r.Cells(COL_PREIS_NETTO_INDEX), _
+                                            r.Cells(COL_PREIS_BRUTTO_INDEX), _
+                                            r.Cells(COL_MWST_INDEX))
 
                 Recalculate()
             End If
@@ -1211,60 +1193,89 @@ Public Class Vorgang
     '    End Sub
 
 
-    '    'update preise
-    Private Sub ArtNr_CalculatePreis(ByVal ArtNr As String, ByVal Stk As Double, _
-                                     ByVal Bezeichnung As DataGridViewCell, _
-                                     ByVal Preis_Netto As DataGridViewCell, _
-                                     ByVal Preis_Brutto As DataGridViewCell, _
-                                     ByVal MWST As DataGridViewCell, _
-                                     ByVal EKPreis As DataGridViewCell)
+
+    ''' <summary>
+    ''' update preise after changing the row 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub ArtNr_CalculatePreis()
         Try
 
+            Dim r As dsVorgaenge._buchvorgang_artikelRow = Buchvorgang_artikelBindingSource.Current.row
+            Try
+                If IsNull(r.ArtNr) Then
+                    Exit Sub
+                End If
+            Catch ex As Exception
+                Exit Sub
+            End Try
             Dim KundNr As String = Me.KundNrAdressenControl.IDNR
 
-            Dim rs As MySqlDataReader = openRecordset("select * from grArtikel where ArtNr= " & ArtNr)
+            Dim rs As MySqlDataReader = openRecordset("select * from grArtikel where ArtNr= " & r.ArtNr)
 
             Dim VKPreis As Double = 0
             If rs.Read Then
                 VKPreis = rs("PreisATS")
-                If IsDBNull(Bezeichnung.Value) Then
-                    Bezeichnung.Value = rs("Bezeichnung")
-                End If
+                Try
+                    If IsNull(r.Bezeichnung) Then
+                        r.Bezeichnung = rs("Bezeichnung")
+                    End If
+                Catch ex As Exception
+                    r.Bezeichnung = rs("Bezeichnung")
+                End Try
+
             End If
 
             rs.Close()
 
             'try to get specialpreis
+            Try
+                If IsNull(r.Stk) Then
+                    Exit Sub
+                End If
+            Catch ex As Exception
+                Exit Sub
+            End Try
 
-            Dim specialPreis As Double = getPreis(KundNr, ArtNr, Stk)
+            Dim specialPreis As Double = getPreis(KundNr, r.ArtNr, r.Stk)
             If specialPreis > 0 Then
                 VKPreis = specialPreis
             End If
 
             Dim notDefined As Boolean = False
-            If IsNull(Preis_Netto.Value) Then 'Or IsNull(Preis_Netto.Value) Preis_Netto.Value = "0" Or 
+            Try
+                If IsDBNull(r.Preis_Netto) Then
+                    notDefined = True
+                ElseIf r.Preis_Netto = 0 Then
+                    notDefined = True
+                End If
+            Catch ex As Exception
                 notDefined = True
-            ElseIf Preis_Netto.Value = 0 Then
-                notDefined = True
-            End If
+            End Try
+
 
             If notDefined Then
-                Preis_Netto.Value = VKPreis
-                Preis_Brutto.Value = calculateBruttoPreis(VKPreis, ArtNr, KundNr)
-                MWST.Value = Preis_Brutto.Value - Preis_Netto.Value
+                r.Preis_Netto = VKPreis
+                r.Preis_Brutto = calculateBruttoPreis(VKPreis, r.ArtNr, KundNr)
+                r.MWST = r.Preis_Brutto - r.Preis_Netto
             End If
 
             notDefined = False
-            If IsNull(EKPreis.Value) Then ' Or IsNull(EKPreis.Value) Or EKPreis.Value = 0
-                notDefined = True
-            ElseIf EKPreis.Value = 0 Then
-                notDefined = True
-            End If
+            Try
 
+                If IsDBNull(r.EKPreis) Then
+                    notDefined = True
+                ElseIf r.EKPreis = 0 Then
+                    notDefined = True
+                End If
+            Catch ex As Exception
+                notDefined = True
+            End Try
             If notDefined Then
-                EKPreis.Value = getEKPreis(ArtNr)
+                r.EKPreis = getEKPreis(r.ArtNr)
             End If
 
+            Buchvorgang_artikelBindingSource.EndEdit()
             Exit Sub
         Catch ex As Exception
             MsgBox(Err.Description, vbCritical)
@@ -1512,14 +1523,47 @@ Public Class Vorgang
 
     Private Sub NeuePositionButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuePositionButton.Click
         Try
-            Me.Buchvorgang_artikelBindingSource.AddNew()
+            Buchvorgang_artikelBindingSource.AddNew()
+            Buchvorgang_artikelBindingSource.Current.row.ID = Me.Buchvorgang_artikelDataGridView.RowCount - 1
+            ArtikelControl1.ArtNr = Nothing
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
-    Private Sub StkTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StkTextBox.Validated
-        loading = False
-        Buchvorgang_artikelDataGridView_CellValueChanged(Nothing, Nothing)
+#Region "Position Tab"
+
+    Private Sub ArtNr_Changed(ByVal newArtNr As Object) Handles ArtikelControl1.ArtNrChanged
+        Try
+            Buchvorgang_artikelBindingSource.Current.row.artnr = newArtNr
+           recaluclatePosition()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
     End Sub
+
+    Private Sub StkTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StkTextBox.Validated
+        recaluclatePosition()
+    End Sub
+
+
+    Private Sub Preis_NettoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_NettoTextBox.Validated
+        recaluclatePosition()
+    End Sub
+
+    Private Sub Preis_BruttoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_BruttoTextBox.Validated
+        recaluclatePosition()
+    End Sub
+
+    Sub recaluclatePosition()
+        Try
+            ArtNr_CalculatePreis()
+            Recalculate()
+            Buchvorgang_artikelDataGridView.Refresh()
+            Buchvorgang_artikelBindingSource.EndEdit()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+#End Region
 End Class

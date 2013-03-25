@@ -83,7 +83,7 @@ Public Class buchvorgang_artikelTableAdapterTest
         Dim ErstelltAm As Nullable(Of DateTime) = New Nullable(Of DateTime)() ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.Insert(Nummer, Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt)
+        actual = target.Insert(1, Nummer, Typ, ArtNr, Stk, EKPreis, Preis_Netto, Preis_Brutto, MWST, ArtikelIdentifikation, Bezeichnung, LieferantNr, Status, Referenz, Packung, Herkunft, Incoterm, Spezifikation, Zeitpunkt)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
