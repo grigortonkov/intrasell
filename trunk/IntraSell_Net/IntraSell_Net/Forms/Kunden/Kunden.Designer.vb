@@ -79,7 +79,6 @@ Partial Class Kunden
         Me.MAInnenMitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
         Me.MAAusenMitarbeiterControl = New IntraSell_Net.MitarbeiterControl()
         Me.MandantTextBox = New System.Windows.Forms.TextBox()
-        Me.NextIDNRComboBox = New System.Windows.Forms.ComboBox()
         Me.HasMenuCheckBox = New System.Windows.Forms.CheckBox()
         Me.AbbuchungCheckBox = New System.Windows.Forms.CheckBox()
         Me.ExportCheckBox = New System.Windows.Forms.CheckBox()
@@ -155,6 +154,7 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AlteVorgängeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdressenDetailControl1 = New IntraSell_Net.AdressenDetailControl()
+        Me.AdressenControl1 = New IntraSell_Net.AdressenControl()
         StatusLabel = New System.Windows.Forms.Label()
         MAAusenLabel = New System.Windows.Forms.Label()
         MAInnenLabel = New System.Windows.Forms.Label()
@@ -664,11 +664,11 @@ Partial Class Kunden
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.AdressenControl1)
         Me.TabPage2.Controls.Add(Me.MAInnenMitarbeiterControl)
         Me.TabPage2.Controls.Add(Me.MAAusenMitarbeiterControl)
         Me.TabPage2.Controls.Add(Me.MandantTextBox)
         Me.TabPage2.Controls.Add(MandantLabel)
-        Me.TabPage2.Controls.Add(Me.NextIDNRComboBox)
         Me.TabPage2.Controls.Add(NextIDNRLabel)
         Me.TabPage2.Controls.Add(Me.HasMenuCheckBox)
         Me.TabPage2.Controls.Add(Me.AbbuchungCheckBox)
@@ -722,15 +722,6 @@ Partial Class Kunden
         Me.MandantTextBox.Name = "MandantTextBox"
         Me.MandantTextBox.Size = New System.Drawing.Size(200, 20)
         Me.MandantTextBox.TabIndex = 66
-        '
-        'NextIDNRComboBox
-        '
-        Me.NextIDNRComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ofAdressenBindingSource, "nextIDNR", True))
-        Me.NextIDNRComboBox.FormattingEnabled = True
-        Me.NextIDNRComboBox.Location = New System.Drawing.Point(115, 106)
-        Me.NextIDNRComboBox.Name = "NextIDNRComboBox"
-        Me.NextIDNRComboBox.Size = New System.Drawing.Size(200, 21)
-        Me.NextIDNRComboBox.TabIndex = 64
         '
         'HasMenuCheckBox
         '
@@ -1213,7 +1204,7 @@ Partial Class Kunden
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(718, 65)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(72, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(67, 24)
         Me.MenuStrip1.TabIndex = 71
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1222,19 +1213,19 @@ Partial Class Kunden
         Me.NeuerVorgangToolStripMenuItem.BackColor = System.Drawing.Color.CornflowerBlue
         Me.NeuerVorgangToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem1, Me.AlteVorgängeToolStripMenuItem})
         Me.NeuerVorgangToolStripMenuItem.Name = "NeuerVorgangToolStripMenuItem"
-        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
+        Me.NeuerVorgangToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.NeuerVorgangToolStripMenuItem.Text = "&Vorgang"
         '
         'NeuerVorgangToolStripMenuItem1
         '
         Me.NeuerVorgangToolStripMenuItem1.Name = "NeuerVorgangToolStripMenuItem1"
-        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(154, 22)
+        Me.NeuerVorgangToolStripMenuItem1.Size = New System.Drawing.Size(146, 22)
         Me.NeuerVorgangToolStripMenuItem1.Text = "&Neuer Vorgang"
         '
         'AlteVorgängeToolStripMenuItem
         '
         Me.AlteVorgängeToolStripMenuItem.Name = "AlteVorgängeToolStripMenuItem"
-        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.AlteVorgängeToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.AlteVorgängeToolStripMenuItem.Text = "&Alte Vorgänge"
         '
         'AdressenDetailControl1
@@ -1285,6 +1276,16 @@ Partial Class Kunden
         Me.AdressenDetailControl1.Titel = Nothing
         Me.AdressenDetailControl1.Vorname = ""
         Me.AdressenDetailControl1.Web = ""
+        '
+        'AdressenControl1
+        '
+        Me.AdressenControl1.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.ofAdressenBindingSource, "nextIDNR", True))
+        Me.AdressenControl1.IDNR = 0
+        Me.AdressenControl1.Location = New System.Drawing.Point(115, 105)
+        Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.ShowAddNew = False
+        Me.AdressenControl1.Size = New System.Drawing.Size(171, 25)
+        Me.AdressenControl1.TabIndex = 64
         '
         'Kunden
         '
@@ -1376,7 +1377,6 @@ Partial Class Kunden
     Friend WithEvents AbbuchungCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents HasMenuCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents PasswortTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents NextIDNRComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents MandantTextBox As System.Windows.Forms.TextBox
     Friend WithEvents UIDTextBox As System.Windows.Forms.TextBox
     Friend WithEvents SkypeAdresseTextBox As System.Windows.Forms.TextBox
@@ -1467,4 +1467,5 @@ Partial Class Kunden
     Friend WithEvents DataGridViewTextBoxColumn33 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn27 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AdressenDetailControl1 As IntraSell_Net.AdressenDetailControl
+    Friend WithEvents AdressenControl1 As IntraSell_Net.AdressenControl
 End Class

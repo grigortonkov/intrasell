@@ -25,6 +25,7 @@ Public Class Vorgang
         End Get
         Set(ByVal value As Integer)
             _kundNr = value
+            Me.AddNewButton.Enabled = KundNr > 0
         End Set
     End Property
 
@@ -180,6 +181,7 @@ Public Class Vorgang
                 Me.TypComboBox.SelectedValue = VorgangWizzard.TypComboBox.SelectedValue
                 Me.KundNrAdressenControl.Refresh()
                 Me.KundNrAdressenControl.IDNR = VorgangWizzard.KundNrAdressenControl.IDNR
+                Me.KundNr = VorgangWizzard.KundNrAdressenControl.IDNR
                 Me.DatumDateTimePicker.Value = VorgangWizzard.DatumDateTimePicker.Value
                 Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID
                 'folgende 3 zeilen damit die rows in artikel die parent typ und nummer übernehmen.
@@ -1217,7 +1219,7 @@ Public Class Vorgang
             If rs.Read Then
                 VKPreis = rs("PreisATS")
                 Try
-                    If IsNull(r.Bezeichnung) Then
+                    If IsNull(r.Bezeichnung) Or r.Bezeichnung = "" Then
                         r.Bezeichnung = rs("Bezeichnung")
                     End If
                 Catch ex As Exception
@@ -1258,7 +1260,12 @@ Public Class Vorgang
                 r.Preis_Netto = VKPreis
                 r.Preis_Brutto = calculateBruttoPreis(VKPreis, r.ArtNr, KundNr)
                 r.MWST = r.Preis_Brutto - r.Preis_Netto
+            Else
+                r.Preis_Brutto = calculateBruttoPreis(r.Preis_Netto, r.ArtNr, KundNr)
+                r.MWST = r.Preis_Brutto - r.Preis_Netto
             End If
+
+
 
             notDefined = False
             Try
@@ -1509,8 +1516,16 @@ Public Class Vorgang
         End Try
     End Sub
 
-    Private Sub AddNewButton_Click(sender As System.Object, e As System.EventArgs) Handles AddNewButton.Click
+
+
+#Region "Position Tab"
+
+
+
+    Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNewButton.Click
         Try
+            If IsNull(KundNr) Or Me.KundNr <= 0 Then Exit Sub
+
             'Kundenform öffnenum weitere zu definieren
             Dim k As Kunden = New Kunden
             k.FilterBy("IDNR=" & Me.KundNr)
@@ -1519,7 +1534,6 @@ Public Class Vorgang
             HandleAppError(ex)
         End Try
     End Sub
-
 
     Private Sub NeuePositionButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuePositionButton.Click
         Try
@@ -1531,31 +1545,47 @@ Public Class Vorgang
         End Try
     End Sub
 
-#Region "Position Tab"
-
     Private Sub ArtNr_Changed(ByVal newArtNr As Object) Handles ArtikelControl1.ArtNrChanged
         Try
+            'neue position starten wenn noch keine angefangen wurde
+            If Buchvorgang_artikelBindingSource.Current Is Nothing Then
+                NeuePositionButton_Click(Nothing, Nothing)
+            End If
+
             Buchvorgang_artikelBindingSource.Current.row.artnr = newArtNr
-           recaluclatePosition()
+            Buchvorgang_artikelBindingSource.Current.row.Stk = 1
+
+            'entferne alte Daten falls vorhanden  (Änderung der Artikel Nummer)
+            Buchvorgang_artikelBindingSource.Current.row.Bezeichnung = ""
+            Buchvorgang_artikelBindingSource.Current.row.Preis_Netto = Nothing
+            Buchvorgang_artikelBindingSource.Current.row.MWST = Nothing
+            Buchvorgang_artikelBindingSource.Current.row.Preis_Brutto = Nothing
+
+            recalculatePosition()
         Catch ex As Exception
             HandleAppError(ex)
         End Try
     End Sub
 
     Private Sub StkTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StkTextBox.Validated
-        recaluclatePosition()
+        Buchvorgang_artikelBindingSource.Current.row.Preis_Netto = Nothing
+        Buchvorgang_artikelBindingSource.Current.row.MWST = Nothing
+        Buchvorgang_artikelBindingSource.Current.row.Preis_Brutto = Nothing
+        recalculatePosition()
     End Sub
 
 
     Private Sub Preis_NettoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_NettoTextBox.Validated
-        recaluclatePosition()
+        Buchvorgang_artikelBindingSource.Current.row.MWST = Nothing
+        Buchvorgang_artikelBindingSource.Current.row.Preis_Brutto = Nothing
+        recalculatePosition()
     End Sub
 
     Private Sub Preis_BruttoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_BruttoTextBox.Validated
-        recaluclatePosition()
+        recalculatePosition()
     End Sub
 
-    Sub recaluclatePosition()
+    Sub recalculatePosition()
         Try
             ArtNr_CalculatePreis()
             Recalculate()
@@ -1566,4 +1596,6 @@ Public Class Vorgang
         End Try
     End Sub
 #End Region
+
+ 
 End Class

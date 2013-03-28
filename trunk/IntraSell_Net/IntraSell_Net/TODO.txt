@@ -1,8 +1,14 @@
 ﻿1. Einheiten in der Vorlage (OK) und Vorgang 
 OK 2. Bug: Nummer wird besetzt problem - VorgangWizzard
 OK 3. Kundengruppen Form
-Ok 4. Kundengruppe, Preisliste wird bem Kundne nicht gespeihert, und beim blättern verschwindet
+Ok 4. Kundengruppe, Preisliste wird beim Kunde nicht gespeichert, und beim Blättern verschwindet
 5.Textbausteine für Vorgang 
 OK 6. PLZ Erfassung in Weitere Adressen ist falsch und ändert die PLZ von der Hauptadresse
 ok 7. Position einfügen 
-8. Vorgang - nach Position einfügen in DAtagrid .. refresh der daten 
+ok 8. Vorgang - nach Position einfügen in Datagrid .. refresh der daten 
+9. Artikelbilder - Importieren 
+10. Artikelbild - 
+11.
+  OK  Vorgang Position Detail - Preis Netto ändern -> Brutto wird nicht angepasst.
+  OK  ArtNr Ändern - es sollte Alles geändert werden;
+OK 12. Zahlungsbedingungen eintragen (+) geht nicht zum kunden 
