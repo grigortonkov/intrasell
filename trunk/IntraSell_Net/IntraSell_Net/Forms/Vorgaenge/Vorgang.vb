@@ -100,14 +100,17 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub Rechnung_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Vorgang_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
             loading = True
+            Me.KundNrAdressenControl.ShowAddNew = True
+            Me.KundNr2AdressenControl.ShowAddNew = True
+            Me.ArtikelControl1.ShowAddNew = True
 
             Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
-            Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang, kundNr)
-            Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel, kundNr)
+            Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang, KundNr)
+            Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel, KundNr)
 
             FillComboBox(Me.StatusComboBox, "select Status from buchVorgaengeStatus Group by Status", "Status")
             FillComboBox(Me.TypComboBox, "select Typ, Bezeichnung FROM buchVorgangTyp ORDER By Bezeichnung", "Bezeichnung", "Typ")
@@ -354,7 +357,7 @@ Public Class Vorgang
 
                 Recalculate()
             End If
-
+            Me.Buchvorgang_artikelDataGridView.Refresh()
             loading = False
 
 
@@ -1386,9 +1389,9 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub Preis_Netto_AfterUpdate(ByVal ArtNr As String, _
-                                            ByVal Preis_Netto As DataGridViewCell, _
-                                            ByVal Preis_Brutto As DataGridViewCell, _
-                                            ByVal MWST As DataGridViewCell)
+                                        ByVal Preis_Netto As DataGridViewCell, _
+                                        ByVal Preis_Brutto As DataGridViewCell, _
+                                        ByVal MWST As DataGridViewCell)
 
         'Preis_updating = True
         'Me.Zeitpunkt = Now()
@@ -1520,8 +1523,6 @@ Public Class Vorgang
 
 #Region "Position Tab"
 
-
-
     Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNewButton.Click
         Try
             If IsNull(KundNr) Or Me.KundNr <= 0 Then Exit Sub
@@ -1591,6 +1592,15 @@ Public Class Vorgang
             Recalculate()
             Buchvorgang_artikelDataGridView.Refresh()
             Buchvorgang_artikelBindingSource.EndEdit()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
+    Private Sub Preis_BruttoTextBox_Validated(ByVal newArtNr As String) Handles ArtikelControl1.ArtNrAdded
+        Try
+            'Reload der Liste mit Artikeln
+            Me.GrArtikellisteTableAdapter.Fill(Me.DsArtikel.grArtikelliste)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

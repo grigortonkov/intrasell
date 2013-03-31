@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class Artikel
-    Inherits System.Windows.Forms.Form
+    Inherits IntraSell_Net.AbstractForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -50,24 +50,10 @@ Partial Class Artikel
         Dim NettoGewichtLabel As System.Windows.Forms.Label
         Dim TaraGewichtLabel As System.Windows.Forms.Label
         Dim AngelegtAmLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Artikel))
         Me.DsArtikel = New IntraSell_Net.dsArtikel()
         Me.GrartikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GrartikelTableAdapter = New IntraSell_Net.dsArtikelTableAdapters.grartikelTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsArtikelTableAdapters.TableAdapterManager()
-        Me.GrartikelBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GrartikelBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.ArtNrTextBox = New System.Windows.Forms.TextBox()
         Me.EANTextBox = New System.Windows.Forms.TextBox()
         Me.BarcodeTextBox = New System.Windows.Forms.TextBox()
@@ -132,8 +118,6 @@ Partial Class Artikel
         AngelegtAmLabel = New System.Windows.Forms.Label()
         CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GrartikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GrartikelBindingNavigator.SuspendLayout()
         CType(Me.Grartikel_kategorienBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -410,119 +394,9 @@ Partial Class Artikel
         Me.TableAdapterManager.grartikelTableAdapter = Me.GrartikelTableAdapter
         Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsArtikelTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'GrartikelBindingNavigator
-        '
-        Me.GrartikelBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.GrartikelBindingNavigator.BindingSource = Me.GrartikelBindingSource
-        Me.GrartikelBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.GrartikelBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.GrartikelBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.GrartikelBindingNavigatorSaveItem})
-        Me.GrartikelBindingNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.GrartikelBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.GrartikelBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.GrartikelBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.GrartikelBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.GrartikelBindingNavigator.Name = "GrartikelBindingNavigator"
-        Me.GrartikelBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.GrartikelBindingNavigator.Size = New System.Drawing.Size(875, 25)
-        Me.GrartikelBindingNavigator.TabIndex = 0
-        Me.GrartikelBindingNavigator.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Add new"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
-        Me.BindingNavigatorCountItem.Text = "of {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Delete"
-        '
-        'BindingNavigatorMoveFirstItem
-        '
-        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
-        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveFirstItem.Text = "Move first"
-        '
-        'BindingNavigatorMovePreviousItem
-        '
-        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
-        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMovePreviousItem.Text = "Move previous"
-        '
-        'BindingNavigatorSeparator
-        '
-        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorPositionItem
-        '
-        Me.BindingNavigatorPositionItem.AccessibleName = "Position"
-        Me.BindingNavigatorPositionItem.AutoSize = False
-        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
-        Me.BindingNavigatorPositionItem.Text = "0"
-        Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
-        '
-        'BindingNavigatorSeparator1
-        '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorMoveNextItem
-        '
-        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
-        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveNextItem.Text = "Move next"
-        '
-        'BindingNavigatorMoveLastItem
-        '
-        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
-        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveLastItem.Text = "Move last"
-        '
-        'BindingNavigatorSeparator2
-        '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'GrartikelBindingNavigatorSaveItem
-        '
-        Me.GrartikelBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.GrartikelBindingNavigatorSaveItem.Image = CType(resources.GetObject("GrartikelBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.GrartikelBindingNavigatorSaveItem.Name = "GrartikelBindingNavigatorSaveItem"
-        Me.GrartikelBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
-        Me.GrartikelBindingNavigatorSaveItem.Text = "Save Data"
-        '
         'ArtNrTextBox
         '
+        Me.ArtNrTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.ArtNrTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "ArtNr", True))
         Me.ArtNrTextBox.Location = New System.Drawing.Point(130, 38)
         Me.ArtNrTextBox.Name = "ArtNrTextBox"
@@ -531,6 +405,7 @@ Partial Class Artikel
         '
         'EANTextBox
         '
+        Me.EANTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.EANTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "EAN", True))
         Me.EANTextBox.Location = New System.Drawing.Point(130, 64)
         Me.EANTextBox.Name = "EANTextBox"
@@ -547,6 +422,7 @@ Partial Class Artikel
         '
         'BezeichnungTextBox
         '
+        Me.BezeichnungTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.BezeichnungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "Bezeichnung", True))
         Me.BezeichnungTextBox.Location = New System.Drawing.Point(130, 116)
         Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
@@ -581,6 +457,7 @@ Partial Class Artikel
         '
         'PreisATSTextBox
         '
+        Me.PreisATSTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.PreisATSTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "PreisATS", True))
         Me.PreisATSTextBox.Location = New System.Drawing.Point(130, 309)
         Me.PreisATSTextBox.Name = "PreisATSTextBox"
@@ -652,6 +529,7 @@ Partial Class Artikel
         '
         'ArtKatNrComboBox
         '
+        Me.ArtKatNrComboBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.ArtKatNrComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.GrartikelBindingSource, "ArtKatNr", True))
         Me.ArtKatNrComboBox.FormattingEnabled = True
         Me.ArtKatNrComboBox.Location = New System.Drawing.Point(486, 35)
@@ -661,6 +539,7 @@ Partial Class Artikel
         '
         'MWSTTextBox
         '
+        Me.MWSTTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.MWSTTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.GrartikelBindingSource, "MWST", True))
         Me.MWSTTextBox.Location = New System.Drawing.Point(130, 335)
         Me.MWSTTextBox.Name = "MWSTTextBox"
@@ -878,14 +757,70 @@ Partial Class Artikel
         Me.Controls.Add(Me.AngelegtAmDateTimePicker)
         Me.Controls.Add(Me.NichtBestellbarCheckBox)
         Me.Controls.Add(Me.ProduktAktivOnlineCheckBox)
-        Me.Controls.Add(Me.GrartikelBindingNavigator)
         Me.Name = "Artikel"
         Me.Text = "Artikel"
+        Me.Controls.SetChildIndex(Me.ProduktAktivOnlineCheckBox, 0)
+        Me.Controls.SetChildIndex(Me.NichtBestellbarCheckBox, 0)
+        Me.Controls.SetChildIndex(Me.AngelegtAmDateTimePicker, 0)
+        Me.Controls.SetChildIndex(AngelegtAmLabel, 0)
+        Me.Controls.SetChildIndex(Me.TaraGewichtTextBox, 0)
+        Me.Controls.SetChildIndex(TaraGewichtLabel, 0)
+        Me.Controls.SetChildIndex(Me.NettoGewichtTextBox, 0)
+        Me.Controls.SetChildIndex(NettoGewichtLabel, 0)
+        Me.Controls.SetChildIndex(Me.BruttoGewichtTextBox, 0)
+        Me.Controls.SetChildIndex(BruttoGewichtLabel, 0)
+        Me.Controls.SetChildIndex(Me.HerstellerRabattTextTextBox, 0)
+        Me.Controls.SetChildIndex(HerstellerRabattTextLabel, 0)
+        Me.Controls.SetChildIndex(Me.HerstellerRabattTextBox, 0)
+        Me.Controls.SetChildIndex(HerstellerRabattLabel, 0)
+        Me.Controls.SetChildIndex(Me.ModifikationenTextBox, 0)
+        Me.Controls.SetChildIndex(ModifikationenLabel, 0)
+        Me.Controls.SetChildIndex(Me.HerstellerURLTextBox, 0)
+        Me.Controls.SetChildIndex(HerstellerURLLabel, 0)
+        Me.Controls.SetChildIndex(Me.ShopURLTextBox, 0)
+        Me.Controls.SetChildIndex(ShopURLLabel, 0)
+        Me.Controls.SetChildIndex(Me.ProduktAktivCheckBox, 0)
+        Me.Controls.SetChildIndex(Me.HerstellerNrComboBox, 0)
+        Me.Controls.SetChildIndex(HerstellerNrLabel, 0)
+        Me.Controls.SetChildIndex(Me.PictureTextBox, 0)
+        Me.Controls.SetChildIndex(PictureLabel, 0)
+        Me.Controls.SetChildIndex(Me.GewichtTextBox, 0)
+        Me.Controls.SetChildIndex(GewichtLabel, 0)
+        Me.Controls.SetChildIndex(Me.MWSTTextBox, 0)
+        Me.Controls.SetChildIndex(MWSTLabel, 0)
+        Me.Controls.SetChildIndex(Me.ArtKatNrComboBox, 0)
+        Me.Controls.SetChildIndex(ArtKatNrLabel, 0)
+        Me.Controls.SetChildIndex(Me.SetArtikelCheckBox, 0)
+        Me.Controls.SetChildIndex(SetArtikelLabel, 0)
+        Me.Controls.SetChildIndex(Me.LieferantNRComboBox, 0)
+        Me.Controls.SetChildIndex(LieferantNRLabel, 0)
+        Me.Controls.SetChildIndex(Me.SeriennummerCheckBox, 0)
+        Me.Controls.SetChildIndex(Me.LEKPreisTextBox, 0)
+        Me.Controls.SetChildIndex(LEKPreisLabel, 0)
+        Me.Controls.SetChildIndex(Me.EKPreisTextBox, 0)
+        Me.Controls.SetChildIndex(EKPreisLabel, 0)
+        Me.Controls.SetChildIndex(Me.LagerArtikelCheckBox, 0)
+        Me.Controls.SetChildIndex(Me.PreisATS_BruttoTextBox, 0)
+        Me.Controls.SetChildIndex(PreisATS_BruttoLabel, 0)
+        Me.Controls.SetChildIndex(Me.PreisATSTextBox, 0)
+        Me.Controls.SetChildIndex(PreisATSLabel, 0)
+        Me.Controls.SetChildIndex(Me.EinheitComboBox, 0)
+        Me.Controls.SetChildIndex(EinheitLabel, 0)
+        Me.Controls.SetChildIndex(Me.BeschreibungTextBox, 0)
+        Me.Controls.SetChildIndex(BeschreibungLabel, 0)
+        Me.Controls.SetChildIndex(Me.Bezeichnung1TextBox, 0)
+        Me.Controls.SetChildIndex(Bezeichnung1Label, 0)
+        Me.Controls.SetChildIndex(Me.BezeichnungTextBox, 0)
+        Me.Controls.SetChildIndex(BezeichnungLabel, 0)
+        Me.Controls.SetChildIndex(Me.BarcodeTextBox, 0)
+        Me.Controls.SetChildIndex(BarcodeLabel, 0)
+        Me.Controls.SetChildIndex(Me.EANTextBox, 0)
+        Me.Controls.SetChildIndex(EANLabel, 0)
+        Me.Controls.SetChildIndex(Me.ArtNrTextBox, 0)
+        Me.Controls.SetChildIndex(ArtNrLabel, 0)
+        Me.Controls.SetChildIndex(Me.Label1, 0)
         CType(Me.DsArtikel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GrartikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GrartikelBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GrartikelBindingNavigator.ResumeLayout(False)
-        Me.GrartikelBindingNavigator.PerformLayout()
         CType(Me.Grartikel_kategorienBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -895,19 +830,6 @@ Partial Class Artikel
     Friend WithEvents GrartikelBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents GrartikelTableAdapter As IntraSell_Net.dsArtikelTableAdapters.grartikelTableAdapter
     Friend WithEvents TableAdapterManager As IntraSell_Net.dsArtikelTableAdapters.TableAdapterManager
-    Friend WithEvents GrartikelBindingNavigator As System.Windows.Forms.BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents BindingNavigatorDeleteItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents GrartikelBindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents ArtNrTextBox As System.Windows.Forms.TextBox
     Friend WithEvents EANTextBox As System.Windows.Forms.TextBox
     Friend WithEvents BarcodeTextBox As System.Windows.Forms.TextBox

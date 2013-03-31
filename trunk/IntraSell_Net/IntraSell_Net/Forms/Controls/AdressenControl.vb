@@ -38,22 +38,20 @@ Public Class AdressenControl
     End Sub
 
     Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNewButton.Click
+
         Try
-            Try
-                Dim k As Kunden = New Kunden
-                k.BeginNewFlag = True
-                k.ShowDialog()
-                'hier wartet bis dialog fenster zu ist
-                'If k.DialogResult = Windows.Forms.DialogResult.OK Then
-                FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
-                Me.IDNR = k.AdressenDetailControl1.IDNR
-                'end if
-            Catch ex As Exception
-                HandleAppError(ex)
-            End Try
+            Dim k As Kunden = New Kunden
+            k.BeginNewFlag = True
+            k.ShowDialog()
+            'hier wartet bis dialog fenster zu ist
+            'If k.DialogResult = Windows.Forms.DialogResult.OK Then
+            FillComboBox(Me.AdressenComboBox, SQL, "Adr", "IDNR")
+            Me.IDNR = k.AdressenDetailControl1.IDNR
+            'end if
         Catch ex As Exception
             HandleAppError(ex)
         End Try
+   
     End Sub
 
     Private Sub AdressenComboBox_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles AdressenComboBox.SelectedIndexChanged

@@ -12,22 +12,17 @@ Public Class Artikel
         End Try
 
     End Sub
-    'Private Sub GrartikelBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs)
-    '    Try
-    '        Me.Validate()
-    '        Me.GrartikelBindingSource.EndEdit()
-    '        Me.TableAdapterManager.UpdateAll(Me.DsArtikel)
-    '    Catch ex As Exception
-    '        HandleAppError(ex)
-    '    End Try
-    'End Sub
 
-
-    Private Sub GrartikelBindingNavigatorSaveItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GrartikelBindingNavigatorSaveItem.Click
+    ''' <summary>
+    ''' Save Artikel
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub GrartikelBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.GrartikelBindingSource.EndEdit()
-            'Me.TableAdapterManager.UpdateAll(Me.DsArtikel)
             Me.GrartikelTableAdapter.Update(Me.DsArtikel)
         Catch ex As Exception
             HandleAppError(ex)
@@ -43,9 +38,16 @@ Public Class Artikel
                 HandleAppError(ex)
             End Try
 
+            FillComboBox(Me.EinheitComboBox, "SELECT Einheit FROM grArtikel group by Einheit", "Einheit", "Einheit")
             FillComboBox(Me.LieferantNRComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
             FillComboBox(Me.HerstellerNrComboBox, "SELECT IDNR, Firma FROM lieferantenAdressen order by Firma", "Firma", "IDNR")
             FillComboBox(Me.ArtKatNrComboBox, "SELECT artkatnr, name from `grArtikel-Kategorien` order by name asc", "Name", "ArtKatNr")
+
+            Me.ParentBindingNavigator.BindingSource = Me.GrartikelBindingSource
+
+            If BeginNewFlag Then
+                BeginNew()
+            End If
 
         Catch ex As Exception
             HandleAppError(ex)
@@ -57,8 +59,8 @@ Public Class Artikel
     End Sub
 
 #Region "New"
-    Dim AddingNewFlag As Boolean = False
-    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
+
+    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             AddingNewFlag = True
         Catch ex As Exception
@@ -78,8 +80,24 @@ Public Class Artikel
             HandleAppError(ex)
         End Try
     End Sub
+
+    Public Sub BeginNew()
+        Try
+            BindingNavigatorAddNewItem_Click(Nothing, Nothing)
+            GrartikelBindingSource.AddNew()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 #End Region
 
 
 
+    Private Sub PreisATSTextBox_TextChanged(sender As System.Object, e As System.EventArgs) Handles PreisATSTextBox.TextChanged
+        Try
+            Me.PreisATS_BruttoTextBox.Text = CDbl(PreisATSTextBox.Text) * (100 + CDbl(MWSTTextBox.Text)) / 100
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

@@ -323,6 +323,7 @@ Partial Class AdressenDetailControl
         '
         'IDNRTextBox
         '
+        Me.IDNRTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.IDNRTextBox.Location = New System.Drawing.Point(82, 11)
         Me.IDNRTextBox.Name = "IDNRTextBox"
         Me.IDNRTextBox.Size = New System.Drawing.Size(200, 20)
@@ -373,6 +374,7 @@ Partial Class AdressenDetailControl
         '
         'NameTextBox
         '
+        Me.NameTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.NameTextBox.Location = New System.Drawing.Point(82, 198)
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(200, 20)
@@ -394,6 +396,7 @@ Partial Class AdressenDetailControl
         '
         'FirmaTextBox
         '
+        Me.FirmaTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.FirmaTextBox.Location = New System.Drawing.Point(82, 91)
         Me.FirmaTextBox.Name = "FirmaTextBox"
         Me.FirmaTextBox.Size = New System.Drawing.Size(200, 20)
@@ -401,6 +404,7 @@ Partial Class AdressenDetailControl
         '
         'AdresseTextBox
         '
+        Me.AdresseTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.AdresseTextBox.Location = New System.Drawing.Point(378, 67)
         Me.AdresseTextBox.Name = "AdresseTextBox"
         Me.AdresseTextBox.Size = New System.Drawing.Size(200, 20)
@@ -408,6 +412,7 @@ Partial Class AdressenDetailControl
         '
         'LandComboBox
         '
+        Me.LandComboBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.LandComboBox.DataSource = Me.GrlandBindingSource
         Me.LandComboBox.DisplayMember = "Name"
         Me.LandComboBox.Location = New System.Drawing.Point(378, 14)
@@ -423,6 +428,7 @@ Partial Class AdressenDetailControl
         '
         'PLZComboBox
         '
+        Me.PLZComboBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.PLZComboBox.DataSource = Me.GrLandPlzBindingSource
         Me.PLZComboBox.DisplayMember = "PLZ"
         Me.PLZComboBox.FormattingEnabled = True
@@ -434,6 +440,7 @@ Partial Class AdressenDetailControl
         '
         'OrtComboBox
         '
+        Me.OrtComboBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.OrtComboBox.DataSource = Me.GrLandPlzBindingSource
         Me.OrtComboBox.DisplayMember = "Ort"
         Me.OrtComboBox.FormattingEnabled = True

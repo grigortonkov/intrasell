@@ -79,7 +79,7 @@ Public Class Kunden
     End Sub
 
 #Region "New"
-    Dim AddingNewFlag As Boolean = False
+
     Private Sub BindingNavigatorAddNewItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
             AddingNewFlag = True
@@ -109,7 +109,7 @@ Public Class Kunden
 #End Region
 
     'Save Data 
-    Private Sub OfAdressenBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
+    Private Shadows Sub BindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
 
         Try
             Me.Validate()

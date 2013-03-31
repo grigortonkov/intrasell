@@ -337,7 +337,7 @@ Partial Class Mitarbeiter
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -420,6 +420,7 @@ Partial Class Mitarbeiter
         '
         'IDNRTextBox
         '
+        Me.IDNRTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.IDNRTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "IDNR", True))
         Me.IDNRTextBox.Location = New System.Drawing.Point(80, 28)
         Me.IDNRTextBox.Name = "IDNRTextBox"
@@ -444,6 +445,7 @@ Partial Class Mitarbeiter
         '
         'NameTextBox
         '
+        Me.NameTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.NameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Name", True))
         Me.NameTextBox.Location = New System.Drawing.Point(80, 106)
         Me.NameTextBox.Name = "NameTextBox"
@@ -452,6 +454,7 @@ Partial Class Mitarbeiter
         '
         'VornameTextBox
         '
+        Me.VornameTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Vorname", True))
         Me.VornameTextBox.Location = New System.Drawing.Point(80, 132)
         Me.VornameTextBox.Name = "VornameTextBox"
@@ -564,6 +567,7 @@ Partial Class Mitarbeiter
         '
         'UsernameTextBox
         '
+        Me.UsernameTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.UsernameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Username", True))
         Me.UsernameTextBox.Location = New System.Drawing.Point(376, 236)
         Me.UsernameTextBox.Name = "UsernameTextBox"
@@ -572,6 +576,7 @@ Partial Class Mitarbeiter
         '
         'PasswortTextBox
         '
+        Me.PasswortTextBox.BackColor = System.Drawing.Color.LemonChiffon
         Me.PasswortTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OfmitarbeiterBindingSource, "Passwort", True))
         Me.PasswortTextBox.Location = New System.Drawing.Point(376, 262)
         Me.PasswortTextBox.Name = "PasswortTextBox"

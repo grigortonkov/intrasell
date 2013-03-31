@@ -69,9 +69,9 @@ Module ModuleBuchVorgangDruck
     ''' <remarks></remarks>
     Function getRecSource_Address(tablename As String, where As String) As String
         Dim sql As String
-        sql = "SELECT a.Vorname, a.Name, concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  " & _
+        sql = "SELECT a.IDNR, a.Vorname, a.Name, concat(a.Name, ' ', a.Vorname) as Namen , a.Firma, a.Adresse,  " & _
        " (select concat(grPLZ.plz, ' ' , grPLZ.ort) from grPLZ WHERE a.PLZ = grPLZ.IdNr) AS PLZOrt, " & _
-       " (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Email, a.UID " & _
+       " (select name from grLand where idnr = a.Land) as Land, a.UID, a.Tel, a.Fax, a.Email, a.UID " & _
        " FROM " & tablename & " a WHERE " & where
         Return sql
     End Function

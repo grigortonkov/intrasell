@@ -1325,14 +1325,19 @@ Partial Public Class dsArtikel
             Me.columnArtNr.AutoIncrementSeed = 1
             Me.columnArtNr.AllowDBNull = false
             Me.columnArtNr.Unique = true
+            Me.columnEAN.AllowDBNull = false
             Me.columnEAN.MaxLength = 50
             Me.columnBarcode.MaxLength = 50
+            Me.columnBezeichnung.AllowDBNull = false
             Me.columnBezeichnung.MaxLength = 50
             Me.columnBezeichnung1.MaxLength = 50
             Me.columnEinheit.MaxLength = 50
+            Me.columnPreisATS.AllowDBNull = false
+            Me.columnPreisATS_Brutto.AllowDBNull = false
             Me.columnLagerArtikel.DefaultValue = CType(true,Boolean)
             Me.columnSeriennummer.DefaultValue = CType(false,Boolean)
             Me.columnSetArtikel.DefaultValue = CType(false,Boolean)
+            Me.columnMWST.DefaultValue = CType(20,Integer)
             Me.columnGewicht.MaxLength = 10
             Me.columnPicture.MaxLength = 255
             Me.columnProduktAktiv.DefaultValue = CType(true,Boolean)
@@ -5997,11 +6002,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property EAN() As String
             Get
-                Try 
-                    Return CType(Me(Me.tablegrartikel.EANColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'EAN' in table 'grartikel' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrartikel.EANColumn),String)
             End Get
             Set
                 Me(Me.tablegrartikel.EANColumn) = value
@@ -6027,11 +6028,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Bezeichnung() As String
             Get
-                Try 
-                    Return CType(Me(Me.tablegrartikel.BezeichnungColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Bezeichnung' in table 'grartikel' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrartikel.BezeichnungColumn),String)
             End Get
             Set
                 Me(Me.tablegrartikel.BezeichnungColumn) = value
@@ -6087,11 +6084,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PreisATS() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tablegrartikel.PreisATSColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PreisATS' in table 'grartikel' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrartikel.PreisATSColumn),Decimal)
             End Get
             Set
                 Me(Me.tablegrartikel.PreisATSColumn) = value
@@ -6117,11 +6110,7 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PreisATS_Brutto() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tablegrartikel.PreisATS_BruttoColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PreisATS_Brutto' in table 'grartikel' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablegrartikel.PreisATS_BruttoColumn),Decimal)
             End Get
             Set
                 Me(Me.tablegrartikel.PreisATS_BruttoColumn) = value
@@ -6501,18 +6490,6 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEANNull() As Boolean
-            Return Me.IsNull(Me.tablegrartikel.EANColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEANNull()
-            Me(Me.tablegrartikel.EANColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsBarcodeNull() As Boolean
             Return Me.IsNull(Me.tablegrartikel.BarcodeColumn)
         End Function
@@ -6521,18 +6498,6 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetBarcodeNull()
             Me(Me.tablegrartikel.BarcodeColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBezeichnungNull() As Boolean
-            Return Me.IsNull(Me.tablegrartikel.BezeichnungColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBezeichnungNull()
-            Me(Me.tablegrartikel.BezeichnungColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6573,18 +6538,6 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPreisATSNull() As Boolean
-            Return Me.IsNull(Me.tablegrartikel.PreisATSColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPreisATSNull()
-            Me(Me.tablegrartikel.PreisATSColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPreisEuroNull() As Boolean
             Return Me.IsNull(Me.tablegrartikel.PreisEuroColumn)
         End Function
@@ -6593,18 +6546,6 @@ Partial Public Class dsArtikel
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPreisEuroNull()
             Me(Me.tablegrartikel.PreisEuroColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPreisATS_BruttoNull() As Boolean
-            Return Me.IsNull(Me.tablegrartikel.PreisATS_BruttoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPreisATS_BruttoNull()
-            Me(Me.tablegrartikel.PreisATS_BruttoColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11256,9 +11197,9 @@ Namespace dsArtikelTableAdapters
                     ByVal Bezeichnung1 As String,  _
                     ByVal Beschreibung As String,  _
                     ByVal Einheit As String,  _
-                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS As Decimal,  _
                     ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS_Brutto As Decimal,  _
                     ByVal LagerArtikel As Global.System.Nullable(Of Byte),  _
                     ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
                     ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
@@ -11285,7 +11226,7 @@ Namespace dsArtikelTableAdapters
                     ByVal ProduktAktivOnline As Global.System.Nullable(Of Byte)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(ArtNr,Integer)
             If (EAN Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("EAN")
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = CType(EAN,String)
             End If
@@ -11295,7 +11236,7 @@ Namespace dsArtikelTableAdapters
                 Me.Adapter.InsertCommand.Parameters(2).Value = CType(Barcode,String)
             End If
             If (Bezeichnung Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
                 Me.Adapter.InsertCommand.Parameters(3).Value = CType(Bezeichnung,String)
             End If
@@ -11314,21 +11255,13 @@ Namespace dsArtikelTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(6).Value = CType(Einheit,String)
             End If
-            If (PreisATS.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(PreisATS.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.InsertCommand.Parameters(7).Value = CType(PreisATS,Decimal)
             If (PreisEuro.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = CType(PreisEuro.Value,Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            If (PreisATS_Brutto.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(PreisATS_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.InsertCommand.Parameters(9).Value = CType(PreisATS_Brutto,Decimal)
             If (LagerArtikel.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(10).Value = CType(LagerArtikel.Value,Byte)
             Else
@@ -11475,9 +11408,9 @@ Namespace dsArtikelTableAdapters
                     ByVal Bezeichnung1 As String,  _
                     ByVal Beschreibung As String,  _
                     ByVal Einheit As String,  _
-                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS As Decimal,  _
                     ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS_Brutto As Decimal,  _
                     ByVal LagerArtikel As Object,  _
                     ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
                     ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
@@ -11504,7 +11437,7 @@ Namespace dsArtikelTableAdapters
                     ByVal ProduktAktivOnline As Object,  _
                     ByVal Original_ArtNr As Integer) As Integer
             If (EAN Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("EAN")
             Else
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(EAN,String)
             End If
@@ -11514,7 +11447,7 @@ Namespace dsArtikelTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Barcode,String)
             End If
             If (Bezeichnung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
                 Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Bezeichnung,String)
             End If
@@ -11533,21 +11466,13 @@ Namespace dsArtikelTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Einheit,String)
             End If
-            If (PreisATS.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(PreisATS.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(PreisATS,Decimal)
             If (PreisEuro.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PreisEuro.Value,Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (PreisATS_Brutto.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PreisATS_Brutto.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PreisATS_Brutto,Decimal)
             If (LagerArtikel Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
@@ -11694,9 +11619,9 @@ Namespace dsArtikelTableAdapters
                     ByVal Bezeichnung1 As String,  _
                     ByVal Beschreibung As String,  _
                     ByVal Einheit As String,  _
-                    ByVal PreisATS As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS As Decimal,  _
                     ByVal PreisEuro As Global.System.Nullable(Of Decimal),  _
-                    ByVal PreisATS_Brutto As Global.System.Nullable(Of Decimal),  _
+                    ByVal PreisATS_Brutto As Decimal,  _
                     ByVal LagerArtikel As Object,  _
                     ByVal EKPreis As Global.System.Nullable(Of Decimal),  _
                     ByVal LEKPreis As Global.System.Nullable(Of Decimal),  _
@@ -11724,7 +11649,7 @@ Namespace dsArtikelTableAdapters
                     ByVal Original_ArtNr As Integer) As Integer
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(1)
             If (EAN Is Nothing) Then
-                command.Parameters(0).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("EAN")
             Else
                 command.Parameters(0).Value = CType(EAN,String)
             End If
@@ -11734,7 +11659,7 @@ Namespace dsArtikelTableAdapters
                 command.Parameters(1).Value = CType(Barcode,String)
             End If
             If (Bezeichnung Is Nothing) Then
-                command.Parameters(2).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("Bezeichnung")
             Else
                 command.Parameters(2).Value = CType(Bezeichnung,String)
             End If
@@ -11753,21 +11678,13 @@ Namespace dsArtikelTableAdapters
             Else
                 command.Parameters(5).Value = CType(Einheit,String)
             End If
-            If (PreisATS.HasValue = true) Then
-                command.Parameters(6).Value = CType(PreisATS.Value,Decimal)
-            Else
-                command.Parameters(6).Value = Global.System.DBNull.Value
-            End If
+            command.Parameters(6).Value = CType(PreisATS,Decimal)
             If (PreisEuro.HasValue = true) Then
                 command.Parameters(7).Value = CType(PreisEuro.Value,Decimal)
             Else
                 command.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (PreisATS_Brutto.HasValue = true) Then
-                command.Parameters(8).Value = CType(PreisATS_Brutto.Value,Decimal)
-            Else
-                command.Parameters(8).Value = Global.System.DBNull.Value
-            End If
+            command.Parameters(8).Value = CType(PreisATS_Brutto,Decimal)
             If (LagerArtikel Is Nothing) Then
                 command.Parameters(9).Value = Global.System.DBNull.Value
             Else
@@ -19912,20 +19829,21 @@ Namespace dsArtikelTableAdapters
             Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT     grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeichnu"& _ 
-                "ng, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "               grartikel.PreisATS, grartikel.PreisEuro, grartikel.PreisATS_Brutt"& _ 
-                "o, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartikel.Seri"& _ 
-                "ennummer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.LieferantNR, grartikel.SetArtikel, g"& _ 
-                "rartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture, grartik"& _ 
-                "el.HerstellerNr, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.ProduktAktiv, grartikel.ShopU"& _ 
-                "RL, grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.HerstellerRabat"& _ 
-                "t, grartikel.HerstellerRabattText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.AngelegtAn,"& _ 
-                " grartikel.BruttoGewicht, grartikel.NettoGewicht, grartikel.TaraGewicht, grartik"& _ 
-                "el.AngelegtAm, grartikel.NichtBestellbar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      grartikel.Prod"& _ 
-                "uktAktivOnline, `grartikel-kategorien`.Name AS Kategorie, CONCAT(grartikel.EAN, "& _ 
-                "' ', grartikel.Bezeichnung) AS EANBezeichung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         grartikel INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      `grartikel-kategorien` ON grartikel.ArtKatNr = `grartikel"& _ 
-                "-kategorien`.ArtKatNr"
+            Me._commandCollection(0).CommandText = "SELECT        grartikel.ArtNr, grartikel.EAN, grartikel.Barcode, grartikel.Bezeic"& _ 
+                "hnung, grartikel.Bezeichnung1, grartikel.Beschreibung, grartikel.Einheit, grarti"& _ 
+                "kel.PreisATS, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.PreisEuro, grartikel.PreisATS"& _ 
+                "_Brutto, grartikel.LagerArtikel, grartikel.EKPreis, grartikel.LEKPreis, grartike"& _ 
+                "l.Seriennummer, grartikel.LieferantNR, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.SetA"& _ 
+                "rtikel, grartikel.ArtKatNr, grartikel.MWST, grartikel.Gewicht, grartikel.Picture"& _ 
+                ", grartikel.HerstellerNr, grartikel.ProduktAktiv, grartikel.ShopURL, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
+                "                grartikel.HerstellerURL, grartikel.Modifikationen, grartikel.Her"& _ 
+                "stellerRabatt, grartikel.HerstellerRabattText, grartikel.AngelegtAn, grartikel.B"& _ 
+                "ruttoGewicht, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         grartikel.NettoGewicht, grartikel.TaraG"& _ 
+                "ewicht, grartikel.AngelegtAm, grartikel.NichtBestellbar, grartikel.ProduktAktivO"& _ 
+                "nline, `grartikel-kategorien`.Name AS Kategorie, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CONC"& _ 
+                "AT(grartikel.EAN, ' ', grartikel.Bezeichnung) AS EANBezeichung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
+                "grartikel LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         `grartikel-kategorien` ON gr"& _ 
+                "artikel.ArtKatNr = `grartikel-kategorien`.ArtKatNr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY grartikel.EAN"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
