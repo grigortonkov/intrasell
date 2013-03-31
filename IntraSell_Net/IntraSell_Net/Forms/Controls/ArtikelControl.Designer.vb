@@ -28,6 +28,7 @@ Partial Class ArtikelControl
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.StammdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewButton = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -60,23 +61,36 @@ Partial Class ArtikelControl
         '
         Me.FlowLayoutPanel1.Controls.Add(Me.ArtikelComboBox)
         Me.FlowLayoutPanel1.Controls.Add(Me.ArtikelSelectorButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.AddNewButton)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(155, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 25)
         Me.FlowLayoutPanel1.TabIndex = 40
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StammdatenToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(135, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(143, 26)
         '
         'StammdatenToolStripMenuItem
         '
         Me.StammdatenToolStripMenuItem.Name = "StammdatenToolStripMenuItem"
-        Me.StammdatenToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.StammdatenToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.StammdatenToolStripMenuItem.Text = "&Stammdaten"
+        '
+        'AddNewButton
+        '
+        Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.AddNewButton.Location = New System.Drawing.Point(150, 1)
+        Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.AddNewButton.Name = "AddNewButton"
+        Me.AddNewButton.Size = New System.Drawing.Size(20, 23)
+        Me.AddNewButton.TabIndex = 41
+        Me.AddNewButton.Text = "+"
+        Me.AddNewButton.UseVisualStyleBackColor = True
+        Me.AddNewButton.Visible = False
         '
         'ArtikelControl
         '
@@ -84,7 +98,7 @@ Partial Class ArtikelControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "ArtikelControl"
-        Me.Size = New System.Drawing.Size(155, 25)
+        Me.Size = New System.Drawing.Size(171, 25)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -95,5 +109,6 @@ Partial Class ArtikelControl
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents StammdatenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AddNewButton As System.Windows.Forms.Button
 
 End Class

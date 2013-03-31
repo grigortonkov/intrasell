@@ -1283,7 +1283,7 @@ Partial Class Kunden
         Me.AdressenControl1.IDNR = 0
         Me.AdressenControl1.Location = New System.Drawing.Point(115, 105)
         Me.AdressenControl1.Name = "AdressenControl1"
-        Me.AdressenControl1.ShowAddNew = False
+        Me.AdressenControl1.ShowAddNew = True
         Me.AdressenControl1.Size = New System.Drawing.Size(171, 25)
         Me.AdressenControl1.TabIndex = 64
         '
@@ -1352,10 +1352,8 @@ Partial Class Kunden
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-
     Friend WithEvents ofAdressenBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents OfAdressenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.ofadressenTableAdapter
-    Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents cbPreisliste As System.Windows.Forms.ComboBox
     Friend WithEvents PreislistenBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents PreislistenTableAdapter As IntraSell_Net.dsAdressenTableAdapters.PreislistenTableAdapter

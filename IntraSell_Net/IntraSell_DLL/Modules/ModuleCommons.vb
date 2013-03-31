@@ -32,8 +32,16 @@ Public Module ModuleCommons
         End If
 
         Dim d As New MySqlCommand(sql, CurrentDB)
-        Return d.ExecuteReader()
-
+        'check if already open reader and close 
+        Try
+            Return d.ExecuteReader()
+        Catch ex As Exception
+            If ex.Message.Contains("There is already an open") Then
+                CurrentDB.Close()
+                CurrentDB.Open()
+                Return d.ExecuteReader()
+            End If
+        End Try
     End Function
 
     Public Function openRecordsetInMemory(ByVal sql As String) As DataTable

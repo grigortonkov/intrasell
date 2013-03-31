@@ -816,6 +816,16 @@
     <Content Include="Vorlagen\VORGANG.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Vorlagen\ksgroup\Vorlage_Rechnung.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorgang.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorlage_Angebot.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorlage_Mailing.dot" />
     <None Include="Vorlagen\Vorlage_AuftragBestaetigung.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

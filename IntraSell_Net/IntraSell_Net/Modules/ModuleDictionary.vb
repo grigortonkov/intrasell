@@ -198,34 +198,38 @@ Module ModuleDictionary
     End Function
 
 
-    Public Function getLanguageForVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Long)
-
-        Dim VORGANG_TYP_LAU As String = "LAU"
-        If Len(CURRENT_LANGUAGE_CODE) = 3 Then
-            Return CURRENT_LANGUAGE_CODE
-            Exit Function
-        End If
-
-
-        Dim VonForm As String = getVorgangTableForType(VorgangTyp)
-
+    Public Function getLanguageForVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Long) As String
         Dim def_language_Code As String = VarValue_Default("LANGUAGE_DOK_" & ModuleGlobals.MitarbeiterID, "DEU")
+        Try
 
-        Dim kund_language_Code As String
-        If VorgangTyp = VORGANG_TYP_LAU Then
-            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
-                              " where a.lieferantNr = adr.IDNR and a.Nummer=" & VorgangNummer)
-        Else
-            kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
-                              " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer)
-        End If
 
-        If Len(kund_language_Code) = 3 Then
-            Return kund_language_Code
-        Else
+            Dim VORGANG_TYP_LAU As String = "LAU"
+            If Len(CURRENT_LANGUAGE_CODE) = 3 Then
+                Return CURRENT_LANGUAGE_CODE
+                Exit Function
+            End If
+
+
+            Dim VonForm As String = getVorgangTableForType(VorgangTyp)
+
+
+            Dim kund_language_Code As String
+            If VorgangTyp = VORGANG_TYP_LAU Then
+                kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
+                                  " where a.lieferantNr = adr.IDNR and a.Nummer=" & VorgangNummer)
+            Else
+                kund_language_Code = firstRow("select adr.language_code from " & VonForm & " a, `ofadressen-settings` adr " & _
+                                  " where a.KundNr = adr.IDNR and a.Nummer=" & VorgangNummer)
+            End If
+
+            If Len(kund_language_Code) = 3 And kund_language_Code <> NOT_AVAILABLE Then
+                Return kund_language_Code
+            Else
+                Return def_language_Code
+            End If
+        Catch ex As Exception
             Return def_language_Code
-        End If
-
+        End Try
 
     End Function
 

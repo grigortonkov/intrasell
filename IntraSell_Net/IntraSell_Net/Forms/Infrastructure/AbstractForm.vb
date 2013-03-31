@@ -1,6 +1,7 @@
 ﻿Public Class AbstractForm
 
-    Public BeginNewFlag = False
+    Public BeginNewFlag = False 'wenn true dann wird beim starten die Position auf einem neuen Record gesetzt 
+    Protected AddingNewFlag As Boolean = False 'ob der user eine  neue Position angefordert hat
 
     Private Sub AbstractForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 

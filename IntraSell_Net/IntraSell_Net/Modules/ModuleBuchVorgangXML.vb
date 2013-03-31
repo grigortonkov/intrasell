@@ -237,7 +237,7 @@ Module ModuleBuchVorgangXML
     ''' <param name="Dateiname"></param>
     ''' <param name="read_only"></param>
     ''' <remarks></remarks>
-    Public Sub DokumentInWordZeigen(ByVal Dateiname As String, Optional ByVal read_only As Boolean = True)
+    Public Sub DokumentInWordZeigen(ByVal Dateiname As String, Optional ByVal read_only As Boolean = False)
         Try
             Dim App 'As Application
             App = CreateObject("Word.Application")
