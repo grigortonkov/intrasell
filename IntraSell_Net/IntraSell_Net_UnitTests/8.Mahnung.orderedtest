@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="8.Mahnung" storage="z:\business\intrasell_system\intrasell_net\intrasell_net_unittests\8.mahnung.orderedtest" id="6f275ef2-dc3e-41fc-bf06-7935936ef355" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="6e86362e-9f9e-dbe4-aa9f-610cc0387ec9" name="CalculateMahnStufeTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

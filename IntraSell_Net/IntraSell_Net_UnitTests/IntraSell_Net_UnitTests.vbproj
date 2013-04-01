@@ -96,6 +96,7 @@
     <Compile Include="grartikel_staffelpreiseTableAdapterTest.vb" />
     <Compile Include="grartikel_vertriebskostenTableAdapterTest.vb" />
     <Compile Include="grartikel_vkpreisperselectionTableAdapterTest.vb" />
+    <Compile Include="Modules\ModuleMahnwesenTest.vb" />
     <Compile Include="Modules\IntraSellKundenTest.vb" />
     <Compile Include="Modules\AdressenAnlageControlTest.vb" />
     <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
@@ -151,6 +152,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="7.Profil.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="8.Mahnung.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />

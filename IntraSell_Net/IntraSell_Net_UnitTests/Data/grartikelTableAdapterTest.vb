@@ -71,8 +71,8 @@ Public Class grartikelTableAdapterTest
         Dim Einheit As String = "KG"
 
         Dim PreisATS As Nullable(Of [Decimal]) = 100
-        Dim PreisEuro As Nullable(Of [Decimal]) = New Nullable(Of [Decimal])() ' TODO: Initialize to an appropriate value
-        Dim PreisATS_Brutto As Nullable(Of [Decimal]) = New Nullable(Of [Decimal])() ' TODO: Initialize to an appropriate value
+        Dim PreisEuro As Nullable(Of [Decimal]) = 0
+        Dim PreisATS_Brutto As Nullable(Of [Decimal]) = 120
 
         Dim EKPreis As Nullable(Of [Decimal]) = 50
         Dim LEKPreis As Nullable(Of [Decimal]) = New Nullable(Of [Decimal])() ' TODO: Initialize to an appropriate value

@@ -9,5 +9,6 @@
     <TestLink id="89bffdab-90c7-44f4-9fc7-65bda756027a" name="5.Anrufe" storage="5.anrufe.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" name="3.Vorgang" storage="3.vorgang.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="416c1f37-1862-4cb1-8e7a-d2a32e26f61a" name="7.Profil" storage="7.profil.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="6f275ef2-dc3e-41fc-bf06-7935936ef355" name="8.mahnung" storage="8.mahnung.orderedtest" type="Microsoft.VisualStudio.TestTools.TestTypes.Ordered.AutoSuite, Microsoft.VisualStudio.QualityTools.Tips.OrderedTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>
