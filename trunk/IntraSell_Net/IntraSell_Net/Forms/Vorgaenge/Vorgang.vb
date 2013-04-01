@@ -15,7 +15,7 @@ Public Class Vorgang
     Const COL_MWST_INDEX As Integer = 9
     Const COL_EKPREIS_INDEX As Integer = 10
 
-    Const DEFAULT_WORD_VORLAGE As String = "Vorlagen/Vorgang.dot"
+
 
     Private _kundNr As Integer = 0
 
@@ -228,7 +228,7 @@ Public Class Vorgang
 
     Private Sub VorlageeditierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorlageeditierenToolStripMenuItem.Click
         Try
-            DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE, False)
+            DokumentInWordZeigen(GetAppPath() & DEFAULT_WORD_VORLAGE_VORGANG, False)
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -248,7 +248,7 @@ Public Class Vorgang
         Try
             'Start printing for the Vorgang 
             'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
-            OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, ModuleBuchVorgangXML.VIEWER_WORD, False, Nothing)
+            OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_WORD, False, Nothing)
             Me.AusgedrucktCheckBox.Checked = True
         Catch ex As Exception
             HandleAppError(ex)
@@ -461,7 +461,7 @@ Public Class Vorgang
 
     Private Sub SendeEmailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
         'Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
-        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
+        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
 
     End Sub
 
@@ -550,31 +550,7 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub btnKassa_Click()
-        Dim tr As MySqlTransaction = Nothing
-        Try
-
-            Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
-            If VorgangTyp = "AR" And Not Me.BezahltCheckBox.Checked Then
-                If MsgBox("Haben Sie den Betrag in der Höhe von " & Me.SummeBruttoTextBox.Text & " eingehoben?", vbYesNo) = vbYes Then
-                    tr = CurrentDB.BeginTransaction
-                    'Me.Bezahlt = True
-                    RunSQL("update " & getVorgangTableForType(VorgangTyp) & " set bezahlt = -1 where Typ='" & VorgangTyp & "' and  Nummer=" & Me.NummerTextBox.Text)
-                    'kassabuch
-                    Call makeKassaBuchEintrag(Now(), VorgangTyp, VorgangTyp & "-" & Me.NummerTextBox.Text, Me.SummeBruttoTextBox.Text)
-                    Me.BezahltCheckBox.Checked = True
-                    tr.Commit()
-                End If
-
-            Else
-                If Not VorgangTyp = "AR" Then
-                    MsgBox("Die Funktion ist nur für Rechnungen vorgesehen.", vbInformation)
-                End If
-            End If
-
-        Catch ex As Exception
-            If Not tr Is Nothing Then tr.Rollback()
-            HandleAppError(ex)
-        End Try
+        Call KassaBuchung(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.SummeBruttoTextBox.Text)
     End Sub
 
     '    Private Sub btnKonvertieren_Click()
@@ -1607,5 +1583,5 @@ Public Class Vorgang
     End Sub
 #End Region
 
- 
+
 End Class

@@ -667,4 +667,37 @@ Module ModuleBuchVorgang
     End Function
 
 
+
+    Public Function KassaBuchung(ByVal Typ As String, ByVal Nummer As String, ByVal Betrag As Decimal) As Boolean
+        Dim tr As MySqlTransaction = Nothing
+        Try
+            Dim Bezahlt As Boolean = firstRow("Select bezahlt from buchVorgang where Nummer=" & Nummer & " and Typ='" & Typ & "'")
+
+            If Typ = "AR" And Not Bezahlt Then
+                If MsgBox("Haben Sie den Betrag in der Höhe von " & Betrag & " eingehoben?", vbYesNo) = vbYes Then
+                    tr = CurrentDB.BeginTransaction
+                    'Me.Bezahlt = True
+                    RunSQL("update " & getVorgangTableForType(Typ) & " set bezahlt = -1 where Typ='" & Typ & "' and  Nummer=" & Nummer)
+                    'kassabuch
+                    Call makeKassaBuchEintrag(Now(), Typ, Typ & "-" & Nummer, Betrag)
+                    tr.Commit()
+                    Return True
+                End If
+
+            Else
+                If Not Typ = "AR" Then
+                    MsgBox("Die Funktion ist nur für Rechnungen vorgesehen.", vbInformation)
+                End If
+                Return False
+            End If
+
+        Catch ex As Exception
+            If Not tr Is Nothing Then tr.Rollback()
+            HandleAppError(ex)
+            Return False
+        End Try
+    End Function
+
+
+
 End Module
