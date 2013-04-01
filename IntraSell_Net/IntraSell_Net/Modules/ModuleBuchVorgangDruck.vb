@@ -4,6 +4,8 @@ Imports System.IO
 Imports IntraSell_DLL
 
 Module ModuleBuchVorgangDruck
+    Public Const DEFAULT_WORD_VORLAGE_VORGANG As String = "Vorlagen/Vorgang.dot"
+    Public Const DEFAULT_WORD_VORLAGE_MAHNUNG As String = "Vorlagen/Vorlage_Mahnung.dot"
 
 
     Const BEZEICHNUNG_LAENGE As Integer = 40

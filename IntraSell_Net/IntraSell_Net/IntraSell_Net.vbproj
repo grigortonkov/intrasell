@@ -147,6 +147,11 @@
     <Compile Include="Data\dsEinstellungen.vb">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\dsMahnungen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Data\dsMitarbeiter.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -358,6 +363,12 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Mahnung\MahnListe.Designer.vb">
+      <DependentUpon>MahnListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mahnung\MahnListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Mitarbeiter\Mitarbeiter.Designer.vb">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </Compile>
@@ -452,6 +463,7 @@
     <Compile Include="Modules\ModuleKassabuch.vb" />
     <Compile Include="Modules\ModuleLager.vb" />
     <Compile Include="Modules\ModuleLogIn.vb" />
+    <Compile Include="Modules\ModuleMahnwesen.vb" />
     <Compile Include="Modules\ModuleMail.vb" />
     <Compile Include="Modules\ModuleMessages.vb" />
     <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
@@ -571,6 +583,9 @@
     <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
       <DependentUpon>PLZSelector.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mahnung\MahnListe.resx">
+      <DependentUpon>MahnListe.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Mitarbeiter\Mitarbeiter.resx">
       <DependentUpon>Mitarbeiter.vb</DependentUpon>
     </EmbeddedResource>
@@ -687,6 +702,17 @@
     </None>
     <None Include="Data\dsEinstellungen.xss">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMahnungen.xsc">
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMahnungen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMahnungen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsMahnungen.xss">
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
     </None>
     <None Include="Data\dsMitarbeiter.xsc">
       <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
@@ -826,6 +852,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Vorlagen\ksgroup\Vorlage_Mailing.dot" />
+    <None Include="Vorlagen\Vorlage_Mahnung.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Vorlagen\Vorlage_AuftragBestaetigung.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

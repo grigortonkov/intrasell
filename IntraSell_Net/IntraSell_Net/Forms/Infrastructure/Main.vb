@@ -172,6 +172,16 @@ Public Class Main
         End Try
     End Sub
 
+
+    Private Sub MahnungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MahnungenToolStripMenuItem.Click
+        Try
+            MahnListe.MdiParent = Me
+            MahnListe.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Infrastructure"
