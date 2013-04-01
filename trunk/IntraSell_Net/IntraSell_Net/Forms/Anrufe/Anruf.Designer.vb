@@ -347,7 +347,7 @@ Partial Class Anruf
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -433,7 +433,7 @@ Partial Class Anruf
         Me.ArchivierenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ArchivierenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ArchivierenToolStripButton.Name = "ArchivierenToolStripButton"
-        Me.ArchivierenToolStripButton.Size = New System.Drawing.Size(65, 22)
+        Me.ArchivierenToolStripButton.Size = New System.Drawing.Size(71, 22)
         Me.ArchivierenToolStripButton.Text = "Archivieren"
         '
         'LAenderungDateTimePicker
@@ -607,14 +607,14 @@ Partial Class Anruf
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AngebotToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(337, 445)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(68, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(73, 24)
         Me.MenuStrip1.TabIndex = 39
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'AngebotToolStripMenuItem
         '
         Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
-        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.AngebotToolStripMenuItem.Text = "&Angebot"
         '
         'AngebotCheckBox
@@ -732,10 +732,12 @@ Partial Class Anruf
         '
         'AdressenControl1
         '
+        Me.AdressenControl1.BackColor = System.Drawing.Color.LemonChiffon
         Me.AdressenControl1.DataBindings.Add(New System.Windows.Forms.Binding("IDNR", Me.AnruflisteBindingSource, "AdrNr", True))
         Me.AdressenControl1.IDNR = 0
         Me.AdressenControl1.Location = New System.Drawing.Point(100, 42)
         Me.AdressenControl1.Name = "AdressenControl1"
+        Me.AdressenControl1.ShowAddNew = False
         Me.AdressenControl1.Size = New System.Drawing.Size(155, 25)
         Me.AdressenControl1.TabIndex = 0
         '
