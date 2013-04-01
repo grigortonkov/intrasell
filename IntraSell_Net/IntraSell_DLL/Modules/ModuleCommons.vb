@@ -8,7 +8,13 @@ Public Module ModuleCommons
   
     Public appPath As String = Nothing 'Set by UnitTests 
 
-    'Return current Applikation Path for Exe, IntraSell
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="exeFilename"></param>
+    ''' <returns>Return current Applikation Path for Exe, IntraSell</returns>
+    ''' <remarks></remarks>
     Function GetAppPath(Optional exeFilename As String = "IntraSell_Net.exe") As String
         If appPath Is Nothing Then
             If Not Application.ExecutablePath.ToLower().Contains("IntraSell_Net.exe".ToLower()) Then
@@ -20,9 +26,13 @@ Public Module ModuleCommons
             Return appPath
         End If
     End Function
-
-
-    'Proxy Function openRecordset  for easy conversion of old Access Code
+ 
+    ''' <summary>
+    ''' Proxy Function openRecordset  for easy conversion of old Access Code
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function openRecordset(ByVal sql As String) As MySqlDataReader
         FixAccessSQL(CurrentDB.ConnectionString, sql)
 
@@ -41,9 +51,16 @@ Public Module ModuleCommons
                 CurrentDB.Open()
                 Return d.ExecuteReader()
             End If
+            Return Nothing
         End Try
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function openRecordsetInMemory(ByVal sql As String) As DataTable
         FixAccessSQL(CurrentDB.ConnectionString, sql)
 
@@ -60,18 +77,32 @@ Public Module ModuleCommons
     End Function
 
 
-    'Proxy Function RunSQL  for easy conversion of old Access Code
+    ''' <summary>
+    ''' Proxy Function RunSQL  for easy conversion of old Access Code
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function RunSQL(ByVal sql As String) As Object
         writeLog("RunSQL for sql:" + sql)
+
+        If Not CurrentDB.State = ConnectionState.Open Then
+            CurrentDB.Open()
+        End If
+
         FixAccessSQL(CurrentDB.ConnectionString, sql)
         Dim d As New MySqlCommand(sql, CurrentDB)
         Return d.ExecuteScalar()
-
     End Function
 
 
-
-    'New Function openDataTable  for easy conversion of old Access Code
+ 
+    ''' <summary>
+    ''' New Function openDataTable  for easy conversion of old Access Code
+    ''' </summary>
+    ''' <param name="sql"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function OpenDataTable(ByVal sql As String) As DataTable
         writeLog("openDataTable for sql:" + sql)
         FixAccessSQL(CurrentDB.ConnectionString, sql)
@@ -81,10 +112,17 @@ Public Module ModuleCommons
         da.Fill(ds, "t")
         rs = ds.Tables("t")
         Return rs
-
     End Function
 
-    'Fills one combo or list with result from query 
+
+    ''' <summary>
+    ''' Fills one combo or list with result from query 
+    ''' </summary>
+    ''' <param name="combo"></param>
+    ''' <param name="query"></param>
+    ''' <param name="displayMember"></param>
+    ''' <param name="valueMember"></param>
+    ''' <remarks></remarks>
     Public Sub FillComboBox(ByRef combo As ListControl, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
         Try
 
@@ -115,6 +153,14 @@ Public Module ModuleCommons
     End Sub
 
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="combo"></param>
+    ''' <param name="query"></param>
+    ''' <param name="displayMember"></param>
+    ''' <param name="valueMember"></param>
+    ''' <remarks></remarks>
     Public Sub FillComboBoxInDG(ByRef combo As DataGridViewComboBoxColumn, ByRef query As String, ByRef displayMember As String, Optional valueMember As String = Nothing)
         Try
 
