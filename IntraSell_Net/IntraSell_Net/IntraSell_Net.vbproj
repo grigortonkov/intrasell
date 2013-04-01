@@ -314,6 +314,12 @@
     <Compile Include="Forms\Infrastructure\AbstractForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Infrastructure\Dashboard.Designer.vb">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Dashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Infrastructure\Log.Designer.vb">
       <DependentUpon>Log.vb</DependentUpon>
     </Compile>
@@ -555,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\AbstractForm.resx">
       <DependentUpon>AbstractForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Dashboard.resx">
+      <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Infrastructure\Log.resx">
       <DependentUpon>Log.vb</DependentUpon>

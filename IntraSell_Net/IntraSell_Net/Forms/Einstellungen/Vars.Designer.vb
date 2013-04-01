@@ -42,12 +42,12 @@ Partial Class Vars
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.OfvarsBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.OfvarsDataGridView = New System.Windows.Forms.DataGridView()
-        Me.txtSuche = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsBooleanValue = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.txtSuche = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.DsEinstellungen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfvarsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfvarsBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +89,7 @@ Partial Class Vars
         Me.OfvarsBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.OfvarsBindingNavigator.Name = "OfvarsBindingNavigator"
         Me.OfvarsBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.OfvarsBindingNavigator.Size = New System.Drawing.Size(550, 25)
+        Me.OfvarsBindingNavigator.Size = New System.Drawing.Size(606, 25)
         Me.OfvarsBindingNavigator.TabIndex = 0
         Me.OfvarsBindingNavigator.Text = "BindingNavigator1"
         '
@@ -105,7 +105,7 @@ Partial Class Vars
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(36, 22)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
@@ -195,24 +195,8 @@ Partial Class Vars
         Me.OfvarsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OfvarsDataGridView.Location = New System.Drawing.Point(0, 25)
         Me.OfvarsDataGridView.Name = "OfvarsDataGridView"
-        Me.OfvarsDataGridView.Size = New System.Drawing.Size(550, 588)
+        Me.OfvarsDataGridView.Size = New System.Drawing.Size(606, 589)
         Me.OfvarsDataGridView.TabIndex = 1
-        '
-        'txtSuche
-        '
-        Me.txtSuche.Location = New System.Drawing.Point(337, 2)
-        Me.txtSuche.Name = "txtSuche"
-        Me.txtSuche.Size = New System.Drawing.Size(100, 20)
-        Me.txtSuche.TabIndex = 3
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(290, 5)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Suche:"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -242,11 +226,27 @@ Partial Class Vars
         Me.IsBooleanValue.Name = "IsBooleanValue"
         Me.IsBooleanValue.ReadOnly = True
         '
+        'txtSuche
+        '
+        Me.txtSuche.Location = New System.Drawing.Point(337, 2)
+        Me.txtSuche.Name = "txtSuche"
+        Me.txtSuche.Size = New System.Drawing.Size(100, 20)
+        Me.txtSuche.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(290, 5)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Suche:"
+        '
         'Vars
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(550, 613)
+        Me.ClientSize = New System.Drawing.Size(606, 614)
         Me.Controls.Add(Me.OfvarsDataGridView)
         Me.Controls.Add(Me.txtSuche)
         Me.Controls.Add(Me.Label1)

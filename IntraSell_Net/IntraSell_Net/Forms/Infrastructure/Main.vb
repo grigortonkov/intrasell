@@ -15,6 +15,10 @@ Public Class Main
             'Login
             Login.ShowDialog()
 
+            'Staqrt Dashboard 
+            Dashboard.MdiParent = Me
+            Dashboard.Show()
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
@@ -47,7 +51,7 @@ Public Class Main
     End Sub
 
 #Region "Kunden"
-    Private Sub NeuerKundeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerKundeToolStripMenuItem.Click
+    Protected Friend Sub NeuerKundeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerKundeToolStripMenuItem.Click
         Try
             Dim f As Kunden = New Kunden
             f.MdiParent = Me
@@ -68,7 +72,7 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub ListeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem.Click
+    Protected Friend Sub ListeToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem.Click
         Try
             Dim f As Kundenliste = New Kundenliste
             f.MdiParent = Me
@@ -93,7 +97,7 @@ Public Class Main
 #Region "Artikel"
 
 
-    Private Sub Liste2ToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles Liste2ToolStripMenuItem.Click
+    Protected Friend Sub ArtikelToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelToolStripMenuItem.Click
         Try
             Dim f As Artikel = New Artikel
             f.MdiParent = Me
@@ -103,7 +107,7 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub ArtikellisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikellisteToolStripMenuItem.Click
+    Protected Friend Sub ArtikellisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ArtikellisteToolStripMenuItem.Click
         Dim f As Artikelliste = New Artikelliste
         f.MdiParent = Me
         f.Show()
@@ -123,7 +127,7 @@ Public Class Main
 #Region "Vorgang"
 
 
-    Private Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
+    Protected Friend Sub NeuerVorgangToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerVorgangToolStripMenuItem.Click
         Try
             Vorgang.MdiParent = Me
             Vorgang.Show()
@@ -143,7 +147,7 @@ Public Class Main
     End Sub
 
 
-    Private Sub VorganglisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorganglisteToolStripMenuItem.Click
+    Protected Friend Sub VorganglisteToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles VorganglisteToolStripMenuItem.Click
         Try
             VorgangListe.MdiParent = Me
             VorgangListe.Show()
@@ -173,7 +177,7 @@ Public Class Main
     End Sub
 
 
-    Private Sub MahnungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MahnungenToolStripMenuItem.Click
+    Protected Friend Sub MahnungenToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MahnungenToolStripMenuItem.Click
         Try
             MahnListe.MdiParent = Me
             MahnListe.Show()
@@ -332,7 +336,7 @@ Public Class Main
 #Region "Anrufe"
 
 
-    Private Sub NeuerAnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerAnrufToolStripMenuItem.Click
+    Protected Friend Sub NeuerAnrufToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NeuerAnrufToolStripMenuItem.Click
         Try
             Dim a As Anruf = New Anruf
             a.MdiParent = Me
@@ -343,7 +347,7 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub ListeToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem1.Click
+    Protected Friend Sub ListeToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ListeToolStripMenuItem1.Click
         Dim f As Anrufliste = New Anrufliste
         f.MdiParent = Me
         f.Show()
@@ -421,11 +425,18 @@ Public Class Main
         End Try
     End Sub
 
- 
+
 
 #End Region
 
 
 
 
+    Private Sub DashboardToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DashboardToolStripMenuItem.Click
+        Try
+            Dashboard.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
 End Class
