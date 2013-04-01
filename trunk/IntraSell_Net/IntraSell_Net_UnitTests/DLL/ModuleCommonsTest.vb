@@ -88,4 +88,16 @@ Public Class ModuleCommonsTest
         Assert.AreEqual("Wert", actual.Columns(2).ColumnName) 
     End Sub
 
+    '''<summary>
+    '''A test for RunSQL
+    '''</summary>
+    <TestMethod()> _
+    Public Sub RunSQLTest()
+
+        Dim sql As String = "select Id, Name, Wert from ofVars order by Name"
+
+        Dim r As Object = ModuleCommons.RunSQL(sql)
+        Assert.AreEqual(1, r)
+    End Sub
+
 End Class

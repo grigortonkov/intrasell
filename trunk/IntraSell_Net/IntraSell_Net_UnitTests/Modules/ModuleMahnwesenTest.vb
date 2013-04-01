@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-
+Imports IntraSell_DLL
 
 
 '''<summary>
@@ -59,6 +59,8 @@ Public Class ModuleMahnwesenTest
     '''</summary>
     <TestMethod()> _
     Public Sub CalculateMahnStufeTest()
+        'zuerst die Rechnung veraltetn 
+        RunSQL("update buchVorgang set Datum = '2012-01-01' where typ= 'AR' and  nummer = " & buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2)
         Dim RechNummer As String = buchvorgangTableAdapterTest.VORGANG_NUMMER_AR_2
         Dim expected As String = "MAHNSTUFE_1"
         Dim actual As String
