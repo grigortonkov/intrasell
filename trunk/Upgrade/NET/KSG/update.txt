@@ -5,3 +5,4 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R201
 http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130329_Vorlagen.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130330.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130401.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/IntraSell_Net_KSG_R20130402.zip
