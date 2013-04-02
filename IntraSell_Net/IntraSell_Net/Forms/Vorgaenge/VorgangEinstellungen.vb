@@ -1,6 +1,7 @@
 ﻿Public Class VorgangEinstellungen
+    Inherits AbstractForm
 
-    Private Sub BuchvorgangtypBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BuchvorgangtypBindingNavigatorSaveItem.Click
+    Private Sub BuchvorgangtypBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.BuchvorgangtypBindingSource.EndEdit()
@@ -12,6 +13,8 @@
 
     Private Sub VorgangEinstellungen_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
+            ParentBindingNavigator.BindingSource = BuchvorgangtypBindingSource
+            ds = DsVorgaenge
             Me.BuchvorgaengeausdruckeTableAdapter.Fill(Me.DsVorgaenge.buchvorgaengeausdrucke)
             Me.BuchvorgangeigenschaftTableAdapter.Fill(Me.DsVorgaenge.buchvorgangeigenschaft)
             Me.BuchvorgaengestatusTableAdapter.Fill(Me.DsVorgaenge.buchvorgaengestatus)

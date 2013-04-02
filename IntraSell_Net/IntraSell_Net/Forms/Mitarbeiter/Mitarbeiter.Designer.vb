@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class Mitarbeiter
-    Inherits System.Windows.Forms.Form
+    Inherits IntraSell_Net.AbstractForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -43,24 +43,10 @@ Partial Class Mitarbeiter
         Dim KontoNrLabel As System.Windows.Forms.Label
         Dim UsernameLabel As System.Windows.Forms.Label
         Dim PasswortLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Mitarbeiter))
         Me.DsMitarbeiter = New IntraSell_Net.dsMitarbeiter()
         Me.OfmitarbeiterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OfmitarbeiterTableAdapter = New IntraSell_Net.dsMitarbeiterTableAdapters.ofmitarbeiterTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsMitarbeiterTableAdapters.TableAdapterManager()
-        Me.OfmitarbeiterBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.OfmitarbeiterBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.IDNRTextBox = New System.Windows.Forms.TextBox()
         Me.PositionTextBox = New System.Windows.Forms.TextBox()
         Me.AnredeTextBox = New System.Windows.Forms.TextBox()
@@ -103,8 +89,6 @@ Partial Class Mitarbeiter
         PasswortLabel = New System.Windows.Forms.Label()
         CType(Me.DsMitarbeiter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OfmitarbeiterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OfmitarbeiterBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.OfmitarbeiterBindingNavigator.SuspendLayout()
         Me.SuspendLayout()
         '
         'IDNRLabel
@@ -306,117 +290,6 @@ Partial Class Mitarbeiter
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.ofmitarbeiterTableAdapter = Me.OfmitarbeiterTableAdapter
         Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsMitarbeiterTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        '
-        'OfmitarbeiterBindingNavigator
-        '
-        Me.OfmitarbeiterBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.OfmitarbeiterBindingNavigator.BindingSource = Me.OfmitarbeiterBindingSource
-        Me.OfmitarbeiterBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.OfmitarbeiterBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.OfmitarbeiterBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.OfmitarbeiterBindingNavigatorSaveItem})
-        Me.OfmitarbeiterBindingNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.OfmitarbeiterBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.OfmitarbeiterBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.OfmitarbeiterBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.OfmitarbeiterBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.OfmitarbeiterBindingNavigator.Name = "OfmitarbeiterBindingNavigator"
-        Me.OfmitarbeiterBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.OfmitarbeiterBindingNavigator.Size = New System.Drawing.Size(629, 25)
-        Me.OfmitarbeiterBindingNavigator.TabIndex = 0
-        Me.OfmitarbeiterBindingNavigator.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Add new"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
-        Me.BindingNavigatorCountItem.Text = "of {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Delete"
-        '
-        'BindingNavigatorMoveFirstItem
-        '
-        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
-        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveFirstItem.Text = "Move first"
-        '
-        'BindingNavigatorMovePreviousItem
-        '
-        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
-        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMovePreviousItem.Text = "Move previous"
-        '
-        'BindingNavigatorSeparator
-        '
-        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorPositionItem
-        '
-        Me.BindingNavigatorPositionItem.AccessibleName = "Position"
-        Me.BindingNavigatorPositionItem.AutoSize = False
-        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
-        Me.BindingNavigatorPositionItem.Text = "0"
-        Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
-        '
-        'BindingNavigatorSeparator1
-        '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorMoveNextItem
-        '
-        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
-        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveNextItem.Text = "Move next"
-        '
-        'BindingNavigatorMoveLastItem
-        '
-        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
-        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveLastItem.Text = "Move last"
-        '
-        'BindingNavigatorSeparator2
-        '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'OfmitarbeiterBindingNavigatorSaveItem
-        '
-        Me.OfmitarbeiterBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.OfmitarbeiterBindingNavigatorSaveItem.Image = CType(resources.GetObject("OfmitarbeiterBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.OfmitarbeiterBindingNavigatorSaveItem.Name = "OfmitarbeiterBindingNavigatorSaveItem"
-        Me.OfmitarbeiterBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
-        Me.OfmitarbeiterBindingNavigatorSaveItem.Text = "Save Data"
         '
         'IDNRTextBox
         '
@@ -629,14 +502,50 @@ Partial Class Mitarbeiter
         Me.Controls.Add(Me.UsernameTextBox)
         Me.Controls.Add(PasswortLabel)
         Me.Controls.Add(Me.PasswortTextBox)
-        Me.Controls.Add(Me.OfmitarbeiterBindingNavigator)
         Me.Name = "Mitarbeiter"
         Me.Text = "Mitarbeiter"
+        Me.Controls.SetChildIndex(Me.PasswortTextBox, 0)
+        Me.Controls.SetChildIndex(PasswortLabel, 0)
+        Me.Controls.SetChildIndex(Me.UsernameTextBox, 0)
+        Me.Controls.SetChildIndex(UsernameLabel, 0)
+        Me.Controls.SetChildIndex(Me.KontoNrTextBox, 0)
+        Me.Controls.SetChildIndex(KontoNrLabel, 0)
+        Me.Controls.SetChildIndex(Me.BankNrTextBox, 0)
+        Me.Controls.SetChildIndex(BankNrLabel, 0)
+        Me.Controls.SetChildIndex(Me.SVNTextBox, 0)
+        Me.Controls.SetChildIndex(SVNLabel, 0)
+        Me.Controls.SetChildIndex(Me.EmailTextBox, 0)
+        Me.Controls.SetChildIndex(EmailLabel, 0)
+        Me.Controls.SetChildIndex(Me.MobilTextBox, 0)
+        Me.Controls.SetChildIndex(MobilLabel, 0)
+        Me.Controls.SetChildIndex(Me.FaxFirmaTextBox, 0)
+        Me.Controls.SetChildIndex(FaxFirmaLabel, 0)
+        Me.Controls.SetChildIndex(Me.TelFirmaTextBox, 0)
+        Me.Controls.SetChildIndex(TelFirmaLabel, 0)
+        Me.Controls.SetChildIndex(Me.TelPrivatTextBox, 0)
+        Me.Controls.SetChildIndex(TelPrivatLabel, 0)
+        Me.Controls.SetChildIndex(Me.OrtTextBox, 0)
+        Me.Controls.SetChildIndex(OrtLabel, 0)
+        Me.Controls.SetChildIndex(Me.PLZTextBox, 0)
+        Me.Controls.SetChildIndex(PLZLabel, 0)
+        Me.Controls.SetChildIndex(Me.LandTextBox, 0)
+        Me.Controls.SetChildIndex(LandLabel, 0)
+        Me.Controls.SetChildIndex(Me.AdresseTextBox, 0)
+        Me.Controls.SetChildIndex(AdresseLabel, 0)
+        Me.Controls.SetChildIndex(Me.GeschlechtTextBox, 0)
+        Me.Controls.SetChildIndex(GeschlechtLabel, 0)
+        Me.Controls.SetChildIndex(Me.VornameTextBox, 0)
+        Me.Controls.SetChildIndex(VornameLabel, 0)
+        Me.Controls.SetChildIndex(Me.NameTextBox, 0)
+        Me.Controls.SetChildIndex(NameLabel, 0)
+        Me.Controls.SetChildIndex(Me.AnredeTextBox, 0)
+        Me.Controls.SetChildIndex(AnredeLabel, 0)
+        Me.Controls.SetChildIndex(Me.PositionTextBox, 0)
+        Me.Controls.SetChildIndex(PositionLabel, 0)
+        Me.Controls.SetChildIndex(Me.IDNRTextBox, 0)
+        Me.Controls.SetChildIndex(IDNRLabel, 0)
         CType(Me.DsMitarbeiter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OfmitarbeiterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OfmitarbeiterBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.OfmitarbeiterBindingNavigator.ResumeLayout(False)
-        Me.OfmitarbeiterBindingNavigator.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -645,19 +554,6 @@ Partial Class Mitarbeiter
     Friend WithEvents OfmitarbeiterBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents OfmitarbeiterTableAdapter As IntraSell_Net.dsMitarbeiterTableAdapters.ofmitarbeiterTableAdapter
     Friend WithEvents TableAdapterManager As IntraSell_Net.dsMitarbeiterTableAdapters.TableAdapterManager
-    Friend WithEvents OfmitarbeiterBindingNavigator As System.Windows.Forms.BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents BindingNavigatorDeleteItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents OfmitarbeiterBindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents IDNRTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PositionTextBox As System.Windows.Forms.TextBox
     Friend WithEvents AnredeTextBox As System.Windows.Forms.TextBox

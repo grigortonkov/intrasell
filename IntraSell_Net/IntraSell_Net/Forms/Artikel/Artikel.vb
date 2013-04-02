@@ -19,7 +19,7 @@ Public Class Artikel
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub GrartikelBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
+    Private Sub GrartikelBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.GrartikelBindingSource.EndEdit()
@@ -31,6 +31,8 @@ Public Class Artikel
 
     Private Sub Artikel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            ds = DsArtikel
+
             Try
                 Me.Grartikel_kategorienTableAdapter.Fill(Me.DsArtikel._grartikel_kategorien)
                 Me.GrartikelTableAdapter.Fill(Me.DsArtikel.grartikel)
@@ -60,7 +62,7 @@ Public Class Artikel
 
 #Region "New"
 
-    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub BindingNavigatorAddNewItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
             AddingNewFlag = True
         Catch ex As Exception

@@ -1,8 +1,9 @@
 ﻿Public Class Vars
+    Inherits AbstractForm
 
-    Private Sub OfvarsBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfvarsBindingNavigatorSaveItem.Click
+    Private Sub OfvarsBindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
         Try
- 
+
             Me.Validate()
             Me.OfvarsBindingSource.EndEdit()
             Me.TableAdapterManager.UpdateAll(Me.DsEinstellungen)
@@ -13,7 +14,10 @@
 
     Private Sub Vars_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
-               Me.OfvarsTableAdapter.Fill(Me.DsEinstellungen.ofvars)
+            Me.ParentBindingNavigator.BindingSource = OfvarsBindingSource
+            ds = DsEinstellungen
+
+            Me.OfvarsTableAdapter.Fill(Me.DsEinstellungen.ofvars)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

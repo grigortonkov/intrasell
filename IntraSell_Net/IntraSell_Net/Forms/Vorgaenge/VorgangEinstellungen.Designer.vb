@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class VorgangEinstellungen
-    Inherits System.Windows.Forms.Form
+    Inherits IntraSell_Net.AbstractForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -23,7 +23,6 @@ Partial Class VorgangEinstellungen
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(VorgangEinstellungen))
         Dim TypLabel As System.Windows.Forms.Label
         Dim BezeichnungLabel As System.Windows.Forms.Label
         Dim DruckbezeichnungLabel As System.Windows.Forms.Label
@@ -31,35 +30,22 @@ Partial Class VorgangEinstellungen
         Me.BuchvorgangtypBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.BuchvorgangtypTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangtypTableAdapter()
         Me.TableAdapterManager = New IntraSell_Net.dsVorgaengeTableAdapters.TableAdapterManager()
-        Me.BuchvorgangtypBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
-        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
-        Me.BuchvorgangtypBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
+        Me.BuchvorgaengeausdruckeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgaengeausdruckeTableAdapter()
+        Me.BuchvorgaengestatusTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgaengestatusTableAdapter()
+        Me.BuchvorgangeigenschaftTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangeigenschaftTableAdapter()
         Me.TypTextBox = New System.Windows.Forms.TextBox()
         Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
         Me.DruckbezeichnungTextBox = New System.Windows.Forms.TextBox()
         Me.BuchvorgaengestatusBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BuchvorgaengestatusTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgaengestatusTableAdapter()
         Me.BuchvorgaengestatusDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BuchvorgangeigenschaftBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BuchvorgangeigenschaftTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangeigenschaftTableAdapter()
         Me.BuchvorgangeigenschaftDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BuchvorgaengeausdruckeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.BuchvorgaengeausdruckeTableAdapter = New IntraSell_Net.dsVorgaengeTableAdapters.buchvorgaengeausdruckeTableAdapter()
         Me.BuchvorgaengeausdruckeDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -74,8 +60,6 @@ Partial Class VorgangEinstellungen
         DruckbezeichnungLabel = New System.Windows.Forms.Label()
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangtypBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BuchvorgangtypBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.BuchvorgangtypBindingNavigator.SuspendLayout()
         CType(Me.BuchvorgaengestatusBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgaengestatusDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BuchvorgangeigenschaftBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +71,33 @@ Partial Class VorgangEinstellungen
         Me.EigenschaftenTabPage.SuspendLayout()
         Me.DruckvorlagenTabPage.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'TypLabel
+        '
+        TypLabel.AutoSize = True
+        TypLabel.Location = New System.Drawing.Point(10, 31)
+        TypLabel.Name = "TypLabel"
+        TypLabel.Size = New System.Drawing.Size(28, 13)
+        TypLabel.TabIndex = 1
+        TypLabel.Text = "Typ:"
+        '
+        'BezeichnungLabel
+        '
+        BezeichnungLabel.AutoSize = True
+        BezeichnungLabel.Location = New System.Drawing.Point(10, 57)
+        BezeichnungLabel.Name = "BezeichnungLabel"
+        BezeichnungLabel.Size = New System.Drawing.Size(72, 13)
+        BezeichnungLabel.TabIndex = 3
+        BezeichnungLabel.Text = "Bezeichnung:"
+        '
+        'DruckbezeichnungLabel
+        '
+        DruckbezeichnungLabel.AutoSize = True
+        DruckbezeichnungLabel.Location = New System.Drawing.Point(10, 83)
+        DruckbezeichnungLabel.Name = "DruckbezeichnungLabel"
+        DruckbezeichnungLabel.Size = New System.Drawing.Size(100, 13)
+        DruckbezeichnungLabel.TabIndex = 5
+        DruckbezeichnungLabel.Text = "Druckbezeichnung:"
         '
         'DsVorgaenge
         '
@@ -117,125 +128,17 @@ Partial Class VorgangEinstellungen
         Me.TableAdapterManager.grartikelTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = IntraSell_Net.dsVorgaengeTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'BuchvorgangtypBindingNavigator
+        'BuchvorgaengeausdruckeTableAdapter
         '
-        Me.BuchvorgangtypBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.BuchvorgangtypBindingNavigator.BindingSource = Me.BuchvorgangtypBindingSource
-        Me.BuchvorgangtypBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.BuchvorgangtypBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.BuchvorgangtypBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.BuchvorgangtypBindingNavigatorSaveItem})
-        Me.BuchvorgangtypBindingNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.BuchvorgangtypBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.BuchvorgangtypBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.BuchvorgangtypBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.BuchvorgangtypBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.BuchvorgangtypBindingNavigator.Name = "BuchvorgangtypBindingNavigator"
-        Me.BuchvorgangtypBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BuchvorgangtypBindingNavigator.Size = New System.Drawing.Size(720, 25)
-        Me.BuchvorgangtypBindingNavigator.TabIndex = 0
-        Me.BuchvorgangtypBindingNavigator.Text = "BindingNavigator1"
+        Me.BuchvorgaengeausdruckeTableAdapter.ClearBeforeFill = True
         '
-        'BindingNavigatorMoveFirstItem
+        'BuchvorgaengestatusTableAdapter
         '
-        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
-        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveFirstItem.Text = "Move first"
+        Me.BuchvorgaengestatusTableAdapter.ClearBeforeFill = True
         '
-        'BindingNavigatorMovePreviousItem
+        'BuchvorgangeigenschaftTableAdapter
         '
-        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
-        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMovePreviousItem.Text = "Move previous"
-        '
-        'BindingNavigatorSeparator
-        '
-        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorPositionItem
-        '
-        Me.BindingNavigatorPositionItem.AccessibleName = "Position"
-        Me.BindingNavigatorPositionItem.AutoSize = False
-        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
-        Me.BindingNavigatorPositionItem.Text = "0"
-        Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
-        Me.BindingNavigatorCountItem.Text = "of {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
-        '
-        'BindingNavigatorSeparator1
-        '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorMoveNextItem
-        '
-        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
-        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveNextItem.Text = "Move next"
-        '
-        'BindingNavigatorMoveLastItem
-        '
-        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
-        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveLastItem.Text = "Move last"
-        '
-        'BindingNavigatorSeparator2
-        '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Add new"
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Delete"
-        '
-        'BuchvorgangtypBindingNavigatorSaveItem
-        '
-        Me.BuchvorgangtypBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BuchvorgangtypBindingNavigatorSaveItem.Image = CType(resources.GetObject("BuchvorgangtypBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.BuchvorgangtypBindingNavigatorSaveItem.Name = "BuchvorgangtypBindingNavigatorSaveItem"
-        Me.BuchvorgangtypBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
-        Me.BuchvorgangtypBindingNavigatorSaveItem.Text = "Save Data"
-        '
-        'TypLabel
-        '
-        TypLabel.AutoSize = True
-        TypLabel.Location = New System.Drawing.Point(10, 31)
-        TypLabel.Name = "TypLabel"
-        TypLabel.Size = New System.Drawing.Size(28, 13)
-        TypLabel.TabIndex = 1
-        TypLabel.Text = "Typ:"
+        Me.BuchvorgangeigenschaftTableAdapter.ClearBeforeFill = True
         '
         'TypTextBox
         '
@@ -245,15 +148,6 @@ Partial Class VorgangEinstellungen
         Me.TypTextBox.Size = New System.Drawing.Size(33, 20)
         Me.TypTextBox.TabIndex = 2
         '
-        'BezeichnungLabel
-        '
-        BezeichnungLabel.AutoSize = True
-        BezeichnungLabel.Location = New System.Drawing.Point(10, 57)
-        BezeichnungLabel.Name = "BezeichnungLabel"
-        BezeichnungLabel.Size = New System.Drawing.Size(72, 13)
-        BezeichnungLabel.TabIndex = 3
-        BezeichnungLabel.Text = "Bezeichnung:"
-        '
         'BezeichnungTextBox
         '
         Me.BezeichnungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.BuchvorgangtypBindingSource, "Bezeichnung", True))
@@ -261,15 +155,6 @@ Partial Class VorgangEinstellungen
         Me.BezeichnungTextBox.Name = "BezeichnungTextBox"
         Me.BezeichnungTextBox.Size = New System.Drawing.Size(100, 20)
         Me.BezeichnungTextBox.TabIndex = 4
-        '
-        'DruckbezeichnungLabel
-        '
-        DruckbezeichnungLabel.AutoSize = True
-        DruckbezeichnungLabel.Location = New System.Drawing.Point(10, 83)
-        DruckbezeichnungLabel.Name = "DruckbezeichnungLabel"
-        DruckbezeichnungLabel.Size = New System.Drawing.Size(100, 13)
-        DruckbezeichnungLabel.TabIndex = 5
-        DruckbezeichnungLabel.Text = "Druckbezeichnung:"
         '
         'DruckbezeichnungTextBox
         '
@@ -283,10 +168,6 @@ Partial Class VorgangEinstellungen
         '
         Me.BuchvorgaengestatusBindingSource.DataMember = "buchvorgangtyp_buchvorgaengestatus"
         Me.BuchvorgaengestatusBindingSource.DataSource = Me.BuchvorgangtypBindingSource
-        '
-        'BuchvorgaengestatusTableAdapter
-        '
-        Me.BuchvorgaengestatusTableAdapter.ClearBeforeFill = True
         '
         'BuchvorgaengestatusDataGridView
         '
@@ -323,10 +204,6 @@ Partial Class VorgangEinstellungen
         Me.BuchvorgangeigenschaftBindingSource.DataMember = "buchvorgangtyp_buchvorgangeigenschaft"
         Me.BuchvorgangeigenschaftBindingSource.DataSource = Me.BuchvorgangtypBindingSource
         '
-        'BuchvorgangeigenschaftTableAdapter
-        '
-        Me.BuchvorgangeigenschaftTableAdapter.ClearBeforeFill = True
-        '
         'BuchvorgangeigenschaftDataGridView
         '
         Me.BuchvorgangeigenschaftDataGridView.AutoGenerateColumns = False
@@ -355,10 +232,6 @@ Partial Class VorgangEinstellungen
         '
         Me.BuchvorgaengeausdruckeBindingSource.DataMember = "buchvorgaengeausdrucke"
         Me.BuchvorgaengeausdruckeBindingSource.DataSource = Me.DsVorgaenge
-        '
-        'BuchvorgaengeausdruckeTableAdapter
-        '
-        Me.BuchvorgaengeausdruckeTableAdapter.ClearBeforeFill = True
         '
         'BuchvorgaengeausdruckeDataGridView
         '
@@ -452,14 +325,17 @@ Partial Class VorgangEinstellungen
         Me.Controls.Add(Me.BezeichnungTextBox)
         Me.Controls.Add(DruckbezeichnungLabel)
         Me.Controls.Add(Me.DruckbezeichnungTextBox)
-        Me.Controls.Add(Me.BuchvorgangtypBindingNavigator)
         Me.Name = "VorgangEinstellungen"
         Me.Text = "Vorgang Einstellungen"
+        Me.Controls.SetChildIndex(Me.DruckbezeichnungTextBox, 0)
+        Me.Controls.SetChildIndex(DruckbezeichnungLabel, 0)
+        Me.Controls.SetChildIndex(Me.BezeichnungTextBox, 0)
+        Me.Controls.SetChildIndex(BezeichnungLabel, 0)
+        Me.Controls.SetChildIndex(Me.TypTextBox, 0)
+        Me.Controls.SetChildIndex(TypLabel, 0)
+        Me.Controls.SetChildIndex(Me.TabControl, 0)
         CType(Me.DsVorgaenge, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangtypBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BuchvorgangtypBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.BuchvorgangtypBindingNavigator.ResumeLayout(False)
-        Me.BuchvorgangtypBindingNavigator.PerformLayout()
         CType(Me.BuchvorgaengestatusBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgaengestatusDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BuchvorgangeigenschaftBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -478,19 +354,6 @@ Partial Class VorgangEinstellungen
     Friend WithEvents BuchvorgangtypBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents BuchvorgangtypTableAdapter As IntraSell_Net.dsVorgaengeTableAdapters.buchvorgangtypTableAdapter
     Friend WithEvents TableAdapterManager As IntraSell_Net.dsVorgaengeTableAdapters.TableAdapterManager
-    Friend WithEvents BuchvorgangtypBindingNavigator As System.Windows.Forms.BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorCountItem As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents BindingNavigatorDeleteItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveFirstItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMovePreviousItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorPositionItem As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents BindingNavigatorSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents BuchvorgangtypBindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents TypTextBox As System.Windows.Forms.TextBox
     Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
     Friend WithEvents DruckbezeichnungTextBox As System.Windows.Forms.TextBox

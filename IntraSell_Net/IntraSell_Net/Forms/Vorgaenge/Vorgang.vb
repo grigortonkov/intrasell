@@ -2,6 +2,7 @@
 Imports MySql.Data.MySqlClient
 
 Public Class Vorgang
+    Inherits AbstractForm
     Implements InterfacePrintable
 
     Dim loading As Boolean = True
@@ -68,7 +69,7 @@ Public Class Vorgang
 
     End Sub
 
-    Private Sub BuchvorgangBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BuchvorgangBindingNavigatorSaveItem.Click
+    Private Sub BuchvorgangBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
         Try
             Me.Validate()
             Me.BuchvorgangBindingSource.EndEdit()
@@ -104,6 +105,7 @@ Public Class Vorgang
 
         Try
             loading = True
+            ds = DsVorgaenge
             Me.KundNrAdressenControl.ShowAddNew = True
             Me.KundNr2AdressenControl.ShowAddNew = True
             Me.ArtikelControl1.ShowAddNew = True

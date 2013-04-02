@@ -36,7 +36,7 @@ Partial Class AbstractForm
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.OfAdressenBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
+        Me.BindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         CType(Me.ParentBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ParentBindingNavigator.SuspendLayout()
         Me.SuspendLayout()
@@ -46,7 +46,7 @@ Partial Class AbstractForm
         Me.ParentBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
         Me.ParentBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.ParentBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.ParentBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.OfAdressenBindingNavigatorSaveItem})
+        Me.ParentBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.BindingNavigatorSaveItem})
         Me.ParentBindingNavigator.Location = New System.Drawing.Point(0, 0)
         Me.ParentBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.ParentBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -143,13 +143,13 @@ Partial Class AbstractForm
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'OfAdressenBindingNavigatorSaveItem
+        'BindingNavigatorSaveItem
         '
-        Me.OfAdressenBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.OfAdressenBindingNavigatorSaveItem.Image = CType(resources.GetObject("OfAdressenBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.OfAdressenBindingNavigatorSaveItem.Name = "OfAdressenBindingNavigatorSaveItem"
-        Me.OfAdressenBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
-        Me.OfAdressenBindingNavigatorSaveItem.Text = "Save Data"
+        Me.BindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorSaveItem.Image = CType(resources.GetObject("BindingNavigatorSaveItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorSaveItem.Name = "BindingNavigatorSaveItem"
+        Me.BindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorSaveItem.Text = "Save Data"
         '
         'AbstractForm
         '
@@ -179,5 +179,5 @@ Partial Class AbstractForm
     Friend WithEvents BindingNavigatorMoveNextItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As System.Windows.Forms.ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents OfAdressenBindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
+    Friend WithEvents BindingNavigatorSaveItem As System.Windows.Forms.ToolStripButton
 End Class
