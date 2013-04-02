@@ -185,6 +185,12 @@
     <Compile Include="Forms\Artikel\ArtikelKategorien.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Branchen\Branche.designer.vb">
+      <DependentUpon>Branche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Branchen\Branche.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Controls\AdressenDetailControl.Designer.vb">
       <DependentUpon>AdressenDetailControl.vb</DependentUpon>
     </Compile>
@@ -207,12 +213,6 @@
       <DependentUpon>AnrufListe.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Anrufe\AnrufListe.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Branchen\Branche.Designer.vb">
-      <DependentUpon>Branche.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Branchen\Branche.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Controls\AdressenAnlageControl.Designer.vb">
@@ -508,6 +508,9 @@
     <EmbeddedResource Include="Forms\Artikel\ArtikelKategorien.resx">
       <DependentUpon>ArtikelKategorien.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Branchen\Branche.resx">
+      <DependentUpon>Branche.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\AdressenDetailControl.resx">
       <DependentUpon>AdressenDetailControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -525,9 +528,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Artikel\ArtikelListe.resx">
       <DependentUpon>ArtikelListe.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Branchen\Branche.resx">
-      <DependentUpon>Branche.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Controls\AdressenAnlageControl.resx">
       <DependentUpon>AdressenAnlageControl.vb</DependentUpon>

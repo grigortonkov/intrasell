@@ -1,6 +1,5 @@
 ﻿Public Class VorgangBedingungen
 
-
     Private Sub VorgangBedingungen_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             Me.GrtransportmethodeTableAdapter.Fill(Me.DsStammdaten.grtransportmethode)

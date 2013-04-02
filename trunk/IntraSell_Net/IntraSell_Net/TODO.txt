@@ -12,3 +12,8 @@ ok 8. Vorgang - nach Position einfügen in Datagrid .. refresh der daten
   OK  Vorgang Position Detail - Preis Netto ändern -> Brutto wird nicht angepasst.
   OK  ArtNr Ändern - es sollte Alles geändert werden;
 OK 12. Zahlungsbedingungen eintragen (+) geht nicht zum kunden 
+
+
+13. Drei Nachkommastellen 
+14. Artikel neu (mit dem +) - ArtNr wird nicht vorgeschlagen
+15. Wenn aussteigen - Fragen! 

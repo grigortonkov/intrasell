@@ -40,6 +40,8 @@ Public Class Kunden
 
     Private Sub Kunden_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            ds = DataSetKunden
+
             Me.AdressenDetailControl1.Init()
             Me.GrbranchenTableAdapter.Fill(Me.DsBranchen.grbranchen)
             Me.BuchvorgangtypTableAdapter.Fill(Me.DsVorgaenge.buchvorgangtyp)
@@ -109,7 +111,7 @@ Public Class Kunden
 #End Region
 
     'Save Data 
-    Private Shadows Sub BindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles OfAdressenBindingNavigatorSaveItem.Click
+    Private Shadows Sub BindingNavigatorSaveItem_Click(sender As System.Object, e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
 
         Try
             Me.Validate()
