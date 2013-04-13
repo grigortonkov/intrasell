@@ -50,12 +50,12 @@
         'Find Client 
         Email = Trim(Left(Email, 250))
         Password = Trim(Left(Password, 50))
-        SQL = "SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
+        SQL = "SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email = '" & Email & "' AND Passwort = '" & Password & "'"
         'response.write "<br />" & sql
         Dim rsP = objConnectionExecute(SQL)
         If rsP.EOF Then
             'check if user has an unlocked account 
-            SQL = "SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email Like '" & Email & "' AND Passwort Like '" & Password & "'"
+            SQL = "SELECT * from ofAdressen Where Status='" & STATE_NOT_CONFIRMED_CLIENT & "' and Email = '" & Email & "' AND Passwort = '" & Password & "'"
         
             rsP = objConnectionExecute(SQL)
             Dim LoginError As String
@@ -71,18 +71,21 @@
                             
                 sendMailFromWithSending(getClientEmail(rsP("idnr").Value), _
                      "Ihre Registrierung bei " & VARVALUE("DOMAIN") & "!", _
-                  MAKE_EMAIL_REGISTRATION_SIMPLE(rsP("idnr").Value), _
-                  VARVALUE("EMAIL_REGISTER"))
+                      MAKE_EMAIL_REGISTRATION_SIMPLE(rsP("idnr").Value), _
+                      VARVALUE("EMAIL_REGISTER"))
 
             End If
             authenticate = -1
-            Response.Write("<LoginError>" & LoginError & "</LoginError>")
-            Response.Write("Sorry! <font color=""#FF0000"">" & LoginError & "</font>" & _
-         "<br /><font color=black>" & getTranslation("Benutzen Sie unbedingt die 'Zurueck' Schaltflaeche um Ihre Eingaben nicht zu verlieren!") & "</font>" & _
-         "<br /> <a href='javascript:window.back()'>" & getTranslation("Zurueck") & "</a>")
+            'Response.Write("<LoginError>" & LoginError & "</LoginError>")
+            Dim text As String ' = <a href='javascript:window.back()'>" & getTranslation("Zurueck") & "</a>"
                 
+            
+            text = drawErrorBox(Title:=getTranslation("Anmeldung fehlgeschlagen!"), _
+                                Body:=LoginError & "<br/>" & getTranslation("Benutzen Sie die 'Zurueck' Schaltflaeche um Ihre Eingaben nicht zu verlieren!"), _
+                                UrlYes:="", _
+                                UrlNo:="")
+            Response.Write(Text)
             Exit Function
-                
         End If
         authenticate = rsP("IDNR").Value
         Session("LOG_IN") = authenticate
@@ -91,7 +94,7 @@
         'update session
         SQL = "update webSessions set kundenIdnr=" & rsP("IDNR").Value & " where SID=" & getSid()
         objConnectionExecute(SQL)
-        Response.Write("<!--<" & IDNR_TAG & ">" & rsP("IDNR").Value & "</" & IDNR_TAG & ">-->") 'write this out for services parcing 
+        Response.Write("<!--<" & IDNR_TAG & ">" & rsP("IDNR").Value & "</" & IDNR_TAG & ">-->") 'write this out for service parsing 
         rsP.close()
     End Function
 
@@ -1579,8 +1582,9 @@
     ' showMessages BOOLEAN
     ' returns Lieferschein, Basis or Invoice address as HTML String 
     '*************************************************************************
-    Function printAddress(ByVal kdnr As Long, ByVal addressType As String, ByVal showMessages As String, _ 
-                          Optional printAll As Boolean = False, Optional showSelectBox As Boolean = false) As String
+    Function printAddress(ByVal kdnr As Long, ByVal addressType As String, ByVal showMessages As Boolean, _
+                          Optional printAll As Boolean = False, Optional showSelectBox As Boolean = False, _
+                          Optional idWeitereAdresse As Long = -1) As String
         Dim rsKUND
         Dim sql As String
         Dim html As String
@@ -1591,10 +1595,14 @@
         Else
             sql = "Select * from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & kdnr
         End If
+        
+        If idWeitereAdresse > 0 Then
+            sql = "Select * from [ofAdressen-Weitere] where id= " & idWeitereAdresse
+        End If
         rsKUND = objConnectionExecute(sql)
 
         'Response.Write showMessages
-        If rsKUND.EOF and not printAll Then
+        If rsKUND.EOF And Not printAll Then
             If showMessages Then 'show mesasge 
                 message = getTranslation("Die gleiche Adresse wie im Profil.")
             End If
@@ -1607,14 +1615,12 @@
         
         html = "<b>" & message & "</b><br/><br/>"
         
-        While Not rsKUND.EOF 
+        While Not rsKUND.EOF
             
             PLZ = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "PLZ")
             Ort = TableValue("grPLZ", "IDNR", "'" & rsKUND("PLZ").Value & "'", "Ort")
             Landname = TableValue("grLand", "IdNr", rsKUND("Land").Value, "Name")
-
             
-
             If Trim(rsKUND("Firma").Value & "") <> "" Then
                 html = html & rsKUND("Firma").Value & "<br />"
             End If
@@ -1626,20 +1632,28 @@
             html = html & "Tel: <a href='call:" & rsKUND("Tel").Value & "'>" & rsKUND("Tel").Value & "</a> <br />"
             html = html & "Email: <a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br />"
             
-            If showSelectBox then 
-                html = html & "<input type='radio' Name='UseOld"& addressType &"' Value='" & rsKUND("ID").Value & "'> " & getTranslation("ich möchte diese Adresse verwenden")
-            End If 
+            If showSelectBox Then
+                html = html & "<input type='radio' Name='UseOld" & addressType & "' Value='" & rsKUND("ID").Value & "'> " & getTranslation("ich möchte diese Adresse verwenden")
+            End If
             
-            If printAll then 
+            If printAll Then
                 html = html & "<hr/>"
-            Else 
-                Return  html
-            End If 
-            rsKUND.MoveNext
+            Else
+                Return html
+            End If
+            rsKUND.MoveNext()
         End While
 
         printAddress = html
     End Function
 
+    
+    Function GetLieferland(ByVal kdnr As Long, Optional idWeitereAdresse As Long = -1) As String
+        Dim sql As String
+        sql = "Select land from [ofAdressen-Weitere] where id= " & idWeitereAdresse & _
+              " union Select land from [ofAdressen-Weitere] where typ= '" & TypeOfAddress.SHIPPING & "' and IDNR=" & kdnr & _
+              " union Select land from [ofAdressen] where IDNR=" & kdnr
+        GetLieferland = firstvalue(sql)
+    End Function
 </script>
 

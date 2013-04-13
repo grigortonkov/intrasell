@@ -57,7 +57,7 @@
         
         If calculateWarenkorbSum() > 0 Then
             Dim passOld As String : passOld = tableValue("ofAdressen", "IDNR", getLOGIN(), "Passwort")
-            redPage = "default.aspx?pageToShow=warenkorbStep3&EmailOld=" & GetClientEmail(getLOGIN()) & "&passwordOld=" & passOld
+            redPage = "default.aspx?pageToShow=warenkorbStep2&EmailOld=" & GetClientEmail(getLOGIN()) & "&passwordOld=" & passOld
         Else
             redPage = "default.aspx?pageToShow=MyProfileInfo"
         End If

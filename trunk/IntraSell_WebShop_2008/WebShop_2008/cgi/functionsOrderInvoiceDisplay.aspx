@@ -186,16 +186,18 @@
     ''' <param name="PayMode"></param>
     ''' <param name="PostMode"></param>
     ''' <param name="PostModeDestination"></param>
-    ''' <returns></returns>
+    ''' <returns>false if empty, else true</returns>
     ''' <remarks></remarks>
-    Function visualizeWarenkorb(ByVal StepN, ByVal Land, ByVal PayMode, ByVal PostMode, ByVal PostModeDestination)
+    Function visualizeWarenkorb(ByVal StepN, ByVal Land, ByVal PayMode, ByVal PostMode, ByVal PostModeDestination) As Boolean
         Dim sql As String, rsWK
-        Dim gutscheinNummer As String = Session("GutscheinNummer")
-        Dim sid As String : sid = getSID()
+        Dim GutscheinNummer As String = Session("GutscheinNummer")
+        Dim SID As String : SID = getSID()
         Dim html As String
         Dim Language As String = Session("LANGUAGE")
         Dim IDNR As Object : IDNR = getLOGIN()
-        Dim USE_EAN As Boolean = VARVALUE_DEFAULT("BenutzeEAN", "false")
+        If Not IsNumeric(IDNR) then IDNR = 0 'default IDNR to avoid errors inthe calculation 
+     
+        Dim USE_BRUTTO_PREISE As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_GROSS_PRICES", "true")
         
         sql = "SELECT webWarenkorb.SID, webWarenkorb.Quantity, webWarenkorb.Notiz, grArtikel.* " & _
            " FROM webWarenkorb INNER JOIN grArtikel ON webWarenkorb.ArtNr = grArtikel.ArtNr" & _
@@ -225,25 +227,15 @@
             html = html & "   " & getTranslation("Anzahl") & ""
             html = html & "</th>"
             
-            If Not USE_EAN Then
-                html = html & "<th align='center'>"
-                html = html & "   " & getTranslation("ArtNR") & ""
-                html = html & "</th>"
-            Else
-                html = html & "<th width='71' align='center'>"
-                html = html & "   " & getTranslation("KatalogNr.") & ""
-                html = html & "</th>"
-            End If
             
-
-            html = html & "<th width='322' align='center'>"
-            html = html & "   " & getTranslation("Bezeichnung") & ""
+            html = html & "<th align='center' colspan=3>"
+            html = html & "   " & getTranslation("Produkt") & ""
             html = html & "</th>"
-            html = html & "<th width='50' align='center'>"
-            html = html & "   " & getTranslation("Lieferung") & ""
-            html = html & "</th>"
+            
+                
+            
             html = html & "<th width='100' align='center'>"
-            html = html & "   " & getTranslation("Preis") & ""
+            html = html & "   " & getTranslation("Einzelpreis") & ""
             html = html & "</th>"
             html = html & "<th width='100' align='center'>"
             html = html & "   " & getTranslation("Total") & ""
@@ -263,11 +255,21 @@
             
             While Not rsWK.EOF
                 pos = pos + 1
-                ArtNr = rsWK("ArtNR").Value
+                ArtNr = rsWK("ArtNr").Value
                 Stk = CInt(rsWK("Quantity").Value)
                 Dim Einzelpreis As Double = 0
+                Dim Gesamtpreis As Double = 0
+                
+                Dim EinzelpreisBrutto As Double = 0
+                Dim GesamtpreisBrutto As Double = 0
+                
                 'Einzelpreis = makeNettoPreis(ArtNR, Stk, sid) 'old way to calculate prices
                 Einzelpreis = getPreis(getLOGIN(), ArtNr, Stk)
+                Gesamtpreis = CDbl(Einzelpreis) * CInt(Stk)
+                
+                EinzelpreisBrutto = calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)
+                GesamtpreisBrutto = EinzelpreisBrutto * CInt(Stk)
+                
                 'call Response.Write ("Stk:[" &  stk & "]")
                 'call Response.Write ("Einzelpreis:[" & einzelpreis & "]")
                 Subtotal = CDbl(Subtotal) + CDbl(Einzelpreis) * CInt(Stk)
@@ -276,19 +278,21 @@
                 If IDNR & "" = "" Then 'der user ist noch nicht angemeldet 
                     IDNR = 0
                 End If
-                SubtotalMWST = CDbl(SubtotalMWST) + CDbl(calculateBruttoPreis(Einzelpreis, ArtNr, IDNR)) * Stk
+                SubtotalMWST = CDbl(SubtotalMWST) + CDbl(EinzelpreisBrutto) * Stk
                 'Response.Write "SubtotalMWST = " & SubtotalMWST
     
+
+                
                 html = html & "<tr bgcolor='white' id='BasketRow'>"
                 html = html & "<td width='58' height='17'>"
                 html = html & "<p align='center'>"
                 html = html & " " & pos & ""
                 html = html & "</td>"
-                html = html & "<td align='center' height='17'>"
+                html = html & "<td align='center' valign='middle' height='17'>"
                 html = html & "<input type='hidden' name='Art" & pos & "' size='9' value='" & rsWK("ArtNr").Value & "' id='Hidden4' />"
                 If StepN = "1" Then
                     html = html & "<a href='default.aspx?pagetoShow=warenkorbStep1&Items=1&Art1=" & rsWK("ArtNr").Value & "&checkD1=ON'>"
-                    html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' align='middle'></a>"
+                    html = html & "<img src='" & imageFullName("delete.gif") & "' alt='delete this position' border='0' _align='middle'></a>&nbsp;"
                     html = html & "<!-- <input type='checkbox' name='checkD'" & pos & " ' value='ON'> -->"
                     html = html & "<input name='Stk" & pos & "' size='3' value='" & rsWK("Quantity").Value & "' />"
                 Else
@@ -296,28 +300,28 @@
                 End If
                 html = html & "</td>"
                 
-                If Not USE_EAN Then
-                    html = html & "<td height='17'>"
-                    html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("ArtNR").Value & "</a>"
+                
+                html = html & "<td colspan=3>"
+                html = html & productView(rsWK)
+                html = html & "</td>"
+                
+                If USE_BRUTTO_PREISE Then
+                    html = html & "<td align='right' height='17'>"
+                    html = html & "<p align='right'>" & FormatNumber(CDbl(EinzelpreisBrutto), 2) & "</p>"
+                    html = html & "</td>"
+                    html = html & "<td align='right' height='17'>"
+                    html = html & "<p align='right'>" & FormatNumber(CDbl(GesamtpreisBrutto), 2) & "</p>"
                     html = html & "</td>"
                 Else
-                    html = html & "<td height='17'>"
-                    html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("EAN").Value & "</a>"
+                    html = html & "<td align='right' height='17'>"
+                    html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
+                    html = html & "</td>"
+                    html = html & "<td align='right' height='17'>"
+                    html = html & "<p align='right'>" & FormatNumber(CDbl(Gesamtpreis), 2) & "</p>"
                     html = html & "</td>"
                 End If
+      
                 
-
-                html = html & "<td height='17'><a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
-                html = html & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b></td>"
-                html = html & "<td height='17'>"
-                html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("Bezeichnung1").Value & "</a>"
-                html = html & "</td>"
-                html = html & "<td align='right' height='17'>"
-                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis), 2) & "</p>"
-                html = html & "</td>"
-                html = html & "<td align='right' height='17'>"
-                html = html & "<p align='right'>" & FormatNumber(CDbl(Einzelpreis) * CInt(Stk), 2) & "</p>"
-                html = html & "</td>"
                 html = html & "</tr>"
        
         
@@ -344,32 +348,33 @@
       
             Dim messageNoCosts As String = ""
        
-            'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
-            'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
-            If (1 * Subtotal < 1 * getFreiHausLieferungUmsatz()) Or getFreiHausLieferungUmsatz() = -1 Then  'CALCULATE COSTS 
-                If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
-                    Dim postSpendsArtNr : postSpendsArtNr = getPostSpendsArtNr(Land, KG, PostMode)
-                    postCosts = calculatePostSpendsForWK(PostModeDestination, KG, PostMode)
-                    postExpensesMWST = makeBruttoPreis(postCosts, 2, Land)
-                    postExpensesMWST = CDbl(calculateBruttoPreis(postCosts, postSpendsArtNr, IDNR))
-                    'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
-                End If
+            If StepN >= "3" Then
+                'Response.Write "calculateWarenkorbSum()=" & calculateWarenkorbSum()
+                'if (1*calculateWarenkorbSum() < 1*getFreiHausLieferungUmsatz()) or getFreiHausLieferungUmsatz()=-1 then  'CALCULATE COSTS 
+                If (1 * Subtotal < 1 * getFreiHausLieferungUmsatz()) Or getFreiHausLieferungUmsatz() = -1 Then  'CALCULATE COSTS 
+                    If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
+                        Dim postSpendsArtNr : postSpendsArtNr = getPostSpendsArtNr(Land, KG, PostMode)
+                        postCosts = calculatePostSpendsForWK(PostModeDestination, KG, PostMode)
+                        postExpensesMWST = makeBruttoPreis(postCosts, 2, Land)
+                        postExpensesMWST = CDbl(calculateBruttoPreis(postCosts, postSpendsArtNr, IDNR))
+                        'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
+                    End If
        
-                If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
-                    Dim payModeArtNr : payModeArtNr = getPaymentModeSpendsArtNr(PayMode, Land)
-                    If PayMode <> "" Then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotalNoAddCharged)
-                    payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
-                    payModeExpensesMWST = CDbl(calculateBruttoPreis(payModeExpenses, payModeArtNr, IDNR))
-                    'if (SubtotalMWST = 0 ) then  payModeExpensesMWST = 0
+                    If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
+                        Dim payModeArtNr : payModeArtNr = getPaymentModeSpendsArtNr(PayMode, Land)
+                        If PayMode <> "" Then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotalNoAddCharged)
+                        payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
+                        payModeExpensesMWST = CDbl(calculateBruttoPreis(payModeExpenses, payModeArtNr, IDNR))
+                        'if (SubtotalMWST = 0 ) then  payModeExpensesMWST = 0
+                    End If
+                    'END POST AND MODE COSTS 
+                Else
+                    messageNoCosts = "<br /><font color=""red"" class=""error"">Yeeep: Es werden keine Transport- und Zahlungskosten kalkuliert!</font>"
                 End If
-                'END POST AND MODE COSTS 
-            Else
-                messageNoCosts = "<br /><font color=""red"" class=""error"">Yeeep: Es werden keine Transport- und Zahlungskosten kalkuliert!</font>"
             End If
        
-       
-            If gutscheinNummer <> "" Then
-                gutscheinSumme = getPreisForGutschein(gutscheinNummer)
+            If GutscheinNummer <> "" Then
+                gutscheinSumme = getPreisForGutschein(GutscheinNummer)
                 gutscheinSummeMWST = makeBruttoPreis(gutscheinSumme, 2, Land)
             End If
        
@@ -377,7 +382,7 @@
             Subtotal = Subtotal + payModeExpenses + postCosts - gutscheinSumme
             SubtotalMWST = SubtotalMWST + postExpensesMWST + payModeExpensesMWST - gutscheinSummeMWST
    
-            If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
+            If StepN >= "3" And UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
                 html = html & "<tr>"
                 html = html & "<td colspan='3'>"
                 html = html & "</td>"
@@ -390,13 +395,20 @@
                 html = html & "<td>"
                 html = html & "&nbsp;"
                 html = html & "</td>"
+
                 html = html & "<td align='right' height='17' bgcolor='white' id='BasketRow'>"
-                html = html & " <p align='right'>" & FormatNumber(postCosts, 2) & "</p>"
+                If USE_BRUTTO_PREISE Then
+                    html = html & " <p align='right'>" & FormatNumber(postExpensesMWST, 2) & "</p>"
+                Else
+                    html = html & " <p align='right'>" & FormatNumber(postCosts, 2) & "</p>"
+                End If
+                
                 html = html & "</td>"
+                
                 html = html & "</tr>"
             End If
             
-            If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
+            If StepN >= "3" And UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
                 html = html & "<tr>"
                 html = html & " <td colspan='3'>"
                 html = html & " </td>"
@@ -409,8 +421,13 @@
                 html = html & "</td>"
                 html = html & "<td align='right' bgcolor='white' id='BasketRow'>"
                 html = html & "   <p align='right'>"
-                html = html & "        " & FormatNumber(payModeExpenses, 2) & "</p>"
-                html = html & "</td>"
+                If USE_BRUTTO_PREISE Then
+                    html = html & "        " & FormatNumber(payModeExpensesMWST, 2)
+                Else
+                    html = html & "        " & FormatNumber(payModeExpenses, 2)
+                End If
+                
+                html = html & "</p></td>"
                 html = html & "</tr>"
             End If
     
@@ -436,7 +453,13 @@
                 html = html & "</td>"
                 html = html & "<td align='right' height='17' bgcolor='white' id='BasketRow'>"
                 html = html & "<p align='right'>"
-                html = html & "   " & FormatNumber(getMinOrderValue_charge(), 2) & "</p>"
+                If USE_BRUTTO_PREISE Then
+                    html = html & "   " & FormatNumber(mindestBestellmenge_Preis_MWST, 2) & "</p>"
+                Else
+                    html = html & "   " & FormatNumber(getMinOrderValue_charge(), 2) & "</p>"
+                End If
+                
+                
                 html = html & "</td>"
                 html = html & "</tr>"
             End If
@@ -463,19 +486,23 @@
                 html = html & "    &nbsp;"
                 html = html & "</td>"
                 html = html & "<td align='right' height='17' bgcolor='white' id='BasketRow'>"
-                html = html & " <p align='right'>  " & FormatNumber(rabatt_Value, 2) & "</p>"
+                If USE_BRUTTO_PREISE Then
+                    html = html & " <p align='right'>  " & FormatNumber(rabatt_Value, 2) & "</p>"
+                Else
+                    html = html & " <p align='right'>  " & FormatNumber(rabatt_Value, 2) & "</p>"
+                End If
                 html = html & "</td>"
                 html = html & "</tr>"
             End If
             'END WARENKORB RABATT  & "
-            If gutscheinNummer <> "" Then
+            If GutscheinNummer <> "" Then
                 html = html & "<tr>"
                 html = html & "   <td colspan='3'>"
                 html = html & "   &nbsp;"
                 html = html & "</td>"
                 html = html & " <td colspan='2'>"
                 html = html & "    " & getTranslation("Gutschein") & ""
-                html = html & "    (" & gutscheinNummer & ")</font>"
+                html = html & "    (" & GutscheinNummer & ")</font>"
                 html = html & "</td>"
                 html = html & "<td align='right' bgcolor='white' id='BasketRow'>"
                 html = html & "    <p align='right'>"
@@ -499,22 +526,33 @@
                 html = html & "</textarea>"
             End If
             html = html & "</td>"
-            html = html & "<td align='right'>"
-            html = html & "   <p align='right'>"
-            html = html & "         <b>"
-            html = html & "            " & getTranslation("Subtotal") & ":</b></p>"
-            html = html & "</td>"
-            html = html & "<td align='right' bgcolor='white' id='BasketRow'>"
-            html = html & "    <p align='right'>"
-            html = html & "        <b>"
-            html = html & "            " & FormatNumber(Subtotal, 2) & "</b>"
-            html = html & "</td>"
+            
+                 
+            If (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_1", "true") = "true" And StepN = "1") _
+         Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
+         Or (StepN <> "1" And StepN <> "2") Then 'show TOTAL only when user already registered!
+                
+                html = html & "<td align='right'>"
+                html = html & "   <p align='right'>"
+                html = html & "         <b>"
+                html = html & "            " & getTranslation("Gesamtsumme (netto)") & ":</b></p>"
+                html = html & "</td>"
+                html = html & "<td align='right' bgcolor='white' id='BasketRow'>"
+                html = html & "    <p align='right'>"
+                html = html & "        <b>"
+                html = html & "            " & FormatNumber(Subtotal, 2) & "</b>"
+                html = html & "</td>"
+            Else
+                html = html & "<td colspan=""2""/>"
+            End If
+            
             html = html & "</tr>"
     
             
             If (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_1", "true") = "true" And StepN = "1") _
-          Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
-          Or (StepN <> "1" And StepN <> "2") Then 'show TOTAL only when user already registered!
+         Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
+         Or (StepN <> "1" And StepN <> "2") _
+         Or USE_BRUTTO_PREISE Then 'show TOTAL only when user already registered!
     
                 Dim MWSTPercent As Integer = 0
                 MWSTPercent = Math.Round(100 * (SubtotalMWST - Subtotal) / Subtotal, 0)
@@ -523,11 +561,16 @@
                 html = html & "   <td align='right'>"
                 html = html & "       <p align='right'>"
                 html = html & "           <b>"
-                html = html & "              " & getTranslation("Total") & ""
-                html = html & "              (+"
-                html = html & "       " & MWSTPercent & ""
-                html = html & "        %"
-                html = html & "        " & getTranslation("MWST") & "):</b></p>"
+                html = html & "              " & getTranslation("Gesamtsumme") & ""
+                
+                If StepN > "1" Then
+                    html = html & "              (+"
+                    html = html & "       " & MWSTPercent & ""
+                    html = html & "        %"
+                    html = html & "        " & getTranslation("MWST") & ")"
+                End If
+                
+                html = html & ":</b></p>"
                 html = html & "</td>"
                 html = html & "<td align='right' bgcolor='white' id='BasketRow'>"
                 html = html & "   <p align='right'>"
@@ -550,14 +593,82 @@
             html = html & "   }; "
             html = html & "</" & "script>"
 
-            End If
+        End If
         
-            Response.Write(html)
+        Response.Write(html)
         
     End Function
 
 
+    'returns table representing the product for Warenkorb 
 
+    Function productView(ByRef rsWK) As String
+        Dim html As String = ""
+        Dim USE_EAN As Boolean = VARVALUE_DEFAULT("BenutzeEAN", "false")
+        
+        Dim showThumbnails = True 
+        Dim SHOP_THUMBNAIL_MAX_SIZE = 60
+        html = html & "<table>"
+        html = html & "<tr>"
+        
+        If showThumbnails Then
+            html = html & "<td>"
+            html = html & "<a href='default.aspx?ArtNr=" & rsWK("ArtNR").Value & "'>"
+            html = html & makeImgTag(rsWK("Picture").Value, Server.HtmlEncode(rsWK("Bezeichnung").Value & ""), SHOP_THUMBNAIL_MAX_SIZE) ' PRODUCT_IMAGE_SMALL_MAX_SIZE) 
+            html = html & "</a>"
+            html = html & "</td>"
+        End If
+                
+        html = html & "<td>"
+        
+        html = html & "<table>"
+        html = html & "<tr>"
+        If Not USE_EAN Then
+            html = html & "<th align='center'>"
+            html = html & "   " & getTranslation("ArtNR") & ""
+            html = html & "</th>"
+            html = html & "<td height='17'>"
+            html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("ArtNR").Value & "</a>"
+            html = html & "</td>"
+        Else
+            html = html & "<th align='center'>"
+            html = html & "   " & getTranslation("KatalogNr.") & ""
+            html = html & "</th>"
+            html = html & "<td height='17'>"
+            html = html & "<a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("EAN").Value & "</a>"
+            html = html & "</td>"
+        End If
+        html = html & "</tr>"
+
+        html = html & "<tr>"
+        html = html & "<th align='center'>"
+        html = html & "   " & getTranslation("Bezeichnung") & ""
+        html = html & "</th>"
+            
+        html = html & "<td height='17'><a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>"
+        html = html & getTranslationDok("grArtikel", rsWK("ArtNR").Value, "Bezeichnung", rsWK("Bezeichnung").Value & "", Language) & "</a>&nbsp;<b>" & rsWK("Notiz").Value & "</b>"
+        html = html & "</td>"
+        html = html & "</tr>"
+        
+        
+        html = html & "<tr>"
+        html = html & "<th align='center'>"
+        html = html & "   " & getTranslation("Lieferung") & ""
+        html = html & "</th>"
+            
+        html = html & "<td height='17'>"
+        html = html & " <a href='default.aspx?ArtNR=" & rsWK("ArtNR").Value & "' target='_new'>" & rsWK("Bezeichnung1").Value & "</a>"
+        html = html & "</td>"
+        html = html & "</tr>"
+        
+        html = html & "</table>"
+        
+        html = html & "</td>"
+        
+        html = html & "</tr>"
+        html = html & "</table>"
+        productView = html
+    End Function
     '****************************************************************************
     ' Show what is in WK
     '****************************************************************************
