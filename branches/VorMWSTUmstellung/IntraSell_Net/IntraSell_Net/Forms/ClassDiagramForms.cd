@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IntraSell_Net.AbstractForm" Collapsed="true">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABGAAAAAACCAgBAAAMCIACBCwAAAAAAAAAAAIAAAAQA=</HashCode>
+      <FileName>Forms\Infrastructure\AbstractForm.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Kunden" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YBBgJkkC2WWgIxhQoICVAEBKDDE7ISIIO5EMGgAFBB0=</HashCode>
+      <FileName>Forms\Kunden\Kunden.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Kundenliste" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAEgAkGAFJFAAAEmAAEADBCAQBAAAApEIAAAAQAE=</HashCode>
+      <FileName>Forms\Kunden\KundenListe.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Artikel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CDGBACkBOGCikBIBAliAAiAWQhAAIQAOCCACIIAIESQ=</HashCode>
+      <FileName>Forms\Artikel\Artikel.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntraSell_Net.Vorgang">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARHAQEAQkGqixXQA8ESAAGECxCEwAQAFBrUIIhAMAQA=</HashCode>
+      <FileName>Forms\Vorgaenge\Vorgang.vb</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,8 @@
+open Vegsys 
+ls 
+ls 
+ls 
+user Grigor parahod1
+
+put "D:\Business\IntraSoft\IntraSell\IntraSell_Daten_2.06_replicat.mdb"
+quit

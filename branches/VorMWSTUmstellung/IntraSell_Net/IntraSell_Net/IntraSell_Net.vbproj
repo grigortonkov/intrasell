@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{110E199B-E42C-4A66-A98A-A9473E6FDA30}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>IntraSell_Net.My.MyApplication</StartupObject>
+    <RootNamespace>IntraSell_Net</RootNamespace>
+    <AssemblyName>IntraSell_Net</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>IntraSell_Net.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>IntraSell_Net.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cashier.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>AFC3D8579A4D246AC5E9640A4E9C029B2B1353FA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Components\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\dsAdressen.vb">
+      <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsAdressenProfil.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsAnrufe.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsArtikel.vb">
+      <DependentUpon>dsArtikel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsBranchen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBranchen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsEinstellungen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsEinstellungen.vb">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsMahnungen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsMitarbeiter.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsPLZ.vb">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsPreise.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPreise.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsStammdaten.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsStammdaten.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsVorgaenge.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsVorgaenge.vb">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DBUpgrade.vb" />
+    <Compile Include="Forms\Artikel\ArtikelKategorien.Designer.vb">
+      <DependentUpon>ArtikelKategorien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\ArtikelKategorien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Branchen\Branche.designer.vb">
+      <DependentUpon>Branche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Branchen\Branche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenDetailControl.Designer.vb">
+      <DependentUpon>AdressenDetailControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenDetailControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenProfil.Designer.vb">
+      <DependentUpon>AdressenProfil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenProfil.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Anrufe\Anruf.Designer.vb">
+      <DependentUpon>Anruf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Anrufe\Anruf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Anrufe\AnrufListe.Designer.vb">
+      <DependentUpon>AnrufListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Anrufe\AnrufListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenAnlageControl.Designer.vb">
+      <DependentUpon>AdressenAnlageControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenAnlageControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Artikel\Artikel.Designer.vb">
+      <DependentUpon>Artikel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\Artikel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Artikel\ArtikelListe.Designer.vb">
+      <DependentUpon>ArtikelListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\ArtikelListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\ArtikelControl.Designer.vb">
+      <DependentUpon>ArtikelControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\ArtikelControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\ArtikelSelector.Designer.vb">
+      <DependentUpon>ArtikelSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\ArtikelSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenControl.Designer.vb">
+      <DependentUpon>AdressenControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenSelector.Designer.vb">
+      <DependentUpon>AdressenSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenWeitereControl.Designer.vb">
+      <DependentUpon>AdressenWeitereControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\AdressenWeitereControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\MitarbeiterControl.Designer.vb">
+      <DependentUpon>MitarbeiterControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\MitarbeiterControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\TextBoxLink.Designer.vb">
+      <DependentUpon>TextBoxLink.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\TextBoxLink.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Session.Designer.vb">
+      <DependentUpon>Session.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Session.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Vars.Designer.vb">
+      <DependentUpon>Vars.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Einstellungen\Vars.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\About.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data\dsArtikel.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsArtikel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsAdressen.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsPLZ.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\AbstractForm.Designer.vb">
+      <DependentUpon>AbstractForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\AbstractForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Dashboard.Designer.vb">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Dashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Log.Designer.vb">
+      <DependentUpon>Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Setup.Designer.vb">
+      <DependentUpon>Setup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Setup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\AdresseWeitere.Designer.vb">
+      <DependentUpon>AdresseWeitere.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\AdresseWeitere.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\Kunden.Designer.vb">
+      <DependentUpon>Kunden.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\Kunden.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\KundenGruppe.Designer.vb">
+      <DependentUpon>KundenGruppe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\KundenGruppe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kunden\KundenListe.Designer.vb">
+      <DependentUpon>KundenListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kunden\KundenListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Infrastructure\Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mahnung\MahnListe.Designer.vb">
+      <DependentUpon>MahnListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mahnung\MahnListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.Designer.vb">
+      <DependentUpon>Mitarbeiter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Mitarbeiter\Mitarbeiter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Preise\ArtikelPreisregeln.Designer.vb">
+      <DependentUpon>ArtikelPreisregeln.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Preise\ArtikelPreisregeln.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Bank.Designer.vb">
+      <DependentUpon>Bank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Bank.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Artikel\Einheiten.Designer.vb">
+      <DependentUpon>Einheiten.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikel\Einheiten.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Land.Designer.vb">
+      <DependentUpon>Land.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\Land.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\MwSt.Designer.vb">
+      <DependentUpon>MwSt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stammdaten\MwSt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangBedingungen.Designer.vb">
+      <DependentUpon>VorgangBedingungen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangBedingungen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangEinstellungen.Designer.vb">
+      <DependentUpon>VorgangEinstellungen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangEinstellungen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangDruck.Designer.vb">
+      <DependentUpon>VorgangDruck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangDruck.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangKonvertieren.Designer.vb">
+      <DependentUpon>VorgangKonvertieren.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangKonvertieren.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangListe.Designer.vb">
+      <DependentUpon>VorgangListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\Vorgang.Designer.vb">
+      <DependentUpon>Vorgang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\Vorgang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangWizzard.Designer.vb">
+      <DependentUpon>VorgangWizzard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vorgaenge\VorgangWizzard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\InterfaceExportableGrid.vb" />
+    <Compile Include="Interfaces\InterfacePrintable.vb" />
+    <Compile Include="Modules\Functions.vb" />
+    <Compile Include="Modules\FunctionsDataGrid.vb" />
+    <Compile Include="Modules\FunctionsDemoVersion.vb" />
+    <Compile Include="Modules\FunctionsOnStart.vb" />
+    <Compile Include="Modules\ModuleBarcode.vb" />
+    <Compile Include="Modules\ModuleBuchVorgang.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangXML.vb" />
+    <Compile Include="Modules\ModuleDictionary.vb" />
+    <Compile Include="Modules\ModuleDOS.vb" />
+    <Compile Include="Modules\ModuleEvents.vb" />
+    <Compile Include="Modules\ModuleGlobals.vb" />
+    <Compile Include="Modules\ModuleKassabuch.vb" />
+    <Compile Include="Modules\ModuleLager.vb" />
+    <Compile Include="Modules\ModuleLogIn.vb" />
+    <Compile Include="Modules\ModuleMahnwesen.vb" />
+    <Compile Include="Modules\ModuleMail.vb" />
+    <Compile Include="Modules\ModuleMessages.vb" />
+    <Compile Include="Forms\Controls\PLZSelector.Designer.vb">
+      <DependentUpon>PLZSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Controls\PLZSelector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\ModulePDF.vb" />
+    <Compile Include="Modules\ModulePreise.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangDruck.vb" />
+    <Compile Include="Modules\ModuleXML.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TestFriends.vb" />
+    <Compile Include="Update\ModuleUnzipTest.vb" />
+    <Compile Include="Update\ModuleUnZip.vb" />
+    <Compile Include="Update\ModuleSetup.vb" />
+    <Compile Include="Update\ClassUnzipFiles.vb" />
+    <Compile Include="Update\ModuleUpdate.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Artikel\ArtikelKategorien.resx">
+      <DependentUpon>ArtikelKategorien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Branchen\Branche.resx">
+      <DependentUpon>Branche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenDetailControl.resx">
+      <DependentUpon>AdressenDetailControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenProfil.resx">
+      <DependentUpon>AdressenProfil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Anrufe\Anruf.resx">
+      <DependentUpon>Anruf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Anrufe\AnrufListe.resx">
+      <DependentUpon>AnrufListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikel\Artikel.resx">
+      <DependentUpon>Artikel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikel\ArtikelListe.resx">
+      <DependentUpon>ArtikelListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenAnlageControl.resx">
+      <DependentUpon>AdressenAnlageControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\ArtikelControl.resx">
+      <DependentUpon>ArtikelControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\ArtikelSelector.resx">
+      <DependentUpon>ArtikelSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenControl.resx">
+      <DependentUpon>AdressenControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenSelector.resx">
+      <DependentUpon>AdressenSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\AdressenWeitereControl.resx">
+      <DependentUpon>AdressenWeitereControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\MitarbeiterControl.resx">
+      <DependentUpon>MitarbeiterControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Einstellungen\Session.resx">
+      <DependentUpon>Session.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Einstellungen\Vars.resx">
+      <DependentUpon>Vars.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\AbstractForm.resx">
+      <DependentUpon>AbstractForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Dashboard.resx">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Log.resx">
+      <DependentUpon>Log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Setup.resx">
+      <DependentUpon>Setup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\AdresseWeitere.resx">
+      <DependentUpon>AdresseWeitere.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\Kunden.resx">
+      <DependentUpon>Kunden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\KundenGruppe.resx">
+      <DependentUpon>KundenGruppe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kunden\KundenListe.resx">
+      <DependentUpon>KundenListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Infrastructure\Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\PLZSelector.resx">
+      <DependentUpon>PLZSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mahnung\MahnListe.resx">
+      <DependentUpon>MahnListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Mitarbeiter\Mitarbeiter.resx">
+      <DependentUpon>Mitarbeiter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Preise\ArtikelPreisregeln.resx">
+      <DependentUpon>ArtikelPreisregeln.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\Bank.resx">
+      <DependentUpon>Bank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikel\Einheiten.resx">
+      <DependentUpon>Einheiten.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\Land.resx">
+      <DependentUpon>Land.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stammdaten\MwSt.resx">
+      <DependentUpon>MwSt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangBedingungen.resx">
+      <DependentUpon>VorgangBedingungen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangEinstellungen.resx">
+      <DependentUpon>VorgangEinstellungen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangDruck.resx">
+      <DependentUpon>VorgangDruck.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangKonvertieren.resx">
+      <DependentUpon>VorgangKonvertieren.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangListe.resx">
+      <DependentUpon>VorgangListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\Vorgang.resx">
+      <DependentUpon>Vorgang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vorgaenge\VorgangWizzard.resx">
+      <DependentUpon>VorgangWizzard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Data\dsAdressenProfil.xsc">
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAdressenProfil.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdressenProfil.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAdressenProfil.xss">
+      <DependentUpon>dsAdressenProfil.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAnrufe.xsc">
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAnrufe.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAnrufe.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAnrufe.xss">
+      <DependentUpon>dsAnrufe.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsArtikel.xsc">
+      <DependentUpon>dsArtikel.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsArtikel.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsArtikel.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsArtikel.xss">
+      <DependentUpon>dsArtikel.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAdressen.xsc">
+      <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAdressen.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdressen.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\dsAdressen.xss">
+      <DependentUpon>dsAdressen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsBranchen.xsc">
+      <DependentUpon>dsBranchen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsBranchen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBranchen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsBranchen.xss">
+      <DependentUpon>dsBranchen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsEinstellungen.xsc">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsEinstellungen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEinstellungen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsEinstellungen.xss">
+      <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMahnungen.xsc">
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMahnungen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMahnungen.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsMahnungen.xss">
+      <DependentUpon>dsMahnungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMitarbeiter.xsc">
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsMitarbeiter.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMitarbeiter.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsMitarbeiter.xss">
+      <DependentUpon>dsMitarbeiter.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPLZ.xsc">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPLZ.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPLZ.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsPLZ.xss">
+      <DependentUpon>dsPLZ.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPreise.xsc">
+      <DependentUpon>dsPreise.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsPreise.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPreise.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsPreise.xss">
+      <DependentUpon>dsPreise.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsStammdaten.xsc">
+      <DependentUpon>dsStammdaten.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsStammdaten.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsStammdaten.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsStammdaten.xss">
+      <DependentUpon>dsStammdaten.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsVorgaenge.xsc">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsVorgaenge.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVorgaenge.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsVorgaenge.xss">
+      <DependentUpon>dsVorgaenge.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\ClassDiagramForms.cd" />
+    <None Include="IntraSell_Net_TemporaryKey.pfx" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Vorlagen\0. BRIEF.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\1. Anfrage-eng.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\1. ANFRAGE.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\10. Checklist für Verladungen.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\12. Transport Auftrag EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\12. TRANSPORT AUFTRAG EU_.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\12. TRANSPORT AUFTRAG NICHT EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\14. Lieferanten Instruktionen.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\15. LIEFERSCHEIN.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="TODO.txt" />
+    <Content Include="Vorlagen\17. RECHNUNG.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Vorlagen\2. TRANSPORT ANFRAGE.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\20. PF RechnungBA.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\20. Produktkatalog.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\5. Angebot-eng.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\5. Angebot.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\6. EINKAUFSVERTRAG EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\7. EINKAUFSVERTRAG NICHT EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\8. VERKAUFSVERTRAG EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\9. VERKAUFSVERTRAG NICHT EU.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Vorlagen\VORGANG.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Vorlagen\ksgroup\Vorlage_Rechnung.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorgang.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorlage_Angebot.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\ksgroup\Vorlage_Mailing.dot" />
+    <None Include="Vorlagen\Vorlage_Mahnung.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_AuftragBestaetigung.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Brief.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Mailing.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Paketschein.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Paketschein.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Paketschein_GeneralParcel.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Rechnung.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Vorlagen\Vorlage_Rechnung.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cashier.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\ISVorgang.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\LieferantenAnfrage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\TransportAuftrag.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\Vorlage_AuftragBestaetigung.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\Vorlage_Rechnung.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vorlagen\Vorlage_Rechnung_Gutschrift.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Lager\" />
+    <Folder Include="Forms\Lieferanten\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools\XML2Word\XML2Word.vbproj">
+      <Project>{B2186A7A-FECC-443A-827A-4D16582E7C9C}</Project>
+      <Name>XML2Word</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntraSell_DLL\IntraSell_DLL.vbproj">
+      <Project>{F7AB991F-D9E4-4285-897B-B95109C5D6DF}</Project>
+      <Name>IntraSell_DLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

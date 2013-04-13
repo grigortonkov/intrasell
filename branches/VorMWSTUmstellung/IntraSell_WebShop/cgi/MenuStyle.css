@@ -1,0 +1,11 @@
+<STYLE>
+.conts {
+	VISIBILITY: hidden
+}
+.tab {
+	BORDER-LEFT: #e0e0e0 thin solid; BORDER-RIGHT: gray thin solid; BORDER-TOP: #e0e0e0 thin solid; BORDER-BOTTOM: black thin solid; FONT-FAMILY: Verdana; FONT-SIZE: 10pt; FONT-WEIGHT: normal; TEXT-ALIGN: center
+}
+.selTab {
+	BORDER-LEFT: black thin solid; BORDER-RIGHT: black thin solid; BORDER-TOP: black thin solid; FONT-WEIGHT: bold; TEXT-ALIGN: center
+}
+</STYLE>

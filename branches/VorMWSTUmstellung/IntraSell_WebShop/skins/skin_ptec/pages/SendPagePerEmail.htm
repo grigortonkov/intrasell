@@ -1,0 +1,12 @@
+<script language="javascript">
+function mailpage()
+{
+  mail_str = "mailto:?subject= Doc JavaScript: " + document.title;
+  mail_str += "&body= I recommend Doc JavaScript's (docjavascript.com) tip -- " + document.title;
+  mail_str += ". You should check this out at, " + location.href; 
+  location.href = mail_str;
+}
+</script>
+
+
+<A HREF = "javascript:mailpage()">Send This Page</A> E-mail This Page

@@ -1,0 +1,122 @@
+A:link
+{ 
+    COLOR: #42598c;
+    FONT-FAMILY: Verdana, Verdana, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
+}
+
+A:visited
+{
+    COLOR: #42598c;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+A:active
+{
+    BACKGROUND-POSITION: 0% 50%;
+    BACKGROUND-ATTACHMENT: scroll;
+    COLOR: #ff6900;
+    BACKGROUND-REPEAT: repeat;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+BODY
+{
+    MARGIN-TOP: 1px;
+    FONT: 8pt/12pt Verdana, Arial, Helvetica, sans-serif;
+    MARGIN-LEFT: 1px;
+    BACKGROUND-COLOR: white
+}
+table { font-weight: normal; font-size: 8pt; font-style: normal; font-family: 
+               Verdana, Arial, Helvetica, sans-serif; font-variant: normal;
+}
+
+H1
+{
+     COLOR: #000000;
+    FONT-FAMILY: Verdana, Verdana, Arial, Helvetica, sans-serif, Helvetica, sans-serif;
+}
+H2
+{
+    FONT: 16pt/18pt Verdana, Arial, Helvetica, sans-serif;
+    COLOR: #000000
+}
+H3
+{
+    FONT: 14pt/16pt Verdana, Arial, Helvetica, sans-serif;
+    COLOR: #000000
+}
+H4
+{
+    FONT: 12pt/14pt Verdana, Arial, Helvetica, sans-serif;
+    COLOR: #000000
+}
+H5
+{
+    FONT: 10pt/12pt Verdana, Arial, Helvetica, sans-serif;
+    color: #000000
+}
+H6
+{
+    FONT: 8pt/10pt Verdana, Arial, Helvetica, sans-serif;
+    COLOR: #000000}
+INPUT
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: white;
+}
+.SubmitButton
+{
+    BORDER-RIGHT: #666666 1px solid;
+    BORDER-TOP: #666666 1px solid;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 8pt;
+    TEXT-TRANSFORM: lowercase;
+    BORDER-LEFT: #666666 1px solid;
+    COLOR: black;
+    BORDER-BOTTOM: #666666 1px solid;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: white;
+}
+TABLE TH
+{
+    BORDER-RIGHT: #c0c0c0 0pt solid;
+    BORDER-TOP: #ffffff 0pt solid;
+    BORDER-LEFT: #ffffff 0pt solid;
+    BORDER-BOTTOM: #ffffff 0pt solid;
+    BACKGROUND-COLOR: #ffffff
+}
+.StandardSizeBig
+{
+    WIDTH: 200pt
+}
+.StandardSizeSmall
+{
+    WIDTH: 80pt
+}
+.SubmitButton .Small
+{
+    WIDTH: 50pt
+}
+.SubmitButton .Big
+{
+    WIDTH: 200pt
+}
+.StandardSizeNormal
+{
+    WIDTH: 130pt
+}
+.SubmitButton .SubmitButtonNormal
+{
+    WIDTH: 100pt
+}
+
+all.clsMenuItemNS
+{font: bold x-small Verdana; color: white; text-decoration: none;}
+
+A.clsMenuItemIE
+{text-decoration: none; font: bold xx-small Verdana; color: white; cursor: hand; }
+
+A.clsMenuItemIE:visited
+{text-decoration: none; font: bold xx-small Verdana; color: white; cursor: hand; }
+
+A.clsMenuItemIE:hover 
+{color: #ff6900;}

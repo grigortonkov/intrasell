@@ -1,0 +1,60 @@
+Diese Datei enthäht die Datenbankänderungen mit Datum und Version
+
+Warning: Keep the Daten Database from classic version with same design as the web database for compatibility!
+22-12-2004 Neue Tabelle: 
+
+for MSSQL 
+CREATE TABLE usersearches(QueryId integer NOT NULL
+  DEFAULT 0, SQLString text, 
+  SQLDescription varchar(255) DEFAULT NULL, 
+  SID integer DEFAULT NULL, 
+  CreatedOn datetime DEFAULT NULL, 
+  IntervalInDays integer DEFAULT 1, 
+  NextRun datetime DEFAULT NULL, 
+  PRIMARY KEY (QueryId))
+
+for MySQL 
+
+CREATE TABLE `usersearches` (
+  `QueryId` int(11) NOT NULL default '0',
+  `SQLString` mediumtext,
+  `SQLDescription` varchar(255) default NULL,
+  `SID` int(11) default NULL,
+  `CreatedOn` datetime default NULL,
+  `IntervalInDays` int(11) default '1',
+  `NextRun` datetime default NULL,
+  PRIMARY KEY  (`QueryId`)
+)
+
+
+
+
+12-12-2004 neuer Felder: ISO2 Code, ISO3 Code und PLZPraefix in Tabelle grLand
+
+12-12-2004 Ort In allen Tabellen ofAdressen, LieferantenAdressen, ofMitarbeiter
+31-08-2004 grPLZ mit Text Key (10 Stellig) da es einfacher ist die PLZ danach zu erkennen 
+           auch alle references auf dieser Tebelle sind zu berücksichtigen 
+
+
+22-05-2002 CREATE VIEW Categories AS SELECT * FROM [grArtikel-Kategorien] ORDER BY ArtKAtNrParent, ArtKatNr
+
+12-04-2002 2.07
+	alle Buch[Vorgang]-Artikel Tabellen wurden mit einem Feld EKPreis erweitert für die Umsatzstatistik
+	neue Tabelle ofAdressen-KundenGruppen
+             da werden informationen über den Kundengruppen gespeichert //
+	neue Tabelle ofAdressen-Settings 
+	diese tabelle speichert die Kundengruppe und Preisliste informationen 
+	neue Tabelle grArtikel-VKPreisPerSelection 
+        ermöglicht verschiedene Preislisten pro Kundengruppe 
+
+	neue Tabelle grArtikel-Lagerbewegung (übernommen von classic)
+
+
+16-04-2002 2.07 webRefererProducts Tabelle in der Datenbank neu
+                CReATE TABLE webrefererProdukte (Id IDENTITY(1,1) PRIMARY KEY, 
+                 ArtNR NUMBER, 
+                 IDNR NUMBER,
+                 DatumSeit DATETIME DEFAULT(date()))
+
+22-02-2002 2.07 all priceCompare tables are removed from web shop database
+11-02-2002 2.07 webreferer table for the referer module

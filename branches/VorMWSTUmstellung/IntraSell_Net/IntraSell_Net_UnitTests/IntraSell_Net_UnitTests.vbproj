@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{C9A4989B-7030-4FC0-ADCD-5B9F80E217E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>IntraSell_Net_UnitTests</RootNamespace>
+    <AssemblyName>IntraSell_Net_UnitTests</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <ReferencePath>$(DevEnvDir)PublicAssemblies\</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>IntraSell_Net_UnitTests.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>IntraSell_Net_UnitTests.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Components\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\AnruflisteTableAdapterTest.vb" />
+    <Compile Include="Forms\Anrufe\AnrufTest.vb" />
+    <Compile Include="Data\grbranchenTableAdapterTest.vb" />
+    <Compile Include="grartikel_staffelpreiseTableAdapterTest.vb" />
+    <Compile Include="grartikel_vertriebskostenTableAdapterTest.vb" />
+    <Compile Include="grartikel_vkpreisperselectionTableAdapterTest.vb" />
+    <Compile Include="Modules\ModuleMahnwesenTest.vb" />
+    <Compile Include="Modules\IntraSellKundenTest.vb" />
+    <Compile Include="Modules\AdressenAnlageControlTest.vb" />
+    <Compile Include="Data\buchvorgangTableAdapterTest.vb" />
+    <Compile Include="Data\buchvorgang_artikelTableAdapterTest.vb" />
+    <Compile Include="DBTest.vb" />
+    <Compile Include="Data\grartikelTableAdapterTest.vb" />
+    <Compile Include="Data\grartikel_kategorienTableAdapterTest.vb" />
+    <Compile Include="DLL\FunctionsVarsTest.vb" />
+    <Compile Include="DLL\IntraSellPreiseTest.vb" />
+    <Compile Include="DLL\ModuleDOSTest.vb" />
+    <Compile Include="Data\grartikel_vkpreisperselectionTableAdapterTest.vb" />
+    <Compile Include="Modules\LoginTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangWorkflowTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangDruckTest.vb" />
+    <Compile Include="Modules\ModuleBuchVorgangXMLTest.vb" />
+    <Compile Include="DLL\ModuleCommonsTest.vb" />
+    <Compile Include="Modules\ModulePreiseTest.vb" />
+    <Compile Include="Modules\ModuleSetupTest.vb" />
+    <Compile Include="Data\ofadressenTableAdapterTest.vb" />
+    <Compile Include="Data\ofanrufeTableAdapterTest.vb" />
+    <Compile Include="Data\ofmitarbeiterTableAdapterTest.vb" />
+    <Compile Include="Data\ofadressen_profilTableAdapterTest.vb" />
+    <Compile Include="Data\ofadressen_kundengruppenTableAdapterTest.vb" />
+    <Compile Include="Update\ModuleUnzipTest.vb" />
+    <Compile Include="Update\ModuleUpdateTest.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Data\ofadressen_zahlungsmethodenTableAdapterTest.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="1.DBSetup.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="3.Preise.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="6.Vorgang.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="0.ALL.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="4.Preisregeln.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="5.Anrufe.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="2.Mitarbeiter.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="0.ALL_nosetup.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="7.Profil.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="8.Mahnung.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Shadow Include="Test References\IntraSell_Net.accessor" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools\XML2Word\XML2Word.vbproj">
+      <Project>{B2186A7A-FECC-443A-827A-4D16582E7C9C}</Project>
+      <Name>XML2Word</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntraSell_DLL\IntraSell_DLL.vbproj">
+      <Project>{F7AB991F-D9E4-4285-897B-B95109C5D6DF}</Project>
+      <Name>IntraSell_DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntraSell_Net\IntraSell_Net.vbproj">
+      <Project>{110E199B-E42C-4A66-A98A-A9473E6FDA30}</Project>
+      <Name>IntraSell_Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

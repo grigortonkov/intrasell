@@ -1,0 +1,38 @@
+<div align="center">
+    <center>
+        <table border="0" cellspacing="0" cellpadding="0" width="75%">
+            <tr>
+                <td border="0" align="left" width="20%" height="15">
+                    <p align="left">
+                        <font color="#6b8eb5">
+                            <img height="9" src="arrow.gif" width="9" border="0"></font></p>
+                </td>
+                <td border="0" width="80%" height="15">
+                    <a href="default.aspx?pageToShow=warenkorbStep1"><font color="#42598C" size="1">Warenkorb</font></a>
+                </td>
+            </tr>
+            <tr>
+                <td border="0" align="left" width="20%" height="16">
+                    <font color="#6b8eb5">
+                        <img src="arrow.gif" border="0" width="9" height="9"></font>
+                </td>
+                <td width="80%" height="16">
+                    <a href="default.aspx?pageToShow=MyAccount"><font color="#42598C" size="1">Mein Konto</font></a>&nbsp;
+                    <%if Session ("LOG_IN")<>"" then%>
+                    [<a href="cgi/account/logout.aspx"><font color="red">LOGOUT</font></a>]
+                    <%end if%>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="20%" height="16">
+                    <font color="#6b8eb5">
+                        <img height="9" src="arrow.gif" width="9" border="0"></font>
+                </td>
+                <td width="80%" height="16">
+                    <font size="1"><a href="default.aspx?pageToShow=Help"><font color="#42598C">Hilfe</font></a>
+                    </font>
+                </td>
+            </tr>
+        </table>
+    </center>
+</div>

@@ -1,0 +1,73 @@
+<div align="center">
+    <table border="0" cellspacing="0" width="172" id="AutoNumber11" height="1" cellpadding="0"
+        style="BORDER-COLLAPSE: collapse" bordercolor="#111111">
+        <tr>
+            <td align="middle" width="277" height="4">
+                <img border="0" src="skins/skin_immo/images/boxes/top_login.gif"></td>
+        </tr>
+        <tr>
+            <td align="middle" width="277" height="1" background="skins/skin_immo/images/bg/box_bg.gif">
+                <script language="javascript"> 
+            function  isLoggedIn() {
+                return "[USER_EMAIL]".indexOf("nicht vorhanden") <= 0;
+            }
+    
+                </script>
+                <script language="javascript"> 
+            if (isLoggedIn()) 
+                document.write ("<div>"); 
+            else   
+                 document.write ("<div style=\"position: absolute; left: 0; top: 0; width: 0; height: 0;visibility: hidden\">");
+                </script>
+                Sie sind angemeldet als [USER_EMAIL]
+                <br />
+                <a href="cgi/account/logout.aspx">LOGOUT</a>
+</div>
+<script language="javascript"> 
+            if (isLoggedIn()) 
+                document.write ("<div style=\"position: absolute; left: 0; top: 0; width: 0; height: 0;visibility: hidden\">");
+            else   
+                document.write ("<div>"); 
+</script>
+<form action="default.aspx" method="get" ID="Form1">
+    <input type="hidden" name="pageToShow" value="MyAccount" ID="Hidden1"> <input type="hidden" name="action" value="login" ID="Hidden2">&nbsp;
+    <table border="0" width="96%" id="table1" cellspacing="0" cellpadding="0">
+        <tr>
+            <td colspan="2"><b> <font color="#7e807e" size="1" face="Verdana">Email</font></b><font color="#9c9c9c">:</font></td>
+        </tr>
+        <tr>
+            <td><font color="#9c9c9c"> <input type="text" size="19" name="Email"></font></td>
+            <td width="60">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2"><font color="#7e807e" face="Verdana" size="1"> <b>Passwort:</b></font></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" size="19" name="Password"></td>
+            <td width="60">
+                <p align="center">
+                    <input type="image" class="extra" src="skins/skin_immo/images/buttons/search.gif" valign="bottom"
+                        value="Search" name="I3" align="center" border="0" style="BORDER-RIGHT: #f7f3f7 1px solid; BORDER-TOP: #f7f3f7 1px solid; BORDER-LEFT: #f7f3f7 1px solid; BORDER-BOTTOM: #f7f3f7 1px solid"
+                        hspace="0"></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><font size="1" face="Verdana"><a href="">
+                        <span style="TEXT-DECORATION: none">(vergessen?)</span></a></font></td>
+        </tr>
+        <tr>
+            <td colspan="2" height="16">
+                <p align="center"><font size="1" face="Verdana"><a href="">
+                            <span style="FONT-WEIGHT: 700; TEXT-DECORATION: none">Jetzt Registrieren</span></a><span style="FONT-WEIGHT: 700; TEXT-DECORATION: none"><a href="s"><span style="TEXT-DECORATION: none"> 
+                !!!</span></a></span></font></p>
+            </td>
+        </tr>
+    </table>
+</form>
+</div> </td> </tr>
+<tr>
+    <td align="middle" width="277" height="1" bgcolor="#9c9c9c">
+        <img border="0" src="skins/skin_immo/images/spacer.gif" width="1" height="1"></td>
+</tr>
+</table> </div>

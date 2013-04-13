@@ -1,0 +1,14 @@
+------ Rebuild All started: Project: WebShop, Configuration: Debug .NET ------
+
+Preparing resources...
+Updating references...
+Performing main compilation...
+Building satellite assemblies...
+
+
+
+---------------------- Done ----------------------
+
+    Rebuild All: 1 succeeded, 0 failed, 0 skipped
+
+

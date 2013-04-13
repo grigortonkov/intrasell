@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- the embedded SQL Commands are executed and parsed as XML Tags-->
+<Document>
+
+ 
+      <SQLCommand>
+        <!--
+        Beispiele für Connection String: 
+        "Driver={SQL Server};Server=(local);Trusted_Connection=Yes;Database=AdventureWorks;"
+        "Driver={Microsoft ODBC for Oracle};Server=ORACLE8i7;Persist Security Info=False;Trusted_Connection=Yes"
+        "Driver={Microsoft Access Driver (*.mdb)};DBQ=c:\bin\Northwind.mdb"
+        "Driver={Microsoft Excel Driver (*.xls)};DBQ=c:\bin\book1.xls"
+        "Driver={Microsoft Text Driver (*.txt; *.csv)};DBQ=c:\bin"
+        "DSN=dsnname"
+        -->
+        <ConnectionString>
+          Driver={MySQL ODBC 3.51 Driver}; Server=localhost; Port=3306; Database=lwc; UID=:USERNAME; PWD=:PWD
+        </ConnectionString>
+        <CommandText>
+          <![CDATA[select p.*, a.* from Adresse a, Person p , Kunde k
+                   Where a.Id = k.Adresse_id and p.id = k.Person_Id
+                    and a.Ort Like ':Ort' Limit 3]]>
+        </CommandText>
+        <RowTagName>Adresse</RowTagName>
+      </SQLCommand>
+
+    <ReportParameters>
+    <ReportParameter>
+      <Name>Ort</Name>
+      <Type>String</Type>
+      <Default>%</Default>
+    </ReportParameter>
+      <ReportParameter>
+        <Name>USERNAME</Name>
+        <Type>String</Type>
+        <Default>root</Default>
+      </ReportParameter>
+      <ReportParameter>
+        <Name>PWD</Name>
+        <Type>String</Type>
+        <Default></Default>
+      </ReportParameter>   
+  </ReportParameters>
+ 
+
+</Document>

@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebShop", "http://localhost/WebShop/WebShop.vbproj", "{40FEB225-3724-420D-8207-D004EEC8FD05}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug|Default.ActiveCfg = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug|Default.Build.0 = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release|Default.ActiveCfg = Release|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release|Default.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

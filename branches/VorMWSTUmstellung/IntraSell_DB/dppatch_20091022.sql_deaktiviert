@@ -1,0 +1,7 @@
+ALTER TABLE `intrasell_daten_2`.`buchAngebot` ADD COLUMN `Verladetag` DATETIME;
+
+ALTER TABLE `intrasell_daten_2`.`buchauftrag` ADD COLUMN `Verladetag` DATETIME;
+
+ALTER TABLE `intrasell_daten_2`.`buchRechnung` ADD COLUMN `Verladetag` DATETIME;
+
+ALTER TABLE `intrasell_daten_2`.`buchGutschrift` ADD COLUMN `Verladetag` DATETIME;
