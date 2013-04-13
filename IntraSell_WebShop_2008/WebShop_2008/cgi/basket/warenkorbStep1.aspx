@@ -1,13 +1,9 @@
- 
+<!-- WARENKORB STEP 1-->
 <%
     '===========================================================================
     ' Autor: Written and edited by Grigor Tonkov 2001 (R)
     ' See intrasoft.soft-ware.de for last changes. 
     '===========================================================================
-
-    Const SHOW_SELECT_POST As Boolean = False
-    Const SHOW_SELECT_DESTINATION As Boolean = False
-
 %>
 <div id="Hinweis" style="color: red">
     &nbsp;</div>
@@ -70,8 +66,7 @@
 
          } else 
          {
-         
-         
+
              //check if all fields are filled in 
              var Firma = document.getElementById("FirmaAD").value;
              var Anrede = document.getElementById("AnredeAD").value;
@@ -129,38 +124,18 @@
       }
 
 </script>
-
-<form method="POST" action="default.aspx" id="warenkorbStep1" name="warenkorbStep1">
+<div>
+<form action="default.aspx" method='post' id="warenkorbStep1" name="warenkorbStep1">
 <input type='hidden' name='pageToShow' value='warenkorbStep1'>
 <input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
 <!-- WARENKORB -->
 <%
 
  
-    If Not isPurchasingAllowed() Then
-        Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden gestattet."))
-    Else 'allowed  
-            
-        paymode = Request("PayMode") : If paymode & "" = "" Then paymode = Session("PayMode") : If paymode & "" = "" Then paymode = DEFAULT_PAYMODE
-        postmode = Request("PostMode") : If postmode & "" = "" Then postmode = Session("PostMode") : If postmode & "" = "" Then postmode = DEFAULT_POSTMODE
-        destination = Request("Destination") : If destination & "" = "" Then destination = Session("Destination") : If destination & "" = "" Then destination = DEFAULT_POSTMODE_DESTINATION
-        If destination <> "" Then Session("LAND") = destination
 
-        Session("PayMode") = paymode
-        Session("PostMode") = postmode
-        Session("Destination") = destination
-
-        If showDebug() Then
-            Response.Write("PayMode=" & paymode)
-            Response.Write("DEFAULT_PAYMODE=" & DEFAULT_PAYMODE)
-        End If
-
-        'for mecom 
-        If destination = "Germany" Then paymode = "Vorauskasse"
         If Request("notiz") <> "" Then Session("notiz") = Request("notiz")
 
-
-        'GUTSCHEIN LOGIK 
+        'GUTSCHEIN 
         'Response.Write "gutscheinNummer: " & request("gutscheinNummer")
         If Request("gutscheinNummer") <> "" Then
             If getPreisForGutschein(Request("gutscheinNummer")) > 0 Then
@@ -192,226 +167,54 @@
             Next
         End If
 
-        emptySet = visualizeWarenkorb("1", Session("LAND"), paymode, postmode, destination)
+        isWarenkorbVoll = visualizeWarenkorb("1", Session("LAND"), Nothing, Nothing, Nothing)
 %>
-<%  If emptySet Then%>
+<br />
+<%  If isWarenkorbVoll Then%>
 <input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
-<% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
-<a href="default.aspx">
-    <%=getTranslation("weiter shoppen")%></a>
-<% end if %>
+<input type="button" class="button" value="<%=getTranslation("weiter shoppen")%>" onclick="document.location='default.aspx';">&nbsp;
 <%  End If%>
 </form>
-<!-- END WARENKORB UPDATE FORM-->
-<%  If emptySet Then%>
-<form method='post' action="default.aspx" id="FormBasket">
-<input type="hidden" name="PageToShow" value="warenkorbStep2">
-<input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
-<center>
-    <table border="0" cellpadding="5" cellspacing="5" style="border-collapse: collapse"
-        bordercolor="#111111" height="1" width="100%">
-       
-           <!-- WARENKORB POSTMODE-->
-           <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
 
-          <tr>
-            <td colspan="2">
-                <hr />
-            </td>
-       </tr>
 
-            
-            <tr>
-                <th height="21" valign="middle">
-                    1.<%=getTranslation("Transport:")%>
-                </th>
-                <td height="21" valign="middle" align="left">
-                    <%
-                        'dim rsZM, selected            
-                        sql = "select methode from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' group by methode order by methode"
-                        rsZM = objConnectionExecute(sql)
-                        While Not rsZM.EOF
-                            If UCase(Trim(postmode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
-                            'Response.Write selected
-                    %>
-                    <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
-                        <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';">
-                    <%=rsZM("methode").Value%>
-                    <%
-                        rsZM.MoveNExt()
-                    End While
-                    %>
-                </td>
-            </tr>
-            <%end if%>
-            <!-- END WARENKORB POSTMODE-->
+<!-- Next Step -->
 
-           <!--SELECT PLACE OF DELIVERY -->
-            <% If varvalue("CALCULATE_CHANGE_DESTINATION") = "TRUE" Then%>
 
-            <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
-            <tr>
-                <td colspan="2">
-                    <hr>
-                </td>
-            </tr>
-                
-                <tr>
-                    <th valign="middle" width="257">
-                        2.<%=getTranslation("Destination der Lieferung:")%>
-                    </th>
-                    <td valign="middle" width="490" align="left">
-                        <!--
-                             <select name="destination" onClick="document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination='+document('destination');">
-                             <option class="submit" value="<%=destination%>"> <%=destination%>
-                             -->
-                        <%
-                            Dim rsZM, selected
-                            sql = "select destination from [grArtikel-Vertriebskosten] where typ like 'TRANSPORT' and Methode = '" & postmode & "' group by destination  order by destination"
-                            rsZM = objConnectionExecute(sql)
-                            While Not rsZM.EOF
-                                If Not IsDBNull(rsZM("destination").Value) and Not IsDBNull(destination) Then
-                                    If UCase(Trim(destination)) = UCase(Trim(rsZM("destination").Value)) Then selected = "checked" Else selected = ""
-                                End If
-                                
-                                'Response.Write selected
-                        %>
-                        <!--<option class="submit" value="<%=rsZM("destination")%>"> <%=rsZM("destination")%>
-                                -->
-                        <input type="radio" class="submit" value="<%=rsZM("destination").Value%>" name="destination"
-                            <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM("destination").Value%>';">
-                        <%=getFriendlyDestination(rsZM("destination").Value)%>
-                        <%
-                            rsZM.MoveNExt()
-                        End While
-                        %>
-                        </select>
-                    </td>
-                </tr>
-                <%END IF%>
-                
-                <%If VARVALUE(CALCULATE_POSTCOSTS) = "TRUE" Then%>
-                <tr>
-                    <td colspan="2">
-                        <hr>
-                    </td>
-                 </tr>
-                    <tr>
-                        <th>
-                            3.
-                            <%=getTranslation("Waehlen Sie Transportart fuer Ihre Lieferung:")%>
-                        </th>
-                        <td align="left">
-                            <%=showPossiblePostMethodsAccordungDestination(destination, postMode, paymode)%>
-                        </td>
-                    </tr>
-                     
-                    <!-- END OF DELIVERY -->
-                   
-                 <%end if%>
- <tr>
-                        <td colspan="2">
-                            <hr>
-                        </td>
-                   </tr>
-                        <!-- WARENKORB PAYMODE-->
-                        <tr>
-                            <th height="1" valign="middle" width="257">
-                                4.
-                                <%=getTranslation("Bestellung-/Zahlungsart:")%>
-                            </th>
-                            <td valign="middle" align="left">
-                                <%
-                                  
-                                    sql = "select methode, Destination from [grArtikel-Vertriebskosten] where typ like 'PAYMENT' group by methode, Destination order by methode"
-                                    rsZM = objConnectionExecute(sql)
-                                    While Not rsZM.EOF
-                                        'show only PayMethods for the selected destination or general destinations 
-                                        If UCase(Trim(rsZM("destination").Value)) = "" Or UCase(Trim(rsZM("destination").Value)) = UCase(Trim(destination)) Then
-                                            If UCase(Trim(paymode)) = UCase(Trim(rsZM("methode").Value)) Then selected = "checked" Else selected = ""
-                                            'Response.Write selected
-                                %>
-                                <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PayMode"
-                                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep1&paymode=<%=rsZM("methode").Value%>&postmode=<%=postmode%>';">
-                                <%=rsZM("methode").Value%>
-                                <%
-                                End If
-                                rsZM.MoveNExt()
-                            End While
-                                %>
-                            </td>
-                        </tr>
-                        <!-- END WARENKORB PAYMODE-->
-                        <tr>
-                            <td colspan="2">
-                                <hr />
-                            </td>
-                        </tr>
-                            <%End If%>
-                            <!-- END SELECT PLACE OF DELIVERY  -->
-    </table>
-
-<textarea id="Notiz" name="Notiz" rows="3" visible="false" style="display: none;" cols="80">
-</textarea> 
-
-<div id="ProfileForm" name="ProfileForm" style="display: none;">
- <%= drawEmptyProfileForm(TypeOfAddress.ACCOUNT, False,-1)%>
-</div>
-
-</center>
-
-<p align="right">
-    <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
-
-        <% if VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING","true") = "true" then%>
-                <a href="default.aspx"><%=getTranslation("weiter shoppen")%></a>
-                &nbsp;
-        <% end if %> 
-
+<%  If isWarenkorbVoll Then%>
+<form method='post' action="default.aspx" id="FormBasket" name="warenkorbStep1a">
+    <input type="hidden" name="PageToShow" value="warenkorbStep2" />
+    <input type='hidden' name='showForm' value='false' />
+    <p align="right">
         <input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
-        <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_OFFERS", "true") = "true" then %>
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("Angebot anfordern")%>" onclick="submitOffer();" />
-        <%  End If%>
-        <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER_WITHOUT_REGISTRATION", "true") = "true" then %>
-        &nbsp;<input type="button" class="button" value="<%=getTranslation("bestellen")%>" onclick="submitOrder();" />
-        <%End If%>
-         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER", "true") = "true" Then%>
-        &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>" />
-         <% End If%>
-    <%Else%>
-         <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER", "true") = "true" Then%>
-        <img src="<%=imageFullName("zurkasse.gif")%>" value="<%=getTranslation("zur Kasse")%>" alt="<%=getTranslation("zur Kasse")%>" />
-         <% End If%>
 
-    <%End If%>
+        <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_ORDER", "true") = "true" Then%>
+            &nbsp;<input type="submit" class="button" value="<%=getTranslation("zur Kasse")%>" />
+        <% End If%>
 
- <br />
-</p>
+        <br />
+    </p>
 </form>
 
+    <%Else%>
  
- 
-<%  End If
-End If 'purchasing allowed 
- 
-    Dim logHTML As String
-    logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
-    logHTML = parseTemplate(logHTML, Nothing)
-    Response.Write(logHTML)
 
+<%  End If%>
+
+</div>
+
+ <%
+Dim logHTML As String
+logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/basket/warenkorb_functions.htm"))
+logHTML = parseTemplate(logHTML, Nothing)
+Response.Write(logHTML)
 %>
 <!-- END WARENKORB  -->
-
 <script language="VB" runat="server">
-    Dim rsZM
     Dim rsWK
     Dim i As Integer, pos As Integer
     Dim an As String, chn
     Dim qn As String
     Dim sql As String
-    Dim emptySet
-    Dim paymode As String, postmode As String, destination As String
+    Dim isWarenkorbVoll As Boolean
     Dim gutscheinNummer As String
-    Dim selected As String
 </script>
-

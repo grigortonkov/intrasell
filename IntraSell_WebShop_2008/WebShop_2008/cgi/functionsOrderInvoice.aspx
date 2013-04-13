@@ -225,7 +225,7 @@
 
 
     'shows all possbile POST Services according the destination 
-    Function showPossiblePostMethodsAccordungDestination(ByVal destination, ByVal postModeCurrent, ByVal paymode) As String 
+    Function showPossiblePostMethodsAccordungDestination(ByVal destination, ByVal postModeCurrent, ByVal paymode, Optional warenkorpStep = "3") As String 
         Dim html As String
         Dim sql As String, rsZM
         Dim sidM As String = getSID()
@@ -244,7 +244,8 @@
         Dim postMode As String
         Dim selected As String
         
-            
+        Dim OnlyOnePossibility As Boolean = firstvalue("select count(*) from (" & sql & ") a") = 1
+        
         While Not rsZM.EOF
             postMode = rsZM("Methode").Value
               
@@ -252,11 +253,11 @@
             PostExpensesMWST = PostCosts
             'PostExpensesMWST = makeBruttoPreis(PostCosts,2, Session("Land"))
             'checked = "" 
-            If UCase(postMode) = UCase(postModeCurrent) Then selected = "checked" Else selected = ""
+            If OnlyOnePossibility or UCase(postMode) = UCase(postModeCurrent) Then selected = "checked" Else selected = ""
             'Response.Write selected
             html = html & _
               "<input " & selected & " type='radio' class='submit' value='" & rsZM("methode").Value & "' " & _
-               " name='PostModeDestination' onClick=""document.location='default.aspx?pageToShow=warenkorbStep1&paymode=" & paymode & "&postmode=" & rsZM("methode").Value & "';"">" & _
+               " name='PostModeDestination' onClick=""document.location='default.aspx?pageToShow=warenkorbStep"  & warenkorpStep & "&paymode=" & paymode & "&postmode=" & rsZM("methode").Value & "';"">" & _
               rsZM("methode").Value & " - " & getTranslation("Preis") & ": " & FormatNumber(PostExpensesMWST, 2) & "<br />"
             
             rsZM.MoveNExt()
@@ -311,6 +312,7 @@
                                    ByVal Destination As String, ByVal notizOrder As String, ByVal GutscheinNummer As String, _ 
                                    ByVal OrderType As String, Optional old_SHIPPING_ID As String = "" , _
                                    Optional old_INVOICE_ID As String = "") As String
+        'TODO: Implementiere Transaction 
         
         Dim Land As String = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
         Dim Language As String = Session("Language")
@@ -338,8 +340,9 @@
 
         Notiz = "Internet Bestellung"
         If notizOrder = "" Then notizOrder = Notiz
-        SQL = "INSERT INTO " & tableName & " (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum, Bezahlt, Ausgedrukt, anElba)  " & _
-           "Values(" & AuftragNr & "," & KDNR & ",'" & notizOrder & "','" & PayMode & "','" & PostMode & "','" & PayMode & "', " & SQLNOW(0) & ", 0, 0, 0)"
+        Dim Mandant : Mandant = FIRSTVALUE("select mandant from ofAdressen where mandant is not null and idnr=" & KDNR & " union select mandantNr from [ofAdressen-Kundengruppen] where Gruppe = 'Online'")
+        SQL = "INSERT INTO " & tableName & " (Nummer, KundNr, notiz, ZahlungsBedungung, TransportMethode, ZahlungsMethode, Datum, Bezahlt, Ausgedrukt, anElba, MandantNr)  " & _
+           "Values(" & AuftragNr & "," & KDNR & ",'" & notizOrder & "','" & PayMode & "','" & PostMode & "','" & PayMode & "', " & SQLNOW(0) & ", 0, 0, 0, " & Mandant & ")"
         objConnectionExecute(SQL)
 
         'Move Warenkorb To Auftrag, fuer jede Position die eine Seriennummer erfordert wird eigene Zeile eingefuegt 

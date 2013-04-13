@@ -716,7 +716,9 @@
         If InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) > 0 Then
             BeschreibungWithoutTechInfo = Left(BeschreibungWithoutTechInfo, InStr(UCase(BeschreibungWithoutTechInfo), UCase(SPECIALCHOICECONSTANT)) - 1)
         End If
-
+        BeschreibungWithoutTechInfo = Replace(BeschreibungWithoutTechInfo, "•","<br/>•")
+        
+        
         Const replacements = 999
 
         Dim imgTagPicture, imgTagPictureLarge

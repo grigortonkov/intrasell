@@ -470,7 +470,7 @@
             If SHOP_SHOW_PRICE Then
                 tableColumns = tableColumns + 1
                 If Not isMobileMode Then
-                    html = html & "<th width=""80"" align=right>"
+                    html = html & "<th width=""90"" align=right>"
                 Else
                     html = html & " / "
                 End If
@@ -565,7 +565,7 @@
                 If Not isMobileMode Then
                     tableColumns = tableColumns + 1
                     html = html & "<th width=""80"">"
-                    html = html & getTranslation("Lagerinfo")
+                    html = html & getTranslation("Lager")
                     html = html & "</th>"
                 Else
                     html = html & "/" & getTranslation("Lagerinfo")
@@ -575,17 +575,17 @@
             If SHOWLAGERINFOICON Then
                 If Not isMobileMode Then
                     tableColumns = tableColumns + 1
-                    html = html & "<th width=""16"">"
-                    html = html & getTranslation("Lagerinfo")
+                    html = html & "<th width=""80"">"
+                    html = html & getTranslation("L")
                     html = html & "</th>"
                 Else
-                    html = html & "/" & getTranslation("Lager")
+                    html = html & "/" & getTranslation("L")
                 End If
             End If
             
            'Bestellen 
             tableColumns = tableColumns + 1
-            html = html & "<th width=""40"">" & getTranslation("Bestellen") & "</th>"
+            html = html & "<th width=""40"">" & getTranslation("K") & "</th>"
  
             
             If isMobileMode Then
@@ -747,7 +747,7 @@
                             'beschreibung = getTranslationDok("grArtikel" , ArtNr, "Beschreibung", Beschreibung, Language)
                             beschreibung = makeBeschreibung(ArtNr, True)
                             htmlProductRow = htmlProductRow & "<br />" & beschreibung
-                            htmlProductRow = htmlProductRow & "<br />" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
+                            'htmlProductRow = htmlProductRow & "<br />" & getTranslation("Hersteller Nr:") & "<b>" & EAN & "</b>"
                         End If
                     End If
                     If Not isMobileMode Then
@@ -759,14 +759,13 @@
                             htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """> <p align=""right"">"
                         End If
                         
-                        htmlProductRow = htmlProductRow & "€ " & VKPreis
+                        htmlProductRow = htmlProductRow & "€" & VKPreis
                         If HerstellerRabatt <> "" Then
                             htmlProductRow = htmlProductRow & "<br />" & getTranslation("Rabatt") & ":" & HerstellerRabatt
                         End If
                         If Not isMobileMode Then
                             htmlProductRow = htmlProductRow & "</p></td>"
                         End If
-                        
                     End If
 
                     If SHOP_SHOW_HERSTELLER Then

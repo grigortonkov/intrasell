@@ -215,29 +215,48 @@
         fileContent = Replace(fileContent, "[Ort]", rs("ort").Value & "", 1, 1)
 
         'Lieferadresse 
-        If rs("kundnr2").Value & "" <> "" Then
-            Dim addressType As String : addressType = "LI"
-            Dim sqlLI As String
-            sqlLI = "Select a.*, p.* from [ofAdressen-Weitere] a, grPLZ p where a.PLZ=p.IDNR and a.typ= '" & addressType & "' and a.ID=" & rs("kundnr2").Value
-            Dim rsLI
-            'Response.Write sqlLI 
-            rsLI = objConnectionExecute(sqlLI)
-            If Not rsLI.EOF Then
-                fileContent = Replace(fileContent, "[Lieferadresse_Firma]", rsLI("firma").Value & "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Name]", rsLI("name").Value & " " & rsLI("vorname").Value & "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", rsLI("adresse").Value & "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", rsLI("plz").Value & " " & rsLI("ort").Value & "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", rsLI("plz").Value & "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Ort]", rsLI("ort").Value & "", 1, 1)
-            Else
-                fileContent = Replace(fileContent, "[Lieferadresse_Firma]", "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Name]", "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", "", 1, 1)
-                fileContent = Replace(fileContent, "[Lieferadresse_Ort]", "", 1, 1)
+        If rs("TransportMethode").Value = "Abholung" Then
+            fileContent = Replace(fileContent, "[Lieferadresse_Firma]", "ABHOLUNG bei " & varvalue_default("ABHOLUNG_FIRMA", "ARFAIAN"), 1, 1)
+            fileContent = Replace(fileContent, "[Lieferadresse_Name]", varvalue_default("ABHOLUNG_NAME", ""), 1, 1)
+            fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", varvalue_default("ABHOLUNG_STRASSE", "Fröbelstrasse 24"), 1, 1)
+            fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", varvalue_default("ABHOLUNG_PLZ", "4020") & " " & varvalue_default("ABHOLUNG_ORT", "Linz"), 1, 1)
+            fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", varvalue_default("ABHOLUNG_PLZ", ""), 1, 1)
+            fileContent = Replace(fileContent, "[Lieferadresse_Ort]", varvalue_default("ABHOLUNG_ORT", ""), 1, 1)
+        Else 'Print Lieferadresse 
+            If rs("kundnr2").Value & "" <> "" Then
+                Dim addressType As String : addressType = "LI"
+                Dim sqlLI As String
+                sqlLI = "Select a.*, p.* from [ofAdressen-Weitere] a, grPLZ p where a.PLZ=p.IDNR and a.typ= '" & addressType & "' and a.ID=" & rs("kundnr2").Value
+                Dim rsLI
+                'Response.Write sqlLI 
+                rsLI = objConnectionExecute(sqlLI)
+                If Not rsLI.EOF Then
+                    fileContent = Replace(fileContent, "[Lieferadresse_Firma]", rsLI("firma").Value & "", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Name]", rsLI("name").Value & " " & rsLI("vorname").Value & "", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", rsLI("adresse").Value & "", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", rsLI("plz").Value & " " & rsLI("ort").Value & "", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", rsLI("plz").Value & "", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Ort]", rsLI("ort").Value & "", 1, 1)
+                Else
+                    fileContent = Replace(fileContent, "[Lieferadresse_Firma]", "-", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Name]", "-", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", "-", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", "-", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", "-", 1, 1)
+                    fileContent = Replace(fileContent, "[Lieferadresse_Ort]", "-", 1, 1)
+                End If
+            Else 'keine andere Kundennummer 
+                'Lieferadresse ist die Rechnungsadresse 
+                
+                fileContent = Replace(fileContent, "[Lieferadresse_Firma]", rs("firma").Value & "", 1, 1)
+                fileContent = Replace(fileContent, "[Lieferadresse_Name]", rs("namen").Value & "", 1, 1)
+                fileContent = Replace(fileContent, "[Lieferadresse_Strasse]", rs("adresse").Value & "", 1, 1)
+                fileContent = Replace(fileContent, "[Lieferadresse_plz ort]", rs("plzort").Value & "", 1, 1)
+                fileContent = Replace(fileContent, "[Lieferadresse_PLZ]", rs("plz").Value & "", 1, 1)
+                fileContent = Replace(fileContent, "[Lieferadresse_Ort]", rs("ort").Value & "", 1, 1)
             End If
         End If
+        
     
         fileContent = Replace(fileContent, "[Titel]", VorgangTyp & "-" & Vorgang_Nummer, 1, 1)
         fileContent = Replace(fileContent, "[Datum]", rs("Datum").Value & "", 1, 1)
@@ -264,14 +283,13 @@
         While Not rsArt.EOF
             fileContent = Replace(fileContent, "[Stk]", rsArt("Stk").Value, 1, 1)
             fileContent = Replace(fileContent, "[ArtNr]", rsArt("ArtNR").Value, 1, 1)
-            fileContent = Replace(fileContent, "[EAN]", Left(rsArt("EAN").Value,6), 1, 1)
-            fileContent = Replace(fileContent, TAG_BEZEICHNUNG, Left(pad(rsArt("Bezeichnung").Value, BEZEICHNUNG_LAENGE) & "",BEZEICHNUNG_LAENGE), 1, 1)
+            fileContent = Replace(fileContent, "[EAN]", Left(rsArt("EAN").Value, 6), 1, 1)
+            fileContent = Replace(fileContent, TAG_BEZEICHNUNG, Left(pad(rsArt("Bezeichnung").Value, BEZEICHNUNG_LAENGE) & "", BEZEICHNUNG_LAENGE), 1, 1)
             fileContent = Replace(fileContent, TAG_BESCHREIBUNG, rsArt("Beschreibung").Value & "", 1, 1)
             'korrektur für mecom - Preis ist der Stk*VKPReis
             fileContent = Replace(fileContent, "[Preis]", FormatNumber(CDbl(rsArt("PreisATS").Value) * CDbl(rsArt("Stk").Value), 2), 1, 1)
             rsArt.MoveNext()
         End While
-  
   
         'set Eigenschaften
         sql = "select * from buchVorgaengeEigenschaften where Nummer  = " & Vorgang_Nummer & " and  vorgangtyp like '" & VorgangTyp & "'"
@@ -281,7 +299,6 @@
             fileContent = Replace(fileContent, "[" & rsEig("Name").Value & "]", rsEig("Value").Value & "")
             rsEig.MoveNext()
         End While
-  
 
         'SAVE FILE IN LOG FOLDER (WITH WRITE OPTIONS)
         Dim saveAsFilename : saveAsFilename = VorgangTyp & "_" & Vorgang_Nummer & "." & Right(Dateiname, 3)

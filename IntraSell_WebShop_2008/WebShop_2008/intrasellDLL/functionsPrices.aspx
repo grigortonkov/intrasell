@@ -91,7 +91,6 @@
                 Response.Write("get Price for Land = [" & Land & "]")
             End If
 
-  
             makeBruttoPreis2 = IntraSellPreise().makeBruttoPreis2(ArtNr, Stk, Land)
         Catch ex As Exception
 
