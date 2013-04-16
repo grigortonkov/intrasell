@@ -9,6 +9,8 @@ Public Class Kundenliste
 
         Try
 
+            FillComboBox(Me.StatusComboBox, "select Status from ofAdressen group by Status order by Status", "Status", "Status")
+
             Me.GrlandTableAdapter.Fill(Me.DsPLZ.grland)
             Me.PreislistenTableAdapter.Fill(Me.DsAdressen.Preislisten)
             Me.KundengruppenTableAdapter.Fill(Me.DsAdressen.Kundengruppen)
@@ -65,6 +67,10 @@ Public Class Kundenliste
 
             If Me.BrancheComboBox.Text.Length > 0 Then
                 filter += " and Branche Like '" + BrancheComboBox.Text + "%'"
+            End If
+
+            If Me.StatusComboBox.Text.Length > 0 Then
+                filter += " and Status Like '" + StatusComboBox.Text + "%'"
             End If
 
             If Not filter Is Nothing Then

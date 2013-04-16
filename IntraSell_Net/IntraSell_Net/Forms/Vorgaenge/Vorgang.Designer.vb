@@ -802,7 +802,7 @@ Partial Class Vorgang
         Me.KundNr2AdressenControl.Location = New System.Drawing.Point(120, 131)
         Me.KundNr2AdressenControl.Name = "KundNr2AdressenControl"
         Me.KundNr2AdressenControl.ShowAddNew = False
-        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(172, 25)
+        Me.KundNr2AdressenControl.Size = New System.Drawing.Size(212, 25)
         Me.KundNr2AdressenControl.TabIndex = 5
         '
         'LieferantNrComboBox
@@ -822,7 +822,7 @@ Partial Class Vorgang
         Me.KundNrAdressenControl.Location = New System.Drawing.Point(120, 100)
         Me.KundNrAdressenControl.Name = "KundNrAdressenControl"
         Me.KundNrAdressenControl.ShowAddNew = False
-        Me.KundNrAdressenControl.Size = New System.Drawing.Size(172, 25)
+        Me.KundNrAdressenControl.Size = New System.Drawing.Size(212, 25)
         Me.KundNrAdressenControl.TabIndex = 4
         '
         'TransportMethodeComboBox
