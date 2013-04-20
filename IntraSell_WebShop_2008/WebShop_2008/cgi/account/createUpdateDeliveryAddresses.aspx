@@ -78,7 +78,9 @@ Else 'no action requested
             <br />
             <br />
             <center>
-                <input type="submit" class="button" value="Adressen speichern" name="B1" style="float: left">
+                <input type="reset" class="button" value="<%=getTranslation("Abbrechen")%>" onclick="javascript:history.go(-1)">
+                &nbsp;
+                <input type="submit" class="button" value="Adressen speichern">
             </center>
         </td>
     </tr>

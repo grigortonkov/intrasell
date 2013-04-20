@@ -25,6 +25,8 @@
         If showForm & "" <> "false" Then
 %>
 <p align="center">
+    <input type="reset" class="button" value="<%=getTranslation("Abbrechen")%>" onclick="javascript:history.go(-1)">
+    &nbsp;
     <input type="submit" class="button" value="<%=getTranslation("Speichern")%>"></p>
 <%
 End If

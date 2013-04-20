@@ -89,6 +89,8 @@ Else 'no action requested
         <td colspan="2">
             <center>
                 <% If allowSave Then%>
+                <input type="reset" class="button" value="<%=getTranslation("Abbrechen")%>" onclick="javascript:history.go(-1)">
+    &nbsp;
                 <input type="submit" class='button' value="<%=getTranslation("Speichern")%>">
                 <% End If%>
             </center>

@@ -242,15 +242,16 @@
         End If
         Dim PostCosts As Double, PostExpensesMWST As Double
         Dim postMode As String
+        Dim postSpendsArtNr 
         Dim selected As String
-        
+        Dim IDNR: IDNR = getLogin()
         Dim OnlyOnePossibility As Boolean = firstvalue("select count(*) from (" & sql & ") a") = 1
         
         While Not rsZM.EOF
             postMode = rsZM("Methode").Value
-              
+            postSpendsArtNr = getPostSpendsArtNr(destination, getWeightOfBasket(sidM), postMode)
             PostCosts = calculatePostSpendsForWK(destination, getWeightOfBasket(sidM), postMode)
-            PostExpensesMWST = PostCosts
+            PostExpensesMWST = CDbl(calculateBruttoPreis(PostCosts, postSpendsArtNr, IDNR)) 'PostCosts
             'PostExpensesMWST = makeBruttoPreis(PostCosts,2, Session("Land"))
             'checked = "" 
             If OnlyOnePossibility or UCase(postMode) = UCase(postModeCurrent) Then selected = "checked" Else selected = ""
