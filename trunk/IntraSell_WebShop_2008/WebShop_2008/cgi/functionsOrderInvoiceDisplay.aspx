@@ -355,7 +355,7 @@
                     If UCase(VARVALUE(CALCULATE_POSTCOSTS)) = "TRUE" Then
                         Dim postSpendsArtNr : postSpendsArtNr = getPostSpendsArtNr(Land, KG, PostMode)
                         postCosts = calculatePostSpendsForWK(PostModeDestination, KG, PostMode)
-                        postExpensesMWST = makeBruttoPreis(postCosts, 2, Land)
+                        'postExpensesMWST = makeBruttoPreis(postCosts, 2, Land)
                         postExpensesMWST = CDbl(calculateBruttoPreis(postCosts, postSpendsArtNr, IDNR))
                         'if (SubtotalMWST = 0 ) then  PostExpensesMWST = 0
                     End If
@@ -363,7 +363,7 @@
                     If UCase(VARVALUE(CALCULATE_PAYMODECOSTS)) = "TRUE" Then
                         Dim payModeArtNr : payModeArtNr = getPaymentModeSpendsArtNr(PayMode, Land)
                         If PayMode <> "" Then payModeExpenses = calculatePaymentModeSpends(PayMode, Land, KG, subtotalNoAddCharged)
-                        payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
+                        'payModeExpensesMWST = makeBruttoPreis(payModeExpenses, 2, Land)
                         payModeExpensesMWST = CDbl(calculateBruttoPreis(payModeExpenses, payModeArtNr, IDNR))
                         'if (SubtotalMWST = 0 ) then  payModeExpensesMWST = 0
                     End If
