@@ -1,0 +1,7 @@
+#Wie erstelle ich eine Sammelrechnung zwischen Mandanten ?
+
+= Sammelrechnung Vorgehensweise = 
+* Die Rechnungen von MANDANT 2 auswählen.
+* Sammelrechnung von Mandant 1 für Mandant2  (Kunden Datensatz muss angelegt werden)
+* Die Sammelrechnung in Retourwaren konvertieren und abschließen.
+* Retourwaren von Mandant1 auf Mandant2  wecheln und abschließen. 
