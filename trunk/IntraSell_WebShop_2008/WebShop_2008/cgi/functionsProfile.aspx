@@ -48,8 +48,10 @@
     Function authenticate(ByVal Email As String, ByVal Password As String) As Object
         Dim SQL As String
         'Find Client 
-        Email = Trim(Left(Email, 250))
-        Password = Trim(Left(Password, 50))
+        Email = Trim(Left(cleanUserInput(Email, True), 250))
+        Password = Trim(Left(cleanUserInput(Password, True), 50))
+        
+
         SQL = "SELECT * from ofAdressen Where Status<>'" & STATE_NOT_CONFIRMED_CLIENT & "' and Email = '" & Email & "' AND Passwort = '" & Password & "'"
         'response.write "<br />" & sql
         Dim rsP = objConnectionExecute(SQL)
@@ -87,10 +89,14 @@
             Response.Write(Text)
             Exit Function
         End If
+        'User Authentication ok !
         authenticate = rsP("IDNR").Value
         Session("LOG_IN") = authenticate
         'Session("LAND") = getClientLand(authenticate) 
         Session("LAND") = getClientDestinationLand(authenticate)
+        Session("EmailOld") = Email
+        Session("PasswordOld") = Password
+        
         'update session
         SQL = "update webSessions set kundenIdnr=" & rsP("IDNR").Value & " where SID=" & getSid()
         objConnectionExecute(SQL)

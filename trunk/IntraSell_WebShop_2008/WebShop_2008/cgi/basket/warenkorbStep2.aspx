@@ -29,7 +29,8 @@
 
     payMode = Request("PayMode")
     If payMode = "" Then payMode = Session("payMode")
-    If payMode = "" Then payMode = DEFAULT_PAYMODE
+    'If payMode = "" Then payMode = DEFAULT_PAYMODE
+    If payMode = "" Then payMode = VARVALUE_DEFAULT("DEFAULT_PAYMODE" & "_" & Session("LAND"), "Vorkasse")
     Session("payMode") = payMode
 
     postMode = Request("postMode")
