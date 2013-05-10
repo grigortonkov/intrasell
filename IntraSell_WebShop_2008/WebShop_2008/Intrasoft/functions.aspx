@@ -826,15 +826,17 @@
     ''' <param name="userInput"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function cleanUserInput(ByVal userInput As String) As String
+    Function cleanUserInput(ByVal userInput As String, Optional isForSQL As Boolean = False) As String
         Dim cleaned As String = userInput
-        Dim errorFound as Boolean = False
+        Dim errorFound As Boolean = False
         
-        'cleaned = Replace(cleaned, "*", "")
-        'cleaned = Replace(cleaned, "%", "")
-        'cleaned = Replace(cleaned, "'", "")
-        'cleaned = replace(cleaned,"""","")
-    
+        If isForSQL Then
+            cleaned = Replace(cleaned, "*", "")
+            cleaned = Replace(cleaned, "%", "")
+            cleaned = Replace(cleaned, "'", "")
+            cleaned = Replace(cleaned, """", "")
+        End If
+        
         If InStr(UCase(userInput), "DELETE ") > 0 Then
             errorFound = True
         End If
