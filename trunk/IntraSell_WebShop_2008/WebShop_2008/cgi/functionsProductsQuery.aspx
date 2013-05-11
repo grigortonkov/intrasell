@@ -896,7 +896,8 @@
     
     'Lists all Products and the prices for them 
     Function productCatalog()
-       
+        Response.Write("<h1>Product Catalog</h1>")
+        Response.Write("<h2>SEO List</h2>")
         Dim Sql As String = "select * from grArtikel where produktAktiv <> 0 order by EAN, Bezeichnung"
         Dim MWSt As String
         Dim VKPreis As String
@@ -905,7 +906,7 @@
         Response.Write("<table> <tr><th> </th> <th> </th> <th> </th></tr> ")
         While Not rsArtikel.EOF
             
-            Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
+            'Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
             Response.Flush()
 
         
@@ -925,7 +926,7 @@
                 End If
             End If
 
-            Dim line As String = "<tr><td>" & rsArtikel("EAN").Value & " </td><td>" & rsArtikel("Bezeichnung").Value & "</td> <td>" & VKPreis & "</td></tr>"
+            Dim line As String = "<tr><td><a href='default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "'>" & rsArtikel("EAN").Value & "</a></td><td>" & rsArtikel("Bezeichnung").Value & "</td> <td>" & VKPreis & "</td></tr>"
             Response.Write(line)
             Response.Flush()
             

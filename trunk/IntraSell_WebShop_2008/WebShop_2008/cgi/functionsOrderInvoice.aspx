@@ -685,11 +685,15 @@
         Dim rs : rs = ObjConnectionExecute(sql)
 
         If Not rs.EOF Then
-            getVorgangEigenschaft = rs("val").Value
+            If Not rs("val") Is Nothing Then
+                getVorgangEigenschaft = rs("val").Value
+            Else
+                getVorgangEigenschaft = ""
+            End If
         Else
             getVorgangEigenschaft = ""
         End If
-        rs.Close()
+            rs.Close()
         
     End Function
 
