@@ -1,8 +1,8 @@
-functionsDB = 498, 116, 1107, 649, C
+functionsDB = 277, 256, 886, 789, C
 IntraSellVars = 176, 176, 1004, 813, C
-IntraSellPreise = 110, 115, 938, 747, C
+IntraSellPreise = 134, 72, 962, 704, Z
 IntraSellDB = 0, 0, 771, 637, C
-IntraSellVorgaengeAusdruck = 66, 66, 732, 607, C
+IntraSellVorgaengeAusdruck = 66, 66, 732, 607, 
 IntraSellBarcode = 220, 220, 1069, 960, C
 IntraSellConst = 220, 220, 1069, 960, C
 IntraSellKunden = 176, 176, 1176, 717, C

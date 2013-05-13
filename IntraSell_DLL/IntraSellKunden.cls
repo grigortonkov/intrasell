@@ -41,20 +41,13 @@ Public Sub destroy()
 End Sub
 
 
-  
-
-
-Public Function neueAdresse()
-
-End Function
-
-
- 
- 
-
 'checks if the user needs mwst in the rechnung according the kundengruppe
 Public Function needsMWST(ByVal IdNr As String) As Boolean
    needsMWST = True
+   
+   If IdNr = "" Or IsNull(IdNr) Then
+     Exit Function
+   End If
    
    Dim rs As Recordset
    Dim sql As String
