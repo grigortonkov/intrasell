@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.MDIForm IntraSell 
-   BackColor       =   &H8000000C&
-   Caption         =   "IntraSell3 by grigor.tonkov@gmail.com: Save Time! Save Money!"
+   BackColor       =   &H80000003&
+   Caption         =   "IntraSell by grigor.tonkov@gmail.com: Save Time! Save Money!"
    ClientHeight    =   7890
    ClientLeft      =   165
    ClientTop       =   555
@@ -126,7 +126,7 @@ End Sub
 
 Private Sub ISHomepage_Click()
     'NavigateURL "http://www.griton.eu"
-    ShellExecute 0, "OPEN", "http://www.griton.eu", vbNullString, vbNullString, SW_SHOWNORMAL
+    ShellExecute 0, "OPEN", "http://code.google.com/p/intrasell/", vbNullString, vbNullString, SW_SHOWNORMAL
 End Sub
 
 Private Sub MDIForm_DblClick()
@@ -239,7 +239,7 @@ On Error GoTo errLine
 
     ' Open a database in exclusive mode:
     Dim isFilename As String
-    isFilename = App.Path & "\..\intrasell\IntraSell_3.mdb"
+    isFilename = App.Path & "\..\intrasell\IntraSell_4.mdb"
     
     Call writeLogMain("OpenCurrentDatabase start")
     Call oAccess.OpenCurrentDatabase(filepath:=isFilename, Exclusive:=True, bstrPassword:="brunojj1")

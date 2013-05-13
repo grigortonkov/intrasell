@@ -10,9 +10,11 @@ Const MSG_UPDATE_COMPLETE = "Upgrade ist fertig. Nun konnen Sie mit Ihrer Arbeit
 Const MSG_UPTODATE = "Zur Zeit gibt es keine Aktualiserungen."
 
 'Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/files/update.txt" 'From Downloads
-Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update.txt" ' From SVN
+Const INTRASELL_UPDATE = "http://intrasell.googlecode.com/svn/trunk/Upgrade/update4.txt" ' From SVN
 Const INTRASELL_UPDATE_DLL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/Unzip32.dll" ' From SVN
 Const INTRASELL_BASE_URL = "http://intrasell.googlecode.com/svn/trunk/Upgrade/" ' "http://intrasell.googlecode.com/files/"
+Const INTRASELL_EXE = "IntraSell4.exe"
+
 ' =======================================================================
 
 Private Declare Function URLDownloadToFile Lib "urlmon" _
@@ -138,7 +140,14 @@ On Error GoTo errLine
                                 Call FileCopy(App.Path & "\" & fItem.Name, App.Path & "\archive\" & strfName1 & "\" & fItem.Name)
                             End If
                             Call writeLog("copy files: " & fItem.Name)
-                            Call FileCopy(App.Path & "\update\" & fItem.Name, App.Path & "\" & fItem.Name)
+                            If INTRASELL_EXE = fItem.Name Then
+                            'rename and copy
+                                Name App.Path & "\" & fItem.Name As App.Path & "\" & fItem.Name & "." & Replace(Replace(Now, ":", ""), ".", "")
+                                Call FileCopy(App.Path & "\update\" & fItem.Name, App.Path & "\" & fItem.Name)
+                            Else
+                                Call FileCopy(App.Path & "\update\" & fItem.Name, App.Path & "\" & fItem.Name)
+                            End If
+                            
                         Next
                         
                         FileSystem.Kill App.Path & "\update\*.*"
