@@ -65,7 +65,7 @@ End Sub
      Set rs = openRecordset(sql, dbOpenDynaset)
      If rs.EOF Then getPreis = 0: Exit Function
      
-     ArtKatNr = rs("ArtKAtNR")
+     ArtKatNr = rs("ArtKatNr")
      
      If IdNr = -1 Then ' user ist egal
         sql = " select vkpreis, aufschlagvkpreis, aufschlagekpreis from [grArtikel-VKPreisPerSelection] pl where " & _
@@ -87,29 +87,52 @@ End Sub
      
      'if not found try with the super categery too
      'if rs.EOF
-     
+     Dim finalNettoPreis As Double
      If Not rs.EOF Then
-      'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
-       getPreis = getBasisVKPreis(ArtNr)
-      
-       If rs("vkpreis") > 0 Then
-          getPreis = rs("vkpreis")
-          Exit Function
-       End If
-       
-        If rs("aufschlagvkpreis") <> 0 Then
-          getPreis = (rs("aufschlagvkpreis") + 1) * getBasisVKPreis(ArtNr)
-          Exit Function
-       End If
-       
-        If rs("aufschlagekpreis") <> 0 Then
-          getPreis = (rs("aufschlagekpreis") + 1) * getEKPreis(ArtNr)
-          Exit Function
-       End If
+ 
+            If rs("vkpreis") > 0 Then
+               finalNettoPreis = rs("vkpreis")
+               
+            End If
             
+             If rs("aufschlagvkpreis") <> 0 Then
+               finalNettoPreis = (rs("aufschlagvkpreis") + 1) * getBasisVKPreis(ArtNr)
+                
+            End If
+            
+             If rs("aufschlagekpreis") <> 0 Then
+               finalNettoPreis = (rs("aufschlagekpreis") + 1) * getEKPreis(ArtNr)
+                
+            End If
+      Else
+                 'MsgBox "Für diesen Kunden ist ein anderer Preis definiert! VKpreis=" & rs("vkpreis")
+       finalNettoPreis = getBasisVKPreis(ArtNr)
+      
      End If
+     
      rs.Close
      Set rs = Nothing
+     ' Arfaian möchte dass Alle Kunden den gleichen Brutto Preis haben
+     ' und deswegen wird der hier kalkulierte Netto Preis korrigiert
+      If IdNr > -1 Then
+        Dim mwst As Double: mwst = getMWSTArtikel(ArtNr, IdNr) 'hierwirddie MWST des Artikels mit Berücksichtigung der Kundengruppe berechnet
+        Dim Korrektur As Double: Korrektur = 1
+         sql = "select m.MwstGroup, m.Prozent,(100+mAt.Prozent)/(100+" & CStr(mwst) & ") as Korrektur " & _
+               " from ofAdressen a , grland l,  grmwst m, (select * from grMWST mAT where land = 'AT') mAT " & _
+               " Where a.Land = l.IdNr And m.Land = l.iso2 " & _
+               " and m.MWSTGROUP = mAT.MWSTGROUP " & _
+               " and m.MWSTGROUP = (select MWST from grArtikel where ArtNR=" & ArtNr & ") " & _
+               " and a.idnr = " & IdNr
+         Set rs = openRecordset(sql, dbOpenDynaset)
+          If Not rs.EOF Then
+            Korrektur = rs("Korrektur")
+          End If
+          rs.Close
+          finalNettoPreis = finalNettoPreis * Korrektur
+           'getPreis = Korrektur: Exit Function
+      End If
+      
+     getPreis = finalNettoPreis
  End Function
 
 
@@ -414,13 +437,12 @@ End Function
 ' returns the nummer of the created new OrderType or 0 of failed
 '*****************************************************************
 Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, ByVal NewKundNr) As String
- Dim benutzeTransaktion As Boolean
- benutzeTransaktion = False
- ' benutzeTransaktion = TRue -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
+ Dim benutzeTransaktion As Boolean: benutzeTransaktion = True 'Ab MySQL Version 5.1
+ ' benutzeTransaktion = True -> es gibt Probleme mit MySQL DB und Binary Log Level Enabled
  
  On Error GoTo error:
  
-        Dim sql
+        Dim sql As String
         Dim rs
         Dim tableNameFrom, tableNameFromProducts, tableNameTo, tableNameToProducts
         If benutzeTransaktion Then CurrentDB.BeginTrans
@@ -437,28 +459,31 @@ Public Function convertFromTo(ByVal FromOrder, ByVal ToOrder, ByVal fromNummer, 
         If rs.EOF Then
             convertFromTo = 0
             Exit Function
-         Else
+        Else
            IdNr = rs("Kundnr")
         End If
         rs.Close
         
-        Dim nextRechnungNummer
-        nextRechnungNummer = getNewVorgangNummer(ToOrder, IdNr)
+        Dim nextRechnungNummer As String: nextRechnungNummer = getNewVorgangNummer(ToOrder, IdNr)
      
         If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then  ' lieferanten Auftrag
-               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto, MandantNr ) " & _
+                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, " & NewKundNr & ", Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto, MandantNr " & _
                      " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         Else
-               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto ) " & _
-                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto " & _
+               sql = "INSERT INTO " & tableNameTo & " ( Nummer, KundNr, Datum, MitarbeiterNr, LieferantNr, Notiz, Summe, Bezahlt, Ausgedrukt, anElba, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, Woher, SummeMWST, SummeBrutto, MandantNr) " & _
+                     " SELECT " & nextRechnungNummer & " , " & NewKundNr & ", Date(), MitarbeiterNr, LieferantNr, Notiz, Summe, 0, 0, 0, ZahlungsBedungung, TransportMethode, Zahlungsmethode, KundNr2, '" & FromOrder & fromNummer & "', SummeMWST, SummeBrutto, MandantNr " & _
                      " FROM " & tableNameFrom & _
                      " WHERE Nummer = " & fromNummer
         End If
         
         Call openRecordset(sql, "")
               
+         'Mandant setzen
+         sql = "update " & tableNameTo & " set MandantNr=(select Mandant from ofAdressen where idnr=" & NewKundNr & ") WHERE Nummer = " & nextRechnungNummer
+         Call openRecordset(sql, "")
+        
         'Positionen
           If ToOrder = VORGANG_TYP_LAU And FromOrder <> VORGANG_TYP_LAU Then   ' lieferanten Auftrag
                 sql = "INSERT INTO [" & tableNameToProducts & "] ( RechNr, ArtNR, PreisATS, PreisEuro, Stk, PreisATS_Brutto, ArtikelIdentifikation, EKpreis, LieferantNr, Bezeichnung, Packung, Herkunft, Incoterm,  Spezifikation ) " & _
@@ -655,15 +680,53 @@ End Function
 
 '======================================================================================
 '======================================================================================
-Public Function getMWSTArtikel(ByVal ArtNr As String) As String
-            getMWSTArtikel = vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr)
+Public Function getMWSTGroupArtikel(ByVal ArtNr As String) As String
+            getMWSTGroupArtikel = vars.firstRow("select MWST from grArtikel where ArtNr=" & ArtNr)
 End Function
+
+'======================================================================================
+' MWST je nach Artikel und Kunde (Rechnungsadresse)
+'======================================================================================
+Public Function getMWSTArtikel(ByVal ArtNr As String, ByVal IdNr As String) As String
+        Dim sql As String
+        Dim rs As Recordset
+        
+        sql = "select m.MwstGroup, m.Prozent " & _
+              " from ofAdressen a, grland l, grmwst m " & _
+              " Where a.Land = l.IdNr And m.Land = l.iso2 " & _
+              " and m.MWSTGROUP = (select MWST from grArtikel where ArtNR=" & ArtNr & ") " & _
+              " and a.idnr = " & IdNr
+         Set rs = openRecordset(sql, dbOpenDynaset)
+         If Not rs.EOF Then
+            getMWSTArtikel = rs("Prozent")
+         Else
+            getMWSTArtikel = getMWSTGroupArtikel(ArtNr)
+         End If
+         rs.Close
+         
+         'pruefe ob der Kunde eine Kundegruppe hat mit definiertem /Fixen MWST Satz
+         
+         Set rs = openRecordset("select MWST from [ofAdressen-KundenGruppen] where gruppe in (select kundengruppe from [ofadressen-settings] where idnr = " & IdNr & ")")
+         If Not rs.EOF Then
+            Dim MWSTDerKGruppe As Variant: MWSTDerKGruppe = rs("MWST")
+            If Not IsNull(MWSTDerKGruppe) Then
+                If IsNumeric(CStr(MWSTDerKGruppe)) Then
+                  getMWSTArtikel = MWSTDerKGruppe
+                End If
+            End If
+         End If
+         rs.Close
+
+         Set rs = Nothing
+End Function
+
+
 
 '======================================================================================
 '======================================================================================
 Public Function calculateBruttoPreis(ByVal VKPreis As Double, ByVal ArtNr As String, ByVal IdNr As String) As Double
     If kunden.needsMWST(IdNr) Then
-        calculateBruttoPreis = VKPreis * (1 + getMWSTArtikel(ArtNr) / 100)
+        calculateBruttoPreis = VKPreis * (1 + getMWSTArtikel(ArtNr, IdNr) / 100)
      Else
         calculateBruttoPreis = VKPreis
      End If
