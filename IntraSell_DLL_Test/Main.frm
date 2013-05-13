@@ -8,37 +8,53 @@ Begin VB.Form FormMain
    LinkTopic       =   "Form1"
    ScaleHeight     =   5985
    ScaleWidth      =   11415
-   Begin VB.CommandButton Preis 
-      Caption         =   "Preis"
+   Begin VB.CommandButton CommandGetMWST 
+      Caption         =   "MWST"
       Height          =   495
-      Left            =   3120
-      TabIndex        =   7
-      Top             =   4080
+      Left            =   7800
+      TabIndex        =   9
+      Top             =   2880
       Width           =   1215
    End
+   Begin VB.Frame Frame3 
+      Caption         =   "Oeffne Word Printing"
+      Height          =   1215
+      Left            =   5400
+      TabIndex        =   6
+      Top             =   1560
+      Width           =   3855
+      Begin VB.CommandButton CommandKunden 
+         Caption         =   "Kunden"
+         Height          =   495
+         Left            =   960
+         TabIndex        =   8
+         Top             =   480
+         Width           =   1215
+      End
+      Begin VB.CommandButton Preis 
+         Caption         =   "Preis"
+         Height          =   495
+         Left            =   2400
+         TabIndex        =   7
+         Top             =   480
+         Width           =   1215
+      End
+   End
    Begin VB.TextBox txtConnString 
-      Height          =   525
+      Height          =   285
       Left            =   600
       MultiLine       =   -1  'True
-      TabIndex        =   6
+      TabIndex        =   5
       Text            =   "Main.frx":0000
       Top             =   240
       Width           =   10695
-   End
-   Begin VB.CommandButton CommandKunden 
-      Caption         =   "Kunden"
-      Height          =   495
-      Left            =   3120
-      TabIndex        =   5
-      Top             =   3480
-      Width           =   1095
    End
    Begin VB.Frame Frame2 
       Caption         =   "Oeffne Word Printing"
       Height          =   1215
       Left            =   600
       TabIndex        =   2
-      Top             =   2040
+      Top             =   2760
       Width           =   3855
       Begin VB.TextBox txtNummer 
          Height          =   285
@@ -62,7 +78,7 @@ Begin VB.Form FormMain
       Height          =   495
       Left            =   3120
       TabIndex        =   0
-      Top             =   1200
+      Top             =   1920
       Width           =   1215
    End
    Begin VB.Frame Frame1 
@@ -70,7 +86,7 @@ Begin VB.Form FormMain
       Height          =   1095
       Left            =   600
       TabIndex        =   1
-      Top             =   840
+      Top             =   1560
       Width           =   3855
    End
 End
@@ -80,17 +96,17 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-
+ 
 Private Sub Command1_Click()
-    Dim vars
-
+    Dim vars As IntraSellVars
     MsgBox vars.varValue("DOMAIN")
 End Sub
 
+ 
+
+
 Private Sub Preis_Click()
-  
     Dim Preis As Double
-    'TEST 2
     Dim preise As IntraSellPreise
     Set preise = New IntraSellPreise
     preise.init (Me.txtConnString.Text)
@@ -98,14 +114,34 @@ Private Sub Preis_Click()
      'Preis = preise.getPreis(0, 10310, 1)
     Preis = preise.getPreis(0, 123, 1)
     
-      MsgBox "Preis=" & CStr(Preis)
-     'Destroy
+    MsgBox "Preis=" & CStr(Preis)
+   'Destroy
     preise.destroy
 End Sub
 
+Private Sub CommandGetMWST_Click()
+Dim Preis As Double
+    Dim mwst As Double
+    Dim preise As IntraSellPreise
+    Set preise = New IntraSellPreise
+    preise.init (Me.txtConnString.Text)
+    'Preis = preise.getPreis(-999, 10258, stk)
+     'Preis = preise.getPreis(0, 10310, 1)
+    Preis = preise.getPreis(295352, 1700, 1)
+    
+    mwst = preise.getMWSTArtikel(1700, 295352)
+    MsgBox "Mwst=" & CStr(mwst)
+    
+    '21
+    mwst = preise.getMWSTArtikel(1, 1)
+    MsgBox "Mwst=" & CStr(mwst)
+    
+   'Destroy
+    preise.destroy
+End Sub
+
+
 Private Sub TEST_Click()
-  
-  
    'Dim databasePath: databasePath = "D:\Business\IntraSoft\IntraSell\IntraSell_Daten_2.08.mdb"
    'functionsDB.ConnStringODBC = "PROVIDER=MSDASQL;dsn=IntraSell_pccenter;uid=;pwd=;"
    'functionsDB.ConnStringODBC = "driver={Microsoft Access Driver (*.mdb)};PASSWORD=;DBQ=" & databasePath & ";"
@@ -143,7 +179,6 @@ Private Sub TEST_Click()
 End Sub
 
  
-
 Private Sub CommandRechnung_Click()
     Dim functionsDB
     'Dim databasePath

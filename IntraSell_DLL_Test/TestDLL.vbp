@@ -1,9 +1,11 @@
 Type=Exe
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#D:\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Reference=*\G{E9A0BB63-8C01-4AC7-A4DA-E5B0A2A5BC28}#1.1#0#..\IntraSell_DLL\IntraSell.dll#IntraSell DLL Datei für Basis Business Funktionalität
+Reference=*\G{5D78E78D-5736-4B0D-B697-16B4311C0D39}#14.0#0#..\Intrasell\IntraSell.dll#IntraSell DLL Datei für Basis Business Funktionalität
 Form=Main.frm
+IconForm="FormMain"
 Startup="FormMain"
 HelpFile=""
+Title="TestDLL"
 ExeName32="TestDLL.exe"
 Command32=""
 Name="TestDLL"
@@ -15,7 +17,7 @@ RevisionVer=0
 AutoIncrementVer=0
 ServerSupportFiles=0
 VersionCompanyName="Vegsys"
-CompilationType=0
+CompilationType=-1
 OptimizationType=0
 FavorPentiumPro(tm)=0
 CodeViewDebugInfo=0
@@ -30,6 +32,7 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+DebugStartupOption=0
 
 [MS Transaction Server]
 AutoRefresh=1
