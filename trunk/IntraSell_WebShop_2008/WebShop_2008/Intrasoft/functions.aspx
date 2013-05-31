@@ -1400,7 +1400,7 @@
     
     
     Public Function isMobileBrowser() As Boolean
-
+        Return False 
         ' GETS THE CURRENT USER CONTEXT
         Dim context As HttpContext = HttpContext.Current
 
