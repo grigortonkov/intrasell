@@ -1,2 +1,3 @@
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R2013_MANDANT.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130515.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130617.zip
