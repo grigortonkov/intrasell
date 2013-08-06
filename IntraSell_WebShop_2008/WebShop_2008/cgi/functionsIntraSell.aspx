@@ -409,6 +409,28 @@
         End If
     End Function
  
+    ''' <summary>
+    ''' GetClientEmail
+    ''' </summary>
+    ''' <param name="CID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function GetClientPassword(ByVal CID As Object) As String
+        Dim sql
+        Dim rsC
+        If Not CID Is Nothing Then
+            sql = "Select Passwort from ofAdressen where IDNR=" & CID
+            rsC = objConnectionExecute(sql)
+            If rsC.EOF = True Then
+                GetClientPassword = ""
+            Else
+                GetClientPassword = rsC("Passwort").Value
+            End If
+        Else
+            GetClientPassword = ""
+        End If
+
+    End Function
     
     ''' <summary>
     ''' GetShopEMail

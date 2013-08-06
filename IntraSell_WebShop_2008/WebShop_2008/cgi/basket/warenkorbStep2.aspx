@@ -22,7 +22,12 @@
         Else
             Response.Write(getTranslation("Ihre Angaben sind nicht korrekt!"))
         End If
-
+    Else
+        If getLOGIN() > 0 Then
+            Response.Write("Sie sind bereits angemeldet.<br/>")
+            Session("EmailOld") = getClientEmail(getLOGIN())
+            Session("PasswordOld") = getClientPassword(getLOGIN())
+        End If
     End If
     'END CHECK 
 
