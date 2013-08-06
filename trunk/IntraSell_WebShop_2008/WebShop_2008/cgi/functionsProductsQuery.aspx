@@ -937,5 +937,35 @@
         Response.Write("</table>")
     End Function
 
+    'Lists all Products and the prices for them 
+    Function productSitemap()
+       
+        Dim Sql As String = "select * from grArtikel where produktAktiv <> 0 order by EAN, Bezeichnung"
+        Dim MWSt As String
+        Dim VKPreis As String
+ 
+        Dim rsArtikel = objConnectionExecute(Sql)
+       
+        While Not rsArtikel.EOF
+             Dim line As String = ""
+            'Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
+            Response.Flush()
+            Response.Write(" <url>")
+            Response.Write(vbNewLine)
+            line = "  <loc>http://"& varvalue("DOMAIN")&"/default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "</loc>"
+            line = line + vbNewLine
+            line = line + "  <changefreq>daily</changefreq>"
+            Response.Write(line)
+            Response.Write(vbNewLine)
+            Response.Write(" </url>")
+            Response.Write(vbNewLine)
+            Response.Flush()
+            
+            rsArtikel.moveNext()
+        End While
+        rsArtikel.close()
+    End Function
+
+    
 </script>
 
