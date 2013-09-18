@@ -7,7 +7,7 @@
 		The sofwate has allways information about the ArtNr, ArtKatNr (Category) and the user (if logged). 
 		</description>
 	<general_template>
-		<tag>
+		<tag>f
 			<name>[SQL:<![CDATA[select count(*) anz from grArtikel;]]>]</name>
 			<description>Example [SQL:<![CDATA[select count(*) anz from grArtikel;]]>].</description>
 		</tag>
@@ -386,8 +386,19 @@
 		</tag>
 		<tag>
 			<name>[HTMLInfo]</name>
-			<description>Attribute</description>
+			<description>HTMLinfo from table 'grArtikel-HTMLinfo'</description>
 		</tag>
+
+    <tag>
+      <name>[HTMLInfo_Keywords]</name>
+      <description>Keywords from table 'grArtikel-HTMLinfo'</description>
+    </tag>
+
+    <tag>
+      <name>[HTMLInfo_Description]</name>
+      <description>Description from table 'grArtikel-HTMLinfo'</description>
+    </tag>
+    
 		<tag>
 			<name>[HTMLInfoName:InfoAutor]</name>
 			<description>REtusn special HTML info on a certain date!</description>

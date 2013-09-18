@@ -966,6 +966,31 @@
         rsArtikel.close()
     End Function
 
+    'Lists all Products and the prices for them 
+    Function productShortLinks()
+       
+        Dim Sql As String = "select * from grArtikel where produktAktiv <> 0 order by EAN, Bezeichnung"
+        Dim MWSt As String
+        Dim VKPreis As String
+        Dim link As String
+        Dim rsArtikel = objConnectionExecute(Sql)
+       
+        While Not rsArtikel.EOF
+            Dim line As String = ""
+            
+            Response.Flush() 
+            Response.Write(vbNewLine)
+            link = "http://" & varvalue("DOMAIN") & "/short?" & rsArtikel("Bezeichnung").Value
+            line = "<a href=""" & link & """>" & link & "</a><br/>"
+            line = line + vbNewLine
+            Response.Write(line)  
+            Response.Flush()
+            
+            rsArtikel.moveNext()
+        End While
+        rsArtikel.close()
+    End Function
+    
     
 </script>
 
