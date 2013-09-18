@@ -384,6 +384,8 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
+    <Content Include="short\default.aspx" />
+    <Content Include="Sitemap.aspx" />
     <Content Include="skins\skin_arfaian_2009\nivo-slider\arfaian\slideshow_head.htm" />
     <Content Include="skins\skin_arfaian_2009\nivo-slider\arfaian\slideshow_test.htm" />
     <Content Include="skins\skin_arfaian_2009\nivo-slider\arfaian\images\10164.jpg" />

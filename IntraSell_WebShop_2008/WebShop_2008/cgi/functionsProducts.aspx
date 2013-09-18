@@ -19,7 +19,10 @@
     Const DEFAULT_PRODUCT_SEARCH_WHERE As String = "ProduktAktiv<>0 and ProduktAktivOnline<>0 and ArtNr>=0 and preisATS<>0"
 
     Const TAG_EIGENSCHAFT_ As String = "[Eigenschaft" 'usage [Eigenschaft:name]
-    Const TAG_IMAGETAGNAME_  As String= "[makeImgTagName" 'usage [makeImgTag:imageName]
+    Const TAG_IMAGETAGNAME_ As String = "[makeImgTagName" 'usage [makeImgTag:imageName]
+    Const TAG_HTMLINFO As String = "[HTMLInfo]" 'usage [htmlInfo]
+    Const TAG_HTMLINFO_KEYWORDS As String = "[HTMLInfo_Keywords]" 'usage [HTMLInfo_Keywords]
+    Const TAG_HTMLINFO_DESCRIPTION As String = "[HTMLInfo_Description]" 'usage [HTMLInfo_Description]
     Const TAG_HTMLINFONAME_  As String= "[HTMLInfoName" 'usage [htmlInfoName:name]
     Const TAG_VERWANDTE_PRODUKTE_  As String= "[verwandteProdukte" 'usage [verwandteProdukte:bezeichnung]
 
@@ -777,8 +780,12 @@
             productTemplate = Replace(productTemplate, "[compareProductsSelectForm]", compareProductsSelectForm(ArtNr) & "", 1, replacements, 1)
         End If
 
-        productTemplate = Replace(productTemplate, "[HTMLInfo]", getHTMLInfo(ArtNr) & "", 1, replacements, 1)
+        productTemplate = Replace(productTemplate, TAG_HTMLINFO, getHTMLInfo(ArtNr) & "", 1, replacements, 1)
 
+        productTemplate = Replace(productTemplate, TAG_HTMLINFO_KEYWORDS, getHTMLInfo(ArtNr, "Keywords") & "", 1, replacements, 1)
+        
+        productTemplate = Replace(productTemplate, TAG_HTMLINFO_DESCRIPTION, getHTMLInfo(ArtNr, "Description") & "", 1, replacements, 1)
+        
         productTemplate = Replace(productTemplate, "[makeListKeywords]", makeListKeywords(ArtNr) & "", 1, replacements, 1)
 
         productTemplate = Replace(productTemplate, TAG_CREATEPRODUCTSPECIALCHOICE, createProductSpecialChoice(Modifikationen) & "", 1, replacements, 1)
@@ -1007,16 +1014,16 @@
     ''' <param name="ArtNr"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function getHTMLInfo(ByVal ArtNr)
+    Function getHTMLInfo(ByVal ArtNr, Optional field = "HTLMInfo")
         
         Dim html As String
-        Dim htmlInfoSQL As String, hiRS : htmlInfoSQL = "select HTLMInfo from [grArtikel-HTMLInfo] " & _
+        Dim htmlInfoSQL As String, hiRS : htmlInfoSQL = "select " & field & " from [grArtikel-HTMLInfo] " & _
               " where ArtNr=" & ArtNr
         hiRS = objConnectionExecute(htmlInfoSQL)
         While Not hiRS.eof
             'if len(hiRS("HTLMInfo"))>0 then 
             'html = html & "<h4>Weitere Informationen</h4>"
-            html = html & hiRS("HTLMInfo").Value
+            html = html & hiRS(field).Value
             'end if
             hiRS.moveNext()
         End While
