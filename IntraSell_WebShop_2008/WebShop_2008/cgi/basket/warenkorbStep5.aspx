@@ -120,7 +120,10 @@ If payMode & "" = "" Then
 
 
     If Not errorsFound Then
-        Dim notiz = Request("notiz")
+        Dim notiz As String = Request("notiz")
+        If IsNothing(notiz) Then
+            notiz = Session("notiz")
+        End If
     
         Dim gutscheinNummerStep4 = Session("gutscheinNummer")
     

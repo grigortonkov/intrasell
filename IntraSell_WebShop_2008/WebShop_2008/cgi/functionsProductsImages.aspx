@@ -109,9 +109,9 @@
   
         'if on other seerver 
         If LCase(Left(image, 4)) = "http" Then 'absolute path on other server
-            Dim html : html = ""
+            Dim html As String = ""
             Randomize()
-            Dim randomName : randomName = "Img_" & Int((500000 * Rnd()) + 1)
+            Dim randomName As String = "Img_" & Int((500000 * Rnd()) + 1)
             html = "<img  name=""ProductImage"" class=""ProductImage"" align=""center"" name=""" & randomName & """ border=""0"" src=""" & imageRelativeURL & """ alt=""" & bezeichnung & """>"
             'resize Java script handling     
             html = html & Chr(13)

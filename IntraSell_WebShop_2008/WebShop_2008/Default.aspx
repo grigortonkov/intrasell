@@ -6,6 +6,8 @@
   Const DEFAULT_ART_KAT_NR = 9999
   Dim defaultPageTemplate, default_part1, default_part2 as string
   
+  'Response.write ("Request:" + request.ServerVariables("ALL_HTTP"))
+  'Response.End
   
   defaultPageTemplate = findTemplateFromCache(DEFAULT_ART_KAT_NR)
   defaultPageTemplate = parseTemplate(defaultPageTemplate, SESSION("CURRENT_PRODUCT_CATEGORY"))

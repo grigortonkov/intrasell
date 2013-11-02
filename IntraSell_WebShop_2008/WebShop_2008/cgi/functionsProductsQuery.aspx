@@ -947,19 +947,22 @@
         Dim rsArtikel = objConnectionExecute(Sql)
        
         While Not rsArtikel.EOF
-             Dim line As String = ""
-            'Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
-            Response.Flush()
-            Response.Write(" <url>")
-            Response.Write(vbNewLine)
-            line = "  <loc>http://"& varvalue("DOMAIN")&"/default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "</loc>"
-            line = line + vbNewLine
-            line = line + "  <changefreq>daily</changefreq>"
-            Response.Write(line)
-            Response.Write(vbNewLine)
-            Response.Write(" </url>")
-            Response.Write(vbNewLine)
-            Response.Flush()
+            Dim line As String = ""
+            If Not IsDBNull(rsArtikel("Bezeichnung").Value) Then
+                'Response.Write("<tr><td colspan=3> Calculate " & rsArtikel("ArtNr").Value & "</td></tr>")
+                Response.Flush()
+                Response.Write(" <url>")
+                Response.Write(vbNewLine)
+                'line = "  <loc>http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "</loc>"
+                line = "  <loc>http://" & varvalue("DOMAIN") & "/" & createProductSEOLink(rsArtikel("Bezeichnung").Value) & "</loc>"
+                line = line + vbNewLine
+                line = line + "  <changefreq>daily</changefreq>"
+                Response.Write(line)
+                Response.Write(vbNewLine)
+                Response.Write(" </url>")
+                Response.Write(vbNewLine)
+                Response.Flush()
+            End If
             
             rsArtikel.moveNext()
         End While

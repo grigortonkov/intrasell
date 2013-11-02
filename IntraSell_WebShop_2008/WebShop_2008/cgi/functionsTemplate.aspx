@@ -83,6 +83,7 @@
     Const TAG_SID = "[SID]"
     Const TAG_COUNT_ONLINE = "[COUNT_ONLINE]"
     Const TAG_LANGUAGE_SELECTION = "[LANGUAGE_SELECTION]"
+    Const TAG_LANGUAGE_SELECTED = "[LANGUAGE_SELECTED]"
     Const TAG_LAND_SELECTION = "[LAND_SELECTION]"
     Const TAG_CONTENT_LINKS = "[CONTENT_LINKS]"
     Const TAG_WEB_PAGES_LINKS = "[WEB_PAGES_LINKS]"
@@ -412,6 +413,14 @@
             parseTemplate = parseTemplate(Replace(template, TAG_LANGUAGE_SELECTION, html), artKatNr)
             Exit Function
         End If
+        
+        
+        'TAG_LANGUAGE_SELECTED
+        If InStr(template, TAG_LANGUAGE_SELECTED) > 0 Then
+            parseTemplate = parseTemplate(Replace(template, TAG_LANGUAGE_SELECTED, Left(language,2)), artKatNr)
+            Exit Function
+        End If
+        
   
         'TAG_LAND_SELECTION
         If InStr(template, TAG_LAND_SELECTION) > 0 Then 'TAG_LAND_SELECTION
