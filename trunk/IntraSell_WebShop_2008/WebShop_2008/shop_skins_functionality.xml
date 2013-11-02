@@ -174,9 +174,12 @@
 		</tag>
 		<tag>
 			<name>[LANGUAGE_SELECTION]</name>
-			<description>empty</description>
+			<description>allow user to change the language</description>
 		</tag>
-
+    <tag>
+      <name>[LANGUAGE_SELECTED]</name>
+      <description>selected language</description>
+    </tag>
     <tag>
       <name>[LAND_SELECTION]</name>
       <description>empty</description>
@@ -414,11 +417,11 @@
 		</tag>
 		<tag>
 			<name>[createTechnicalInfo]</name>
-			<description>Attribute</description>
+			<description>Technical informations about this product</description>
 		</tag>
 		<tag>
 			<name>[createStaffelPreiseTable]</name>
-			<description>Attribute</description>
+			<description>Table with different prices depending on the quantity</description>
 		</tag>
 		<tag>
 			<name>[makeReviewStars]</name>
@@ -430,15 +433,11 @@
 		</tag>
 		<tag>
 			<name>[makeReviewsPage]</name>
-			<description>Attribute</description>
+			<description>Customer reviews in a table</description>
 		</tag>
 		<tag>
 			<name>[makeWriteReviewForm]</name>
-			<description>Attribute</description>
-		</tag>
-		<tag>
-			<name>[makeWriteReviewForm]</name>
-			<description>Attribute</description>
+			<description>New Form for customer review</description>
 		</tag>
 		<tag>
 			<name>[verwandteProdukte]</name>
@@ -489,7 +488,16 @@
 			<description>Returns the Gewicht Field in Product Table</description>
 			<date_creation>28.10.2004</date_creation>
 		</tag>
+
+    <tag>
+      <name>[PRODUCT_SEO_LINK]</name>
+      <description>SEO Link</description>
+      <date_creation>28.10.2013</date_creation>
+    </tag>
+    
 	</product_template>
+  
+  
 	<product_small_template />
 	<user_template>
 		<when>In pageToShow=MyAccount page.

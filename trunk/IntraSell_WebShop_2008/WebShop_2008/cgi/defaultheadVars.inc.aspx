@@ -96,7 +96,7 @@
     If artNrToShow <> "" Then
         Session(TAG_CURRENT_PRODUCT_CATEGORY) = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
         'PAGETITLE = tablevalue("grArtikel", "ArtNR", artNrToShow, "Bezeichnung")
-        PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Firma] / [Bezeichnung] / [EAN] / kaufen Sie ab [makeBruttoPreis] €")
+        PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Bezeichnung] " & getTranslation("von") &  " "   & varvalue("DOMAIN")  & " " & getTranslation("jetzt online bestellen ab") & " € [makeBruttoPreis]")
         PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
     End If
 

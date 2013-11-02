@@ -1435,5 +1435,25 @@
         
         Return False
     End Function
+    
+    
+    Public Shared Function getPassedVars() As String
+        Const keyCount As Integer = 54 ' 54 seems to be the number of parameter keys passed by default (for this web_app).
+        '                                there are more if there is a form involved (ie. from search page)
+
+        Dim oParams As String = ""
+        Try
+            With HttpContext.Current
+                If .Request.Params.AllKeys.Count > keyCount Then
+                    For i As Integer = 0 To (.Request.Params.AllKeys.Count - (keyCount + 1))
+                        oParams &= String.Format("{0}={1}{2}", .Request.Params.Keys.Item(i), .Request.Params(i), IIf(i < .Request.Params.AllKeys.Count - (keyCount + 1), ";", ""))
+                    Next
+                End If
+            End With
+            Return oParams
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 </script>
 

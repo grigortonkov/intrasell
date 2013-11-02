@@ -88,6 +88,13 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="opensearch\default.aspx.designer.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="opensearch\default.aspx.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.vb" />
     <Compile Include="Properties\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -384,6 +391,8 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
+    <Content Include="opensearch\default.aspx" />
+    <Content Include="search.aspx" />
     <Content Include="short\default.aspx" />
     <Content Include="Sitemap.aspx" />
     <Content Include="skins\skin_arfaian_2009\nivo-slider\arfaian\slideshow_head.htm" />
@@ -432,6 +441,8 @@
     <Content Include="skins\skin_arfaian_2009\pages\3-2.gif" />
     <Content Include="skins\skin_arfaian_2009\pages\9-2.gif" />
     <Content Include="skins\skin_arfaian_2009\pages\banner_auktion.htm" />
+    <Content Include="skins\skin_arfaian_2009\pages\template_productList_head.htm" />
+    <Content Include="skins\skin_arfaian_2009\pages\template_productView_head.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\function1_.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\function1_1.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\function2_.htm" />
@@ -1399,8 +1410,6 @@
     <Content Include="skins\skin_arfaian_2009\pages\template_squash.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_stats.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_string.htm" />
-    <Content Include="skins\skin_arfaian_2009\pages\template_textil.htm" />
-    <Content Include="skins\skin_arfaian_2009\pages\template_tools.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_top3.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_top5.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_trainingszubehoer.gif" />
@@ -2751,7 +2760,6 @@
     <Content Include="style.css" />
     <Content Include="Styles.css" />
     <Content Include="test.html" />
-    <Content Include="UpgradeLog.XML" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Intrasoft\aspedit\images\.svn\props\" />

@@ -1,160 +1,184 @@
 
-<div align="center">
-	<table border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber75" height="84">
-		<tr>
-			<td width="5%" valign="top" height="27">&nbsp; </td>
-			<td width="95%" valign="top" colspan="2" height="27"><b><br>
-			[Bezeichnung]</b> </td>
-		</tr>
-		<tr>
-			<td width="5%" valign="top" height="13"></td>
-			<td width="28%" valign="top" height="13"></td>
-			<td width="67%" valign="top" height="13"></td>
-		</tr>
-		<tr>
-			<td width="5%" valign="top" rowspan="2" height="1"></td>
-			<td width="28%" valign="top" rowspan="2" height="1">
-			<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#9C9C9C" width="220" id="AutoNumber81">
-				<tr>
-					<td width="100%">
-					<div align="center">
-						<table border="0" cellpadding="0" cellspacing="3" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber82" height="58">
-							<tr>
-								<td height="13" class="style1"><font size="1">
-								<b>STATUS</b></font> </td>
-								<td width="49%" height="13">
-								<p align="right">[Bezeichnung1] 
-[LagerInfoIcon]</p>
-								</td>
-							</tr>
-							<!--<tr>
-                                        <td height="13" class="style1">
-                                            <font size="1"><b>ART NR.</b></font>
-                                        </td>
-                                        <td width="49%" height="13">
-                                            <p align="right">
-                                            [ArtNr]
-                                        </td>
-                                    </tr>
-                                    -->
-							<tr>
-								<td height="13" class="style1"><font size="1">
-								<b>[TRANSLATION:KATALOG NUMMER]</b></font> </td>
-								<td width="49%" height="13">
-								<p align="right">[EAN] </p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="100%" bgcolor="#F3F3F3">
-					<div align="center">
-						<form action="default.aspx" method="get" id="formWaren" name="formWaren">
-							<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="97%" id="AutoNumber79" height="26">
-								<tr>
-									<td width="30%" class="style2"><b>[TRANSLATION:Preis]:</b>
-									</td>
-									<td width="70%" class="style2">
-									<p align="right"><font size="2"><b>
-									<font face="Verdana" color="#DB0F21" size="2">
-									€ [makeBruttoPreis]</font></b></font> </p>
-									</td>
-								</tr>
-
-							 
-								<tr>
-									<td width="30%" class="style2">
-                                     <div  id="Listenpreis1" > 
-                                     <b>[TRANSLATION:Listenpreis]:</b>
-                                     </div>
-									</td>
-									<td width="70%" class="style2">
-                                    <div  id="Listenpreis" > 
-									    <p align="right"><font size="2"><b>
-									    <font face="Verdana" color="#DB0F21" size="1">
-									    € [makeBruttoPreisList]</font></b></font> </p>
-                                  </div>
-									</td>
-								</tr>
-                              
-
-								<tr>
-									<td width="100%" height="13" colspan="2">
-									<p align="left"><br>
-									[createProductSpecialChoice] </p>
-									</td>
-								</tr>
-								<tr>
-									<td width="100%" height="13" colspan="2">
-									<div align="center">
-										<input type="hidden" name="pageToShow" value="PutInWarenkorb">
-										<input type="hidden" name="nextpageToShow" value="warenkorbStep1">
-										<input type="hidden" name="ProduktId" value="[ArtNr]">
-										<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber80" height="1">
-											<tr>
-												<td width="11%" height="1">
-												<p align="left">[TRANSLATION:Stück]&nbsp;
-												</p>
-												</td>
-												<td width="14%" height="1">
-												<p align="center">
-												<input type="text" name="QuantityText" size="2">
-												</p>
-												</td>
-												<td width="75%" height="1">
-												<p align="right">
-												<input type="image" src="../images/button/buy.gif" value="Buy" name="buy" border="0" class="extra" alt="in den Warenkorb legen">
-												</p>
-												</td>
-											</tr>
-										</table>
-									</div>
-									</td>
-								</tr>
-							</table>
-						</form>
-					</div>
-					</td>
-				</tr>
-			</table>
- 
-			</td>
-			<td width="300%" valign="top" height="84" align="center">
-			<div style="margin: 15px; text-align: left">
-				[Beschreibung] </div>
-			</td>
-		</tr>
-		<tr>
-			<td width="67%" valign="top" height="63" align="center">
-			<font size="1" face="Verdana">[HTMLInfo]<br/>
-			<br/>
-			<br/>
-			<!--[makeImgTagName:productimages_large/[ArtNr].gif]-->
-			<a href="#" onclick="window.open('productImages_large/[ArtNr].gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
-                <!--<img border="0" src="productImages/thumbnail.aspx?width=200&amp;filename=productImages/[ArtNr].gif" />-->
-                [makeImgTagName:productimages/[ArtNr].gif]</a>
-                
-			<!-- <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=[Picture]','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+<div itemscope itemtype="http://schema.org/Product">
+    <div align="center">
+        <table border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111"
+            width="100%" id="AutoNumber75" height="84">
+            <tr>
+                <td width="5%" valign="top" height="27">
+                    &nbsp;
+                </td>
+                <td width="95%" valign="top" colspan="2" height="27">
+                    <b>
+                        <br>
+                        <span itemprop="name">[Bezeichnung]</span></b>
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" valign="top" height="13">
+                </td>
+                <td width="28%" valign="top" height="13">
+                </td>
+                <td width="67%" valign="top" height="13">
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" valign="top" rowspan="2" height="1">
+                </td>
+                <td width="28%" valign="top" rowspan="2" height="1">
+                    <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse"
+                        bordercolor="#9C9C9C" width="220" id="AutoNumber81">
+                        <tr>
+                            <td width="100%">
+                                <div align="center">
+                                    <table border="0" cellpadding="0" cellspacing="3" style="border-collapse: collapse"
+                                        bordercolor="#111111" width="100%" id="AutoNumber82" height="58">
+                                        <tr>
+                                            <td height="13" class="style1">
+                                                <font size="1"><b>STATUS</b></font>
+                                            </td>
+                                            <td width="49%" height="13">
+                                                <p align="right">
+                                                    [LagerInfoIcon]&nbsp;<span itemprop="itemCondition">[Bezeichnung1]</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="13" class="style1">
+                                                <font size="1"><b>ART NR.</b></font>
+                                            </td>
+                                            <td width="49%" height="13">
+                                                <p align="right">
+                                                    <span itemprop="gtin8">[ArtNr]</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="13" class="style1">
+                                                <font size="1"><b>[TRANSLATION:KATALOG NR.]</b></font>
+                                            </td>
+                                            <td width="49%" height="13">
+                                                <p align="right">
+                                                    <span itemprop="mpn">[EAN]</span></p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" bgcolor="#F3F3F3">
+                                <div align="center">
+                                    <form action="default.aspx" method="get" id="formWaren" name="formWaren">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"
+                                        bordercolor="#111111" width="97%" id="AutoNumber79" height="26">
+                                        <tr>
+                                            <td width="30%" class="style2">
+                                                <b>[TRANSLATION:Preis]:</b>
+                                            </td>
+                                            <td width="70%" class="style2">
+                                                <p align="right">
+                                                    <font size="2"><b><font face="Verdana" color="#DB0F21" size="2"><span itemprop="offers">
+                                                        <span itemprop="price">€ [makeBruttoPreis]</span></span></font></b></font>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30%" class="style2">
+                                                <div id="Listenpreis1">
+                                                    <b>[TRANSLATION:Listenpreis]:</b>
+                                                </div>
+                                            </td>
+                                            <td width="70%" class="style2">
+                                                <div id="Listenpreis">
+                                                    <p align="right">
+                                                        <font size="2"><b><font face="Verdana" color="#DB0F21" size="1">€ [makeBruttoPreisList]</font></b></font>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" height="13" colspan="2">
+                                                <p align="left">
+                                                    <br>
+                                                    [createProductSpecialChoice]
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" height="13" colspan="2">
+                                                <div align="center">
+                                                    <input type="hidden" name="pageToShow" value="PutInWarenkorb">
+                                                    <input type="hidden" name="nextpageToShow" value="warenkorbStep1">
+                                                    <input type="hidden" name="ProduktId" value="[ArtNr]">
+                                                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"
+                                                        bordercolor="#111111" width="100%" id="AutoNumber80" height="1">
+                                                        <tr>
+                                                            <td width="11%" height="1">
+                                                                <p align="left">
+                                                                    [TRANSLATION:Stück]&nbsp;
+                                                                </p>
+                                                            </td>
+                                                            <td width="14%" height="1">
+                                                                <p align="center">
+                                                                    <input type="text" name="QuantityText" size="2">
+                                                                </p>
+                                                            </td>
+                                                            <td width="75%" height="1">
+                                                                <p align="right">
+                                                                    <input type="image" src="../images/button/buy.gif" value="Buy" name="buy" border="0"
+                                                                        class="extra" alt="in den Warenkorb legen">
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="300%" valign="top" height="84" align="center">
+                    <div style="margin: 15px; text-align: left">
+                        <span itemprop="description">[Beschreibung]</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="67%" valign="top" height="63" align="center">
+                    <font size="1" face="Verdana"><span itemprop="description">[HTMLInfo]</span><br />
+                        <br />
+                        <br />
+                        <!--[makeImgTagName:productimages_large/[ArtNr].gif]-->
+                        <a href="#" onclick="window.open('productImages_large/[ArtNr].gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+                            <!--<img border="0" src="productImages/thumbnail.aspx?width=200&amp;filename=productImages/[ArtNr].gif" />-->
+                            <span itemprop="image">[makeImgTagName:productimages/[ArtNr].gif]</span></a>
+                        <!-- <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=[Picture]','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
                  <img border="0" src="productImages/thumbnail.aspx?width=200&amp;filename=[Picture]" />
                 </a>
-             -->&nbsp;&nbsp; </font>
-			<p><font face="Verdana" size="2">
-			<a href="http://www.arfaian.com/productimages_large/[ArtNr].gif" target="_blank">Detailansicht</a></font></td>
-		</tr>
-		<tr>
-			<td width="5%" valign="top" height="13"></td>
-			<td width="95%" valign="top" height="13" colspan="2"></td>
-		</tr>
-		<tr>
-			<td width="5%" valign="top" height="13"></td>
-			<td width="95%" valign="top" height="13" colspan="2">
-			<table border="0" width="80%" id="table8" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>
-					<table border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111" width="300" id="table11">
-						<!-- <tr>
+             -->
+                        &nbsp;&nbsp; </font>
+                    <p>
+                        <font size="2"><a href="productimages_large/[ArtNr].gif" target="_blank">Detailansicht</a></font>
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" valign="top" height="13">
+                </td>
+                <td width="95%" valign="top" height="13" colspan="2">
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" valign="top" height="13">
+                </td>
+                <td width="95%" valign="top" height="13" colspan="2">
+                    <table border="0" width="80%" id="table8" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                                <table border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111"
+                                    width="300" id="table11">
+                                    <!-- <tr>
                                     <td align="center">
                                         <img border="0" src="../images/icons/bookmark_add.png" vspace="2">
                                     </td>
@@ -195,68 +219,101 @@
                                     </td>
                                 </tr>
                                 -->
-						<tr>
-							<td width="14%" align="center" height="13">
-							<img border="0" src="../images/icons/printer.png" vspace="2">
-							</td>
-							<td width="63%" height="13">
-							<a href="defaultPrintEdition.aspx?ArtNr=[ArtNr]&pagePart=_print" target="_blank">
-							[TRANSLATION:Seite ausdrucken]</a> </td>
-						</tr>
-                        <tr><td colspan="2">[EXTRA_ADD_THIS]</td></tr>
-					</table>
-					</td>
-					<td>
-					<div align="center">
-						<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#9C9C9C" width="200" id="table15">
-							<tr>
-								<td width="100%">
-								<table border="0" cellpadding="3" cellspacing="3" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="table16">
-									<tr>
-										<td width="100%">[compareProductsSelectForm]
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-						</table>
-					</div>
-					</td>
-				</tr>
-			</table>
-			</td>
-		</tr>
-		<tr>
-			<td width="5%" valign="top" height="13"></td>
-			<td width="95%" valign="top" height="13" colspan="2">
-			<!--
+                                    <tr>
+                                        <td width="14%" align="center" height="13">
+                                            <img border="0" src="../images/icons/printer.png" vspace="2">
+                                        </td>
+                                        <td width="63%" height="13">
+                                            <a href="defaultPrintEdition.aspx?ArtNr=[ArtNr]&pagePart=_print" target="_blank">[TRANSLATION:Seite ausdrucken]</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            [EXTRA_ADD_THIS]
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <div align="center">
+                                    <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse"
+                                        bordercolor="#9C9C9C" width="200" id="table15">
+                                        <tr>
+                                            <td width="100%">
+                                                <table border="0" cellpadding="3" cellspacing="3" style="border-collapse: collapse"
+                                                    bordercolor="#111111" width="100%" id="table16">
+                                                    <tr>
+                                                        <td width="100%">
+                                                            [compareProductsSelectForm]
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td width="5%" valign="top" height="13">
+                </td>
+                <td width="95%" valign="top" height="13" colspan="2">
+                    <!--
 			<p align="center">[makeImgTagName:productimages/[ArtNr].gif]
 			-->
-			<p align="center">
-			<a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_1.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
-			<img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_1.gif" /></a>&nbsp; 
-			<a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_2.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
-			<img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_2.gif" /></a>&nbsp;
-			<br>
-			<a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_3.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
-			<img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_3.gif" /></a>&nbsp;
-			<a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_4.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
-			<img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_4.gif" /></a>
-			</p>
-			</td>
-		</tr>
-	</table>
+                    <p align="center">
+                        <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_1.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+                            <img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_1.gif" /></a>&nbsp;
+                        <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_2.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+                            <img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_2.gif" /></a>&nbsp;
+                        <br>
+                        <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_3.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+                            <img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_3.gif" /></a>&nbsp;
+                        <a href="#" onclick="window.open('productImages/thumbnail.aspx?width=600&amp;filename=productImages/[ArtNr]_4.gif','Invoice','top=100,left=100,height=640,width=640,status=yes,toolbar=yes,menubar=no,location=no');">
+                            <img border="0" src="productImages/thumbnail.aspx?width=200&filename=productImages/[ArtNr]_4.gif" /></a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" language="javascript">
+
+        if ('[IDNR]' != '') {
+            document.getElementById('Listenpreis').style.display = "block";
+            document.getElementById('Listenpreis1').style.display = "block";
+        } else {
+            document.getElementById('Listenpreis').style.display = "none";
+            document.getElementById('Listenpreis1').style.display = "none";
+        }
+    </script>
+
+    <div>
+        <hr />
+        <h2>
+            [TRANSLATION:VERWANDTE PRODUKTE]</h2>
+        [verwandteProdukte]
+    </div>
+
+<div>
+    <hr />
+    <h2>
+        [TRANSLATION:Produktbewertungen]</h2>
+   Durchschnittliche Kundenbwertung für [Bezeichnung] ist [makeReviewStars].
+    <h3>
+        [TRANSLATION:Kundenbewertungen]</h3>
+    [makeReviewsPage]
+    <h3>
+        [TRANSLATION:Neue Bewertung abgeben]
+    </h3>
+    [makeWriteReviewForm]
+</div>
+<div>
+SEO Link: <a href="[PRODUCT_SEO_LINK]">[PRODUCT_SEO_LINK]</a>
+Product ID: <span itemprop="productID">[ArtNr]</span>
+
 </div>
 
-<script type="text/javascript" language="javascript">
-        
-    if ('[IDNR]' != '') {
-        document.getElementById('Listenpreis').style.display = "block";
-        document.getElementById('Listenpreis1').style.display = "block";
-    } else {
-        document.getElementById('Listenpreis').style.display = "none";
-        document.getElementById('Listenpreis1').style.display = "none";
-    }
-</script>
-
-
+</div>

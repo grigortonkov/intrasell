@@ -41,7 +41,9 @@
     Const TAG_MAKENETTOPREIS As String = "[makeNettoPreis]"
     Const TAG_MAKEMWSTPREIS As String = "[makeMwstPreis]"
     Const TAG_MAKEBRUTTOPREIS_LIST As String = "[makeBruttoPreisList]"
-
+    Const TAG_PRODUCT_SEO_LINK As String = "[PRODUCT_SEO_LINK]"
+    
+    
     Dim PRODUCT_IMAGE_BIG_MAX_SIZE ': PRODUCT_IMAGE_BIG_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_BIG_MAX_SIZE", 400)
     Dim PRODUCT_IMAGE_MIDDLE_MAX_SIZE ': PRODUCT_IMAGE_MIDDLE_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_MIDDLE_MAX_SIZE", 200)  
     Dim PRODUCT_IMAGE_SMALL_MAX_SIZE ': PRODUCT_IMAGE_SMALL_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_SMALL_MAX_SIZE", 100)  
@@ -855,6 +857,12 @@
         If InStr(productTemplate, "[LieferantAdresse]") > 0 Then
             productTemplate = Replace(productTemplate, "[LieferantAdresse]", printAddressLieferant(LieferantNR), 1, replacements, 1)
         End If
+        
+        If InStr(productTemplate, TAG_PRODUCT_SEO_LINK) > 0 Then
+            productTemplate = Replace(productTemplate, TAG_PRODUCT_SEO_LINK, createProductSEOLink(rsArtikel("Bezeichnung").value), 1, replacements, 1)
+        End If
+        
+        
         rsArtikel.close()
 
         'SQL and SQL_SIMPLE ? 
@@ -865,7 +873,11 @@
         makeProductPageWithTemplate = productTemplate
 
     End Function
-
+    
+    'SEO Friendly link 
+    Function createProductSEOLink(ByVal bezeichnung As String) As String
+        createproductSEOLink = "product/" & Server.UrlEncode(bezeichnung)
+    End Function
 
     'replases embeded SQL in the product template 
     Function replaceEmbededSQL(ByRef template) As String
@@ -1374,7 +1386,6 @@
 
 
 
-
     ''' <summary>
     ''' 
     ''' </summary>
@@ -1408,9 +1419,11 @@
         Else
             While Not rsTop.EOF
                 'call drawWindow("Beitrag von " & rsTop("Autor"), "Datum:" & rsTop("DateCreation") & "<br />" & rsTop("Review"),"",butArrEmpty)    
+                html = html & "<div itempprop='review' itemscope itemtype='http://schema.org/Review'>"
                 html = html & drawWindowForum(getTranslation("Beitrag von ") & rsTop("Autor").Value, _
                                                getTranslation("Datum:") & rsTop("DateCreation").Value, _
-                                               rsTop("Review").Value, "")
+                                               makeStarImage(rsTop("Points").Value) & "<br/>" & rsTop("Review").Value, "")
+                 html = html & "</div>"
                 rsTop.moveNext()
             End While
 
@@ -1470,7 +1483,9 @@
 
 
 
-
+    Function makeStarImage(points As String) As String
+        makeStarImage = "<img alt=""" & points & " Points"" src=""skins/skin" & SkinNumber & "/images/imagesStars/" & points & ".gif"">"
+    End Function
 
     '==========================================================================================
     ' creates image html for the product "bewertung" 
@@ -1491,7 +1506,7 @@
             Dim imageName : imageName = "" & Replace(Math.Round(points, 1), ".", ",")
             makeBewertungStars = "<img alt=""" & points & " Points"" src=""skins/skin" & SkinNumber & "/images/imagesStars/" & imageName & ".gif"">"
         Else
-            makeBewertungStars = ""
+            makeBewertungStars = "<img alt=""" & "5" & " Points"" src=""skins/skin" & SkinNumber & "/images/imagesStars/" & "5" & ".gif"">"
         End If
         rs.close()
         rs = Nothing
