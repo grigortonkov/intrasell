@@ -112,7 +112,7 @@
             Dim html As String = ""
             Randomize()
             Dim randomName As String = "Img_" & Int((500000 * Rnd()) + 1)
-            html = "<img  name=""ProductImage"" class=""ProductImage"" align=""center"" name=""" & randomName & """ border=""0"" src=""" & imageRelativeURL & """ alt=""" & bezeichnung & """>"
+            html = "<img itemprop=""image""  name=""ProductImage"" class=""ProductImage"" align=""center"" name=""" & randomName & """ border=""0"" src=""" & imageRelativeURL & """ alt=""" & bezeichnung & """>"
             'resize Java script handling     
             html = html & Chr(13)
             html = html & "<script language=""JavaScript"" type=""text/javascript"">" & Chr(13)
@@ -140,19 +140,19 @@
                 makeImgTag = "<img align=""center"" border=""0"" src=""" & image & """ alt=""" & bezeichnung & """>"
         
                 If maxSize <= THUMBNAIL_SIZE Then
-                    makeImgTag = "<img name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""thumbs/" & image & """ alt=""" & bezeichnung & """>"
+                    makeImgTag = "<img  itemprop=""image"" name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""thumbs/" & image & """ alt=""" & bezeichnung & """>"
                 End If
         
                 If VARVALUE_DEFAULT("BenutzeImageResize", "TRUE") = "TRUE" Then
                     'Response.Write "Image Resize!" & VARVALUE("BenutzeImageResize"): Response.End 
                     'using the component if registered 
-                    makeImgTag = "<img name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " & makeImageSizeAttributes(imageRelativeURL, maxSize, maxSize) & ">"
+                    makeImgTag = "<img  itemprop=""image"" name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " & makeImageSizeAttributes(imageRelativeURL, maxSize, maxSize) & ">"
                 End If
         
                 If VARVALUE_DEFAULT("SHOP_GENERATE_THUMBNAILS", "TRUE") = "TRUE" Then
                     'Response.Write "Image Resize!" & VARVALUE("BenutzeImageResize"): Response.End 
                     'using the .NET Function productImages/thumbnail.aspx
-                    makeImgTag = "<img name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""productImages/thumbnail.aspx?width=" & maxSize & "&maxWidth=" & maxSize & "&filename=" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " & makeImageSizeAttributes(imageRelativeURL, maxSize, maxSize) & ">"
+                    makeImgTag = "<img  itemprop=""image"" name=""ProductImage"" class=""ProductImage"" align=""center"" border=""0"" src=""productImages/thumbnail.aspx?width=" & maxSize & "&maxWidth=" & maxSize & "&filename=" & image & """ alt=""" & bezeichnung & " on " & imageRelativeURL & """ " & makeImageSizeAttributes(imageRelativeURL, maxSize, maxSize) & ">"
                 End If
         
         
