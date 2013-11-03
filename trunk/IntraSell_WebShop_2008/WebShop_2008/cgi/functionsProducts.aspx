@@ -859,7 +859,7 @@
         End If
         
         If InStr(productTemplate, TAG_PRODUCT_SEO_LINK) > 0 Then
-            productTemplate = Replace(productTemplate, TAG_PRODUCT_SEO_LINK, createProductSEOLink(rsArtikel("Bezeichnung").value), 1, replacements, 1)
+            productTemplate = Replace(productTemplate, TAG_PRODUCT_SEO_LINK, createProductSEOLink(rsArtikel("Bezeichnung").value, rsArtikel("ArtKatNr").value), 1, replacements, 1)
         End If
         
         
@@ -875,8 +875,23 @@
     End Function
     
     'SEO Friendly link 
-    Function createProductSEOLink(ByVal bezeichnung As String) As String
-        createproductSEOLink = "product/" & Server.UrlEncode(bezeichnung)
+    Function createProductSEOLink(ByVal Bezeichnung As String, ByVal ArtKatNr As VariantType) As String
+        Dim link As String
+        link = showCategoryPathSEOOptimized(ArtKatNr)
+        link = removeUmlaute(link)
+        link = Replace(link, "-", "XSEPARATORX")
+        link = Replace(link, " ", "")
+        'link = Server.UrlEncode(link)
+        link = Replace(link, "XSEPARATORX", "/")
+        link = Replace(link, "Home/", "")
+        
+        Bezeichnung = Replace(Bezeichnung, """", "x1x")
+        Bezeichnung = Replace(Bezeichnung, "'", "x2x")
+        Bezeichnung = Replace(Bezeichnung, "*", "x3x")
+        Bezeichnung = Server.UrlEncode(Bezeichnung)
+        link = Session("BASENAME") & link & "/product/" & Bezeichnung
+        
+        createProductSEOLink = link
     End Function
 
     'replases embeded SQL in the product template 

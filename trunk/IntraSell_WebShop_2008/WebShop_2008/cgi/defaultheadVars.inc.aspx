@@ -55,7 +55,7 @@
     'LANGUAGE 
     language = cleanUserInput(Request("language"))
     If language & "" = "" Then language = Session("LANGUAGE")
-    If language & "" = "" Then language = varvalue_default("DEFAULT_SHOP_LANGUAGE","DEU")
+    If language & "" = "" Then language = varvalue_default("DEFAULT_SHOP_LANGUAGE", "DEU")
 
     'für Language change
     If Session("LANGUAGE") <> language Then
@@ -94,13 +94,21 @@
     
     'set ARTKATNR from grArtikel of not yet set
     If artNrToShow <> "" Then
-        Session(TAG_CURRENT_PRODUCT_CATEGORY) = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
-        'PAGETITLE = tablevalue("grArtikel", "ArtNR", artNrToShow, "Bezeichnung")
-        PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Bezeichnung] " & getTranslation("von") &  " "   & varvalue("DOMAIN")  & " " & getTranslation("jetzt online bestellen ab") & " € [makeBruttoPreis]")
-        PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
+        'Check if product exists 
+        Dim existproductAndCat = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
+        If Not IsNumeric(existproductAndCat) Then
+            PAGETITLE = Replace(getTranslation("Produkt mit der ArtNr #1 is nicht vorhanden!"), "#1", artNrToShow)
+        Else
+            Session(TAG_CURRENT_PRODUCT_CATEGORY) = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
+            'PAGETITLE = tablevalue("grArtikel", "ArtNR", artNrToShow, "Bezeichnung")
+            PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Bezeichnung] " & getTranslation("von") & " " & varvalue("DOMAIN") & " " & getTranslation("jetzt online bestellen ab") & " € [makeBruttoPreis]")
+            PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
+        End If
+        
+      
     End If
 
-    If  Not Session(TAG_CURRENT_PRODUCT_CATEGORY) is nothing And IsNumeric(Session(TAG_CURRENT_PRODUCT_CATEGORY)) Then
+    If Not Session(TAG_CURRENT_PRODUCT_CATEGORY) Is Nothing And IsNumeric(Session(TAG_CURRENT_PRODUCT_CATEGORY)) Then
         If CLng(Session(TAG_CURRENT_PRODUCT_CATEGORY)) > 0 Then
             PAGETITLE = PAGETITLE & " > " & tablevalue("[grArtikel-Kategorien]", "ArtKatNR", Session(TAG_CURRENT_PRODUCT_CATEGORY), "Name")
         End If
@@ -117,7 +125,6 @@
     SHOP_TITLE = PAGETITLE & VARVALUE("DOMAIN") & " WebShop in " & Session("LAND")
     SHOP_TITLE = PAGETITLE & Request.ServerVariables("HTTP_HOST") & " : " & Session("LAND")
 %>
-
 <script language="VB" runat="server">
     'Global verfügbare Variablen
     Public SID As String

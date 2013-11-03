@@ -954,7 +954,7 @@
                 Response.Write(" <url>")
                 Response.Write(vbNewLine)
                 'line = "  <loc>http://" & varvalue("DOMAIN") & "/default.aspx?ArtNr=" & rsArtikel("ArtNr").Value & "</loc>"
-                line = "  <loc>http://" & varvalue("DOMAIN") & "/" & createProductSEOLink(rsArtikel("Bezeichnung").Value) & "</loc>"
+                line = "  <loc>http://" & varvalue("DOMAIN") & "/" & createProductSEOLink(rsArtikel("Bezeichnung").Value, rsArtikel("ArtKatNr").Value) & "</loc>"
                 line = line + vbNewLine
                 line = line + "  <changefreq>daily</changefreq>"
                 Response.Write(line)
