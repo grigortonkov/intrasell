@@ -274,6 +274,26 @@
   
     End Function
 
+    
+    '******************************************************************************
+    ' shows the category path like 
+    ' main>products>hardware>cards
+    '******************************************************************************
+    Function showCategoryPathSEOOptimized(ByVal ArtKatNr As VariantType) As String
+        Dim sql As String
+        Dim rs
+        sql = "SELECT ArtKatNr, Name, ArtKatNrParent FROM [grArtikel-Kategorien] WHERE ArtKatNr=" & ArtKatNr
+        rs = ObjConnectionexecute(sql)
+   
+        If rs.eof Then
+            showCategoryPathSEOOptimized = ""
+            Exit Function
+        End If
+   
+        showCategoryPathSEOOptimized = showCategoryPathSEOOptimized(rs("ArtKatNrParent").Value) & " - " & rs("Name").Value
+  
+    End Function
+    
 
     '******************************************************************************
     ' shows the category path like 

@@ -1282,7 +1282,31 @@
         sqlToSimple = html
     End Function
  
+     
+    ''' <summary>
+    ''' url = Replace(url"Ae", "Ä", )
+    ''' </summary>
+    ''' <param name="url"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function removeUmlaute(ByVal URL As String) As String
+        URL = Replace(URL, "Ä", "Ae")
+        URL = Replace(URL, "Ö", "Oe")
+        URL = Replace(URL, "Ü", "Ue")
  
+        URL = Replace(URL, "&", "Und")
+        URL = Replace(URL, "+", "Plus")
+        URL = Replace(URL, "ß", "Sz")
+            
+        URL = Replace(URL, "ä", "ae")
+        URL = Replace(URL, "ö", "oe")
+        URL = Replace(URL, "ü", "ue")
+        URL = Replace(URL, "/", "Oder")
+        URL = Replace(URL, """", "")
+        URL = Replace(URL, "'", "")
+        
+        removeUmlaute = URL
+    End Function
     
     ''' <summary>
     ''' url = Replace(url"Ae", "Ä", )
@@ -1290,27 +1314,27 @@
     ''' <param name="url"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function retainUmlaute(ByVal url) As String
-        url = Replace(url, "Ae", "Ä")
-        url = Replace(url, "Oe", "Ö")
-        url = Replace(url, "Ue", "Ü")
+    Function retainUmlaute(ByVal URL As String) As String
+        URL = Replace(URL, "Ae", "Ä")
+        URL = Replace(URL, "Oe", "Ö")
+        URL = Replace(URL, "Ue", "Ü")
 
-        url = Replace(url, "Auml", "Ä")
-        url = Replace(url, "Ouml", "Ö")
-        url = Replace(url, "Uuml", "Ü")
+        URL = Replace(URL, "Auml", "Ä")
+        URL = Replace(URL, "Ouml", "Ö")
+        URL = Replace(URL, "Uuml", "Ü")
             
         'url = Replace(url, "ae", "ä")
         'url = Replace(url, "oe", "ö")
         'url = Replace(url, "ue", "ü")
-        url = Replace(url, "&auml;", "ä")
-        url = Replace(url, "&ouml;", "ö")
-        url = Replace(url, "&uuml;", "ü")
+        URL = Replace(URL, "&auml;", "ä")
+        URL = Replace(URL, "&ouml;", "ö")
+        URL = Replace(URL, "&uuml;", "ü")
             
-        url = Replace(url, "auml", "ä")
-        url = Replace(url, "ouml", "ö")
-        url = Replace(url, "uuml", "ü")
+        URL = Replace(URL, "auml", "ä")
+        URL = Replace(URL, "ouml", "ö")
+        URL = Replace(URL, "uuml", "ü")
             
-        retainUmlaute = url
+        retainUmlaute = URL
     End Function
 
  
@@ -1321,7 +1345,7 @@
     ''' <param name="length"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function pad(ByVal stringToPad, ByVal length)
+    Function pad(ByVal stringToPad As String, ByVal length As Integer)
   
         Dim i As Integer : i = 0
         If Len(stringToPad) < length Then

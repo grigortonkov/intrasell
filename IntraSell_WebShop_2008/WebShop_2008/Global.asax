@@ -40,9 +40,9 @@
         Session("DB_LANGUAGE") = "DE" 'German for Dates in MSSQL Server
 
         'HARD CODED
-        Session("dbType") = "MySQL" 'allowed: 'ACCESS 'SQL 'MySQL    
+        Session("dbType") = "MySQL"
         Session("SERVER_ID") = 3 'Important, Every WMS Server has its ID / the settings are in the table Servers    
-        Session("DB_SERVER_NAME") = "localhost"
+        Session("DB_SERVER_NAME") = "127.0.0.1"
         Session("DB_NAME") = "IntraSell_Daten_2"
         Session("DB_USER_ADMIN") = "webshop"
         Session("DB_PASS_ADMIN") = "efox2004"
@@ -82,5 +82,25 @@
         Application("useronline") = Application("useronline") - 1
         Application.UnLock()
     End Sub
+    
+    Sub Application_Error(sender As Object, e As EventArgs)
+ 
+        'At this point we have information about the error
+  dim ctx As HttpContext  = HttpContext.Current
+
+        Dim ex As Exception = ctx.Server.GetLastError()
+
+        Dim errorInfo As String =
+          "<br>Offending URL: " + ctx.Request.Url.ToString() +
+          "<br>Source: " + ex.Source +
+          "<br>Message: " + ex.Message +
+          "<br>Stack trace: " + ex.StackTrace
+
+        ctx.Response.Write(errorInfo)
+
+  'To let the page finish running we clear the error 
+        'ctx.Server.ClearError()
+    End Sub
+    
 </script>
 
