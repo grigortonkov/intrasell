@@ -83,24 +83,24 @@
         Application.UnLock()
     End Sub
     
-    Sub Application_Error(sender As Object, e As EventArgs)
+    'Sub Application_Error(sender As Object, e As EventArgs)
  
-        'At this point we have information about the error
-        Dim ctx As HttpContext = HttpContext.Current
+    '    'At this point we have information about the error
+    '    Dim ctx As HttpContext = HttpContext.Current
 
-        Dim ex As Exception = ctx.Server.GetLastError()
+    '    Dim ex As Exception = ctx.Server.GetLastError()
 
-        Dim errorInfo As String = _
-          "<br>Offending URL: " + ctx.Request.Url.ToString() + _
-          "<br>Source: " + ex.Source + _
-          "<br>Message: " + ex.Message + _
-          "<br>Stack trace: " + ex.StackTrace
+    '    Dim errorInfo As String = _
+    '      "<br>Offending URL: " + ctx.Request.Url.ToString() + _
+    '      "<br>Source: " + ex.Source + _
+    '      "<br>Message: " + ex.Message + _
+    '      "<br>Stack trace: " + ex.StackTrace
 
-        ctx.Response.Write(errorInfo)
+    '    ctx.Response.Write(errorInfo)
 
-        'To let the page finish running we clear the error 
-        'ctx.Server.ClearError()
-    End Sub
+    '    'To let the page finish running we clear the error 
+    '    'ctx.Server.ClearError()
+    'End Sub
     
 </script>
 
