@@ -1457,6 +1457,15 @@
     ''' <remarks></remarks>
     Function makeWriteReviewForm(ByVal ArtNr)
         Dim html : html = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/writeProductReviewForm.htm"))
+        If VARVALUE_DEFAULT("SHOW_PRODUCT_REVIEW_FOR_ANONYMOUS", "false") = "false" Then
+            If getLOGIN() = "" Then
+                html = Replace(html, "[Autor]", getTranslation("Bitte anmelden"))
+                html = Replace(html, "value=""Abschicken""", "value=""" & getTranslation("Bitte anmelden") & """")
+                html = Replace(html, "OnClick=", "DisabledOnClick=")
+                html = Replace(html, "type=""submit""", "Disabled")
+                
+            End If
+        End If
         If getLOGIN() <> "" Then
             html = Replace(html, "[Autor]", TABLEVALUE("ofAdressen", "IDNR", getLOGIN(), "Email"))
         Else
