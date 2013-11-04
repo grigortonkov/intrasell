@@ -478,7 +478,6 @@
     <Content Include="skins\skin_arfaian_2009\pages\template_categorynr_5_head.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_categorynr_6_head.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_categorynr_7_head.htm" />
-    <Content Include="skins\skin_arfaian_2009\pages\template_grip_.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_lifestyle.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_racket_.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_string_.htm" />
