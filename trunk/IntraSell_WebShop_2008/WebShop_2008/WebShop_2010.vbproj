@@ -10,8 +10,8 @@
     <ProjectGuid>{E132150E-7032-4072-83D8-5A2836F7366C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>WebApplicationTest</RootNamespace>
-    <AssemblyName>WebApplicationTest</AssemblyName>
+    <RootNamespace>WebShop</RootNamespace>
+    <AssemblyName>WebShop</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <UseIISExpress>false</UseIISExpress>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>WebApplicationTest.xml</DocumentationFile>
+    <DocumentationFile>WebShop.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>WebApplicationTest.xml</DocumentationFile>
+    <DocumentationFile>WebShop.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -47,6 +47,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lucene.Net">
+      <HintPath>components\lucene\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -143,6 +146,7 @@
     <None Include="cgi\account\userBookmarks.aspx.disabled" />
     <None Include="cgi\batch\runJobNewObjects.bat" />
     <None Include="cgi\extras\Banner.class" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Intrasoft\aspedit\images\.svn\all-wcprops" />
     <None Include="Intrasoft\aspedit\images\.svn\entries" />
     <None Include="Intrasoft\aspedit\images\.svn\prop-base\aspedit.gif.svn-base" />
@@ -391,6 +395,9 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
+    <Content Include="lucene\Search.aspx" />
+    <Content Include="lucene\Lucene.aspx" />
+    <Content Include="lucene\Default.aspx" />
     <Content Include="opensearch\default.aspx" />
     <Content Include="search.aspx" />
     <Content Include="short\default.aspx" />
