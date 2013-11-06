@@ -1,20 +1,16 @@
 <!--#include file="../cgi/defaulthead.inc.aspx"-->
 <!--#include file="Lucene.aspx"-->
+<html>
 <head>
     <script type="text/javascript" src="jquery-1.10.2.js"></script>
     <script language="javascript">
         function ShowResult() {
             var searchValue = document.getElementById("Search").value;
-            //alert(searchValue);
-            //document.getElementById('Result').innerHTML = 'url("Default.aspx?Search=" + search)';
-            //$('#Result').load('Search.aspx?Search=' + searchValue);
-
-
             $.get('Search.aspx?Search=' + searchValue)
-             .success(function (data) { 
+             .success(function (data) {
                  document.getElementById('#Result').innerHTML = data;
              });
-           
+
         }
     </script>
 </head>
@@ -23,8 +19,12 @@
     <input id="Search" name="Search" onkeyup="javascript:ShowResult();" />
     <input type="submit" />
     </form>
+    <div id="#FloatingResult" 
+        style="border-width: 1px; border-color: #00FF00; position: relative; overflow: auto; top: auto; left: auto; height: auto; width: auto;">
+    xxx
     <div id="#Result">
-        result
+        <!--result-->
+    </div>
     </div>
     <%
 if Request.querystring("Search") <> "" then 
@@ -34,4 +34,5 @@ if Request.querystring("Search") <> "" then
 end if 
     %>
 </body>
+</html>
 <!--#include file="../intrasoft/connClose.aspx"-->

@@ -5,23 +5,28 @@
     
     'Creates the lucene.net index with person details
     Sub CreateIndex()
-      
         
-        Dim dir As Lucene.Net.Store.Directory = Lucene.Net.Store.FSDirectory.GetDirectory(IndexFileLocation, True)
+         Dim INDEX_CREATED_ON = varvalue_default("INDEX_CREATED_ON", DateTime.Today.AddDays(-2))
+         If INDEX_CREATED_ON > DateTime.Today.AddDays(-1) Then
+             Return 'else create index 
+         End If
+         SETVARVALUE("INDEX_CREATED_ON", DateTime.Today)
+         
+         Dim dir As Lucene.Net.Store.Directory = Lucene.Net.Store.FSDirectory.GetDirectory(IndexFileLocation, True)
         
-        Dim indexWriter As Lucene.Net.Index.IndexWriter = New Lucene.Net.Index.IndexWriter(dir, New Lucene.Net.Analysis.Standard.StandardAnalyzer(), True)
-        indexWriter.SetRAMBufferSizeMB(10.0)
-        indexWriter.SetUseCompoundFile(False)
-        indexWriter.SetMaxMergeDocs(10000)
-        indexWriter.SetMergeFactor(100)
+         Dim indexWriter As Lucene.Net.Index.IndexWriter = New Lucene.Net.Index.IndexWriter(dir, New Lucene.Net.Analysis.Standard.StandardAnalyzer(), True)
+         indexWriter.SetRAMBufferSizeMB(10.0)
+         indexWriter.SetUseCompoundFile(False)
+         indexWriter.SetMaxMergeDocs(10000)
+         indexWriter.SetMergeFactor(100)
 
-        Dim sql As String = "select * from grArtikel where Bezeichnung is not null and ProduktAktiv<>0"
-        Dim rs = objConnectionExecute(sql)
-        While Not rs.EOF
+         Dim sql As String = "select * from grArtikel where Bezeichnung is not null and ProduktAktiv<>0"
+         Dim rs = objConnectionExecute(sql)
+         While Not rs.EOF
        
         
-            'Create the Document object
-            Dim doc As Lucene.Net.Documents.Document = New Lucene.Net.Documents.Document()
+             'Create the Document object
+             Dim doc As Lucene.Net.Documents.Document = New Lucene.Net.Documents.Document()
              
              'Populate the document with the column name and value from our query
              
@@ -29,22 +34,22 @@
                                                    Lucene.Net.Documents.Field.Store.YES, _
                                                    Lucene.Net.Documents.Field.Index.TOKENIZED))
              
-            doc.Add(New Lucene.Net.Documents.Field("Bezeichnung", "" & rs("Bezeichnung").Value, _
-                                                   Lucene.Net.Documents.Field.Store.YES, _
-                                                   Lucene.Net.Documents.Field.Index.TOKENIZED))
+             doc.Add(New Lucene.Net.Documents.Field("Bezeichnung", "" & rs("Bezeichnung").Value, _
+                                                    Lucene.Net.Documents.Field.Store.YES, _
+                                                    Lucene.Net.Documents.Field.Index.TOKENIZED))
             
-            doc.Add(New Lucene.Net.Documents.Field("Beschreibung", "" & rs("Beschreibung").Value, _
-                                                   Lucene.Net.Documents.Field.Store.YES, _
-                                                   Lucene.Net.Documents.Field.Index.TOKENIZED))
+             doc.Add(New Lucene.Net.Documents.Field("Beschreibung", "" & rs("Beschreibung").Value, _
+                                                    Lucene.Net.Documents.Field.Store.YES, _
+                                                    Lucene.Net.Documents.Field.Index.TOKENIZED))
             
-            ' Write the Document to the catalog
-            indexWriter.AddDocument(doc)
-            rs.MoveNext()
-        End While
+             ' Write the Document to the catalog
+             indexWriter.AddDocument(doc)
+             rs.MoveNext()
+         End While
  
-        ' Close the writer
-        indexWriter.Close()
-    End Sub
+         ' Close the writer
+         indexWriter.Close()
+     End Sub
     
     
     'Search in the index
@@ -76,7 +81,7 @@
             
              SearchResults.Add(result)
             
-             Response.Write("<br/>Found " & result.ToUrl)
+             Response.Write("<br/>" & result.ToUrl)
              i = i + 1
          End While
 
@@ -87,9 +92,6 @@
     'Making the query
     Public Function QueryMaker(ByVal searchString As String, ByVal searchfields As String()) As Lucene.Net.Search.BooleanQuery
         
-   
-        
- 
         Dim parser = New Lucene.Net.QueryParsers.MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_29, _
                                                searchfields, _
                                                New Lucene.Net.Analysis.Standard.StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_29))
@@ -122,6 +124,7 @@
          End Function
          
          Function ToUrl() As String
+             '<img src='http://localhost:88/productImages/SymbolPicture.jpg' width=64 height=64 />
              Return "<a href='/?ArtNr=" & Artnr & "'>" & Bezeichnung & "</a>"
          End Function
          

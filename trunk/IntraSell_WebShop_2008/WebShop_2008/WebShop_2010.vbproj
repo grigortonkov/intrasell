@@ -395,6 +395,7 @@
     <Content Include="cgi\services\createOrderService.aspx" />
     <Content Include="cgi\services\realTimeLagerFromMerchant.aspx" />
     <Content Include="cgi\style.css" />
+    <Content Include="lucene\jquery-1.10.2.js" />
     <Content Include="lucene\Search.aspx" />
     <Content Include="lucene\Lucene.aspx" />
     <Content Include="lucene\Default.aspx" />

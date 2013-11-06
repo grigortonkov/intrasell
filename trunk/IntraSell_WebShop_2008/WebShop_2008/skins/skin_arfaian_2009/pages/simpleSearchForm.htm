@@ -1,3 +1,16 @@
+
+     <script type="text/javascript" src="/lucene/jquery-1.10.2.js"></script>
+    <script language="javascript">
+        function ShowResult() {
+            var searchValue = document.getElementById("Search").value;
+            $.get('/lucene/Search.aspx?Search=' + searchValue)
+             .success(function (data) {
+                 document.getElementById('#Result').innerHTML = data;
+             });
+
+        }
+    </script>
+    
 <div><form method="post" action="default.aspx">
 <input value="ProductQuery" name="PageToShow" type="hidden">
 <input value="[CATEGORYNR]" size="5" name="ArtKatNr_ToSearchInto" type="hidden">
@@ -9,7 +22,7 @@
         </td>
         <td width="173">
             <font color="#666666">
-                <input type="text" size="23" name="qu" style="padding: 0"></font>
+                <input type="text" size="23" name="qu" style="padding: 0"  id="Search" onkeyup="javascript:ShowResult();" ></font>
         </td>
         <td width="26">
             <font color="#666666">
@@ -20,4 +33,9 @@
     </tr>
 </table>
 </form>
+ <!-- START Lucene-->  
+    <div id="#Result" /> 
+  <!-- END Lucene-->
 </div>
+
+
