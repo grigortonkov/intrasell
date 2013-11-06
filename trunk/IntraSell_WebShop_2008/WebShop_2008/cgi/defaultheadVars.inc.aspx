@@ -59,7 +59,7 @@
 
     'für Language change
     If Session("LANGUAGE") <> language Then
-        If showDebug() Then Response.Write("Language Wechsel! Language ist nun " & language & ".")
+        If showDebug() Then Response.Write("Language change. New language " & language & ".")
         Session("LANGUAGE") = language
     End If
     'END LANGUAGE 
@@ -102,6 +102,7 @@
             Session(TAG_CURRENT_PRODUCT_CATEGORY) = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
             'PAGETITLE = tablevalue("grArtikel", "ArtNR", artNrToShow, "Bezeichnung")
             PAGETITLE = makeProductPageWithTemplate(artNrToShow, "[Bezeichnung] " & getTranslation("von") & " " & varvalue("DOMAIN") & " " & getTranslation("jetzt online bestellen ab") & " € [makeBruttoPreis]")
+            PAGETITLE = Replace(PAGETITLE, "Pro's Pro", "") 
             PAGEDESCRIPTION = tablevalue("grArtikel", "ArtNR", artNrToShow, "Beschreibung")
         End If
         
