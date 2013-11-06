@@ -25,6 +25,7 @@
     Const TAG_CATEGORY_FILTER As String = "[CATEGORY_FILTER]"
     Const TAG_CATEGORYNAME As String = "[CATEGORYNAME]"
     Const TAG_SUBCATEGORY_IMAGES As String = "[SUBCATEGORY_IMAGES]"
+    Const TAG_CATEGORY_KEYWORDS As String = "[CATEGORY_KEYWORDS]"
     '==============================================================================
     'PRODUCT TAGS 
     '==============================================================================
@@ -231,6 +232,15 @@
             Exit Function
         End If
   
+        'TAG_CATEGORY_KEYWORDS
+        If InStr(template, TAG_CATEGORY_KEYWORDS) > 0 Then
+            html = tablevalue("[grArtikel-Kategorien]", "ArtKatNr", artKatNr, "Keywords")
+            parseTemplate = parseTemplate(Replace(template, TAG_CATEGORY_KEYWORDS, html), artKatNr)
+            Exit Function
+
+        End If
+
+        
         'TAG_CATEGORY_SUBLIST
         If InStr(template, TAG_CATEGORY_SUBLIST) > 0 Then 'TAG_CATEGORY_SUBLIST request
             html = SimpleListCategoriesFromCache(artKatNr, "default.aspx")

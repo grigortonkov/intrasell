@@ -95,7 +95,7 @@
     'set ARTKATNR from grArtikel of not yet set
     If artNrToShow <> "" Then
         'Check if product exists 
-        Dim existproductAndCat = tablevalue("grArtikel", "ArtNR", artNrToShow, "ARTKATNR")
+        Dim existproductAndCat = tablevalue("grArtikel", "ArtNR", artNrToShow, "ArtKatNr")
         If Not IsNumeric(existproductAndCat) Then
             PAGETITLE = Replace(getTranslation("Produkt mit der ArtNr #1 is nicht vorhanden!"), "#1", artNrToShow)
         Else
