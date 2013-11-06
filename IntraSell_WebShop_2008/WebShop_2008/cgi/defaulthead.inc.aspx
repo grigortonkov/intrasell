@@ -45,3 +45,4 @@
 <!--#include file="/intrasellDLL/functionsPrices.aspx"-->
 <!--#include file="/intrasellDLL/functionsOrderInvoicePrint.aspx"-->
 <!--#include file="/intrasellDLL/functionsDictionary.aspx"-->
+<!--#include file="/lucene/lucene.aspx"-->
