@@ -11,3 +11,7 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20100923_mailstose
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20111213.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell_AddIn_GLS_R20111008.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20120305.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20120327.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20120413.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20120521.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20121210.zip
