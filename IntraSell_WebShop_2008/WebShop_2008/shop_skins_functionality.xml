@@ -60,6 +60,10 @@
 			<name>[CATEGORYNR]</name>
 			<description>empty</description>
 		</tag>
+    <tag>
+      <name>[CATEGORY_KEYWORDS]</name>
+      <description>empty</description>
+    </tag>
 		<tag>
 			<name>[SUBCATEGORIESTREE]</name>
 			<description>empty</description>
