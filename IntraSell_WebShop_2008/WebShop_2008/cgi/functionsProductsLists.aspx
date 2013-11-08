@@ -579,8 +579,8 @@
         " AND lp.VKPreis < arch.VKPreis " & _
         " AND (arch.VKPreis-lp.VKPreis)*100/lp.VKPreis<=" & TOP_MARGIN_PERCENT_PRICE_DROPS & _
         " AND (arch.VKPreis-lp.VKPreis)*100/lp.VKPreis>" & MARGIN_PERCENT_PRICE_DROPS & _
-        " AND arch.PReisDatum >= " & SQLNOW(-1 * DAYS_TO_LOOK_BACK) & _
-        " AND arch.PReisDatum <= " & SQLNOW(0) & _
+        " AND arch.PreisDatum >= " & SQLNOW(-1 * DAYS_TO_LOOK_BACK) & _
+        " AND arch.PreisDatum <= " & SQLNOW(0) & _
         " AND a.produktAktiv<>0 and " & _
           makeArtKatNrInPart("ArtKatNr", ArtKAtNR, SUBCATEGORIES_TO_SEARCH_INTO) & _
         " GROUP BY a.ArtNr, a.Bezeichnung, a.MWST "
