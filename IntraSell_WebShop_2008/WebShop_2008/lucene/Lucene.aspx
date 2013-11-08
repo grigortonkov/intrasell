@@ -20,7 +20,7 @@
          indexWriter.SetMaxMergeDocs(10000)
          indexWriter.SetMergeFactor(100)
 
-         Dim sql As String = "select * from grArtikel where Bezeichnung is not null and bezeichnung not like '***%' and ProduktAktiv<> 0 and ProduktAktivOnline <>0 order by Bezeichnung"
+         Dim sql As String = "select * from grArtikel where Bezeichnung is not null and bezeichnung not like '*%' and ProduktAktiv<> 0 and ProduktAktivOnline <>0 order by Bezeichnung"
          Dim rs = objConnectionExecute(sql)
          While Not rs.EOF
        
