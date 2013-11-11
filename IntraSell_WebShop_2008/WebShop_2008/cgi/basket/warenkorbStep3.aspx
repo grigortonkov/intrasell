@@ -281,7 +281,7 @@
                     <tr>
                         <td>
                             <!--Bild Zahlart-->
-                            <img src="/skins/skin_default/images/payment/<%=rsZM("methode").Value%>.jpg" />
+                            <img src="/skins/skin<%=SkinNumber%>/images/payment/<%=rsZM("methode").Value%>.jpg" />
                         </td>
                     </tr>
                 </table>
