@@ -1,5 +1,4 @@
-<!--#include file="../cgi/defaulthead.inc.aspx"-->
-<!--#include file="Lucene.aspx"-->
+<!--#include file="../cgi/defaulthead.inc.aspx"--> 
 <html>
 <head>
     <script type="text/javascript" src="jquery-1.10.2.js"></script>
