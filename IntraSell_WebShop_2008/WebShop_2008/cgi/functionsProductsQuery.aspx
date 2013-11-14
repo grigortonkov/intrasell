@@ -972,7 +972,7 @@
     'Lists all Products and the prices for them 
     Function productShortLinks()
        
-        Dim Sql As String = "select * from grArtikel where produktAktiv <> 0 order by EAN, Bezeichnung"
+        Dim Sql As String = "select * from grArtikel where bezeichnung not like '*%' and ProduktAktiv<> 0 and ProduktAktivOnline <>0 order by Bezeichnung"
         Dim MWSt As String
         Dim VKPreis As String
         Dim link As String
