@@ -5,6 +5,7 @@
 
 
 1. Download and install MySQL Driver 32 bit, event if you have windows 64 Bit. 
+   You can find an MSI Installer in WebShop_2008\components\mysql\
 
 2. Create WebApp with Home Folder IntraSell_WebShop_2008\WebShop_2008\
 
