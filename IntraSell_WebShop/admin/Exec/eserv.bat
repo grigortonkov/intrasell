@@ -1,1 +1,0 @@
-start d:\apps\eserver\eserv

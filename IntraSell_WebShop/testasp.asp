@@ -1,1 +1,0 @@
-<%Response.write "ASP is on"%>

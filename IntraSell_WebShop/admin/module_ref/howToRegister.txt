@@ -1,8 +1,0 @@
-How to register Clients automaticaly as referer
-
-1. Use this URL = 
-   http://193.171.36.87/webshop/cgi/default.asp?PageToShow=ProfileSave&Firma1=DeineFirma&Name1=Markus Danner&Strasse1=DeineStrasse123&PLZ1=4040&Ort1=Linz&Tel=0676112233&billCountry1=43&Email1=email@emailserver.at&Passwort1=test&refererId=10000100
-   http://www.intershop.ws/webshop207/cgi/default.asp?PageToShow=ProfileSave&Firma1=DeineFirma&Name1=Markus Danner&Strasse1=DeineStrasse123&PLZ1=4040&Ort1=Linz&Tel=0676112233&billCountry1=43&Email1=email@emailserver.at&Passwort1=test&refererId=10000100
-2. On Success you get the default page with the message:
-   
-   "Referer #[RefererId] was created!"
