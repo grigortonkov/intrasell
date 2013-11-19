@@ -1,0 +1,369 @@
+<VisualStudioProject>
+    <VisualBasic
+        ProjectType = "Web"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{D129004B-700B-4949-A956-40BF73AD5699}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "IRADA"
+                AssemblyOriginatorKeyFile = ""
+                AssemblyOriginatorKeyMode = "None"
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Flow"
+                DefaultTargetSchema = "IE32Nav30"
+                DelaySign = "false"
+                OutputType = "Library"
+                OptionCompare = "Binary"
+                OptionExplicit = "On"
+                OptionStrict = "Off"
+                RootNamespace = "IRADA"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    IncrementalBuild = "true"
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+                <Config
+                    Name = "Release"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "false"
+                    DefineTrace = "true"
+                    DebugSymbols = "false"
+                    IncrementalBuild = "false"
+                    Optimize = "true"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.dll"
+                />
+                <Reference
+                    Name = "System.Web"
+                    AssemblyName = "System.Web"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Web.dll"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
+                />
+            </References>
+            <Imports>
+                <Import Namespace = "Microsoft.VisualBasic" />
+                <Import Namespace = "System" />
+            </Imports>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "Dataset_MeetingsEvents.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "Dataset_MeetingsEvents.vb"
+                />
+                <File
+                    RelPath = "Dataset_MeetingsEvents.vb"
+                    DependentUpon = "Dataset_MeetingsEvents.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "Dataset_MeetingsEvents.xsx"
+                    DependentUpon = "Dataset_MeetingsEvents.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "DataSet_Members.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "DataSet_Members.vb"
+                />
+                <File
+                    RelPath = "DataSet_Members.vb"
+                    DependentUpon = "DataSet_Members.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "DataSet_Members.xsx"
+                    DependentUpon = "DataSet_Members.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "myAccount.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "myAccount.aspx.vb"
+                    DependentUpon = "myAccount.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "myAccount.aspx.resx"
+                    DependentUpon = "myAccount.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "newAccount_Step1.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "newAccount_Step1.aspx.vb"
+                    DependentUpon = "newAccount_Step1.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "newAccount_Step1.aspx.resx"
+                    DependentUpon = "newAccount_Step1.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "newAccount_Step2.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "newAccount_Step2.aspx.vb"
+                    DependentUpon = "newAccount_Step2.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "newAccount_Step2.aspx.resx"
+                    DependentUpon = "newAccount_Step2.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "newAccount_Step3.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "newAccount_Step3.aspx.vb"
+                    DependentUpon = "newAccount_Step3.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "newAccount_Step3.aspx.resx"
+                    DependentUpon = "newAccount_Step3.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "registerForEvent.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "registerForEvent.aspx.vb"
+                    DependentUpon = "registerForEvent.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "registerForEvent.aspx.resx"
+                    DependentUpon = "registerForEvent.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "renewMembership.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "renewMembership.aspx.vb"
+                    DependentUpon = "renewMembership.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "renewMembership.aspx.resx"
+                    DependentUpon = "renewMembership.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "style.css"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Web.config"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\AllMembers.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "AllMembers.vb"
+                />
+                <File
+                    RelPath = "admin\AllMembers.vb"
+                    DependentUpon = "AllMembers.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "admin\AllMembers.xsx"
+                    DependentUpon = "AllMembers.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "admin\Default.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\Default.aspx.vb"
+                    DependentUpon = "Default.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\Default.aspx.resx"
+                    DependentUpon = "Default.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\default.htm"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\EditEvents.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\EditEvents.aspx.vb"
+                    DependentUpon = "EditEvents.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\EditEvents.aspx.resx"
+                    DependentUpon = "EditEvents.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\MemberEdit.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\MemberEdit.aspx.vb"
+                    DependentUpon = "MemberEdit.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\MemberEdit.aspx.resx"
+                    DependentUpon = "MemberEdit.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\MemberRegistrations.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\MemberRegistrations.aspx.vb"
+                    DependentUpon = "MemberRegistrations.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\MemberRegistrations.aspx.resx"
+                    DependentUpon = "MemberRegistrations.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\Members.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\Members.aspx.vb"
+                    DependentUpon = "Members.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\Members.aspx.resx"
+                    DependentUpon = "Members.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\Statistics.aspx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "admin\Statistics.aspx.vb"
+                    DependentUpon = "Statistics.aspx"
+                    SubType = "ASPXCodeBehind"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "admin\Statistics.aspx.resx"
+                    DependentUpon = "Statistics.aspx.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "admin\Stats.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "Stats.vb"
+                />
+                <File
+                    RelPath = "admin\Stats.vb"
+                    DependentUpon = "Stats.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "admin\Stats.xsx"
+                    DependentUpon = "Stats.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "admin\top.htm"
+                    BuildAction = "Content"
+                />
+            </Include>
+        </Files>
+    </VisualBasic>
+</VisualStudioProject>
+

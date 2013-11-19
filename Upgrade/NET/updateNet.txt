@@ -1,8 +1,0 @@
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20120801.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20120925.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20120926.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20130310.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20130310a.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20130311.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20130316.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/IntraSell_Net_R20130321.zip

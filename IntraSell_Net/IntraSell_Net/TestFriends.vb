@@ -1,1 +1,0 @@
-﻿<Assembly: System.Runtime.CompilerServices.InternalsVisibleTo("IntraSell_Net_UnitTests")>

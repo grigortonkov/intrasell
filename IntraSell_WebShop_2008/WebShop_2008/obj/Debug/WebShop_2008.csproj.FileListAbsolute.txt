@@ -1,4 +1,0 @@
-Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\ResolveAssemblyReference.cache
-Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\WebShop_2008.cgi.functionsStatistics.aspx.resources
-Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\ResGen.read.1.tlog
-Z:\Business\IntraSell_System\IntraSell_WebShop\WebShop_2008\WebShop_2008\obj\Debug\ResGen.write.1.tlog

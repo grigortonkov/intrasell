@@ -1,8 +1,0 @@
-[ODBC]
-DRIVER=SQL Server
-UID=sa
-Network=DBMSSOCN
-DATABASE=itnrasell_pccenter
-WSID=VEGSYS
-APP=Microsoft Open Database Connectivity
-SERVER=www.smartefox.com

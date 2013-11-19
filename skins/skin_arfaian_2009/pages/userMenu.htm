@@ -1,0 +1,35 @@
+<div align="center">
+  <center>
+  <table border="0" cellSpacing=0 cellPadding=0 width="75%">
+	<TR>
+<TD border="0" align=left width="20%" height=15>
+<P align=left><FONT	color=#6b8eb5><IMG height=9	src="arrow.gif"	width=9 border=0></FONT></P>
+		</TD>
+		<TD border="0" width="80%"	height=15><a href="default.asp?pageToShow=warenkorbStep1">
+        <font color="#42598C" size="1" >Warenkorb</font></a>
+		</TD>
+	</TR>
+	<TR>
+		<TD border="0" align=left width="20%" height=16><FONT color=#6b8eb5><IMG src="arrow.gif" border=0 width="9" height="9"></FONT>
+		</TD>
+		<TD	
+		width="80%"	height=16><a href="default.asp?pageToShow=MyAccount">
+        <font color="#42598C" size="1" >Mein Konto</font></a>&nbsp;
+		<%if Session ("LOG_IN")<>"" then%>
+			[<a href=cgi/account/logout.asp><font color=red>LOGOUT</font></a>]
+		<%end if%>
+		</TD>
+	</TR>
+	<TR>
+		<TD	
+		align=left width="20%" height=16><FONT color=#6b8eb5><IMG	height=9 
+		  src="arrow.gif" width=9 border=0></FONT></TD>
+		<TD	
+		width="80%"	height=16><font  size="1"><a href="default.asp?pageToShow=Help">
+        <font color="#42598C">Hilfe</font></a> 
+        </font>
+		</TD>
+	</TR>
+	
+</TABLE></center>
+</div>

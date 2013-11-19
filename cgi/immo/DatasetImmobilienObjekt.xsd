@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="DatasetImmobilienObjekt" targetNamespace="http://tempuri.org/DatasetImmobilienObjekt.xsd" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/DatasetImmobilienObjekt.xsd" xmlns:mstns="http://tempuri.org/DatasetImmobilienObjekt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="DatasetImmobilienObjekt" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="grArtikel">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ArtNr" type="xs:int" />
+							<xs:element name="EAN" type="xs:string" minOccurs="0" />
+							<xs:element name="Barcode" type="xs:string" minOccurs="0" />
+							<xs:element name="Bezeichnung" type="xs:string" minOccurs="0" />
+							<xs:element name="Bezeichnung1" type="xs:string" minOccurs="0" />
+							<xs:element name="Beschreibung" type="xs:string" minOccurs="0" />
+							<xs:element name="Einheit" type="xs:string" minOccurs="0" />
+							<xs:element name="PreisATS" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PreisEuro" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PreisATS_Brutto" type="xs:decimal" minOccurs="0" />
+							<xs:element name="LagerArtikel" type="xs:boolean" minOccurs="0" />
+							<xs:element name="EKPreis" type="xs:decimal" minOccurs="0" />
+							<xs:element name="LEKPreis" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Seriennummer" type="xs:boolean" minOccurs="0" />
+							<xs:element name="LieferantNR" type="xs:int" minOccurs="0" />
+							<xs:element name="SetArtikel" type="xs:boolean" minOccurs="0" />
+							<xs:element name="ArtKatNr" type="xs:int" minOccurs="0" />
+							<xs:element name="MWST" type="xs:int" minOccurs="0" />
+							<xs:element name="Gewicht" type="xs:string" minOccurs="0" />
+							<xs:element name="Picture" type="xs:string" minOccurs="0" />
+							<xs:element name="HerstellerNr" type="xs:int" minOccurs="0" />
+							<xs:element name="ProduktAktiv" type="xs:boolean" minOccurs="0" />
+							<xs:element name="ShopURL" type="xs:string" minOccurs="0" />
+							<xs:element name="HerstellerURL" type="xs:string" minOccurs="0" />
+							<xs:element name="Modifikationen" type="xs:string" minOccurs="0" />
+							<xs:element name="HerstellerRabatt" type="xs:double" minOccurs="0" />
+							<xs:element name="HerstellerRabattText" type="xs:string" minOccurs="0" />
+							<xs:element name="AngelegtAn" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="grArtikel-KeyWordsToProducts">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" msdata:AutoIncrement="true" type="xs:int" minOccurs="0" />
+							<xs:element name="ArtNr" type="xs:int" />
+							<xs:element name="KeyWordId" type="xs:int" />
+							<xs:element name="Value" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ofAdressen-Weitere">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ID" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="Anrede" type="xs:string" minOccurs="0" />
+							<xs:element name="Typ" type="xs:string" minOccurs="0" />
+							<xs:element name="Branche" type="xs:int" minOccurs="0" />
+							<xs:element name="IDNR" type="xs:int" minOccurs="0" />
+							<xs:element name="Land" type="xs:int" minOccurs="0" />
+							<xs:element name="Name" type="xs:string" minOccurs="0" />
+							<xs:element name="Vorname" type="xs:string" minOccurs="0" />
+							<xs:element name="Name1" type="xs:string" minOccurs="0" />
+							<xs:element name="Firma" type="xs:string" minOccurs="0" />
+							<xs:element name="Adresse" type="xs:string" minOccurs="0" />
+							<xs:element name="PLZ" type="xs:int" minOccurs="0" />
+							<xs:element name="Tel" type="xs:string" minOccurs="0" />
+							<xs:element name="Tel2" type="xs:string" minOccurs="0" />
+							<xs:element name="Fax" type="xs:string" minOccurs="0" />
+							<xs:element name="Mobil" type="xs:string" minOccurs="0" />
+							<xs:element name="Email" type="xs:string" minOccurs="0" />
+							<xs:element name="Web" type="xs:string" minOccurs="0" />
+							<xs:element name="AngelegtAn" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Passwort" type="xs:string" minOccurs="0" />
+							<xs:element name="Geburtstag" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="DatasetImmobilienObjektKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:grArtikel" />
+			<xs:field xpath="mstns:ArtNr" />
+		</xs:unique>
+		<xs:unique name="DatasetImmobilienObjektKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:grArtikel-KeyWordsToProducts" />
+			<xs:field xpath="mstns:ArtNr" />
+			<xs:field xpath="mstns:KeyWordId" />
+		</xs:unique>
+		<xs:keyref name="grArtikelgrArtikel-KeyWordsToProducts" refer="DatasetImmobilienObjektKey1" msdata:ConstraintOnly="true" msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:grArtikel-KeyWordsToProducts" />
+			<xs:field xpath="mstns:ArtNr" />
+		</xs:keyref>
+		<xs:unique name="DatasetImmobilienObjektKey3" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:ofAdressen-Weitere" />
+			<xs:field xpath="mstns:ID" />
+		</xs:unique>
+		<xs:keyref name="grArtikelofAdressen-Weitere" refer="DatasetImmobilienObjektKey1" msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:ofAdressen-Weitere" />
+			<xs:field xpath="mstns:IDNR" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

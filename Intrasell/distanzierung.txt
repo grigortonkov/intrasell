@@ -1,8 +1,0 @@
-Distanzierung:
-
-Die Nutzung des Microsoft Access-Programmes "IntraSell" dürfte, da es sich um
-eine Datenbank in Access-Umgebung handelt, keine Fehler verursachen.
-
-Es wurde auf verschiedenenen Rechnern installiert, und lief ohne Probleme.
-
-Für Fehler jeglicher Art, und deren Folgen, wird keine Haftung übernommen.

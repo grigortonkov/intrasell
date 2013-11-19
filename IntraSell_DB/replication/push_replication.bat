@@ -1,1 +1,0 @@
-C:\MySQL\Data\data>mysqlbinlog --start-datetime="2009-05-22 10:00:00" vegsys-bin.000004

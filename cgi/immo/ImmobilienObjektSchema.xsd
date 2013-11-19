@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="ImmobilienObjektSchema" targetNamespace="http://tempuri.org/ImmobilienObjektSchema.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/ImmobilienObjektSchema.xsd" xmlns:mstns="http://tempuri.org/ImmobilienObjektSchema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="ImmobilienObjekt">
+		<xs:complexType>
+			<xs:sequence></xs:sequence>
+			<xs:attribute name="ArtNr" type="xs:ID" />
+			<xs:attribute name="Beschreibung" type="xs:string" />
+			<xs:attribute name="Bezeichnung" type="xs:string" />
+			<xs:attribute name="Kategorie" type="xs:string" />
+		</xs:complexType>
+		<xs:key name="ImmobilienObjektKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath="." />
+			<xs:field xpath="@ArtNr" />
+		</xs:key>
+	</xs:element>
+	<xs:element name="Adresse">
+		<xs:complexType>
+			<xs:attribute name="IDNR" type="xs:ID" />
+			<xs:sequence>
+				<xs:element name="PLZ" type="xs:string" />
+				<xs:element name="Ort" type="xs:string" />
+				<xs:element name="Strasse" type="xs:string" />
+				<xs:element name="Land" type="xs:string" />
+				<xs:element name="Bundesland" type="xs:string" />
+			</xs:sequence>
+			<xs:attribute name="ArtNr" type="xs:IDREF" use="required" />
+		</xs:complexType>
+		<xs:keyref name="ImmobilienObjektAdresse" refer="ImmobilienObjektKey1" msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath="." />
+			<xs:field xpath="@ArtNr" />
+		</xs:keyref>
+		<xs:key name="AdresseKey1">
+			<xs:selector xpath="." />
+			<xs:field xpath="@IDNR" />
+		</xs:key>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+nr;category;name;description;manufacturer;taxclass;price;weight;minorder;manufacturernr;variation;mult;avail;units;difftxt;picture;techinfo
+29175;119;"DVD-A05 DVD-ROM 16-fach, CD-ROM 40-fach, ""SLOT-IN"" inkl.";BestDVD ;1;2;1500;1;1;123;0;1;lagernd;Stk.;1;no-image;Speed=40,Speed2=40,Speed3=40
+29176;119;"DVD-106S DVD-ROM 16-fach, CD-ROM 40-fach, ""SLOT-IN"" ohne";BestDVD  ;1;2;925;1;1;123;0;1;lagernd;Stk.;1;no-image;Speed=40,Speed2=40,Speed3=40
+29177;119;"DVD-116 DVD-ROM 16-fach, CD-ROM 40-fach, ""LADE""";BestDVD  ;1;2;870;1;1;123;0;1;lagernd;Stk.;1;no-image;Speed=40,Speed2=40,Speed3=40
+29178;119;DVR-A03 DVD-Recorder, 3. Generation fÅr 4,7GB Daten, Single Side;BestDVD ;1;2;10800;1;1;123;0;1;In kurze wieder lagernd;Stk.;1;no-image;Speed=40,Speed2=40,Speed3=40
+29179;119;CANON BJ-30 A4 3 S. s/w, 720x360 dpi,;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=44;1;2;2500;1;1;123;0;1;lagernd;Stk.;1;no-image;Speed=40,Speed2=40,Speed3=40
+29180;119;CANON BJC-5500 A2 7 S. s/w, 0,8 S. Farbe;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=45;Canon;2;9500;1;1;123;0;1;lagernd;Stk.;1;;
+29181;119;CANON BJC-50 A4 4,5 S. s/w, 2 S. Farbe,;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=46;Canon;2;4440;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29182;119;CANON BJC-8500 A3+ 5 S.(max), 1200x1200;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=47;Canon;2;27000;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29183;119;CANON CD-300 Digital Photo Printer;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=48;Canon;2;6780;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29184;119;CANON BJC-8200 Photo A4 3 S. s/w, 3 S.;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=49;Canon;2;5250;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29185;119;CANON BJC-85 A4 5 S. s/w, 2 S. Farbe,;BestDVD TechInfo:Speed=40,Speed2=40,Speed3=50;Canon;2;3270;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29186;119;CANON BJC-2100 A4 5 S. s/w, 2 S. Farbe,;;Canon;2;875;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29187;119;CANON BJC-6200 A4 10 S. s/w, 7 S. Farbe,;;Canon;2;1550;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29188;119;CANON S4500 A3 9 S. s/w, 6 S. Farbe,;;Canon;2;4750;1;1;123;0;1;geringe anzahl lagernd;Stk.;1;no-image;
+29195;119;EPSON Stylus Color 1160 A3+ 1440dpi;;Canon;2;4260;1;1;123;0;1;lagernd;Stk.;1;no-image;
+29196;119;EPSON Stylus Pro 5000 A3+ 1440dpi;;2;2;36500;1;1;123;0;1;lagernd;Stk.;1;no-image
+29197;119;EPSON Stylus Photo 870 A4 1440dpi;;2;2;2580;1;1;123;0;1;lagernd;Stk.;1;no-image
+29198;Hardware;EPSON Stylus Color 880 11,9/11,6 S. A4;;2;2;1800;1;1;123;0;1;lagernd;Stk.;1;no-image
+29199;Hardware;EPSON Stylus Color 580 6/3,2 S. A4;;2;2;900;1;1;123;0;1;lagernd;Stk.;1;no-image
+29200;Hardware;EPSON Stylus Color 980 13/12,5 S. A4;;2;2;3000;1;1;123;0;1;lagernd;Stk.;1;no-image
+29201;Hardware;EPSON Stylus Color 980N 13/12,5 S. A4;;Sony;2;5720;1;1;123;0;1;lagernd;Stk.;1;no-image
+29202;Hardware;EPSON Stylus Photo 1290 A3+ 2880dpi;;Sony;2;6050;1;1;123;0;1;lagernd;Stk.;1;no-image
+29203;Hardware;EPSON Stylus Photo 790 A4 2880dpi;;Sony;2;1800;1;1;123;0;1;lagernd;Stk.;1;no-image
+29204;Hardware;EPSON Stylus Pro 5500 A3+ 2880dpi;;Sony;2;48000;1;1;123;0;1;In kurze wieder lagernd;Stk.;1;no-image
+29205;Hardware;EPSON Stylus Photo 890 A4 2880dpi;;Sony;2;3000;1;1;123;0;1;lagernd;Stk.;1;no-image
+29206;Hardware;EPSON Stylus Photo 895 A4 2880dpi USB;;Sony;2;3650;1;1;123;0;1;In kurze wieder lagernd;Stk.;1;no-image
+29207;Hardware;EPSON Stylus Color 685 8/7,7 S. A4;;Sony;2;1200;1;1;123;0;1;In kurze wieder lagernd;Stk.;1;no-image
+29208;Hardware;EPSON Stylus C40UX 8/4 S. A4 1440dpi USB;;Sony;2;970;1;1;123;0;1;lagernd;Stk.;1;no-image
+28709;Hardware;Tastatur G81-3504 LAADE USB, 4 Port Hub;;Sony;2;696;1;1;123;0;1;lagernd;Stk.;1;no-image
+28710;Hardware;Tastatur G84-4100 PPADE PS/2, Notebook;;Sony;2;780;1;1;123;0;1;In kurze wieder lagernd;Stk.;1;no-image
+28711;Hardware;Tastatur G84-4700 PPADE PS/2,Numernblock;;Sony;2;540;1;1;123;0;1;lagernd;Stk.;1;no-image

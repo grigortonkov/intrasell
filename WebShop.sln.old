@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebShop", "http://localhost/WebShop/WebShop.vbproj", "{40FEB225-3724-420D-8207-D004EEC8FD05}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug.ActiveCfg = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Debug.Build.0 = Debug|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release.ActiveCfg = Release|.NET
+		{40FEB225-3724-420D-8207-D004EEC8FD05}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

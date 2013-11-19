@@ -1,8 +1,0 @@
-open vegsys 
-ls 
-ls 
-ls 
-user Grigor parahod1
-
-get IntraSell_Daten_2.06_replicat.mdb "D:\Business\IntraSoft\IntraSell\IntraSell_Daten_2.06_replicat.mdb"
-quit

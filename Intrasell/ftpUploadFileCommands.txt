@@ -1,8 +1,0 @@
-open 92.51.141.139
-user Josef Hannah
-
-bin
-
-cd skin_ptec/productImages
-put "Z:\Business\IntraSell_System\IntraSell_WebShop\productImages\501956.jpg"
-Quit

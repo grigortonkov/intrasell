@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="AllMembers" targetNamespace="http://tempuri.org/AllMembers.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/AllMembers.xsd" xmlns:mstns="http://tempuri.org/AllMembers.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="AllMembers" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Members">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ID1" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="ID" type="xs:double" minOccurs="0" />
+							<xs:element name="TypeOfAccount" type="xs:string" minOccurs="0" />
+							<xs:element name="Category_5" type="xs:string" minOccurs="0" />
+							<xs:element name="Category_6" type="xs:string" minOccurs="0" />
+							<xs:element name="Title" type="xs:string" minOccurs="0" />
+							<xs:element name="First_name" type="xs:string" minOccurs="0" />
+							<xs:element name="Middle_Name" type="xs:string" minOccurs="0" />
+							<xs:element name="Last_Name" type="xs:string" minOccurs="0" />
+							<xs:element name="Student" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Address" type="xs:string" minOccurs="0" />
+							<xs:element name="City" type="xs:string" minOccurs="0" />
+							<xs:element name="State" type="xs:string" minOccurs="0" />
+							<xs:element name="ZipCode" type="xs:string" minOccurs="0" />
+							<xs:element name="Work_Phone" type="xs:string" minOccurs="0" />
+							<xs:element name="Fax_Phone" type="xs:string" minOccurs="0" />
+							<xs:element name="Other_Phone" type="xs:string" minOccurs="0" />
+							<xs:element name="Board_x0020_Member" type="xs:string" minOccurs="0" />
+							<xs:element name="E-mail_x0020_Address" type="xs:string" minOccurs="0" />
+							<xs:element name="Contact" type="xs:string" minOccurs="0" />
+							<xs:element name="PaymentMethod" type="xs:string" minOccurs="0" />
+							<xs:element name="Notes_1" type="xs:string" minOccurs="0" />
+							<xs:element name="Notes" type="xs:string" minOccurs="0" />
+							<xs:element name="paid_x0020_2005" type="xs:boolean" minOccurs="0" />
+							<xs:element name="payment_x0020_2005" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Date_x0020_paid_x0020_2005" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Paid_x0020_2004" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Payment_x0020_2004" type="xs:decimal" minOccurs="0" />
+							<xs:element name="date_x0020_paid_x0020_2004" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="paid_x0020_Member_x0020_2003" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Payment2003" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Privacy_x0020_Option" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Paid_x0020_Member_x0020_2002" type="xs:boolean" minOccurs="0" />
+							<xs:element name="Paid_x0020_Member_x0020_2001" type="xs:string" minOccurs="0" />
+							<xs:element name="Delivery_x0020_Point" type="xs:string" minOccurs="0" />
+							<xs:element name="Payment" type="xs:decimal" minOccurs="0" />
+							<xs:element name="DatePaid" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="LicenseNumber" type="xs:double" minOccurs="0" />
+							<xs:element name="Jan292003Payment" type="xs:decimal" minOccurs="0" />
+							<xs:element name="April02event" type="xs:boolean" minOccurs="0" />
+							<xs:element name="CreationTime" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="ChangeTime" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Password" type="xs:string" minOccurs="0" />
+							<xs:element name="PasswordConfirmation" type="xs:string" minOccurs="0" />
+							<xs:element name="OfficeAddress" type="xs:string" minOccurs="0" />
+							<xs:element name="TypeOfPraxis" type="xs:string" minOccurs="0" />
+							<xs:element name="Website" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_First_Degree" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_First_Year" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_First_School" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Second_Degree" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Second_Year" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Second_School" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Spec_Degree" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Spec_Year" type="xs:string" minOccurs="0" />
+							<xs:element name="Edu_Spec_School" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="AllMembersKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Members" />
+			<xs:field xpath="mstns:ID1" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>
