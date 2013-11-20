@@ -308,7 +308,7 @@
                 <td align="right" width="350" colspan="2" bgcolor="#FFFFFF">
                     <p align="left">
                         &nbsp;
-                        <input class="submit" type="CheckBox" checked name="IchWillNewsletter<%=typeOfAddress%>"
+                        <input class="submit" type="CheckBox" unchecked name="IchWillNewsletter<%=typeOfAddress%>"
                             value="ON">
                         <%=getTranslation("Ich möchte Newsletter erhalten")%>
                 </td>

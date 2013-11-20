@@ -143,7 +143,7 @@
 
     
     If Not isPurchasingAllowed() Then
-        Response.Write(getTranslation("Einkaufen ist nur für registrierte Kunden gestattet."))
+        Response.Write(getTranslation("Bestellen ist nur für registrierte Kunden gestattet."))
     Else 'allowed  
             
         paymode = Request("PayMode") : If paymode & "" = "" Then paymode = Session("PayMode") : If paymode & "" = "" Then paymode = DEFAULT_PAYMODE

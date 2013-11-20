@@ -443,10 +443,13 @@
                 html = html & "<td colspan='3'>"
                 html = html & "</td>"
                 html = html & "<td colspan='2'>"
-                '=getTranslation("Aufschlag wegen Mindestbestellmenge") & "
+                Dim txtWarningMinOrderValue As String = getTranslation("Der Mindestbestellwert beträgt {1}. Bitte erweitern Sie Ihre Bestellung.")
                 html = html & "" & bezMindestBestellMenge & ""
-                html = html & "(<b>" & getTranslation("Mindestwert ist ") & ""
-                html = html & "    " & FormatNumber(getMinOrderValue(), 2) & "</b>)"
+               
+                'html = html & "(<b>" & getTranslation("Mindestwert ist ") & ""
+                'html = html & "    " & FormatNumber(getMinOrderValue(), 2) & "</b>)"
+                html = html & " <br/><b><font color=red>" & Replace(txtWarningMinOrderValue, "{1}", FormatNumber(getMinOrderValue(), 2)) & "</font></b>"
+                
                 html = html & "</td>"
                 html = html & "<td>"
                 html = html & "&nbsp;"
@@ -480,7 +483,7 @@
                 html = html & "</td>"
                 html = html & "<td colspan='2'>"
                 html = html & "" & rabattBez & ""
-                html = html & "<!--(<b>" & getTranslation("Rabatt für Ihren Einkauf") & "&nbsp;" & FormatNumber(rabatt_Value, 2) & "</b>)-->"
+                html = html & "<!--(<b>" & getTranslation("Rabatt für Ihre Bestellung") & "&nbsp;" & FormatNumber(rabatt_Value, 2) & "</b>)-->"
                 html = html & "</td>"
                 html = html & "<td>"
                 html = html & "    &nbsp;"

@@ -165,7 +165,7 @@ If payMode & "" = "" Then
     ObjConnectionExecute("Update webWarenkorb set AuftragNr=" & ordId & " where SID=" & getSID())
     %>
     <p align="left">
-        <%=getTranslation("Vielen Dank für Ihren Einkauf.")%>
+        <%=getTranslation("Vielen Dank für Ihre Bestellung.")%>
         <br />
         <%=getTranslation("Ihre Bestellung wurde erfolgreich gespeichert!")%>
         <p align="left">
@@ -205,24 +205,9 @@ If payMode & "" = "" Then
 
             %><!-- END FORMS FOR PAYMENT --><%End If ' errors found%>
             
-            <!-- Google Code for Kaufentscheidung Conversion Page --> <script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 1056663624;
-var google_conversion_language = "de";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "diHFCLSVhwgQyNDt9wM";
-var google_conversion_value = 0;
-var google_remarketing_only = false;
-/* ]]> */
-</script>
-<script type="text/javascript"  
-src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt=""  
-src="//www.googleadservices.com/pagead/conversion/1056663624/?value=0&amp;la
-bel=diHFCLSVhwgQyNDt9wM&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
+ <%
+Dim logHTML As String
+    logHTML = readTextFile(Server.MapPath("skins/skin" & SkinNumber & "/pages/template_warenkorbstep5.htm"))
+logHTML = parseTemplate(logHTML, Nothing)
+Response.Write(logHTML)
+%>
