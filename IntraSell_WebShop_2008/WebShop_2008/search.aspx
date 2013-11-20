@@ -24,7 +24,7 @@
     Dim linkType as String = linkArray(linkArray.Length-1)
     Dim possibleProductName = Server.UrlDecode(linkArray(linkArray.Length-1))
 
-    if lcase(linkType) = "product" or lcase(linkType) = "image" then 
+    if lcase(linkType) = "product" or lcase(linkType) = "prodimage" then 
        possibleProductName = Server.UrlDecode(linkArray(linkArray.Length-2))
     end if 
 
@@ -43,7 +43,7 @@
         Response.redirect ("default.aspx?ArtNr=" & possibleArtNr)
     end if 
 
-    if lcase(linkType) = "image" and isNumeric(possibleArtNr) then 
+    if lcase(linkType) = "prodimage" and isNumeric(possibleArtNr) then 
         'Response.redirect ("default.aspx?ArtNr=" & possibleArtNr
         Response.redirect ("productImages/" & possibleArtNr & ".gif")
     end if 
