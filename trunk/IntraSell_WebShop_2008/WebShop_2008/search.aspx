@@ -3,27 +3,31 @@
  'Redirect to the searched page 
  'ASP provided in aspxerrorpath query string    
 
- 'Folgende URLS werden unterstützt 
+ 'Folgende URLs werden unterstützt 
 
  '1. Produkte
-
  'ProductName 
  'oder 
- 'product/ProductCategory0/ProductCategory1/ProductName 
+ 'ProductCategory0/ProductCategory1/ProductName/product
 
  '2. Produkt Images 
- 'image/ProductCategory0/ProductCategory1/ProductName
+ 'ProductCategory0/ProductCategory1/ProductName/image
  
- Dim qu =  Request.querystring("aspxerrorpath")
+ Dim qu = Request.querystring("aspxerrorpath")
  if isDebug() then 
     Response.write ("aspxerrorpath=" & qu)
  else 
     Dim linkArray = Split(qu, "/")
     Dim searchString = Replace(qu,"/","")
 
-    'Möglcherweise ist das ein Produkt 
-    Dim linkType as String = linkArray(0)
+    'Möglicherweise ist das ein Produkt 
+    Dim linkType as String = linkArray(linkArray.Length-1)
     Dim possibleProductName = Server.UrlDecode(linkArray(linkArray.Length-1))
+
+    if lcase(linkType) = "product" or lcase(linkType) = "image" then 
+       possibleProductName = Server.UrlDecode(linkArray(linkArray.Length-2))
+    end if 
+
      possibleProductName = Replace(possibleProductName, "x1x", """")
      possibleProductName = Replace(possibleProductName, "x2x", "'")
      possibleProductName = Replace(possibleProductName, "x3x", "*")
@@ -35,12 +39,13 @@
         Response.write ("<br/>possibleArtNr=" & possibleArtNr) 
     end if 
 
-    if lcase(linkType) = "product" or isNumeric(possibleArtNr) then 
+    if lcase(linkType) = "product" and isNumeric(possibleArtNr) then 
         Response.redirect ("default.aspx?ArtNr=" & possibleArtNr)
     end if 
 
-    if lcase(linkType) = "image" then
-        Response.redirect ("default.aspx?ArtNr=" & possibleArtNr)
+    if lcase(linkType) = "image" and isNumeric(possibleArtNr) then 
+        'Response.redirect ("default.aspx?ArtNr=" & possibleArtNr
+        Response.redirect ("productImages/" & possibleArtNr & ".gif")
     end if 
 
     'Produkt Suche für den Rest der nicht gefundenen Seiten 
