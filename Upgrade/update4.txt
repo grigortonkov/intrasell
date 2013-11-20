@@ -5,3 +5,4 @@ http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130717.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130917.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131007.zip
 http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131008.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131120.zip
