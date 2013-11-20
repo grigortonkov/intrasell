@@ -898,7 +898,7 @@
     End Function
     
     Function createProductImageSEOLink(ByVal Bezeichnung As String, ByVal ArtKatNr As VariantType) As String
-        Return Replace(createProductSEOLink(Bezeichnung, ArtKatNr), "/product", "/image")
+        Return Replace(createProductSEOLink(Bezeichnung, ArtKatNr), "/product", "/prodimage")
     End Function
 
     'replases embeded SQL in the product template 
