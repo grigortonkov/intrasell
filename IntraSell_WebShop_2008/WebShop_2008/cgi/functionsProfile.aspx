@@ -1044,7 +1044,7 @@
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             html = html & "<tr>"
             html = html & "<td align='right' width='350' colspan='2' bgcolor='#FFFFFF'>"
-            html = html & "<p align='left'>&nbsp;    <input class='submit' type='CheckBox' checked name='IchWillNewsletter" & typeOfAddr & "' id='IchWillNewsletter" & typeOfAddr & "'  value='ON'>"
+            html = html & "<p align='left'>&nbsp;    <input class='submit' type='CheckBox' unchecked name='IchWillNewsletter" & typeOfAddr & "' id='IchWillNewsletter" & typeOfAddr & "'  value='ON'>"
             html = html & getTranslation("Ich möchte Newsletter erhalten")
             html = html & " </td>"
             html = html & " </tr>"

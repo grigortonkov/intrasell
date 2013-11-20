@@ -477,9 +477,9 @@
         If CDbl(getMinOrderValue()) > CDbl(subtotal) Then 'leider kauft der kunde zu wenig
               
             If LCase(VARVALUE_DEFAULT("SHOP_MIN_ORDER_VALUE_ACCEPT", "false")) = "false" Then
-                Response.Write("<br /><font color='red'>" & getTranslation("Mindestbestellmenge wurde nicht erreicht!") & "<br /> " & _
-                                         getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " netto. " & _
-                                         getTranslation("Ihre Bestellung hat einen Wert von ") & CDbl(subtotal) & " netto.</font><br/>")
+                Response.Write("<br /><font color='red'>" & getTranslation("Die Mindestbestellmenge wurde nicht erreicht!") & "<br /> " & _
+                                         getTranslation("Wir akzeptieren Bestellungen ab ") & getMinOrderValue() & " brutto. " & _
+                                         getTranslation("Ihre Bestellung hat einen Wert von ") & calculateWarenkorbSum() & " brutto.</font><br/>")
                 'delete created order 
                 SQL = "delete from [" & tableName & "-Artikel] where RechNr = " & AuftragNr
                 objConnectionExecute(SQL)
@@ -540,10 +540,6 @@
             Dim ArtikelEAN As String = tableValue("grArtikel", "ArtNR", ArtNr, "EAN")
             Dim ArtikelBezeichnung As String
             
-            'ArtikelBezeichnung = tableValue("grArtikel", "ArtNR", ArtNR, "Bezeichnung")
-            'ArtikelBezeichnung = replace(ArtikelBezeichnung, "'", "")
-            'ArtikelBezeichnung = getTranslationDok("grArtikel" , ArtNR, "Bezeichnung", ArtikelBezeichnung , Language)
-    
             'Add LieferNr. to Bezeichung for mecom
             Dim LieferantenArtikelNr As String = tableValue("[lieferantenArtikel-Preise]", "ArtikelNR", ArtNr, "ArtikelNrLieferant")
     

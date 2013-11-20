@@ -493,7 +493,9 @@
     <Content Include="skins\skin_arfaian_2009\pages\template_textil_.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_tool.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_tools_.htm" />
+    <Content Include="skins\skin_arfaian_2009\pages\template_warenkorbstep5.htm" />
     <Content Include="skins\skin_arfaian_2009\pages\template_warenkorb_info.htm" />
+    <Content Include="skins\skin_mobile\pages\template_warenkorbstep5.htm" />
     <Content Include="skins\skin_mobile\pages\function1.htm" />
     <Content Include="skins\skin_mobile\pages\function2.htm" />
     <Content Include="TestImageInfo.aspx" />
