@@ -42,7 +42,7 @@
     Const TAG_MAKEMWSTPREIS As String = "[makeMwstPreis]"
     Const TAG_MAKEBRUTTOPREIS_LIST As String = "[makeBruttoPreisList]"
     Const TAG_PRODUCT_SEO_LINK As String = "[PRODUCT_SEO_LINK]"
-    
+    Const TAG_PRODUCT_IMAGE_SEO_LINK As String = "[PRODUCT_IMAGE_SEO_LINK]"
     
     Dim PRODUCT_IMAGE_BIG_MAX_SIZE ': PRODUCT_IMAGE_BIG_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_BIG_MAX_SIZE", 400)
     Dim PRODUCT_IMAGE_MIDDLE_MAX_SIZE ': PRODUCT_IMAGE_MIDDLE_MAX_SIZE = VARVALUE_DEFAULT("SHOP_PRODUCT_IMAGE_MIDDLE_MAX_SIZE", 200)  
@@ -862,6 +862,9 @@
             productTemplate = Replace(productTemplate, TAG_PRODUCT_SEO_LINK, createProductSEOLink(rsArtikel("Bezeichnung").value, rsArtikel("ArtKatNr").value), 1, replacements, 1)
         End If
         
+        If InStr(productTemplate, TAG_PRODUCT_IMAGE_SEO_LINK) > 0 Then
+            productTemplate = Replace(productTemplate, TAG_PRODUCT_IMAGE_SEO_LINK, createProductImageSEOLink(rsArtikel("Bezeichnung").value, rsArtikel("ArtKatNr").value), 1, replacements, 1)
+        End If
         
         rsArtikel.close()
 
@@ -889,9 +892,13 @@
         Bezeichnung = Replace(Bezeichnung, "'", "x2x")
         Bezeichnung = Replace(Bezeichnung, "*", "x3x")
         Bezeichnung = Server.UrlEncode(Bezeichnung)
-        link = Session("BASENAME") & link & "/product/" & Bezeichnung
+        link = Session("BASENAME") & link & "/" & Bezeichnung & "/product"
         
         createProductSEOLink = link
+    End Function
+    
+    Function createProductImageSEOLink(ByVal Bezeichnung As String, ByVal ArtKatNr As VariantType) As String
+        Return Replace(createProductSEOLink(Bezeichnung, ArtKatNr), "/product", "/image")
     End Function
 
     'replases embeded SQL in the product template 
