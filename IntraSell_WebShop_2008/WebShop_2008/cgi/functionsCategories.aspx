@@ -813,7 +813,7 @@
             Dim title As String = rsS("Title").Value
             Dim pageId = rsS("pageID").Value
             title = getTranslationDok("webPages", pageID, "TITLE", title, Language)
-            html = html & "<a href=""default.aspx?pageToShow=WebPage&PreKatNr=-999&WebPage=" & rsS("Title").Value & """>" & title & "</a><br />"
+            html = html & "<a href=""default.aspx?pageToShow=WebPage&amp;PreKatNr=-999&amp;WebPage=" & rsS("Title").Value & """>" & title & "</a><br />"
             rsS.moveNext()
         End While
         rsS.close()
