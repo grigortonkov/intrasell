@@ -70,12 +70,12 @@ Dim mailsInDB as String = FIRSTVALUE("select count(*) from mailstosend")
 			<h1>Email Tool. You have [<%= mailsInDB %>] mails to send.</h1>
 			<table border="1" width="47%" height="353">
 				<tr>
-					<td height="23" class="style1">Sender *</td>
+					<td height="23"  >Sender *</td>
 					<td width="66%" height="23"><input type="text" name="SenderEmail" size="30" 
                             value="<%=VARVALUE("EMAIL")%>" style="width: 527px"></td>
 				</tr>
 				<tr>
-					<td height="23" class="style1">Receivers /SQL/ *</td>
+					<td height="23"  >Receivers /SQL/ *</td>
 					<td width="66%" height="23">
                         <textarea type="text" name="SQL_RECEIVERS" 
                             value="" size="50" style="height: 43px; width: 528px"><%=SQL_RECEIVERS%>
@@ -83,7 +83,7 @@ Dim mailsInDB as String = FIRSTVALUE("select count(*) from mailstosend")
 						(the first column must contain the email adress this mail to be send on)</td>
 				</tr>
 				<tr>
-					<td height="23" class="style1">Subject *</td>
+					<td height="23"  >Subject *</td>
 					<td width="66%" height="23"><input type="text" name="Subject" size="50" 
                             style="width: 527px"></td>
 				</tr>
