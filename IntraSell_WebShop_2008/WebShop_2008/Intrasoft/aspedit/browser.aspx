@@ -19,25 +19,25 @@ Dim Level=1%>
 dim fso = Server.CreateObject("Scripting.FileSystemObject")	
 Path=request.querystring("Path")
 If Right(Path,1)="/" AND Path<>"/" Then Path=Left(Path,Len(Path)-1)
-response.write("<font color='white'><b>" & Path & "</font></b><br>")
+response.write("<font color='white'><b>" & Path & "</font></b><br />")
 Dim Var =InstrRev(Path,"/")
 Dim dirup=left(Path,Var)
 response.write ("[<a href='browser.asp?path=" & dirup & "'>Directory up</a>]") 
 %>
- [<a href="browser.asp?path=/">Root Directory</a>]<br>
+ [<a href="browser.asp?path=/">Root Directory</a>]<br />
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
 					<td>
 						<form name="FormName" <%="action='browser.asp?path=" & path & "&aktion=createfolder'"%>method="post">
 							<div align="center">
-								<input type="text" name="newSubF" size="24"><br>
+								<input type="text" name="newSubF" size="24"><br />
 								<input type="submit" name="submitButtonName" value="Create Subfolder"></div>
 						</form>
 					</td>
 					<td>
 						<form name="FormName" <%="action='browser.asp?path=" & path & "&aktion=createfile'"%>method="post">
 							<div align="center">
-								<input type="text" name="newFile" size="24"><br>
+								<input type="text" name="newFile" size="24"><br />
 								<input type="submit" name="submitButtonName" value="Create File"></div>
 						</form>
 					</td>
@@ -63,9 +63,9 @@ Case "upload"
 		Server.ScriptTimeout = 250
 		If getFileName(fName)<>"" then
 			If saveAs(fName,"") = true then
-				response.write ("<br>Upload of File " & getFileName(fName) & " (Content-Type: " & getContentType(fName) & ") was successfull.")
+				response.write ("<br />Upload of File " & getFileName(fName) & " (Content-Type: " & getContentType(fName) & ") was successfull.")
 			else
- 				response.write("<br>An Error occured with File " & getFileName(fName) & "!")
+ 				response.write("<br />An Error occured with File " & getFileName(fName) & "!")
 			end if
 		End if
 	Next
@@ -182,17 +182,17 @@ response.write ("    <font size='-2'><a href='" & WholeFile & "' target=_blank'>
 
 			</table>
 			<hr>
-			<p><b>Upload:<br>
+			<p><b>Upload:<br />
 <%
 Dim NumOfUploads
 If request.querystring("NumOfUploads")="" Or int(request.querystring("NumOfUploads"))<1 then NumOfUploads=1 Else NumOfUploads=int(request.querystring("NumOfUploads"))
 %>
 
-				</b>[<a <%="href='browser.asp?path=" & path & "&numofuploads=" & numofuploads+5 & "'"%>>More Uploads</a>][<a <%="href='browser.asp?path=" & path & "&numofuploads=" & numofuploads-5 & "'"%>>Less Uploads</a>]<br>
+				</b>[<a <%="href='browser.asp?path=" & path & "&numofuploads=" & numofuploads+5 & "'"%>>More Uploads</a>][<a <%="href='browser.asp?path=" & path & "&numofuploads=" & numofuploads-5 & "'"%>>Less Uploads</a>]<br />
 				
 				Files will be uploaded onto the current directory, files with the same name will be overwritten</p><FORM name=frmTest <%="action='browser.asp?path=" & path & "&aktion=upload&NumOfUploads=" & NumOfUploads & "'"%> method=post enctype="multipart/form-data">
 <%For x=1 to NumOfUploads
-	response.write("<INPUT type='file' name='fName" & x & "'><BR>")
+	response.write("<INPUT type='file' name='fName" & x & "'><br />")
 Next
 %>
 <INPUT TYPE=SUBMIT NAME=cmdSubmit VALUE="Start Upload">

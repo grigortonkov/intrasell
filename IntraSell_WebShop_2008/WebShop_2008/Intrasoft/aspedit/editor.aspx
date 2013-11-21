@@ -31,7 +31,7 @@ end if
 
 %>
 			<form <%="action='editor.asp?file=" & file & "&aktion=save'"%> id=FORM1 method=post name=FORM1>
-					<input id=submit1 name=submit1 type=submit value="Save File"><br>
+					<input id=submit1 name=submit1 type=submit value="Save File"><br />
 					<%
 	response.write("<TEXTAREA name=FileContent cols='136' rows='35'>")
 	Response.Write Server.HTMLEncode(ts.ReadAll)

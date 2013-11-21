@@ -91,10 +91,10 @@
     '    Dim ex As Exception = ctx.Server.GetLastError()
 
     '    Dim errorInfo As String = _
-    '      "<br>Offending URL: " + ctx.Request.Url.ToString() + _
-    '      "<br>Source: " + ex.Source + _
-    '      "<br>Message: " + ex.Message + _
-    '      "<br>Stack trace: " + ex.StackTrace
+    '      "<br />Offending URL: " + ctx.Request.Url.ToString() + _
+    '      "<br />Source: " + ex.Source + _
+    '      "<br />Message: " + ex.Message + _
+    '      "<br />Stack trace: " + ex.StackTrace
 
     '    ctx.Response.Write(errorInfo)
 
