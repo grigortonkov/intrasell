@@ -13,7 +13,7 @@
             </th>
         </tr>
         <tr>
-            <td align="right" class="style1">
+            <td align="right" >
                 <span style="font-weight: 400"><font size="1">*
                     <%=getTranslation("Email")%>&nbsp;&nbsp; </font></span>
             </td>
@@ -26,7 +26,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style1">
+            <td align="right"  >
                 <span style="font-weight: 400"><font size="1">*
                     <%=getTranslation("Emailwiederholung")%>&nbsp;&nbsp; </font></span>
             </td>
@@ -39,7 +39,7 @@
         <tr>
             <%If Not fill Then%>
             <tr>
-                <td align="right" class="style1">
+                <td align="right"  >
                     &nbsp;
                 </td>
                 <td>
@@ -47,7 +47,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style1">
+                <td align="right"  >
                     <span style="font-weight: 400"><font size="1">*
                         <%=getTranslation("Passwort")%>&nbsp;&nbsp; </font></span>
                 </td>
@@ -59,7 +59,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style1">
+                <td align="right" >
                     <span style="font-weight: 400"><font size="1">*<%=getTranslation("Passwortbest&auml;tigung")%>&nbsp;&nbsp;
                     </font></span>
                 </td>
