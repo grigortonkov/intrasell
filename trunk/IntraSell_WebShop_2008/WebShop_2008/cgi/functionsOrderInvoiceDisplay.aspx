@@ -195,7 +195,7 @@
         Dim html As String
         Dim Language As String = Session("LANGUAGE")
         Dim IDNR As Object : IDNR = getLOGIN()
-        If Not IsNumeric(IDNR) then IDNR = 0 'default IDNR to avoid errors inthe calculation 
+        If Not IsNumeric(IDNR) Then IDNR = 0 'default IDNR to avoid errors inthe calculation 
      
         Dim USE_BRUTTO_PREISE As Boolean = VARVALUE_DEFAULT("SHOP_SHOW_GROSS_PRICES", "true")
         
@@ -532,8 +532,10 @@
             
                  
             If (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_1", "true") = "true" And StepN = "1") _
-         Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
-         Or (StepN <> "1" And StepN <> "2") Then 'show TOTAL only when user already registered!
+            Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
+            Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_3", "true") = "true" And StepN = "3") _
+            Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_4", "true") = "true" And StepN = "4") _
+         Or (StepN <> "1" And StepN <> "2" And StepN <> "3" And StepN <> "4") Then 'show TOTAL only when user already registered!
                 
                 html = html & "<td align='right'>"
                 html = html & "   <p align='right'>"
@@ -553,9 +555,9 @@
     
             
             If (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_1", "true") = "true" And StepN = "1") _
-         Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
-         Or (StepN <> "1" And StepN <> "2") _
-         Or USE_BRUTTO_PREISE Then 'show TOTAL only when user already registered!
+            Or (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_ON_STEP_2", "true") = "true" And StepN = "2") _
+            Or (StepN <> "1" And StepN <> "2") _
+            Or USE_BRUTTO_PREISE Then 'show TOTAL only when user already registered!
     
                 Dim MWSTPercent As Integer = 0
                 MWSTPercent = Math.Round(100 * (SubtotalMWST - Subtotal) / Subtotal, 0)
@@ -566,11 +568,13 @@
                 html = html & "           <b>"
                 html = html & "              " & getTranslation("Gesamtsumme") & ""
                 
-                If StepN > "1" Then
-                    html = html & "              (+"
-                    html = html & "       " & MWSTPercent & ""
-                    html = html & "        %"
-                    html = html & "        " & getTranslation("MWST") & ")"
+                If StepN > "1" And IsNumeric(IDNR) Then
+                    If IDNR > 0 Then
+                        html = html & "              (+"
+                        html = html & "       " & MWSTPercent & ""
+                        html = html & "        %"
+                        html = html & "        " & getTranslation("MWST") & ")"
+                    End If
                 End If
                 
                 html = html & ":</b></p>"
@@ -609,7 +613,7 @@
         Dim html As String = ""
         Dim USE_EAN As Boolean = VARVALUE_DEFAULT("BenutzeEAN", "false")
         
-        Dim showThumbnails = True 
+        Dim showThumbnails = True
         Dim SHOP_THUMBNAIL_MAX_SIZE = 60
         html = html & "<table>"
         html = html & "<tr>"
@@ -893,7 +897,7 @@
     
     
     Function getFriendlyDestination(ByVal land_iso2 As Object) As String
-        if IsDbNull(land_iso2) then return ""
+        If IsDbNull(land_iso2) Then Return ""
         getFriendlyDestination = FIRSTVALUE("select name from grLand where iso2='" & land_iso2 & "'")
         If getFriendlyDestination = "N.A." Then
             getFriendlyDestination = land_iso2
