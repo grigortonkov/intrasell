@@ -177,7 +177,7 @@ If payMode & "" = "" Then
                     <td width="33%">
                         <input type="button" class="button" value="<%=getTranslation("Bestätigung ausdrucken")%>"
                             onclick="window.open('cgi/account/printPreviewOrder.aspx?nummer=<%=ordID%>&amp;OrderType=<%="AU"%>','Invoice','top=100,left=100,height=640,width=800,status=yes,toolbar=yes,menubar=no,location=no');"
-                            style="float: right">
+                            style="float: right" />
                     </td>
                     <td width="33%" align="center">
                         <input type="button" class="button" value="<%=getTranslation("Home")%>" onclick="document.location='default.aspx';" />

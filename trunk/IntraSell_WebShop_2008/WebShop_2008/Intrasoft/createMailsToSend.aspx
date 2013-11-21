@@ -96,7 +96,7 @@ Best regards!</textarea></td>
 				</tr>
 				<tr>
 					<td width="100%" height="23" colspan="2">
-						<p align="center"><input type="submit" value="CREATE EMAIL MESSAGES" name="B1">
+						<p align="center"><input type="submit" value="CREATE EMAIL MESSAGES" name="B1" />
 					</td>
 				</tr>
 			</table>

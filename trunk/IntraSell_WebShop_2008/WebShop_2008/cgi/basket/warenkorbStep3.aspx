@@ -137,8 +137,8 @@
 </script>
 <!-- END WARENKORB UPDATE FORM-->
 <form method='post' action="default.aspx" id="FormBasket" name="warenkorbStep3">
-<input type="hidden" name="PageToShow" value="warenkorbStep4">
-<input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
+<input type="hidden" name="PageToShow" value="warenkorbStep4" />
+<input type='hidden' name='showForm' value='false' /><!-- do not show profile form on error -->
 <%
 
     
@@ -180,7 +180,7 @@
                         'Response.Write selected
                 %>
                 <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PostMode"
-                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';">
+                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=paymode%>&postmode=<%=rsZM("methode").Value%>';" />
                 <%=rsZM("methode").Value%>
                 <%
                     rsZM.MoveNExt()
@@ -227,7 +227,7 @@
                         'Response.Write selected
                 %>
                 <input type="radio" disabled="disabled" class="submit" value="<%=rsZM1("destination").Value%>" name="destination"
-                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM1("destination").Value%>';">
+                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=paymode%>&postmode=<%=postmode%>&destination=<%=rsZM1("destination").Value%>';" />
                 <%=getFriendlyDestination(rsZM1("destination").Value)%>
                 <%
                     rsZM1.MoveNExt()
@@ -271,7 +271,7 @@
                 %>
                <td valign="top">
                 <input type="radio" class="submit" value="<%=rsZM("methode").Value%>" name="PayMode"
-                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=rsZM("methode").Value%>&postmode=<%=postmode%>';">
+                    <%=selected%> onclick="WaitForCalculation();document.location='default.aspx?pageToShow=warenkorbStep3&paymode=<%=rsZM("methode").Value%>&postmode=<%=postmode%>';" />
                 <table border="0">
                     <tr>
                         <td>
@@ -310,7 +310,7 @@
     <%If (Not paymode & "" = "") And (Not postmode & "" = "") And (Not destination & "" = "") Then%>
     <% If VARVALUE_DEFAULT("SHOW_SHOW_BUTTON_SHOPPING", "true") = "true" Then%>
     <input type="button" class="button" value="<%=getTranslation("weiter shoppen")%>"
-        onclick="document.location='default.aspx';">&nbsp;
+        onclick="document.location='default.aspx';" />&nbsp;
     <% End If%>
     <input type="button" class="button" value="<%=getTranslation("abbrechen")%>" onclick="cancel();" />
     <% If VARVALUE_DEFAULT("SHOP_SHOW_ALLOW_OFFERS", "true") = "true" Then%>

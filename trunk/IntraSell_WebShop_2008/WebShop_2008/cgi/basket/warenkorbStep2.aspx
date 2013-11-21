@@ -152,8 +152,8 @@
 <br />
 
 <p align="right">
-    <input type="button" class="button" value="<%=getTranslation("weiter suchen")%>" onclick="document.location='default.aspx';">&nbsp;
-    <input type="submit" class="button" value="<%=getTranslation("bestellen")%>">
+    <input type="button" class="button" value="<%=getTranslation("weiter suchen")%>" onclick="document.location='default.aspx';" />&nbsp;
+    <input type="submit" class="button" value="<%=getTranslation("bestellen")%>" />
 </p>
 
 <%End If 'User is Logged in %>
