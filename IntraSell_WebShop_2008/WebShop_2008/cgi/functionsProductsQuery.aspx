@@ -258,7 +258,7 @@
 
             html = html & "<a name=""top""></a>"
             html = html & "<form action=""default.aspx?pageToShow=compareManyProducts"" type=""POST"">"
-            html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareManyProducts"">"
+            html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareManyProducts"" />"
             
             Dim htmlHeader As String
             'Template variables for the header description
@@ -599,10 +599,10 @@
                 html = html & "<th width=""90"" align=""center"">"
                 
                 If SHOP_SHOW_COMPARE Then
-                    html = html & "<input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objekte vergleichen.") & """ src=""" & imageFullName("compare.gif") & """ value=""Vergleichen"" Name=""Action"">"
+                    html = html & "<input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objekte vergleichen.") & """ src=""" & imageFullName("compare.gif") & """ value=""Vergleichen"" Name=""Action"" />"
                 End If
                 If SHOP_SHOW_DRUCKEN Then
-                    html = html & " <input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"">"
+                    html = html & " <input class='extra' type=""image"" alt =""" & getTranslation("Die selektierte Objektliste ausdrucken.") & """ src=""" & imageFullName("printer.png") & """ value=""Drucken"" OnClick=""this.form.pageToShow.value='printManyProducts';"" />"
                 End If
                 
                 html = html & "</th>"
@@ -843,7 +843,7 @@
                     If SHOP_SHOW_COMPARE Or SHOP_SHOW_DRUCKEN Then
                         
                         htmlProductRow = htmlProductRow & "<td align=""center"" bgcolor=""" & rowColor & """ >"
-                        htmlProductRow = htmlProductRow & "<input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit"">"
+                        htmlProductRow = htmlProductRow & "<input type=""checkbox"" value=""" & ArtNr & """ name=""ArtNrToCompare""  class=""submit"" />"
                         htmlProductRow = htmlProductRow & "</td>"
             
                     End If
@@ -875,7 +875,7 @@
             html = html & "<th colspan=" & (tableColumns - 1) & "></th>"
             
             If SHOP_SHOW_COMPARE Then
-                html = html & "<th><input class='extra' type='image' alt='Compare the selected products' src=""" & imageFullName("compare.gif") & """ value=""Vergleichen""  id=1 name=1><!--<input type=""submit"" value=""Vergleichen"">--></th>"
+                html = html & "<th><input class='extra' type='image' alt='Compare the selected products' src=""" & imageFullName("compare.gif") & """ value=""Vergleichen""  id=1 name=1><!--<input type=""submit"" value=""Vergleichen"" />--></th>"
             End If
             
             html = html & "</tr>"

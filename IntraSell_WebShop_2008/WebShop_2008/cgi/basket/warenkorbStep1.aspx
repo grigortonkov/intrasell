@@ -126,7 +126,7 @@
 </script>
 <div>
 <form action="default.aspx" method='post' id="warenkorbStep1" name="warenkorbStep1">
-<input type='hidden' name='pageToShow' value='warenkorbStep1'>
+<input type='hidden' name='pageToShow' value='warenkorbStep1' />
 <input type='hidden' name='showForm' value='false'><!-- do not show profile form on error -->
 <!-- WARENKORB -->
 <%
@@ -171,8 +171,8 @@
 %>
 <br />
 <%  If isWarenkorbVoll Then%>
-<input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>">&nbsp;
-<input type="button" class="button" value="<%=getTranslation("weiter shoppen")%>" onclick="document.location='default.aspx';">&nbsp;
+<input type="submit" class="button" value="<%=getTranslation("Warenkorb aktualisieren")%>" />&nbsp;
+<input type="button" class="button" value="<%=getTranslation("weiter shoppen")%>" onclick="document.location='default.aspx';" />&nbsp;
 <%  End If%>
 </form>
 

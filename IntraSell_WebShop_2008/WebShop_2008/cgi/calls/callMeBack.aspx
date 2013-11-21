@@ -20,7 +20,7 @@
                 </td>
                 <td>
                     Email:&nbsp;
-                    <input type='input' name='FromMail' value='<%=GetClientEMail (getLOGIN())%>'>
+                    <input type='input' name='FromMail' value='<%=GetClientEMail (getLOGIN())%>' />
                 </td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                 </th>
                 <td>
                     Name:
-                    <input type='input' name='FromName' value=''>
+                    <input type='input' name='FromName' value='' />
                 </td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
                 </th>
                 <td>
                     Tel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type='input' name='FromTel' value=''>
+                    <input type='input' name='FromTel' value='' />
                 </td>
             </tr>
             <tr>

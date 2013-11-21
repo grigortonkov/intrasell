@@ -47,8 +47,8 @@
         html = html & "<table border=""0"" ><tr>"
         html = html & "<form action=""default.aspx"" method=""POST"">"
    
-        html = html & "<input type=""Hidden"" name=""PageToShow"" value=""productSearchOnKeywords"">"
-        html = html & "<input type=""Hidden"" name=""preKatNr"" value=""" & categoryId & """>"
+        html = html & "<input type=""Hidden"" name=""PageToShow"" value=""productSearchOnKeywords"" />"
+        html = html & "<input type=""Hidden"" name=""preKatNr"" value=""" & categoryId & """ />"
    
         html = html & "<td>"
    
@@ -69,7 +69,7 @@
    
         html = html & "<tr><td>"
         'Min Preis
-        html = html & "<table border=0><tr><td>Min " & getTranslation("Preis") & "</td><td><input type=""input"" name=""MinPreis"" size=5></td></tr>"
+        html = html & "<table border=0><tr><td>Min " & getTranslation("Preis") & "</td><td><input type=""input"" name=""MinPreis"" size=5 /></td></tr>"
         'Max Preis 
         html = html & "<tr><td>Max " & getTranslation("Preis") & "</td><td><input type=""input"" name=""MaxPreis"" size=5></td></tr></table>"
         html = html & "</td><tr>"

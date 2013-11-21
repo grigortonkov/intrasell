@@ -492,7 +492,7 @@
                 html = html & "<td width=""100"" align=""center"" bgcolor=""" & rowColor & """>" & rsArtikel("Bezeichnung1").Value & "</td>"
                 html = html & "<td width=""100""  align=""center"" bgcolor=""" & rowColor & """><a href='putInWarenkorb.aspx?ArtNr=" & artNr & "'>Buy</a></td>"
                 html = html & "<td width=""100""  align=""center"" bgcolor=""" & rowColor & """><a href='default.aspx?ArtNr=" & artNr & "'>detail</a></td>"
-                html = html & "<td><input type=""checkbox"" value=""" & artNr & """ name=""ArtNrToCompare""></td>"
+                html = html & "<td><input type=""checkbox"" value=""" & artNr & """ name=""ArtNrToCompare"" /></td>"
                 html = html & "</tr>"
 
                 rsArtikel.moveNext()

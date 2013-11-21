@@ -44,9 +44,9 @@
 
     %>
     <form action="default.aspx" name="warenkorbStep4">
-    <input type="hidden" name="PageToShow" value="warenkorbStep5">
-    <input type="hidden" name="EmailOld" size="20" value="<%=EmailStep3%>">
-    <input type="hidden" name="PasswordOld" size="20" value="<%=PasswordStep3%>">
+    <input type="hidden" name="PageToShow" value="warenkorbStep5" />
+    <input type="hidden" name="EmailOld" size="20" value="<%=EmailStep3%>" />
+    <input type="hidden" name="PasswordOld" size="20" value="<%=PasswordStep3%>" />
     
   
     <br />
@@ -58,13 +58,13 @@
         <tr>
             <td>
                 <p align="left">
-                   <input type="checkbox" name="AGB" value="ON">
+                   <input type="checkbox" name="AGB" value="ON" />
                     <a name="agb"></a>&nbsp;<%=getTranslation("Ich habe die AGB gelesen und akzeptiert!")%>
                     <a href="default.aspx?PageToShow=AGB">
                         <%=getTranslation("AGB anzeigen")%></a>
                     <br />
                     <% If VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" Then%>
-                    <input type="checkbox" name="GESETZ" value="ON">
+                    <input type="checkbox" name="GESETZ" value="ON" />
                     <a name="agb"></a>&nbsp;<%=getTranslation("Informationen zum Fernabsatzgesetz gelesen!")%>
                     <a href="default.aspx?PageToShow=GESETZ">
                         <%=getTranslation("Informationen zum Fernabsatzgesetz anzeigen")%></a>
@@ -78,7 +78,7 @@
                         <input type="button" class="button" value="<%=getTranslation("Bestellung ändern")%>"
                             onclick="document.location='default.aspx?pageToShow=warenkorbStep1'" />
                         &nbsp; &nbsp;
-                        <input type="submit" class="button" value="<%=getTranslation("zahlungspflichtig bestellen")%>">
+                        <input type="submit" class="button" value="<%=getTranslation("zahlungspflichtig bestellen")%>" />
                     </p>
                 </td>
         </tr>

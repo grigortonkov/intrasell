@@ -630,7 +630,7 @@
         '% >
         '</form>
         '            <form method="POST" action="default.aspx">
-        '            <input type="hidden" name="pageToShow" value="ProfileSave">
+        '            <input type="hidden" name="pageToShow" value="ProfileSave" />
         '< %
         idnr1 = saveProfile(TypeOfAddress.ACCOUNT)
         If idnr1 <= 0 Then 'not saved then 
@@ -773,7 +773,7 @@
         
         html = html & "<table Id='ProfileTable' width='450'  border='1' cellspacing='3' cellpadding='3' bordercolor='#CCCCCC' style='border-collapse: collapse' bordercolorlight='#FFFFFF' bordercolordark='#FFFFFF' bgcolor='#F3F3F3'>"
 
-        html = html & "<input type='hidden' name='Branche" & typeOfAddr & "' value='0'><!-- simple account  -->"
+        html = html & "<input type='hidden' name='Branche" & typeOfAddr & "' value='0' /><!-- simple account  -->"
 
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             
@@ -784,7 +784,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='150'><span style='font-weight: 400'>"
             html = html & "<font size='1'>* " & getTranslation("Email") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td><font><font size='1'><b>&nbsp;<input type='text' name='Email" & typeOfAddr & "' id='Email" & typeOfAddr & "' size='40' value='" & Email & "'>"
+            html = html & "<td><font><font size='1'><b>&nbsp;<input type='text' name='Email" & typeOfAddr & "' id='Email" & typeOfAddr & "' size='40' value='" & Email & "' />"
             If withCheck And Len(Email) < 5 Then
                 html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
             End If
@@ -797,7 +797,7 @@
             html = html & "<tr>"
             html = html & "   <td align='right' width='150'><span style='font-weight: 400'>"
             html = html & "   <font  size='1'>* " & getTranslation("Emailwiederholung") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "   <td> &nbsp;<input type='text' name='Emailwiederholung" & typeOfAddr & "' id='Emailwiederholung" & typeOfAddr & "' size='40' value='" & Emailwiederholung & "'>"
+            html = html & "   <td> &nbsp;<input type='text' name='Emailwiederholung" & typeOfAddr & "' id='Emailwiederholung" & typeOfAddr & "' size='40' value='" & Emailwiederholung & "' />"
             If withCheck And Len(Emailwiederholung) < 5 Then
                 html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
             End If
@@ -814,7 +814,7 @@
                 html = html & "<tr id='RowPasswort'>"
                 html = html & "<td align='right'><span style='font-weight: 400'>"
                 html = html & "<font size='1'>* " & getTranslation("Passwort") & "&nbsp;&nbsp; </font></span></td>"
-                html = html & "<td>&nbsp;<input type='password' name='Passwort" & typeOfAddr & "' id='Passwort" & typeOfAddr & "' size='20'>"
+                html = html & "<td>&nbsp;<input type='password' name='Passwort" & typeOfAddr & "' id='Passwort" & typeOfAddr & "' size='20' />"
                 If withCheck And Len(passwort) < PASSWORD_LENGTH Then
                     html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
                 End If
@@ -827,7 +827,7 @@
                 html = html & "<tr id='RowPasswortII'>"
                 html = html & "<td align='right'><span style='font-weight: 400'>"
                 html = html & "<font  size='1'>* " & getTranslation("Passwortbest&auml;tigung") & "&nbsp;&nbsp; </font></span></td>"
-                html = html & "<td>&nbsp;<input type='password' name='PasswortII" & typeOfAddr & "' id='PasswortII" & typeOfAddr & "' size='20'>"
+                html = html & "<td>&nbsp;<input type='password' name='PasswortII" & typeOfAddr & "' id='PasswortII" & typeOfAddr & "' size='20' />"
                 If withCheck And Len(passwortII) < PASSWORD_LENGTH Then
                     html = html & "</b></font><b><font size='1'  id='ErrorMessage' color='red'>(!)</a>     "
                 End If
@@ -842,15 +842,15 @@
                 html = html & "<tr>"
                 html = html & "<td colspan=2  align='center' width='350'><span style='font-weight: 400'>"
                 html = html & "<font size='1'>" & getTranslation("To Change Password Click") & " <a href=default.aspx?PageToShow=ChangePassword>HERE</a>!</font></span></td>"
-                html = html & "<input type='hidden' name='Passwort" & typeOfAddr & "' id='Passwort" & typeOfAddr & "' size='20' value='" & passwort & "'>"
-                html = html & "<input type='hidden' name='PasswortII" & typeOfAddr & "' id='PasswortII" & typeOfAddr & "' size='20' value='" & passwortII & "'>"
+                html = html & "<input type='hidden' name='Passwort" & typeOfAddr & "' id='Passwort" & typeOfAddr & "' size='20' value='" & passwort & "' />"
+                html = html & "<input type='hidden' name='PasswortII" & typeOfAddr & "' id='PasswortII" & typeOfAddr & "' size='20' value='" & passwortII & "' />"
                 html = html & "</tr>"
             End If
         End If
         html = html & "</table>"
         html = html & "&nbsp; <br/>"
         html = html & "<table Id='ProfileTable' border='1' cellspacing='1' style='border-collapse: collapse' cellpadding='3' width='450' bgcolor='#F3F3F3' bordercolorlight='#FFFFFF' bordercolordark='#FFFFFF'>"
-        html = html & "<input type='hidden' name='Redirection' value='" & Request("Redirection") & "'>"
+        html = html & "<input type='hidden' name='Redirection' value='" & Request("Redirection") & "' />"
         html = html & "<tr><th colspan='3'>"
         If typeOfAddr = TypeOfAddress.ACCOUNT Then html = html & getTranslation("Ihr Account") & "<br/>"
         If typeOfAddr = TypeOfAddress.SHIPPING Then html = html & getTranslation("Lieferadresse") & "<br/>" & getTranslation("(nur wenn Lieferadresse vom Account abweicht)")
@@ -860,7 +860,7 @@
         html = html & "<tr>"
         html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "<font size='1' >" & getTranslation("Firma") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "<td><input type='text' name='Firma" & typeOfAddr & "' id='Firma" & typeOfAddr & "' size='20' value='" & firma & "'></td>"
+        html = html & "<td><input type='text' name='Firma" & typeOfAddr & "' id='Firma" & typeOfAddr & "' size='20' value='" & firma & "' /></td>"
         html = html & "</tr>"
 
   
@@ -868,11 +868,11 @@
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >" & getTranslation("UID") & "&nbsp;&nbsp; </font></span></td>"
         If (UID <> "") Then 'update is not allowed 
-            html = html & "  <td><input type='hidden' name='UID" & typeOfAddr & "' id='UID" & typeOfAddr & "' size='20' value='" & UID & "'> " & UID & "&nbsp;"
+            html = html & "  <td><input type='hidden' name='UID" & typeOfAddr & "' id='UID" & typeOfAddr & "' size='20' value='" & UID & "' /> " & UID & "&nbsp;"
             'change UID per Email 
             html = html & "<a target=_new href='mailto:" & VARVALUE("EMAIL_REGISTER") & "'>" & getTranslation("UID ändern") & "</a></td>"
         Else
-            html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' id='UID" & typeOfAddr & "' size='20' value='" & UID & "'></td>"
+            html = html & "  <td><input type='text' name='UID" & typeOfAddr & "' id='UID" & typeOfAddr & "' size='20' value='" & UID & "' /></td>"
         End If
         
         html = html & "</tr>"
@@ -896,7 +896,7 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >" & getTranslation("Titel") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "  <td><input type='text' name='Titel" & typeOfAddr & "' id='Titel" & typeOfAddr & "' size='20' value='" & Titel & "'>"
+        html = html & "  <td><input type='text' name='Titel" & typeOfAddr & "' id='Titel" & typeOfAddr & "' size='20' value='" & Titel & "' />"
         html = html & "  </td>"
         html = html & "</tr>"
         html = html & " <tr>"
@@ -904,7 +904,7 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1'>* " & getTranslation("Name") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "  <td><input type='text' name='Name" & typeOfAddr & "' id='Name" & typeOfAddr & "' size='20'  value='" & name & "'>"
+        html = html & "  <td><input type='text' name='Name" & typeOfAddr & "' id='Name" & typeOfAddr & "' size='20'  value='" & name & "' />"
         If withCheck And Len(name) < 3 Then
             html = html & "<font color=red>(!)</font>"
         End If
@@ -913,7 +913,7 @@
   
         html = html & "<tr> <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & " <font size='1' >* " & getTranslation("Vorname") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & " <td><font  size='1'><input type='text' name='Vorname" & typeOfAddr & "' id='Vorname" & typeOfAddr & "' size='20'  value='" & vorname & "'>"
+        html = html & " <td><font  size='1'><input type='text' name='Vorname" & typeOfAddr & "' id='Vorname" & typeOfAddr & "' size='20'  value='" & vorname & "' />"
         If withCheck And Len(vorname) < 3 Then
             html = html & "<font color=red>(!)</font>"
         End If
@@ -924,7 +924,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1' >" & getTranslation("Geburtstag") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td><input type='text' name='Geburtstag" & typeOfAddr & "' id='Geburtstag" & typeOfAddr & "' size='20'  value='" & Geburtstag & "'>DD.MM.YYYY"
+            html = html & "<td><input type='text' name='Geburtstag" & typeOfAddr & "' id='Geburtstag" & typeOfAddr & "' size='20'  value='" & Geburtstag & "' />DD.MM.YYYY"
             If withCheck And Len(Geburtstag) < 3 Then
             End If
             html = html & " </td>"
@@ -934,7 +934,7 @@
         html = html & "<tr>"
         html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "  <font size='1' >* " & getTranslation("Strasse / Nr.") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "<td><input type='text' name='Strasse" & typeOfAddr & "' id='Strasse" & typeOfAddr & "' size='20' value='" & strasse & "'>"
+        html = html & "<td><input type='text' name='Strasse" & typeOfAddr & "' id='Strasse" & typeOfAddr & "' size='20' value='" & strasse & "' />"
         If withCheck And Len(strasse) < 3 Then
             html = html & "<font color=red>(!)</font>"
         End If
@@ -944,12 +944,12 @@
         html = html & "<tr>"
         html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "<font size='1' >* " & getTranslation("PLZ / Ort") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "<td><input type='text' name='PLZ" & typeOfAddr & "' id='PLZ" & typeOfAddr & "' size='6' value='" & plz & "'>"
+        html = html & "<td><input type='text' name='PLZ" & typeOfAddr & "' id='PLZ" & typeOfAddr & "' size='6' value='" & plz & "' />"
         If withCheck And Len(plz) < 4 Then
             html = html & "<font color=red>(!)</font>"
         End If
         
-        html = html & "<input type='text' name='Ort" & typeOfAddr & "' id='Ort" & typeOfAddr & "' size='40' value='" & ort & "'>"
+        html = html & "<input type='text' name='Ort" & typeOfAddr & "' id='Ort" & typeOfAddr & "' size='40' value='" & ort & "' />"
         If withCheck And Len(ort) < 2 Then
             html = html & "<font color=red>(!)</font>"
         End If
@@ -976,7 +976,7 @@
         html = html & "<tr>"
         html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
         html = html & "<font size='1'>* " & getTranslation("Tel") & "&nbsp;&nbsp; </font></span></td>"
-        html = html & "<td><input type='text' name='Tel" & typeOfAddr & "' id='Tel" & typeOfAddr & "' size='20' value='" & tel & "'>"
+        html = html & "<td><input type='text' name='Tel" & typeOfAddr & "' id='Tel" & typeOfAddr & "' size='20' value='" & tel & "' />"
         If withCheck And Len(tel) < 5 Then
             html = html & "<font color=red>(!)</font>"
         End If
@@ -988,7 +988,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1'>* " & getTranslation("Email") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td><input type='text' name='Email" & typeOfAddr & "' id='Email" & typeOfAddr & "' size='40' value='" & Email & "'>"
+            html = html & "<td><input type='text' name='Email" & typeOfAddr & "' id='Email" & typeOfAddr & "' size='40' value='" & Email & "' />"
             If withCheck And Len(Email) < 5 Then
                 html = html & "<font size='1' color='red'>(!)</font>"
             End If
@@ -1001,7 +1001,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1'>" & getTranslation("Tel(abend)") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td width='281'><input type='text' name='TelII" & typeOfAddr & "'  id='TelII" & typeOfAddr & "' size='20'   value='" & telII & "'>"
+            html = html & "<td width='281'><input type='text' name='TelII" & typeOfAddr & "'  id='TelII" & typeOfAddr & "' size='20'   value='" & telII & "' />"
             html = html & "</td>"
             html = html & "</tr>"
         End If
@@ -1011,7 +1011,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1'>" & getTranslation("Fax") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td width='281'><input type='text' name='Fax" & typeOfAddr & "' id='Fax" & typeOfAddr & "' size='20' value='" & Fax & "'>"
+            html = html & "<td width='281'><input type='text' name='Fax" & typeOfAddr & "' id='Fax" & typeOfAddr & "' size='20' value='" & Fax & "' />"
             html = html & "</td>"
             html = html & "</tr>"
         End If
@@ -1022,7 +1022,7 @@
             html = html & "<tr>"
             html = html & "  <td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "  <font size='1'>" & getTranslation("Mobil") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "  <td width='281'><input type='text' name='Mobil" & typeOfAddr & "' id='Mobil" & typeOfAddr & "' size='20' value='" & Mobil & "'>"
+            html = html & "  <td width='281'><input type='text' name='Mobil" & typeOfAddr & "' id='Mobil" & typeOfAddr & "' size='20' value='" & Mobil & "' />"
             html = html & " </td>"
             html = html & "</tr>"
         End If
@@ -1032,7 +1032,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='138'><span style='font-weight: 400'>"
             html = html & "<font size='1'>" & getTranslation("Web") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td width='281'><input type='text' name='Web" & typeOfAddr & "' id='Web" & typeOfAddr & "' size='20' value='" & Web & "'>"
+            html = html & "<td width='281'><input type='text' name='Web" & typeOfAddr & "' id='Web" & typeOfAddr & "' size='20' value='" & Web & "' />"
             html = html & "</td>"
             html = html & "</tr>"
         End If
@@ -1044,7 +1044,7 @@
         If typeOfAddr = TypeOfAddress.ACCOUNT Then
             html = html & "<tr>"
             html = html & "<td align='right' width='350' colspan='2' bgcolor='#FFFFFF'>"
-            html = html & "<p align='left'>&nbsp;    <input class='submit' type='CheckBox' unchecked name='IchWillNewsletter" & typeOfAddr & "' id='IchWillNewsletter" & typeOfAddr & "'  value='ON'>"
+            html = html & "<p align='left'>&nbsp;    <input class='submit' type='CheckBox' unchecked name='IchWillNewsletter" & typeOfAddr & "' id='IchWillNewsletter" & typeOfAddr & "'  value='ON' />"
             html = html & getTranslation("Ich möchte Newsletter erhalten")
             html = html & " </td>"
             html = html & " </tr>"
@@ -1185,7 +1185,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' ><span style='font-weight: 400'>"
             html = html & " <font size='1'>* " & getTranslation("Email") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td>&nbsp;<input type='text' name='Email" & typeOfAddr & "' size='20' value='" & Email & "' ID='Text1'>"
+            html = html & "<td>&nbsp;<input type='text' name='Email" & typeOfAddr & "' size='20' value='" & Email & "' ID='Text1' />"
             
             If withCheck And Len(Email) < 5 Then
                 html = html & "</b></font><b><font size='1'  id='ErrorMessage' color='red'>(!)</a>"
@@ -1197,7 +1197,7 @@
             html = html & "<tr>"
             html = html & "<td align='right'><span style='font-weight: 400'>"
             html = html & " <font size='1'>* " & getTranslation("Emailwiederholung") & "&nbsp;&nbsp; </font></span></td>"
-            html = html & "<td>&nbsp;<input type='text' name='Emailwiederholung" & typeOfAddr & "' size='20' value='" & EmailWiederholung & "'>"
+            html = html & "<td>&nbsp;<input type='text' name='Emailwiederholung" & typeOfAddr & "' size='20' value='" & EmailWiederholung & "' />"
             If withCheck And Len(EmailWiederholung) < 5 Then
                 html = html & "</b></font><b><font size='1'  id='ErrorMessage' color='red'>(!)</a>"
             End If
@@ -1215,7 +1215,7 @@
                 html = html & "<tr>"
                 html = html & " <td align='right'><span style='font-weight: 400'>"
                 html = html & " <font size='1'>* " & getTranslation("Passwort") & "&nbsp;&nbsp; </font></span></td>"
-                html = html & "<td><font size='1'><b> &nbsp;<input type='password' name='Passwort" & typeOfAddr & "' size='20' ID='Password1'>"
+                html = html & "<td><font size='1'><b> &nbsp;<input type='password' name='Passwort" & typeOfAddr & "' size='20' ID='Password1' />"
                 If withCheck And Len(Passwort) < PASSWORD_LENGTH Then
                     html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
                 End If
@@ -1227,7 +1227,7 @@
                 html = html & "<tr>"
                 html = html & "  <td align='right'><span style='font-weight: 400'>"
                 html = html & "  <font  size='1'>* " & getTranslation("Passwort wiederholen") & "&nbsp;&nbsp; </font></span></td>"
-                html = html & "  <td><font size='1'><b> &nbsp;<input type='password' name='PasswortII<%=typeOfAddr%>' size='20' ID='Password2'>"
+                html = html & "  <td><font size='1'><b> &nbsp;<input type='password' name='PasswortII<%=typeOfAddr%>' size='20' ID='Password2' />"
                
                 If withCheck And Len(PasswortII) < PASSWORD_LENGTH Then
                     html = html & "</b></font><b><font size='1' id='ErrorMessage' color='red'>(!)</a>"
@@ -1244,15 +1244,15 @@
                 html = html & "  <td colspan=2  align='center' width='350'><span style='font-weight: 400'>"
                 html = html & "<font size='1'>" & getTranslation("To Change Password Click") & "<a href=default.aspx?PageToShow=ChangePassword>HERE</a>!</font></span></td>"
 
-                html = html & "<input type='hidden' name='Passwort" & typeOfAddr & "' size='20' value='" & Passwort & "' ID='Hidden1'>"
-                html = html & "<input type='hidden' name='PasswortII" & typeOfAddr & "' size='20' value='" & PasswortII & "' ID='Hidden2'>"
+                html = html & "<input type='hidden' name='Passwort" & typeOfAddr & "' size='20' value='" & Passwort & "' ID='Hidden1' />"
+                html = html & "<input type='hidden' name='PasswortII" & typeOfAddr & "' size='20' value='" & PasswortII & "' ID='Hidden2' />"
                 html = html & "</tr>"
             End If
         End If
         
         html = html & "</table>"
-        html = html & "<input type='hidden' name='Redirection' value='" & Request("Redirection") & "'>"
-        html = html & "<input type='hidden' name='Branche" & typeOfAddr & "' value='4'>"
+        html = html & "<input type='hidden' name='Redirection' value='" & Request("Redirection") & "' />"
+        html = html & "<input type='hidden' name='Branche" & typeOfAddr & "' value='4' />"
         html = html & "<!-- simple account  -->"
         html = html & "&nbsp; <br />"
         html = html & "</center>"
@@ -1639,7 +1639,7 @@
             html = html & "Email: <a href='mailto:" & rsKUND("Email").Value & "'>" & rsKUND("Email").Value & "</a><br />"
             
             If showSelectBox Then
-                html = html & "<input type='radio' Name='UseOld" & addressType & "' Value='" & rsKUND("ID").Value & "'> " & getTranslation("ich möchte diese Adresse verwenden")
+                html = html & "<input type='radio' Name='UseOld" & addressType & "' Value='" & rsKUND("ID").Value & "' /> " & getTranslation("ich möchte diese Adresse verwenden")
             End If
             
             If printAll Then

@@ -14,8 +14,8 @@
         Dim html As String
         Const COUNT_CHARS_TO_COMPARE = 30
         html = "<form action=""default.aspx?pageToShow=compareTwoProducts"">"
-        html = html + "<input name=""artNr1"" type=""hidden"" value=""" & ArtNr1 & """>"
-        html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareTwoProducts"">"
+        html = html + "<input name=""artNr1"" type=""hidden"" value=""" & ArtNr1 & """ />"
+        html = html + "<input name=""pageToShow"" type=""hidden"" value=""compareTwoProducts"" />"
         Dim sql As String, rs
         sql = "Select artNr, Bezeichnung from grArtikel where ArtNr <> " & ArtNr1 & _
               " AND ArtKatNR in (Select  ArtKatNR from grArtikel where ArtNr = " & ArtNr1 & ") ORDER BY Bezeichnung"
@@ -35,7 +35,7 @@
         End While
  
         html = html & "</select>"
-        html = html & "<input type=""submit"" value=""go"">"
+        html = html & "<input type=""submit"" value=""go"" />"
         html = html & "</form>"
 
         printProductsSelectForm = html

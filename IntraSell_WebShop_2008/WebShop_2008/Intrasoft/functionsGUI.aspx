@@ -430,9 +430,9 @@
     
     Function drawCheckBoxForBoolean(ByVal bool As Boolean) As String
         If bool Then
-            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C1"" value=""ON"" checked>"
+            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C1"" value=""ON"" checked />"
         Else
-            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C2"" value=""ON"">"
+            drawCheckBoxForBoolean = "<input type=""checkbox"" name=""C2"" value=""ON"" />"
         End If
     End Function
 

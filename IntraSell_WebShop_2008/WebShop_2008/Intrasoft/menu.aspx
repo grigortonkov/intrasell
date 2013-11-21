@@ -39,5 +39,5 @@ Session("dbMenuColor")   = "#99CCFF"
 
     <%call DisplayMainMenu("menu.aspx")%>
     <form>
-        <input type="hidden" size="3" name="interval" value="<%=VARVALUE("REFRESH_INTERVAL")%>">
+        <input type="hidden" size="3" name="interval" value="<%=VARVALUE("REFRESH_INTERVAL")%>" />
     </form>
