@@ -69,7 +69,7 @@
             'Response.Write "Language=" &  Language 
             name = getTranslationDok("grArtikel-Kategorien", ShowArtKatNR.ToString(), "Name", rs("Name").Value, Language) & ""
             name = Server.HtmlEncode(name)
-            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>:: " & name & "</div></a>"
+            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><span class='category'>:: " & name & "</span></a>"
             ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  
             ''not needed end if 
@@ -148,7 +148,7 @@
             End If
             
             html = html & "<li>"
-            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><div class='category'>" & name & "</div></a><!--" & ShowArtKatNR & "-->" & Chr(13) & Chr(10)
+            html = html & "<a href=""" & inPageToShow & "?PreKatNr=" & ShowArtKatNR & """><span class='category'>" & name & "</span></a><!--" & ShowArtKatNR & "-->" & vbNewLine
             html = html & "</li>"
             ''not needed if rsCheck.eof then 'this cat has no products   
             ''not needed 'html = html &  "[leer]"  

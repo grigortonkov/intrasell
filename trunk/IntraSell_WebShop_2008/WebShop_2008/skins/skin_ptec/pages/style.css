@@ -37,15 +37,7 @@ BODY
     BACKGROUND-COLOR: #000;
     FONT-WEIGHT: normal;
     FONT-SIZE: 7pt;
-    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
-   SCROLLBAR-FACE-COLOR: #c0c0c0;
-    SCROLLBAR-HIGHLIGHT-COLOR: #000000;
-    SCROLLBAR-SHADOW-COLOR: #ffffff;
-    SCROLLBAR-ARROW-COLOR: #ffcc00;
-    SCROLLBAR-TRACK-COLOR: #505050;
-	scrollbar-3dLight-Color:#c0c0c0;
-    SCROLLBAR-DARKSHADOW-COLOR: #c0c0c0;
-    SCROLLBAR-BASE-COLOR: #c0c0c0;
+    FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
 .bestellservice {	
     color: #C3C3C3;	
