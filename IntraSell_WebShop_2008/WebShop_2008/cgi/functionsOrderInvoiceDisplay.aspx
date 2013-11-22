@@ -570,10 +570,13 @@
                 
                 If StepN > "1" And IsNumeric(IDNR) Then
                     If IDNR > 0 Then
-                        html = html & "              (+"
-                        html = html & "       " & MWSTPercent & ""
-                        html = html & "        %"
-                        html = html & "        " & getTranslation("MWST") & ")"
+                        html = html & " " & getTranslation("inklusive MwSt.")
+                        If (VARVALUE_DEFAULT("SHOP_SHOW_BASKET_VAT_PERCENT", "false") = "true") Then
+                            html = html & "              (+"
+                            html = html & "       " & MWSTPercent & ""
+                            html = html & "        %"
+                            html = html & "        " & getTranslation("MWST") & ")"
+                        End If
                     End If
                 End If
                 
@@ -600,9 +603,9 @@
             html = html & "   }; "
             html = html & "</" & "script>"
 
-        End If
+            End If
         
-        Response.Write(html)
+            Response.Write(html)
         
     End Function
 
