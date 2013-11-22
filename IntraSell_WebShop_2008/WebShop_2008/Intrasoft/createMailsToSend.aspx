@@ -19,43 +19,37 @@ Dim Body as String: Body = request("Body")
 if SenderEmail<>"" and SQL_RECEIVERS<>"" and Subject<>"" and Body <>"" then ' save modus 
  Dim rsEmails = ObjConnection.execute(SQL_RECEIVERS)
 
-dim bodySave as String = Body 
-dim countMails as integer = 0 
+ Dim bodySave as String = Body 
+ Dim countMails as integer = 0 
+ 
  while not rsEmails.EOF 
-        countMails = countMails + 1 
+       
         Body  = bodySave 
 
         'replace special MySQL Chars 
         Body = Body.Replace("'","""")
 
-        if inStr(Body, "Field[1]") > 0 then 
-	        Body = replace (Body, "Field[1]", rsEmails(1).Value & "")
-        end if 
-
-
-        if inStr(Body, "Field[2]") > 0 then 
-	        Body = replace (Body, "Field[2]", rsEmails(2).Value & "")
-        end if 
-
-
-        if inStr(Body, "Field[3]") > 0 then 
-	        Body = replace (Body, "Field[3]", rsEmails(3).Value & "")
-        end if 
-
-
-        if inStr(Body, "Field[4]") > 0 then 
-	        Body = replace (Body, "Field[4]", rsEmails(4).Value & "")
-        end if 
-
-
-        if inStr(Body, "Field[5]") > 0 then 
-	        Body = replace (Body, "Field[5]", rsEmails(5).Value & "")
-        end if 
-
+        'response.write (rsEmails.Fields.Count) 
+        'response.end 
+        Dim i 
+        for i = 1 to 5 
+            if rsEmails.Fields.Count > i then 
+                if inStr(Body, "Field[" & i & "]") > 0 then 
+                    if IsDBNull(rsEmails(i).Value) then 
+                        Body = replace (Body, "Field[" & i & "]", "")
+                    else 
+	                    Body = replace (Body, "Field[" & i & "]", rsEmails(i).Value & "")
+                    end if 
+                end if 
+            end if 
+        next 
  
+       if Not IsDBNull(rsEmails(0).Value) then 
+          countMails = countMails + 1 
+         sendMailFrom(rsEmails(0).Value, Subject , Body, SenderEmail)
+         Response.Write (".")
+       end if 
 
-       sendMailFrom(rsEmails(0).Value, Subject , Body, SenderEmail)
-       Response.Write (".")
  		rsEmails.MoveNext 
  end while
  rsEmails.close 
