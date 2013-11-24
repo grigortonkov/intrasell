@@ -3,7 +3,7 @@ dim html
 html = html & "<table border=""0"" width=""164"" cellspacing=""0"" cellpadding=""0"">"
 html = html & " <tr>"
 html = html & "	<td bgcolor=""#F3F3F3"" width=""100%"">"
-html = html & "	<a href=""default.asp"" onClick=""this.style.behavior='url(#default#homepage)';this.setHomePage('http://" & varvalue("DOMAIN") & "');"">"
+html = html & "	<a href=""default.aspx"" onClick=""this.style.behavior='url(#default#homepage)';this.setHomePage('http://" & varvalue("DOMAIN") & "');"">"
 html = html & " Startseite</a>" 
 html = html & " <br /><FONT size=1>Klicken Sie hier um " & varvalue("DOMAIN") & " als Startseite festzulegen.</td></FONT>"
 html = html & " </tr><tr>"
