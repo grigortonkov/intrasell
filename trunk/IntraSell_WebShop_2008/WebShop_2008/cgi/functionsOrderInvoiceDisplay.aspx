@@ -433,7 +433,7 @@
     
             'MINDESTBESTELLMENGE  
             'Wir bitten um Verständnis, dass wir auf Grund unserer äußerst knapp kalkulierten Preise Bestellungen unter € 20,- (ohne Versandkosten) nicht bearbeiten können!
-            If CDbl(getMinOrderValue()) > CDbl(subtotalNoAddCharged) Then 'leider kauft der kunde zu wenig 
+            If CDbl(getMinOrderValue()) > CDbl(SubtotalMWST) Then 'leider kauft der kunde zu wenig 
                 Dim mindestBestellmengeArtNr : mindestBestellmengeArtNr = getMinOrderValue_charge_artnr()
                 Dim bezMindestBestellMenge : bezMindestBestellMenge = tablevalue("grArtikel", "ArtNr", mindestBestellmengeArtNr, "Bezeichnung")
                 Dim mindestBestellmenge_Preis_MWST : mindestBestellmenge_Preis_MWST = makeBruttoPreis2(getMinOrderValue_charge_artnr(), 1, Land)
