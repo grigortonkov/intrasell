@@ -474,7 +474,7 @@
         
         
         'MINDESTBESTELLMENGE 
-        If CDbl(getMinOrderValue()) > CDbl(subtotal) Then 'leider kauft der kunde zu wenig
+        If CDbl(getMinOrderValue()) > makeBruttoPreis(CDbl(subtotal), 2, Land) Then 'leider kauft der kunde zu wenig
               
             If LCase(VARVALUE_DEFAULT("SHOP_MIN_ORDER_VALUE_ACCEPT", "false")) = "false" Then
                 Response.Write("<br /><font color='red'>" & getTranslation("Die Mindestbestellmenge wurde nicht erreicht!") & "<br /> " & _
