@@ -43,12 +43,23 @@
 
         ' Work out a proportionate height from width
         shtHeight = objImage.Height / (objImage.Width / shtWidth)
+        if isDebug() then 
+            Response.write ("Thumbnail Width:" & shtWidth)
+            Response.write ("Thumbnail Height:" & shtHeight)
+            Response.End
+        end if
         ' Create thumbnail
         objThumbnail = objImage.GetThumbnailImage(shtWidth, _
           shtHeight, Nothing, System.IntPtr.Zero)
         ' Send down to client
         Response.ContentType = "image/jpeg"
-    objThumbnail.Save(Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg)
+        'objThumbnail.Save(Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+         Dim  newImg As System.Drawing.Image = new System.Drawing.Bitmap(shtWidth, shtHeight)
+         Dim g as System.Drawing.Graphics = System.Drawing.Graphics.FromImage(newImg)
+         g.DrawImage(objImage, new System.Drawing.Rectangle(0, 0, shtWidth, shtHeight)) 
+
+         newImg.Save(Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg)
         ' Tidy up
         objImage.Dispose()
         objThumbnail.Dispose()
