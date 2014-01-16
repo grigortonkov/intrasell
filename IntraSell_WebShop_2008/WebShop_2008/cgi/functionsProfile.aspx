@@ -554,7 +554,8 @@
         Dim NextIDNR As Long = NextID("ofAdressen", "IDNR")
         
         Try
-            NextIDNR = FIRSTVALUE("SELECT max(idnr) +1 from ofAdressen a , `ofadressen-kundengruppen` g " & _
+            NextIDNR = FIRSTVALUE("SELECT ifnull(max(idnr) +1, (SELECT g.KundenNrKreisVon  from `ofadressen-kundengruppen` g where  Gruppe like 'Online')) " & _ 
+                                " from ofAdressen a , `ofadressen-kundengruppen` g " & _
                                 " where a.idnr between g.KundenNrKreisVon and g.KundenNrKreisBis " & _
                                 " and Gruppe like 'Online'")
         Catch
@@ -1045,7 +1046,7 @@
             html = html & "<tr>"
             html = html & "<td align='right' width='350' colspan='2' bgcolor='#FFFFFF'>"
             html = html & "<p align='left'>&nbsp;    <input class='submit' type='CheckBox' unchecked name='IchWillNewsletter" & typeOfAddr & "' id='IchWillNewsletter" & typeOfAddr & "'  value='ON' />"
-            html = html & getTranslation("Ich möchte Newsletter erhalten")
+            html = html & getTranslation("Ich möchte den Newsletter erhalten")
             html = html & " </td>"
             html = html & " </tr>"
         End If
