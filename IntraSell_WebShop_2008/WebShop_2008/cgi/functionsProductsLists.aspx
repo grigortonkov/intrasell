@@ -874,7 +874,7 @@
         Sql = " SELECT [grArtikel-Reviews].DateCreation, grArtikel.Bezeichnung, [grArtikel-Reviews].Points, " & _
              " [grArtikel-Reviews].Autor, [grArtikel-Reviews].Review, [grArtikel-Reviews].ReviewID, grArtikel.ArtNr " & _
              " FROM grArtikel INNER JOIN [grArtikel-Reviews] ON grArtikel.ArtNr = [grArtikel-Reviews].ArtNR " & _
-             " WHERE Checked <> 0 " & _ 
+             " WHERE Checked = -1 " & _ 
              " ORDER BY [grArtikel-Reviews].DateCreation DESC"
 
         'Response.Write sql
