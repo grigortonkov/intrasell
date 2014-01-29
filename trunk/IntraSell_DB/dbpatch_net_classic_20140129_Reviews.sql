@@ -1,1 +1,1 @@
-﻿ALTER TABLE  `grartikel-reviews` ADD COLUMN `Checked` TINYINT UNSIGNED AFTER `Points` DEFAULT 0;
+﻿ALTER TABLE  `grartikel-reviews` ADD COLUMN `Checked` TINYINT(1) DEFAULT 0;
