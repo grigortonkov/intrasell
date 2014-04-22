@@ -30,6 +30,7 @@ Windows Registry Editor Version 5.00
 }}}
 
 3. Crete Command as Administrator User 
+
 4. Run "regsvr32 intraSell.dll" 
 
 That's it! 
