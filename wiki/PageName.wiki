@@ -1,22 +1,2 @@
-#Vorlagen
-
-= Einfürung =
-
-IntraSell kann mit mehreren Vorlagentypen umgehen.
-Die vorlagentypen sind DOT, DOC, RTF, HTML.
-
-
-= HOWTO =
-= Vorlagen verwalten = 
-== A. Vorlagen Zentral verwalten == 
-
-1. Die Vorlagen am Fileserver abspeichern. 
-Z.bsp: z:\Daten\IntraSell3\IntraSell\Vorlagen
-
-2. Die Vorlagenpfade in Tabelle buchVorlagen zu den neuen Vorlagenpfade korrigieren. 
- 
-== B. Vorlagen verteilen == 
-1. Die Vorlagen am Fileserver abspeichern. 
-Z.bsp: z:\Daten\IntraSell3\IntraSell\Vorlagen
-
-2. Batch File: z:\Daten\IntraSell3\vorlagen_verteilen.bat ausführen.
+1. Use the 32 Bit ODBC Manager to register the MySQL Database 
+c:\windows\SysWOW64\odbcad32.exe
