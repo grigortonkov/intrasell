@@ -1,5 +1,6 @@
-﻿ 
+﻿
 Imports IntraSell_Net
+Imports MagentoSync.MagentoSyncService
 
 Public Class CustomerSync
     Dim magento As MagentoConn = New MagentoConn
@@ -18,7 +19,7 @@ Public Class CustomerSync
 
             For Each ISCustomer As dsAdressen.ofadressenRow In data
                 If Not ISCustomer.IsEmailNull Then
-                    ModuleLog.Log("Export IDNR=" & ISCustomer.IDNR)
+                    ModuleLog.Log("Export IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
 
                     'export to magento 
                     Dim magentoCustomer = New MagentoSync.MagentoSyncService.customerCustomerEntityToCreate
@@ -37,9 +38,19 @@ Public Class CustomerSync
                         magentoCustomer.password = "asdf" + (ISCustomer.IDNR * 2 + 4000000) 'something 
                     End If
 
-
-
-                    Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
+                    Dim filter As filters = New filters
+                    ReDim filter.complex_filter(1)
+                    filter.complex_filter(0) = New complexFilter
+                    filter.complex_filter(0).key = "Email"
+                    filter.complex_filter(0).value = New associativeEntity()
+                    filter.complex_filter(0).value.key = "eq"
+                    filter.complex_filter(0).value.value = ISCustomer.Email
+                    'filter.complex_filter "Email='" & ISCustomer.Email & "'")
+                    Dim found As customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, filter)
+                    If found.Length = 0 Then
+                        ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                        Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
+                    End If
 
                     If False Then
                         Dim magentoAddress = New MagentoSync.MagentoSyncService.customerAddressEntityCreate
@@ -47,14 +58,12 @@ Public Class CustomerSync
                         magentoAddress.lastname = ISCustomer.Name
                         magentoAddress.street(0) = ISCustomer.Adresse
                         magentoAddress.city = ISCustomer.Ort
-
                         magentoAddress.postcode = ISCustomer.PLZ
                         magentoAddress.country_id = ISCustomer.Land
-
                         'magentoAddress.is_default_billing
                         'magentoAddress.is_default_shipping
 
-                        magento.client.customerAddressCreate(magento.sessionid, customerId, magentoAddress)
+                        'magento.client.customerAddressCreate(magento.sessionid, customerId, magentoAddress)
                     End If
                 End If
             Next

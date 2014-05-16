@@ -313,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PerfCenterCpl.ico" />
+    <Content Include="XMLFile1.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
