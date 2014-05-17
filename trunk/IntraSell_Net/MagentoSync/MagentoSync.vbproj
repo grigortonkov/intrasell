@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="IntraSellConn.vb" />
     <Compile Include="ModuleLog.vb" />
+    <Compile Include="sync\CatalogSync.vb" />
     <Compile Include="sync\CustomerSync.vb" />
     <Compile Include="FormStart.vb">
       <SubType>Form</SubType>
@@ -137,7 +138,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -8,7 +8,7 @@ Public Class CustomerSync
 
     Public Sub InitialExportAllIntraSellCustomers()
         'export all customers from intrasell to magenot 
-        magento.OpenConn()
+
         Try
             'read customers from intrasell 
 
@@ -46,6 +46,8 @@ Public Class CustomerSync
                     filter.complex_filter(0).value.key = "eq"
                     filter.complex_filter(0).value.value = ISCustomer.Email
                     'filter.complex_filter "Email='" & ISCustomer.Email & "'")
+                    magento.OpenConn()
+
                     Dim found As customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, filter)
                     If found.Length = 0 Then
                         ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)

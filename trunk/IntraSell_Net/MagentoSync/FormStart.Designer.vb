@@ -27,22 +27,25 @@ Partial Class FormStart
         Me.lblMagentoConn = New System.Windows.Forms.Label()
         Me.lblintraSellConn = New System.Windows.Forms.Label()
         Me.btnKunden = New System.Windows.Forms.Button()
+        Me.btnExportKategorien = New System.Windows.Forms.Button()
+        Me.btnExportProducts = New System.Windows.Forms.Button()
+        Me.btnImportOrders = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
         '
-        Me.btnCheckMagento.Location = New System.Drawing.Point(25, 23)
+        Me.btnCheckMagento.Location = New System.Drawing.Point(12, 23)
         Me.btnCheckMagento.Name = "btnCheckMagento"
-        Me.btnCheckMagento.Size = New System.Drawing.Size(120, 22)
+        Me.btnCheckMagento.Size = New System.Drawing.Size(133, 22)
         Me.btnCheckMagento.TabIndex = 0
         Me.btnCheckMagento.Text = "Connect to Magento"
         Me.btnCheckMagento.UseVisualStyleBackColor = True
         '
         'btnCheckIS
         '
-        Me.btnCheckIS.Location = New System.Drawing.Point(25, 51)
+        Me.btnCheckIS.Location = New System.Drawing.Point(12, 51)
         Me.btnCheckIS.Name = "btnCheckIS"
-        Me.btnCheckIS.Size = New System.Drawing.Size(120, 23)
+        Me.btnCheckIS.Size = New System.Drawing.Size(133, 23)
         Me.btnCheckIS.TabIndex = 1
         Me.btnCheckIS.Text = "Connect to IntraSell"
         Me.btnCheckIS.UseVisualStyleBackColor = True
@@ -67,18 +70,48 @@ Partial Class FormStart
         '
         'btnKunden
         '
-        Me.btnKunden.Location = New System.Drawing.Point(25, 80)
+        Me.btnKunden.Location = New System.Drawing.Point(231, 22)
         Me.btnKunden.Name = "btnKunden"
-        Me.btnKunden.Size = New System.Drawing.Size(120, 23)
+        Me.btnKunden.Size = New System.Drawing.Size(133, 23)
         Me.btnKunden.TabIndex = 4
         Me.btnKunden.Text = "IS Kunden 2 Magento"
         Me.btnKunden.UseVisualStyleBackColor = True
+        '
+        'btnExportKategorien
+        '
+        Me.btnExportKategorien.Location = New System.Drawing.Point(231, 51)
+        Me.btnExportKategorien.Name = "btnExportKategorien"
+        Me.btnExportKategorien.Size = New System.Drawing.Size(133, 23)
+        Me.btnExportKategorien.TabIndex = 5
+        Me.btnExportKategorien.Text = "IS Kategorien 2 Magento"
+        Me.btnExportKategorien.UseVisualStyleBackColor = True
+        '
+        'btnExportProducts
+        '
+        Me.btnExportProducts.Location = New System.Drawing.Point(231, 80)
+        Me.btnExportProducts.Name = "btnExportProducts"
+        Me.btnExportProducts.Size = New System.Drawing.Size(133, 23)
+        Me.btnExportProducts.TabIndex = 6
+        Me.btnExportProducts.Text = "IS Produkte 2 Magento"
+        Me.btnExportProducts.UseVisualStyleBackColor = True
+        '
+        'btnImportOrders
+        '
+        Me.btnImportOrders.Location = New System.Drawing.Point(462, 22)
+        Me.btnImportOrders.Name = "btnImportOrders"
+        Me.btnImportOrders.Size = New System.Drawing.Size(133, 23)
+        Me.btnImportOrders.TabIndex = 7
+        Me.btnImportOrders.Text = "Magento 2 IS Orders"
+        Me.btnImportOrders.UseVisualStyleBackColor = True
         '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(757, 193)
+        Me.Controls.Add(Me.btnImportOrders)
+        Me.Controls.Add(Me.btnExportProducts)
+        Me.Controls.Add(Me.btnExportKategorien)
         Me.Controls.Add(Me.btnKunden)
         Me.Controls.Add(Me.lblintraSellConn)
         Me.Controls.Add(Me.lblMagentoConn)
@@ -95,5 +128,8 @@ Partial Class FormStart
     Friend WithEvents lblMagentoConn As System.Windows.Forms.Label
     Friend WithEvents lblintraSellConn As System.Windows.Forms.Label
     Friend WithEvents btnKunden As System.Windows.Forms.Button
+    Friend WithEvents btnExportKategorien As System.Windows.Forms.Button
+    Friend WithEvents btnExportProducts As System.Windows.Forms.Button
+    Friend WithEvents btnImportOrders As System.Windows.Forms.Button
 
 End Class
