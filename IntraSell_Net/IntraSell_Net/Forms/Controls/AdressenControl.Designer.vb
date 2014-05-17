@@ -29,6 +29,7 @@ Partial Class AdressenControl
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.AddNewButton = New System.Windows.Forms.Button()
+        Me.ResizeCheckBox = New System.Windows.Forms.CheckBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -36,7 +37,7 @@ Partial Class AdressenControl
         'SelectorButton
         '
         Me.SelectorButton.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.SelectorButton.Location = New System.Drawing.Point(128, 1)
+        Me.SelectorButton.Location = New System.Drawing.Point(128, 3)
         Me.SelectorButton.Margin = New System.Windows.Forms.Padding(1)
         Me.SelectorButton.Name = "SelectorButton"
         Me.SelectorButton.Size = New System.Drawing.Size(20, 23)
@@ -76,16 +77,17 @@ Partial Class AdressenControl
         Me.FlowLayoutPanel1.Controls.Add(Me.AdressenComboBox)
         Me.FlowLayoutPanel1.Controls.Add(Me.SelectorButton)
         Me.FlowLayoutPanel1.Controls.Add(Me.AddNewButton)
+        Me.FlowLayoutPanel1.Controls.Add(Me.ResizeCheckBox)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(231, 25)
         Me.FlowLayoutPanel1.TabIndex = 40
         '
         'AddNewButton
         '
         Me.AddNewButton.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.AddNewButton.Location = New System.Drawing.Point(150, 1)
+        Me.AddNewButton.Location = New System.Drawing.Point(150, 3)
         Me.AddNewButton.Margin = New System.Windows.Forms.Padding(1)
         Me.AddNewButton.Name = "AddNewButton"
         Me.AddNewButton.Size = New System.Drawing.Size(20, 23)
@@ -94,15 +96,27 @@ Partial Class AdressenControl
         Me.AddNewButton.UseVisualStyleBackColor = True
         Me.AddNewButton.Visible = False
         '
+        'ResizeCheckBox
+        '
+        Me.ResizeCheckBox.Appearance = System.Windows.Forms.Appearance.Button
+        Me.ResizeCheckBox.AutoSize = True
+        Me.ResizeCheckBox.Location = New System.Drawing.Point(174, 3)
+        Me.ResizeCheckBox.Name = "ResizeCheckBox"
+        Me.ResizeCheckBox.Size = New System.Drawing.Size(20, 23)
+        Me.ResizeCheckBox.TabIndex = 41
+        Me.ResizeCheckBox.Text = "."
+        Me.ResizeCheckBox.UseVisualStyleBackColor = True
+        '
         'AdressenControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "AdressenControl"
-        Me.Size = New System.Drawing.Size(171, 25)
+        Me.Size = New System.Drawing.Size(231, 25)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -112,5 +126,6 @@ Partial Class AdressenControl
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddNewButton As System.Windows.Forms.Button
+    Friend WithEvents ResizeCheckBox As System.Windows.Forms.CheckBox
 
 End Class

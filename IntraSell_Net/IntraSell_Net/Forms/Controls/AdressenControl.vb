@@ -111,4 +111,12 @@ Public Class AdressenControl
     Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
         AdressenComboBox_MouseDoubleClick(Nothing, Nothing)
     End Sub
+
+    Private Sub ResizeCheckBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles ResizeCheckBox.CheckedChanged
+        If ResizeCheckBox.Checked Then
+            Me.Height = Height + 200
+        Else
+            Me.Height = 25
+        End If
+    End Sub
 End Class
