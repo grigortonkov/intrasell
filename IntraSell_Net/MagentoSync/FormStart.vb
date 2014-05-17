@@ -32,9 +32,27 @@
         customerS.ImportNewMagentoCustomers()
     End Sub
     Private Sub btnKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnKunden.Click
-        Dim customerS As CustomerSync = New CustomerSync
-        customerS.InitialExportAllIntraSellCustomers()
+        Dim exp As CustomerSync = New CustomerSync
+        exp.InitialExportAllIntraSellCustomers()
     End Sub
 #End Region
 
+
+#Region "Kategorien&Podukte"
+    Private Sub btnExportKategorien_Click(sender As System.Object, e As System.EventArgs) Handles btnExportKategorien.Click
+        Dim exp As CatalogSync = New CatalogSync
+        exp.InitialExportAllCategories()
+    End Sub
+
+
+    Private Sub btnExportProducts_Click(sender As System.Object, e As System.EventArgs) Handles btnExportProducts.Click
+        Dim exp As CatalogSync = New CatalogSync
+        exp.InitialExportAllProducts()
+    End Sub
+
+#End Region
+
+    Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
+
+    End Sub
 End Class
