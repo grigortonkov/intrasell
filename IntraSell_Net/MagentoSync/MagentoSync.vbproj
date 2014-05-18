@@ -67,12 +67,17 @@
     <ApplicationIcon>PerfCenterCpl.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -92,6 +97,14 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\dsAuftraege.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAuftraege.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsAuftraege.vb">
+      <DependentUpon>dsAuftraege.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IntraSellConn.vb" />
     <Compile Include="ModuleLog.vb" />
     <Compile Include="sync\CatalogSync.vb" />
@@ -140,6 +153,17 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\dsAuftraege.xsc">
+      <DependentUpon>dsAuftraege.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsAuftraege.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAuftraege.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsAuftraege.xss">
+      <DependentUpon>dsAuftraege.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

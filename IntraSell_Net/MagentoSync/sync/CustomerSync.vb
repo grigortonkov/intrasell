@@ -1,10 +1,13 @@
 ﻿
 Imports IntraSell_Net
 Imports MagentoSync.MagentoSyncService
+Imports IntraSell_Net.dsAdressen
+Imports IntraSell_Net.dsAdressenTableAdapters
+Imports IntraSell_DLL
 
 Public Class CustomerSync
-    Dim magento As MagentoConn = New MagentoConn
-
+    Public magento As MagentoConn = New MagentoConn
+    Public intrasell As IntraSellConn = New IntraSellConn
 
     Public Sub InitialExportAllIntraSellCustomers()
         'export all customers from intrasell to magenot 
@@ -77,6 +80,78 @@ Public Class CustomerSync
         magento.CloseConn()
     End Sub
 
+    'Imports Customer from Order 
+    Public Sub ImportNewMagentoCustomer(order As salesOrderEntity)
+        intrasell.init()
+
+        Dim tam As dsAdressenTableAdapters.TableAdapterManager = New dsAdressenTableAdapters.TableAdapterManager()
+
+        'check if customer is existing 
+        Dim dsAdr As dsAdressen = New dsAdressen
+
+        Dim ta As ofadressenTableAdapter = New ofadressenTableAdapter
+        Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
+
+        Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
+        Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
+
+
+        Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
+        tam.Connection = t.Connection
+
+
+        ta.FillByIDNR(data, order.customer_id)
+        'create customer if not existing 
+        If data.Rows.Count = 0 Then
+            'create customer with this shipping and invoice address 
+            Dim newCustomer As ofadressenRow = dsAdr.ofadressen.NewofadressenRow
+
+
+            newCustomer.IDNR = order.customer_id
+            newCustomer.Name = order.customer_lastname
+            newCustomer.Vorname = order.customer_firstname
+            newCustomer.Email = order.customer_email
+
+            'Dim invoiceAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.billing_address_id)
+            Dim invoiceLand As String = intrasell.vars.firstRow("select idnr from grLand where iso2='" & order.billing_address.country_id & "'")
+            newCustomer.Land = invoiceLand
+            newCustomer.Adresse = order.billing_address.street
+            newCustomer.PLZ = intrasell.kunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
+            newCustomer.Ort = order.billing_address.city
+
+
+
+            newCustomer.Tel = order.billing_address.telephone
+
+            dsAdr.ofadressen.Rows.Add(newCustomer)
+
+            'Lieferadresse 
+            If order.shipping_address_id <> order.billing_address_id Then
+                'Create new Address 
+                Dim newCustomerShipping As _ofadressen_weitereRow = dsAdr._ofadressen_weitere.New_ofadressen_weitereRow
+                newCustomerShipping.IDNR = order.customer_id
+
+                ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
+                newCustomerShipping.Land = intrasell.vars.firstRow("select idnr from grLand where iso2='" & order.shipping_address.country_id & "'")
+                newCustomerShipping.Adresse = order.shipping_address.street
+                newCustomerShipping.PLZ = intrasell.kunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
+                newCustomerShipping.Ort = order.shipping_address.city
+
+                newCustomerShipping.Tel = order.shipping_address.telephone
+
+                dsAdr._ofadressen_weitere.Rows.Add(newCustomerShipping)
+            End If
+
+        Else
+            'TODO update what ? 
+        End If
+
+        tam.UpdateAll(dsAdr)
+        ta.Update(dsAdr.ofadressen)
+        taWeitere.Update(dsAdr._ofadressen_weitere)
+
+    End Sub
+
     Public Sub ImportNewMagentoCustomers()
 
         magento.OpenConn()
@@ -90,7 +165,7 @@ Public Class CustomerSync
                 Debug.Print("Firstname " & c.firstname)
             Next
         Catch ex As Exception
-            Debug.Print("Ex = " & ex.StackTrace)
+            ModuleLog.Log(ex)
         End Try
         magento.CloseConn()
 
