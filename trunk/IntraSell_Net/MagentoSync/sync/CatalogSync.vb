@@ -6,6 +6,8 @@ Public Class CatalogSync
     Dim magento As MagentoConn = New MagentoConn
     Dim tree As catalogCategoryTree = Nothing
 
+    Dim dataCats As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
+
 
     Public Sub InitialExportAllCategories()
         'export all categories from intrasell to magento 
@@ -37,8 +39,8 @@ Public Class CatalogSync
                     magentoCatalog.include_in_menu = 1
                     magentoCatalog.include_in_menuSpecified = True
                     ReDim magentoCatalog.available_sort_by(1)
-                    magentoCatalog.available_sort_by = {"Name"}
-                    magentoCatalog.default_sort_by = "Name"
+                    magentoCatalog.available_sort_by = {"Best Value"}
+                    magentoCatalog.default_sort_by = "Best Value"
                     'magentoCatalog.meta_description = ISCategory.
                     'magentoCatalog.meta_keywords
                     'magentoCatalog.meta_title
@@ -56,12 +58,17 @@ Public Class CatalogSync
 
                     magento.OpenConn()
 
-                    Dim found As catalogCategoryEntity = findByName(ISCategory.Name)
+                    Dim found As catalogCategoryEntity = findMagentoCatByName(ISCategory.Name)
 
+                    Dim parentCat As catalogCategoryEntity = findMagentoCatByName(findISCatByID(ISCategory.ArtKatNrParent))
+                    Dim parentCatId As String
+                    If parentCat Is Nothing Then parentCatId = "3" Else parentCatId = parentCat.category_id '"3=Root Catalog"
                     If found Is Nothing Then
                         ModuleLog.Log("catalogCategoryCreate ArtKatNr=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
-                        Dim catalogId = magento.client.catalogCategoryCreate(magento.sessionid, 1, magentoCatalog, Nothing) '1 is root category 
+                        Dim catalogId = magento.client.catalogCategoryCreate(magento.sessionid, parentCatId, magentoCatalog, Nothing) '1 is root category 
                         tree = Nothing
+                    Else
+                        magento.client.catalogCategoryUpdate(magento.sessionid, found.category_id, magentoCatalog, Nothing) '1 is root category 
                     End If
 
                 End If
@@ -76,7 +83,7 @@ Public Class CatalogSync
     End Sub
 
     'returns category id by name existing in magento 
-    Private Function findByName(name As String)
+    Private Function findMagentoCatByName(name As String) As catalogCategoryEntity
         magento.OpenConn()
         If tree Is Nothing Then tree = magento.client.catalogCategoryTree(magento.sessionid, Nothing, Nothing)
         Return findByNameRecursive(name, tree.children)
@@ -90,14 +97,28 @@ Public Class CatalogSync
         Return Nothing
     End Function
 
+    'returns intraSell catname 
+    Private Function findISCatByID(artKatNr As String) As String
+
+        'load IS cats 
+        If dataCats.Rows.Count = 0 Then
+
+
+            Dim taCat As dsArtikelTableAdapters.grartikel_kategorienTableAdapter = New dsArtikelTableAdapters.grartikel_kategorienTableAdapter
+
+            taCat.Fill(dataCats)
+        End If
+        For Each c In dataCats
+            If c.ArtKatNr = artKatNr Then Return c.Name
+        Next
+        Return Nothing
+    End Function
+
+
     Public Sub InitialExportAllProducts()
         'export all products from intrasell to magento 
         Try
-
-            'Dim taC As dsArtikelTableAdapters.grartikel_kategorienTableAdapter = New dsArtikelTableAdapters.grartikel_kategorienTableAdapter
-            'Dim data As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
-
-
+        
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
@@ -106,7 +127,7 @@ Public Class CatalogSync
 
 
             For Each ISArtikel As dsArtikel.grartikelRow In data
-                If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline Then
+                If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
                     ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
 
 
@@ -116,29 +137,44 @@ Public Class CatalogSync
                     magentoProduct.name = ISArtikel.Bezeichnung '.Replace("'", "*")
 
                     'ReDim magentoProduct.category_ids(1) : magentoProduct.category_ids = {ISArtikel.ArtKatNr}
-                    If Not ISArtikel.IsBeschreibungNull Then magentoProduct.description = ISArtikel.IsBeschreibungNull
+                    magentoProduct.categories = {findISCatByID(ISArtikel.ArtKatNr)}
+
+                    If Not ISArtikel.IsBeschreibungNull Then
+                        Dim desc = ISArtikel.Bezeichnung & " " & " EAN:" & ISArtikel.EAN & " " & ISArtikel.Beschreibung
+                        magentoProduct.description = desc
+                        magentoProduct.short_description = ISArtikel.Beschreibung
+                    End If
+
 
                     magentoProduct.price = Replace(ISArtikel.PreisATS, ",", ".")
                     magentoProduct.status = "1"
                     magentoProduct.tax_class_id = "2"
-                    magentoProduct.visibility = "1"
+                    magentoProduct.visibility = "4" 'catalog and search.
 
                     'magentoProduct.meta_title
                     'magentoProduct.meta_description
                     'magentoProduct.meta_keyword
 
-                    If Not ISArtikel.IsGewichtNull Then magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
+                    If Not ISArtikel.IsGewichtNull Then
+                        magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
+                    Else
+                        magentoProduct.weight = 1
+                    End If
+
 
                     Dim filter As filters = New filters
                     ReDim filter.complex_filter(1)
                     filter.complex_filter(0) = New complexFilter
-                    filter.complex_filter(0).key = "Name"
+                    filter.complex_filter(0).key = "SKU"
                     filter.complex_filter(0).value = New associativeEntity()
                     filter.complex_filter(0).value.key = "eq"
-                    filter.complex_filter(0).value.value = ISArtikel.Bezeichnung
+                    filter.complex_filter(0).value.value = ISArtikel.EAN
 
 
                     magento.OpenConn()
+
+
+
 
                     'export to magento : get set  
                     Dim defaultSet As catalogProductAttributeSetEntity = Nothing
@@ -149,16 +185,28 @@ Public Class CatalogSync
                         End If
                     Next
 
-                    Dim found As catalogProductEntity = Nothing ' = magento.client.catalogProductList(filter)
+                    Dim found As catalogProductEntity()
+                    ReDim found(1)
 
-                    If found Is Nothing Then
+                    magento.client.catalogProductList(found, magento.sessionid, filter, Nothing)
+
+                    If found.Length = 0 Then
                         ModuleLog.Log("catalogProductCreate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         Dim catalogId = magento.client.catalogProductCreate(sessionId:=magento.sessionid, _
                                                                          type:="simple", _
                                                                          [set]:=defaultSet.set_id, _
-                                                                         sku:=ISArtikel.ArtNr, _
+                                                                         sku:=ISArtikel.EAN, _
                                                                          productData:=magentoProduct, _
                                                                          storeView:=Nothing)
+
+                    Else 'update 
+                        ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                        'agento.client.catalogProduct
+                        magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
+                                                            product:=found(0).product_id, _
+                                                            productData:=magentoProduct, _
+                                                                         storeView:=Nothing, _
+                                                                         identifierType:="productId")
                     End If
 
                 End If

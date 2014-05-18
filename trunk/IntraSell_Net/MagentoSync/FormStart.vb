@@ -53,6 +53,7 @@
 #End Region
 
     Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
-
+        Dim exp As OrderSync = New OrderSync
+        exp.ImportNewOrders()
     End Sub
 End Class
