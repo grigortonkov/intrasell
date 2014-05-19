@@ -16,7 +16,7 @@ Public Class CatalogSync
 
 
         Try
-
+            intrasell.init()
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikel_kategorienTableAdapter = New dsArtikelTableAdapters.grartikel_kategorienTableAdapter
             Dim data As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
@@ -43,8 +43,14 @@ Public Class CatalogSync
                     ReDim magentoCatalog.available_sort_by(1)
                     magentoCatalog.available_sort_by = {"Best Value"}
                     magentoCatalog.default_sort_by = "Best Value"
-                    'magentoCatalog.meta_description = ISCategory.
-                    'magentoCatalog.meta_keywords
+                    Dim value = intrasell.vars.firstRow("select description  from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
+                    If Not IsDBNull(value) Then
+                        magentoCatalog.meta_description = value
+                    End If
+                    value = intrasell.vars.firstRow("select  keywords  from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
+                    If Not IsDBNull(value) Then
+                        magentoCatalog.meta_keywords = value
+                    End If
                     'magentoCatalog.meta_title
 
 
@@ -66,10 +72,11 @@ Public Class CatalogSync
                     Dim parentCatId As String
                     If parentCat Is Nothing Then parentCatId = "3" Else parentCatId = parentCat.category_id '"3=Root Catalog"
                     If found Is Nothing Then
-                        ModuleLog.Log("catalogCategoryCreate ArtKatNr=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
+                        ModuleLog.Log("Create ArtKatNr=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
                         Dim catalogId = magento.client.catalogCategoryCreate(magento.sessionid, parentCatId, magentoCatalog, Nothing) '1 is root category 
                         tree = Nothing
                     Else
+                        ModuleLog.Log("Update ArtKatNr=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
                         magento.client.catalogCategoryUpdate(magento.sessionid, found.category_id, magentoCatalog, Nothing) '1 is root category 
                     End If
 
@@ -94,7 +101,12 @@ Public Class CatalogSync
     Private Function findByNameRecursive(name As String, ByRef children As catalogCategoryEntity()) As catalogCategoryEntity
         If children Is Nothing Then Return Nothing
         For Each c As catalogCategoryEntity In children
-            If c.name = name Then Return c Else findByNameRecursive(name, c.children)
+            If c.name = name Then
+                Return c
+            Else
+                Dim result As catalogCategoryEntity = findByNameRecursive(name, c.children)
+                If Not result Is Nothing Then Return result
+            End If
         Next
         Return Nothing
     End Function
