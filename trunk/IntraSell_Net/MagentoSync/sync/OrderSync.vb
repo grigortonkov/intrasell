@@ -18,12 +18,12 @@ Public Class OrderSync
 
         Try
             Dim list As MagentoSyncService.salesOrderListEntity() = magento.client.salesOrderList(magento.sessionid, Nothing)
-            Debug.Print("Found " & list.Count.ToString & " orders.")
+            ModuleLog.Log("Found " & list.Count.ToString & " orders.")
             Dim c As MagentoSyncService.salesOrderListEntity
 
             For i As Int32 = 0 To list.Count - 1
                 c = list.ElementAt(i)
-                Debug.Print("Found Order " & c.increment_id)
+                ModuleLog.Log("Found Order " & c.increment_id)
                 'Debug.Print("Import Order " & c.shipping_address_id)
                 'Import Order in IntraSell 
                 Dim orderFound As String = intrasell.vars.firstRow("select 'Found' from buchAuftrag where nummer=" & c.increment_id & "")
@@ -43,7 +43,7 @@ Public Class OrderSync
 
 
     Sub buchVorgang_Create_Auftrag(order As salesOrderListEntity)
-        Debug.Print("buchVorgang_Create_Auftrag for mangento order_id " & order.increment_id)
+        ModuleLog.Log("buchVorgang_Create_Auftrag for mangento order_id " & order.increment_id)
 
         Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
 
@@ -65,7 +65,7 @@ Public Class OrderSync
         customerSync.ImportNewMagentoCustomer(orderDetails)
 
         Dim r As buchauftragRow = dsAuftraege.buchauftrag.NewRow()
-
+        r.MandantNr = My.MySettings.Default.MandantNr
         r.Nummer = order.increment_id
         r.Datum = order.created_at
         r.Bezahlt = 0

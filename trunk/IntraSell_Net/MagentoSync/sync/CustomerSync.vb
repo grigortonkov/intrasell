@@ -157,12 +157,12 @@ Public Class CustomerSync
         magento.OpenConn()
         Try
             Dim list As MagentoSyncService.customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, Nothing)
-            Debug.Print("Found " & list.Count.ToString & " customers.")
+            ModuleLog.Log("Found " & list.Count.ToString & " customers.")
             Dim c As MagentoSyncService.customerCustomerEntity
 
             For i As Int32 = 0 To list.Count - 1
                 c = list.ElementAt(i)
-                Debug.Print("Firstname " & c.firstname)
+                ModuleLog.Log("Firstname " & c.firstname)
             Next
         Catch ex As Exception
             ModuleLog.Log(ex)

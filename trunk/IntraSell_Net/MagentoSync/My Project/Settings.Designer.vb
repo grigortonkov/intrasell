@@ -88,6 +88,42 @@ Namespace My
                 Me("Magento_password") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+        Public Property MandantNr() As String
+            Get
+                Return CType(Me("MandantNr"),String)
+            End Get
+            Set
+                Me("MandantNr") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\")>  _
+        Public Property productimages() As String
+            Get
+                Return CType(Me("productimages"),String)
+            End Get
+            Set
+                Me("productimages") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\")>  _
+        Public Property productimagesLarge() As String
+            Get
+                Return CType(Me("productimagesLarge"),String)
+            End Get
+            Set
+                Me("productimagesLarge") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
