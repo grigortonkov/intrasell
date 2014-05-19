@@ -16,5 +16,14 @@
     <Setting Name="Magento_password" Type="System.String" Scope="User">
       <Value Profile="(Default)">Mama123123</Value>
     </Setting>
+    <Setting Name="MandantNr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="productimages" Type="System.String" Scope="User">
+      <Value Profile="(Default)">z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\</Value>
+    </Setting>
+    <Setting Name="productimagesLarge" Type="System.String" Scope="User">
+      <Value Profile="(Default)">z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

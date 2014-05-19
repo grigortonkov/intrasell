@@ -340,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PerfCenterCpl.ico" />
+    <Content Include="productImages\clock.JPG" />
+    <Content Include="productImages\error.gif" />
+    <Content Include="productImages\SymbolPicture.jpg" />
     <Content Include="XMLFile1.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -374,6 +377,7 @@
       <Name>IntraSell_Net</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

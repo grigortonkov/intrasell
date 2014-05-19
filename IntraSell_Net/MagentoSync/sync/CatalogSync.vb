@@ -4,6 +4,8 @@ Imports MagentoSync.MagentoSyncService
 
 Public Class CatalogSync
     Dim magento As MagentoConn = New MagentoConn
+    Public intrasell As IntraSellConn = New IntraSellConn
+
     Dim tree As catalogCategoryTree = Nothing
 
     Dim dataCats As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
@@ -118,14 +120,16 @@ Public Class CatalogSync
     Public Sub InitialExportAllProducts()
         'export all products from intrasell to magento 
         Try
-        
+            intrasell.init()
+
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
 
             ta.Fill(data)
 
-
+            'TODO Bild
+            'TODO Englischer Sprache
             For Each ISArtikel As dsArtikel.grartikelRow In data
                 If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
                     ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
@@ -152,8 +156,8 @@ Public Class CatalogSync
                     magentoProduct.visibility = "4" 'catalog and search.
 
                     'magentoProduct.meta_title
-                    'magentoProduct.meta_description
-                    'magentoProduct.meta_keyword
+                    magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                    magentoProduct.meta_keyword = intrasell.vars.firstRow("select keywords from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
 
                     If Not ISArtikel.IsGewichtNull Then
                         magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
@@ -172,8 +176,6 @@ Public Class CatalogSync
 
 
                     magento.OpenConn()
-
-
 
 
                     'export to magento : get set  
@@ -199,6 +201,9 @@ Public Class CatalogSync
                                                                          productData:=magentoProduct, _
                                                                          storeView:=Nothing)
 
+                        loadimage(ISArtikel.ArtNr, catalogId)
+
+
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         'agento.client.catalogProduct
@@ -207,6 +212,8 @@ Public Class CatalogSync
                                                             productData:=magentoProduct, _
                                                                          storeView:=Nothing, _
                                                                          identifierType:="productId")
+
+                        loadimage(ISArtikel.ArtNr, found(0).product_id)
                     End If
 
                 End If
@@ -220,5 +227,57 @@ Public Class CatalogSync
 
     End Sub
 
+
+    Function readFileASbase64(filename As String) As String
+        '# Example in vb.net:
+        Dim str_file As String
+        Dim arr_data() As Byte
+        Dim str_base64 As String
+
+        str_file = New System.IO.StreamReader(filename).ReadToEnd.ToString
+        arr_data = System.Text.Encoding.ASCII.GetBytes(str_file)
+        str_base64 = Convert.ToBase64String(arr_data)
+        Return str_base64
+        'Dim fs_outputfile As New System.IO.StreamWriter(filename) '"test-base64.txt")
+        'fs_outputfile.Write(str_base64)
+        'fs_outputfile.Close()
+    End Function
+
+    Private Sub loadimage(ByVal ArtNr As String, ByVal magentoProductId As String)
+        'TODO  what if the image already loaded
+        Try
+
+
+
+            'add image if any found 
+            Dim productimageFile = My.MySettings.Default.productimages & ArtNr & ".gif"
+            'just for test
+            productimageFile = My.MySettings.Default.productimages & "clock.gif"
+
+            If IO.File.Exists(productimageFile) Then
+                ModuleLog.Log("load image for ArtNr=" & ArtNr & " and Filename=" & productimageFile)
+
+                Dim image As catalogProductAttributeMediaCreateEntity = New catalogProductAttributeMediaCreateEntity
+                image.file = New catalogProductImageFileEntity
+                'image.file.name = productimageFile
+                image.file.content = readFileASbase64(productimageFile)
+                image.file.mime = "image/gif"
+                image.label = "image label"
+                image.position = 100
+                image.types = {"thumbnail"}
+                image.exclude = 0
+
+                magento.client.catalogProductAttributeMediaCreate(sessionId:=magento.sessionid, _
+                                                                  product:=magentoProductId, _
+                                                                  data:=image, _
+                                                                  identifierType:="productId", _
+                                                                  storeView:=Nothing)
+            End If
+
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+
+        End Try
+    End Sub
 
 End Class

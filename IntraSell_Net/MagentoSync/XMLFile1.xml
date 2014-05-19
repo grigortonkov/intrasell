@@ -1,0 +1,23 @@
+﻿<urn:customerCustomerList soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <sessionId xsi:type=”xsd:string”>c9f1ca71de1da4202c84bf90f6df51cf</sessionId>
+  <filters xsi:type=”urn:filters”>
+
+    <complex_filter xsi:type=”urn:complexFilterArray” soapenc:arrayType=”urn:complexFilter[]”>
+      <item>
+        <key>store_id</key>
+        <value>
+          <key>eq</key>
+          <value>0</value>
+        </value>
+      </item>
+      <item>
+
+        <key>created_at</key>
+        <value>
+          <key>gt</key>
+          <value>2012-05-13 06:11:00</value>
+        </value>
+      </item>
+    </complex_filter>
+  </filters>
+</urn:customerCustomerList>
