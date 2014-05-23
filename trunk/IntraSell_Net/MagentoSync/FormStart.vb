@@ -1,9 +1,24 @@
-﻿Public Class FormStart
+﻿Imports System.Threading
+
+Public Class FormStart
 
     Private Sub FormStart_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-       
-    End Sub
+        ModuleLog.Init()
+        ModuleLog.Log("Start")
 
+        If IsNumeric(My.MySettings.Default.SyncIntervalSeconds) Then
+            If 1 * (My.MySettings.Default.SyncIntervalSeconds) > 0 Then
+                ModuleLog.Log("Timer job enabled every " + My.MySettings.Default.SyncIntervalSeconds + " seconds")
+                TimerSync.Interval = My.MySettings.Default.SyncIntervalSeconds * 1000
+                TimerSync.Enabled = True
+            End If
+
+        Else
+            ModuleLog.Log("Timer job disabled")
+            TimerSync.Enabled = False
+        End If
+
+    End Sub
 
     Private Sub btnCheckMagento_Click(sender As System.Object, e As System.EventArgs) Handles btnCheckMagento.Click
         Try
@@ -15,7 +30,7 @@
         End Try
     End Sub
 
-    
+
     Private Sub btnCheckIS_Click(sender As System.Object, e As System.EventArgs) Handles btnCheckIS.Click
         Try
             Dim mc As IntraSellConn = New IntraSellConn
@@ -33,7 +48,7 @@
     End Sub
     Private Sub btnKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnKunden.Click
         Dim exp As CustomerSync = New CustomerSync
-        exp.InitialExportAllIntraSellCustomers()
+        exp.InitialExportAllIntraSellCustomers(Me.txtIDNR.Text)
     End Sub
 #End Region
 
@@ -47,13 +62,28 @@
 
     Private Sub btnExportProducts_Click(sender As System.Object, e As System.EventArgs) Handles btnExportProducts.Click
         Dim exp As CatalogSync = New CatalogSync
-        exp.InitialExportAllProducts()
+        exp.InitialExportAllProducts(Me.txtEAN.Text)
     End Sub
 
 #End Region
 
     Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
+        Me.btnImportOrders.Enabled = False
+        BackgroundProcess()
+        Me.btnImportOrders.Enabled = True
+        'Dim trd = New Thread(AddressOf BackgroundProcess)
+        'trd.IsBackground = True
+        'trd.Start()
+        'Me.btnImportOrders.Enabled = False
+    End Sub
+
+    Sub BackgroundProcess()
         Dim exp As OrderSync = New OrderSync
-        exp.ImportNewOrders()
+        exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value)
+        'btn.Enabled = True
+    End Sub
+
+    Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
+        btnImportOrders_Click(Nothing, Nothing)
     End Sub
 End Class

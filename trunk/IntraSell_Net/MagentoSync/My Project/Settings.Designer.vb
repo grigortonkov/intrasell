@@ -115,13 +115,74 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages_La"& _ 
+            "rge\")>  _
         Public Property productimagesLarge() As String
             Get
                 Return CType(Me("productimagesLarge"),String)
             End Get
             Set
                 Me("productimagesLarge") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Z:\Business\IntraSell_System\IntraSell_Net\MagentoSync\bin\Debug\")>  _
+        Public Property SyncFolder() As String
+            Get
+                Return CType(Me("SyncFolder"),String)
+            End Get
+            Set
+                Me("SyncFolder") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("300")>  _
+        Public Property SyncIntervalSeconds() As String
+            Get
+                Return CType(Me("SyncIntervalSeconds"),String)
+            End Get
+            Set
+                Me("SyncIntervalSeconds") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+        Public Property Magento_product_tax_class_id() As String
+            Get
+                Return CType(Me("Magento_product_tax_class_id"),String)
+            End Get
+            Set
+                Me("Magento_product_tax_class_id") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property Magento_product_status() As String
+            Get
+                Return CType(Me("Magento_product_status"),String)
+            End Get
+            Set
+                Me("Magento_product_status") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4")>  _
+        Public Property Magento_product_visibility() As String
+            Get
+                Return CType(Me("Magento_product_visibility"),String)
+            End Get
+            Set
+                Me("Magento_product_visibility") = value
             End Set
         End Property
     End Class

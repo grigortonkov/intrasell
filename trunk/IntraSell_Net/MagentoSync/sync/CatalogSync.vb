@@ -5,9 +5,7 @@ Imports MagentoSync.MagentoSyncService
 Public Class CatalogSync
     Dim magento As MagentoConn = New MagentoConn
     Public intrasell As IntraSellConn = New IntraSellConn
-
-    Dim tree As catalogCategoryTree = Nothing
-
+    Dim tree As catalogCategoryTree = Nothing ' cache for the cats
     Dim dataCats As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
 
 
@@ -22,9 +20,6 @@ Public Class CatalogSync
             Dim data As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
 
             ta.Fill(data)
-
-
-
             For Each ISCategory As dsArtikel._grartikel_kategorienRow In data
                 If Not ISCategory.IsNameNull Then
                     ModuleLog.Log("Export ArtKatNR=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
@@ -43,11 +38,11 @@ Public Class CatalogSync
                     ReDim magentoCatalog.available_sort_by(1)
                     magentoCatalog.available_sort_by = {"Best Value"}
                     magentoCatalog.default_sort_by = "Best Value"
-                    Dim value = intrasell.vars.firstRow("select description  from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
+                    Dim value = intrasell.vars.firstRow("select description from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
                     If Not IsDBNull(value) Then
                         magentoCatalog.meta_description = value
                     End If
-                    value = intrasell.vars.firstRow("select  keywords  from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
+                    value = intrasell.vars.firstRow("select keywords from `grartikel-kategorien` where ArtKatNr = " & ISCategory.ArtKatNr)
                     If Not IsDBNull(value) Then
                         magentoCatalog.meta_keywords = value
                     End If
@@ -113,13 +108,9 @@ Public Class CatalogSync
 
     'returns intraSell catname 
     Private Function findISCatByID(artKatNr As String) As String
-
         'load IS cats 
         If dataCats.Rows.Count = 0 Then
-
-
             Dim taCat As dsArtikelTableAdapters.grartikel_kategorienTableAdapter = New dsArtikelTableAdapters.grartikel_kategorienTableAdapter
-
             taCat.Fill(dataCats)
         End If
         For Each c In dataCats
@@ -129,7 +120,7 @@ Public Class CatalogSync
     End Function
 
 
-    Public Sub InitialExportAllProducts()
+    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing)
         'export all products from intrasell to magento 
         Try
             intrasell.init()
@@ -138,15 +129,17 @@ Public Class CatalogSync
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
 
-            ta.Fill(data)
+            If IsNothing(justEAN) Or justEAN = "" Then
+                ta.Fill(data)
+            Else
+                ta.FillByEAN(data, justEAN)
+            End If
 
             'TODO Bild
             'TODO Englischer Sprache
             For Each ISArtikel As dsArtikel.grartikelRow In data
                 If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
                     ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-
-
 
                     Dim magentoProduct = New MagentoSync.MagentoSyncService.catalogProductCreateEntity
 
@@ -163,9 +156,9 @@ Public Class CatalogSync
 
 
                     magentoProduct.price = Replace(ISArtikel.PreisATS, ",", ".")
-                    magentoProduct.status = "1"
-                    magentoProduct.tax_class_id = "2"
-                    magentoProduct.visibility = "4" 'catalog and search.
+                    magentoProduct.status = My.MySettings.Default.Magento_product_status
+                    magentoProduct.tax_class_id = My.MySettings.Default.Magento_product_tax_class_id
+                    magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
 
                     'magentoProduct.meta_title
                     magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
@@ -186,9 +179,7 @@ Public Class CatalogSync
                     filter.complex_filter(0).value.key = "eq"
                     filter.complex_filter(0).value.value = ISArtikel.EAN
 
-
                     magento.OpenConn()
-
 
                     'export to magento : get set  
                     Dim defaultSet As catalogProductAttributeSetEntity = Nothing
@@ -213,9 +204,9 @@ Public Class CatalogSync
                                                                          productData:=magentoProduct, _
                                                                          storeView:=Nothing)
 
-                        loadimage(ISArtikel.ArtNr, catalogId)
-
-
+                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimages)
+                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimagesLarge)
+                  
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         'agento.client.catalogProduct
@@ -225,9 +216,18 @@ Public Class CatalogSync
                                                                          storeView:=Nothing, _
                                                                          identifierType:="productId")
 
-                        loadimage(ISArtikel.ArtNr, found(0).product_id)
+                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages)
+                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge)
+
                     End If
 
+                    'link category 
+                    Dim magentoCategoryId As Integer = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr)).category_id
+                    magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
+
+
+                Else
+                    ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
                 End If
             Next
 
@@ -240,6 +240,12 @@ Public Class CatalogSync
     End Sub
 
 
+    ''' <summary>
+    ''' Read file and covert tobase 64
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function readFileASbase64(filename As String) As String
         '# Example in vb.net:
         Dim str_file As String
@@ -255,19 +261,23 @@ Public Class CatalogSync
         'fs_outputfile.Close()
     End Function
 
-    Private Sub loadimage(ByVal ArtNr As String, ByVal magentoProductId As String)
+    ''' <summary>
+    ''' Loadimage to this product 
+    ''' </summary>
+    ''' <param name="ArtNr"></param>
+    ''' <param name="magentoProductId"></param>
+    ''' <remarks></remarks>
+    Private Sub loadimage(ByVal ArtNr As String, ByVal magentoProductId As String, ByVal folder As String)
         'TODO  what if the image already loaded
         Try
 
-
-
             'add image if any found 
-            Dim productimageFile = My.MySettings.Default.productimages & ArtNr & ".gif"
+            Dim productimageFile = folder & ArtNr & ".gif"
             'just for test
-            productimageFile = My.MySettings.Default.productimages & "clock.gif"
+            'productimageFile = My.MySettings.Default.productimages & "clock.gif"
 
             If IO.File.Exists(productimageFile) Then
-                ModuleLog.Log("load image for ArtNr=" & ArtNr & " and Filename=" & productimageFile)
+                ModuleLog.Log("load image for ArtNr=" & ArtNr & " and filename=" & productimageFile)
 
                 Dim image As catalogProductAttributeMediaCreateEntity = New catalogProductAttributeMediaCreateEntity
                 image.file = New catalogProductImageFileEntity
@@ -275,7 +285,7 @@ Public Class CatalogSync
                 image.file.content = readFileASbase64(productimageFile)
                 image.file.mime = "image/gif"
                 image.label = "image label"
-                image.position = 100
+                image.position = 0
                 image.types = {"thumbnail"}
                 image.exclude = 0
 
@@ -284,6 +294,8 @@ Public Class CatalogSync
                                                                   data:=image, _
                                                                   identifierType:="productId", _
                                                                   storeView:=Nothing)
+            Else
+                ModuleLog.Log("image not found for ArtNr=" & ArtNr & " and filename=" & productimageFile)
             End If
 
         Catch ex As Exception

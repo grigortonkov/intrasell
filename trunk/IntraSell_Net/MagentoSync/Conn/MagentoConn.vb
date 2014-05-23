@@ -3,7 +3,7 @@
     Public client As MagentoSyncService.Mage_Api_Model_Server_V2_HandlerPortTypeClient
 
     Sub OpenConn()
-        ModuleLog.Log("Open connection to magento")
+        ModuleLog.Log("Open magento")
 
         If Not sessionid Is Nothing Then Exit Sub
 
@@ -17,6 +17,7 @@
     End Sub
 
     Sub CloseConn()
+        ModuleLog.Log("Close magento")
         sessionid = Nothing
         client = Nothing
     End Sub
