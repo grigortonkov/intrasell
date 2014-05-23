@@ -4,21 +4,41 @@ Imports MagentoSync.dsAuftraege
 
 Public Class OrderSync
 
-
     Protected magento As MagentoConn = New MagentoConn
     Public intrasell As IntraSellConn = New IntraSellConn
-
     Dim customerSync As CustomerSync = New CustomerSync
+    Dim lastOrderCreated As Date = Nothing
+
+    Function toMagentoDateFormat(d As Date)
+        Return d.Year & "-" & d.Month & "-" & d.Day & " " & d.Hour & ":" & d.Minute & ":" & d.Second
+    End Function
 
 
-    Public Sub ImportNewOrders()
-
+    ''' <summary>
+    ''' import new Orders to IntraSell
+    ''' </summary>
+    ''' <param name="since">'init with this time , timer uses no since  </param>
+    ''' <remarks></remarks>
+    Public Sub ImportNewOrders(Optional since As Date = Nothing)
+        If Not IsNothing(since) Then
+            lastOrderCreated = since
+        End If
         magento.OpenConn()
         intrasell.init()
 
         Try
-            Dim list As MagentoSyncService.salesOrderListEntity() = magento.client.salesOrderList(magento.sessionid, Nothing)
-            ModuleLog.Log("Found " & list.Count.ToString & " orders.")
+            'create filter
+            Dim filter As filters = New filters
+            ReDim filter.complex_filter(1)
+            filter.complex_filter(0) = New complexFilter
+            filter.complex_filter(0).key = "created_at"
+            filter.complex_filter(0).value = New associativeEntity()
+            filter.complex_filter(0).value.key = "gt"
+            filter.complex_filter(0).value.value = toMagentoDateFormat(lastOrderCreated)
+
+            Dim list As MagentoSyncService.salesOrderListEntity() = magento.client.salesOrderList(magento.sessionid, filter)
+            ModuleLog.Log("Found " & list.Count.ToString & " orders. Going to import the new orders since " + lastOrderCreated + ".")
+            lastOrderCreated = Now 'for the next import 
             Dim c As MagentoSyncService.salesOrderListEntity
 
             For i As Int32 = 0 To list.Count - 1
@@ -30,20 +50,20 @@ Public Class OrderSync
                 If Not orderFound = "Found" Then
                     buchVorgang_Create_Auftrag(c)
                 End If
-
-
             Next
+            ModuleLog.Log("Done checking/importing " & list.Count.ToString & " orders.")
         Catch ex As Exception
             ModuleLog.Log(ex)
         End Try
         magento.CloseConn()
+
 
     End Sub
 
 
 
     Sub buchVorgang_Create_Auftrag(order As salesOrderListEntity)
-        ModuleLog.Log("buchVorgang_Create_Auftrag for mangento order_id " & order.increment_id)
+        ModuleLog.Log("create IntraSell Auftrag for magento order_id " & order.increment_id)
 
         Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
 
@@ -65,6 +85,7 @@ Public Class OrderSync
         customerSync.ImportNewMagentoCustomer(orderDetails)
 
         Dim r As buchauftragRow = dsAuftraege.buchauftrag.NewRow()
+        r.Status = "neu"
         r.MandantNr = My.MySettings.Default.MandantNr
         r.Nummer = order.increment_id
         r.Datum = order.created_at
@@ -72,14 +93,27 @@ Public Class OrderSync
         r.Ausgedrukt = 0
         r.anElba = 0
         'TODO create / update customer 
-        r.KundNr = orderDetails.customer_id
+        'check Email 
+        Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where Email = '" & orderDetails.customer_email & "'")
+        r.KundNr = idnr 'orderDetails.customer_id
+
+        'abweichende Liefer adresse ? 
+        If order.shipping_address_id <> order.billing_address_id Then
+            r.KundNr2 = intrasell.vars.firstRow("select max(id) from `ofAdressen-weitere` where IDNR=" & idnr & " and Typ ='LI'")
+        End If
+
+
         r.Summe = toDecimal(orderDetails.subtotal)
         r.SummeMWST = toDecimal(orderDetails.tax_amount)
         r.SummeBrutto = toDecimal(orderDetails.subtotal) + toDecimal(orderDetails.tax_amount)
 
+        r.Notiz = orderDetails.customer_note_notify
+
+        If Not IsNothing(orderDetails.payment) Then
+            r.ZahlungsMethode = orderDetails.payment.method
+        End If
 
         dsAuftraege.buchauftrag.AddbuchauftragRow(r)
-
 
         'ReDim rp(orderDetails.items.Count)
         Dim pos As Int16 = 1
@@ -109,15 +143,14 @@ Public Class OrderSync
         Next
 
 
-
-        dsAuftraege.WriteXml("magento2intrasell_order_" + orderDetails.order_id + ".xml")
+        dsAuftraege.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_order_" + orderDetails.order_id + ".xml")
 
         tam.UpdateAll(dsAuftraege)
         t.Update(dsAuftraege)
         ta.Update(dsAuftraege)
 
         'tr.Commit()
-
+        ModuleLog.Log("done IntraSell Auftrag for magento order_id " & order.increment_id)
     End Sub
 
     Function SKI2ArtNr(sku As String)

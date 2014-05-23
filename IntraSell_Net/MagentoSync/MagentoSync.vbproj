@@ -105,8 +105,8 @@
     <Compile Include="Data\dsAuftraege.vb">
       <DependentUpon>dsAuftraege.xsd</DependentUpon>
     </Compile>
-    <Compile Include="IntraSellConn.vb" />
-    <Compile Include="ModuleLog.vb" />
+    <Compile Include="Conn\IntraSellConn.vb" />
+    <Compile Include="Conn\ModuleLog.vb" />
     <Compile Include="sync\CatalogSync.vb" />
     <Compile Include="sync\CustomerSync.vb" />
     <Compile Include="FormStart.vb">
@@ -116,7 +116,7 @@
       <DependentUpon>FormStart.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MagentoConn.vb" />
+    <Compile Include="Conn\MagentoConn.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

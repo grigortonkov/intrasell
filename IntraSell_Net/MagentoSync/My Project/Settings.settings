@@ -23,7 +23,22 @@
       <Value Profile="(Default)">z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\</Value>
     </Setting>
     <Setting Name="productimagesLarge" Type="System.String" Scope="User">
-      <Value Profile="(Default)">z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages\</Value>
+      <Value Profile="(Default)">z:\Business\IntraSell_System\IntraSell_WebShop_2008\WebShop_2008\productImages_Large\</Value>
+    </Setting>
+    <Setting Name="SyncFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z:\Business\IntraSell_System\IntraSell_Net\MagentoSync\bin\Debug\</Value>
+    </Setting>
+    <Setting Name="SyncIntervalSeconds" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="Magento_product_tax_class_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="Magento_product_status" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Magento_product_visibility" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4</Value>
     </Setting>
   </Settings>
 </SettingsFile>
