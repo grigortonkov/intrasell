@@ -40,10 +40,10 @@ Public Class CustomerSync
                         If ISCustomer.Passwort.Length >= 6 Then
                             magentoCustomer.password = ISCustomer.Passwort
                         Else
-                            magentoCustomer.password = "asdfgh" + ISCustomer.Passwort
+                            magentoCustomer.password = "asdfgh" & ISCustomer.Passwort
                         End If
                     Else
-                        magentoCustomer.password = "asdf" + (ISCustomer.IDNR * 2 + 4000000) 'something 
+                        magentoCustomer.password = "asdf" & (ISCustomer.IDNR * 2 + 4000000) 'something 
                     End If
 
                     Dim filter As filters = New filters
