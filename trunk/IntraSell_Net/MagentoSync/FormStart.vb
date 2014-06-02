@@ -86,4 +86,12 @@ Public Class FormStart
     Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
         btnImportOrders_Click(Nothing, Nothing)
     End Sub
+
+    Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label3.Click
+        Me.txtIDNR.Text = ""
+    End Sub
+
+    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
+        Me.txtEAN.Text = ""
+    End Sub
 End Class

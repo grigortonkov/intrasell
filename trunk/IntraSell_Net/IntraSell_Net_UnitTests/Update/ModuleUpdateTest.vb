@@ -90,6 +90,8 @@ Public Class ModuleUpdateTest
     '''</summary>
     <TestMethod()> _
     Public Sub UpdateIntraSellForCustomerTest()
+        ModuleLog.Init(Nothing)
+
         'Notwendige Var eintragen 
         FunctionsVars.VarValue_Default("INTRASELL_UPDATE_URL_CUSTOMER", "http://intrasell.googlecode.com/svn/trunk/Upgrade/NET/KSG/update.txt")
         Dim silentMode As Boolean = True
