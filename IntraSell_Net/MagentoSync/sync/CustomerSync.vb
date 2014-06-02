@@ -24,7 +24,7 @@ Public Class CustomerSync
             Dim ta As dsAdressenTableAdapters.ofadressenTableAdapter = New dsAdressenTableAdapters.ofadressenTableAdapter
             Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
 
-            If IsNothing(justIDNR) Then ta.Fill(data) Else ta.FillByIDNR(data, justIDNR)
+            If String.IsNullOrEmpty(justIDNR) Then ta.Fill(data) Else ta.FillByIDNR(data, justIDNR)
 
             For Each ISCustomer As dsAdressen.ofadressenRow In data
                 If Not ISCustomer.IsEmailNull Then

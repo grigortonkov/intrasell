@@ -14,6 +14,7 @@ ok 8. Vorgang - nach Position einfügen in Datagrid .. refresh der daten
 OK 12. Zahlungsbedingungen eintragen (+) geht nicht zum kunden 
 
 
-13. Drei Nachkommastellen 
+Ok 13. Drei Nachkommastellen 
 14. Artikel neu (mit dem +) - ArtNr wird nicht vorgeschlagen
-15. Wenn aussteigen - Fragen! 
+OK 15. Wenn Aussteigen - Fragen! 
+16. Adresse im Vorgang sehen

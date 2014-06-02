@@ -273,7 +273,13 @@ Module ModuleUpdate
     ''' <remarks></remarks>
     Sub CopyAllFiles(updateFolder As String, archiveFolder As String, silentMode As Boolean, Optional destinationFolder As String = Nothing)
         'Copy all Files  
-        If destinationFolder Is Nothing Then destinationFolder = GetAppPath()
+        If destinationFolder Is Nothing Then
+            destinationFolder = GetAppPath()
+        Else
+            'create if not existing 
+            MkDir(destinationFolder)
+        End If
+
         For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
             Dim fItemName As String = Replace(fItem, updateFolder & "\", "")  ' = System.IO.File(fItem)
             If Dir(destinationFolder & fItemName) <> "" Then
