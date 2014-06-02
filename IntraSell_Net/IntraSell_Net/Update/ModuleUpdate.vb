@@ -90,7 +90,7 @@ Module ModuleUpdate
     ' silentMode - forTests and silent updates 
     ' customerUpdateURL - for customer upgrades 
     ' Returns True if Update OK 
-    Public Function UpdateIntraSell(silentMode As Boolean, Optional ByVal customerUpdateURL As String = Nothing) As Boolean
+    Public Function UpdateIntraSell(ByVal silentMode As Boolean, Optional ByVal customerUpdateURL As String = Nothing) As Boolean
         UpdateIntraSell = False
 
         Dim updateTxtlokal As String = GetAppPath() & "update.txt"
@@ -257,8 +257,8 @@ Module ModuleUpdate
 
         Catch err As Exception
             UpdateIntraSell = False
-            Call writeLog("UpdateIntraSell errLine:" + err.Message)
-
+            Call writeLog("UpdateIntraSell errLine: " + err.Message)
+            Call writeLog("UpdateIntraSell stack Trace: " + err.StackTrace)
             If Not silentMode Then
                 MsgBox("Unerwarteter Fehler:" & err.Message, vbCritical, MSG_TITLE)
             End If
@@ -271,13 +271,15 @@ Module ModuleUpdate
     ''' </summary>
     ''' <param name="updateFolder"></param>
     ''' <remarks></remarks>
-    Sub CopyAllFiles(updateFolder As String, archiveFolder As String, silentMode As Boolean, Optional destinationFolder As String = Nothing)
+    Sub CopyAllFiles(ByVal updateFolder As String, ByVal archiveFolder As String, ByVal silentMode As Boolean, Optional ByVal destinationFolder As String = Nothing)
         'Copy all Files  
         If destinationFolder Is Nothing Then
             destinationFolder = GetAppPath()
         Else
             'create if not existing 
-            MkDir(destinationFolder)
+            If Dir(destinationFolder, vbDirectory) = "" Then
+                MkDir(destinationFolder)
+            End If
         End If
 
         For Each fItem In System.IO.Directory.EnumerateFiles(updateFolder)
