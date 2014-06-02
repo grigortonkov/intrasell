@@ -122,6 +122,7 @@ Partial Class FormStart
         Me.txtLog.Location = New System.Drawing.Point(0, 165)
         Me.txtLog.Multiline = True
         Me.txtLog.Name = "txtLog"
+        Me.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtLog.Size = New System.Drawing.Size(875, 166)
         Me.txtLog.TabIndex = 8
         '
