@@ -8,3 +8,9 @@
     End Class
 
 End Class
+
+Namespace dsArtikelTableAdapters
+    
+    Partial Public Class grartikelTableAdapter
+    End Class
+End Namespace

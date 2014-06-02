@@ -23,6 +23,14 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IntraSell_Net_Setup", "Intr
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "IntraSell_Net_UnitTests", "IntraSell_Net_UnitTests\IntraSell_Net_UnitTests.vbproj", "{C9A4989B-7030-4FC0-ADCD-5B9F80E217E0}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MagentoSyncTest", "MagentoSyncTest\MagentoSyncTest.vbproj", "{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MagentoSync", "MagentoSync\MagentoSync.vbproj", "{3D15B56F-F03F-4993-B6BB-80EF19766F66}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7AB991F-D9E4-4285-897B-B95109C5D6DF} = {F7AB991F-D9E4-4285-897B-B95109C5D6DF}
+		{110E199B-E42C-4A66-A98A-A9473E6FDA30} = {110E199B-E42C-4A66-A98A-A9473E6FDA30}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = IntraSell_Net.vsmdi
@@ -92,6 +100,26 @@ Global
 		{C9A4989B-7030-4FC0-ADCD-5B9F80E217E0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C9A4989B-7030-4FC0-ADCD-5B9F80E217E0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C9A4989B-7030-4FC0-ADCD-5B9F80E217E0}.Release|x86.ActiveCfg = Release|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9F8ECCAB-5ECB-446A-8D87-4C99D3731FC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Debug|x86.ActiveCfg = Debug|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Debug|x86.Build.0 = Debug|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Release|Any CPU.ActiveCfg = Release|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Release|x86.ActiveCfg = Release|x86
+		{3D15B56F-F03F-4993-B6BB-80EF19766F66}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

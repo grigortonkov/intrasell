@@ -1,6 +1,8 @@
 ﻿
 Imports IntraSell_Net
 Imports MagentoSync.MagentoSyncService
+Imports System.IO
+Imports System.Drawing.Imaging
 
 Public Class CatalogSync
     Dim magento As MagentoConn = New MagentoConn
@@ -161,8 +163,14 @@ Public Class CatalogSync
                     magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
 
                     'magentoProduct.meta_title
-                    magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
-                    magentoProduct.meta_keyword = intrasell.vars.firstRow("select keywords from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                    Try
+                        magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                    Catch ex As Exception
+                    End Try
+                    Try
+                        magentoProduct.meta_keyword = intrasell.vars.firstRow("select keywords from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                    Catch ex As Exception
+                    End Try
 
                     If Not ISArtikel.IsGewichtNull Then
                         magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
@@ -204,9 +212,9 @@ Public Class CatalogSync
                                                                          productData:=magentoProduct, _
                                                                          storeView:=Nothing)
 
-                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimages)
-                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimagesLarge)
-                  
+                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimages, "small_image")
+                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimagesLarge, "image")
+
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         'agento.client.catalogProduct
@@ -216,13 +224,20 @@ Public Class CatalogSync
                                                                          storeView:=Nothing, _
                                                                          identifierType:="productId")
 
-                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages)
-                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge)
+                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
+                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
 
                     End If
 
                     'link category 
-                    Dim magentoCategoryId As Integer = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr)).category_id
+                    Dim magenotCat = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr))
+                    Dim magentoCategoryId As Integer = 1
+                    If Not magenotCat Is Nothing Then
+                        magentoCategoryId = magenotCat.category_id
+                    Else
+                        ModuleLog.Log("Missing intraSell category in magento. Name: " & findISCatByID(ISArtikel.ArtKatNr))
+                    End If
+
                     magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
 
 
@@ -246,19 +261,29 @@ Public Class CatalogSync
     ''' <param name="filename"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function readFileASbase64(filename As String) As String
+    Function readFileASbase64_(filename As String) As String
         '# Example in vb.net:
         Dim str_file As String
         Dim arr_data() As Byte
         Dim str_base64 As String
 
         str_file = New System.IO.StreamReader(filename).ReadToEnd.ToString
-        arr_data = System.Text.Encoding.ASCII.GetBytes(str_file)
+        arr_data = System.Text.Encoding.UTF8.GetBytes(str_file)
         str_base64 = Convert.ToBase64String(arr_data)
         Return str_base64
         'Dim fs_outputfile As New System.IO.StreamWriter(filename) '"test-base64.txt")
         'fs_outputfile.Write(str_base64)
         'fs_outputfile.Close()
+    End Function
+
+
+    Function readFileASbase64(filename As String) As String
+
+        Dim imageStream As MemoryStream = New MemoryStream()
+        Dim i As Image = Image.FromFile(filename)
+        i.Save(imageStream, ImageFormat.Gif)
+        Dim encbuff As Byte() = imageStream.ToArray()
+        Return Convert.ToBase64String(encbuff, 0, encbuff.Length)
     End Function
 
     ''' <summary>
@@ -267,7 +292,7 @@ Public Class CatalogSync
     ''' <param name="ArtNr"></param>
     ''' <param name="magentoProductId"></param>
     ''' <remarks></remarks>
-    Private Sub loadimage(ByVal ArtNr As String, ByVal magentoProductId As String, ByVal folder As String)
+    Private Sub loadimage(ByVal ArtNr As String, ByVal magentoProductId As String, ByVal folder As String, ByVal imageType As String)
         'TODO  what if the image already loaded
         Try
 
@@ -284,16 +309,30 @@ Public Class CatalogSync
                 'image.file.name = productimageFile
                 image.file.content = readFileASbase64(productimageFile)
                 image.file.mime = "image/gif"
-                image.label = "image label"
+                image.label = imageType & " for " & ArtNr '"image label"
                 image.position = 0
-                image.types = {"thumbnail"}
+                image.types = {"thumbnail", imageType} '"small_image", "image"
                 image.exclude = 0
 
-                magento.client.catalogProductAttributeMediaCreate(sessionId:=magento.sessionid, _
+                Dim list As MagentoSyncService.catalogProductImageEntity() = magento.client.catalogProductAttributeMediaList(sessionId:=magento.sessionid, _
+                                                                  product:=magentoProductId, _
+                                                                  identifierType:="productId", _
+                                                                  storeView:=Nothing)
+                Dim found = False 'exists in magenot 
+                For Each i In list
+                    If i.label = image.label Then
+                        found = True
+                    End If
+                Next
+
+                If Not found Then
+                    magento.client.catalogProductAttributeMediaCreate(sessionId:=magento.sessionid, _
                                                                   product:=magentoProductId, _
                                                                   data:=image, _
                                                                   identifierType:="productId", _
                                                                   storeView:=Nothing)
+                End If
+
             Else
                 ModuleLog.Log("image not found for ArtNr=" & ArtNr & " and filename=" & productimageFile)
             End If

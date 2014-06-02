@@ -51,7 +51,7 @@ Public Module ModuleCommons
                 CurrentDB.Open()
                 Return d.ExecuteReader()
             End If
-            Return Nothing
+            Throw ex
         End Try
     End Function
 
