@@ -7,9 +7,8 @@ Module ModuleLog
     End Sub
 
     Sub Log(ByRef logLine As String)
-        Debug.Print(Date.Now & ": " & logLine)
+        'Debug.Print(Date.Now & ": " & logLine)
         IntraSell_DLL.ModuleLog.writeLog(logLine)
-
         showLog(Date.Now & ": " & logLine & vbNewLine & FormStart.txtLog.Text)
     End Sub
 
