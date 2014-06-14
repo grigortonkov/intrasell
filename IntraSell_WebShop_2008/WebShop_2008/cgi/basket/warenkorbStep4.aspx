@@ -65,9 +65,9 @@
                     <br />
                     <% If VARVALUE("SHOP_USER_MUST_ACCEPT_LAW") = "TRUE" Then%>
                     <input type="checkbox" name="GESETZ" value="ON" />
-                    <a name="agb"></a>&nbsp;<%=getTranslation("Informationen zum Fernabsatzgesetz gelesen!")%>
+                    <a name="agb"></a>&nbsp;<%=getTranslation("Informationen zur Widerrufsbelehrung gelesen!")%>
                     <a href="default.aspx?PageToShow=GESETZ">
-                        <%=getTranslation("Informationen zum Fernabsatzgesetz anzeigen")%></a>
+                        <%=getTranslation("Informationen zur Widerrufsbelehrung anzeigen")%></a>
                     <% End If%>
             </td>
         </tr>
