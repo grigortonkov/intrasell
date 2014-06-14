@@ -59,7 +59,7 @@
         If Not gesetzAgree Then
     %>
     <font color="red">
-        <%=getTranslation("Sie müssen das Fernabsatzgesetz lesen und akzeptieren!")%>
+        <%=getTranslation("Sie müssen die Widerrufsbelehrung lesen und akzeptieren!")%>
         <a href="javascript:history.back();" _href="default.aspx?pageToShow=warenkorbStep3">
             <%=getTranslation("zur&uuml;ck")%>
             ...</a>!</font>
