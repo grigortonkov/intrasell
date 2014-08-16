@@ -5,13 +5,14 @@ Check if Access 2010 (32 Bit) and  MS Word 2010 are already installed.
 
 ==Files==
 
-1. Copy existing IntraSell Installation from you central Server. 
+1. Copy existing IntraSell Installation from you central server. 
    For this purpose you can use the command
 
    {{{Z:\intrasell4\update_lokal.bat}}}
 
 Answer with "V"erzeichnis in the command window.
 You should get confirmation that the IntraSell.dll was successfully registered.
+This cretes folder c:\intrasell4\ and all files are copied there. 
 
 ==ODBC==
 
