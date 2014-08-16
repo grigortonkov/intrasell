@@ -9,6 +9,9 @@ Check if Access 2010 (32 Bit) and  MS Word 2010 are already installed.
 
    {{{Z:\intrasell4\update_lokal.bat}}}
 
+Answer with "V"erzeichnis in the command window.
+
+
 2. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
 http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
 
