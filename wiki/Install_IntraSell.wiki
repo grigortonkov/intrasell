@@ -34,23 +34,19 @@ Example content of IntraSell_ODBCRegister_64bit
 
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI\intrasell_daten_2]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ODBC\ODBC.INI]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ODBC\ODBC.INI\intrasell_daten_2]
 "Driver"="C:\\Program Files (x86)\\MySQL\\Connector ODBC 5.1\\myodbc5.dll"
-"SERVER"="10.0.0.106"
+"SERVER"="arfaian_server2"
 "UID"="webshop"
 "PWD"="xxx"
-"DATABASE"="intrasell_daten_2"
 "PORT"="3306"
-
-
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ODBC\ODBC.INI\intrasell_daten_3]
-"Driver"="C:\\Program Files (x86)\\MySQL\\Connector ODBC 5.1\\myodbc5.dll"
-"SERVER"="10.0.0.106"
-"UID"="webshop"
-"PWD"="xxx"
 "DATABASE"="intrasell_daten_2"
-"PORT"="3306"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ODBC\ODBC.INI\ODBC Data Sources]
+"intrasell_daten_2"="MySQL ODBC 5.1 Driver"
+
 }}}
 
 4. Create command Windows as "Administrator" user 
