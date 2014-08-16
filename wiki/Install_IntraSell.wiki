@@ -1,4 +1,4 @@
-This Steps are valid for Windows 64 bit and MS Access 2010 
+These steps are valid for Windows 64 bit and MS Access 2010 
 
 1. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
 http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
@@ -29,7 +29,7 @@ Windows Registry Editor Version 5.00
 
 }}}
 
-3. Crete Command as Administrator User 
+3. Create command Windows as "Administrator" user 
 
 4. Run "regsvr32 intraSell.dll" 
 
