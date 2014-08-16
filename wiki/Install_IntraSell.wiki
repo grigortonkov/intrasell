@@ -46,4 +46,9 @@ Windows Registry Editor Version 5.00
 
 4.1. Run "regsvr32 intraSell.dll" 
 
+
+5. Start IntraSell using the Executable file
+{{{
+c:\intrasell4\IntraSell\IntraSell4.exe
+}}}
 That's it! 
