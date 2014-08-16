@@ -3,6 +3,7 @@ These steps are valid for Windows 64 bit and MS Access 2010 (32 Bit)
 Log in as Administrator
 Check if Access 2010 (32 Bit) and  MS Word 2010 are already installed. 
 
+==Files==
 
 1. Copy existing IntraSell Installation from you central Server. 
    For this purpose you can use the command
@@ -10,7 +11,9 @@ Check if Access 2010 (32 Bit) and  MS Word 2010 are already installed.
    {{{Z:\intrasell4\update_lokal.bat}}}
 
 Answer with "V"erzeichnis in the command window.
+You should get confirmation that the IntraSell.dll was successfully registered.
 
+==ODBC==
 
 2. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
 http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
@@ -54,6 +57,7 @@ Windows Registry Editor Version 5.00
 
 4.1. Run "regsvr32 intraSell.dll" 
 
+==Run==
 
 5. Start IntraSell using the Executable file
 {{{
