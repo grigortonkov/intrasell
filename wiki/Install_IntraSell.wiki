@@ -16,13 +16,15 @@ This cretes folder c:\intrasell4\ and all files are copied there.
 
 ==ODBC==
 
-2. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
-http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
-
-For steps 3 and 4you can use the batch file:
+For steps 2, 3 and 4you can use the batch file:
 {{{
 Z:\intrasell4\IntraSell\setup64Bit.bat
 }}}
+
+2. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
+http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
+
+
 
 3. Use the 32 Bit ODBC Manager to register the MySQL Database.
 Open command windows and run:
