@@ -1,10 +1,22 @@
-These steps are valid for Windows 64 bit and MS Access 2010 
+These steps are valid for Windows 64 bit and MS Access 2010 (32 Bit)
 
-1. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
+Log in as Administrator
+Check if Access 2010 (32 Bit) and  MS Word 2010 are already installed. 
+
+
+1. Copy existing IntraSell Installation from you central Server. 
+   For this purpose you can use the command
+
+   {{{Z:\intrasell4\update_lokal.bat}}}
+
+2. Install the 32 Bit ODBC Driver from MYSQL Downloads: 
 http://dev.mysql.com/get/Downloads/Connector-ODBC/5.1/mysql-connector-odbc-5.1.13-win32.msi
 
-2. Use the 32 Bit ODBC Manager to register the MySQL Database 
+3. Use the 32 Bit ODBC Manager to register the MySQL Database.
+Open command windows and run:
+{{{
 c:\windows\SysWOW64\odbcad32.exe
+}}}
 
 Example content of IntraSell_ODBCRegister_64bit
 {{{
@@ -15,22 +27,23 @@ Windows Registry Editor Version 5.00
 "Driver"="C:\\Program Files (x86)\\MySQL\\Connector ODBC 5.1\\myodbc5.dll"
 "SERVER"="10.0.0.106"
 "UID"="webshop"
-"PWD"="xxxxxx"
+"PWD"="xxx"
 "DATABASE"="intrasell_daten_2"
 "PORT"="3306"
+
+
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ODBC\ODBC.INI\intrasell_daten_3]
 "Driver"="C:\\Program Files (x86)\\MySQL\\Connector ODBC 5.1\\myodbc5.dll"
 "SERVER"="10.0.0.106"
 "UID"="webshop"
-"PWD"="xxxxxx"
+"PWD"="xxx"
 "DATABASE"="intrasell_daten_2"
 "PORT"="3306"
-
 }}}
 
-3. Create command Windows as "Administrator" user 
+4. Create command Windows as "Administrator" user 
 
-4. Run "regsvr32 intraSell.dll" 
+4.1. Run "regsvr32 intraSell.dll" 
 
 That's it! 
