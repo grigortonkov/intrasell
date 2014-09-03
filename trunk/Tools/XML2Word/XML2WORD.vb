@@ -184,7 +184,7 @@ Public Class XML2WORD
                                 Exit For
                             End If
                         Next oWordTable
-
+                        Debug.Print("Now process merge field: " + oWordField.Code.Text)
                         sFieldSplit = Split(oWordField.Code.Text, " ")
                         ' sFieldSplit = Split(sFieldSplit(3), "_") 'TODO 2 is wrong moved to 3 
 
@@ -192,10 +192,12 @@ Public Class XML2WORD
                         sFieldSplit = sFieldSplitName
 
                         oXMLFieldNode = oXMLDocNode
+
                         'UPGRADE_NOTE: Object oXMLParentNode may not be destroyed until it is garbage collected.
                         ' Click for more: 'ms-help://MS.VSCC/commoner/redir/redirect.htm?keyword="vbup1029"'
                         oXMLParentNode = Nothing
                         For n = LBound(sFieldSplit) To UBound(sFieldSplit)
+                            Debug.Print("Now search for XML field: " + sFieldSplit(n))
                             Try
                                 oXMLFieldNode = oXMLFieldNode.SelectSingleNode(sFieldSplit(n))
                             Catch

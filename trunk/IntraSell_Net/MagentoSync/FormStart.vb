@@ -59,10 +59,14 @@ Public Class FormStart
         exp.InitialExportAllCategories()
     End Sub
 
-
     Private Sub btnExportProducts_Click(sender As System.Object, e As System.EventArgs) Handles btnExportProducts.Click
         Dim exp As CatalogSync = New CatalogSync
         exp.InitialExportAllProducts(Me.txtEAN.Text)
+    End Sub
+
+    Private Sub btnExportLagerstand_Click(sender As System.Object, e As System.EventArgs) Handles btnExportLagerstand.Click
+        Dim exp As CatalogSync = New CatalogSync
+        exp.ExportProductLagerstand(Me.txtEAN.Text)
     End Sub
 
 #End Region
@@ -94,4 +98,6 @@ Public Class FormStart
     Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
         Me.txtEAN.Text = ""
     End Sub
+
+
 End Class

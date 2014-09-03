@@ -42,6 +42,8 @@ Partial Class FormStart
         Me.txtEAN = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.btnExportLagerstand = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -82,36 +84,36 @@ Partial Class FormStart
         '
         'btnKunden
         '
-        Me.btnKunden.Location = New System.Drawing.Point(231, 22)
+        Me.btnKunden.Location = New System.Drawing.Point(212, 22)
         Me.btnKunden.Name = "btnKunden"
-        Me.btnKunden.Size = New System.Drawing.Size(133, 23)
+        Me.btnKunden.Size = New System.Drawing.Size(152, 23)
         Me.btnKunden.TabIndex = 4
         Me.btnKunden.Text = "IS Kunden 2 Magento"
         Me.btnKunden.UseVisualStyleBackColor = True
         '
         'btnExportKategorien
         '
-        Me.btnExportKategorien.Location = New System.Drawing.Point(231, 51)
+        Me.btnExportKategorien.Location = New System.Drawing.Point(212, 51)
         Me.btnExportKategorien.Name = "btnExportKategorien"
-        Me.btnExportKategorien.Size = New System.Drawing.Size(133, 23)
+        Me.btnExportKategorien.Size = New System.Drawing.Size(152, 23)
         Me.btnExportKategorien.TabIndex = 5
         Me.btnExportKategorien.Text = "IS Kategorien 2 Magento"
         Me.btnExportKategorien.UseVisualStyleBackColor = True
         '
         'btnExportProducts
         '
-        Me.btnExportProducts.Location = New System.Drawing.Point(231, 80)
+        Me.btnExportProducts.Location = New System.Drawing.Point(212, 80)
         Me.btnExportProducts.Name = "btnExportProducts"
-        Me.btnExportProducts.Size = New System.Drawing.Size(133, 23)
+        Me.btnExportProducts.Size = New System.Drawing.Size(152, 23)
         Me.btnExportProducts.TabIndex = 6
         Me.btnExportProducts.Text = "IS Produkte 2 Magento"
         Me.btnExportProducts.UseVisualStyleBackColor = True
         '
         'btnImportOrders
         '
-        Me.btnImportOrders.Location = New System.Drawing.Point(231, 109)
+        Me.btnImportOrders.Location = New System.Drawing.Point(212, 181)
         Me.btnImportOrders.Name = "btnImportOrders"
-        Me.btnImportOrders.Size = New System.Drawing.Size(133, 23)
+        Me.btnImportOrders.Size = New System.Drawing.Size(152, 23)
         Me.btnImportOrders.TabIndex = 7
         Me.btnImportOrders.Text = "Magento 2 IS Orders"
         Me.btnImportOrders.UseVisualStyleBackColor = True
@@ -119,7 +121,7 @@ Partial Class FormStart
         'txtLog
         '
         Me.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.txtLog.Location = New System.Drawing.Point(0, 165)
+        Me.txtLog.Location = New System.Drawing.Point(0, 285)
         Me.txtLog.Multiline = True
         Me.txtLog.Name = "txtLog"
         Me.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -134,7 +136,7 @@ Partial Class FormStart
         'DateTimePickerOrdersSince
         '
         Me.DateTimePickerOrdersSince.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePickerOrdersSince.Location = New System.Drawing.Point(424, 112)
+        Me.DateTimePickerOrdersSince.Location = New System.Drawing.Point(424, 184)
         Me.DateTimePickerOrdersSince.Name = "DateTimePickerOrdersSince"
         Me.DateTimePickerOrdersSince.Size = New System.Drawing.Size(101, 20)
         Me.DateTimePickerOrdersSince.TabIndex = 9
@@ -142,7 +144,7 @@ Partial Class FormStart
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(376, 114)
+        Me.Label1.Location = New System.Drawing.Point(376, 186)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 13)
         Me.Label1.TabIndex = 10
@@ -209,11 +211,31 @@ Partial Class FormStart
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Vers. 1.00, 24.05.2014"
         '
+        'btnExportLagerstand
+        '
+        Me.btnExportLagerstand.Location = New System.Drawing.Point(212, 109)
+        Me.btnExportLagerstand.Name = "btnExportLagerstand"
+        Me.btnExportLagerstand.Size = New System.Drawing.Size(152, 23)
+        Me.btnExportLagerstand.TabIndex = 18
+        Me.btnExportLagerstand.Text = "IS Lagerstd. 2 Magento"
+        Me.btnExportLagerstand.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(212, 138)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(152, 23)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "IS Auftragstatus 2 Magento"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(875, 331)
+        Me.ClientSize = New System.Drawing.Size(875, 451)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnExportLagerstand)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtEAN)
@@ -257,5 +279,7 @@ Partial Class FormStart
     Friend WithEvents txtEAN As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents btnExportLagerstand As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

@@ -90,7 +90,7 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\Components\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -146,6 +146,11 @@
     </Compile>
     <Compile Include="Data\dsEinstellungen.vb">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dsLager.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLager.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\dsMahnungen.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -711,6 +716,17 @@
     </None>
     <None Include="Data\dsEinstellungen.xss">
       <DependentUpon>dsEinstellungen.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsLager.xsc">
+      <DependentUpon>dsLager.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsLager.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLager.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsLager.xss">
+      <DependentUpon>dsLager.xsd</DependentUpon>
     </None>
     <None Include="Data\dsMahnungen.xsc">
       <DependentUpon>dsMahnungen.xsd</DependentUpon>

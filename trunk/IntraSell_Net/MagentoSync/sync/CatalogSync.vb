@@ -343,4 +343,84 @@ Public Class CatalogSync
         End Try
     End Sub
 
+    Sub ExportProductLagerstand(justEAN As String)
+        'export all products from intrasell to magento 
+        Try
+            intrasell.init()
+
+            'read categories from intrasell 
+            Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
+            Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
+
+            If IsNothing(justEAN) Or justEAN = "" Then
+                ta.Fill(data)
+            Else
+                ta.FillByEAN(data, justEAN)
+            End If
+
+            For Each ISArtikel As dsArtikel.grartikelRow In data
+                If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
+                    ModuleLog.Log("Export Lagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+
+                    Dim magentoStock = New MagentoSync.MagentoSyncService.catalogInventoryStockItemUpdateEntity
+
+
+                    magentoStock.is_in_stock = ISArtikel.LagerArtikel
+                    Dim value = intrasell.vars.firstRow("select sum(Lagerbestand) from `grartikel-lagerbestand` where ArtNr = " & ISArtikel.ArtNr)
+                    magentoStock.qty = value
+
+                    magento.OpenConn()
+
+                    'Dim filter As filters = New filters
+                    'ReDim filter.complex_filter(1)
+                    'filter.complex_filter(0) = New complexFilter
+                    'filter.complex_filter(0).key = "SKU"
+                    'filter.complex_filter(0).value = New associativeEntity()
+                    'filter.complex_filter(0).value.key = "eq"
+                    'filter.complex_filter(0).value.value = ISArtikel.EAN
+
+
+
+
+                    'Dim found As catalogInventoryStockItemEntity()
+                    'ReDim found(1)
+
+                    'found = magento.client.catalogInventoryStockItemList(magento.sessionid, New String() {ISArtikel.ArtNr.ToString})
+
+                    'If found.Length = 0 Then
+                    '    ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                    '    Dim catalogId = magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
+                    '                                                      product:=ISArtikel.EAN, _
+                    '                                                     data:=magentoStock)
+
+
+
+                    'Else 'update 
+                    If (IsNumeric(value)) Then
+
+                        ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+
+                        magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
+                                                                       product:=ISArtikel.EAN, _
+                                                                       data:=magentoStock)
+
+
+                    End If
+
+                    'End If
+
+
+
+                Else
+                    ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
+                End If
+            Next
+
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+        Finally
+            magento.CloseConn()
+        End Try
+    End Sub
+
 End Class
