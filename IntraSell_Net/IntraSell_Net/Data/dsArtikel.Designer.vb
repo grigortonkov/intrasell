@@ -57,6 +57,8 @@ Partial Public Class dsArtikel
     
     Private _relationFK_grartikel_grartikel_staffelpreise As Global.System.Data.DataRelation
     
+    Private _relationgrartikel_grartikel_vkpreisperselection As Global.System.Data.DataRelation
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -491,6 +493,7 @@ Partial Public Class dsArtikel
         Me._relationFK_grartikel_kategorien_grartikel = Me.Relations("FK_grartikel-kategorien_grartikel")
         Me._relationFK_grartikel_grartikel_htmlinfo = Me.Relations("FK_grartikel_grartikel-htmlinfo")
         Me._relationFK_grartikel_grartikel_staffelpreise = Me.Relations("FK_grartikel_grartikel-staffelpreise")
+        Me._relationgrartikel_grartikel_vkpreisperselection = Me.Relations("grartikel_grartikel-vkpreisperselection")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -549,6 +552,8 @@ Partial Public Class dsArtikel
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_htmlinfo)
         Me._relationFK_grartikel_grartikel_staffelpreise = New Global.System.Data.DataRelation("FK_grartikel_grartikel-staffelpreise", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_staffelpreise.ArtNrColumn}, false)
         Me.Relations.Add(Me._relationFK_grartikel_grartikel_staffelpreise)
+        Me._relationgrartikel_grartikel_vkpreisperselection = New Global.System.Data.DataRelation("grartikel_grartikel-vkpreisperselection", New Global.System.Data.DataColumn() {Me.tablegrartikel.ArtNrColumn}, New Global.System.Data.DataColumn() {Me._tablegrartikel_vkpreisperselection.ArtNrColumn}, false)
+        Me.Relations.Add(Me._relationgrartikel_grartikel_vkpreisperselection)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4999,9 +5004,12 @@ Partial Public Class dsArtikel
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Add_grartikel_vkpreisperselectionRow(ByVal Datum As Date, ByVal VKPreis As Decimal, ByVal AufschlagVKPreis As Double, ByVal AufschlagEKPreis As Double, ByVal PreislisteName As String, ByVal ArtKatNr As Integer, ByVal ArtNr As Integer, ByVal IDNR As Integer, ByVal StkAb As Integer) As _grartikel_vkpreisperselectionRow
+        Public Overloads Function Add_grartikel_vkpreisperselectionRow(ByVal Datum As Date, ByVal VKPreis As Decimal, ByVal AufschlagVKPreis As Double, ByVal AufschlagEKPreis As Double, ByVal PreislisteName As String, ByVal ArtKatNr As Integer, ByVal _parentgrartikelRowBygrartikel_grartikel_vkpreisperselection As grartikelRow, ByVal IDNR As Integer, ByVal StkAb As Integer) As _grartikel_vkpreisperselectionRow
             Dim row_grartikel_vkpreisperselectionRow As _grartikel_vkpreisperselectionRow = CType(Me.NewRow,_grartikel_vkpreisperselectionRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Datum, VKPreis, AufschlagVKPreis, AufschlagEKPreis, PreislisteName, ArtKatNr, ArtNr, IDNR, StkAb}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Datum, VKPreis, AufschlagVKPreis, AufschlagEKPreis, PreislisteName, ArtKatNr, Nothing, IDNR, StkAb}
+            If (Not (_parentgrartikelRowBygrartikel_grartikel_vkpreisperselection) Is Nothing) Then
+                columnValuesArray(7) = _parentgrartikelRowBygrartikel_grartikel_vkpreisperselection(0)
+            End If
             row_grartikel_vkpreisperselectionRow.ItemArray = columnValuesArray
             Me.Rows.Add(row_grartikel_vkpreisperselectionRow)
             Return row_grartikel_vkpreisperselectionRow
@@ -6855,6 +6863,16 @@ Partial Public Class dsArtikel
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_grartikel_grartikel-htmlinfo")),_grartikel_htmlinfoRow())
             End If
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function _Getgrartikel_vkpreisperselectionRows() As _grartikel_vkpreisperselectionRow()
+            If (Me.Table.ChildRelations("grartikel_grartikel-vkpreisperselection") Is Nothing) Then
+                Return New _grartikel_vkpreisperselectionRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("grartikel_grartikel-vkpreisperselection")),_grartikel_vkpreisperselectionRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
@@ -8655,6 +8673,17 @@ Partial Public Class dsArtikel
             End Get
             Set
                 Me(Me._tablegrartikel_vkpreisperselection.StkAbColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property grartikelRow() As grartikelRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("grartikel_grartikel-vkpreisperselection")),grartikelRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("grartikel_grartikel-vkpreisperselection"))
             End Set
         End Property
         
@@ -19343,13 +19372,26 @@ Namespace dsArtikelTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT `Id`, `Datum`, `VKPreis`, `AufschlagVKPreis`, `AufschlagEKPreis`, `Preisli"& _ 
                 "steName`, `ArtKatNr`, `ArtNr`, `IDNR`, `StkAb` FROM `grartikel-vkpreisperselecti"& _ 
                 "on`"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT `Id`, `Datum`, `VKPreis`, `AufschlagVKPreis`, `AufschlagEKPreis`, `Preisli"& _ 
+                "steName`, `ArtKatNr`, `ArtNr`, `IDNR`, `StkAb` FROM `grartikel-vkpreisperselecti"& _ 
+                "on`"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where artnr=@artnr"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.MySql.Data.MySqlClient.MySqlParameter = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@artnr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "ArtNr"
+            Me._commandCollection(1).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19371,6 +19413,40 @@ Namespace dsArtikelTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
         Public Overloads Overridable Function GetData() As dsArtikel._grartikel_vkpreisperselectionDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As dsArtikel._grartikel_vkpreisperselectionDataTable = New dsArtikel._grartikel_vkpreisperselectionDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByArtNr(ByVal dataTable As dsArtikel._grartikel_vkpreisperselectionDataTable, ByVal artnr As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (artnr.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(artnr.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByArtNr(ByVal artnr As Global.System.Nullable(Of Integer)) As dsArtikel._grartikel_vkpreisperselectionDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (artnr.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(artnr.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
             Dim dataTable As dsArtikel._grartikel_vkpreisperselectionDataTable = New dsArtikel._grartikel_vkpreisperselectionDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

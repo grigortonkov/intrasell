@@ -43,7 +43,7 @@ Partial Class FormStart
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnExportLagerstand = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnExportOrderStatus = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -220,21 +220,21 @@ Partial Class FormStart
         Me.btnExportLagerstand.Text = "IS Lagerstd. 2 Magento"
         Me.btnExportLagerstand.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnExportOrderStatus
         '
-        Me.Button1.Location = New System.Drawing.Point(212, 138)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(152, 23)
-        Me.Button1.TabIndex = 19
-        Me.Button1.Text = "IS Auftragstatus 2 Magento"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnExportOrderStatus.Location = New System.Drawing.Point(212, 138)
+        Me.btnExportOrderStatus.Name = "btnExportOrderStatus"
+        Me.btnExportOrderStatus.Size = New System.Drawing.Size(152, 23)
+        Me.btnExportOrderStatus.TabIndex = 19
+        Me.btnExportOrderStatus.Text = "IS Auftragstatus 2 Magento"
+        Me.btnExportOrderStatus.UseVisualStyleBackColor = True
         '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(875, 451)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnExportOrderStatus)
         Me.Controls.Add(Me.btnExportLagerstand)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
@@ -280,6 +280,6 @@ Partial Class FormStart
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents btnExportLagerstand As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btnExportOrderStatus As System.Windows.Forms.Button
 
 End Class
