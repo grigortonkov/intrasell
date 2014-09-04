@@ -34,6 +34,7 @@ Public Class CustomerSync
                 taWeitere.FillByIDNR(dataWeitere, justIDNR)
             End If
 
+            magento.OpenConn()
 
             For Each ISCustomer As dsAdressen.ofadressenRow In data
                 If Not ISCustomer.IsEmailNull Then
@@ -44,6 +45,8 @@ Public Class CustomerSync
                     magentoCustomer.customer_id = ISCustomer.IDNR
                     If Not ISCustomer.IsVornameNull Then magentoCustomer.firstname = ISCustomer.Vorname
                     If Not ISCustomer.IsNameNull Then magentoCustomer.lastname = ISCustomer.Name
+
+
                     If Not ISCustomer.IsEmailNull Then magentoCustomer.email = ISCustomer.Email
                     If Not ISCustomer.IsPasswortNull Then
                         If ISCustomer.Passwort.Length >= 6 Then
@@ -68,17 +71,16 @@ Public Class CustomerSync
                     filter.complex_filter(0).value.key = "eq"
                     filter.complex_filter(0).value.value = ISCustomer.Email
                     'filter.complex_filter "Email='" & ISCustomer.Email & "'")
-                    magento.OpenConn()
+
 
                     Dim found As customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, filter)
                     If found.Length = 0 Then
                         ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
                         Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
 
-
-
                         Dim billingAdresseFound = False
                         Dim shippingAdresseFound = False
+
                         'weitere adressefelder 
                         taWeitere.FillByIDNR(dataWeitere, ISCustomer.IDNR)
                         For Each ISCustomerWeitere As dsAdressen._ofadressen_weitereRow In dataWeitere
@@ -97,10 +99,12 @@ Public Class CustomerSync
 
                                 If ISCustomerWeitere.Typ = "LI" Then
                                     magentoAddress.is_default_shipping = True
+                                    magentoAddress.is_default_shippingSpecified = True
                                     shippingAdresseFound = True
                                 End If
                                 If ISCustomerWeitere.Typ = "AR" Then
                                     magentoAddress.is_default_billing = True
+                                    magentoAddress.is_default_billingSpecified = True
                                     billingAdresseFound = True
                                 End If
                                 If Not magentoAddress.country_id Is Nothing Then
@@ -123,7 +127,7 @@ Public Class CustomerSync
                             If Not ISCustomer.IsTelNull Then magentoAddress.telephone = ISCustomer.Tel
                             If Not ISCustomer.IsFaxNull Then magentoAddress.fax = ISCustomer.Fax
                             If Not ISCustomer.IsFirmaNull Then magentoAddress.company = ISCustomer.Firma
-
+                         
                             magentoAddress.is_default_billing = Not billingAdresseFound
                             magentoAddress.is_default_shipping = Not shippingAdresseFound
                             If Not magentoAddress.country_id Is Nothing Then
