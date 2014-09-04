@@ -150,6 +150,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="sync\MagentoUtils.vb" />
     <Compile Include="sync\OrderSync.vb" />
     <Compile Include="Service References\MagentoSyncService\Reference.vb">
       <AutoGen>True</AutoGen>

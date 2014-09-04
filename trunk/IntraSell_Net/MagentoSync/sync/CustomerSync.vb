@@ -20,11 +20,20 @@ Public Class CustomerSync
 
         Try
             'read customers from intrasell 
+            intrasell.init()
 
             Dim ta As dsAdressenTableAdapters.ofadressenTableAdapter = New dsAdressenTableAdapters.ofadressenTableAdapter
+            Dim taWeitere As dsAdressenTableAdapters.ofadressen_weitereTableAdapter = New dsAdressenTableAdapters.ofadressen_weitereTableAdapter
             Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
+            Dim dataWeitere As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
+            If String.IsNullOrEmpty(justIDNR) Then
+                ta.Fill(data)
+                taWeitere.Fill(dataWeitere)
+            Else
+                ta.FillByIDNR(data, justIDNR)
+                taWeitere.FillByIDNR(dataWeitere, justIDNR)
+            End If
 
-            If String.IsNullOrEmpty(justIDNR) Then ta.Fill(data) Else ta.FillByIDNR(data, justIDNR)
 
             For Each ISCustomer As dsAdressen.ofadressenRow In data
                 If Not ISCustomer.IsEmailNull Then
@@ -46,6 +55,11 @@ Public Class CustomerSync
                         magentoCustomer.password = "asdf" & (ISCustomer.IDNR * 2 + 4000000) 'something 
                     End If
 
+                    Dim preisliste = intrasell.vars.firstRow("select Preisliste from `ofAdressen-Settings` where idnr = " & ISCustomer.IDNR)
+
+                    magentoCustomer.group_id = MagentoUtils.getMagentoCustomerGroup(preisliste).customer_group_id
+
+
                     Dim filter As filters = New filters
                     ReDim filter.complex_filter(1)
                     filter.complex_filter(0) = New complexFilter
@@ -60,20 +74,65 @@ Public Class CustomerSync
                     If found.Length = 0 Then
                         ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
                         Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
-                    End If
 
-                    If False Then
-                        Dim magentoAddress = New MagentoSync.MagentoSyncService.customerAddressEntityCreate
-                        magentoAddress.firstname = ISCustomer.Vorname
-                        magentoAddress.lastname = ISCustomer.Name
-                        magentoAddress.street(0) = ISCustomer.Adresse
-                        magentoAddress.city = ISCustomer.Ort
-                        magentoAddress.postcode = ISCustomer.PLZ
-                        magentoAddress.country_id = ISCustomer.Land
-                        'magentoAddress.is_default_billing
-                        'magentoAddress.is_default_shipping
 
-                        'magento.client.customerAddressCreate(magento.sessionid, customerId, magentoAddress)
+
+                        Dim billingAdresseFound = False
+                        Dim shippingAdresseFound = False
+                        'weitere adressefelder 
+                        taWeitere.FillByIDNR(dataWeitere, ISCustomer.IDNR)
+                        For Each ISCustomerWeitere As dsAdressen._ofadressen_weitereRow In dataWeitere
+                            If Not ISCustomerWeitere.IsTypNull Then
+                                Dim magentoAddress = New MagentoSync.MagentoSyncService.customerAddressEntityCreate
+                                If Not ISCustomerWeitere.IsVornameNull Then magentoAddress.firstname = ISCustomerWeitere.Vorname
+                                If Not ISCustomerWeitere.IsNameNull Then magentoAddress.lastname = ISCustomerWeitere.Name
+                                If Not ISCustomerWeitere.IsAdresseNull Then magentoAddress.street = New String() {ISCustomerWeitere.Adresse}
+                                If Not ISCustomerWeitere.IsOrtNull Then magentoAddress.city = ISCustomerWeitere.Ort
+                                If Not ISCustomerWeitere.IsPLZNull Then magentoAddress.postcode = ISCustomerWeitere.PLZ
+                                If Not ISCustomerWeitere.IsLandNull Then magentoAddress.country_id = getMagentoCountry(ISCustomerWeitere.Land)
+
+                                If Not ISCustomerWeitere.IsTelNull Then magentoAddress.telephone = ISCustomerWeitere.Tel
+                                If Not ISCustomerWeitere.IsFaxNull Then magentoAddress.fax = ISCustomerWeitere.Fax
+                                If Not ISCustomerWeitere.IsFirmaNull Then magentoAddress.company = ISCustomerWeitere.Firma
+
+                                If ISCustomerWeitere.Typ = "LI" Then
+                                    magentoAddress.is_default_shipping = True
+                                    shippingAdresseFound = True
+                                End If
+                                If ISCustomerWeitere.Typ = "AR" Then
+                                    magentoAddress.is_default_billing = True
+                                    billingAdresseFound = True
+                                End If
+                                If Not magentoAddress.country_id Is Nothing Then
+                                    magento.client.customerAddressCreate(magento.sessionid, customerId, magentoAddress)
+                                End If
+                            End If
+                        Next
+
+
+
+                        If True Then
+                            Dim magentoAddress = New MagentoSync.MagentoSyncService.customerAddressEntityCreate
+                            If Not ISCustomer.IsVornameNull Then magentoAddress.firstname = ISCustomer.Vorname
+                            If Not ISCustomer.IsNameNull Then magentoAddress.lastname = ISCustomer.Name
+                            If Not ISCustomer.IsAdresseNull Then magentoAddress.street = New String() {ISCustomer.Adresse}
+                            If Not ISCustomer.IsOrtNull Then magentoAddress.city = ISCustomer.Ort
+                            If Not ISCustomer.IsPLZNull Then magentoAddress.postcode = ISCustomer.PLZ
+                            If Not ISCustomer.IsLandNull Then magentoAddress.country_id = getMagentoCountry(ISCustomer.Land)
+
+                            If Not ISCustomer.IsTelNull Then magentoAddress.telephone = ISCustomer.Tel
+                            If Not ISCustomer.IsFaxNull Then magentoAddress.fax = ISCustomer.Fax
+                            If Not ISCustomer.IsFirmaNull Then magentoAddress.company = ISCustomer.Firma
+
+                            magentoAddress.is_default_billing = Not billingAdresseFound
+                            magentoAddress.is_default_shipping = Not shippingAdresseFound
+                            If Not magentoAddress.country_id Is Nothing Then
+                                magento.client.customerAddressCreate(magento.sessionid, customerId, magentoAddress)
+                            End If
+                        End If
+
+                    Else
+                        ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
                     End If
                 End If
             Next

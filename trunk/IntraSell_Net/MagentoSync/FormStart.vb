@@ -100,4 +100,9 @@ Public Class FormStart
     End Sub
 
 
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles btnExportOrderStatus.Click
+        Dim exp As OrderSync = New OrderSync
+        exp.ExportOrderStatus(Me.DateTimePickerOrdersSince.Value)
+        'btn.Enabled = True
+    End Sub
 End Class
