@@ -44,6 +44,7 @@ Partial Class FormStart
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnExportLagerstand = New System.Windows.Forms.Button()
         Me.btnExportOrderStatus = New System.Windows.Forms.Button()
+        Me.btnMagento2ISKunden = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -135,10 +136,11 @@ Partial Class FormStart
         '
         'DateTimePickerOrdersSince
         '
-        Me.DateTimePickerOrdersSince.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePickerOrdersSince.CustomFormat = "dd.MM.yyyy HH.mm"
+        Me.DateTimePickerOrdersSince.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DateTimePickerOrdersSince.Location = New System.Drawing.Point(424, 184)
         Me.DateTimePickerOrdersSince.Name = "DateTimePickerOrdersSince"
-        Me.DateTimePickerOrdersSince.Size = New System.Drawing.Size(101, 20)
+        Me.DateTimePickerOrdersSince.Size = New System.Drawing.Size(187, 20)
         Me.DateTimePickerOrdersSince.TabIndex = 9
         '
         'Label1
@@ -229,11 +231,21 @@ Partial Class FormStart
         Me.btnExportOrderStatus.Text = "IS Auftragstatus 2 Magento"
         Me.btnExportOrderStatus.UseVisualStyleBackColor = True
         '
+        'btnMagento2ISKunden
+        '
+        Me.btnMagento2ISKunden.Location = New System.Drawing.Point(212, 210)
+        Me.btnMagento2ISKunden.Name = "btnMagento2ISKunden"
+        Me.btnMagento2ISKunden.Size = New System.Drawing.Size(152, 23)
+        Me.btnMagento2ISKunden.TabIndex = 20
+        Me.btnMagento2ISKunden.Text = "Magento 2 IS Kunden"
+        Me.btnMagento2ISKunden.UseVisualStyleBackColor = True
+        '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(875, 451)
+        Me.Controls.Add(Me.btnMagento2ISKunden)
         Me.Controls.Add(Me.btnExportOrderStatus)
         Me.Controls.Add(Me.btnExportLagerstand)
         Me.Controls.Add(Me.Label6)
@@ -281,5 +293,6 @@ Partial Class FormStart
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents btnExportLagerstand As System.Windows.Forms.Button
     Friend WithEvents btnExportOrderStatus As System.Windows.Forms.Button
+    Friend WithEvents btnMagento2ISKunden As System.Windows.Forms.Button
 
 End Class

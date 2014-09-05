@@ -93,6 +93,7 @@ Public Class CustomerSync
                                 If Not ISCustomerWeitere.IsPLZNull Then magentoAddress.postcode = ISCustomerWeitere.PLZ
                                 If Not ISCustomerWeitere.IsLandNull Then magentoAddress.country_id = getMagentoCountry(ISCustomerWeitere.Land)
 
+
                                 If Not ISCustomerWeitere.IsTelNull Then magentoAddress.telephone = ISCustomerWeitere.Tel
                                 If Not ISCustomerWeitere.IsFaxNull Then magentoAddress.fax = ISCustomerWeitere.Fax
                                 If Not ISCustomerWeitere.IsFirmaNull Then magentoAddress.company = ISCustomerWeitere.Firma
@@ -135,6 +136,8 @@ Public Class CustomerSync
                             End If
                         End If
 
+                        ModuleLog.Log("Export DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+
                     Else
                         ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
                     End If
@@ -165,6 +168,7 @@ Public Class CustomerSync
         Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
         Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
 
+        Dim taSettings As ofadressen_settingsTableAdapter = New ofadressen_settingsTableAdapter
 
         Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
         tam.Connection = t.Connection
@@ -179,13 +183,15 @@ Public Class CustomerSync
             'create customer with this shipping and invoice address 
             Dim newCustomer As ofadressenRow = dsAdr.ofadressen.NewofadressenRow
 
+            newCustomer.mandant = My.MySettings.Default.MandantNr
+            newCustomer.Status = "Kunde"
             newCustomer.IDNR = order.customer_id
             newCustomer.Name = order.customer_lastname
             newCustomer.Vorname = order.customer_firstname
             newCustomer.Email = order.customer_email
 
             'Dim invoiceAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.billing_address_id)
-            Dim invoiceLand As String = intrasell.vars.firstRow("select idnr from grLand where iso2='" & order.billing_address.country_id & "'")
+            Dim invoiceLand As String = getIntraSellLand(order.billing_address.country_id)
             newCustomer.Land = invoiceLand
             newCustomer.Adresse = order.billing_address.street
             newCustomer.PLZ = intrasell.kunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
@@ -194,8 +200,13 @@ Public Class CustomerSync
 
             dsAdr.ofadressen.Rows.Add(newCustomer)
 
-          
+            'Settings 
+            Dim newCustomerSettings As _ofadressen_settingsRow = dsAdr._ofadressen_settings.New_ofadressen_settingsRow
+            newCustomerSettings.IDNR = order.customer_id
+            newCustomerSettings.Preisliste = getMagentoCustomerbyId(order.customer_group_id).customer_group_code
+            newCustomerSettings.Kundengruppe = "Online"
 
+            dsAdr._ofadressen_settings.Rows.Add(newCustomerSettings)
         Else
             ModuleLog.Log("won't update, customer with Email exists " & order.customer_email)
             'TODO update what ? 
@@ -206,23 +217,17 @@ Public Class CustomerSync
         'Lieferadresse 
         If order.shipping_address_id <> order.billing_address_id Then
 
-
             Dim exists = intrasell.vars.firstRow("select max(id) from `ofAdressen-weitere` where IDNR=" & idnr & " and Adresse='" & order.shipping_address.street & "' and Typ ='LI'")
             If IsDBNull(exists) Then
-
-
                 'Create new Address 
-
-
                 Dim newCustomerShipping As _ofadressen_weitereRow = dsAdr._ofadressen_weitere.New_ofadressen_weitereRow
                 newCustomerShipping.IDNR = idnr 'order.customer_id
                 newCustomerShipping.Typ = "LI"
                 ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
-                newCustomerShipping.Land = intrasell.vars.firstRow("select idnr from grLand where iso2='" & order.shipping_address.country_id & "'")
+                newCustomerShipping.Land = getIntraSellLand(order.shipping_address.country_id)
                 newCustomerShipping.Adresse = order.shipping_address.street
                 newCustomerShipping.PLZ = intrasell.kunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
                 newCustomerShipping.Ort = order.shipping_address.city
-
                 newCustomerShipping.Tel = order.shipping_address.telephone
 
                 dsAdr._ofadressen_weitere.Rows.Add(newCustomerShipping)
@@ -230,31 +235,167 @@ Public Class CustomerSync
         End If
 
 
-        dsAdr.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_customer_" + order.order_id + ".xml")
+        dsAdr.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_order_customer_" + order.order_id + ".xml")
 
         tam.UpdateAll(dsAdr)
         ta.Update(dsAdr.ofadressen)
         taWeitere.Update(dsAdr._ofadressen_weitere)
+        taSettings.Update(dsAdr._ofadressen_settings)
         ModuleLog.Log("Done import magento customer for order " & order.order_id)
     End Sub
 
-    Public Sub ImportNewMagentoCustomers()
+    ''' <summary>
+    ''' Import all new customers since
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ImportNewMagentoCustomers(Optional since As Date = Nothing)
+        ModuleLog.Log("Start import magento customers since " & since)
 
         magento.OpenConn()
         Try
-            Dim list As MagentoSyncService.customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, Nothing)
+            
+            Dim list As MagentoSyncService.customerCustomerEntity()
+            If IsNull(since) Then
+                list = magento.client.customerCustomerList(magento.sessionid, Nothing)
+            Else
+                'Filter 
+                Dim filter As filters = New filters
+                ReDim filter.complex_filter(1)
+                filter.complex_filter(0) = New complexFilter
+                filter.complex_filter(0).key = "created_at"
+                filter.complex_filter(0).value = New associativeEntity()
+                filter.complex_filter(0).value.key = "gt"
+                filter.complex_filter(0).value.value = toMagentoDateFormat(since)
+
+                list = magento.client.customerCustomerList(magento.sessionid, filter)
+            End If
+
             ModuleLog.Log("Found " & list.Count.ToString & " customers.")
             Dim c As MagentoSyncService.customerCustomerEntity
 
             For i As Int32 = 0 To list.Count - 1
                 c = list.ElementAt(i)
-                ModuleLog.Log("Firstname " & c.firstname)
+                ModuleLog.Log("Import customer  " & c.firstname & " " & c.lastname)
+                ImportMagentoCustomer(c)
             Next
         Catch ex As Exception
             ModuleLog.Log(ex)
         End Try
         magento.CloseConn()
 
+        ModuleLog.Log("Done import magento customers since " & since)
+
     End Sub
 
+
+    ''' <summary>
+    ''' Import one new Customer from magento
+    ''' </summary>
+    ''' <param name="customer"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Sub ImportMagentoCustomer(customer As customerCustomerEntity)
+        intrasell.init()
+
+        Dim tam As dsAdressenTableAdapters.TableAdapterManager = New dsAdressenTableAdapters.TableAdapterManager()
+
+        'check if customer is existing 
+        Dim dsAdr As dsAdressen = New dsAdressen
+
+        Dim ta As ofadressenTableAdapter = New ofadressenTableAdapter
+        Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
+
+        Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
+        Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
+
+        Dim taSettings As ofadressen_settingsTableAdapter = New ofadressen_settingsTableAdapter
+
+
+        Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
+        tam.Connection = t.Connection
+
+        Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where email = '" & customer.email & "'")
+
+        If Not IsNull(idnr) Then
+            ta.FillByIDNR(data, idnr)
+        End If
+
+        'create customer if not existing 
+        If data.Rows.Count = 0 Then
+            ModuleLog.Log("Create customer with email " & customer.email)
+            'create customer with this shipping and invoice address 
+            Dim newCustomer As ofadressenRow = dsAdr.ofadressen.NewofadressenRow
+
+
+            newCustomer.mandant = My.MySettings.Default.MandantNr
+            newCustomer.Status = "Neu"
+            newCustomer.IDNR = customer.customer_id
+            newCustomer.Name = customer.lastname
+            newCustomer.Vorname = customer.firstname
+            newCustomer.Email = customer.email
+            'newCustomer.Passwort = customer.password_hash 'Exception: Die Spalte kann nicht auf 'Passwort' festgelegt werden. Der Wert überschreitet den MaxLength-Grenzwert dieser Spalte.
+
+
+            'address 
+            Dim adressen As customerAddressEntityItem() = magento.client.customerAddressList(magento.sessionid, customer.customer_id)
+
+            If adressen.Count > 0 Then
+                Dim hauptAdresse = adressen(0)
+
+                Dim invoiceLand As String = getIntraSellLand(hauptAdresse.country_id)
+                newCustomer.Land = invoiceLand
+                newCustomer.Adresse = hauptAdresse.street
+                newCustomer.PLZ = intrasell.kunden.getPLZCreateIfNeeded(invoiceLand, hauptAdresse.city, hauptAdresse.postcode)
+                newCustomer.Ort = hauptAdresse.city
+                newCustomer.Tel = hauptAdresse.telephone
+                newCustomer.Fax = hauptAdresse.fax
+                newCustomer.Firma = hauptAdresse.company
+
+                dsAdr.ofadressen.Rows.Add(newCustomer)
+
+                'Settings 
+                Dim newCustomerSettings As _ofadressen_settingsRow = dsAdr._ofadressen_settings.New_ofadressen_settingsRow
+                newCustomerSettings.IDNR = customer.customer_id
+                newCustomerSettings.Preisliste = getMagentoCustomerbyId(customer.group_id).customer_group_code
+                newCustomerSettings.Kundengruppe = "Online"
+                dsAdr._ofadressen_settings.Rows.Add(newCustomerSettings)
+            Else
+                ModuleLog.Log("customer with email " & customer.email & " has no address! Cancel import in IntraSell.")
+            End If
+
+        Else
+            ModuleLog.Log("won't update, customer with Email exists " & customer.email)
+            'TODO update what ? 
+            ta.FillByIDNR(dsAdr.ofadressen, idnr)
+        End If
+
+
+        ''Lieferadresse 
+        'If order.shipping_address_id <> order.billing_address_id Then
+
+        '    Dim exists = intrasell.vars.firstRow("select max(id) from `ofAdressen-weitere` where IDNR=" & idnr & " and Adresse='" & order.shipping_address.street & "' and Typ ='LI'")
+        '    If IsDBNull(exists) Then
+        '        'Create new Address 
+        '        Dim newCustomerShipping As _ofadressen_weitereRow = dsAdr._ofadressen_weitere.New_ofadressen_weitereRow
+        '        newCustomerShipping.IDNR = idnr 'order.customer_id
+        '        newCustomerShipping.Typ = "LI"
+        '        ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
+        '        newCustomerShipping.Land = getIntraSellLand(order.shipping_address.country_id)
+        '        newCustomerShipping.Adresse = order.shipping_address.street
+        '        newCustomerShipping.PLZ = intrasell.kunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
+        '        newCustomerShipping.Ort = order.shipping_address.city
+        '        newCustomerShipping.Tel = order.shipping_address.telephone
+
+        '        dsAdr._ofadressen_weitere.Rows.Add(newCustomerShipping)
+        '    End If
+        'End If
+
+
+        dsAdr.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_customer_" + CStr(customer.customer_id) + ".xml")
+
+        tam.UpdateAll(dsAdr)
+        ta.Update(dsAdr.ofadressen)
+        taWeitere.Update(dsAdr._ofadressen_weitere)
+        taSettings.update(dsAdr._ofadressen_settings)
+    End Sub
 End Class

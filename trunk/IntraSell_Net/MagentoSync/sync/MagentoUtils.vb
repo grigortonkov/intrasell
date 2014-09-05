@@ -24,6 +24,12 @@ Module MagentoUtils
         End If
     End Sub
 
+    ''' <summary>
+    ''' get the group by name 
+    ''' </summary>
+    ''' <param name="intrasSellPreisliste"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMagentoCustomerGroup(ByVal intrasSellPreisliste As String) As customerGroupEntity
         loadCustomerGroups()
         For Each entity As customerGroupEntity In customerGroups
@@ -34,6 +40,21 @@ Module MagentoUtils
         Return customerGroups(0) 'falls nicht gefunden wurde 
     End Function
 
+    ''' <summary>
+    ''' getthe group by id
+    ''' </summary>
+    ''' <param name="customer_group_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function getMagentoCustomerbyId(ByVal customer_group_id As String) As customerGroupEntity
+        loadCustomerGroups()
+        For Each entity As customerGroupEntity In customerGroups
+            If entity.customer_group_id = customer_group_id Then
+                Return entity
+            End If
+        Next
+        Return Nothing
+    End Function
 
     Sub loadCountries()
         magento.OpenConn()
@@ -51,4 +72,8 @@ Module MagentoUtils
         Return Nothing
     End Function
 
+
+    Function getIntraSellLand(country_id)
+        Return intrasell.vars.firstRow("select idnr from grLand where iso2='" & country_id & "'")
+    End Function
 End Module

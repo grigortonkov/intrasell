@@ -46,6 +46,12 @@ Public Class FormStart
         Dim customerS As CustomerSync = New CustomerSync
         customerS.ImportNewMagentoCustomers()
     End Sub
+
+    Private Sub btnMagento2ISKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnMagento2ISKunden.Click
+        Dim customerS As CustomerSync = New CustomerSync
+        customerS.ImportNewMagentoCustomers(Me.DateTimePickerOrdersSince.Value)
+    End Sub
+
     Private Sub btnKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnKunden.Click
         Dim exp As CustomerSync = New CustomerSync
         exp.InitialExportAllIntraSellCustomers(Me.txtIDNR.Text)
@@ -71,6 +77,10 @@ Public Class FormStart
 
 #End Region
 
+
+#Region "Orders"
+
+
     Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
         Me.btnImportOrders.Enabled = False
         BackgroundProcess()
@@ -88,7 +98,10 @@ Public Class FormStart
     End Sub
 
     Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
+        'Orders
         btnImportOrders_Click(Nothing, Nothing)
+        'Kunden
+        btnMagento2ISKunden_Click(Nothing, Nothing)
     End Sub
 
     Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label3.Click
@@ -105,4 +118,5 @@ Public Class FormStart
         exp.ExportOrderStatus(Me.DateTimePickerOrdersSince.Value)
         'btn.Enabled = True
     End Sub
+#End Region
 End Class
