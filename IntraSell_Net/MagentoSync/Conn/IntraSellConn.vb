@@ -6,6 +6,7 @@ Public Class IntraSellConn
 
     Public vars As IntraSell_DLL.IntraSellVars = New IntraSellVars
     Public kunden As IntraSell_DLL.IntraSellKunden = New IntraSellKunden
+    Public dictionary As IntraSell_DLL.IntraSellDictionary = New IntraSellDictionary
 
     Public Sub init()
         ModuleLog.Log("Init IntraSell")

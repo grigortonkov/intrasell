@@ -9,7 +9,7 @@ Module ModuleLog
     Sub Log(ByRef logLine As String)
         'Debug.Print(Date.Now & ": " & logLine)
         IntraSell_DLL.ModuleLog.writeLog(logLine)
-        showLog(Date.Now & ": " & logLine & vbNewLine & FormStart.txtLog.Text)
+        showLog(Date.Now & ": " & logLine)
     End Sub
 
     Sub Log(ByRef ex As Exception)
@@ -19,12 +19,12 @@ Module ModuleLog
 
         IntraSell_DLL.ModuleLog.writeLog("Exception: " & ex.Message)
         IntraSell_DLL.ModuleLog.writeLog("Exception Stack: " & ex.StackTrace)
-        showLog("Exception: " & ex.Message & vbNewLine & FormStart.txtLog.Text)
+        showLog("Exception: " & ex.Message)
       
     End Sub
 
     Sub showLog(line As String)
-        FormStart.txtLog.Text = line
+        FormStart.pushLog(line)
         FormStart.Refresh()
     End Sub
 End Module

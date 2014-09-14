@@ -5,6 +5,10 @@ Imports IntraSell_Net.dsAdressen
 Imports IntraSell_Net.dsAdressenTableAdapters
 Imports IntraSell_DLL
 
+''' <summary>
+''' utilities for synchronisation betwen intrasell and magento 
+''' </summary>
+''' <remarks></remarks>
 Module MagentoUtils
 
     Dim magento As MagentoConn = New MagentoConn
@@ -56,6 +60,10 @@ Module MagentoUtils
         Return Nothing
     End Function
 
+    ''' <summary>
+    ''' Load Countries from magento
+    ''' </summary>
+    ''' <remarks></remarks>
     Sub loadCountries()
         magento.OpenConn()
         If countries Is Nothing Then
@@ -63,6 +71,12 @@ Module MagentoUtils
         End If
     End Sub
 
+    ''' <summary>
+    ''' get the country_id from magento 
+    ''' </summary>
+    ''' <param name="intrasellLandNr"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMagentoCountry(intrasellLandNr As String)
         loadCountries()
         Dim iso2 = intrasell.vars.firstRow("Select iso2 from grland where idnr = " & intrasellLandNr)
@@ -73,7 +87,38 @@ Module MagentoUtils
     End Function
 
 
+    ''' <summary>
+    ''' get country in intrasell
+    ''' </summary>
+    ''' <param name="country_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getIntraSellLand(country_id)
         Return intrasell.vars.firstRow("select idnr from grLand where iso2='" & country_id & "'")
     End Function
+
+    ''' <summary>
+    ''' SKU2ArtNr  -mapping function 
+    ''' </summary>
+    ''' <param name="sku"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function SKI2ArtNr(sku As String)
+        Return intrasell.vars.firstRow("select artnr from grArtikel where EAN='" & sku & "'")
+    End Function
+
+    ''' <summary>
+    ''' convert string contaiong decimal point to decimal type 
+    ''' </summary>
+    ''' <param name="stringWithPoint"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function toDecimal(stringWithPoint As String) As Decimal
+        If stringWithPoint.Contains(".") Then
+            Return Split(stringWithPoint, ".")(0) + Split(stringWithPoint, ".")(1) / 100
+        Else
+            Return stringWithPoint * 1
+        End If
+    End Function
+
 End Module

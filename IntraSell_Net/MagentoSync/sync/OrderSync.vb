@@ -2,8 +2,16 @@
 Imports MagentoSync.MagentoSyncService
 Imports MagentoSync.dsAuftraege
 
+''' <summary>
+''' Bestellprozes Synchronisieren
+''' </summary>
+''' <remarks></remarks>
 Public Class OrderSync
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <remarks></remarks>
     Protected magento As MagentoConn = New MagentoConn
     Public intrasell As IntraSellConn = New IntraSellConn
     Dim customerSync As CustomerSync = New CustomerSync
@@ -16,6 +24,7 @@ Public Class OrderSync
     ''' <param name="since">'init with this time , timer uses no since  </param>
     ''' <remarks></remarks>
     Public Sub ImportNewOrders(Optional since As Date = Nothing)
+        FormStart.setProgress(0)
         If Not IsNothing(since) Then
             lastOrderCreated = since
         End If
@@ -36,7 +45,7 @@ Public Class OrderSync
             ModuleLog.Log("Found " & list.Count.ToString & " orders. Going to import the new orders since " + lastOrderCreated + ".")
             lastOrderCreated = Now 'for the next import 
             Dim c As MagentoSyncService.salesOrderListEntity
-
+            Dim counter As Integer = 0
             For i As Int32 = 0 To list.Count - 1
                 c = list.ElementAt(i)
                 ModuleLog.Log("Found Order " & c.increment_id)
@@ -46,18 +55,25 @@ Public Class OrderSync
                 If Not orderFound = "Found" Then
                     buchVorgang_Create_Auftrag(c)
                 End If
+                counter += 1
+                FormStart.setProgress(counter / list.Count)
             Next
             ModuleLog.Log("Done checking/importing " & list.Count.ToString & " orders.")
         Catch ex As Exception
             ModuleLog.Log(ex)
         End Try
         magento.CloseConn()
-
+        FormStart.setProgress(1)
 
     End Sub
 
 
-
+    ''' <summary>
+    ''' Auftrag in intraSell anlegen mit Daten aus einem Magento Auftrag
+    ''' 
+    ''' </summary>
+    ''' <param name="order">Magento Auftrag</param>
+    ''' <remarks></remarks>
     Sub buchVorgang_Create_Auftrag(order As salesOrderListEntity)
         ModuleLog.Log("create IntraSell Auftrag for magento order_id " & order.increment_id)
 
@@ -138,7 +154,6 @@ Public Class OrderSync
 
         Next
 
-
         dsAuftraege.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_order_" + orderDetails.order_id + ".xml")
 
         tam.UpdateAll(dsAuftraege)
@@ -148,20 +163,6 @@ Public Class OrderSync
         'tr.Commit()
         ModuleLog.Log("done IntraSell Auftrag for magento order_id " & order.increment_id)
     End Sub
-
-    Function SKI2ArtNr(sku As String)
-        Return intrasell.vars.firstRow("select artnr from grArtikel where EAN='" & sku & "'")
-    End Function
-
-    Function toDecimal(stringWithPoint As String) As Decimal
-        If stringWithPoint.Contains(".") Then
-            Return Split(stringWithPoint, ".")(0) + Split(stringWithPoint, ".")(1) / 100
-        Else
-            Return stringWithPoint * 1
-        End If
-    End Function
-
-
 
 
 
@@ -175,6 +176,10 @@ Public Class OrderSync
     ''' <param name="since">'init with this time , timer uses no since  </param>
     ''' <remarks></remarks>
     Public Sub ExportOrderStatus(Optional since As Date = Nothing)
+
+        FormStart.setProgress(0)
+        Dim counter As Int16 = 0
+
         If Not IsNothing(since) Then
             lastOrderCreated = since
         End If
@@ -205,6 +210,8 @@ Public Class OrderSync
                 If orderFound = "Found" Then
                     updateOrderStatusInMagento(c)
                 End If
+                counter += 1
+                FormStart.setProgress(counter / list.Count)
             Next
             ModuleLog.Log("Done updating " & list.Count.ToString & " orders.")
         Catch ex As Exception
@@ -212,7 +219,7 @@ Public Class OrderSync
         End Try
         magento.CloseConn()
 
-
+        FormStart.setProgress(1)
     End Sub
 
 

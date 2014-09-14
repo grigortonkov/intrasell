@@ -10,12 +10,6 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=localhost;User Id=root;password=a1060;Persist Security Info=True;database=intrasell_daten_2</Value>
     </Setting>
-    <Setting Name="Magento_username" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root</Value>
-    </Setting>
-    <Setting Name="Magento_password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Mama123123</Value>
-    </Setting>
     <Setting Name="MandantNr" Type="System.String" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -39,6 +33,15 @@
     </Setting>
     <Setting Name="Magento_product_visibility" Type="System.String" Scope="User">
       <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="Magento_username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">gtonkov</Value>
+    </Setting>
+    <Setting Name="Magento_password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">abc123456</Value>
+    </Setting>
+    <Setting Name="Magento_product_storeview" Type="System.String" Scope="User">
+      <Value Profile="(Default)">de</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -8,7 +8,7 @@
         client = New MagentoSyncService.Mage_Api_Model_Server_V2_HandlerPortTypeClient
         Try
             sessionid = client.login(MagentoSync.My.MySettings.Default.Magento_username, MagentoSync.My.MySettings.Default.Magento_password)
-            ModuleLog.Log("Session ID = " & sessionid)
+            'ModuleLog.Log("Session ID = " & sessionid)
         Catch ex As Exception
             ModuleLog.Log(ex)
             Throw ex

@@ -180,7 +180,7 @@ Public Class IntraSellDictionary
         sql = "select Translation from translations t where t.TableName='" & TableName & _
          "' and t.FieldName ='" & FieldName & "' and t.Key='" & Key & "' and t.Language_Code='" & language_Code & "'"
         Dim rs As MySqlDataReader
-        rs = openRecordset_(sql, "")
+        rs = openRecordset(sql)
 
         If rs.Read Then
             private_getTranslationDok = CStr(rs("Translation"))

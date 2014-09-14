@@ -67,30 +67,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("root")>  _
-        Public Property Magento_username() As String
-            Get
-                Return CType(Me("Magento_username"),String)
-            End Get
-            Set
-                Me("Magento_username") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Mama123123")>  _
-        Public Property Magento_password() As String
-            Get
-                Return CType(Me("Magento_password"),String)
-            End Get
-            Set
-                Me("Magento_password") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
         Public Property MandantNr() As String
             Get
@@ -183,6 +159,42 @@ Namespace My
             End Get
             Set
                 Me("Magento_product_visibility") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("gtonkov")>  _
+        Public Property Magento_username() As String
+            Get
+                Return CType(Me("Magento_username"),String)
+            End Get
+            Set
+                Me("Magento_username") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("abc123456")>  _
+        Public Property Magento_password() As String
+            Get
+                Return CType(Me("Magento_password"),String)
+            End Get
+            Set
+                Me("Magento_password") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("de")>  _
+        Public Property Magento_product_storeview() As String
+            Get
+                Return CType(Me("Magento_product_storeview"),String)
+            End Get
+            Set
+                Me("Magento_product_storeview") = value
             End Set
         End Property
     End Class
