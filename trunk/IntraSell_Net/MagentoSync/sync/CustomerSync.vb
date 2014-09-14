@@ -10,7 +10,7 @@ Public Class CustomerSync
     Public intrasell As IntraSellConn = New IntraSellConn
 
     ''' <summary>
-    ''' 
+    ''' export all intrasell customers to magento
     ''' </summary>
     ''' <param name="justIDNR"></param>
     ''' <remarks></remarks>
@@ -35,8 +35,10 @@ Public Class CustomerSync
             End If
 
             magento.OpenConn()
+            Dim counter As Int16 = 0
 
             For Each ISCustomer As dsAdressen.ofadressenRow In data
+                counter = 1 + counter
                 If Not ISCustomer.IsEmailNull Then
                     ModuleLog.Log("Export IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
 
@@ -128,7 +130,7 @@ Public Class CustomerSync
                             If Not ISCustomer.IsTelNull Then magentoAddress.telephone = ISCustomer.Tel
                             If Not ISCustomer.IsFaxNull Then magentoAddress.fax = ISCustomer.Fax
                             If Not ISCustomer.IsFirmaNull Then magentoAddress.company = ISCustomer.Firma
-                         
+
                             magentoAddress.is_default_billing = Not billingAdresseFound
                             magentoAddress.is_default_shipping = Not shippingAdresseFound
                             If Not magentoAddress.country_id Is Nothing Then
@@ -138,10 +140,13 @@ Public Class CustomerSync
 
                         ModuleLog.Log("Export DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
 
+
                     Else
                         ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
                     End If
                 End If
+
+                FormStart.setProgress(counter / data.Count)
             Next
 
         Catch ex As Exception
@@ -149,6 +154,7 @@ Public Class CustomerSync
         End Try
 
         magento.CloseConn()
+        FormStart.setProgress(1)
     End Sub
 
     'Imports Customer from Order 
@@ -204,11 +210,11 @@ Public Class CustomerSync
             Dim newCustomerSettings As _ofadressen_settingsRow = dsAdr._ofadressen_settings.New_ofadressen_settingsRow
             newCustomerSettings.IDNR = order.customer_id
             newCustomerSettings.Preisliste = getMagentoCustomerbyId(order.customer_group_id).customer_group_code
-            newCustomerSettings.Kundengruppe = "Online"
+            newCustomerSettings.Kundengruppe = "Online" 'hardcoded acc. specification
 
             dsAdr._ofadressen_settings.Rows.Add(newCustomerSettings)
         Else
-            ModuleLog.Log("won't update, customer with Email exists " & order.customer_email)
+            ModuleLog.Log("Won't update, customer with this Email exists " & order.customer_email)
             'TODO update what ? 
             ta.FillByIDNR(dsAdr.ofadressen, idnr)
         End If
@@ -249,11 +255,14 @@ Public Class CustomerSync
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub ImportNewMagentoCustomers(Optional since As Date = Nothing)
+        FormStart.setProgress(0)
+        Dim counter As Integer = 0
+
         ModuleLog.Log("Start import magento customers since " & since)
 
         magento.OpenConn()
         Try
-            
+
             Dim list As MagentoSyncService.customerCustomerEntity()
             If IsNull(since) Then
                 list = magento.client.customerCustomerList(magento.sessionid, Nothing)
@@ -277,6 +286,8 @@ Public Class CustomerSync
                 c = list.ElementAt(i)
                 ModuleLog.Log("Import customer  " & c.firstname & " " & c.lastname)
                 ImportMagentoCustomer(c)
+                counter += 1
+                FormStart.setProgress(counter / list.Count)
             Next
         Catch ex As Exception
             ModuleLog.Log(ex)
@@ -284,7 +295,7 @@ Public Class CustomerSync
         magento.CloseConn()
 
         ModuleLog.Log("Done import magento customers since " & since)
-
+        FormStart.setProgress(1)
     End Sub
 
 

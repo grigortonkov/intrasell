@@ -45,6 +45,9 @@ Partial Class FormStart
         Me.btnExportLagerstand = New System.Windows.Forms.Button()
         Me.btnExportOrderStatus = New System.Windows.Forms.Button()
         Me.btnMagento2ISKunden = New System.Windows.Forms.Button()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.cbEnglish = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -112,12 +115,13 @@ Partial Class FormStart
         '
         'btnImportOrders
         '
+        Me.btnImportOrders.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnImportOrders.Location = New System.Drawing.Point(212, 181)
         Me.btnImportOrders.Name = "btnImportOrders"
         Me.btnImportOrders.Size = New System.Drawing.Size(152, 23)
         Me.btnImportOrders.TabIndex = 7
         Me.btnImportOrders.Text = "Magento 2 IS Orders"
-        Me.btnImportOrders.UseVisualStyleBackColor = True
+        Me.btnImportOrders.UseVisualStyleBackColor = False
         '
         'txtLog
         '
@@ -209,42 +213,70 @@ Partial Class FormStart
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(748, 9)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(115, 13)
+        Me.Label6.Size = New System.Drawing.Size(109, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.00, 24.05.2014"
+        Me.Label6.Text = "Vers. 1.1, 14.09.2014"
         '
         'btnExportLagerstand
         '
+        Me.btnExportLagerstand.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnExportLagerstand.Location = New System.Drawing.Point(212, 109)
         Me.btnExportLagerstand.Name = "btnExportLagerstand"
         Me.btnExportLagerstand.Size = New System.Drawing.Size(152, 23)
         Me.btnExportLagerstand.TabIndex = 18
         Me.btnExportLagerstand.Text = "IS Lagerstd. 2 Magento"
-        Me.btnExportLagerstand.UseVisualStyleBackColor = True
+        Me.btnExportLagerstand.UseVisualStyleBackColor = False
         '
         'btnExportOrderStatus
         '
+        Me.btnExportOrderStatus.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnExportOrderStatus.Location = New System.Drawing.Point(212, 138)
         Me.btnExportOrderStatus.Name = "btnExportOrderStatus"
         Me.btnExportOrderStatus.Size = New System.Drawing.Size(152, 23)
         Me.btnExportOrderStatus.TabIndex = 19
         Me.btnExportOrderStatus.Text = "IS Auftragstatus 2 Magento"
-        Me.btnExportOrderStatus.UseVisualStyleBackColor = True
+        Me.btnExportOrderStatus.UseVisualStyleBackColor = False
         '
         'btnMagento2ISKunden
         '
+        Me.btnMagento2ISKunden.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnMagento2ISKunden.Location = New System.Drawing.Point(212, 210)
         Me.btnMagento2ISKunden.Name = "btnMagento2ISKunden"
         Me.btnMagento2ISKunden.Size = New System.Drawing.Size(152, 23)
         Me.btnMagento2ISKunden.TabIndex = 20
         Me.btnMagento2ISKunden.Text = "Magento 2 IS Kunden"
-        Me.btnMagento2ISKunden.UseVisualStyleBackColor = True
+        Me.btnMagento2ISKunden.UseVisualStyleBackColor = False
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(12, 256)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(851, 23)
+        Me.ProgressBar1.TabIndex = 21
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
+        '
+        'cbEnglish
+        '
+        Me.cbEnglish.AutoSize = True
+        Me.cbEnglish.Location = New System.Drawing.Point(43, 83)
+        Me.cbEnglish.Name = "cbEnglish"
+        Me.cbEnglish.Size = New System.Drawing.Size(102, 17)
+        Me.cbEnglish.TabIndex = 22
+        Me.cbEnglish.Text = "export in english"
+        Me.cbEnglish.UseVisualStyleBackColor = True
         '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.MediumAquamarine
         Me.ClientSize = New System.Drawing.Size(875, 451)
+        Me.Controls.Add(Me.cbEnglish)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.btnMagento2ISKunden)
         Me.Controls.Add(Me.btnExportOrderStatus)
         Me.Controls.Add(Me.btnExportLagerstand)
@@ -267,7 +299,7 @@ Partial Class FormStart
         Me.Controls.Add(Me.btnCheckIS)
         Me.Controls.Add(Me.btnCheckMagento)
         Me.Name = "FormStart"
-        Me.Text = "IntraSell <> Magento"
+        Me.Text = "IntraSell 2 Magento"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -294,5 +326,8 @@ Partial Class FormStart
     Friend WithEvents btnExportLagerstand As System.Windows.Forms.Button
     Friend WithEvents btnExportOrderStatus As System.Windows.Forms.Button
     Friend WithEvents btnMagento2ISKunden As System.Windows.Forms.Button
+    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents cbEnglish As System.Windows.Forms.CheckBox
 
 End Class

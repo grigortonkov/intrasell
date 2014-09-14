@@ -7,13 +7,14 @@ Imports System.Drawing.Imaging
 Public Class CatalogSync
     Dim magento As MagentoConn = New MagentoConn
     Public intrasell As IntraSellConn = New IntraSellConn
+    Public intrasell2 As IntraSellConn = New IntraSellConn
     Dim tree As catalogCategoryTree = Nothing ' cache for the cats
     Dim dataCats As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
 
 
-    Public Sub InitialExportAllCategories()
+    Public Sub InitialExportAllCategories(Optional inEnglish As Boolean = False)
         'export all categories from intrasell to magento 
-
+        FormStart.setProgress(0)
 
         Try
             intrasell.init()
@@ -22,7 +23,10 @@ Public Class CatalogSync
             Dim data As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
 
             ta.Fill(data)
+            Dim counter As Integer = 0
+
             For Each ISCategory As dsArtikel._grartikel_kategorienRow In data
+                counter += 1
                 If Not ISCategory.IsNameNull Then
                     ModuleLog.Log("Export ArtKatNR=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
 
@@ -74,10 +78,18 @@ Public Class CatalogSync
                         tree = Nothing
                     Else
                         ModuleLog.Log("Update ArtKatNr=" & ISCategory.ArtKatNr & " and Name=" & ISCategory.Name)
-                        magento.client.catalogCategoryUpdate(magento.sessionid, found.category_id, magentoCatalog, Nothing) '1 is root category 
+                        magento.client.catalogCategoryUpdate(magento.sessionid, found.category_id, magentoCatalog, Nothing) '1 is root category
+                        If inEnglish Then
+                            'update in english 
+                            magentoCatalog.name = intrasell.dictionary.getTranslationDok("grArtikel-Kategorien", ISCategory.ArtKatNr, "Name", ISCategory.Name, "ENG")
+                            magento.client.catalogCategoryUpdate(magento.sessionid, found.category_id, magentoCatalog, "en") '1 is root category
+                        End If
                     End If
 
                 End If
+
+
+                FormStart.setProgress(counter / data.Count)
             Next
 
         Catch ex As Exception
@@ -85,7 +97,7 @@ Public Class CatalogSync
         Finally
             magento.CloseConn()
         End Try
-
+        FormStart.setProgress(1)
     End Sub
 
     'returns category id by name existing in magento 
@@ -122,11 +134,11 @@ Public Class CatalogSync
     End Function
 
 
-    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing)
+    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing, Optional inEnglish As Boolean = False)
         'export all products from intrasell to magento 
         Try
+            FormStart.setProgress(0)
             intrasell.init()
-
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
@@ -137,23 +149,57 @@ Public Class CatalogSync
                 ta.FillByEAN(data, justEAN)
             End If
 
-            'TODO Bild
-            'TODO Englischer Sprache
+            magento.OpenConn()
+            ' Dim storeView1 As Integer
+
+            ' magento.client.catalogProductCurrentStore(storeView1, magento.sessionid, My.MySettings.Default.Magento_product_storeview)
+            Dim storeView As String = Nothing
+            If inEnglish Then
+                storeView = "en" 'or "ENG" for arfaian
+            End If
+
+
+            'export to magento : get set  
+            Dim defaultSet As catalogProductAttributeSetEntity = Nothing
+            Dim attributeSets As catalogProductAttributeSetEntity() = magento.client.catalogProductAttributeSetList(magento.sessionid)
+            For Each s In attributeSets
+                If s.name = "Default" Then
+                    defaultSet = s
+                End If
+            Next
+            If defaultSet Is Nothing Then
+                Throw New Exception("Please create in magento product attribut set with name 'default'")
+            End If
+
+
+            'TODO englischer Sprache
+            Dim counter As Integer = 0
             For Each ISArtikel As dsArtikel.grartikelRow In data
+                counter += 1
                 If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
                     ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
 
                     Dim magentoProduct = New MagentoSync.MagentoSyncService.catalogProductCreateEntity
+                    magentoProduct.website_ids = {"1", "2"} 'for 1- pros pro and 2-arfiaan 
 
-                    magentoProduct.name = ISArtikel.Bezeichnung '.Replace("'", "*")
+                    If Not inEnglish Then
+                        magentoProduct.name = ISArtikel.Bezeichnung
+                    Else
+                        magentoProduct.name = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Bezeichnung", ISArtikel.Bezeichnung, "ENG")
+                    End If
+
 
                     'ReDim magentoProduct.category_ids(1) : magentoProduct.category_ids = {ISArtikel.ArtKatNr}
                     magentoProduct.categories = {findISCatByID(ISArtikel.ArtKatNr)}
 
                     If Not ISArtikel.IsBeschreibungNull Then
-                        Dim desc = ISArtikel.Bezeichnung & " " & " EAN:" & ISArtikel.EAN & " " & ISArtikel.Beschreibung
-                        magentoProduct.description = desc
-                        magentoProduct.short_description = ISArtikel.Beschreibung
+                        If Not inEnglish Then
+                            Dim desc = ISArtikel.Bezeichnung & " " & "EAN:" & ISArtikel.EAN & " " & ISArtikel.Beschreibung
+                            magentoProduct.description = desc
+                            magentoProduct.short_description = ISArtikel.Beschreibung
+                        Else
+                            magentoProduct.short_description = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Beschreibung", ISArtikel.Beschreibung, "ENG")
+                        End If
                     End If
 
 
@@ -187,47 +233,37 @@ Public Class CatalogSync
                     filter.complex_filter(0).value.key = "eq"
                     filter.complex_filter(0).value.value = ISArtikel.EAN
 
-                    magento.OpenConn()
-
-                    'export to magento : get set  
-                    Dim defaultSet As catalogProductAttributeSetEntity = Nothing
-                    Dim attributeSets As catalogProductAttributeSetEntity() = magento.client.catalogProductAttributeSetList(magento.sessionid)
-                    For Each s In attributeSets
-                        If s.name = "Default" Then
-                            defaultSet = s
-                        End If
-                    Next
 
                     Dim found As catalogProductEntity()
                     ReDim found(1)
 
                     magento.client.catalogProductList(found, magento.sessionid, filter, Nothing)
 
-                    If found.Length = 0 Then
+                    If found.Length = 0 Then 'Create new
                         ModuleLog.Log("catalogProductCreate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-                        Dim catalogId = magento.client.catalogProductCreate(sessionId:=magento.sessionid, _
+                        Dim productId = magento.client.catalogProductCreate(sessionId:=magento.sessionid, _
                                                                          type:="simple", _
                                                                          [set]:=defaultSet.set_id, _
                                                                          sku:=ISArtikel.EAN, _
                                                                          productData:=magentoProduct, _
-                                                                         storeView:=Nothing)
+                                                                         storeView:=storeView)  'storeView:=storeView1)
 
-                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimages, "small_image")
-                        loadimage(ISArtikel.ArtNr, catalogId, My.MySettings.Default.productimagesLarge, "image")
-                        exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
+                        'loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimages, "small_image")
+                        loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimagesLarge, "image")
+                        exportGroupPrices(ISArtikel.ArtNr, productId)
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         'agento.client.catalogProduct
                         magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
                                                             product:=found(0).product_id, _
                                                             productData:=magentoProduct, _
-                                                                         storeView:=Nothing, _
+                                                                         storeView:=storeView, _
                                                                          identifierType:="productId")
+                        'storeView:=storeView1, _
 
-                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
+                        'loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
                         loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
                         exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
-
                     End If
 
                     'link category 
@@ -241,10 +277,11 @@ Public Class CatalogSync
 
                     magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
 
-
                 Else
                     ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
                 End If
+
+                FormStart.setProgress(counter / data.Count)
             Next
 
         Catch ex As Exception
@@ -253,6 +290,7 @@ Public Class CatalogSync
             magento.CloseConn()
         End Try
 
+        FormStart.setProgress(1)
     End Sub
 
 
@@ -419,6 +457,7 @@ Public Class CatalogSync
 
     Sub ExportProductLagerstand(justEAN As String)
         'export all products from intrasell to magento 
+        FormStart.setProgress(0)
         Try
             intrasell.init()
 
@@ -431,7 +470,7 @@ Public Class CatalogSync
             Else
                 ta.FillByEAN(data, justEAN)
             End If
-
+            Dim counter As Integer = 0
             For Each ISArtikel As dsArtikel.grartikelRow In data
                 If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
                     ModuleLog.Log("Export Lagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
@@ -483,6 +522,8 @@ Public Class CatalogSync
                 Else
                     ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
                 End If
+                counter += 1
+                FormStart.setProgress(counter / data.Count)
             Next
 
         Catch ex As Exception
@@ -490,6 +531,8 @@ Public Class CatalogSync
         Finally
             magento.CloseConn()
         End Try
+
+        FormStart.setProgress(1)
     End Sub
 
 End Class

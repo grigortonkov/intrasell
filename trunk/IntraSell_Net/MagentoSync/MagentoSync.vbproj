@@ -364,7 +364,7 @@
     <Content Include="productImages\clock.JPG" />
     <Content Include="productImages\error.gif" />
     <Content Include="productImages\SymbolPicture.jpg" />
-    <Content Include="XMLFile1.xml" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
