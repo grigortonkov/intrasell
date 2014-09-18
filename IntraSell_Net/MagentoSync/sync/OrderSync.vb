@@ -232,84 +232,136 @@ Public Class OrderSync
     Sub updateOrderStatusInMagento(order As salesOrderListEntity)
         ModuleLog.Log("update order status for magento order_id " & order.increment_id)
 
-        Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
-
-        Dim tam As dsAuftraegeTableAdapters.TableAdapterManager = New dsAuftraegeTableAdapters.TableAdapterManager()
-        'tam.Connection = IntraSell_DLL.FunctionsDB.CurrentDB
-
-        Dim t As buchauftragTableAdapter = New buchauftragTableAdapter()
-        Dim ta As buchauftrag_artikelTableAdapter = New buchauftrag_artikelTableAdapter()
-
-        Dim dsAuftraege As dsAuftraege = New dsAuftraege()
-
-        tam.Connection = t.Connection
-
-        t.FillByNummer(dsAuftraege.buchauftrag, order.increment_id)
-        If dsAuftraege.buchauftrag.Rows.Count > 0 Then
-            Dim buchAuftrag As buchauftragRow = dsAuftraege.buchauftrag.Rows(0)
-            Dim status = "", notiz = ""
-            If Not buchAuftrag Is Nothing Then
-                If Not buchAuftrag.IsStatusNull Then
-                    status = buchAuftrag.Status
-                End If
-                If Not buchAuftrag.IsNotizNull Then
-                    notiz = buchAuftrag.Notiz
-                End If
-                'update in Magento
-                magento.client.salesOrderAddComment(sessionId:=magento.sessionid, _
-                                                    orderIncrementId:=order.increment_id, _
-                                                    status:=status, _
-                                                    comment:=notiz, _
-                                                    notify:=True)
-
-                'add shipment 
-                If Not buchAuftrag.IsWohinNull Then 'Rechnung vielleicht existiert 
-                    'magento.client.sal
-                    If (buchAuftrag.Wohin.StartsWith("AR")) Then
-
-                        Dim rechungsnummer = buchAuftrag.Wohin.Replace("AR", "")
-
-                        'prüfe ob paketnummer existiert 
-                        Dim orderPaketnummer As String = intrasell.vars.firstRow("select Value from buchVorgaengeeigenschaften where vorgangtyp='AR' and name ='Paketnummer' and nummer=" & rechungsnummer & "")
-                        If Not IsDBNull(orderPaketnummer) Then
-                            If Len(orderPaketnummer) > 1 Then
-                                'export shipment und nummer 
-                                Dim itemsQty() As MagentoSyncService.orderItemIdQty = Nothing
-
-                                'TODO: Items aus der Rechnung exportieren 
+        Try
 
 
-                                Dim shipmentIncrementId As String
-                                shipmentIncrementId = magento.client.salesOrderShipmentCreate( _
-                                                       sessionId:=magento.sessionid, _
-                                                       orderIncrementId:=order.increment_id, _
-                                                       itemsQty:=itemsQty, _
-                                                       comment:=1, _
-                                                       email:=1, _
-                                                       includeComment:=1)
+            Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
+
+            Dim tam As dsAuftraegeTableAdapters.TableAdapterManager = New dsAuftraegeTableAdapters.TableAdapterManager()
+            'tam.Connection = IntraSell_DLL.FunctionsDB.CurrentDB
+
+            Dim t As buchauftragTableAdapter = New buchauftragTableAdapter()
+            Dim ta As buchauftrag_artikelTableAdapter = New buchauftrag_artikelTableAdapter()
+
+            Dim dsAuftraege As dsAuftraege = New dsAuftraege()
+
+            tam.Connection = t.Connection
+
+            t.FillByNummer(dsAuftraege.buchauftrag, order.increment_id)
+            If dsAuftraege.buchauftrag.Rows.Count > 0 Then
+                Dim buchAuftrag As buchauftragRow = dsAuftraege.buchauftrag.Rows(0)
+                Dim status = "", notiz = ""
+                If Not buchAuftrag Is Nothing Then
+                    If Not buchAuftrag.IsStatusNull Then
+                        status = buchAuftrag.Status
+                    End If
+                    If Not buchAuftrag.IsNotizNull Then
+                        notiz = buchAuftrag.Notiz
+                    End If
+                    'update in Magento
+                    'states in magento: new, processing
+                    If order.state <> status Then
+                        magento.client.salesOrderAddComment(sessionId:=magento.sessionid, _
+                                                            orderIncrementId:=order.increment_id, _
+                                                            status:=status, _
+                                                            comment:=notiz, _
+                                                            notify:=True)
+                    End If
+
+                    'add shipment 
+                    If Not buchAuftrag.IsWohinNull Then 'Rechnung vielleicht existiert 
+                        'magento.client.sal
+                        If (buchAuftrag.Wohin.StartsWith("AR")) Then
+
+                            Dim rechungsnummer = buchAuftrag.Wohin.Replace("AR", "")
+
+                            'prüfe ob paketnummer existiert 
+                            Dim orderPaketnummer As String = intrasell.vars.firstRow("select Value from buchVorgaengeeigenschaften where vorgangtyp='AR' and name ='Paketnummer' and nummer=" & rechungsnummer & "")
+                            Dim orderNotiz As String = intrasell.vars.firstRow("select Notiz from buchRechnung where Nummer=" & rechungsnummer & "")
+
+                            If Not IsDBNull(orderPaketnummer) Then
+                                If Len(orderPaketnummer) > 1 Then
+                                    'export shipment und nummer 
+                                    Dim itemsQty() As MagentoSyncService.orderItemIdQty
+                                    ReDim itemsQty(orderDetails.items.Count)
+
+                                    'TODO: Items aus der Rechnung exportieren 
+                                    Dim i As Int16 = 0
+                                    For Each r In orderDetails.items
+                                        itemsQty(i) = New MagentoSyncService.orderItemIdQty
+                                        itemsQty(i).qty = r.qty_ordered
+                                        i = 1 + i
+                                    Next
+
+                                    Dim shp = shipmentFromOrder(orderDetails.order_id)
+                                    If shp Is Nothing Then
 
 
-                                magento.client.salesOrderShipmentAddTrack( _
-                                                       sessionId:=magento.sessionid, _
-                                                       shipmentIncrementId:=shipmentIncrementId, _
-                                                       carrier:="GLS", _
-                                                       title:="GLS Paketnummer", _
-                                                       trackNumber:=orderPaketnummer)
+                                        Dim shipmentIncrementId As String
 
 
+                                        shipmentIncrementId = magento.client.salesOrderShipmentCreate( _
+                                                               sessionId:=magento.sessionid, _
+                                                               orderIncrementId:=order.increment_id, _
+                                                               itemsQty:=Nothing, _
+                                                               comment:=orderNotiz, _
+                                                               email:=1, _
+                                                               includeComment:=1)
+
+
+                                        magento.client.salesOrderShipmentAddTrack( _
+                                                               sessionId:=magento.sessionid, _
+                                                               shipmentIncrementId:=shipmentIncrementId, _
+                                                               carrier:="GLS", _
+                                                               title:="GLS Paketnummer", _
+                                                               trackNumber:=orderPaketnummer)
+                                    Else
+                                        ModuleLog.Log("Shipment already exists")
+                                    End If
+
+                                End If
                             End If
                         End If
+
                     End If
 
                 End If
-
             End If
-        End If
 
-        'tr.Commit()
-        ModuleLog.Log("done update order status for magento order_id " & order.increment_id)
+
+            ModuleLog.Log("done update order status for magento order_id " & order.increment_id)
+        Catch ex As Exception
+            ModuleLog.Log("cannot update order status for magento order_id " & order.increment_id)
+            ModuleLog.Log(ex)
+        End Try
+
     End Sub
 
+    ''' <summary>
+    ''' returns the last shipment for an order
+    ''' </summary>
+    ''' <param name="order_increment_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function shipmentFromOrder(order_id As String) As salesOrderShipmentEntity
+
+        Dim filter As filters = New filters
+        ReDim filter.complex_filter(1)
+        filter.complex_filter(0) = New complexFilter
+        filter.complex_filter(0).key = "order_id"
+        filter.complex_filter(0).value = New associativeEntity()
+        filter.complex_filter(0).value.key = "eq"
+        filter.complex_filter(0).value.value = order_id
+
+        Dim r As salesOrderShipmentEntity() = magento.client.salesOrderShipmentList(magento.sessionid, filter)
+
+        If r.Count > 0 Then
+            Return r(r.Count - 1)
+        Else
+            Return Nothing
+        End If
+
+    End Function
 End Class
 
 
