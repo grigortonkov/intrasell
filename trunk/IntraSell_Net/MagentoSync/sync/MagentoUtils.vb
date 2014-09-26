@@ -16,9 +16,44 @@ Module MagentoUtils
 
     Dim customerGroups As customerGroupEntity()
     Dim countries As MagentoSyncService.directoryCountryEntity()
+    Dim stores As MagentoSyncService.storeEntity()
 
     Public Function toMagentoDateFormat(d As Date)
-        Return d.Year & "-" & d.Month & "-" & d.Day & " " & d.Hour & ":" & d.Minute & ":" & d.Second
+        'Return d.Year & "-" & d.Month & "-" & d.Day & " " & d.Hour & ":" & d.Minute & ":" & d.Second
+        Return d.ToString("yyyy-MM-dd HH:mm:ss")
+    End Function
+
+    Sub loadStores()
+        magento.OpenConn()
+        If stores Is Nothing Then
+            stores = magento.client.storeList(sessionId:=magento.sessionid)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' returns the Store 
+    ''' 
+    ''' </summary>
+    ''' <param name="storename"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function getMagentoStore(ByVal storename As String) As storeEntity
+        loadStores()
+        For Each entity As storeEntity In stores
+            If entity.code = storename Then
+                Return entity
+            End If
+        Next
+        Return stores(0) 'falls nicht gefunden wurde 
+    End Function
+
+    Function getMagentoStoreForMandant(mandant) As storeEntity
+        If mandant = 1 Then 'arfaian
+            Return getMagentoStore("deu") 'for arfaian
+        Else 'prospro
+            Return getMagentoStore("de") 'for pros pro
+        End If
     End Function
 
     Sub loadCustomerGroups()
