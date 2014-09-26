@@ -167,12 +167,7 @@ Public Class FormStart
         'btn.Enabled = True
     End Sub
 
-    Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
-        'Orders
-        btnImportOrders_Click(Nothing, Nothing)
-        'Kunden
-        btnMagento2ISKunden_Click(Nothing, Nothing)
-    End Sub
+
 
     Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label3.Click
         Me.txtIDNR.Text = ""
@@ -182,21 +177,17 @@ Public Class FormStart
         Me.txtEAN.Text = ""
     End Sub
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles btnExportOrderStatus.Click
-        Dim trd = New Thread(AddressOf ThreadTask_Button1_Click)
-        trd.IsBackground = True
-        trd.Start()
-    End Sub
+    
 
 
-    Sub ThreadTask_Button1_Click()
+    Sub ThreadTask_ExportOrderStatus()
         Dim exp As OrderSync = New OrderSync
         exp.ExportOrderStatus(Me.DateTimePickerOrdersSince.Value)
         'btn.Enabled = True
     End Sub
 #End Region
 
-    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
+    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles TimerInterface.Tick
 
         'update log 
         If Len(logBuffer) > 0 Then
@@ -212,5 +203,31 @@ Public Class FormStart
         'ProgressBar1.Value = 0
         'End If
     End Sub
+
+    Private Sub btnExportOrderStatus_Click(sender As System.Object, e As System.EventArgs) Handles btnExportOrderStatus.Click
+        Dim trd = New Thread(AddressOf ThreadTask_ExportOrderStatus)
+        trd.IsBackground = True
+        trd.Start()
+    End Sub
+
+#Region "Timers"
+    Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
+        'Orders
+        btnImportOrders_Click(Nothing, Nothing)
+        'Kunden
+        btnMagento2ISKunden_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub TimerAuftragstatus2Magento_Tick(sender As System.Object, e As System.EventArgs) Handles TimerAuftragstatus2Magento.Tick
+        'Order Status 
+        btnExportOrderStatus_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub TimerLager_Tick(sender As System.Object, e As System.EventArgs) Handles TimerLager.Tick
+        btnExportLagerstand_Click(Nothing, Nothing)
+    End Sub
+
+#End Region
+
 
 End Class
