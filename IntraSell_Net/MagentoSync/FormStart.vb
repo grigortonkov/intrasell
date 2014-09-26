@@ -163,7 +163,7 @@ Public Class FormStart
 
     Sub ThreadTask_btnImportOrders_Click()
         Dim exp As OrderSync = New OrderSync
-        exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value)
+        exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value.AddHours(-2)) 'HACK: um die GMT umzugehen in magento 
         'btn.Enabled = True
     End Sub
 

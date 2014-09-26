@@ -117,7 +117,7 @@ Partial Class FormStart
         '
         'btnImportOrders
         '
-        Me.btnImportOrders.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnImportOrders.BackColor = System.Drawing.Color.LightBlue
         Me.btnImportOrders.Location = New System.Drawing.Point(212, 181)
         Me.btnImportOrders.Name = "btnImportOrders"
         Me.btnImportOrders.Size = New System.Drawing.Size(152, 23)
@@ -217,11 +217,11 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(109, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.1, 19.09.2014"
+        Me.Label6.Text = "Vers. 1.2, 26.09.2014"
         '
         'btnExportLagerstand
         '
-        Me.btnExportLagerstand.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnExportLagerstand.BackColor = System.Drawing.Color.LightBlue
         Me.btnExportLagerstand.Location = New System.Drawing.Point(212, 109)
         Me.btnExportLagerstand.Name = "btnExportLagerstand"
         Me.btnExportLagerstand.Size = New System.Drawing.Size(152, 23)
@@ -231,7 +231,7 @@ Partial Class FormStart
         '
         'btnExportOrderStatus
         '
-        Me.btnExportOrderStatus.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnExportOrderStatus.BackColor = System.Drawing.Color.LightBlue
         Me.btnExportOrderStatus.Location = New System.Drawing.Point(212, 138)
         Me.btnExportOrderStatus.Name = "btnExportOrderStatus"
         Me.btnExportOrderStatus.Size = New System.Drawing.Size(152, 23)
@@ -241,7 +241,7 @@ Partial Class FormStart
         '
         'btnMagento2ISKunden
         '
-        Me.btnMagento2ISKunden.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnMagento2ISKunden.BackColor = System.Drawing.Color.LightBlue
         Me.btnMagento2ISKunden.Location = New System.Drawing.Point(212, 210)
         Me.btnMagento2ISKunden.Name = "btnMagento2ISKunden"
         Me.btnMagento2ISKunden.Size = New System.Drawing.Size(152, 23)
@@ -264,7 +264,7 @@ Partial Class FormStart
         'cbEnglish
         '
         Me.cbEnglish.AutoSize = True
-        Me.cbEnglish.Location = New System.Drawing.Point(43, 83)
+        Me.cbEnglish.Location = New System.Drawing.Point(628, 82)
         Me.cbEnglish.Name = "cbEnglish"
         Me.cbEnglish.Size = New System.Drawing.Size(102, 17)
         Me.cbEnglish.TabIndex = 22
@@ -285,7 +285,7 @@ Partial Class FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.MediumAquamarine
+        Me.BackColor = System.Drawing.Color.PaleGreen
         Me.ClientSize = New System.Drawing.Size(875, 451)
         Me.Controls.Add(Me.cbEnglish)
         Me.Controls.Add(Me.ProgressBar1)
