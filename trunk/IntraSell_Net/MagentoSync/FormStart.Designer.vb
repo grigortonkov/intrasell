@@ -46,8 +46,10 @@ Partial Class FormStart
         Me.btnExportOrderStatus = New System.Windows.Forms.Button()
         Me.btnMagento2ISKunden = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerInterface = New System.Windows.Forms.Timer(Me.components)
         Me.cbEnglish = New System.Windows.Forms.CheckBox()
+        Me.TimerAuftragstatus2Magento = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerLager = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -136,7 +138,7 @@ Partial Class FormStart
         'TimerSync
         '
         Me.TimerSync.Enabled = True
-        Me.TimerSync.Interval = 60000
+        Me.TimerSync.Interval = 300000
         '
         'DateTimePickerOrdersSince
         '
@@ -215,7 +217,7 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(109, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.1, 14.09.2014"
+        Me.Label6.Text = "Vers. 1.1, 19.09.2014"
         '
         'btnExportLagerstand
         '
@@ -254,10 +256,10 @@ Partial Class FormStart
         Me.ProgressBar1.Size = New System.Drawing.Size(851, 23)
         Me.ProgressBar1.TabIndex = 21
         '
-        'Timer1
+        'TimerInterface
         '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
+        Me.TimerInterface.Enabled = True
+        Me.TimerInterface.Interval = 1000
         '
         'cbEnglish
         '
@@ -268,6 +270,16 @@ Partial Class FormStart
         Me.cbEnglish.TabIndex = 22
         Me.cbEnglish.Text = "export in english"
         Me.cbEnglish.UseVisualStyleBackColor = True
+        '
+        'TimerAuftragstatus2Magento
+        '
+        Me.TimerAuftragstatus2Magento.Enabled = True
+        Me.TimerAuftragstatus2Magento.Interval = 3600000
+        '
+        'TimerLager
+        '
+        Me.TimerLager.Enabled = True
+        Me.TimerLager.Interval = 7200000
         '
         'FormStart
         '
@@ -327,7 +339,9 @@ Partial Class FormStart
     Friend WithEvents btnExportOrderStatus As System.Windows.Forms.Button
     Friend WithEvents btnMagento2ISKunden As System.Windows.Forms.Button
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents TimerInterface As System.Windows.Forms.Timer
     Friend WithEvents cbEnglish As System.Windows.Forms.CheckBox
+    Friend WithEvents TimerAuftragstatus2Magento As System.Windows.Forms.Timer
+    Friend WithEvents TimerLager As System.Windows.Forms.Timer
 
 End Class
