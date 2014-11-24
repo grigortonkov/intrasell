@@ -24,6 +24,9 @@ Public Class CustomerSync
 
             Dim ta As dsAdressenTableAdapters.ofadressenTableAdapter = New dsAdressenTableAdapters.ofadressenTableAdapter
             Dim taWeitere As dsAdressenTableAdapters.ofadressen_weitereTableAdapter = New dsAdressenTableAdapters.ofadressen_weitereTableAdapter
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+            taWeitere.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
             Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
             Dim dataWeitere As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
             If String.IsNullOrEmpty(justIDNR) Then
@@ -173,19 +176,23 @@ Public Class CustomerSync
         Dim dsAdr As dsAdressen = New dsAdressen
 
         Dim ta As ofadressenTableAdapter = New ofadressenTableAdapter
+        ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
         Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
 
         Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
+        taWeitere.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
         Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
 
         Dim taSettings As ofadressen_settingsTableAdapter = New ofadressen_settingsTableAdapter
+        taSettings.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
         Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
         tam.Connection = t.Connection
 
         Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where Email = '" & order.customer_email & "'")
 
-        If IsNothing(idnr) And order.customer_id Is Nothing Then
+        If IsNothing(idnr) Then 'And order.customer_id Is Nothing 
             idnr = intrasell.vars.firstRow("select max(idnr) + 1  from ofAdressen")
         End If
 
@@ -199,11 +206,11 @@ Public Class CustomerSync
 
             newCustomer.mandant = My.MySettings.Default.MandantNr
             newCustomer.Status = "Kunde"
-            If order.customer_id Is Nothing Then
-                newCustomer.IDNR = idnr 'is null for anonymous customers
-            Else
-                newCustomer.IDNR = order.customer_id 'registered
-            End If
+            'If order.customer_id Is Nothing Then
+            newCustomer.IDNR = idnr 'is null for anonymous customers
+            ' Else
+            'newCustomer.IDNR = order.customer_id 'registered
+            'End If
 
 
             newCustomer.Name = order.customer_lastname
@@ -254,7 +261,7 @@ Public Class CustomerSync
                 newCustomerShipping.PLZ = intrasell.kunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
                 newCustomerShipping.Ort = order.shipping_address.city
                 newCustomerShipping.Tel = order.shipping_address.telephone
-               
+
 
                 dsAdr._ofadressen_weitere.Rows.Add(newCustomerShipping)
             End If
@@ -329,20 +336,26 @@ Public Class CustomerSync
         intrasell.init()
 
         Dim tam As dsAdressenTableAdapters.TableAdapterManager = New dsAdressenTableAdapters.TableAdapterManager()
+        tam.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
         'check if customer is existing 
         Dim dsAdr As dsAdressen = New dsAdressen
 
         Dim ta As ofadressenTableAdapter = New ofadressenTableAdapter
+        ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
         Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
 
         Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
+        taWeitere.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
         Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
 
         Dim taSettings As ofadressen_settingsTableAdapter = New ofadressen_settingsTableAdapter
-
+        taSettings.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
         Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
+        t.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
         tam.Connection = t.Connection
 
         Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where email = '" & customer.email & "'")

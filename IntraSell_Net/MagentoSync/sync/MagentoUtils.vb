@@ -72,11 +72,12 @@ Module MagentoUtils
     Function getMagentoCustomerGroup(ByVal intrasSellPreisliste As String) As customerGroupEntity
         loadCustomerGroups()
         For Each entity As customerGroupEntity In customerGroups
-            If entity.customer_group_code = intrasSellPreisliste Then
+            If entity.customer_group_code = getMappingIS(intrasSellPreisliste) Then
                 Return entity
             End If
+
         Next
-        Return customerGroups(0) 'falls nicht gefunden wurde 
+        Return customerGroups(0) 'falls nichts gefunden wurde 
     End Function
 
     ''' <summary>
@@ -138,9 +139,32 @@ Module MagentoUtils
     ''' <param name="sku"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function SKI2ArtNr(sku As String)
+    Function SKU2ArtNr(sku As String)
         Return intrasell.vars.firstRow("select artnr from grArtikel where EAN='" & sku & "'")
     End Function
+
+    ''' <summary>
+    ''' 
+    ''' returns the artnr of special artikel, if not existing creates artikel in intrasell
+    ''' </summary>
+    ''' <param name="description"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function Description2ArtNr(description As String)
+        Dim artikel = intrasell.vars.firstRow("select artnr from grArtikel where Bezeichnung='" & description & "'")
+
+
+        If IsNothing(artikel) Then
+            Dim nArtNR = firstRow("select 1+max(artnr) from grArtikel")
+            Dim sql As String = "insert into grArtikel (artnr, ean, bezeichnung, PreisATS, PreisATS_Brutto) values ( " & nArtNR & ", '" & Left(description, 4) & "', '" & description & "',0,0)"
+            RunSQL(sql)
+            Return (Description2ArtNr(description))
+        Else
+            Return artikel
+        End If
+
+    End Function
+
 
     ''' <summary>
     ''' convert string contaiong decimal point to decimal type 
@@ -149,11 +173,33 @@ Module MagentoUtils
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function toDecimal(stringWithPoint As String) As Decimal
+        Try
+
+      
         If stringWithPoint.Contains(".") Then
-            Return Split(stringWithPoint, ".")(0) + Split(stringWithPoint, ".")(1) / 100
+            Return Split(stringWithPoint, ".")(0) + Left(Split(stringWithPoint, ".")(1), 2) / 100
         Else
             Return stringWithPoint * 1
-        End If
+            End If
+        Catch ex As Exception
+            ModuleLog.Log("error in toDecimal for string " & stringWithPoint & ". Expected format NNNN.NN")
+            ModuleLog.Log(ex)
+            Return 0
+        End Try
     End Function
 
+
+    Function getMappingIS(ByVal isKey) As String
+        Dim map As String = My.MySettings.Default.Mappings
+        map = map.Replace(vbNewLine, "")
+        map = map.Replace(vbCr, "")
+        map = map.Replace(vbCrLf, "")
+        For Each s In map.Split(";")
+            Dim k = s.Split("=")
+            If Trim(k(0)).StartsWith(Trim(isKey)) Then
+                Return k(1)
+            End If
+        Next
+        Throw New Exception("No mapping found for " & isKey)
+    End Function
 End Module

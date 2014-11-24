@@ -128,18 +128,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
-        Public Property Magento_product_tax_class_id() As String
-            Get
-                Return CType(Me("Magento_product_tax_class_id"),String)
-            End Get
-            Set
-                Me("Magento_product_tax_class_id") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
         Public Property Magento_product_status() As String
             Get
@@ -195,6 +183,46 @@ Namespace My
             End Get
             Set
                 Me("Magento_product_storeview") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property Magento_product_tax_class_id() As String
+            Get
+                Return CType(Me("Magento_product_tax_class_id"),String)
+            End Get
+            Set
+                Me("Magento_product_tax_class_id") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1-Letztverbraucher")>  _
+        Public Property PreislisteNotLoggedIn() As String
+            Get
+                Return CType(Me("PreislisteNotLoggedIn"),String)
+            End Get
+            Set
+                Me("PreislisteNotLoggedIn") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute(""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  NOT LOGGED IN=NOT LOGGED IN;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  1-Letztverbra"& _ 
+            "ucher=1-Letztverbraucher;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  2-GH-Kunden Inland=2-GH-Kunden Inla"& _ 
+            "nd;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  3-Exportkunden DE=3-Exportkunden DE;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  4"& _ 
+            "-Exportkunden EUROPA=4-Exportkunden EUROPA;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  5-Pros Pro=5-Pros"& _ 
+            " Pro;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                ")>  _
+        Public Property Mappings() As String
+            Get
+                Return CType(Me("Mappings"),String)
+            End Get
+            Set
+                Me("Mappings") = value
             End Set
         End Property
     End Class

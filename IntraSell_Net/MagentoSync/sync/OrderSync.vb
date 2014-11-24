@@ -84,15 +84,19 @@ Public Class OrderSync
             Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
 
             Dim tam As dsAuftraegeTableAdapters.TableAdapterManager = New dsAuftraegeTableAdapters.TableAdapterManager()
+
             'tam.Connection = IntraSell_DLL.FunctionsDB.CurrentDB
 
             Dim t As buchauftragTableAdapter = New buchauftragTableAdapter()
+            t.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
             Dim ta As buchauftrag_artikelTableAdapter = New buchauftrag_artikelTableAdapter()
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
             Dim dsAuftraege As dsAuftraege = New dsAuftraege()
 
             tam.Connection = t.Connection
-
+            tam.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
             't.Fill(dsAuftraege.buchauftrag)
             'ta.Fill(dsAuftraege._buchauftrag_artikel)
 
@@ -108,6 +112,10 @@ Public Class OrderSync
             r.Bezahlt = 0
             r.Ausgedrukt = 0
             r.anElba = 0
+            If Not orderDetails.shipping_method Is Nothing Then
+                r.TransportMethode = orderDetails.shipping_method
+            End If
+
             'TODO create / update customer 
             'check Email 
             Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where Email = '" & orderDetails.customer_email & "'")
@@ -142,21 +150,46 @@ Public Class OrderSync
                 'rp.Typ = r.Typ
 
                 rp.RechNr = r.Nummer
-                rp.ArtNr = SKI2ArtNr(item.sku) ' item.product_id
+                rp.ArtNr = SKU2ArtNr(item.sku) ' item.product_id
 
                 Dim prod = magento.client.catalogProductInfo(magento.sessionid, item.product_id, Nothing, Nothing, "simple")
                 rp.Bezeichnung = prod.name
 
                 rp.Stk = toDecimal(item.qty_ordered)
-                rp.PreisATS = toDecimal(item.base_price)
-                'rp.MWST = item.price - item.base_price
-                rp.PreisATS_Brutto = toDecimal(item.price)
+                rp.PreisATS = Math.Round(toDecimal(item.base_price), 2)
+                rp.PreisATS_Brutto = Math.Round(toDecimal(item.price) * (100 + toDecimal(item.tax_percent)) / 100, 2)
 
                 dsAuftraege._buchauftrag_artikel.Rows.Add(rp)
 
                 pos = pos + 1
 
             Next
+
+            'Lieferkosten 
+            If toDecimal(orderDetails.shipping_amount) > 0 Then
+                Dim rp As dsAuftraege._buchauftrag_artikelRow
+
+                rp = dsAuftraege._buchauftrag_artikel.NewRow()
+                rp.ID = pos
+                rp.RechNr = r.Nummer
+                rp.ArtNr = Description2ArtNr(orderDetails.shipping_method) ' item.product_id
+                rp.Bezeichnung = orderDetails.shipping_description
+
+                rp.Stk = 1
+                rp.PreisATS = Math.Round(toDecimal(orderDetails.base_shipping_amount), 2)
+                rp.PreisATS_Brutto = Math.Round(toDecimal(orderDetails.shipping_amount) * 1.2, 2)
+
+                dsAuftraege._buchauftrag_artikel.Rows.Add(rp)
+
+                pos = pos + 1
+
+                r.Summe = r.Summe + rp.PreisATS
+                r.SummeMWST = r.SummeMWST + rp.PreisATS_Brutto - rp.PreisATS
+                r.SummeBrutto = r.SummeBrutto + r.Summe + rp.PreisATS_Brutto
+
+            End If
+
+
 
             dsAuftraege.WriteXml(My.MySettings.Default.SyncFolder + "magento2intrasell_order_" + orderDetails.order_id + ".xml")
 
@@ -246,10 +279,13 @@ Public Class OrderSync
             Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
 
             Dim tam As dsAuftraegeTableAdapters.TableAdapterManager = New dsAuftraegeTableAdapters.TableAdapterManager()
+            tam.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
             'tam.Connection = IntraSell_DLL.FunctionsDB.CurrentDB
 
             Dim t As buchauftragTableAdapter = New buchauftragTableAdapter()
+            t.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
             Dim ta As buchauftrag_artikelTableAdapter = New buchauftrag_artikelTableAdapter()
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
             Dim dsAuftraege As dsAuftraege = New dsAuftraege()
 

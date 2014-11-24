@@ -12,6 +12,7 @@ Public Class IntraSellConn
         ModuleLog.Log("Init IntraSell")
         vars.init(MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString)
         kunden.init(MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString)
+        dictionary.init(MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString)
     End Sub
 
 
@@ -19,7 +20,9 @@ Public Class IntraSellConn
         ModuleLog.Log("Open IntraSell")
         Dim ta As dsAdressenTableAdapters.ofadressenTableAdapter = New dsAdressenTableAdapters.ofadressenTableAdapter
         Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
-        ta.Fill(data)
+        ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+        ta.FillByIDNR(data, 0)
+
     End Sub
 
     Sub CloseConn()

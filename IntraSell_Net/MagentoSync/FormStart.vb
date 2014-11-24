@@ -134,7 +134,7 @@ Public Class FormStart
     End Sub
     Private Sub ThreadTask_btnExportProducts_Click()
         Dim exp As CatalogSync = New CatalogSync
-        exp.InitialExportAllProducts(Me.txtEAN.Text, Me.cbEnglish.Checked)
+        exp.InitialExportAllProducts(Me.txtEAN.Text, Me.cbEnglish.Checked, Me.cbPics.Checked, Me.cbPrices.Checked, Me.cbLinkCats.Checked)
     End Sub
 
     Private Sub btnExportLagerstand_Click(sender As System.Object, e As System.EventArgs) Handles btnExportLagerstand.Click
@@ -230,4 +230,16 @@ Public Class FormStart
 #End Region
 
 
+    Private Sub cbPics_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbPics.CheckedChanged
+
+    End Sub
+
+    Private Sub Label6_Click(sender As System.Object, e As System.EventArgs) Handles Label6.Click
+
+    End Sub
+
+    Private Sub btnTest_Click(sender As System.Object, e As System.EventArgs) Handles btnTest.Click
+        Dim exp As CatalogSync = New CatalogSync
+        exp.ProductInfo(Me.txtEAN.Text)
+    End Sub
 End Class

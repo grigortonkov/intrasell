@@ -23,6 +23,7 @@ Partial Class FormStart
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormStart))
         Me.btnCheckMagento = New System.Windows.Forms.Button()
         Me.btnCheckIS = New System.Windows.Forms.Button()
         Me.lblMagentoConn = New System.Windows.Forms.Label()
@@ -50,6 +51,10 @@ Partial Class FormStart
         Me.cbEnglish = New System.Windows.Forms.CheckBox()
         Me.TimerAuftragstatus2Magento = New System.Windows.Forms.Timer(Me.components)
         Me.TimerLager = New System.Windows.Forms.Timer(Me.components)
+        Me.cbPics = New System.Windows.Forms.CheckBox()
+        Me.cbPrices = New System.Windows.Forms.CheckBox()
+        Me.cbLinkCats = New System.Windows.Forms.CheckBox()
+        Me.btnTest = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -132,7 +137,7 @@ Partial Class FormStart
         Me.txtLog.Multiline = True
         Me.txtLog.Name = "txtLog"
         Me.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtLog.Size = New System.Drawing.Size(875, 166)
+        Me.txtLog.Size = New System.Drawing.Size(1088, 166)
         Me.txtLog.TabIndex = 8
         '
         'TimerSync
@@ -213,11 +218,11 @@ Partial Class FormStart
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(748, 9)
+        Me.Label6.Location = New System.Drawing.Point(958, 9)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(109, 13)
+        Me.Label6.Size = New System.Drawing.Size(118, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.2, 26.09.2014"
+        Me.Label6.Text = "Vers. 1.0.2, 18.11.2014"
         '
         'btnExportLagerstand
         '
@@ -253,7 +258,7 @@ Partial Class FormStart
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(12, 256)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(851, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(1076, 23)
         Me.ProgressBar1.TabIndex = 21
         '
         'TimerInterface
@@ -281,12 +286,59 @@ Partial Class FormStart
         Me.TimerLager.Enabled = True
         Me.TimerLager.Interval = 7200000
         '
+        'cbPics
+        '
+        Me.cbPics.AutoSize = True
+        Me.cbPics.Checked = True
+        Me.cbPics.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbPics.Location = New System.Drawing.Point(751, 83)
+        Me.cbPics.Name = "cbPics"
+        Me.cbPics.Size = New System.Drawing.Size(77, 17)
+        Me.cbPics.TabIndex = 23
+        Me.cbPics.Text = "export pics"
+        Me.cbPics.UseVisualStyleBackColor = True
+        '
+        'cbPrices
+        '
+        Me.cbPrices.AutoSize = True
+        Me.cbPrices.Checked = True
+        Me.cbPrices.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbPrices.Location = New System.Drawing.Point(859, 83)
+        Me.cbPrices.Name = "cbPrices"
+        Me.cbPrices.Size = New System.Drawing.Size(97, 17)
+        Me.cbPrices.TabIndex = 24
+        Me.cbPrices.Text = "export in prices"
+        Me.cbPrices.UseVisualStyleBackColor = True
+        '
+        'cbLinkCats
+        '
+        Me.cbLinkCats.AutoSize = True
+        Me.cbLinkCats.Location = New System.Drawing.Point(962, 82)
+        Me.cbLinkCats.Name = "cbLinkCats"
+        Me.cbLinkCats.Size = New System.Drawing.Size(86, 17)
+        Me.cbLinkCats.TabIndex = 25
+        Me.cbLinkCats.Text = "link category"
+        Me.cbLinkCats.UseVisualStyleBackColor = True
+        '
+        'btnTest
+        '
+        Me.btnTest.Location = New System.Drawing.Point(985, 227)
+        Me.btnTest.Name = "btnTest"
+        Me.btnTest.Size = New System.Drawing.Size(91, 23)
+        Me.btnTest.TabIndex = 26
+        Me.btnTest.Text = "Magento Product"
+        Me.btnTest.UseVisualStyleBackColor = True
+        '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.PaleGreen
-        Me.ClientSize = New System.Drawing.Size(875, 451)
+        Me.BackColor = System.Drawing.Color.LightGreen
+        Me.ClientSize = New System.Drawing.Size(1088, 451)
+        Me.Controls.Add(Me.btnTest)
+        Me.Controls.Add(Me.cbLinkCats)
+        Me.Controls.Add(Me.cbPrices)
+        Me.Controls.Add(Me.cbPics)
         Me.Controls.Add(Me.cbEnglish)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.btnMagento2ISKunden)
@@ -310,6 +362,7 @@ Partial Class FormStart
         Me.Controls.Add(Me.lblMagentoConn)
         Me.Controls.Add(Me.btnCheckIS)
         Me.Controls.Add(Me.btnCheckMagento)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormStart"
         Me.Text = "IntraSell 2 Magento"
         Me.ResumeLayout(False)
@@ -343,5 +396,9 @@ Partial Class FormStart
     Friend WithEvents cbEnglish As System.Windows.Forms.CheckBox
     Friend WithEvents TimerAuftragstatus2Magento As System.Windows.Forms.Timer
     Friend WithEvents TimerLager As System.Windows.Forms.Timer
+    Friend WithEvents cbPics As System.Windows.Forms.CheckBox
+    Friend WithEvents cbPrices As System.Windows.Forms.CheckBox
+    Friend WithEvents cbLinkCats As System.Windows.Forms.CheckBox
+    Friend WithEvents btnTest As System.Windows.Forms.Button
 
 End Class

@@ -21,7 +21,7 @@ Public Class CatalogSync
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikel_kategorienTableAdapter = New dsArtikelTableAdapters.grartikel_kategorienTableAdapter
             Dim data As dsArtikel._grartikel_kategorienDataTable = New dsArtikel._grartikel_kategorienDataTable
-
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
             ta.Fill(data)
             Dim counter As Integer = 0
 
@@ -134,7 +134,11 @@ Public Class CatalogSync
     End Function
 
 
-    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing, Optional inEnglish As Boolean = False)
+    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing, _
+                                        Optional inEnglish As Boolean = False, _
+                                        Optional exportPicture As Boolean = True, _
+                                        Optional exportPrices As Boolean = True, _
+                                          Optional linkCats As Boolean = True)
         'export all products from intrasell to magento 
         Try
             FormStart.setProgress(0)
@@ -142,6 +146,7 @@ Public Class CatalogSync
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
             If IsNothing(justEAN) Or justEAN = "" Then
                 ta.Fill(data)
@@ -203,10 +208,23 @@ Public Class CatalogSync
                     End If
 
 
-                    magentoProduct.price = Replace(ISArtikel.PreisATS, ",", ".")
+                    magentoProduct.price = Replace(ISArtikel.PreisATS * 1.2, ",", ".")
                     magentoProduct.status = My.MySettings.Default.Magento_product_status
                     magentoProduct.tax_class_id = My.MySettings.Default.Magento_product_tax_class_id
                     magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
+                    ' magentoProduct.stock_data = New catalogInventoryStockItemUpdateEntity
+                    If Not ISArtikel.IsBezeichnung1Null Then
+                        magentoProduct.additional_attributes = New catalogProductAdditionalAttributesEntity
+                        ReDim magentoProduct.additional_attributes.single_data(1)
+                        magentoProduct.additional_attributes.single_data(0) = New associativeEntity
+                        magentoProduct.additional_attributes.single_data(0).key = "Lagerinfo"
+                        magentoProduct.additional_attributes.single_data(0).value = ISArtikel.Bezeichnung1
+                        'needs for some reason two times 
+                        magentoProduct.additional_attributes.single_data(1) = New associativeEntity
+                        magentoProduct.additional_attributes.single_data(1).key = "lagerinfo"
+                        magentoProduct.additional_attributes.single_data(1).value = ISArtikel.Bezeichnung1
+
+                    End If
 
                     'magentoProduct.meta_title
                     Try
@@ -249,8 +267,12 @@ Public Class CatalogSync
                                                                          storeView:=storeView)  'storeView:=storeView1)
 
                         'loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimages, "small_image")
-                        loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimagesLarge, "image")
-                        exportGroupPrices(ISArtikel.ArtNr, productId)
+                        If exportPicture Then
+                            loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimagesLarge, "image")
+                        End If
+                        If exportPrices Then
+                            exportGroupPrices(ISArtikel.ArtNr, productId)
+                        End If
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
                         'agento.client.catalogProduct
@@ -262,21 +284,26 @@ Public Class CatalogSync
                         'storeView:=storeView1, _
 
                         'loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
-                        loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
-                        exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
+                        If exportPicture Then
+                            loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
+                        End If
+                        If exportPrices Then
+                            exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
+                        End If
                     End If
 
-                    'link category 
-                    Dim magentoCat = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr))
-                    Dim magentoCategoryId As Integer = 1
-                    If Not magentoCat Is Nothing Then
-                        magentoCategoryId = magentoCat.category_id
-                    Else
-                        ModuleLog.Log("Missing intraSell category in magento. Name: " & findISCatByID(ISArtikel.ArtKatNr))
+                    If linkCats Then
+                        'link category 
+                        Dim magentoCat = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr))
+                        Dim magentoCategoryId As Integer = 1
+                        If Not magentoCat Is Nothing Then
+                            magentoCategoryId = magentoCat.category_id
+                        Else
+                            ModuleLog.Log("Missing intraSell category in magento. Name: " & findISCatByID(ISArtikel.ArtKatNr))
+                        End If
+
+                        magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
                     End If
-
-                    magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
-
                 Else
                     ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
                 End If
@@ -394,14 +421,12 @@ Public Class CatalogSync
         Try
 
             ModuleLog.Log("exportGroupPrices for ArtNr=" & ArtNr)
-
-
-
             intrasell.init()
 
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikel_vkpreisperselectionTableAdapter = New dsArtikelTableAdapters.grartikel_vkpreisperselectionTableAdapter
             Dim data As dsArtikel._grartikel_vkpreisperselectionDataTable = New dsArtikel._grartikel_vkpreisperselectionDataTable
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
             If IsNothing(ArtNr) Or ArtNr = "" Then
                 ta.Fill(data)
@@ -409,46 +434,47 @@ Public Class CatalogSync
                 ta.FillByArtNr(data, ArtNr)
             End If
 
-            Dim listOfPrices(data.Count - 1) As MagentoSyncService.catalogProductTierPriceEntity
+            Dim listOfPricesTier(data.Count) As MagentoSyncService.catalogProductTierPriceEntity
+            'Dim listOfPricesGroup(data.Count) As MagentoSyncService.catalogProductSpecialPriceReturnEntity
+
             Dim i = 0
             For Each priceIS As dsArtikel._grartikel_vkpreisperselectionRow In data
                 If Not (priceIS.IsVKPreisNull) Then
                     Dim price As catalogProductTierPriceEntity = New catalogProductTierPriceEntity
                     price.customer_group_id = getMagentoCustomerGroup(priceIS.PreislisteName).customer_group_id
-                    price.price = priceIS.VKPreis
+                    price.price = priceIS.VKPreis * 1.2
                     price.priceSpecified = True
                     If priceIS.IsStkAbNull Then price.qty = 1 Else price.qty = priceIS.StkAb
                     If price.qty <= 0 Then price.qty = 1
                     price.qtySpecified = True
-                    'price.website = 
-                    listOfPrices(i) = price
+                    listOfPricesTier(i) = price
                     i = i + 1
+
+                    If priceIS.PreislisteName = My.Settings.PreislisteNotLoggedIn And priceIS.StkAb <= 1 Then
+                        'ReDim listOfPrices(data.Count)
+                        price = New catalogProductTierPriceEntity
+                        price.customer_group_id = getMagentoCustomerGroup("NOT LOGGED IN").customer_group_id
+                        price.price = priceIS.VKPreis * 1.2
+                        price.priceSpecified = True
+                        If priceIS.IsStkAbNull Then price.qty = 1 Else price.qty = priceIS.StkAb
+                        If price.qty <= 0 Then price.qty = 1
+                        price.qtySpecified = True
+                        listOfPricesTier(i) = price
+                        i = i + 1
+                    End If
                 End If
             Next
 
-            Dim list As MagentoSyncService.catalogProductTierPriceEntity() = magento.client.catalogProductAttributeTierPriceInfo( _
-                                                                  sessionId:=magento.sessionid, _
-                                                                  product:=magentoProductId, _
-                                                                  identifierType:="productId")
-            Dim found = False 'exists in magento 
-            For Each element In list
-                'If i.label = image.label Then
-                found = True
-                'End If
-            Next
 
             'If Not found Then
             magento.client.catalogProductAttributeTierPriceUpdate(sessionId:=magento.sessionid, _
                                                               product:=magentoProductId, _
-                                                              tier_price:=listOfPrices, _
+                                                              tier_price:=listOfPricesTier, _
                                                               identifierType:="productId")
-            'End If
-
-
 
         Catch ex As Exception
+            ModuleLog.Log("error in exportGroupPrices for ArtNr=" & ArtNr)
             ModuleLog.Log(ex)
-
         End Try
     End Sub
 
@@ -464,6 +490,7 @@ Public Class CatalogSync
             'read categories from intrasell 
             Dim ta As dsArtikelTableAdapters.grartikelTableAdapter = New dsArtikelTableAdapters.grartikelTableAdapter
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
+            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
             If IsNothing(justEAN) Or justEAN = "" Then
                 ta.Fill(data)
@@ -484,40 +511,66 @@ Public Class CatalogSync
 
                     magento.OpenConn()
 
-                    'Dim filter As filters = New filters
-                    'ReDim filter.complex_filter(1)
-                    'filter.complex_filter(0) = New complexFilter
-                    'filter.complex_filter(0).key = "SKU"
-                    'filter.complex_filter(0).value = New associativeEntity()
-                    'filter.complex_filter(0).value.key = "eq"
-                    'filter.complex_filter(0).value.value = ISArtikel.EAN
+                    Dim filter As filters = New filters
+                    ReDim filter.complex_filter(1)
+                    filter.complex_filter(0) = New complexFilter
+                    filter.complex_filter(0).key = "SKU"
+                    filter.complex_filter(0).value = New associativeEntity()
+                    filter.complex_filter(0).value.key = "eq"
+                    filter.complex_filter(0).value.value = ISArtikel.EAN
 
 
-                    'Dim found As catalogInventoryStockItemEntity()
-                    'ReDim found(1)
+                    Dim found As catalogInventoryStockItemEntity()
+                    ReDim found(1)
 
-                    'found = magento.client.catalogInventoryStockItemList(magento.sessionid, New String() {ISArtikel.ArtNr.ToString})
+                    found = magento.client.catalogInventoryStockItemList(magento.sessionid, New String() {ISArtikel.ArtNr.ToString})
 
-                    'If found.Length = 0 Then
-                    '    ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-                    '    Dim catalogId = magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
-                    '                                                      product:=ISArtikel.EAN, _
-                    '                                                     data:=magentoStock)
+                    If found.Length > 0 Then
+                        'ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                        '    Dim catalogId = magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
+                        '                                                      product:=ISArtikel.EAN, _
+                        '                                                     data:=magentoStock)
 
 
-                    'Else 'update 
-                    If (IsNumeric(value)) Then
+                        'Else 'update 
+                        If (IsNumeric(value)) Then
 
-                        ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                            ModuleLog.Log("ExportProductLagerstand ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                            If False Then
+                                magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
+                                                                               product:=ISArtikel.EAN, _
+                                                                               data:=magentoStock)
+                            End If
+                            'Dim magentoProduct = magento.client.catalogProductInfo(sessionId:=magento.sessionid, _
+                            '                                                          productId:=found(0).product_id, _
+                            '                                                          storeView:=Nothing, _
+                            '                                                     attributes:=Nothing, _
+                            '                                                     identifierType:="simple")
+                            ' magento.client.catalogProductInfo(magento.sessionid, item.product_id, Nothing, Nothing, "simple")
 
-                        magento.client.catalogInventoryStockItemUpdate(sessionId:=magento.sessionid, _
-                                                                       product:=ISArtikel.EAN, _
-                                                                       data:=magentoStock)
+                            'If Not ISArtikel.IsBezeichnung1Null Then
+                            '    magentoProduct.additional_attributes.
+                            '    ReDim(magentoProduct.additional_attributes.single_data(1))
+                            '    magentoProduct.additional_attributes.single_data(0) = New associativeEntity
+                            '    magentoProduct.additional_attributes.single_data(0).key = "Lagerinfo"
+                            '    magentoProduct.additional_attributes.single_data(0).value = ISArtikel.Bezeichnung1
+                            '    'needs for some reason two times 
+                            '    magentoProduct.additional_attributes.single_data(1) = New associativeEntity
+                            '    magentoProduct.additional_attributes.single_data(1).key = "lagerinfo"
+                            '    magentoProduct.additional_attributes.single_data(1).value = ISArtikel.Bezeichnung1
 
+                            'End If
+
+                            'magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
+                            '                                    product:=found(0).product_id, _
+                            '                                    productData:=magentoProduct, _
+                            '                                                 storeView:=Nothing, _
+                            '                                                 identifierType:="productId")
+                            InitialExportAllProducts(justEAN:=ISArtikel.EAN, exportPicture:=False, exportPrices:=False, inEnglish:=False, linkCats:=False)
+
+                        End If
 
                     End If
-
-                    'End If
 
                 Else
                     ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
@@ -535,4 +588,38 @@ Public Class CatalogSync
         FormStart.setProgress(1)
     End Sub
 
+    Function ProductInfo(ByVal EAN As String) As catalogProductReturnEntity
+
+        magento.OpenConn()
+
+        Dim filter As filters = New filters
+        ReDim filter.complex_filter(1)
+        filter.complex_filter(0) = New complexFilter
+        filter.complex_filter(0).key = "SKU"
+        filter.complex_filter(0).value = New associativeEntity()
+        filter.complex_filter(0).value.key = "eq"
+        filter.complex_filter(0).value.value = EAN
+
+
+        Dim found As catalogProductEntity()
+        ReDim found(1)
+
+        magento.client.catalogProductList(found, magento.sessionid, filter, Nothing)
+
+
+        If found.Length > 0 Then
+            Dim att As New catalogProductRequestAttributes
+            att.attributes = New String() {"group_price"}
+            Dim magentoProduct = magento.client.catalogProductInfo(sessionId:=magento.sessionid, _
+                                                                            productId:=found(0).product_id, _
+                                                                            storeView:=Nothing, _
+                                                                            attributes:=att, _
+                                                                            identifierType:="simple")
+
+
+            Return magentoProduct
+
+        End If
+        Return Nothing
+    End Function
 End Class
