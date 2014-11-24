@@ -25,9 +25,6 @@
     <Setting Name="SyncIntervalSeconds" Type="System.String" Scope="User">
       <Value Profile="(Default)">300</Value>
     </Setting>
-    <Setting Name="Magento_product_tax_class_id" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
     <Setting Name="Magento_product_status" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -42,6 +39,22 @@
     </Setting>
     <Setting Name="Magento_product_storeview" Type="System.String" Scope="User">
       <Value Profile="(Default)">de</Value>
+    </Setting>
+    <Setting Name="Magento_product_tax_class_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PreislisteNotLoggedIn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1-Letztverbraucher</Value>
+    </Setting>
+    <Setting Name="Mappings" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+                  NOT LOGGED IN=NOT LOGGED IN;
+                  1-Letztverbraucher=1-Letztverbraucher;
+                  2-GH-Kunden Inland=2-GH-Kunden Inland;
+                  3-Exportkunden DE=3-Exportkunden DE;
+                  4-Exportkunden EUROPA=4-Exportkunden EUROPA;
+                  5-Pros Pro=5-Pros Pro;
+                </Value>
     </Setting>
   </Settings>
 </SettingsFile>
