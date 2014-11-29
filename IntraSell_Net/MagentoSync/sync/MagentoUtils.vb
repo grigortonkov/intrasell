@@ -56,6 +56,14 @@ Module MagentoUtils
         End If
     End Function
 
+    Function getIntraSellMandantForStoreName(storeName As String) As String
+        If storeName.Contains("Arfaian") Then 'arfaian
+            Return 1 'for arfaian
+        Else 'prospro
+            Return 2 'for pros pro
+        End If
+    End Function
+
     Sub loadCustomerGroups()
         magento.OpenConn()
         If customerGroups Is Nothing Then
@@ -156,7 +164,7 @@ Module MagentoUtils
 
         If IsNothing(artikel) Then
             Dim nArtNR = firstRow("select 1+max(artnr) from grArtikel")
-            Dim sql As String = "insert into grArtikel (artnr, ean, bezeichnung, PreisATS, PreisATS_Brutto) values ( " & nArtNR & ", '" & Left(description, 4) & "', '" & description & "',0,0)"
+            Dim sql As String = "insert into grArtikel (artnr, ean, bezeichnung, PreisATS, PreisATS_Brutto) values ( " & nArtNR & ", '" & nArtNR & "', '" & description & "',0,0)"
             RunSQL(sql)
             Return (Description2ArtNr(description))
         Else
@@ -188,7 +196,12 @@ Module MagentoUtils
         End Try
     End Function
 
-
+    ''' <summary>
+    ''' Seach the first column of the mapping list in Settings.Mappings and when mapping is found delivers the second column
+    ''' </summary>
+    ''' <param name="isKey"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Function getMappingIS(ByVal isKey) As String
         Dim map As String = My.MySettings.Default.Mappings
         map = map.Replace(vbNewLine, "")

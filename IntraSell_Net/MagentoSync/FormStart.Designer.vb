@@ -55,6 +55,7 @@ Partial Class FormStart
         Me.cbPrices = New System.Windows.Forms.CheckBox()
         Me.cbLinkCats = New System.Windows.Forms.CheckBox()
         Me.btnTest = New System.Windows.Forms.Button()
+        Me.btnTest2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -222,7 +223,7 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(118, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.0.2, 18.11.2014"
+        Me.Label6.Text = "Vers. 1.0.3, 27.11.2014"
         '
         'btnExportLagerstand
         '
@@ -322,12 +323,21 @@ Partial Class FormStart
         '
         'btnTest
         '
-        Me.btnTest.Location = New System.Drawing.Point(985, 227)
+        Me.btnTest.Location = New System.Drawing.Point(961, 227)
         Me.btnTest.Name = "btnTest"
-        Me.btnTest.Size = New System.Drawing.Size(91, 23)
+        Me.btnTest.Size = New System.Drawing.Size(115, 23)
         Me.btnTest.TabIndex = 26
-        Me.btnTest.Text = "Magento Product"
+        Me.btnTest.Text = "ProductPrice"
         Me.btnTest.UseVisualStyleBackColor = True
+        '
+        'btnTest2
+        '
+        Me.btnTest2.Location = New System.Drawing.Point(840, 227)
+        Me.btnTest2.Name = "btnTest2"
+        Me.btnTest2.Size = New System.Drawing.Size(115, 23)
+        Me.btnTest2.TabIndex = 27
+        Me.btnTest2.Text = "Payment"
+        Me.btnTest2.UseVisualStyleBackColor = True
         '
         'FormStart
         '
@@ -335,6 +345,7 @@ Partial Class FormStart
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.LightGreen
         Me.ClientSize = New System.Drawing.Size(1088, 451)
+        Me.Controls.Add(Me.btnTest2)
         Me.Controls.Add(Me.btnTest)
         Me.Controls.Add(Me.cbLinkCats)
         Me.Controls.Add(Me.cbPrices)
@@ -400,5 +411,6 @@ Partial Class FormStart
     Friend WithEvents cbPrices As System.Windows.Forms.CheckBox
     Friend WithEvents cbLinkCats As System.Windows.Forms.CheckBox
     Friend WithEvents btnTest As System.Windows.Forms.Button
+    Friend WithEvents btnTest2 As System.Windows.Forms.Button
 
 End Class

@@ -5,7 +5,7 @@ Imports System.IO
 Imports System.Drawing.Imaging
 
 Public Class CatalogSync
-    Dim magento As MagentoConn = New MagentoConn
+    Public magento As MagentoConn = New MagentoConn
     Public intrasell As IntraSellConn = New IntraSellConn
     Public intrasell2 As IntraSellConn = New IntraSellConn
     Dim tree As catalogCategoryTree = Nothing ' cache for the cats
