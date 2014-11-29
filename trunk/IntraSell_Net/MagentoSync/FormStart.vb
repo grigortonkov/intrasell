@@ -242,4 +242,10 @@ Public Class FormStart
         Dim exp As CatalogSync = New CatalogSync
         exp.ProductInfo(Me.txtEAN.Text)
     End Sub
+
+    Private Sub btnTest2_Click(sender As System.Object, e As System.EventArgs) Handles btnTest2.Click
+        Dim exp As CatalogSync = New CatalogSync
+        exp.magento.OpenConn()
+        ' exp.magento.client.salesOrderCreditmemoInfo(exp.magento.sessionid, Nothing, Nothing)
+    End Sub
 End Class

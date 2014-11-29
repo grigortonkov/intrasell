@@ -67,7 +67,7 @@ Public Class CustomerSync
                     Dim preisliste = intrasell.vars.firstRow("select Preisliste from `ofAdressen-Settings` where idnr = " & ISCustomer.IDNR)
 
                     magentoCustomer.group_id = MagentoUtils.getMagentoCustomerGroup(preisliste).customer_group_id
-
+                    magentoCustomer.group_idSpecified = True
                     magentoCustomer.website_id = getMagentoStoreForMandant(ISCustomer.mandant).website_id ' '1-prospro, 2-arfaian
                     magentoCustomer.website_idSpecified = True
 
@@ -150,7 +150,12 @@ Public Class CustomerSync
 
                     Else
                         ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                        ModuleLog.Log("customer update")
+                        magento.client.customerCustomerUpdate(magento.sessionid, found(0).customer_id, magentoCustomer)
+
                     End If
+                Else
+                    ModuleLog.Log("customer with IDNR=" & ISCustomer.IDNR & " has no email")
                 End If
 
                 FormStart.setProgress(counter / data.Count)
@@ -205,6 +210,7 @@ Public Class CustomerSync
             Dim newCustomer As ofadressenRow = dsAdr.ofadressen.NewofadressenRow
 
             newCustomer.mandant = My.MySettings.Default.MandantNr
+            newCustomer.mandant = getIntraSellMandantForStoreName(order.store_name)
             newCustomer.Status = "Kunde"
             'If order.customer_id Is Nothing Then
             newCustomer.IDNR = idnr 'is null for anonymous customers

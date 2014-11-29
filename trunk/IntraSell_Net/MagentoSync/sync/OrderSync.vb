@@ -107,13 +107,16 @@ Public Class OrderSync
             Dim r As buchauftragRow = dsAuftraege.buchauftrag.NewRow()
             r.Status = "neu"
             r.MandantNr = My.MySettings.Default.MandantNr
+            If Not order.store_id Is Nothing Then
+                r.MandantNr = getIntraSellMandantForStoreName(order.store_name)
+            End If
             r.Nummer = order.increment_id
             r.Datum = order.created_at
             r.Bezahlt = 0
             r.Ausgedrukt = 0
             r.anElba = 0
-            If Not orderDetails.shipping_method Is Nothing Then
-                r.TransportMethode = orderDetails.shipping_method
+            If Not orderDetails.shipping_description Is Nothing Then
+                r.TransportMethode = orderDetails.shipping_description
             End If
 
             'TODO create / update customer 
@@ -135,6 +138,10 @@ Public Class OrderSync
 
             If Not IsNothing(orderDetails.payment) Then
                 r.ZahlungsMethode = orderDetails.payment.method
+                Dim mappingMethond = getMappingIS(orderDetails.payment.method)
+                If Not mappingMethond Is Nothing Then
+                    r.ZahlungsMethode = mappingMethond
+                End If
             End If
 
             dsAuftraege.buchauftrag.AddbuchauftragRow(r)
