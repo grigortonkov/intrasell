@@ -54,6 +54,7 @@
                   3-Exportkunden DE=3-Exportkunden DE;
                   4-Exportkunden EUROPA=4-Exportkunden EUROPA;
                   5-Pros Pro=5-Pros Pro;
+                  checkmo=Vorkasse;
                 </Value>
     </Setting>
   </Settings>

@@ -42,6 +42,7 @@ Public Class FormStart
             mc.OpenConn()
             Me.lblMagentoConn.BackColor = Color.YellowGreen
         Catch ex As Exception
+            ModuleLog.Log(ex)
             Me.lblMagentoConn.BackColor = Color.Red
         End Try
     End Sub
@@ -53,6 +54,7 @@ Public Class FormStart
             mc.OpenConn()
             Me.lblintraSellConn.BackColor = Color.YellowGreen
         Catch ex As Exception
+            ModuleLog.Log(ex)
             Me.lblintraSellConn.BackColor = Color.Red
         End Try
     End Sub
