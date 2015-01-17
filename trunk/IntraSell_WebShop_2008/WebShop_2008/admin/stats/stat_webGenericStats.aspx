@@ -58,6 +58,22 @@
   "ORDER BY buchRechnung.Datum DESC"
         End If
     End If
+	
+	
+	
+	    If UCase(Request("stat")) = UCase("UserSearches") Then
+        If Session("DBTYPE") = "MySQL" Then
+            sql_stat = "SELECT substr(sqlDescription,1,100) as Search, count(*) as Count FROM usersearches u where sqlDescription not like '%.aspx' " & _ 
+                       " and createdon  > '2013-01-01' " & _ 
+                       " group by sqlDescription  order by 2 desc;"
+        Else
+           sql_stat =  "SELECT substr(sqlDescription,1,100) as Search, count(*) as Count FROM usersearches u where sqlDescription not like '%.aspx' " & _ 
+                       " and createdon  > '2013-01-01' " & _ 
+                       " group by sqlDescription  order by 2 desc;"
+        End If
+    End If
+	
+	
 
     Response.Redirect("../../intrasoft/runSQLSelect.aspx?SQLString=" & sql_stat)
 %>
