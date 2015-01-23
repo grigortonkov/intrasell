@@ -52,6 +52,8 @@ Public Class CustomerSync
                     If Not ISCustomer.IsVornameNull Then magentoCustomer.firstname = ISCustomer.Vorname
                     If Not ISCustomer.IsNameNull Then magentoCustomer.lastname = ISCustomer.Name
 
+                    'uid nummer 
+                    If Not ISCustomer.IsUIDNull Then magentoCustomer.taxvat = ISCustomer.UID
 
                     If Not ISCustomer.IsEmailNull Then magentoCustomer.email = ISCustomer.Email
                     If Not ISCustomer.IsPasswortNull Then
@@ -341,8 +343,7 @@ Public Class CustomerSync
     Sub ImportMagentoCustomer(customer As customerCustomerEntity)
         intrasell.init()
 
-        Dim tam As dsAdressenTableAdapters.TableAdapterManager = New dsAdressenTableAdapters.TableAdapterManager()
-        tam.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+
 
         'check if customer is existing 
         Dim dsAdr As dsAdressen = New dsAdressen
@@ -350,19 +351,23 @@ Public Class CustomerSync
         Dim ta As ofadressenTableAdapter = New ofadressenTableAdapter
         ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
+        Dim tam As dsAdressenTableAdapters.TableAdapterManager = New dsAdressenTableAdapters.TableAdapterManager()
+        tam.Connection = ta.Connection
+
         Dim data As dsAdressen.ofadressenDataTable = New dsAdressen.ofadressenDataTable
 
         Dim taWeitere As ofadressen_weitereTableAdapter = New ofadressen_weitereTableAdapter
-        taWeitere.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+        'taWeitere.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+        taWeitere.Connection = ta.Connection
         Dim dataShipping As dsAdressen._ofadressen_weitereDataTable = New dsAdressen._ofadressen_weitereDataTable
 
         Dim taSettings As ofadressen_settingsTableAdapter = New ofadressen_settingsTableAdapter
-        taSettings.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
-
+        'taSettings.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+        taSettings.Connection = ta.Connection
         Dim t As dsAuftraegeTableAdapters.buchauftragTableAdapter = New dsAuftraegeTableAdapters.buchauftragTableAdapter()
-        t.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
-
-        tam.Connection = t.Connection
+        't.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+        t.Connection = ta.Connection
+        'tam.Connection = t.Connection
 
         Dim idnr = intrasell.vars.firstRow("select idnr from ofAdressen where email = '" & customer.email & "'")
 
@@ -384,7 +389,9 @@ Public Class CustomerSync
             newCustomer.Vorname = customer.firstname
             newCustomer.Email = customer.email
             'newCustomer.Passwort = customer.password_hash 'Exception: Die Spalte kann nicht auf 'Passwort' festgelegt werden. Der Wert überschreitet den MaxLength-Grenzwert dieser Spalte.
-
+            If Not customer.taxvat Is Nothing Then
+                newCustomer.UID = customer.taxvat 'UID Nummer
+            End If
 
             'address 
             Dim adressen As customerAddressEntityItem() = magento.client.customerAddressList(magento.sessionid, customer.customer_id)
@@ -446,6 +453,6 @@ Public Class CustomerSync
         tam.UpdateAll(dsAdr)
         ta.Update(dsAdr.ofadressen)
         taWeitere.Update(dsAdr._ofadressen_weitere)
-        taSettings.update(dsAdr._ofadressen_settings)
+        taSettings.Update(dsAdr._ofadressen_settings)
     End Sub
 End Class
