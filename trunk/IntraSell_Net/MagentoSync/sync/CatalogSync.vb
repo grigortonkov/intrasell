@@ -275,7 +275,9 @@ Public Class CatalogSync
                         End If
                     Else 'update 
                         ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-                        'agento.client.catalogProduct
+                        'Magento.client.catalogProduct
+                        magentoProduct.category_ids = found(0).category_ids 'do not lose the categories
+                        magentoProduct.categories = Nothing
                         magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
                                                             product:=found(0).product_id, _
                                                             productData:=magentoProduct, _
