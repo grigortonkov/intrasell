@@ -22,6 +22,8 @@ Public Class FormStart
         ModuleLog.Init()
         ModuleLog.Log("Start")
 
+        Me.DateTimePickerOrdersSince.Value = Today
+
         If IsNumeric(My.MySettings.Default.SyncIntervalSeconds) Then
             If 1 * (My.MySettings.Default.SyncIntervalSeconds) > 0 Then
                 ModuleLog.Log("Timer job enabled every " + My.MySettings.Default.SyncIntervalSeconds + " seconds")
@@ -117,7 +119,6 @@ Public Class FormStart
 
 #End Region
 
-
 #Region "Kategorien&Podukte"
     Private Sub btnExportKategorien_Click(sender As System.Object, e As System.EventArgs) Handles btnExportKategorien.Click
         trd = New Thread(AddressOf ThreadTask_btnExportKategorien_Click)
@@ -151,9 +152,13 @@ Public Class FormStart
 
 #End Region
 
-
 #Region "Orders"
 
+    Private Sub btnExportOrderStatus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportOrderStatus.Click
+        Dim trd = New Thread(AddressOf ThreadTask_ExportOrderStatus)
+        trd.IsBackground = True
+        trd.Start()
+    End Sub
 
     Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
     
@@ -189,7 +194,32 @@ Public Class FormStart
     End Sub
 #End Region
 
-    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles TimerInterface.Tick
+#Region "Timers"
+    Private Sub TimerSync_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerSync.Tick
+        Me.DateTimePickerOrdersSince.Value = Today
+
+        'Magento Orders
+        btnImportOrders_Click(Nothing, Nothing)
+        'Magento Kunden
+        btnMagento2ISKunden_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub TimerAuftragstatus2Magento_Tick(sender As System.Object, e As System.EventArgs) Handles TimerAuftragstatus2Magento.Tick
+        'Order Status 
+        btnExportOrderStatus_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub TimerLager_Tick(sender As System.Object, e As System.EventArgs) Handles TimerLager.Tick
+        btnExportLagerstand_Click(Nothing, Nothing)
+    End Sub
+
+    ''' <summary>
+    ''' Time to refresh the interface of this form
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerInterface.Tick
 
         'update log 
         If Len(logBuffer) > 0 Then
@@ -206,48 +236,41 @@ Public Class FormStart
         'End If
     End Sub
 
-    Private Sub btnExportOrderStatus_Click(sender As System.Object, e As System.EventArgs) Handles btnExportOrderStatus.Click
-        Dim trd = New Thread(AddressOf ThreadTask_ExportOrderStatus)
+#End Region
+
+#Region "Events"
+    Private Sub TimerISEvents_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerISEvents.Tick
+        btnExportISEvents_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub btnExportISEvents_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportISEvents.Click
+        Dim trd = New Thread(AddressOf ThreadTask_ExportISEvents)
         trd.IsBackground = True
         trd.Start()
     End Sub
 
-#Region "Timers"
-    Private Sub TimerSync_Tick(sender As System.Object, e As System.EventArgs) Handles TimerSync.Tick
-        'Orders
-        btnImportOrders_Click(Nothing, Nothing)
-        'Kunden
-        btnMagento2ISKunden_Click(Nothing, Nothing)
+    ''' <summary>
+    ''' Export all IntraSell Events from Table magento_export
+    ''' </summary>
+    ''' <remarks></remarks>
+    Sub ThreadTask_ExportISEvents()
+        Dim exporter = New ISEventSync
+        exporter.ExportAllEvents()
     End Sub
-
-    Private Sub TimerAuftragstatus2Magento_Tick(sender As System.Object, e As System.EventArgs) Handles TimerAuftragstatus2Magento.Tick
-        'Order Status 
-        btnExportOrderStatus_Click(Nothing, Nothing)
-    End Sub
-
-    Private Sub TimerLager_Tick(sender As System.Object, e As System.EventArgs) Handles TimerLager.Tick
-        btnExportLagerstand_Click(Nothing, Nothing)
-    End Sub
-
 #End Region
 
+#Region "test"
 
-    Private Sub cbPics_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles cbPics.CheckedChanged
-
-    End Sub
-
-    Private Sub Label6_Click(sender As System.Object, e As System.EventArgs) Handles Label6.Click
-
-    End Sub
-
-    Private Sub btnTest_Click(sender As System.Object, e As System.EventArgs) Handles btnTest.Click
+    Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTest.Click
         Dim exp As CatalogSync = New CatalogSync
         exp.ProductInfo(Me.txtEAN.Text)
     End Sub
 
-    Private Sub btnTest2_Click(sender As System.Object, e As System.EventArgs) Handles btnTest2.Click
+    Private Sub btnTest2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTest2.Click
         Dim exp As CatalogSync = New CatalogSync
         exp.magento.OpenConn()
         ' exp.magento.client.salesOrderCreditmemoInfo(exp.magento.sessionid, Nothing, Nothing)
     End Sub
+#End Region
+
 End Class

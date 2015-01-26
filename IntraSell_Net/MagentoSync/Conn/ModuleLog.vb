@@ -19,8 +19,7 @@ Module ModuleLog
 
         IntraSell_DLL.ModuleLog.writeLog("Exception: " & ex.Message)
         IntraSell_DLL.ModuleLog.writeLog("Exception Stack: " & ex.StackTrace)
-        showLog("Exception: " & ex.Message)
-      
+        showLog("Exception: " & ex.Message & " -> check the log file for details.")
     End Sub
 
     Sub showLog(line As String)

@@ -87,6 +87,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -121,6 +122,11 @@
     </Compile>
     <Compile Include="Conn\IntraSellConn.vb" />
     <Compile Include="Conn\ModuleLog.vb" />
+    <Compile Include="Data\dsExport.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsExport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="sync\CatalogSync.vb" />
     <Compile Include="sync\CustomerSync.vb" />
     <Compile Include="FormStart.vb">
@@ -146,6 +152,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="sync\ISEventSync.vb" />
     <Compile Include="sync\MagentoUtils.vb" />
     <Compile Include="sync\OrderSync.vb" />
     <Compile Include="Service References\MagentoSyncService\Reference.vb">
@@ -180,6 +187,17 @@
     </None>
     <None Include="Data\dsAuftraege.xss">
       <DependentUpon>dsAuftraege.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsExport.xsc">
+      <DependentUpon>dsExport.xsd</DependentUpon>
+    </None>
+    <None Include="Data\dsExport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsExport.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Data\dsExport.xss">
+      <DependentUpon>dsExport.xsd</DependentUpon>
     </None>
     <None Include="MagentoSync_TemporaryKey.pfx" />
     <None Include="My Project\Application.myapp">
