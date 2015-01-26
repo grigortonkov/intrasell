@@ -225,7 +225,7 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(118, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.0.3, 27.11.2014"
+        Me.Label6.Text = "Vers. 1.0.4, 25.01.2015"
         '
         'btnExportLagerstand
         '
