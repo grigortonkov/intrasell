@@ -1,11 +1,1 @@
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R2013_MANDANT.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130515.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130617.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130717.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20130917.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131007.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131008.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20131120.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20140129.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20140820.zip
-http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20140824.zip
+http://intrasell.googlecode.com/svn/trunk/Upgrade/IntraSell4_R20150128.zip
