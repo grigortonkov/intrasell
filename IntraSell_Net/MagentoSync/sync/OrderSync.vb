@@ -79,7 +79,7 @@ Public Class OrderSync
     ''' <remarks></remarks>
     Sub buchVorgang_Create_Auftrag(ByVal order As salesOrderListEntity)
         Try
-            ModuleLog.Log("create IntraSell Auftrag for magento order_id " & order.increment_id)
+            ModuleLog.Log("create IntraSell Auftrag for magento order_id " & order.increment_id & ", state " & order.state & ", status " & order.status)
 
             Dim orderDetails As salesOrderEntity = magento.client.salesOrderInfo(magento.sessionid, order.increment_id)
 
@@ -105,7 +105,7 @@ Public Class OrderSync
             customerSync.ImportNewMagentoCustomer(orderDetails)
 
             Dim r As buchauftragRow = dsAuftraege.buchauftrag.NewRow()
-            r.Status = "neu"
+            r.Status = order.state 'TODO es gibt auch ein satus Feld
             r.MandantNr = My.MySettings.Default.MandantNr
             If Not order.store_id Is Nothing Then
                 r.MandantNr = getIntraSellMandantForStoreName(order.store_name)
@@ -239,8 +239,6 @@ Public Class OrderSync
             Dim filter As filters = New filters
             ReDim filter.complex_filter(1)
             filter.complex_filter(0) = New complexFilter
-
-
             filter.complex_filter(0).key = "created_at"
             filter.complex_filter(0).value = New associativeEntity()
             filter.complex_filter(0).value.key = "gt"
@@ -304,14 +302,13 @@ Public Class OrderSync
 
             Dim t As buchauftragTableAdapter = New buchauftragTableAdapter()
             t.Connection = intrasell.MySQLConn
-            t.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+            't.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
             Dim ta As buchauftrag_artikelTableAdapter = New buchauftrag_artikelTableAdapter()
             ta.Connection = intrasell.MySQLConn
-            ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+            'ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
+            tam.Connection = intrasell.MySQLConn
 
             Dim dsAuftraege As dsAuftraege = New dsAuftraege()
-
-            tam.Connection = t.Connection
 
             t.FillByNummer(dsAuftraege.buchauftrag, order.increment_id)
             If dsAuftraege.buchauftrag.Rows.Count > 0 Then
@@ -416,7 +413,7 @@ Public Class OrderSync
     ''' <summary>
     ''' returns the last shipment for an order
     ''' </summary>
-    ''' <param name="order_increment_id"></param>
+    ''' <param name="order_id"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
     Function shipmentFromOrder(ByVal order_id As String) As salesOrderShipmentEntity
