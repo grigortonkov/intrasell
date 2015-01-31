@@ -281,7 +281,6 @@ Partial Class FormStart
         '
         'TimerAuftragstatus2Magento
         '
-        Me.TimerAuftragstatus2Magento.Enabled = True
         Me.TimerAuftragstatus2Magento.Interval = 3600000
         '
         'TimerLager
