@@ -471,7 +471,7 @@ Module ModuleBuchVorgangDruck
     End Sub
 
     ''' <summary>
-    ''' Hilfe Funktion
+    ''' Hilfe Funktion, liest die angegebene Datei und erstellt zusätzliche zeilen wenn [ArtNR] vorhanden ist
     ''' </summary>
     ''' <param name="Dateiname"></param>
     ''' <param name="Positionen"></param>
@@ -486,7 +486,8 @@ Module ModuleBuchVorgangDruck
 
 
             'Open VorlageFilename For Input As #1
-            While fileLine = infile.ReadLine
+            While Not infile.EndOfStream
+                fileLine = infile.ReadLine
 
                 If fileContent = "" Then
                     fileContent = fileLine
@@ -504,7 +505,7 @@ Module ModuleBuchVorgangDruck
             End While
         End Using
 
-        readFileContent = fileContent
+        Return fileContent
     End Function
 
  
@@ -516,128 +517,132 @@ Module ModuleBuchVorgangDruck
     ''' <param name="Vorgang_Nummer"></param>
     ''' <param name="Dateiname"></param>
     ''' <param name="Silent">true -> File inWord öffnen</param>
-    ''' <returns>Liefert Dateiname der erstellten Datei retour</returns>
+    ''' <returns>Liefert Dateiname der erstellten Datei oder Nothing wenn ein Fehler</returns>
     ''' <remarks></remarks>
     Public Function OpenAusdruck_InWord_Filename_RTF( _
         ByVal Vorgangtyp As String, _
         ByVal Vorgang_Nummer As String, _
         ByVal Dateiname As String, _
         Optional Silent As Boolean = False)
+        Try
 
-        Dim App 'As Application
 
-        Dim rs As MySqlDataReader
-        Dim VonForm, VonForm_Artikel
-        Dim sql
-        Dim RsArt
+            Dim App 'As Application
 
-        VonForm = getVorgangTableForType(Vorgangtyp)
-        VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
+            Dim rs As MySqlDataReader
+            Dim RsArt As MySqlDataReader
 
-        rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
+            Dim VonForm, VonForm_Artikel As String
+            Dim sql As String
 
-        If Not rs.Read Then
-            MsgBox("Es sind keine Daten vorhanden!", vbCritical)
-            Return False
-            Exit Function
-        End If
 
-        If checkIfWeitereVorhanden(rs("idnr"), Vorgangtyp) > 0 And Vorgangtyp = "LI" Then
-            If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) = vbYes Then
-                Dim selectedIdNr As String : selectedIdNr = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
-                Dim sql1 As String : sql1 = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
-                rs = openRecordset(sql1)
+            VonForm = getVorgangTableForType(Vorgangtyp)
+            VonForm_Artikel = getVorgangArtikelTableForType(Vorgangtyp)
+
+            'Anzahl Positionen
+            sql = "select count(*) as pos from [" & VonForm_Artikel & "] where typ='" & Vorgangtyp & "' and nummer=" & Vorgang_Nummer
+            Dim Positionen = firstRow(sql)
+
+
+            'REPLACE CONTENT
+            Dim fileContent As String = readFileContent(Dateiname, Positionen)
+
+
+
+            rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
+
+            If Not rs.Read Then
+                MsgBox("Es sind keine Daten vorhanden!", vbCritical)
+                Return False
+                Exit Function
             End If
-        End If
 
-        'Anzahl Positionen
-        sql = "select count(*) as pos from [" & VonForm_Artikel & "] where rechnr=" & Vorgang_Nummer
-        RsArt = openRecordset(sql)
-        Dim Positionen
-        Positionen = RsArt("pos")
+            If checkIfWeitereVorhanden(rs("idnr"), Vorgangtyp) > 0 And Vorgangtyp = "LI" Then
+                If MsgBox("Es sind weitere Adressdaten vorhanden! Möchten Sie diese verwenden?", vbYesNo) = vbYes Then
+                    Dim selectedIdNr As String = selectEineWeitereAdresse(Vorgangtyp, Vorgang_Nummer)
+                    Dim sql1 As String = getRecSource_Weitere(Vorgangtyp, Vorgang_Nummer, selectedIdNr)
+                    rs = openRecordset(sql1)
+                End If
+            Else
+                rs = openRecordset(getRecSource(Vorgangtyp, Vorgang_Nummer))
+            End If
+            rs.Read()
 
-        'REPLACE CONTENT
-        Dim fileContent As String : fileContent = readFileContent(Dateiname, Positionen)
-        fileContent = Replace(fileContent, "[Idnr]", rs("Idnr") & "")
-        fileContent = Replace(fileContent, "[Kundennummer]", rs("Idnr") & "")
+            fileContent = Replace(fileContent, "[Idnr]", rs("Idnr") & "")
+            fileContent = Replace(fileContent, "[Kundennummer]", rs("Idnr") & "")
 
-        fileContent = Replace(fileContent, "[firma]", rs("firma") & "")
-        fileContent = Replace(fileContent, "[name]", rs("namen") & "")
-        fileContent = Replace(fileContent, "[strasse]", rs("adresse") & "")
-        fileContent = Replace(fileContent, "[plz ort]", rs("plzort") & "")
+            fileContent = Replace(fileContent, "[firma]", rs("firma") & "")
+            fileContent = Replace(fileContent, "[name]", rs("namen") & "")
+            fileContent = Replace(fileContent, "[strasse]", rs("adresse") & "")
+            fileContent = Replace(fileContent, "[plz ort]", rs("plzort") & "")
 
-        fileContent = Replace(fileContent, "[Titel]", Vorgangtyp & "-" & Vorgang_Nummer)
-        fileContent = Replace(fileContent, "[Datum]", rs("Datum") & "")
-        fileContent = Replace(fileContent, "[Betreuer]", "")
-        fileContent = Replace(fileContent, "[Email]", rs("Email") & "")
+            fileContent = Replace(fileContent, "[Titel]", Vorgangtyp & "-" & Vorgang_Nummer)
+            fileContent = Replace(fileContent, "[Datum]", rs("Datum") & "")
+            fileContent = Replace(fileContent, "[Betreuer]", "")
+            fileContent = Replace(fileContent, "[Email]", rs("Email") & "")
 
-        fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "")
-        fileContent = Replace(fileContent, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
-        fileContent = Replace(fileContent, "[Transportmethode]", rs("TransportMethode") & "")
+            fileContent = Replace(fileContent, "[Zahlungsbedingung]", rs("ZahlungsBedingung") & "")
+            fileContent = Replace(fileContent, "[Zahlungsmethode]", rs("ZahlungsMethode") & "")
+            fileContent = Replace(fileContent, "[Transportmethode]", rs("TransportMethode") & "")
 
-        fileContent = Replace(fileContent, "[Netto]", FormatNumber(rs("summeATS"), 2))
-        fileContent = Replace(fileContent, "[MWST]", FormatNumber(rs("summeATSBrutto") - rs("summeATS"), 2))
-        fileContent = Replace(fileContent, "[Total]", FormatNumber(rs("summeATSBrutto"), 2))
-
-
-        'copy the artikel line times as needed
-
-        sql = "select [" & VonForm_Artikel & "].*, " & _
-              "Beschreibung, EAN from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr " & _
-              "and  rechnr=" & Vorgang_Nummer
-        Debug.Print(sql)
-        RsArt = openRecordset(sql)
-
-        While Not RsArt.EOF
-            fileContent = Replace(fileContent, "[Stk]", RsArt("Stk"), 1, 1)
-            fileContent = Replace(fileContent, "[ArtNR]", RsArt("ArtNR"), 1, 1)
-            fileContent = Replace(fileContent, "[EAN]", RsArt("EAN"), 1, 1)
-            fileContent = Replace(fileContent, "[Bezeichnung]", pad(RsArt("Bezeichnung") & "", BEZEICHNUNG_LAENGE), 1, 1)
-            fileContent = Replace(fileContent, "[Beschreibung]", RsArt("Beschreibung") & "", 1, 1)
-            fileContent = Replace(fileContent, "[Preis]", FormatNumber(RsArt("Preis_Netto"), 2), 1, 1)
-            fileContent = Replace(fileContent, "[PreisBrutto]", FormatNumber(RsArt("Preis_Brutto"), 2), 1, 1)
-            RsArt.MoveNext()
-        End While
+            fileContent = Replace(fileContent, "[Netto]", FormatNumber(rs("summe"), 2))
+            fileContent = Replace(fileContent, "[MWST]", FormatNumber(rs("summeBrutto") - rs("summe"), 2))
+            fileContent = Replace(fileContent, "[Total]", FormatNumber(rs("summeBrutto"), 2))
 
 
-        'set Eigenschaften
-        sql = "select  * from buchVorgaengeEigenschaften where Nummer  = " & Vorgang_Nummer & " and  vorgangtyp like '" & Vorgangtyp & "'"
-        Dim rsEig As MySqlDataReader
-        rsEig = openRecordset(sql)
-        While rsEig.Read
-            fileContent = Replace(fileContent, "[" & rsEig("Name") & "]", rsEig("Value") & "")
-        End While
-        rsEig.Close()
+            'copy the artikel line times as needed
+
+            sql = "select [" & VonForm_Artikel & "].*, " & _
+                  "Beschreibung, EAN from [" & VonForm_Artikel & "],  grArtikel where [" & VonForm_Artikel & "].artnr = grArtikel.artnr " & _
+                  "and Typ= '" & Vorgangtyp & "' and Nummer=" & Vorgang_Nummer
+            Debug.Print(sql)
+            RsArt = openRecordset(sql)
+
+            While RsArt.Read
+                fileContent = Replace(fileContent, "[Stk]", RsArt("Stk"), 1, 1)
+                fileContent = Replace(fileContent, "[ArtNR]", RsArt("ArtNR"), 1, 1)
+                fileContent = Replace(fileContent, "[EAN]", RsArt("EAN"), 1, 1)
+                fileContent = Replace(fileContent, "[Bezeichnung]", pad(RsArt("Bezeichnung") & "", BEZEICHNUNG_LAENGE), 1, 1)
+                fileContent = Replace(fileContent, "[Beschreibung]", RsArt("Beschreibung") & "", 1, 1)
+                fileContent = Replace(fileContent, "[Preis]", FormatNumber(RsArt("Preis_Netto"), 2), 1, 1)
+                fileContent = Replace(fileContent, "[PreisBrutto]", FormatNumber(RsArt("Preis_Brutto"), 2), 1, 1)
+            End While
+            RsArt.Close()
+
+            'set Eigenschaften
+            sql = "select  * from buchVorgaengeEigenschaften where Nummer  = " & Vorgang_Nummer & " and vorgangtyp like '" & Vorgangtyp & "'"
+            Dim rsEig As MySqlDataReader
+            rsEig = openRecordset(sql)
+            While rsEig.Read
+                fileContent = Replace(fileContent, "[" & rsEig("Name") & "]", rsEig("Value") & "")
+            End While
+            rsEig.Close()
 
 
-        'SAVE FILE
-        Dim saveAsFilename As String = DbFolder() & Vorgangtyp & "_" & Vorgang_Nummer & "." & Right(Dateiname, 3)
+            'SAVE FILE
+            Dim saveAsFilename As String = DbFolder() & Vorgangtyp & "_" & Vorgang_Nummer & "." & Right(Dateiname, 3)
 
-        fileContent = Trim(fileContent)
-        Using outfile As StreamWriter = New StreamWriter(saveAsFilename, True)
-            outfile.Write(fileContent)
-            outfile.Close()
-        End Using
-        'Open saveAsFilename For Output As #1
-        'Print #1, fileContent
-        'Close #1
+            fileContent = Trim(fileContent)
+            Using outfile As StreamWriter = New StreamWriter(saveAsFilename, True)
+                outfile.Write(fileContent)
+                outfile.Close()
+            End Using
+            'Open saveAsFilename For Output As #1
+            'Print #1, fileContent
+            'Close #1
 
-        OpenAusdruck_InWord_Filename_RTF = saveAsFilename
+            OpenAusdruck_InWord_Filename_RTF = saveAsFilename
 
-        If Not Silent Then 'OPEN FILE IN WORD
-            App = CreateObject("Word.Application")
-            App.Visible = True
-            App.Documents.Open(fileName:=saveAsFilename, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False) ', Format:=0
-        End If
+            If Not Silent Then 'OPEN FILE IN WORD
+                App = CreateObject("Word.Application")
+                App.Visible = True
+                App.Documents.Open(fileName:=saveAsFilename, ConfirmConversions:=False, readonly:=False, AddToRecentFiles:=False) ', Format:=0
+            End If
 
-        'if send Email
-        'acFormatDAP
-        'acFormatHTML
-        'acFormatRTF
-        'acFormatTXT
-        'acFormatXLS
-        'DoCmd.SendObject acSendNoObject, , acFormatHTML, Email, , , Subject, "test", True, "c:\temp\temp\AR_200300004.htm"  'saveAsFilename
-
+        Catch ex As Exception
+            OpenAusdruck_InWord_Filename_RTF = Nothing
+            HandleAppError(ex)
+        End Try
     End Function
 
     ''' <summary>

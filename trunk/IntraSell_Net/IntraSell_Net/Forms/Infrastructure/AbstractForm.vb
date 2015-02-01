@@ -1,6 +1,12 @@
 ﻿Public Class AbstractForm
 
     ''' <summary>
+    ''' Data Loading Flag
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Loading As Boolean = True
+
+    ''' <summary>
     ''' wenn true dann wird beim starten die Position auf einem neuen Record gesetzt 
     ''' </summary>
     ''' <remarks></remarks>

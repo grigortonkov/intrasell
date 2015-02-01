@@ -703,7 +703,7 @@ Partial Class Vorgang
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VorgangToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(627, 233)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(127, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(219, 24)
         Me.MenuStrip1.TabIndex = 53
         Me.MenuStrip1.Text = "MenuStrip1"
         '

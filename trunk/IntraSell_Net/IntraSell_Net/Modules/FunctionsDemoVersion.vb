@@ -18,6 +18,9 @@ Module FunctionsDemoVersion
     ' das programm erlaubt max MAX_POSSIBLE_RECHNUNGEN und MAX_POSSIBLE_KUNDEN
     '=========================================================
     Function IsDemoVersionOver() As Boolean
+        'TODO diese Funktion ist nicht notwendig
+        Return False
+
         Dim rs As MySql.Data.MySqlClient.MySqlDataReader
         Dim demoIsOver As Boolean
         demoIsOver = False
