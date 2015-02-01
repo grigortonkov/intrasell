@@ -136,8 +136,14 @@ Module ModuleBuchVorgang
 
 
 
-    '=======================================================
-    '=======================================================
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="Vorgangtyp"></param>
+    ''' <param name="VorgangNummer"></param>
+    ''' <param name="Status"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function setVorgangStatus(ByVal Vorgangtyp As String, ByVal VorgangNummer As Integer, ByVal Status As String) As Boolean
 
         'check if such a state exist
@@ -692,10 +698,13 @@ Module ModuleBuchVorgang
             End If
 
         Catch ex As Exception
+
             If Not tr Is Nothing Then tr.Rollback()
             HandleAppError(ex)
             Return False
         End Try
+
+        Return True
     End Function
 
 

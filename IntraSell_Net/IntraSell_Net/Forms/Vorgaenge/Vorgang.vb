@@ -4,19 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class Vorgang
     Inherits AbstractForm
     Implements InterfacePrintable
-
-    Dim loading As Boolean = True
-    Const COL_ID_INDEX As Integer = 0
-    Const COL_STK_INDEX As Integer = 3
-    Const COL_ARTNR_COMBO_INDEX As Integer = 4
-    Const COL_ARTNR_INDEX As Integer = 5
-    Const COL_BEZEICHNUNG_INDEX As Integer = 6
-    Const COL_PREIS_NETTO_INDEX As Integer = 7
-    Const COL_PREIS_BRUTTO_INDEX As Integer = 8
-    Const COL_MWST_INDEX As Integer = 9
-    Const COL_EKPREIS_INDEX As Integer = 10
-
-
+ 
 
     Private _kundNr As Integer = 0
 
@@ -69,6 +57,12 @@ Public Class Vorgang
 
     End Sub
 
+    ''' <summary>
+    ''' Save edits
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub BuchvorgangBindingNavigatorSaveItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorSaveItem.Click
         Try
             Me.Validate()
@@ -78,7 +72,6 @@ Public Class Vorgang
         Catch ex As Exception
             HandleAppError(ex)
         End Try
-
     End Sub
 
     Sub LadeKundenSpezifischeDaten(ByVal comp As String)
@@ -104,7 +97,7 @@ Public Class Vorgang
     Private Sub Vorgang_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
-            loading = True
+            Loading = True
             ds = DsVorgaenge
             Me.KundNrAdressenControl.ShowAddNew = True
             Me.KundNr2AdressenControl.ShowAddNew = True
@@ -120,7 +113,7 @@ Public Class Vorgang
 
             'LadeKundenSpezifischeDaten()
             'CheckAbgeschlossen()
-            loading = False
+            Loading = False
 
             'Add Handler 
             'Me.DataGridViewTextBoxColumnStk.
@@ -133,7 +126,7 @@ Public Class Vorgang
 
 #Region "New"
 
-    Dim addingnewflag As Boolean = False
+    'Dim addingnewflag As Boolean = False
     Private Sub bindingnavigatoraddnewitem_click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BindingNavigatorAddNewItem.Click
         Try
             addingnewflag = True
@@ -332,7 +325,7 @@ Public Class Vorgang
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Bezeichnung" Then
 
-                bezeichnung_afterupdate(r.Cells(COL_BEZEICHNUNG_INDEX), _
+                bezeichnung_afterupdate(r.Cells(ModuleBuchVorgangForm.COL_BEZEICHNUNG_INDEX), _
                                         r.Cells(COL_ARTNR_COMBO_INDEX), _
                                         r.Cells(COL_ARTNR_INDEX))
 
@@ -378,49 +371,6 @@ Public Class Vorgang
                 Buchvorgang_artikelDataGridView.Rows(rows - 2).Cells(COL_ID_INDEX).Value = (rows - 1)
             End If
         End If
-    End Sub
-
-
-    Private Sub Recalculate()
-        Try
-
-
-            Dim summeNetto As Double = 0.0, summeBrutto As Double = 0.0, MWST As Double = 0.0
-            Dim dg As DataGridView = Buchvorgang_artikelDataGridView
-            'sum(RoundUp([Stk]*[PreisATS],2)) as Summe, sum(RoundUp([Stk]*[PreisATS_Brutto],2)) as Summe_Brutto
-
-            Dim precision As Int16 = VarValue_Default("PREIS_GENAUIGKEIT", 2)
-            With Buchvorgang_artikelDataGridView
-                For counter = 1 To (.Rows.Count - 1)
-                    'deposit = 0
-                    'withdrawal = 0
-
-                    Try
-                        Dim stk As Double = 0, netto As Double = 0, brutto As Double = 0
-                        stk = Double.Parse(dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value)
-                        netto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_NETTO_INDEX).Value.ToString())
-                        brutto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_BRUTTO_INDEX).Value.ToString())
-
-                        summeNetto += stk * netto
-                        summeBrutto += stk * brutto
-
-                    Catch ex As Exception
-                        Exit Sub 'on any error 
-                    End Try
-                Next
-
-            End With
-
-            MWST = summeBrutto - summeNetto
-
-            Me.SummeTextBox.Text = FormatCurrency(summeNetto, precision)
-            Me.SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
-            Me.SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
-        Catch ex As Exception
-            HandleAppError(ex)
-        End Try
-
-
     End Sub
 
 
@@ -748,6 +698,7 @@ Public Class Vorgang
     End Sub
 
 
+   
     '    Private Sub btnAbschliessenUndSchliessen_Click()
     '        Call btnAbschliessen_Click()
     '        DoCmd.Close(acForm, Me.Name)
@@ -1177,98 +1128,7 @@ Public Class Vorgang
 
 
 
-    ''' <summary>
-    ''' update preise after changing the row 
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub ArtNr_CalculatePreis()
-        Try
-
-            Dim r As dsVorgaenge._buchvorgang_artikelRow = Buchvorgang_artikelBindingSource.Current.row
-            Try
-                If IsNull(r.ArtNr) Then
-                    Exit Sub
-                End If
-            Catch ex As Exception
-                Exit Sub
-            End Try
-            Dim KundNr As String = Me.KundNrAdressenControl.IDNR
-
-            Dim rs As MySqlDataReader = openRecordset("select * from grArtikel where ArtNr= " & r.ArtNr)
-
-            Dim VKPreis As Double = 0
-            If rs.Read Then
-                VKPreis = rs("PreisATS")
-                Try
-                    If IsNull(r.Bezeichnung) Or r.Bezeichnung = "" Then
-                        r.Bezeichnung = rs("Bezeichnung")
-                    End If
-                Catch ex As Exception
-                    r.Bezeichnung = rs("Bezeichnung")
-                End Try
-
-            End If
-
-            rs.Close()
-
-            'try to get specialpreis
-            Try
-                If IsNull(r.Stk) Then
-                    Exit Sub
-                End If
-            Catch ex As Exception
-                Exit Sub
-            End Try
-
-            Dim specialPreis As Double = getPreis(KundNr, r.ArtNr, r.Stk)
-            If specialPreis > 0 Then
-                VKPreis = specialPreis
-            End If
-
-            Dim notDefined As Boolean = False
-            Try
-                If IsDBNull(r.Preis_Netto) Then
-                    notDefined = True
-                ElseIf r.Preis_Netto = 0 Then
-                    notDefined = True
-                End If
-            Catch ex As Exception
-                notDefined = True
-            End Try
-
-
-            If notDefined Then
-                r.Preis_Netto = VKPreis
-                r.Preis_Brutto = calculateBruttoPreis(VKPreis, r.ArtNr, KundNr)
-                r.MWST = r.Preis_Brutto - r.Preis_Netto
-            Else
-                r.Preis_Brutto = calculateBruttoPreis(r.Preis_Netto, r.ArtNr, KundNr)
-                r.MWST = r.Preis_Brutto - r.Preis_Netto
-            End If
-
-
-
-            notDefined = False
-            Try
-
-                If IsDBNull(r.EKPreis) Then
-                    notDefined = True
-                ElseIf r.EKPreis = 0 Then
-                    notDefined = True
-                End If
-            Catch ex As Exception
-                notDefined = True
-            End Try
-            If notDefined Then
-                r.EKPreis = getEKPreis(r.ArtNr)
-            End If
-
-            Buchvorgang_artikelBindingSource.EndEdit()
-            Exit Sub
-        Catch ex As Exception
-            MsgBox(Err.Description, vbCritical)
-        End Try
-    End Sub
+    
 
 
     '    Private Sub ArtikelIdentifikation_Exit(Cancel As Integer)
@@ -1505,7 +1365,7 @@ Public Class Vorgang
         Try
             If IsNull(KundNr) Or Me.KundNr <= 0 Then Exit Sub
 
-            'Kundenform öffnenum weitere zu definieren
+            'Kundenform öffnen um weitere zu definieren
             Dim k As Kunden = New Kunden
             k.FilterBy("IDNR=" & Me.KundNr)
             k.ShowDialog()
@@ -1585,5 +1445,15 @@ Public Class Vorgang
     End Sub
 #End Region
 
+    Private Sub Recalculate()
+        ModuleBuchVorgangForm.Recalculate(Buchvorgang_artikelDataGridView, _
+                            SummeTextBox, _
+                            SummeBruttoTextBox, _
+                            SummeMWSTTextBox)
+    End Sub
+
+    Private Sub ArtNr_CalculatePreis()
+        ModuleBuchVorgangForm.ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource, KundNrAdressenControl)
+    End Sub
 
 End Class

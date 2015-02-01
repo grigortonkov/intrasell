@@ -56,6 +56,7 @@ Partial Class Main
         Me.VorgangEinstellungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.MahnungenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VorgangBarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnrufeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NeuerAnrufToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnrufToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -224,7 +225,7 @@ Partial Class Main
         '
         'VorgängeToolStripMenuItem
         '
-        Me.VorgängeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.VorgangToolStripMenuItem, Me.VorganglisteToolStripMenuItem, Me.ToolStripSeparator3, Me.VorgangEinstellungenToolStripMenuItem1, Me.VorgangEinstellungenToolStripMenuItem, Me.ToolStripSeparator4, Me.MahnungenToolStripMenuItem})
+        Me.VorgängeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuerVorgangToolStripMenuItem, Me.VorgangToolStripMenuItem, Me.VorganglisteToolStripMenuItem, Me.VorgangBarToolStripMenuItem, Me.ToolStripSeparator3, Me.VorgangEinstellungenToolStripMenuItem1, Me.VorgangEinstellungenToolStripMenuItem, Me.ToolStripSeparator4, Me.MahnungenToolStripMenuItem})
         Me.VorgängeToolStripMenuItem.Name = "VorgängeToolStripMenuItem"
         Me.VorgängeToolStripMenuItem.Size = New System.Drawing.Size(70, 20)
         Me.VorgängeToolStripMenuItem.Text = "&Vorgänge"
@@ -274,6 +275,12 @@ Partial Class Main
         Me.MahnungenToolStripMenuItem.Name = "MahnungenToolStripMenuItem"
         Me.MahnungenToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
         Me.MahnungenToolStripMenuItem.Text = "&Mahnungen"
+        '
+        'VorgangBarToolStripMenuItem
+        '
+        Me.VorgangBarToolStripMenuItem.Name = "VorgangBarToolStripMenuItem"
+        Me.VorgangBarToolStripMenuItem.Size = New System.Drawing.Size(193, 22)
+        Me.VorgangBarToolStripMenuItem.Text = "&Barrechnung"
         '
         'AnrufeToolStripMenuItem
         '
@@ -419,5 +426,6 @@ Partial Class Main
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents MahnungenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DashboardToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VorgangBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

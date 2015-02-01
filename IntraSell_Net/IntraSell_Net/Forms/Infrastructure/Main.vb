@@ -186,6 +186,15 @@ Public Class Main
         End Try
     End Sub
 
+    Private Sub VorgangBarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorgangBarToolStripMenuItem.Click
+        Try
+            VorgangBar.MdiParent = Me
+            VorgangBar.Show()
+        Catch ex As Exception
+            HandleAppError(ex)
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Infrastructure"
@@ -439,4 +448,6 @@ Public Class Main
             HandleAppError(ex)
         End Try
     End Sub
+
+
 End Class
