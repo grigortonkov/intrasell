@@ -336,50 +336,87 @@ Public Class OrderSync
                             Dim rechnungPaketnummer As String = intrasell.vars.firstRow("select Value from buchVorgaengeeigenschaften where vorgangtyp='AR' and name ='Paketnummer' and nummer=" & rechungsnummer & "")
                             Dim rechnungNotiz As String = intrasell.vars.firstRow("select Notiz from buchRechnung where Nummer=" & rechungsnummer & "")
 
+
+                            'export shipment und nummer 
+                            Dim itemsQty() As MagentoSyncService.orderItemIdQty
+                            ReDim itemsQty(orderDetails.items.Count)
+
+
+                            Dim i As Int16 = 0
+                            For Each r In orderDetails.items
+                                itemsQty(i) = New MagentoSyncService.orderItemIdQty
+                                itemsQty(i).order_item_id = r.item_id
+                                itemsQty(i).qty = toDecimal(r.qty_ordered)
+                                Dim stkInRechnung As Integer
+                                stkInRechnung = intrasell.vars.firstRow("select Stk from `buchRech-Artikel` where RechNr=" & rechungsnummer & _
+                                                                        " and artnr in (select artnr from grArtikel where EAN = '" & orderDetails.items(0).sku & "')")
+                                'Only Items export that are really sent!!!
+                                If IsDBNull(stkInRechnung) Then stkInRechnung = 0 'entfernt
+                                If stkInRechnung <> itemsQty(i).qty Then
+                                    itemsQty(i).qty = stkInRechnung
+                                End If
+                                i = 1 + i
+                            Next
+
                             If Not IsDBNull(rechnungPaketnummer) Then
                                 If Len(rechnungPaketnummer) > 1 Then
                                     auftragStatus = "delivered"
                                     auftragNotiz = auftragNotiz & " Shipment Tracking ID:" & rechnungPaketnummer
-                                    'export shipment und nummer 
-                                    Dim itemsQty() As MagentoSyncService.orderItemIdQty
-                                    ReDim itemsQty(orderDetails.items.Count)
-
-                                    'TODO: Items aus der Rechnung exportieren 
-                                    Dim i As Int16 = 0
-                                    For Each r In orderDetails.items
-                                        itemsQty(i) = New MagentoSyncService.orderItemIdQty
-                                        itemsQty(i).qty = r.qty_ordered
-                                        i = 1 + i
-                                    Next
-
-                                    Dim shp = shipmentFromOrder(orderDetails.order_id)
-                                    If shp Is Nothing Then
-
-
-                                        Dim shipmentIncrementId As String
-
-
-                                        shipmentIncrementId = magento.client.salesOrderShipmentCreate( _
-                                                               sessionId:=magento.sessionid, _
-                                                               orderIncrementId:=order.increment_id, _
-                                                               itemsQty:=Nothing, _
-                                                               comment:=rechnungNotiz, _
-                                                               email:=1, _
-                                                               includeComment:=1)
-
-
-                                        magento.client.salesOrderShipmentAddTrack( _
-                                                               sessionId:=magento.sessionid, _
-                                                               shipmentIncrementId:=shipmentIncrementId, _
-                                                               carrier:="GLS", _
-                                                               title:="GLS Paketnummer", _
-                                                               trackNumber:=rechnungPaketnummer)
-                                    Else
-                                        ModuleLog.Log("Shipment already exists")
-                                    End If
-
+                                    rechnungNotiz = rechnungNotiz & " Shipment Tracking ID:" & rechnungPaketnummer
                                 End If
                             End If
+
+                            'Create invoice 
+                            Dim invoice = invoiceFromOrder(orderDetails.order_id)
+                            If invoice Is Nothing Then
+                                Dim invoiceIncrementId As String = magento.client.salesOrderInvoiceCreate( _
+                                                              sessionId:=magento.sessionid, _
+                                                              invoiceIncrementId:=order.increment_id, _
+                                                              itemsQty:=itemsQty, _
+                                                              comment:=rechnungNotiz & " IntraSell Invoice#:" & rechungsnummer, _
+                                                              email:=1, _
+                                                              includeComment:=1) 'order.increment_id, _
+
+
+                                ' magento.client.salesOrderShipmentAddTrack( _
+                                '                        sessionId:=magento.sessionid, _
+                                '                        shipmentIncrementId:=shipmentIncrementId, _
+                                '                        carrier:="GLS", _
+                                '                        title:="GLS Paketnummer", _
+                                '                        trackNumber:=rechnungPaketnummer)
+
+                                ModuleLog.Log("Created Invoice in magento with id " + invoiceIncrementId)
+                            Else
+                                ModuleLog.Log("Invoice already exists")
+                            End If 'invoice 
+
+                            'Create Shipment 
+                         
+
+                            Dim shp = shipmentFromOrder(orderDetails.order_id)
+                            If shp Is Nothing Then
+
+                                ModuleLog.Log("Create Shipment in magento")
+                                Dim shipmentIncrementId As String = magento.client.salesOrderShipmentCreate( _
+                                                       sessionId:=magento.sessionid, _
+                                                       orderIncrementId:=order.increment_id, _
+                                                       itemsQty:=itemsQty, _
+                                                       comment:=rechnungNotiz, _
+                                                       email:=1, _
+                                                       includeComment:=1)
+
+
+                                magento.client.salesOrderShipmentAddTrack( _
+                                                       sessionId:=magento.sessionid, _
+                                                       shipmentIncrementId:=shipmentIncrementId, _
+                                                       carrier:="GLS", _
+                                                       title:="GLS Paketnummer", _
+                                                       trackNumber:=rechnungPaketnummer)
+                                ModuleLog.Log("Created Shipment in magento with id " + shipmentIncrementId)
+                            Else
+                                ModuleLog.Log("Shipment already exists")
+                            End If
+
                         End If
 
                     End If
@@ -395,8 +432,6 @@ Public Class OrderSync
                                                             comment:=auftragNotiz, _
                                                             notify:=True)
                     End If
-
-
 
                 End If
             End If
@@ -433,6 +468,34 @@ Public Class OrderSync
         Else
             Return Nothing
         End If
+
+    End Function
+
+
+    ''' <summary>
+    ''' returns the last shipment for an order
+    ''' </summary>
+    ''' <param name="order_id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function invoiceFromOrder(ByVal order_id As String) As salesOrderInvoiceEntity
+
+        Dim filter As filters = New filters
+        ReDim filter.complex_filter(1)
+        filter.complex_filter(0) = New complexFilter
+        filter.complex_filter(0).key = "order_id"
+        filter.complex_filter(0).value = New associativeEntity()
+        filter.complex_filter(0).value.key = "eq"
+        filter.complex_filter(0).value.value = order_id
+
+        Dim r As salesOrderInvoiceEntity() = magento.client.salesOrderInvoiceList(magento.sessionid, filter)
+
+        If r.Count > 0 Then
+            Return r(r.Count - 1)
+        Else
+            Return Nothing
+        End If
+
 
     End Function
 End Class
