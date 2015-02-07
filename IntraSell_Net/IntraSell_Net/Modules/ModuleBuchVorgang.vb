@@ -271,7 +271,7 @@ Module ModuleBuchVorgang
             writeLog("ERROR in storno " + ex.Message)
             tr.Rollback()
             If Not silent Then
-                MsgBox("Die Transaktion wurde abgebrochen!", vbExclamation)
+                MsgBox("Die Transaktion wurde abgebrochen! Details:" & ex.Message, vbExclamation)
             End If
         End Try
 
@@ -279,11 +279,12 @@ Module ModuleBuchVorgang
 
     'liefert die Brutto summe eines vorganges
     Function getSummeVorgang(ByVal VorgangTyp As String, ByVal VorgangNummer As Integer) As Double
-        Dim rs, sql
+        Dim rs As MySqlDataReader
+        Dim Sql As String
         sql = "Select Sum(Stk*Preis_Brutto) as Summe FROM [" & getVorgangArtikelTableForType(VorgangTyp) & "] " & _
-              " where RechNr =" & VorgangNummer
+              " where Nummer =" & VorgangNummer
         rs = openRecordset(sql)
-        If rs.EOF Then
+        If Not rs.Read Then
             getSummeVorgang = 0
         Else
             If IsNull(rs("Summe")) Then
