@@ -38,9 +38,9 @@ Partial Class VorgangBar
         Dim KundNrLabel As System.Windows.Forms.Label
         Dim Label2 As System.Windows.Forms.Label
         Dim Label3 As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.NummerTextBox = New System.Windows.Forms.TextBox()
         Me.BuchvorgangBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsVorgaenge = New IntraSell_Net.dsVorgaenge()
@@ -105,7 +105,6 @@ Partial Class VorgangBar
         Me.MitarbeiterNrComboBox = New IntraSell_Net.MitarbeiterControl()
         Me.DatumDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.PanelPosition = New System.Windows.Forms.Panel()
-        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.StkTextBox = New System.Windows.Forms.TextBox()
         Me.Preis_NettoTextBox = New System.Windows.Forms.TextBox()
         Me.Preis_BruttoTextBox = New System.Windows.Forms.TextBox()
@@ -113,6 +112,7 @@ Partial Class VorgangBar
         Me.ArtikelIdentifikationTextBox = New System.Windows.Forms.TextBox()
         Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
         Me.btnNeuePosition = New System.Windows.Forms.Button()
+        Me.ArtikelControl1 = New IntraSell_Net.ArtikelControl()
         Me.KundNrAdressenControl = New IntraSell_Net.AdressenControl()
         Me.TypComboBox = New System.Windows.Forms.ComboBox()
         Me.GegebenBarTextbox = New System.Windows.Forms.TextBox()
@@ -190,9 +190,9 @@ Partial Class VorgangBar
         SummeBruttoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         SummeBruttoLabel.Location = New System.Drawing.Point(15, 612)
         SummeBruttoLabel.Name = "SummeBruttoLabel"
-        SummeBruttoLabel.Size = New System.Drawing.Size(116, 20)
+        SummeBruttoLabel.Size = New System.Drawing.Size(57, 20)
         SummeBruttoLabel.TabIndex = 59
-        SummeBruttoLabel.Text = "Summe Brutto:"
+        SummeBruttoLabel.Text = "Brutto:"
         '
         'MitarbeiterNrLabel
         '
@@ -216,7 +216,7 @@ Partial Class VorgangBar
         '
         ArtNrLabel.AutoSize = True
         ArtNrLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ArtNrLabel.Location = New System.Drawing.Point(3, 7)
+        ArtNrLabel.Location = New System.Drawing.Point(15, 7)
         ArtNrLabel.Name = "ArtNrLabel"
         ArtNrLabel.Size = New System.Drawing.Size(54, 20)
         ArtNrLabel.TabIndex = 71
@@ -236,7 +236,7 @@ Partial Class VorgangBar
         '
         Preis_NettoLabel.AutoSize = True
         Preis_NettoLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Preis_NettoLabel.Location = New System.Drawing.Point(384, 7)
+        Preis_NettoLabel.Location = New System.Drawing.Point(387, 7)
         Preis_NettoLabel.Name = "Preis_NettoLabel"
         Preis_NettoLabel.Size = New System.Drawing.Size(91, 20)
         Preis_NettoLabel.TabIndex = 76
@@ -276,9 +276,9 @@ Partial Class VorgangBar
         Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Label2.Location = New System.Drawing.Point(15, 672)
         Label2.Name = "Label2"
-        Label2.Size = New System.Drawing.Size(105, 20)
+        Label2.Size = New System.Drawing.Size(109, 20)
         Label2.TabIndex = 81
-        Label2.Text = "gegeben Bar:"
+        Label2.Text = "Gegeben Bar:"
         '
         'Label3
         '
@@ -350,17 +350,18 @@ Partial Class VorgangBar
         '
         'btnAbschliessen
         '
-        Me.btnAbschliessen.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAbschliessen.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAbschliessen.Location = New System.Drawing.Point(416, 551)
         Me.btnAbschliessen.Name = "btnAbschliessen"
         Me.btnAbschliessen.Size = New System.Drawing.Size(140, 55)
         Me.btnAbschliessen.TabIndex = 7
-        Me.btnAbschliessen.Text = "Abschliessen && Druck"
+        Me.btnAbschliessen.Text = "Abschliessen"
         Me.btnAbschliessen.UseVisualStyleBackColor = True
         '
         'btnNeu
         '
         Me.btnNeu.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNeu.ForeColor = System.Drawing.Color.DarkGreen
         Me.btnNeu.Location = New System.Drawing.Point(416, 612)
         Me.btnNeu.Name = "btnNeu"
         Me.btnNeu.Size = New System.Drawing.Size(140, 55)
@@ -382,6 +383,7 @@ Partial Class VorgangBar
         'btnStorno
         '
         Me.btnStorno.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStorno.ForeColor = System.Drawing.Color.Red
         Me.btnStorno.Location = New System.Drawing.Point(562, 612)
         Me.btnStorno.Name = "btnStorno"
         Me.btnStorno.Size = New System.Drawing.Size(140, 55)
@@ -542,27 +544,27 @@ Partial Class VorgangBar
         'DataGridViewTextBoxColumnPreisNetto
         '
         Me.DataGridViewTextBoxColumnPreisNetto.DataPropertyName = "Preis_Netto"
-        DataGridViewCellStyle4.Format = "C2"
-        DataGridViewCellStyle4.NullValue = "n.a."
-        Me.DataGridViewTextBoxColumnPreisNetto.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Format = "C2"
+        DataGridViewCellStyle1.NullValue = "n.a."
+        Me.DataGridViewTextBoxColumnPreisNetto.DefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewTextBoxColumnPreisNetto.HeaderText = "Preis_Netto"
         Me.DataGridViewTextBoxColumnPreisNetto.Name = "DataGridViewTextBoxColumnPreisNetto"
         '
         'DataGridViewTextBoxColumnPreisBrutto
         '
         Me.DataGridViewTextBoxColumnPreisBrutto.DataPropertyName = "Preis_Brutto"
-        DataGridViewCellStyle5.Format = "C2"
-        DataGridViewCellStyle5.NullValue = "n.a."
-        Me.DataGridViewTextBoxColumnPreisBrutto.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = "n.a."
+        Me.DataGridViewTextBoxColumnPreisBrutto.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewTextBoxColumnPreisBrutto.HeaderText = "Preis_Brutto"
         Me.DataGridViewTextBoxColumnPreisBrutto.Name = "DataGridViewTextBoxColumnPreisBrutto"
         '
         'DataGridViewTextBoxColumnMWST
         '
         Me.DataGridViewTextBoxColumnMWST.DataPropertyName = "MWST"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = "n.a."
-        Me.DataGridViewTextBoxColumnMWST.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = "n.a."
+        Me.DataGridViewTextBoxColumnMWST.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewTextBoxColumnMWST.HeaderText = "MWST"
         Me.DataGridViewTextBoxColumnMWST.Name = "DataGridViewTextBoxColumnMWST"
         Me.DataGridViewTextBoxColumnMWST.ReadOnly = True
@@ -809,7 +811,6 @@ Partial Class VorgangBar
         '
         'PanelPosition
         '
-        Me.PanelPosition.Controls.Add(Me.ArtikelControl1)
         Me.PanelPosition.Controls.Add(Me.StkTextBox)
         Me.PanelPosition.Controls.Add(Me.Preis_NettoTextBox)
         Me.PanelPosition.Controls.Add(Me.Preis_BruttoTextBox)
@@ -821,23 +822,11 @@ Partial Class VorgangBar
         Me.PanelPosition.Controls.Add(ArtNrLabel)
         Me.PanelPosition.Controls.Add(StkLabel)
         Me.PanelPosition.Controls.Add(Preis_NettoLabel)
+        Me.PanelPosition.Controls.Add(Me.ArtikelControl1)
         Me.PanelPosition.Location = New System.Drawing.Point(13, 179)
         Me.PanelPosition.Name = "PanelPosition"
         Me.PanelPosition.Size = New System.Drawing.Size(680, 93)
         Me.PanelPosition.TabIndex = 75
-        '
-        'ArtikelControl1
-        '
-        Me.ArtikelControl1.ArtNr = 0
-        Me.ArtikelControl1.BackColor = System.Drawing.Color.Transparent
-        Me.ArtikelControl1.DataBindings.Add(New System.Windows.Forms.Binding("ArtNr", Me.Buchvorgang_artikelBindingSource, "ArtNr", True))
-        Me.ArtikelControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ArtikelControl1.Location = New System.Drawing.Point(7, 26)
-        Me.ArtikelControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ArtikelControl1.Name = "ArtikelControl1"
-        Me.ArtikelControl1.ShowAddNew = False
-        Me.ArtikelControl1.Size = New System.Drawing.Size(306, 34)
-        Me.ArtikelControl1.TabIndex = 2
         '
         'StkTextBox
         '
@@ -854,7 +843,7 @@ Partial Class VorgangBar
         Me.Preis_NettoTextBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Preis_NettoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.Buchvorgang_artikelBindingSource, "Preis_Netto", True, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "n.a.", "C2"))
         Me.Preis_NettoTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Preis_NettoTextBox.Location = New System.Drawing.Point(388, 29)
+        Me.Preis_NettoTextBox.Location = New System.Drawing.Point(391, 29)
         Me.Preis_NettoTextBox.Name = "Preis_NettoTextBox"
         Me.Preis_NettoTextBox.Size = New System.Drawing.Size(87, 26)
         Me.Preis_NettoTextBox.TabIndex = 4
@@ -912,6 +901,19 @@ Partial Class VorgangBar
         Me.btnNeuePosition.TabIndex = 5
         Me.btnNeuePosition.Text = "Einfügen"
         Me.btnNeuePosition.UseVisualStyleBackColor = True
+        '
+        'ArtikelControl1
+        '
+        Me.ArtikelControl1.ArtNr = 0
+        Me.ArtikelControl1.BackColor = System.Drawing.Color.Transparent
+        Me.ArtikelControl1.DataBindings.Add(New System.Windows.Forms.Binding("ArtNr", Me.Buchvorgang_artikelBindingSource, "ArtNr", True))
+        Me.ArtikelControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ArtikelControl1.Location = New System.Drawing.Point(7, 24)
+        Me.ArtikelControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ArtikelControl1.Name = "ArtikelControl1"
+        Me.ArtikelControl1.ShowAddNew = False
+        Me.ArtikelControl1.Size = New System.Drawing.Size(302, 36)
+        Me.ArtikelControl1.TabIndex = 2
         '
         'KundNrAdressenControl
         '

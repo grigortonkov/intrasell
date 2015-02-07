@@ -34,6 +34,7 @@ Partial Class Dashboard
         Me.AnzahlKundenLabel = New System.Windows.Forms.Label()
         Me.ArtikelAnlegenLabel = New System.Windows.Forms.Label()
         Me.ArtikelAnlegenButton = New System.Windows.Forms.Button()
+        Me.BarrechnungButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'RechnungButton
@@ -56,7 +57,7 @@ Partial Class Dashboard
         '
         'AnrufenButton
         '
-        Me.AnrufenButton.Location = New System.Drawing.Point(12, 100)
+        Me.AnrufenButton.Location = New System.Drawing.Point(12, 126)
         Me.AnrufenButton.Name = "AnrufenButton"
         Me.AnrufenButton.Size = New System.Drawing.Size(147, 23)
         Me.AnrufenButton.TabIndex = 3
@@ -65,7 +66,7 @@ Partial Class Dashboard
         '
         'MahnungenButton
         '
-        Me.MahnungenButton.Location = New System.Drawing.Point(12, 71)
+        Me.MahnungenButton.Location = New System.Drawing.Point(12, 97)
         Me.MahnungenButton.Name = "MahnungenButton"
         Me.MahnungenButton.Size = New System.Drawing.Size(147, 23)
         Me.MahnungenButton.TabIndex = 2
@@ -74,7 +75,7 @@ Partial Class Dashboard
         '
         'KundenButton
         '
-        Me.KundenButton.Location = New System.Drawing.Point(12, 129)
+        Me.KundenButton.Location = New System.Drawing.Point(12, 155)
         Me.KundenButton.Name = "KundenButton"
         Me.KundenButton.Size = New System.Drawing.Size(147, 23)
         Me.KundenButton.TabIndex = 4
@@ -105,7 +106,7 @@ Partial Class Dashboard
         '
         Me.AnzahlMahnugnenLabel.AutoSize = True
         Me.AnzahlMahnugnenLabel.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.AnzahlMahnugnenLabel.Location = New System.Drawing.Point(165, 76)
+        Me.AnzahlMahnugnenLabel.Location = New System.Drawing.Point(165, 102)
         Me.AnzahlMahnugnenLabel.Name = "AnzahlMahnugnenLabel"
         Me.AnzahlMahnugnenLabel.Size = New System.Drawing.Size(13, 13)
         Me.AnzahlMahnugnenLabel.TabIndex = 7
@@ -115,7 +116,7 @@ Partial Class Dashboard
         '
         Me.AnzahlAnrufeLabel.AutoSize = True
         Me.AnzahlAnrufeLabel.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.AnzahlAnrufeLabel.Location = New System.Drawing.Point(165, 105)
+        Me.AnzahlAnrufeLabel.Location = New System.Drawing.Point(165, 131)
         Me.AnzahlAnrufeLabel.Name = "AnzahlAnrufeLabel"
         Me.AnzahlAnrufeLabel.Size = New System.Drawing.Size(13, 13)
         Me.AnzahlAnrufeLabel.TabIndex = 8
@@ -125,7 +126,7 @@ Partial Class Dashboard
         '
         Me.AnzahlKundenLabel.AutoSize = True
         Me.AnzahlKundenLabel.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.AnzahlKundenLabel.Location = New System.Drawing.Point(165, 134)
+        Me.AnzahlKundenLabel.Location = New System.Drawing.Point(165, 160)
         Me.AnzahlKundenLabel.Name = "AnzahlKundenLabel"
         Me.AnzahlKundenLabel.Size = New System.Drawing.Size(13, 13)
         Me.AnzahlKundenLabel.TabIndex = 9
@@ -135,7 +136,7 @@ Partial Class Dashboard
         '
         Me.ArtikelAnlegenLabel.AutoSize = True
         Me.ArtikelAnlegenLabel.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ArtikelAnlegenLabel.Location = New System.Drawing.Point(165, 163)
+        Me.ArtikelAnlegenLabel.Location = New System.Drawing.Point(165, 189)
         Me.ArtikelAnlegenLabel.Name = "ArtikelAnlegenLabel"
         Me.ArtikelAnlegenLabel.Size = New System.Drawing.Size(13, 13)
         Me.ArtikelAnlegenLabel.TabIndex = 11
@@ -143,18 +144,28 @@ Partial Class Dashboard
         '
         'ArtikelAnlegenButton
         '
-        Me.ArtikelAnlegenButton.Location = New System.Drawing.Point(12, 158)
+        Me.ArtikelAnlegenButton.Location = New System.Drawing.Point(12, 184)
         Me.ArtikelAnlegenButton.Name = "ArtikelAnlegenButton"
         Me.ArtikelAnlegenButton.Size = New System.Drawing.Size(147, 23)
         Me.ArtikelAnlegenButton.TabIndex = 5
         Me.ArtikelAnlegenButton.Text = "Artikel anlegen"
         Me.ArtikelAnlegenButton.UseVisualStyleBackColor = True
         '
+        'BarrechnungButton
+        '
+        Me.BarrechnungButton.Location = New System.Drawing.Point(12, 68)
+        Me.BarrechnungButton.Name = "BarrechnungButton"
+        Me.BarrechnungButton.Size = New System.Drawing.Size(147, 23)
+        Me.BarrechnungButton.TabIndex = 12
+        Me.BarrechnungButton.Text = "Barrechnung"
+        Me.BarrechnungButton.UseVisualStyleBackColor = True
+        '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(323, 383)
+        Me.ClientSize = New System.Drawing.Size(355, 222)
+        Me.Controls.Add(Me.BarrechnungButton)
         Me.Controls.Add(Me.ArtikelAnlegenLabel)
         Me.Controls.Add(Me.ArtikelAnlegenButton)
         Me.Controls.Add(Me.AnzahlKundenLabel)
@@ -186,4 +197,5 @@ Partial Class Dashboard
     Friend WithEvents AnzahlKundenLabel As System.Windows.Forms.Label
     Friend WithEvents ArtikelAnlegenLabel As System.Windows.Forms.Label
     Friend WithEvents ArtikelAnlegenButton As System.Windows.Forms.Button
+    Friend WithEvents BarrechnungButton As System.Windows.Forms.Button
 End Class

@@ -140,7 +140,7 @@ Module ModuleLager
 
         Try
 
-            Call writeLog("BEGIN TRANSACTION")
+            If Not trAlreadyCreated Then Call writeLog("BEGIN TRANSACTION")
 
 
             'lagerstand von den betroffenen Artikel aktualisieren

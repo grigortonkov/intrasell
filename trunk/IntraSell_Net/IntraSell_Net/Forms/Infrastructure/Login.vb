@@ -28,6 +28,20 @@ Public Class Login
     End Sub
 
     Public Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Try
+
+            'command line arguments support e.g. username=ej password=ej
+            If Environment.GetCommandLineArgs.Length = 2 Then
+                Dim username As String = Environment.GetCommandLineArgs(1).Split("=")(2)
+                Dim password As String = Environment.GetCommandLineArgs(2).Split("=")(2)
+                ModuleGlobals.Username = username
+                Me.PasswordTextBox.Text = password
+                OK_Click(Nothing, Nothing)
+            End If
+
+        Catch ex As Exception
+            writeLog("Startparameters sind nicht wie erwartet. Beispiel ""username=ej password=ej""")
+        End Try
         'hide login window if no user in db with pwd 
         Dim rs As MySql.Data.MySqlClient.MySqlDataReader
         rs = openRecordset("select distinct passwort p from ofMitarbeiter")
@@ -50,6 +64,4 @@ Public Class Login
         Me.UsernameTextBox.Text = ModuleGlobals.Username
     End Sub
 
-
- 
 End Class
