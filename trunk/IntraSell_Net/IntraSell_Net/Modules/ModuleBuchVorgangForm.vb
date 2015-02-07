@@ -17,9 +17,7 @@ Module ModuleBuchVorgangForm
 
 
     Public Sub Recalculate(ByVal Buchvorgang_artikelDataGridView As DataGridView, _
-                           ByVal SummeTextBox As TextBox, _
-                           ByVal SummeBruttoTextBox As TextBox, _
-                           ByVal SummeMWSTTextBox As TextBox)
+                           ByVal vorgang As dsVorgaenge.buchvorgangRow)
         Try
 
 
@@ -51,9 +49,9 @@ Module ModuleBuchVorgangForm
 
             MWST = summeBrutto - summeNetto
 
-            SummeTextBox.Text = FormatCurrency(summeNetto, precision)
-            SummeBruttoTextBox.Text = FormatCurrency(summeBrutto, precision)
-            SummeMWSTTextBox.Text = FormatCurrency(MWST, precision)
+            vorgang.Summe = FormatCurrency(summeNetto, precision)
+            vorgang.SummeBrutto = FormatCurrency(summeBrutto, precision)
+            vorgang.SummeMWST = FormatCurrency(MWST, precision)
         Catch ex As Exception
             HandleAppError(ex)
         End Try

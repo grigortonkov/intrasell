@@ -18,6 +18,12 @@ Public Class Vorgang
         End Set
     End Property
 
+    Private Function getVorgang() As dsVorgaenge.buchvorgangRow
+        Dim vorgang As dsVorgaenge.buchvorgangRow = Nothing
+        If Not BuchvorgangBindingSource.Current Is Nothing Then vorgang = BuchvorgangBindingSource.Current.row()
+        Return vorgang
+    End Function
+
     Public Property summeNetto As Integer
         Get
             Return Me.SummeTextBox.Text
@@ -1447,9 +1453,7 @@ Public Class Vorgang
 
     Private Sub Recalculate()
         ModuleBuchVorgangForm.Recalculate(Buchvorgang_artikelDataGridView, _
-                            SummeTextBox, _
-                            SummeBruttoTextBox, _
-                            SummeMWSTTextBox)
+                            getVorgang())
     End Sub
 
     Private Sub ArtNr_CalculatePreis()

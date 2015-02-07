@@ -136,7 +136,7 @@ Public Class buchvorgangTableAdapterTest
         DsVorgaenge.buchvorgang.AddbuchvorgangRow(r)
         DsVorgaenge._buchvorgang_artikel.Rows.Add(rp)
         DsVorgaenge._buchvorgang_artikel.Rows.Add(rp1)
-        DsVorgaenge.WriteXml("c:\test.xml")
+        DsVorgaenge.WriteXml(TestContext.TestDir & "\test.xml")
 
 
         'BuchvorgangBindingSource.EndEdit()

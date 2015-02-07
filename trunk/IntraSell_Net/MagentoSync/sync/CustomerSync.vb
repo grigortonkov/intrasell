@@ -295,7 +295,7 @@ Public Class CustomerSync
             Dim invoiceLand As String = getIntraSellLand(order.billing_address.country_id)
             newCustomer.Land = invoiceLand
             newCustomer.Adresse = order.billing_address.street
-            newCustomer.PLZ = intrasell.kunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
+            newCustomer.PLZ = IntraSellKunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
             newCustomer.Ort = order.billing_address.city
             newCustomer.Tel = order.billing_address.telephone
 
@@ -332,7 +332,7 @@ Public Class CustomerSync
                 ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
                 newCustomerShipping.Land = getIntraSellLand(order.shipping_address.country_id)
                 newCustomerShipping.Adresse = order.shipping_address.street
-                newCustomerShipping.PLZ = intrasell.kunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
+                newCustomerShipping.PLZ = IntraSellKunden.getPLZCreateIfNeeded(newCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
                 newCustomerShipping.Ort = order.shipping_address.city
                 newCustomerShipping.Tel = order.shipping_address.telephone
 
@@ -404,12 +404,9 @@ Public Class CustomerSync
     ''' Import one new Customer from magento
     ''' </summary>
     ''' <param name="customer"></param>
-    ''' <returns></returns>
     ''' <remarks></remarks>
     Sub ImportMagentoCustomer(ByVal customer As customerCustomerEntity)
         intrasell.init()
-
-
 
         'check if customer is existing 
         Dim dsAdr As dsAdressen = New dsAdressen
@@ -468,7 +465,7 @@ Public Class CustomerSync
                 Dim invoiceLand As String = getIntraSellLand(hauptAdresse.country_id)
                 newCustomer.Land = invoiceLand
                 newCustomer.Adresse = hauptAdresse.street
-                newCustomer.PLZ = intrasell.kunden.getPLZCreateIfNeeded(invoiceLand, hauptAdresse.city, hauptAdresse.postcode)
+                newCustomer.PLZ = IntraSellKunden.getPLZCreateIfNeeded(invoiceLand, hauptAdresse.city, hauptAdresse.postcode)
                 newCustomer.Ort = hauptAdresse.city
                 newCustomer.Tel = hauptAdresse.telephone
                 newCustomer.Fax = hauptAdresse.fax

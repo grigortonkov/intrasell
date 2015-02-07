@@ -60,8 +60,9 @@ Public Class ModuleDOSTest
     '''</summary>
     <TestMethod()> _
     Public Sub RenameFileTest()
-        Dim oldfilename As String = "C:\file1.txt"
-        Dim newfilename As String = "C:\temp\subfolder\file2.txt"
+        Dim appFolder = TestContext.TestDir
+        Dim oldfilename As String = appFolder & "\file1.txt"
+        Dim newfilename As String = appFolder & "\subfolder\file2.txt"
 
         'Create File as preparation 
         Dim f As StreamWriter = New StreamWriter(oldfilename)
