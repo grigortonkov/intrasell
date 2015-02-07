@@ -226,8 +226,10 @@ Public Class VorgangBar
                 MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)
             End If
             Me.btnNeu.Focus()
-            'Call neueRechnung(Me.Caption)
-            BeginNewVorgang("AR", KundNr)
+            If VarValue_Default("RECHNUNG_BAR_NACH_ABSCHLIESSEN_NEU", "false") = "true" Then
+                BeginNewVorgang("AR", KundNr)
+            End If
+
         Catch ex As Exception
             HandleAppError(ex)
         End Try
