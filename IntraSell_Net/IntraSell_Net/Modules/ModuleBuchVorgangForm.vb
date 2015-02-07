@@ -33,15 +33,18 @@ Module ModuleBuchVorgangForm
 
                     Try
                         Dim stk As Double = 0, netto As Double = 0, brutto As Double = 0
-                        stk = Double.Parse(dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value)
-                        netto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_NETTO_INDEX).Value.ToString())
-                        brutto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_BRUTTO_INDEX).Value.ToString())
+                        If Not dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value Is Nothing Then
+                            stk = Double.Parse(dg.Rows(counter - 1).Cells(COL_STK_INDEX).Value)
+                            netto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_NETTO_INDEX).Value.ToString())
+                            brutto = Double.Parse(dg.Rows(counter - 1).Cells(COL_PREIS_BRUTTO_INDEX).Value.ToString())
 
-                        summeNetto += stk * netto
-                        summeBrutto += stk * brutto
+                            summeNetto += stk * netto
+                            summeBrutto += stk * brutto
+                        End If
+
 
                     Catch ex As Exception
-                        Exit Sub 'on any error 
+                        Log.WriteLine("Error in Recalculate:" & ex.Message)
                     End Try
                 Next
 

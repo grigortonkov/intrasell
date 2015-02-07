@@ -97,6 +97,7 @@
     <Compile Include="Forms\Anrufe\AnrufTest.vb" />
     <Compile Include="Data\grbranchenTableAdapterTest.vb" />
     <Compile Include="Forms\VorgaengeBar\VorgaengeBarTest.vb" />
+    <Compile Include="Forms\Vorgaenge\VorgaengeTest.vb" />
     <Compile Include="grartikel_staffelpreiseTableAdapterTest.vb" />
     <Compile Include="grartikel_vertriebskostenTableAdapterTest.vb" />
     <Compile Include="grartikel_vkpreisperselectionTableAdapterTest.vb" />
@@ -125,6 +126,11 @@
     <Compile Include="Data\ofmitarbeiterTableAdapterTest.vb" />
     <Compile Include="Data\ofadressen_profilTableAdapterTest.vb" />
     <Compile Include="Data\ofadressen_kundengruppenTableAdapterTest.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Update\ModuleUnzipTest.vb" />
     <Compile Include="Update\ModuleUpdateTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -137,7 +143,7 @@
     <None Include="3.Preise.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="6.Vorgang.orderedtest">
+    <None Include="5.Vorgang.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="0.ALL.orderedtest">
@@ -146,7 +152,7 @@
     <None Include="4.Preisregeln.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="5.Anrufe.orderedtest">
+    <None Include="6.Anrufe.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="2.Mitarbeiter.orderedtest">
@@ -179,6 +185,13 @@
       <Project>{110E199B-E42C-4A66-A98A-A9473E6FDA30}</Project>
       <Name>IntraSell_Net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

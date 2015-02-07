@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestSettings name="Trace and Test Impact" id="9728b517-836b-489c-a696-a35c5d030219" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are test settings for Trace and Test Impact.</Description>
-  <Deployment userDeploymentRoot="d:\tmp\TestResults" useDefaultDeploymentRoot ="false" /> 
+  <Deployment userDeploymentRoot="d:\tmp\TestResults" useDefaultDeploymentRoot="false">
+    <DeploymentItem filename="IntraSell_Net\" />
+  </Deployment>
   <Execution>
-    <TestTypeSpecific />
-    <AgentRule name="Execution Agents">
+    <TestTypeSpecific>
+      <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+        <AssemblyResolution>
+          <TestDirectory useLoadContext="true" />
+        </AssemblyResolution>
+      </UnitTestRunConfig>
+    </TestTypeSpecific>
+    <AgentRule name="LocalMachineDefaultRole">
       <DataCollectors>
         <DataCollector uri="datacollector://microsoft/SystemInfo/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.DataCollection.SystemInfo.SystemInfoDataCollector, Microsoft.VisualStudio.TestTools.DataCollection.SystemInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="System Information">
         </DataCollector>
