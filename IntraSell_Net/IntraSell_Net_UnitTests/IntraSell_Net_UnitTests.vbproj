@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\tmp\IntraSell_Net_UnitTests\bin\Debug\</OutputPath>
     <DocumentationFile>IntraSell_Net_UnitTests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -52,7 +52,7 @@
       <HintPath>..\Components\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\apps\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,6 +96,7 @@
     <Compile Include="Data\AnruflisteTableAdapterTest.vb" />
     <Compile Include="Forms\Anrufe\AnrufTest.vb" />
     <Compile Include="Data\grbranchenTableAdapterTest.vb" />
+    <Compile Include="Forms\VorgaengeBar\VorgaengeBarTest.vb" />
     <Compile Include="grartikel_staffelpreiseTableAdapterTest.vb" />
     <Compile Include="grartikel_vertriebskostenTableAdapterTest.vb" />
     <Compile Include="grartikel_vkpreisperselectionTableAdapterTest.vb" />
@@ -158,6 +159,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="8.Mahnung.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="99.Forms.orderedtest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Shadow Include="Test References\IntraSell_Net.accessor" />

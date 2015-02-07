@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestSettings name="Trace and Test Impact" id="9728b517-836b-489c-a696-a35c5d030219" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are test settings for Trace and Test Impact.</Description>
+  <Deployment userDeploymentRoot="d:\tmp\TestResults" useDefaultDeploymentRoot ="false" /> 
   <Execution>
     <TestTypeSpecific />
     <AgentRule name="Execution Agents">

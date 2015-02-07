@@ -55,6 +55,9 @@
                   4-Exportkunden EUROPA=4-Exportkunden EUROPA;
                   5-Pros Pro=5-Pros Pro;
                   checkmo=Vorkasse;
+                  paypal_standard=Paypal;
+                  wirecard_checkout_page_cc=Creditcard;
+                  wirecard_checkout_page_sofortueberweisung=Sofortüberweisung;
                 </Value>
     </Setting>
   </Settings>
