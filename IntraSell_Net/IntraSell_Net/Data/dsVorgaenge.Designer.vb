@@ -16966,7 +16966,7 @@ Namespace dsVorgaengeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe, Bezahl"& _ 
@@ -16982,6 +16982,27 @@ Namespace dsVorgaengeTableAdapters
             param.IsNullable = true
             param.SourceColumn = "KundNr"
             Me._commandCollection(0).Parameters.Add(param)
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        Nummer, Typ, Datum, KundNr, Notiz, NotizIntern, NotizExtern, Summe,"& _ 
+                " Bezahlt, Ausgedruckt, Abgeschlossen, Zahlungsbedingung, TransportMethode, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      ZahlungsMethode, Woher, Wohin, Status, SummeMWST, SummeBru"& _ 
+                "tto, LieferantNr, MitarbeiterNr, KundNr2, Waehrung"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            buchvorgang"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Datum > '1/1/2000') AND (KundNr = @KundNr) AND (Datum >= @Datum)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Nummer, Typ, Datum"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@KundNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "KundNr"
+            Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Datum"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "Datum"
+            Me._commandCollection(1).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17005,6 +17026,34 @@ Namespace dsVorgaengeTableAdapters
         Public Overloads Overridable Function GetData(ByVal KundNr As Integer) As dsVorgaenge.buchvorgangDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Dim dataTable As dsVorgaenge.buchvorgangDataTable = New dsVorgaenge.buchvorgangDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByKundNrDatum(ByVal dataTable As dsVorgaenge.buchvorgangDataTable, ByVal KundNr As Integer, ByVal Datum As Date) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(Datum,Date)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByKundNrDatum(ByVal KundNr As Integer, ByVal Datum As Date) As dsVorgaenge.buchvorgangDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(Datum,Date)
             Dim dataTable As dsVorgaenge.buchvorgangDataTable = New dsVorgaenge.buchvorgangDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -17908,7 +17957,7 @@ Namespace dsVorgaengeTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(0) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(1) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT `buchvorgang-artikel`.ID, `buchvorgang-artikel`.Nummer, `buchvorgang-artik"& _ 
@@ -17930,6 +17979,34 @@ Namespace dsVorgaengeTableAdapters
             param.IsNullable = true
             param.SourceColumn = "KundNr"
             Me._commandCollection(0).Parameters.Add(param)
+            Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT `buchvorgang-artikel`.ID, `buchvorgang-artikel`.Nummer, `buchvorgang-artik"& _ 
+                "el`.Typ, `buchvorgang-artikel`.ArtNr, `buchvorgang-artikel`.Stk, `buchvorgang-ar"& _ 
+                "tikel`.EKPreis, `buchvorgang-artikel`.Preis_Netto, `buchvorgang-artikel`.Preis_B"& _ 
+                "rutto, `buchvorgang-artikel`.MWST, `buchvorgang-artikel`.ArtikelIdentifikation, "& _ 
+                "`buchvorgang-artikel`.Bezeichnung, `buchvorgang-artikel`.LieferantNr, `buchvorga"& _ 
+                "ng-artikel`.Status, `buchvorgang-artikel`.Referenz, `buchvorgang-artikel`.Packun"& _ 
+                "g, `buchvorgang-artikel`.Herkunft, `buchvorgang-artikel`.Incoterm, `buchvorgang-"& _ 
+                "artikel`.Spezifikation, `buchvorgang-artikel`.Zeitpunkt FROM `buchvorgang-artike"& _ 
+                "l` INNER JOIN buchvorgang ON `buchvorgang-artikel`.Nummer = buchvorgang.Nummer A"& _ 
+                "ND `buchvorgang-artikel`.Typ = buchvorgang.Typ WHERE (buchvorgang.KundNr = @Kund"& _ 
+                "Nr) and  (buchvorgang.Datum>= @Datum)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@KundNr"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "KundNr"
+            Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@Datum"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.DateTime
+            param.IsNullable = true
+            param.SourceColumn = "Datum"
+            Me._commandCollection(1).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17953,6 +18030,34 @@ Namespace dsVorgaengeTableAdapters
         Public Overloads Overridable Function GetData(ByVal KundNr As Integer) As dsVorgaenge._buchvorgang_artikelDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Dim dataTable As dsVorgaenge._buchvorgang_artikelDataTable = New dsVorgaenge._buchvorgang_artikelDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByKundNrDatum(ByVal dataTable As dsVorgaenge._buchvorgang_artikelDataTable, ByVal KundNr As Integer, ByVal Datum As Date) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(Datum,Date)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByKundNrDatum(ByVal KundNr As Integer, ByVal Datum As Date) As dsVorgaenge._buchvorgang_artikelDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KundNr,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(Datum,Date)
             Dim dataTable As dsVorgaenge._buchvorgang_artikelDataTable = New dsVorgaenge._buchvorgang_artikelDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

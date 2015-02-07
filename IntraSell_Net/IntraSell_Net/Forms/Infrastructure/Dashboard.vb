@@ -61,4 +61,8 @@ Public Class Dashboard
     Private Sub ArtikelAnlegenLabel_Click(sender As System.Object, e As System.EventArgs) Handles ArtikelAnlegenLabel.Click
         Main.ArtikellisteToolStripMenuItem_Click(Nothing, Nothing)
     End Sub
+
+    Private Sub BarrechnungButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BarrechnungButton.Click
+        Main.VorgangBarToolStripMenuItem_Click(Nothing, Nothing)
+    End Sub
 End Class

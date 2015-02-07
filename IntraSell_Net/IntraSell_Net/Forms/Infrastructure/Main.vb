@@ -186,7 +186,7 @@ Public Class Main
         End Try
     End Sub
 
-    Private Sub VorgangBarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorgangBarToolStripMenuItem.Click
+    Public Sub VorgangBarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorgangBarToolStripMenuItem.Click
         Try
             VorgangBar.MdiParent = Me
             VorgangBar.Show()

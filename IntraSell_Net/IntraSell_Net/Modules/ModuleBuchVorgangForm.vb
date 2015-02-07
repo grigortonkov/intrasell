@@ -29,7 +29,7 @@ Module ModuleBuchVorgangForm
 
             Dim precision As Int16 = VarValue_Default("PREIS_GENAUIGKEIT", 2)
             With Buchvorgang_artikelDataGridView
-                For counter = 1 To (.Rows.Count - 1)
+                For counter = 1 To (.Rows.Count)
                     'deposit = 0
                     'withdrawal = 0
 

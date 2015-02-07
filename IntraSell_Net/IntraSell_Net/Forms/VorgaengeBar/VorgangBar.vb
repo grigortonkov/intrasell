@@ -5,6 +5,10 @@ Public Class VorgangBar
     Inherits AbstractForm
     Implements InterfacePrintable
 
+    Const BARGELD_GEGEBEN = "Bargeld_gegeben"
+    Const BARGELD_RESTO = "Bargeld_resto"
+    Const GUTSCHRIFT_BETRAG_EIGENSCHAFT = "Gutschrift_Betrag"
+
 
     Private _kundNr As Integer = 0
 
@@ -70,8 +74,8 @@ Public Class VorgangBar
     ''' </summary>
     ''' <remarks></remarks>
     Sub alteBarRechnungenLaden()
-        Me.BuchvorgangTableAdapter.Fill(Me.DsVorgaenge.buchvorgang, KundNr)
-        Me.Buchvorgang_artikelTableAdapter.Fill(Me.DsVorgaenge._buchvorgang_artikel, KundNr)
+        Me.BuchvorgangTableAdapter.FillByKundNrDatum(Me.DsVorgaenge.buchvorgang, KundNr, Date.Today)
+        Me.Buchvorgang_artikelTableAdapter.FillByKundNrDatum(Me.DsVorgaenge._buchvorgang_artikel, KundNr, Date.Today)
     End Sub
 
     ''' <summary>
@@ -132,10 +136,7 @@ Public Class VorgangBar
         End If
     End Sub
  
-
-    Private Sub btnAbschliessen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbschliessen.Click
-        btnAbschliessen_Click()
-    End Sub
+ 
 
     Private Sub deleteme_btnAbschliessen_Click()
         If VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
@@ -145,7 +146,13 @@ Public Class VorgangBar
         End If
     End Sub
 
-    Private Sub btnAbschliessen_Click()
+    ''' <summary>
+    ''' Vorgang abschliessen
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnAbschliessen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAbschliessen.Click
         Try
             saveEdits()
 
@@ -156,17 +163,27 @@ Public Class VorgangBar
             End If
 
             If Not Me.AbgeschlossenCheckBox.Checked Then
+                Dim transaction As MySqlTransaction = CurrentDB.BeginTransaction()
+                Try
+                    If Me.TypComboBox.SelectedValue = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then
+                        Call lagerAusgang(Me.NummerTextBox.Text, TypComboBox.SelectedValue, True)
+                    End If
 
-                If Me.TypComboBox.SelectedValue = VarValue("VORGANG_TYP_FUER_LAGER_ABGANG") Then
-                    Call lagerAusgang(Me.NummerTextBox.Text, TypComboBox.SelectedValue, True)
-                End If
+                    'If Me.txtVorgangType = "RE" Or Me.txtVorgangType = "RÜ" Then 'retourwaren oder rüestschein
+                    '     Call lagerEingang(Me.Nummer, Me.txtVorgangType)
+                    'End If
 
-                'If Me.txtVorgangType = "RE" Or Me.txtVorgangType = "RÜ" Then 'retourwaren oder rüestschein
-                '     Call lagerEingang(Me.Nummer, Me.txtVorgangType)
-                'End If
+                    Call drucken_Click()
+                    Call btnKassa_Click()
 
-                Call drucken_Click()
-                Call btnKassa_Click()
+
+                    transaction.Commit()
+
+                Catch ex As Exception
+                    HandleAppError(ex)
+                    transaction.Rollback()
+                    Exit Sub
+                End Try
 
                 Me.AbgeschlossenCheckBox.Checked = True
                 setButtons(True, True)
@@ -186,6 +203,7 @@ Public Class VorgangBar
         Dim filename As String
         filename = OpenAusdruck_InWord_Filename_RTF(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, "vorlagen\Vorlage_Rechnung.txt", True)
         printFile(filename)
+        RunSQL("update " & getVorgangTableForType(Me.TypComboBox.SelectedValue) & " set ausgedruckt = -1 where Typ='" & Me.TypComboBox.SelectedValue & "' and Nummer = " & Me.NummerTextBox.Text)
         Me.AusgedrucktCheckBox.Checked = True
     End Sub
 
@@ -194,12 +212,11 @@ Public Class VorgangBar
             'If MsgBox("Betrag eingehoben?", vbYesNo) = vbYes Then
             'kassabuch eintrag
             Call makeKassaBuchEintrag(Now(), Me.TypComboBox.SelectedValue, Me.TypComboBox.SelectedValue & "-" & Me.NummerTextBox.Text, Me.SummeBruttoTextBox.Text)
+            RunSQL("update " & getVorgangTableForType(Me.TypComboBox.SelectedValue) & " set bezahlt = -1 where Typ='" & Me.TypComboBox.SelectedValue & "' and Nummer = " & Me.NummerTextBox.Text)
             Me.BezahltCheckBox.Checked = True
             'End If
         End If
     End Sub
-
-
 
 
     Public Sub deleteme_BeginNew(Optional ByVal addNew As Boolean = True)
@@ -240,12 +257,16 @@ Public Class VorgangBar
     'Ein Neuer Vorgang vom Typ Starten 
     Public Sub BeginNewVorgang(ByVal VorgangTyp As String, ByVal KundNr As Integer)
         Try
-            Me.BuchvorgangBindingSource.AddNew()
+            Me.GegebenBarTextbox.Text = "" 'clear last input
+            Me.RestgeldTextbox.Text = "" 'clear last input
 
-            Me.KundNrAdressenControl.IDNR = KundNr
-            Me.TypComboBox.SelectedValue = VorgangTyp
-            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(VorgangTyp, KundNr)
-            Me.DatumDateTimePicker.Value = DateTime.Today
+            Dim newRow As DataRowView = Me.BuchvorgangBindingSource.AddNew()
+            Dim vorgangRow As dsVorgaenge.buchvorgangRow = newRow.Row
+            vorgangRow.KundNr = KundNr
+            vorgangRow.Typ = VorgangTyp
+            vorgangRow.Nummer = IntraSellPreise.getNewVorgangNummer(VorgangTyp, KundNr)
+            vorgangRow.Datum = DateTime.Today
+            vorgangRow.MitarbeiterNr = ModuleGlobals.MitarbeiterID
             Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID
 
             'folgende 3 zeilen damit die rows in artikel die parent typ und nummer übernehmen.
@@ -267,23 +288,23 @@ Public Class VorgangBar
         BeginNewVorgang("AR", 0)
     End Sub
 
-
+#Region "Menu"
 
     Private Sub AusdruckenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AusdruckenToolStripMenuItem.Click
 
     End Sub
 
- 
+#End Region
 
 #Region "Position Tab"
-   
+
     Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) 'Handles AddNewButton.Click
         Try
-            If IsNull(kundNr) Or Me.kundNr <= 0 Then Exit Sub
+            If IsNull(KundNr) Or Me.KundNr <= 0 Then Exit Sub
 
             'Kundenform öffnen um weitere zu definieren
             Dim k As Kunden = New Kunden
-            k.FilterBy("IDNR=" & Me.kundNr)
+            k.FilterBy("IDNR=" & Me.KundNr)
             k.ShowDialog()
         Catch ex As Exception
             HandleAppError(ex)
@@ -366,6 +387,7 @@ Public Class VorgangBar
     End Sub
 
     Private Sub Preis_NettoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_NettoTextBox.Validated
+        If Buchvorgang_artikelBindingSource.Current Is Nothing Then Exit Sub
         Dim pos As dsVorgaenge._buchvorgang_artikelRow = Buchvorgang_artikelBindingSource.Current.row
         If Not pos Is Nothing Then
             pos.MWST = Nothing
@@ -373,7 +395,7 @@ Public Class VorgangBar
             recalculatePosition()
         End If
     End Sub
- 
+
 
     'Private Sub Preis_BruttoTextBox_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Preis_BruttoTextBox.Validated
     '    recalculatePosition()
@@ -411,7 +433,12 @@ Public Class VorgangBar
         ModuleBuchVorgangForm.ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource, KundNrAdressenControl)
     End Sub
 
-
+    ''' <summary>
+    ''' Buttons aktivieren / deaktivieren je nach Rechnungsstatus
+    ''' </summary>
+    ''' <param name="neu">Button Neu aktivieren oder nicht</param>
+    ''' <param name="storno">Button Storno aktivieren oder nicht</param>
+    ''' <remarks></remarks>
     Sub setButtons(ByVal neu As Boolean, ByVal storno As Boolean)
         Dim vorgang As dsVorgaenge.buchvorgangRow = Nothing
         If Not BuchvorgangBindingSource.Current Is Nothing Then vorgang = BuchvorgangBindingSource.Current.row()
@@ -440,9 +467,14 @@ Public Class VorgangBar
             Me.GegebenBarTextbox.Enabled = False
         End If
 
-
     End Sub
 
+    ''' <summary>
+    ''' Event abfangen und prüfen ob dieEingabe mehr als die Rechnungssumme ist
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub GegebenBarTextbox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GegebenBarTextbox.TextChanged
         BuchvorgangBindingSource.EndEdit()
         Dim vorgang As dsVorgaenge.buchvorgangRow = BuchvorgangBindingSource.Current.row
@@ -453,4 +485,44 @@ Public Class VorgangBar
         End If
         setButtons(False, False)
     End Sub
+
+    ''' <summary>
+    ''' kopiert von msaccess intrasell
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub GegebenBar_AfterUpdate() Handles GegebenBarTextbox.Validated
+        Dim vorgang As dsVorgaenge.buchvorgangRow = BuchvorgangBindingSource.Current.row
+        Dim gegebenBar = Decimal.Parse(Me.GegebenBarTextbox.Text)
+        Dim summeATSPlusMWST As Decimal = vorgang.SummeBrutto
+        Dim Restgeld As Decimal
+
+        If gegebenBar >= summeATSPlusMWST Then
+            'Me.Restgeld = RoundUp(Me.GegebenBar - summeATSPlusMWST, 2)' bereits getan
+            setVorgangEigenschaft(BARGELD_GEGEBEN, FormatNumber(gegebenBar, 2))
+            setVorgangEigenschaft(BARGELD_RESTO, FormatNumber(RestgeldTextbox.Text, 2) & "")
+        Else
+            Restgeld = RoundUp(gegebenBar - summeATSPlusMWST, 2)
+            MsgBox("Der Betrag muss mehr als die Rechnungssumme sein! Es felt: " & Math.Abs(Restgeld))
+        End If
+
+    End Sub
+
+
+    Private Sub setVorgangEigenschaft(ByVal Name As String, ByVal Value As String)
+        'Nach Eingabe in den Eigenschaften speichern
+        Dim sql As String = "INSERT INTO buchVorgaengeEigenschaften ( VorgangTyp, Nummer, Name, [Value] )" & _
+              " VALUES( '" & Me.TypComboBox.SelectedValue & "', " & Me.NummerTextBox.Text & ", '" & Name & "', '" & Value & "') "
+        Call RunSQL(sql)
+    End Sub
+
+    Private Function getVorgangEigenschaft(ByVal Name As String)
+        'Nach Eingabe in den Eigenschaften speichern
+        Dim sql As String = "select [Value] from buchVorgaengeEigenschaften " & _
+              " WHERE VorgangTyp =  '" & Me.TypComboBox.SelectedValue & "' and Nummer =  " & Me.NummerTextBox.Text & " and Name =  '" & Name & "'"
+
+        Return firstRow(sql)
+
+    End Function
+
+
 End Class

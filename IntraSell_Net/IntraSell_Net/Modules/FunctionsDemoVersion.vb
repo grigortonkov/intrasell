@@ -18,12 +18,13 @@ Module FunctionsDemoVersion
     ' das programm erlaubt max MAX_POSSIBLE_RECHNUNGEN und MAX_POSSIBLE_KUNDEN
     '=========================================================
     Function IsDemoVersionOver() As Boolean
-        'TODO diese Funktion ist nicht notwendig
         Return False
+    End Function
+    'TODO diese Funktion ist nicht notwendig
+    Function IsDemoVersionOver_unused() As Boolean
 
         Dim rs As MySql.Data.MySqlClient.MySqlDataReader
-        Dim demoIsOver As Boolean
-        demoIsOver = False
+        Dim demoIsOver As Boolean = False
 
 
         rs = openRecordset("DEMOVERSION_COUNT_KUNDEN")
@@ -48,8 +49,7 @@ Module FunctionsDemoVersion
         End If
 
 
-        IsDemoVersionOver = demoIsOver
-
+        IsDemoVersionOver_unused = demoIsOver
 
         If demoIsOver Then
             MsgBox("Sorry! Diese Demoversion ist Abgelaufen! Sie werden höflichst " & _
