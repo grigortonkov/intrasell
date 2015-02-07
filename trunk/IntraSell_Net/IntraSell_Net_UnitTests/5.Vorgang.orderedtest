@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<OrderedTest name="6.vorgang" storage="d:\users\grigor\googledrive\business\intrasell_system\intrasell_net\intrasell_net_unittests\6.vorgang.orderedtest" id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<OrderedTest name="5.vorgang" storage="d:\users\grigor\googledrive\business\intrasell_system\intrasell_net\intrasell_net_unittests\5.vorgang.orderedtest" id="ee9818a6-d314-4e35-ad9c-35a65e7e9d7e" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Execution id="f2a407b0-eb18-4180-b32b-1765f8bb624c" />
   <TestLinks>
     <TestLink id="983457de-ab4f-7a0a-eeb5-2a27aa8680c8" name="VorgangVarsSetzen" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -25,5 +25,6 @@
     <TestLink id="7c9a2de7-08b7-009d-7ccc-5882a0236023" name="OpenAusdruck_inWord_XMLTest_LI" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="2d0fe0fb-e098-a157-1891-c7cbec875226" name="OpenAusdruck_inWord_OUTLOOK_XMLTest" storage="bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="a3c3bf85-ffd4-1033-7ff7-5bcfbc95fd47" name="VorgangBar_NeueBarrechnung" storage="..\..\..\..\..\..\..\tmp\intrasell_net_unittests\bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="9f9403cc-8ebe-200f-f61f-898d575e5db5" name="Vorgang_NeueRechnung" storage="..\..\..\..\..\..\..\tmp\intrasell_net_unittests\bin\debug\intrasell_net_unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </TestLinks>
 </OrderedTest>

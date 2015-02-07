@@ -888,7 +888,9 @@
     <None Include="Vorlagen\ksgroup\Vorlage_Angebot.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Vorlagen\ksgroup\Vorlage_Mailing.dot" />
+    <None Include="Vorlagen\ksgroup\Vorlage_Mailing.dot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Vorlagen\Vorlage_Mahnung.dot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -933,12 +935,12 @@
     <Content Include="Vorlagen\Vorlage_AuftragBestaetigung.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Vorlagen\Vorlage_Rechnung.txt">
+    <None Include="Vorlagen\Vorlage_Rechnung.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vorlagen\Vorlage_Rechnung_Gutschrift.txt">
+    </None>
+    <None Include="Vorlagen\Vorlage_Rechnung_Gutschrift.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

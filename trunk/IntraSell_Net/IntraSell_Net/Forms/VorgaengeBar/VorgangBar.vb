@@ -202,6 +202,7 @@ Public Class VorgangBar
                         Call lagerAusgang(getVorgang().Nummer, getVorgang().Typ, True)
                     End If
 
+
                     'If Me.txtVorgangType = "RE" Or Me.txtVorgangType = "RÜ" Then 'retourwaren oder rüestschein
                     '     Call lagerEingang(Me.Nummer, Me.txtVorgangType)
                     'End If
@@ -218,7 +219,8 @@ Public Class VorgangBar
                     Exit Sub
                 End Try
 
-                Me.AbgeschlossenCheckBox.Checked = True
+                RunSQL("update " & getVorgangTableForType(getVorgang().Typ) & " set abgeschlossen = -1 where Typ='" & getVorgang().Typ & "' and Nummer = " & getVorgang().Nummer)
+                'Me.AbgeschlossenCheckBox.Checked = True
                 setButtons(True, True)
             Else
                 MsgBox("Der Vorgang (Rechnung) wurde bereits abgeschlossen!", vbCritical)

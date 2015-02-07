@@ -18,6 +18,11 @@ Public Class Vorgang
         End Set
     End Property
 
+    Public Property _silent As Boolean = False
+    Public Sub setSilent(ByVal silent As Boolean)
+        _silent = silent
+    End Sub
+
     Private Function getVorgang() As dsVorgaenge.buchvorgangRow
         Dim vorgang As dsVorgaenge.buchvorgangRow = Nothing
         If Not BuchvorgangBindingSource.Current Is Nothing Then vorgang = BuchvorgangBindingSource.Current.row()
@@ -26,28 +31,28 @@ Public Class Vorgang
 
     Public Property summeNetto As Integer
         Get
-            Return Me.SummeTextBox.Text
+            Return getVorgang().Summe
         End Get
         Set(ByVal value As Integer)
-            Me.SummeTextBox.Text = value
+            getVorgang().Summe = value
         End Set
     End Property
 
     Public Property MWST As Integer
         Get
-            Return Me.SummeMWSTTextBox.Text
+            Return getVorgang().SummeMWST
         End Get
         Set(ByVal value As Integer)
-            Me.SummeMWSTTextBox.Text = value
+            getVorgang().SummeMWST = value
         End Set
     End Property
 
     Public Property summeBrutto As Integer
         Get
-            Return Me.SummeBruttoTextBox.Text
+            Return getVorgang().SummeBrutto
         End Get
         Set(ByVal value As Integer)
-            Me.SummeBruttoTextBox.Text = value
+            getVorgang().SummeBrutto = value
         End Set
     End Property
     '
@@ -83,8 +88,8 @@ Public Class Vorgang
     Sub LadeKundenSpezifischeDaten(ByVal comp As String)
 
         Dim IDNR As String = Me.KundNrAdressenControl.IDNR : If IDNR Is Nothing Then IDNR = "-1"
-        Dim VorgangNummer As String = Me.NummerTextBox.Text
-        Dim VorgangTyp As String = Me.TypComboBox.SelectedValue
+        Dim VorgangNummer As String = getVorgang().Nummer
+        Dim VorgangTyp As String = getVorgang().Typ
         If comp = "ZahlungsMethodeComboBox" Then
             FillComboBox(Me.ZahlungsMethodeComboBox, "SELECT Methode FROM `ofAdressen-Zahlungsmethoden` WHERE IdNr in (" & IDNR & ") " & _
                          " or IdNr in (select KundNr from buchVorgang where Typ='" & VorgangTyp & "' and nummer = " & VorgangNummer & ") ORDER BY Methode", "Methode")
@@ -161,8 +166,8 @@ Public Class Vorgang
 
     'setzte die Vorgangnummer für neue 
     Private Sub TypComboBox_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TypComboBox.Leave
-        If String.IsNullOrEmpty(Me.NummerTextBox.Text) Then
-            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(Me.TypComboBox.SelectedValue, Me.KundNrAdressenControl.IDNR)
+        If String.IsNullOrEmpty(getVorgang().Nummer) Then
+            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(getVorgang().Typ, getVorgang().KundNr)
             Me.DatumDateTimePicker.Value = DateTime.Now
         End If
     End Sub
@@ -206,10 +211,15 @@ Public Class Vorgang
     Public Sub BeginNewVorgang(ByVal VorgangTyp As String, ByVal KundNr As Integer)
         Try
             Me.BuchvorgangBindingSource.AddNew()
+            getVorgang().KundNr = KundNr
+            getVorgang().Typ = VorgangTyp
+            getVorgang().Nummer = IntraSellPreise.getNewVorgangNummer(VorgangTyp, KundNr)
+            getVorgang().Datum = DateTime.Today
+            getVorgang().MitarbeiterNr = ModuleGlobals.MitarbeiterID
 
             Me.KundNrAdressenControl.IDNR = KundNr
             Me.TypComboBox.SelectedValue = VorgangTyp
-            Me.NummerTextBox.Text = IntraSellPreise.getNewVorgangNummer(VorgangTyp, KundNr)
+            Me.NummerTextBox.Text = getVorgang().Nummer
             Me.DatumDateTimePicker.Value = DateTime.Today
             Me.MitarbeiterNrComboBox.IDNR = ModuleGlobals.MitarbeiterID
 
@@ -249,7 +259,7 @@ Public Class Vorgang
         Try
             'Start printing for the Vorgang 
             'OpenAusdruck_inWord(Me.TypComboBox.Text, Me.NummerTextBox.Text)
-            OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_WORD, False, Nothing)
+            OpenAusdruck_inWord_XML(getVorgang().Typ, getVorgang().Nummer, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_WORD, False, Nothing)
             Me.AusgedrucktCheckBox.Checked = True
         Catch ex As Exception
             HandleAppError(ex)
@@ -411,7 +421,7 @@ Public Class Vorgang
 
     Private Sub VorlagenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VorlagenToolStripMenuItem.Click
 
-        VorgangDruck.Init(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, Me.KundNrAdressenControl.IDNR)
+        VorgangDruck.Init(getVorgang().Typ, getVorgang().Nummer, getVorgang().KundNr)
         VorgangDruck.ShowDialog()
         VorgangDruck.Dispose()
     End Sub
@@ -419,7 +429,7 @@ Public Class Vorgang
 
     Private Sub SendeEmailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendeEmailToolStripMenuItem.Click
         'Call sendVorgang_Email(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text)
-        OpenAusdruck_inWord_XML(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
+        OpenAusdruck_inWord_XML(getVorgang().Typ, getVorgang().Nummer, DEFAULT_WORD_VORLAGE_VORGANG, ModuleBuchVorgangXML.VIEWER_OUTLOOK, False, Nothing)
 
     End Sub
 
@@ -696,7 +706,7 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub btnAbschliessen_Click()
-        If VorgangAbschliessen(Me.TypComboBox.SelectedValue, Me.NummerTextBox.Text) Then
+        If VorgangAbschliessen(getVorgang().Typ, getVorgang().Nummer, _silent) Then
             'Event einfügen
             Me.AbgeschlossenCheckBox.Checked = True
             EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
@@ -1370,7 +1380,6 @@ Public Class Vorgang
     Private Sub AddNewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddNewButton.Click
         Try
             If IsNull(KundNr) Or Me.KundNr <= 0 Then Exit Sub
-
             'Kundenform öffnen um weitere zu definieren
             Dim k As Kunden = New Kunden
             k.FilterBy("IDNR=" & Me.KundNr)
