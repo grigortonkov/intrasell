@@ -59,5 +59,14 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to d:\tmp\Intrasell_Net\bin\Debug\.
+        '''</summary>
+        Friend ReadOnly Property appPath() As String
+            Get
+                Return ResourceManager.GetString("appPath", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

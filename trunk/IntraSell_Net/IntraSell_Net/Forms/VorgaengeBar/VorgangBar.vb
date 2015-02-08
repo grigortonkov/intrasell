@@ -2,7 +2,7 @@
 Imports MySql.Data.MySqlClient
 
 Public Class VorgangBar
-    Inherits AbstractForm
+    Inherits AbstractVorgangForm
     Implements InterfacePrintable
 
     Const BARGELD_GEGEBEN = "Bargeld_gegeben"
@@ -21,13 +21,7 @@ Public Class VorgangBar
             'Me.AddNewButton.Enabled = KundNr > 0
         End Set
     End Property
-
-    Private Function getVorgang() As dsVorgaenge.buchvorgangRow
-        Dim vorgang As dsVorgaenge.buchvorgangRow = Nothing
-        If Not BuchvorgangBindingSource.Current Is Nothing Then vorgang = BuchvorgangBindingSource.Current.row()
-        Return vorgang
-    End Function
-
+ 
 
     ''' <summary>
     ''' Die Datensätze filtern
@@ -92,6 +86,8 @@ Public Class VorgangBar
     ''' <remarks></remarks>
     Private Sub VorgangBar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
+            setBuchvorgangBindingSource(BuchvorgangBindingSource)
+
             KundNr = VarValue_Default("RECHNUNG_BAR_KUNDNR", firstRow("select min(idnr) from ofAdressen"))
             Loading = True
             ds = DsVorgaenge
@@ -172,7 +168,7 @@ Public Class VorgangBar
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnStorno_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStorno.Click
-        If VorgangStorno(getVorgang().Typ, getVorgang().Nummer) Then
+        If VorgangStorno(getVorgang().Typ, getVorgang().Nummer, Silent) Then
             Me.Close()
         End If
     End Sub
@@ -392,12 +388,11 @@ Public Class VorgangBar
 #End Region
 
     Private Sub Recalculate()
-        ModuleBuchVorgangForm.Recalculate(Buchvorgang_artikelDataGridView, _
-                            getVorgang())
+        _Recalculate(Buchvorgang_artikelDataGridView, getVorgang())
     End Sub
 
     Private Sub ArtNr_CalculatePreis()
-        ModuleBuchVorgangForm.ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource, KundNrAdressenControl)
+        _ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource)
     End Sub
 
 

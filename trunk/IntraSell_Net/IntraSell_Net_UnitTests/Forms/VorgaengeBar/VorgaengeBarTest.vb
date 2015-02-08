@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports IntraSell_Net
-
+Imports IntraSell_DLL
 
 
 '''<summary>
@@ -64,6 +64,7 @@ Public Class VorgaengeBarTest
     Public Sub VorgangBar_NeueBarrechnung()
         Debug.Print("Start VorgangBar_NeueBarrechnung")
         Dim target As VorgangBar_Accessor = New VorgangBar_Accessor()
+        target.Silent = True
 
         Dim sender As Object = Nothing ' TODO: Initialize to an appropriate value
         Dim e As EventArgs = Nothing ' TODO: Initialize to an appropriate value
@@ -79,8 +80,67 @@ Public Class VorgaengeBarTest
         Debug.Print("Creating Barrechnung: " & target.NummerTextBox.Text)
         target.btnAbschliessen_Click(sender, e) 'Vorgang Abschliessen
 
-        Assert.AreEqual("", target.GegebenBarTextbox.Text) 'clear again
-        Assert.AreEqual("", target.RestgeldTextbox.Text) 'clear again
+        Assert.AreEqual("200", target.GegebenBarTextbox.Text) 'clear again
+        Assert.AreEqual("€ 78,80", target.RestgeldTextbox.Text) 'clear again
         'Assert.Inconclusive("A method that does not return a value cannot be verified.")
     End Sub
+
+    '''<summary>
+    '''A test for BindingNavigatorAddNewItem_Click
+    '''</summary>
+    <TestMethod(), _
+     DeploymentItem("IntraSell_Net.exe")> _
+    Public Sub VorgangBar_NeueBarrechnung_Storno()
+        Debug.Print("Start VorgangBar_NeueBarrechnung")
+        Dim target As VorgangBar_Accessor = New VorgangBar_Accessor()
+        target.Silent = True
+        Dim sender As Object = Nothing
+        Dim e As EventArgs = Nothing
+
+        target.VorgangBar_Load(sender, e) 'load
+
+        target.btnNeu_Click(sender, e) 'Start new 
+
+        'Artikel 1 
+        target.ArtikelControl1.ArtNr = 100
+        target.ArtNr_Changed(target.ArtikelControl1.ArtNr) 'add new position 
+        Assert.AreEqual(New Decimal(101.0), target.summeNetto)
+        Assert.AreEqual(New Decimal(121.2), target.summeBrutto)
+
+
+        'Artikel 2 
+        target.btnNeuePosition_Click(Nothing, Nothing)
+        target.ArtikelControl1.ArtNr = 101
+        target.ArtNr_Changed(target.ArtikelControl1.ArtNr) 'add new position 
+        Assert.AreEqual(New Decimal(111.0), target.summeNetto)
+        Assert.AreEqual(New Decimal(133.2), target.summeBrutto)
+
+
+        'Artikel 3
+        target.btnNeuePosition_Click(Nothing, Nothing)
+        target.ArtikelControl1.ArtNr = 102
+        target.ArtNr_Changed(target.ArtikelControl1.ArtNr) 'add new position 
+        'target.btnNeuePosition_Click(Nothing, Nothing)
+        Assert.AreEqual(New Decimal(131.0), target.summeNetto)
+        Assert.AreEqual(New Decimal(157.2), target.summeBrutto)
+
+        target.GegebenBarTextbox.Text = 200
+        Assert.AreEqual("€ 42,80", target.RestgeldTextbox.Text)
+        Debug.Print("Creating Barrechnung: " & target.NummerTextBox.Text)
+        target.btnAbschliessen_Click(sender, e) 'Vorgang Abschliessen
+
+        Assert.AreEqual("200", target.GegebenBarTextbox.Text) 'clear again
+        Assert.AreEqual("€ 42,80", target.RestgeldTextbox.Text) 'clear again
+        'Assert.Inconclusive("A method that does not return a value cannot be verified.")
+        Dim nummer = target.getVorgang().Nummer
+
+        target.btnStorno_Click(Nothing, Nothing)
+        'pruefe dass Vorgang nichtmehr exisitiert 
+
+        Dim r As Object = ModuleCommons.RunSQL("select nummer from buchVorgang where nummer=" & nummer)
+        Assert.AreEqual(Nothing, r)
+
+
+    End Sub
+
 End Class

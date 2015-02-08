@@ -68,10 +68,11 @@ Module Functions
     'End Function
 
 
-    ''Takes the current app folder
+    'returns the current app folder
     Public Function AppFolder() As String
         Return GetAppPath()
     End Function
+    'used in ms access. Kept for compatibility reasons.
     Public Function DbFolder() As String
         Return GetAppPath()
     End Function
