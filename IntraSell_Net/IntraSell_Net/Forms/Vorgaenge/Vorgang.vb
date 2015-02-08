@@ -2,7 +2,7 @@
 Imports MySql.Data.MySqlClient
 
 Public Class Vorgang
-    Inherits AbstractForm
+    Inherits AbstractVorgangForm
     Implements InterfacePrintable
  
 
@@ -18,45 +18,8 @@ Public Class Vorgang
         End Set
     End Property
 
-    Public Property _silent As Boolean = False
-    Public Sub setSilent(ByVal silent As Boolean)
-        _silent = silent
-    End Sub
-
-    Private Function getVorgang() As dsVorgaenge.buchvorgangRow
-        Dim vorgang As dsVorgaenge.buchvorgangRow = Nothing
-        If Not BuchvorgangBindingSource.Current Is Nothing Then vorgang = BuchvorgangBindingSource.Current.row()
-        Return vorgang
-    End Function
-
-    Public Property summeNetto As Integer
-        Get
-            Return getVorgang().Summe
-        End Get
-        Set(ByVal value As Integer)
-            getVorgang().Summe = value
-        End Set
-    End Property
-
-    Public Property MWST As Integer
-        Get
-            Return getVorgang().SummeMWST
-        End Get
-        Set(ByVal value As Integer)
-            getVorgang().SummeMWST = value
-        End Set
-    End Property
-
-    Public Property summeBrutto As Integer
-        Get
-            Return getVorgang().SummeBrutto
-        End Get
-        Set(ByVal value As Integer)
-            getVorgang().SummeBrutto = value
-        End Set
-    End Property
-    '
-
+  
+ 
 
     'Die Datensätze filtern
     Public Sub FilterBy(ByVal Expression As String)
@@ -108,6 +71,7 @@ Public Class Vorgang
     Private Sub Vorgang_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
+            setBuchvorgangBindingSource(BuchvorgangBindingSource)
             Loading = True
             ds = DsVorgaenge
             Me.KundNrAdressenControl.ShowAddNew = True
@@ -341,7 +305,7 @@ Public Class Vorgang
 
             If Buchvorgang_artikelDataGridView.Columns(e.ColumnIndex).HeaderText = "Bezeichnung" Then
 
-                bezeichnung_afterupdate(r.Cells(ModuleBuchVorgangForm.COL_BEZEICHNUNG_INDEX), _
+                bezeichnung_afterupdate(r.Cells(COL_BEZEICHNUNG_INDEX), _
                                         r.Cells(COL_ARTNR_COMBO_INDEX), _
                                         r.Cells(COL_ARTNR_INDEX))
 
@@ -706,7 +670,7 @@ Public Class Vorgang
     '    End Sub
 
     Private Sub btnAbschliessen_Click()
-        If VorgangAbschliessen(getVorgang().Typ, getVorgang().Nummer, _silent) Then
+        If VorgangAbschliessen(getVorgang().Typ, getVorgang().Nummer, Silent) Then
             'Event einfügen
             Me.AbgeschlossenCheckBox.Checked = True
             EventErstellen("Mitarbeiter " & ModuleGlobals.MitarbeiterID & " hat eine Rechnung für " & summeNetto & " € abgeschloßen.")
@@ -1461,12 +1425,12 @@ Public Class Vorgang
 #End Region
 
     Private Sub Recalculate()
-        ModuleBuchVorgangForm.Recalculate(Buchvorgang_artikelDataGridView, _
+        _Recalculate(Buchvorgang_artikelDataGridView, _
                             getVorgang())
     End Sub
 
     Private Sub ArtNr_CalculatePreis()
-        ModuleBuchVorgangForm.ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource, KundNrAdressenControl)
+        _ArtNr_CalculatePreis(Buchvorgang_artikelBindingSource)
     End Sub
 
 End Class

@@ -67,7 +67,7 @@ Public Class VorgaengeTest
 
         Dim sender As Object = Nothing
         Dim e As EventArgs = Nothing
-        target.setSilent(True)
+        target.Silent = True
         target.Vorgang_Load(sender, e) 'load
 
         target.BeginNewVorgang("AR", "100") 'Start new 
