@@ -1,6 +1,6 @@
 #summary IntraSell kann die Vorgänge als PDF exportieren.
 
-= Introduction =
+= Einführung =
  
 Mit dieser Funktion können Sie die die Rechnungen, Lieferscheine etc. als PDF Dateien exportieren. 
 Die Funktion ist im Vorgangsformular verfügbar. 
