@@ -631,6 +631,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Artikel\Einheiten.resx">
       <DependentUpon>Einheiten.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Stammdaten\Land.resx">
       <DependentUpon>Land.vb</DependentUpon>
