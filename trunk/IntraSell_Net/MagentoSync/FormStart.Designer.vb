@@ -58,6 +58,7 @@ Partial Class FormStart
         Me.btnTest2 = New System.Windows.Forms.Button()
         Me.btnExportISEvents = New System.Windows.Forms.Button()
         Me.TimerISEvents = New System.Windows.Forms.Timer(Me.components)
+        Me.cbNextEAN = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -195,7 +196,7 @@ Partial Class FormStart
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(341, 74)
+        Me.Label4.Location = New System.Drawing.Point(298, 74)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 13)
         Me.Label4.TabIndex = 16
@@ -203,16 +204,16 @@ Partial Class FormStart
         '
         'txtEAN
         '
-        Me.txtEAN.Location = New System.Drawing.Point(224, 70)
+        Me.txtEAN.Location = New System.Drawing.Point(247, 70)
         Me.txtEAN.Name = "txtEAN"
-        Me.txtEAN.Size = New System.Drawing.Size(101, 20)
+        Me.txtEAN.Size = New System.Drawing.Size(45, 20)
         Me.txtEAN.TabIndex = 15
         Me.txtEAN.Text = "D026"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(176, 73)
+        Me.Label5.Location = New System.Drawing.Point(212, 74)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 13)
         Me.Label5.TabIndex = 14
@@ -225,7 +226,7 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(118, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.0.4, 25.01.2015"
+        Me.Label6.Text = "Vers. 1.0.4. 13.03.2015"
         '
         'btnExportLagerstand
         '
@@ -274,9 +275,9 @@ Partial Class FormStart
         Me.cbEnglish.AutoSize = True
         Me.cbEnglish.Location = New System.Drawing.Point(428, 72)
         Me.cbEnglish.Name = "cbEnglish"
-        Me.cbEnglish.Size = New System.Drawing.Size(102, 17)
+        Me.cbEnglish.Size = New System.Drawing.Size(91, 17)
         Me.cbEnglish.TabIndex = 22
-        Me.cbEnglish.Text = "export in english"
+        Me.cbEnglish.Text = "export english"
         Me.cbEnglish.UseVisualStyleBackColor = True
         '
         'TimerAuftragstatus2Magento
@@ -291,8 +292,6 @@ Partial Class FormStart
         'cbPics
         '
         Me.cbPics.AutoSize = True
-        Me.cbPics.Checked = True
-        Me.cbPics.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbPics.Location = New System.Drawing.Point(733, 72)
         Me.cbPics.Name = "cbPics"
         Me.cbPics.Size = New System.Drawing.Size(77, 17)
@@ -307,9 +306,9 @@ Partial Class FormStart
         Me.cbPrices.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbPrices.Location = New System.Drawing.Point(538, 73)
         Me.cbPrices.Name = "cbPrices"
-        Me.cbPrices.Size = New System.Drawing.Size(97, 17)
+        Me.cbPrices.Size = New System.Drawing.Size(86, 17)
         Me.cbPrices.TabIndex = 24
-        Me.cbPrices.Text = "export in prices"
+        Me.cbPrices.Text = "export prices"
         Me.cbPrices.UseVisualStyleBackColor = True
         '
         'cbLinkCats
@@ -352,14 +351,26 @@ Partial Class FormStart
         '
         'TimerISEvents
         '
+        Me.TimerISEvents.Enabled = True
         Me.TimerISEvents.Interval = 90000
+        '
+        'cbNextEAN
+        '
+        Me.cbNextEAN.AutoSize = True
+        Me.cbNextEAN.Location = New System.Drawing.Point(170, 71)
+        Me.cbNextEAN.Name = "cbNextEAN"
+        Me.cbNextEAN.Size = New System.Drawing.Size(32, 17)
+        Me.cbNextEAN.TabIndex = 29
+        Me.cbNextEAN.Text = ">"
+        Me.cbNextEAN.UseVisualStyleBackColor = True
         '
         'FormStart
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Khaki
+        Me.BackColor = System.Drawing.Color.Gray
         Me.ClientSize = New System.Drawing.Size(1088, 535)
+        Me.Controls.Add(Me.cbNextEAN)
         Me.Controls.Add(Me.btnExportISEvents)
         Me.Controls.Add(Me.btnTest2)
         Me.Controls.Add(Me.btnTest)
@@ -430,5 +441,6 @@ Partial Class FormStart
     Friend WithEvents btnTest2 As System.Windows.Forms.Button
     Friend WithEvents btnExportISEvents As System.Windows.Forms.Button
     Friend WithEvents TimerISEvents As System.Windows.Forms.Timer
+    Friend WithEvents cbNextEAN As System.Windows.Forms.CheckBox
 
 End Class

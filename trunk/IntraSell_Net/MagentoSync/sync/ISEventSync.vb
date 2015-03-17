@@ -26,12 +26,12 @@
             reader.SelectCommand = New Global.MySql.Data.MySqlClient.MySqlCommand
             reader.SelectCommand.Connection = intrasell.MySQLConn
 
-            reader.SelectCommand.CommandText = "select count(*) from magento_export order by timestamp"
+            reader.SelectCommand.CommandText = "select count(*) from magento_export order by timestamp limit 10"
 
 
             Dim allCount = reader.SelectCommand.ExecuteScalar
 
-            reader.SelectCommand.CommandText = "select * from magento_export order by timestamp"
+            reader.SelectCommand.CommandText = "select max(id) as LastId,  table_name, key_name, key_value  from magento_export group by table_name, key_name, key_value limit 10"
 
 
             Dim obj = reader.SelectCommand.ExecuteReader()
@@ -41,10 +41,12 @@
             Dim orderSync = New OrderSync
 
             While obj.Read
-                lastId = obj.Item("id")
+                lastId = obj.Item("LastId")
                 counter = counter + 1
                 ModuleLog.Log("Export event for table:" + obj.Item("table_name") & " key:" & obj.Item("key_name") & " value:" & obj.Item("key_value"))
+                Try
 
+               
                 If obj.Item("table_name") = "ofAdressen" Then
                     custSync.InitialExportAllIntraSellCustomers(obj.Item("key_value"))
                 ElseIf obj.Item("table_name") = "buchRechnung" Then
@@ -53,6 +55,10 @@
                         orderSync.ExportOrderStatus(Nothing, woherAuftrag.Replace("AU", ""))
                     End If
                 End If
+
+                Catch ex As Exception
+                    ModuleLog.Log(ex)
+                End Try
                 'update form 
                 FormStart.setProgress(counter / allCount)
             End While

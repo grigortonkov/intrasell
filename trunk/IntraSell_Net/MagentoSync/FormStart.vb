@@ -11,31 +11,48 @@ Public Class FormStart
     ''' </summary>
     ''' <param name="logline"></param>
     ''' <remarks></remarks>
-    Sub pushLog(logline As String)
-        logBuffer = logline & vbNewLine & logBuffer
+    Sub pushLog(ByVal logline As String)
+        Try
+
+            logBuffer = logline & vbNewLine & logBuffer
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
-    Sub setProgress(newValue As Decimal)
-        progress = newValue
+    Sub setProgress(ByVal newValue As Decimal)
+        Try
+
+            progress = newValue
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub FormStart_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        ModuleLog.Init()
-        ModuleLog.Log("Start")
+    Private Sub FormStart_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Try
 
-        Me.DateTimePickerOrdersSince.Value = Today
+            ModuleLog.Init()
+            ModuleLog.Log("Start")
 
-        If IsNumeric(My.MySettings.Default.SyncIntervalSeconds) Then
-            If 1 * (My.MySettings.Default.SyncIntervalSeconds) > 0 Then
-                ModuleLog.Log("Timer job enabled every " + My.MySettings.Default.SyncIntervalSeconds + " seconds")
-                TimerSync.Interval = My.MySettings.Default.SyncIntervalSeconds * 1000
-                TimerSync.Enabled = True
+            Me.DateTimePickerOrdersSince.Value = Today
+
+            If IsNumeric(My.MySettings.Default.SyncIntervalSeconds) Then
+                If 1 * (My.MySettings.Default.SyncIntervalSeconds) > 0 Then
+                    ModuleLog.Log("Timer job enabled every " + My.MySettings.Default.SyncIntervalSeconds + " seconds")
+                    TimerSync.Interval = My.MySettings.Default.SyncIntervalSeconds * 1000
+                    TimerSync.Enabled = True
+                End If
+
+            Else
+                ModuleLog.Log("Timer job disabled")
+                TimerSync.Enabled = False
             End If
-
-        Else
-            ModuleLog.Log("Timer job disabled")
-            TimerSync.Enabled = False
-        End If
-
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub btnCheckMagento_Click(sender As System.Object, e As System.EventArgs) Handles btnCheckMagento.Click
@@ -63,11 +80,15 @@ Public Class FormStart
 
 #Region "Kunden"
     Public Sub Sync()
-      
-        trd = New Thread(AddressOf SyncThread)
-        trd.IsBackground = True
-        trd.Start()
-
+        Try
+            trd = New Thread(AddressOf SyncThread)
+            trd.Name = "Sync"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub SyncThread()
@@ -95,59 +116,117 @@ Public Class FormStart
         Loop
     End Sub
 
-    Private Sub btnMagento2ISKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnMagento2ISKunden.Click
-        trd = New Thread(AddressOf ThreadTask_btnMagento2ISKunden_Click)
-        trd.IsBackground = True
-        trd.Start()
+    Private Sub btnMagento2ISKunden_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMagento2ISKunden.Click
+        Try
+
+            trd = New Thread(AddressOf ThreadTask_btnMagento2ISKunden_Click)
+            trd.Name = "Magento2ISKunden"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub ThreadTask_btnMagento2ISKunden_Click()
-        Dim customerS As CustomerSync = New CustomerSync
-        customerS.ImportNewMagentoCustomers(Me.DateTimePickerOrdersSince.Value)
+        Try
+            Dim customerS As CustomerSync = New CustomerSync
+            customerS.ImportNewMagentoCustomers(Me.DateTimePickerOrdersSince.Value)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub btnKunden_Click(sender As System.Object, e As System.EventArgs) Handles btnKunden.Click
-        trd = New Thread(AddressOf ThreadTask_Kunden)
-        trd.IsBackground = True
-        trd.Start()
+    Private Sub btnKunden_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnKunden.Click
+        Try
+
+            trd = New Thread(AddressOf ThreadTask_Kunden)
+            trd.Name = "ExportKunden"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub ThreadTask_Kunden()
-        Dim exp As CustomerSync = New CustomerSync
-        exp.InitialExportAllIntraSellCustomers(Me.txtIDNR.Text)
+        Try
+            Dim exp As CustomerSync = New CustomerSync
+            exp.InitialExportAllIntraSellCustomers(Me.txtIDNR.Text)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
 #End Region
 
 #Region "Kategorien&Podukte"
-    Private Sub btnExportKategorien_Click(sender As System.Object, e As System.EventArgs) Handles btnExportKategorien.Click
-        trd = New Thread(AddressOf ThreadTask_btnExportKategorien_Click)
-        trd.IsBackground = True
-        trd.Start()
+    Private Sub btnExportKategorien_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportKategorien.Click
+        Try
+
+            trd = New Thread(AddressOf ThreadTask_btnExportKategorien_Click)
+            trd.Name = "ExportKategorien"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
     Private Sub ThreadTask_btnExportKategorien_Click()
-        Dim exp As CatalogSync = New CatalogSync
-        exp.InitialExportAllCategories(Me.cbEnglish.Checked)
+        Try
+            Dim exp As CatalogSync = New CatalogSync
+            exp.InitialExportAllCategories(Me.cbEnglish.Checked)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub btnExportProducts_Click(sender As System.Object, e As System.EventArgs) Handles btnExportProducts.Click
-        trd = New Thread(AddressOf ThreadTask_btnExportProducts_Click)
-        trd.IsBackground = True
-        trd.Start()
+    Private Sub btnExportProducts_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportProducts.Click
+        Try
+            trd = New Thread(AddressOf ThreadTask_btnExportProducts_Click)
+            trd.Name = "ExportProducts"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
     Private Sub ThreadTask_btnExportProducts_Click()
-        Dim exp As CatalogSync = New CatalogSync
-        exp.InitialExportAllProducts(Me.txtEAN.Text, Me.cbEnglish.Checked, Me.cbPics.Checked, Me.cbPrices.Checked, Me.cbLinkCats.Checked)
+        Try
+            Dim exp As CatalogSync = New CatalogSync
+            exp.InitialExportAllProducts(Me.txtEAN.Text, Me.cbEnglish.Checked, Me.cbPics.Checked, Me.cbPrices.Checked, Me.cbLinkCats.Checked, Me.cbNextEAN.Checked)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub btnExportLagerstand_Click(sender As System.Object, e As System.EventArgs) Handles btnExportLagerstand.Click
-        trd = New Thread(AddressOf ThreadTask_btnExportLagerstand_Click)
-        trd.IsBackground = True
-        trd.Start()
+    Private Sub btnExportLagerstand_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportLagerstand.Click
+        Try
+            trd = New Thread(AddressOf ThreadTask_btnExportLagerstand_Click)
+            trd.Name = "ExportLagerstand"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
     Private Sub ThreadTask_btnExportLagerstand_Click()
-        Dim exp As CatalogSync = New CatalogSync
-        exp.ExportProductLagerstand(Me.txtEAN.Text)
+        Try
+            Dim exp As CatalogSync = New CatalogSync
+            exp.ExportProductLagerstand(Me.txtEAN.Text)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
 #End Region
@@ -155,23 +234,35 @@ Public Class FormStart
 #Region "Orders"
 
     Private Sub btnExportOrderStatus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportOrderStatus.Click
-        Dim trd = New Thread(AddressOf ThreadTask_ExportOrderStatus)
-        trd.IsBackground = True
-        trd.Start()
+        Try
+            Dim trd = New Thread(AddressOf ThreadTask_ExportOrderStatus)
+            trd.Name = "ExportOrderStatus"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub btnImportOrders_Click(sender As System.Object, e As System.EventArgs) Handles btnImportOrders.Click
     
         Dim trd = New Thread(AddressOf ThreadTask_btnImportOrders_Click)
+        trd.Name = "ImportOrders"
         trd.IsBackground = True
         trd.Start()
         'Me.btnImportOrders.Enabled = False
     End Sub
 
     Sub ThreadTask_btnImportOrders_Click()
-        Dim exp As OrderSync = New OrderSync
-        exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value.AddHours(-2)) 'HACK: um die GMT umzugehen in magento 
-        'btn.Enabled = True
+        Try
+            Dim exp As OrderSync = New OrderSync
+            exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value.AddHours(-2)) 'HACK: um die GMT umzugehen in magento 
+            'btn.Enabled = True
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
 
@@ -188,29 +279,49 @@ Public Class FormStart
 
 
     Sub ThreadTask_ExportOrderStatus()
-        Dim exp As OrderSync = New OrderSync
-        exp.ExportOrderStatus(Me.DateTimePickerOrdersSince.Value)
-        'btn.Enabled = True
+        Try
+            Dim exp As OrderSync = New OrderSync
+            exp.ExportOrderStatus(Me.DateTimePickerOrdersSince.Value)
+            'btn.Enabled = True
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 #End Region
 
 #Region "Timers"
     Private Sub TimerSync_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerSync.Tick
-        Me.DateTimePickerOrdersSince.Value = Today
+        Try
+            Me.DateTimePickerOrdersSince.Value = Today
 
-        'Magento Orders
-        btnImportOrders_Click(Nothing, Nothing)
-        'Magento Kunden
-        btnMagento2ISKunden_Click(Nothing, Nothing)
+            'Magento Orders
+            btnImportOrders_Click(Nothing, Nothing)
+            'Magento Kunden
+            btnMagento2ISKunden_Click(Nothing, Nothing)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub TimerAuftragstatus2Magento_Tick(sender As System.Object, e As System.EventArgs) Handles TimerAuftragstatus2Magento.Tick
-        'Order Status 
-        btnExportOrderStatus_Click(Nothing, Nothing)
+    Private Sub TimerAuftragstatus2Magento_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerAuftragstatus2Magento.Tick
+        Try
+            'Order Status 
+            btnExportOrderStatus_Click(Nothing, Nothing)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
-    Private Sub TimerLager_Tick(sender As System.Object, e As System.EventArgs) Handles TimerLager.Tick
-        btnExportLagerstand_Click(Nothing, Nothing)
+    Private Sub TimerLager_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerLager.Tick
+        Try
+            btnExportLagerstand_Click(Nothing, Nothing)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     ''' <summary>
@@ -220,33 +331,49 @@ Public Class FormStart
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerInterface.Tick
+        Try
+            'update log 
+            If Len(logBuffer) > 0 Then
+                Me.txtLog.Text = logBuffer + Me.txtLog.Text
+                logBuffer = ""
+            End If
 
-        'update log 
-        If Len(logBuffer) > 0 Then
-            Me.txtLog.Text = logBuffer + Me.txtLog.Text
-            logBuffer = ""
-        End If
 
+            ProgressBar1.Value = ProgressBar1.Maximum * progress
+            'If ProgressBar1.Value < ProgressBar1.Maximum Then
+            'ProgressBar1.Value = ProgressBar1.Value + ProgressBar1.Step
+            'Else
+            'ProgressBar1.Value = 0
+            'End If
 
-        ProgressBar1.Value = ProgressBar1.Maximum * progress
-        'If ProgressBar1.Value < ProgressBar1.Maximum Then
-        'ProgressBar1.Value = ProgressBar1.Value + ProgressBar1.Step
-        'Else
-        'ProgressBar1.Value = 0
-        'End If
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
 #End Region
 
 #Region "Events"
     Private Sub TimerISEvents_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerISEvents.Tick
-        btnExportISEvents_Click(Nothing, Nothing)
+        Try
+            btnExportISEvents_Click(Nothing, Nothing)
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     Private Sub btnExportISEvents_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportISEvents.Click
-        Dim trd = New Thread(AddressOf ThreadTask_ExportISEvents)
-        trd.IsBackground = True
-        trd.Start()
+        Try
+            Dim trd = New Thread(AddressOf ThreadTask_ExportISEvents)
+            trd.Name = "ExportISEvents"
+            trd.IsBackground = True
+            trd.Start()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 
     ''' <summary>
@@ -254,8 +381,13 @@ Public Class FormStart
     ''' </summary>
     ''' <remarks></remarks>
     Sub ThreadTask_ExportISEvents()
-        Dim exporter = New ISEventSync
-        exporter.ExportAllEvents()
+        Try
+            Dim exporter = New ISEventSync
+            exporter.ExportAllEvents()
+        Catch ex As Exception
+            ModuleLog.Log(ex)
+            Me.lblMagentoConn.BackColor = Color.Red
+        End Try
     End Sub
 #End Region
 
