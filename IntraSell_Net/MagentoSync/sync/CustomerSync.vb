@@ -45,56 +45,61 @@ Public Class CustomerSync
                 counter = 1 + counter
                 If Not ISCustomer.IsEmailNull Then
                     ModuleLog.Log("Export IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                    Try
 
-                    'export to magento 
-                    Dim magentoCustomer = New MagentoSync.MagentoSyncService.customerCustomerEntityToCreate
-                    magentoCustomer.customer_id = ISCustomer.IDNR
-                    If Not ISCustomer.IsVornameNull Then magentoCustomer.firstname = ISCustomer.Vorname
-                    If Not ISCustomer.IsNameNull Then magentoCustomer.lastname = ISCustomer.Name
+                        'export to magento 
+                        Dim magentoCustomer = New MagentoSync.MagentoSyncService.customerCustomerEntityToCreate
+                        magentoCustomer.customer_id = ISCustomer.IDNR
+                        If Not ISCustomer.IsVornameNull Then magentoCustomer.firstname = ISCustomer.Vorname
+                        If Not ISCustomer.IsNameNull Then magentoCustomer.lastname = ISCustomer.Name
 
-                    'uid nummer 
-                    If Not ISCustomer.IsUIDNull Then magentoCustomer.taxvat = ISCustomer.UID
+                        'uid nummer 
+                        If Not ISCustomer.IsUIDNull Then magentoCustomer.taxvat = ISCustomer.UID
 
-                    If Not ISCustomer.IsEmailNull Then magentoCustomer.email = ISCustomer.Email
-                    If Not ISCustomer.IsPasswortNull Then
-                        If ISCustomer.Passwort.Length >= 6 Then
-                            magentoCustomer.password = ISCustomer.Passwort
+                        If Not ISCustomer.IsEmailNull Then magentoCustomer.email = ISCustomer.Email
+                        If Not ISCustomer.IsPasswortNull Then
+                            If ISCustomer.Passwort.Length >= 6 Then
+                                magentoCustomer.password = ISCustomer.Passwort
+                            Else
+                                magentoCustomer.password = "asdfgh" & ISCustomer.Passwort
+                            End If
                         Else
-                            magentoCustomer.password = "asdfgh" & ISCustomer.Passwort
+                            magentoCustomer.password = "asdf" & (ISCustomer.IDNR * 2 + 4000000) 'something 
                         End If
-                    Else
-                        magentoCustomer.password = "asdf" & (ISCustomer.IDNR * 2 + 4000000) 'something 
-                    End If
 
-                    Dim preisliste = intrasell.vars.firstRow("select Preisliste from `ofAdressen-Settings` where idnr = " & ISCustomer.IDNR)
+                        Dim preisliste = intrasell.vars.firstRow("select Preisliste from `ofAdressen-Settings` where idnr = " & ISCustomer.IDNR)
 
-                    magentoCustomer.group_id = MagentoUtils.getMagentoCustomerGroup(preisliste).customer_group_id
-                    magentoCustomer.group_idSpecified = True
-                    magentoCustomer.website_id = getMagentoStoreForMandant(ISCustomer.mandant).website_id ' '1-prospro, 2-arfaian
-                    magentoCustomer.website_idSpecified = True
+                        magentoCustomer.group_id = MagentoUtils.getMagentoCustomerGroup(preisliste).customer_group_id
+                        magentoCustomer.group_idSpecified = True
+                        magentoCustomer.website_id = getMagentoStoreForMandant(ISCustomer.mandant).website_id ' '1-prospro, 2-arfaian
+                        magentoCustomer.website_idSpecified = True
 
 
-                    Dim filter As filters = New filters
-                    ReDim filter.complex_filter(1)
-                    filter.complex_filter(0) = New complexFilter
-                    filter.complex_filter(0).key = "Email"
-                    filter.complex_filter(0).value = New associativeEntity()
-                    filter.complex_filter(0).value.key = "eq"
-                    filter.complex_filter(0).value.value = ISCustomer.Email 
+                        Dim filter As filters = New filters
+                        ReDim filter.complex_filter(1)
+                        filter.complex_filter(0) = New complexFilter
+                        filter.complex_filter(0).key = "Email"
+                        filter.complex_filter(0).value = New associativeEntity()
+                        filter.complex_filter(0).value.key = "eq"
+                        filter.complex_filter(0).value.value = ISCustomer.Email
 
-                    Dim found As customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, filter)
-                    If found.Length = 0 Then 'Create
-                        ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
-                        Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
-                        createAddresses(taWeitere, dataWeitere, ISCustomer, customerId, False)
-                        ModuleLog.Log("Create DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
-                    Else 'Update
-                        ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
-                        ModuleLog.Log("customer update")
-                        magento.client.customerCustomerUpdate(magento.sessionid, found(0).customer_id, magentoCustomer)
-                        createAddresses(taWeitere, dataWeitere, ISCustomer, found(0).customer_id, True)
-                        ModuleLog.Log("Update DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
-                    End If
+                        Dim found As customerCustomerEntity() = magento.client.customerCustomerList(magento.sessionid, filter)
+                        If found.Length = 0 Then 'Create
+                            ModuleLog.Log("customerCustomerCreate IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                            Dim customerId = magento.client.customerCustomerCreate(magento.sessionid, magentoCustomer)
+                            createAddresses(taWeitere, dataWeitere, ISCustomer, customerId, False)
+                            ModuleLog.Log("Create DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                        Else 'Update
+                            ModuleLog.Log("customer with this email already exists IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                            ModuleLog.Log("customer update")
+                            magento.client.customerCustomerUpdate(magento.sessionid, found(0).customer_id, magentoCustomer)
+                            createAddresses(taWeitere, dataWeitere, ISCustomer, found(0).customer_id, True)
+                            ModuleLog.Log("Update DONE IDNR=" & ISCustomer.IDNR & " and Email=" & ISCustomer.Email)
+                        End If
+
+                    Catch ex As Exception
+                        ModuleLog.Log(ex)
+                    End Try
                 Else
                     ModuleLog.Log("customer with IDNR=" & ISCustomer.IDNR & " has no email")
                 End If

@@ -134,11 +134,12 @@ Public Class CatalogSync
     End Function
 
 
-    Public Sub InitialExportAllProducts(Optional justEAN As String = Nothing, _
-                                        Optional inEnglish As Boolean = False, _
-                                        Optional exportPicture As Boolean = True, _
-                                        Optional exportPrices As Boolean = True, _
-                                          Optional linkCats As Boolean = True)
+    Public Sub InitialExportAllProducts(Optional ByVal justEAN As String = Nothing, _
+                                        Optional ByVal inEnglish As Boolean = False, _
+                                        Optional ByVal exportPicture As Boolean = True, _
+                                        Optional ByVal exportPrices As Boolean = True, _
+                                        Optional ByVal linkCats As Boolean = True, _
+                                        Optional ByVal biggerEAN As Boolean = False)
         'export all products from intrasell to magento 
         Try
             FormStart.setProgress(0)
@@ -148,7 +149,7 @@ Public Class CatalogSync
             Dim data As dsArtikel.grartikelDataTable = New dsArtikel.grartikelDataTable
             ta.Connection.ConnectionString = MagentoSync.My.MySettings.Default.intrasell_daten_2ConnectionString
 
-            If IsNothing(justEAN) Or justEAN = "" Then
+            If IsNothing(justEAN) Or justEAN = "" Or biggerEAN Then
                 ta.Fill(data)
             Else
                 ta.FillByEAN(data, justEAN)
@@ -181,135 +182,146 @@ Public Class CatalogSync
             Dim counter As Integer = 0
             For Each ISArtikel As dsArtikel.grartikelRow In data
                 counter += 1
-                If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
-                    ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                If Not biggerEAN Or (biggerEAN And (ISArtikel.EAN > justEAN)) Then
+                    If Not ISArtikel.Bezeichnung Is Nothing And ISArtikel.ProduktAktivOnline And Not IsDBNull(ISArtikel.EAN) Then
+                        ModuleLog.Log("Export ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
 
-                    Dim magentoProduct = New MagentoSync.MagentoSyncService.catalogProductCreateEntity
-                    magentoProduct.website_ids = {"1", "2"} 'for 1- pros pro and 2-arfiaan 
+                        Try
 
-                    If Not inEnglish Then
-                        magentoProduct.name = ISArtikel.Bezeichnung
+
+                            Dim magentoProduct = New MagentoSync.MagentoSyncService.catalogProductCreateEntity
+                            magentoProduct.website_ids = {"1", "2"} 'for 1- pros pro and 2-arfiaan 
+
+                            If Not inEnglish Then
+                                magentoProduct.name = ISArtikel.Bezeichnung
+                            Else
+                                magentoProduct.name = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Bezeichnung", ISArtikel.Bezeichnung, "ENG")
+                            End If
+
+
+                            'ReDim magentoProduct.category_ids(1) : magentoProduct.category_ids = {ISArtikel.ArtKatNr}
+                            magentoProduct.categories = {findISCatByID(ISArtikel.ArtKatNr)}
+
+                            If Not ISArtikel.IsBeschreibungNull Then
+                                If Not inEnglish Then
+                                    Dim desc = ISArtikel.Bezeichnung & " " & "EAN:" & ISArtikel.EAN & " " & ISArtikel.Beschreibung
+                                    magentoProduct.description = desc
+                                    magentoProduct.short_description = ISArtikel.Beschreibung
+                                Else
+                                    magentoProduct.short_description = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Beschreibung", ISArtikel.Beschreibung, "ENG")
+                                End If
+                            End If
+
+
+                            magentoProduct.price = Replace(ISArtikel.PreisATS * 1.2, ",", ".")
+                            magentoProduct.status = My.MySettings.Default.Magento_product_status
+                            magentoProduct.tax_class_id = My.MySettings.Default.Magento_product_tax_class_id
+                            magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
+                            ' magentoProduct.stock_data = New catalogInventoryStockItemUpdateEntity
+                            If Not ISArtikel.IsBezeichnung1Null Then
+                                magentoProduct.additional_attributes = New catalogProductAdditionalAttributesEntity
+                                ReDim magentoProduct.additional_attributes.single_data(1)
+                                magentoProduct.additional_attributes.single_data(0) = New associativeEntity
+                                magentoProduct.additional_attributes.single_data(0).key = "Lagerinfo"
+                                magentoProduct.additional_attributes.single_data(0).value = ISArtikel.Bezeichnung1
+                                'needs for some reason two times 
+                                magentoProduct.additional_attributes.single_data(1) = New associativeEntity
+                                magentoProduct.additional_attributes.single_data(1).key = "lagerinfo"
+                                magentoProduct.additional_attributes.single_data(1).value = ISArtikel.Bezeichnung1
+
+                            End If
+
+                            'magentoProduct.meta_title
+                            Try
+                                magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                            Catch ex As Exception
+                            End Try
+                            Try
+                                magentoProduct.meta_keyword = intrasell.vars.firstRow("select keywords from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
+                            Catch ex As Exception
+                            End Try
+
+                            If Not ISArtikel.IsGewichtNull Then
+                                magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
+                            Else
+                                magentoProduct.weight = 1
+                            End If
+
+
+                            Dim filter As filters = New filters
+                            ReDim filter.complex_filter(1)
+                            filter.complex_filter(0) = New complexFilter
+                            filter.complex_filter(0).key = "SKU"
+                            filter.complex_filter(0).value = New associativeEntity()
+                            filter.complex_filter(0).value.key = "eq"
+                            filter.complex_filter(0).value.value = ISArtikel.EAN
+
+
+                            Dim found As catalogProductEntity()
+                            ReDim found(1)
+
+                            magento.client.catalogProductList(found, magento.sessionid, filter, Nothing)
+
+                            If found.Length = 0 Then 'Create new
+                                ModuleLog.Log("catalogProductCreate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                                Dim productId = magento.client.catalogProductCreate(sessionId:=magento.sessionid, _
+                                                                                 type:="simple", _
+                                                                                 [set]:=defaultSet.set_id, _
+                                                                                 sku:=ISArtikel.EAN, _
+                                                                                 productData:=magentoProduct, _
+                                                                                 storeView:=storeView)  'storeView:=storeView1)
+
+                                'loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimages, "small_image")
+                                If exportPicture Then
+                                    loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimagesLarge, "image")
+                                End If
+                                If exportPrices Then
+                                    exportGroupPrices(ISArtikel.ArtNr, productId)
+                                End If
+                            Else 'update 
+                                ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
+                                'Magento.client.catalogProduct
+                                magentoProduct.category_ids = found(0).category_ids 'do not lose the categories
+                                magentoProduct.categories = Nothing
+                                magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
+                                                                    product:=found(0).product_id, _
+                                                                    productData:=magentoProduct, _
+                                                                                 storeView:=storeView, _
+                                                                                 identifierType:="productId")
+                                'storeView:=storeView1, _
+
+                                'loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
+                                If exportPicture Then
+                                    loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
+                                End If
+                                If exportPrices Then
+                                    exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
+                                End If
+                            End If
+
+                            If linkCats Then
+                                'link category 
+                                Dim magentoCat = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr))
+                                Dim magentoCategoryId As Integer = 1
+                                If Not magentoCat Is Nothing Then
+                                    magentoCategoryId = magentoCat.category_id
+                                Else
+                                    ModuleLog.Log("Missing intraSell category in magento. Name: " & findISCatByID(ISArtikel.ArtKatNr))
+                                End If
+
+                                magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
+                            End If
+
+
+                        Catch ex As Exception
+                            ModuleLog.Log(ex)
+                        End Try
                     Else
-                        magentoProduct.name = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Bezeichnung", ISArtikel.Bezeichnung, "ENG")
-                    End If
-
-
-                    'ReDim magentoProduct.category_ids(1) : magentoProduct.category_ids = {ISArtikel.ArtKatNr}
-                    magentoProduct.categories = {findISCatByID(ISArtikel.ArtKatNr)}
-
-                    If Not ISArtikel.IsBeschreibungNull Then
-                        If Not inEnglish Then
-                            Dim desc = ISArtikel.Bezeichnung & " " & "EAN:" & ISArtikel.EAN & " " & ISArtikel.Beschreibung
-                            magentoProduct.description = desc
-                            magentoProduct.short_description = ISArtikel.Beschreibung
-                        Else
-                            magentoProduct.short_description = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Beschreibung", ISArtikel.Beschreibung, "ENG")
-                        End If
-                    End If
-
-
-                    magentoProduct.price = Replace(ISArtikel.PreisATS * 1.2, ",", ".")
-                    magentoProduct.status = My.MySettings.Default.Magento_product_status
-                    magentoProduct.tax_class_id = My.MySettings.Default.Magento_product_tax_class_id
-                    magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
-                    ' magentoProduct.stock_data = New catalogInventoryStockItemUpdateEntity
-                    If Not ISArtikel.IsBezeichnung1Null Then
-                        magentoProduct.additional_attributes = New catalogProductAdditionalAttributesEntity
-                        ReDim magentoProduct.additional_attributes.single_data(1)
-                        magentoProduct.additional_attributes.single_data(0) = New associativeEntity
-                        magentoProduct.additional_attributes.single_data(0).key = "Lagerinfo"
-                        magentoProduct.additional_attributes.single_data(0).value = ISArtikel.Bezeichnung1
-                        'needs for some reason two times 
-                        magentoProduct.additional_attributes.single_data(1) = New associativeEntity
-                        magentoProduct.additional_attributes.single_data(1).key = "lagerinfo"
-                        magentoProduct.additional_attributes.single_data(1).value = ISArtikel.Bezeichnung1
-
-                    End If
-
-                    'magentoProduct.meta_title
-                    Try
-                        magentoProduct.meta_description = intrasell.vars.firstRow("select description from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
-                    Catch ex As Exception
-                    End Try
-                    Try
-                        magentoProduct.meta_keyword = intrasell.vars.firstRow("select keywords from `grArtikel-htmlinfo` where Artnr = " & ISArtikel.ArtNr)
-                    Catch ex As Exception
-                    End Try
-
-                    If Not ISArtikel.IsGewichtNull Then
-                        magentoProduct.weight = ISArtikel.Gewicht.ToString.Replace(",", ".")
-                    Else
-                        magentoProduct.weight = 1
-                    End If
-
-
-                    Dim filter As filters = New filters
-                    ReDim filter.complex_filter(1)
-                    filter.complex_filter(0) = New complexFilter
-                    filter.complex_filter(0).key = "SKU"
-                    filter.complex_filter(0).value = New associativeEntity()
-                    filter.complex_filter(0).value.key = "eq"
-                    filter.complex_filter(0).value.value = ISArtikel.EAN
-
-
-                    Dim found As catalogProductEntity()
-                    ReDim found(1)
-
-                    magento.client.catalogProductList(found, magento.sessionid, filter, Nothing)
-
-                    If found.Length = 0 Then 'Create new
-                        ModuleLog.Log("catalogProductCreate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-                        Dim productId = magento.client.catalogProductCreate(sessionId:=magento.sessionid, _
-                                                                         type:="simple", _
-                                                                         [set]:=defaultSet.set_id, _
-                                                                         sku:=ISArtikel.EAN, _
-                                                                         productData:=magentoProduct, _
-                                                                         storeView:=storeView)  'storeView:=storeView1)
-
-                        'loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimages, "small_image")
-                        If exportPicture Then
-                            loadimage(ISArtikel.ArtNr, productId, My.MySettings.Default.productimagesLarge, "image")
-                        End If
-                        If exportPrices Then
-                            exportGroupPrices(ISArtikel.ArtNr, productId)
-                        End If
-                    Else 'update 
-                        ModuleLog.Log("catalogProductUpdate ArtNr=" & ISArtikel.ArtNr & " and Name=" & ISArtikel.Bezeichnung)
-                        'Magento.client.catalogProduct
-                        magentoProduct.category_ids = found(0).category_ids 'do not lose the categories
-                        magentoProduct.categories = Nothing
-                        magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
-                                                            product:=found(0).product_id, _
-                                                            productData:=magentoProduct, _
-                                                                         storeView:=storeView, _
-                                                                         identifierType:="productId")
-                        'storeView:=storeView1, _
-
-                        'loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")
-                        If exportPicture Then
-                            loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimagesLarge, "image")
-                        End If
-                        If exportPrices Then
-                            exportGroupPrices(ISArtikel.ArtNr, found(0).product_id)
-                        End If
-                    End If
-
-                    If linkCats Then
-                        'link category 
-                        Dim magentoCat = findMagentoCatByName(findISCatByID(ISArtikel.ArtKatNr))
-                        Dim magentoCategoryId As Integer = 1
-                        If Not magentoCat Is Nothing Then
-                            magentoCategoryId = magentoCat.category_id
-                        Else
-                            ModuleLog.Log("Missing intraSell category in magento. Name: " & findISCatByID(ISArtikel.ArtKatNr))
-                        End If
-
-                        magento.client.catalogCategoryAssignProduct(sessionId:=magento.sessionid, categoryId:=magentoCategoryId, product:=ISArtikel.EAN, position:=0, identifierType:="SKU")
+                        ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
                     End If
                 Else
-                    ModuleLog.Log("Won't Export ArtNr=" & ISArtikel.ArtNr & " because missing name, not online or EAN not set!")
+                    ModuleLog.Log("Skip EAN=" & ISArtikel.EAN)
                 End If
-
                 FormStart.setProgress(counter / data.Count)
             Next
 
@@ -329,7 +341,7 @@ Public Class CatalogSync
     ''' <param name="filename"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Function readFileASbase64_(filename As String) As String
+    Function readFileASbase64_(ByVal filename As String) As String
         '# Example in vb.net:
         Dim str_file As String
         Dim arr_data() As Byte
@@ -345,7 +357,7 @@ Public Class CatalogSync
     End Function
 
 
-    Function readFileASbase64(filename As String) As String
+    Function readFileASbase64(ByVal filename As String) As String
 
         Dim imageStream As MemoryStream = New MemoryStream()
         Dim i As Image = Image.FromFile(filename)
@@ -379,7 +391,8 @@ Public Class CatalogSync
                 image.file.mime = "image/gif"
                 image.label = imageType & " for " & ArtNr '"image label"
                 image.position = 0
-                image.types = {"thumbnail", imageType} '"small_image", "image"
+                'image.types = {"thumbnail", imageType} '"small_image", "image"
+                image.types = {"thumbnail", "small_image", "base_image", imageType} '"small_image", "image"
                 image.exclude = 0
 
                 Dim list As MagentoSyncService.catalogProductImageEntity() = magento.client.catalogProductAttributeMediaList(sessionId:=magento.sessionid, _
@@ -441,7 +454,7 @@ Public Class CatalogSync
 
             Dim i = 0
             For Each priceIS As dsArtikel._grartikel_vkpreisperselectionRow In data
-                If Not (priceIS.IsVKPreisNull) Then
+                If Not (priceIS.IsVKPreisNull) And Not (priceIS.IsPreislisteNameNull) And priceIS.IDNR < 0 Then
                     Dim price As catalogProductTierPriceEntity = New catalogProductTierPriceEntity
                     price.customer_group_id = getMagentoCustomerGroup(priceIS.PreislisteName).customer_group_id
                     price.price = priceIS.VKPreis * 1.2
@@ -483,7 +496,7 @@ Public Class CatalogSync
 
 
 
-    Sub ExportProductLagerstand(justEAN As String)
+    Sub ExportProductLagerstand(ByVal justEAN As String)
         'export all products from intrasell to magento 
         FormStart.setProgress(0)
         Try
