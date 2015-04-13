@@ -303,6 +303,7 @@ Public Class CustomerSync
             newCustomer.PLZ = IntraSellKunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
             newCustomer.Ort = order.billing_address.city
             newCustomer.Tel = order.billing_address.telephone
+            newCustomer.Firma = order.billing_address.company
 
             dsAdr.ofadressen.Rows.Add(newCustomer)
 
@@ -315,9 +316,24 @@ Public Class CustomerSync
             dsAdr._ofadressen_settings.Rows.Add(newCustomerSettings)
 
         Else
-            ModuleLog.Log("Won't update, customer with this Email exists " & order.customer_email)
+            ModuleLog.Log("Update, Customer with this Email exists " & order.customer_email)
             'TODO update what ? 
             ta.FillByIDNR(dsAdr.ofadressen, idnr)
+
+            Dim oldCustomer As ofadressenRow = dsAdr.ofadressen.Rows(0)
+            oldCustomer.Name = order.customer_lastname
+            oldCustomer.Vorname = order.customer_firstname
+            oldCustomer.Email = order.customer_email
+
+            'Dim invoiceAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.billing_address_id)
+            Dim invoiceLand As String = getIntraSellLand(order.billing_address.country_id)
+            oldCustomer.Land = invoiceLand
+            oldCustomer.Adresse = order.billing_address.street
+            oldCustomer.PLZ = IntraSellKunden.getPLZCreateIfNeeded(invoiceLand, order.billing_address.city, order.billing_address.postcode)
+            oldCustomer.Ort = order.billing_address.city
+            oldCustomer.Tel = order.billing_address.telephone
+            oldCustomer.Firma = order.billing_address.company
+
         End If
 
 
@@ -334,6 +350,7 @@ Public Class CustomerSync
                 newCustomerShipping.Vorname = order.shipping_address.firstname
                 newCustomerShipping.Name = order.shipping_address.lastname
                 newCustomerShipping.Firma = order.shipping_address.company
+
                 ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
                 newCustomerShipping.Land = getIntraSellLand(order.shipping_address.country_id)
                 newCustomerShipping.Adresse = order.shipping_address.street
@@ -343,6 +360,21 @@ Public Class CustomerSync
 
 
                 dsAdr._ofadressen_weitere.Rows.Add(newCustomerShipping)
+            Else 'Update LI Address
+                taWeitere.FillByIDNR(dsAdr._ofadressen_weitere, idnr)
+                Dim oldCustomerShipping As _ofadressen_weitereRow = dsAdr._ofadressen_weitere.Select("Typ ='LI'")(0)
+
+                oldCustomerShipping.Vorname = order.shipping_address.firstname
+                oldCustomerShipping.Name = order.shipping_address.lastname
+                oldCustomerShipping.Firma = order.shipping_address.company
+
+                ' Dim shippingAddress As customerAddressEntityItem = magento.client.customerAddressInfo(magento.sessionid, order.shipping_address_id)
+                oldCustomerShipping.Land = getIntraSellLand(order.shipping_address.country_id)
+                oldCustomerShipping.Adresse = order.shipping_address.street
+                oldCustomerShipping.PLZ = IntraSellKunden.getPLZCreateIfNeeded(oldCustomerShipping.Land, order.shipping_address.city, order.shipping_address.postcode)
+                oldCustomerShipping.Ort = order.shipping_address.city
+                oldCustomerShipping.Tel = order.shipping_address.telephone
+
             End If
         End If
 
@@ -360,11 +392,11 @@ Public Class CustomerSync
     ''' Import all new customers since
     ''' </summary>
     ''' <remarks></remarks>
-    Public Sub ImportNewMagentoCustomers(Optional ByVal since As Date = Nothing)
+    Public Sub ImportNewMagentoCustomers(Optional ByVal since As Date = Nothing, Optional ByVal until As Date = Nothing)
         FormStart.setProgress(0)
         Dim counter As Integer = 0
 
-        ModuleLog.Log("Start import magento customers since " & since)
+        ModuleLog.Log("Start import magento customers since " & since & " til " + until)
 
         magento.OpenConn()
         Try
@@ -375,12 +407,28 @@ Public Class CustomerSync
             Else
                 'Filter 
                 Dim filter As filters = New filters
-                ReDim filter.complex_filter(1)
-                filter.complex_filter(0) = New complexFilter
-                filter.complex_filter(0).key = "created_at"
-                filter.complex_filter(0).value = New associativeEntity()
-                filter.complex_filter(0).value.key = "gt"
-                filter.complex_filter(0).value.value = toMagentoDateFormat(since)
+                If IsNull(until) Then
+                    ReDim filter.complex_filter(1)
+                    filter.complex_filter(0) = New complexFilter
+                    filter.complex_filter(0).key = "created_at"
+                    filter.complex_filter(0).value = New associativeEntity()
+                    filter.complex_filter(0).value.key = "gt"
+                    filter.complex_filter(0).value.value = toMagentoDateFormat(since)
+                Else
+                    ReDim filter.complex_filter(2)
+                    filter.complex_filter(0) = New complexFilter
+                    filter.complex_filter(0).key = "created_at"
+                    filter.complex_filter(0).value = New associativeEntity()
+                    filter.complex_filter(0).value.key = "gteq"
+                    filter.complex_filter(0).value.value = toMagentoDateFormat(since)
+
+                    filter.complex_filter(1) = New complexFilter
+                    filter.complex_filter(1).key = "created_at"
+                    filter.complex_filter(1).value = New associativeEntity()
+                    filter.complex_filter(1).value.key = "lteq"
+                    filter.complex_filter(1).value.value = toMagentoDateFormat(until)
+
+                End If
 
                 list = magento.client.customerCustomerList(magento.sessionid, filter)
             End If
@@ -456,6 +504,7 @@ Public Class CustomerSync
             newCustomer.Name = customer.lastname
             newCustomer.Vorname = customer.firstname
             newCustomer.Email = customer.email
+
             'newCustomer.Passwort = customer.password_hash 'Exception: Die Spalte kann nicht auf 'Passwort' festgelegt werden. Der Wert überschreitet den MaxLength-Grenzwert dieser Spalte.
             If Not customer.taxvat Is Nothing Then
                 newCustomer.UID = customer.taxvat 'UID Nummer

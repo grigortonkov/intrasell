@@ -59,6 +59,12 @@ Partial Class FormStart
         Me.btnExportISEvents = New System.Windows.Forms.Button()
         Me.TimerISEvents = New System.Windows.Forms.Timer(Me.components)
         Me.cbNextEAN = New System.Windows.Forms.CheckBox()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DateTimePickerOrdersTil = New System.Windows.Forms.DateTimePicker()
+        Me.FlowLayoutPanel1.SuspendLayout()
+        Me.FlowLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnCheckMagento
@@ -170,7 +176,7 @@ Partial Class FormStart
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(176, 18)
+        Me.Label2.Location = New System.Drawing.Point(110, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 11
@@ -178,7 +184,7 @@ Partial Class FormStart
         '
         'txtIDNR
         '
-        Me.txtIDNR.Location = New System.Drawing.Point(224, 15)
+        Me.txtIDNR.Location = New System.Drawing.Point(3, 3)
         Me.txtIDNR.Name = "txtIDNR"
         Me.txtIDNR.Size = New System.Drawing.Size(101, 20)
         Me.txtIDNR.TabIndex = 12
@@ -187,7 +193,7 @@ Partial Class FormStart
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(341, 19)
+        Me.Label3.Location = New System.Drawing.Point(150, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(70, 13)
         Me.Label3.TabIndex = 13
@@ -196,7 +202,7 @@ Partial Class FormStart
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(298, 74)
+        Me.Label4.Location = New System.Drawing.Point(127, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 13)
         Me.Label4.TabIndex = 16
@@ -204,7 +210,7 @@ Partial Class FormStart
         '
         'txtEAN
         '
-        Me.txtEAN.Location = New System.Drawing.Point(247, 70)
+        Me.txtEAN.Location = New System.Drawing.Point(76, 3)
         Me.txtEAN.Name = "txtEAN"
         Me.txtEAN.Size = New System.Drawing.Size(45, 20)
         Me.txtEAN.TabIndex = 15
@@ -213,7 +219,7 @@ Partial Class FormStart
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(212, 74)
+        Me.Label5.Location = New System.Drawing.Point(41, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 13)
         Me.Label5.TabIndex = 14
@@ -226,7 +232,7 @@ Partial Class FormStart
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(118, 13)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Vers. 1.0.4. 13.03.2015"
+        Me.Label6.Text = "Vers. 1.0.5. 12.04.2015"
         '
         'btnExportLagerstand
         '
@@ -273,7 +279,7 @@ Partial Class FormStart
         'cbEnglish
         '
         Me.cbEnglish.AutoSize = True
-        Me.cbEnglish.Location = New System.Drawing.Point(428, 72)
+        Me.cbEnglish.Location = New System.Drawing.Point(203, 3)
         Me.cbEnglish.Name = "cbEnglish"
         Me.cbEnglish.Size = New System.Drawing.Size(91, 17)
         Me.cbEnglish.TabIndex = 22
@@ -292,7 +298,7 @@ Partial Class FormStart
         'cbPics
         '
         Me.cbPics.AutoSize = True
-        Me.cbPics.Location = New System.Drawing.Point(733, 72)
+        Me.cbPics.Location = New System.Drawing.Point(484, 3)
         Me.cbPics.Name = "cbPics"
         Me.cbPics.Size = New System.Drawing.Size(77, 17)
         Me.cbPics.TabIndex = 23
@@ -304,7 +310,7 @@ Partial Class FormStart
         Me.cbPrices.AutoSize = True
         Me.cbPrices.Checked = True
         Me.cbPrices.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbPrices.Location = New System.Drawing.Point(538, 73)
+        Me.cbPrices.Location = New System.Drawing.Point(392, 3)
         Me.cbPrices.Name = "cbPrices"
         Me.cbPrices.Size = New System.Drawing.Size(86, 17)
         Me.cbPrices.TabIndex = 24
@@ -314,7 +320,7 @@ Partial Class FormStart
         'cbLinkCats
         '
         Me.cbLinkCats.AutoSize = True
-        Me.cbLinkCats.Location = New System.Drawing.Point(641, 72)
+        Me.cbLinkCats.Location = New System.Drawing.Point(300, 3)
         Me.cbLinkCats.Name = "cbLinkCats"
         Me.cbLinkCats.Size = New System.Drawing.Size(86, 17)
         Me.cbLinkCats.TabIndex = 25
@@ -357,12 +363,55 @@ Partial Class FormStart
         'cbNextEAN
         '
         Me.cbNextEAN.AutoSize = True
-        Me.cbNextEAN.Location = New System.Drawing.Point(170, 71)
+        Me.cbNextEAN.Location = New System.Drawing.Point(3, 3)
         Me.cbNextEAN.Name = "cbNextEAN"
         Me.cbNextEAN.Size = New System.Drawing.Size(32, 17)
         Me.cbNextEAN.TabIndex = 29
         Me.cbNextEAN.Text = ">"
         Me.cbNextEAN.UseVisualStyleBackColor = True
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Controls.Add(Me.cbNextEAN)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label5)
+        Me.FlowLayoutPanel1.Controls.Add(Me.txtEAN)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label4)
+        Me.FlowLayoutPanel1.Controls.Add(Me.cbEnglish)
+        Me.FlowLayoutPanel1.Controls.Add(Me.cbLinkCats)
+        Me.FlowLayoutPanel1.Controls.Add(Me.cbPrices)
+        Me.FlowLayoutPanel1.Controls.Add(Me.cbPics)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(179, 70)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(604, 27)
+        Me.FlowLayoutPanel1.TabIndex = 30
+        '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.Controls.Add(Me.txtIDNR)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Label2)
+        Me.FlowLayoutPanel2.Controls.Add(Me.Label3)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(182, 12)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(303, 34)
+        Me.FlowLayoutPanel2.TabIndex = 31
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(431, 201)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(14, 13)
+        Me.Label7.TabIndex = 33
+        Me.Label7.Text = "til"
+        '
+        'DateTimePickerOrdersTil
+        '
+        Me.DateTimePickerOrdersTil.CustomFormat = "dd.MM.yyyy HH.mm"
+        Me.DateTimePickerOrdersTil.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateTimePickerOrdersTil.Location = New System.Drawing.Point(479, 199)
+        Me.DateTimePickerOrdersTil.Name = "DateTimePickerOrdersTil"
+        Me.DateTimePickerOrdersTil.Size = New System.Drawing.Size(187, 20)
+        Me.DateTimePickerOrdersTil.TabIndex = 32
         '
         'FormStart
         '
@@ -370,25 +419,18 @@ Partial Class FormStart
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
         Me.ClientSize = New System.Drawing.Size(1088, 535)
-        Me.Controls.Add(Me.cbNextEAN)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.DateTimePickerOrdersTil)
+        Me.Controls.Add(Me.FlowLayoutPanel2)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.btnExportISEvents)
         Me.Controls.Add(Me.btnTest2)
         Me.Controls.Add(Me.btnTest)
-        Me.Controls.Add(Me.cbLinkCats)
-        Me.Controls.Add(Me.cbPrices)
-        Me.Controls.Add(Me.cbPics)
-        Me.Controls.Add(Me.cbEnglish)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.btnMagento2ISKunden)
         Me.Controls.Add(Me.btnExportOrderStatus)
         Me.Controls.Add(Me.btnExportLagerstand)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txtEAN)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtIDNR)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DateTimePickerOrdersSince)
         Me.Controls.Add(Me.txtLog)
@@ -403,6 +445,10 @@ Partial Class FormStart
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormStart"
         Me.Text = "IntraSell 2 Magento"
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
+        Me.FlowLayoutPanel2.ResumeLayout(False)
+        Me.FlowLayoutPanel2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -442,5 +488,9 @@ Partial Class FormStart
     Friend WithEvents btnExportISEvents As System.Windows.Forms.Button
     Friend WithEvents TimerISEvents As System.Windows.Forms.Timer
     Friend WithEvents cbNextEAN As System.Windows.Forms.CheckBox
+    Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel2 As System.Windows.Forms.FlowLayoutPanel
+    Protected WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents DateTimePickerOrdersTil As System.Windows.Forms.DateTimePicker
 
 End Class
