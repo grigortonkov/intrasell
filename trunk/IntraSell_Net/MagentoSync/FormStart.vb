@@ -37,6 +37,7 @@ Public Class FormStart
             ModuleLog.Log("Start")
 
             Me.DateTimePickerOrdersSince.Value = Today
+            Me.DateTimePickerOrdersTil.Value = Today.AddDays(30)
 
             If IsNumeric(My.MySettings.Default.SyncIntervalSeconds) Then
                 If 1 * (My.MySettings.Default.SyncIntervalSeconds) > 0 Then
@@ -132,7 +133,7 @@ Public Class FormStart
     Private Sub ThreadTask_btnMagento2ISKunden_Click()
         Try
             Dim customerS As CustomerSync = New CustomerSync
-            customerS.ImportNewMagentoCustomers(Me.DateTimePickerOrdersSince.Value)
+            customerS.ImportNewMagentoCustomers(Me.DateTimePickerOrdersSince.Value, Me.DateTimePickerOrdersTil.Value)
         Catch ex As Exception
             ModuleLog.Log(ex)
             Me.lblMagentoConn.BackColor = Color.Red
@@ -257,7 +258,7 @@ Public Class FormStart
     Sub ThreadTask_btnImportOrders_Click()
         Try
             Dim exp As OrderSync = New OrderSync
-            exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value.AddHours(-2)) 'HACK: um die GMT umzugehen in magento 
+            exp.ImportNewOrders(Me.DateTimePickerOrdersSince.Value.AddHours(-2), Me.DateTimePickerOrdersTil.Value.AddHours(-2)) 'HACK: um die GMT umzugehen in magento 
             'btn.Enabled = True
         Catch ex As Exception
             ModuleLog.Log(ex)

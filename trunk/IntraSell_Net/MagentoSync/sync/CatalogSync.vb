@@ -139,7 +139,8 @@ Public Class CatalogSync
                                         Optional ByVal exportPicture As Boolean = True, _
                                         Optional ByVal exportPrices As Boolean = True, _
                                         Optional ByVal linkCats As Boolean = True, _
-                                        Optional ByVal biggerEAN As Boolean = False)
+                                        Optional ByVal biggerEAN As Boolean = False
+                                         )
         'export all products from intrasell to magento 
         Try
             FormStart.setProgress(0)
@@ -208,7 +209,10 @@ Public Class CatalogSync
                                     magentoProduct.description = desc
                                     magentoProduct.short_description = ISArtikel.Beschreibung
                                 Else
-                                    magentoProduct.short_description = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Beschreibung", ISArtikel.Beschreibung, "ENG")
+                                    Dim descEng = intrasell.dictionary.getTranslationDok("grArtikel", ISArtikel.ArtNr, "Beschreibung", ISArtikel.Beschreibung, "ENG")
+                                    Dim desc = ISArtikel.Bezeichnung & " " & "EAN:" & ISArtikel.EAN & " " & descEng
+                                    magentoProduct.description = desc
+                                    magentoProduct.short_description = descEng
                                 End If
                             End If
 
@@ -286,8 +290,16 @@ Public Class CatalogSync
                                 magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
                                                                     product:=found(0).product_id, _
                                                                     productData:=magentoProduct, _
-                                                                                 storeView:=storeView, _
-                                                                                 identifierType:="productId")
+                                                                    storeView:=storeView, _
+                                                                    identifierType:="productId")
+
+                                If inEnglish Then 'Zusätzlicher Export in English for Arfian shop (komische Konfiguration)
+                                    magento.client.catalogProductUpdate(sessionId:=magento.sessionid, _
+                                                                   product:=found(0).product_id, _
+                                                                   productData:=magentoProduct, _
+                                                                   storeView:="eng", _
+                                                                   identifierType:="productId")
+                                End If
                                 'storeView:=storeView1, _
 
                                 'loadimage(ISArtikel.ArtNr, found(0).product_id, My.MySettings.Default.productimages, "small_image")

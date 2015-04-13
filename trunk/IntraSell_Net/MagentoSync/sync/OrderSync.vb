@@ -23,10 +23,13 @@ Public Class OrderSync
     ''' </summary>
     ''' <param name="since">'init with this time , timer uses no since  </param>
     ''' <remarks></remarks>
-    Public Sub ImportNewOrders(Optional ByVal since As Date = Nothing)
+    Public Sub ImportNewOrders(Optional ByVal since As Date = Nothing, Optional ByVal until As Date = Nothing)
         FormStart.setProgress(0)
         If Not IsNothing(since) Then
             lastOrderCreated = since
+        End If
+        If IsNothing(until) Then
+            until = Now.AddDays(1)
         End If
         magento.OpenConn()
         intrasell.init()
@@ -34,17 +37,18 @@ Public Class OrderSync
         Try
             'create filter
             Dim filter As filters = New filters
-            ReDim filter.complex_filter(1)
+            ReDim filter.complex_filter(2)
             'filter.complex_filter(0) = New complexFilter
             'filter.complex_filter(0).key = "created_at"
             'filter.complex_filter(0).value = New associativeEntity()
             'filter.complex_filter(0).value.key = "gt"
             'filter.complex_filter(0).value.value = toMagentoDateFormat(lastOrderCreated)
 
-            filter.complex_filter(0) = New complexFilter With {.key = "created_at", .value = New associativeEntity With {.key = "from", .value = toMagentoDateFormat(lastOrderCreated)}}
+            filter.complex_filter(0) = New complexFilter With {.key = "created_at", .value = New associativeEntity With {.key = "gteq", .value = toMagentoDateFormat(lastOrderCreated)}}
+            filter.complex_filter(1) = New complexFilter With {.key = "created_at", .value = New associativeEntity With {.key = "lteq", .value = toMagentoDateFormat(until)}}
 
             Dim list As MagentoSyncService.salesOrderListEntity() = magento.client.salesOrderList(magento.sessionid, filter)
-            ModuleLog.Log("Found " & list.Count.ToString & " orders. Going to import the new orders since " + lastOrderCreated + ".")
+            ModuleLog.Log("Found " & list.Count.ToString & " orders. Going to import the new orders since " + lastOrderCreated + " til " + until)
             lastOrderCreated = Now 'for the next import 
             Dim c As MagentoSyncService.salesOrderListEntity
             Dim counter As Integer = 0
