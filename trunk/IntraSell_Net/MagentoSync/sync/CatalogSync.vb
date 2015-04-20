@@ -218,7 +218,12 @@ Public Class CatalogSync
 
 
                             magentoProduct.price = Replace(ISArtikel.PreisATS * 1.2, ",", ".")
-                            magentoProduct.status = My.MySettings.Default.Magento_product_status
+                            If ISArtikel.ProduktAktiv Then
+                                magentoProduct.status = 1 ' My.MySettings.Default.Magento_product_status '1 - aktiv, 0 - nicht aktiv
+                            Else
+                                magentoProduct.status = 2 ' 0 ist bitte auswählen
+                            End If
+
                             magentoProduct.tax_class_id = My.MySettings.Default.Magento_product_tax_class_id
                             magentoProduct.visibility = My.MySettings.Default.Magento_product_visibility 'catalog and search.
                             ' magentoProduct.stock_data = New catalogInventoryStockItemUpdateEntity
@@ -401,7 +406,8 @@ Public Class CatalogSync
                 'image.file.name = productimageFile
                 image.file.content = readFileASbase64(productimageFile)
                 image.file.mime = "image/gif"
-                image.label = imageType & " for " & ArtNr '"image label"
+                'image.label = imageType & " for " & ArtNr '"image label"
+                image.label = intrasell.vars.firstRow("select Bezeichnung from `grArtikel` where Artnr = " & ArtNr)
                 image.position = 0
                 'image.types = {"thumbnail", imageType} '"small_image", "image"
                 image.types = {"thumbnail", "small_image", "base_image", imageType} '"small_image", "image"
