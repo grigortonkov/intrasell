@@ -128,8 +128,10 @@
             Dim sumRow(100) 'max 20 fields  
     
             Dim alternateRowColor : alternateRowColor = "#FFFFFF"
-            While Not rs.EOF
- 	
+            Dim maxRows = 100
+            Dim rownum = 0 
+            While Not rs.EOF and rownum <=maxRows 
+ 	            rownum = rownum + 1
                 If alternateRowColor = "#FFFFCC" Then
                     alternateRowColor = "#FFFFFF"
                 Else

@@ -249,7 +249,7 @@
         rs = objConnection.Execute(SQLString)
         If rs.EOF Then
             VARVALUE_NO_CHACHE = ""
-            Response.Write("Die Variable " & varname & " ist nicht vorhanden!!!")
+            'Response.Write("Die Variable " & varname & " ist nicht vorhanden!!!")
         Else
             VARVALUE_NO_CHACHE = rs.fields.Item("Wert").Value()
         End If
