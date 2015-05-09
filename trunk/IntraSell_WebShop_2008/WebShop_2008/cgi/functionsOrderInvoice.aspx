@@ -314,6 +314,14 @@
                                    ByVal OrderType As String, Optional old_SHIPPING_ID As String = "" , _
                                    Optional old_INVOICE_ID As String = "") As String
         'TODO: Implementiere Transaction 
+        'exist if already in execution 
+        Dim executionFlag = "Warenkorb SID=" + SID
+        If VARVALUE_DEFAULT(executionFlag, "new") <> "new" Then
+            Response.Write("Function createOrderFromBasket already in execution.")
+            Return Nothing 'exit because already in execution
+            Exit Function
+        End If
+        SETVARVALUE(executionFlag, "started")
         
         Dim Land As String = getClientDestinationLand(KDNR) ' getClientLand(KDNR)
         Dim Language As String = Session("Language")
@@ -610,7 +618,7 @@
         Dim addressType As String = TypeOfAddress.SHIPPING
         Dim kundNr2 As String = old_SHIPPING_ID
         
-        If kundNr2 = "" then 
+        If kundNr2 = "" Then
             sqlLI = "Select ID from [ofAdressen-Weitere] where typ= '" & addressType & "' and IDNR=" & KDNR
             'Response.Write sqlLI 
             rsLI = objConnectionExecute(sqlLI)
@@ -618,15 +626,15 @@
                 kundNr2 = rsLI("ID").Value
             End If
             rsLI.close()
-        End If 
+        End If
     
-        If kundNr2 <> "" then 
-         sqlUpdateAuftrag = "UPDATE " & tableName & _
-                            " SET KundNr2 =" & kundNr2 & _
-                            " WHERE Nummer = " & AuftragNr
-          if showDebug() then Response.Write (sqlUpdateAuftrag)
-          objConnectionExecute(sqlUpdateAuftrag)
-        End If 
+        If kundNr2 <> "" Then
+            sqlUpdateAuftrag = "UPDATE " & tableName & _
+                               " SET KundNr2 =" & kundNr2 & _
+                               " WHERE Nummer = " & AuftragNr
+            If showDebug() Then Response.Write(sqlUpdateAuftrag)
+            objConnectionExecute(sqlUpdateAuftrag)
+        End If
     
         'End SET kundnr2 
 
@@ -637,6 +645,7 @@
         'insert reference ' see reference module 
         Call createReference(OrderType, AuftragNr, Session("REFERER_ID"))
         Call createOrderFromBasketFinish(KDNR, AuftragNr)
+        SETVARVALUE(executionFlag, "done")
     End Function
 
 
